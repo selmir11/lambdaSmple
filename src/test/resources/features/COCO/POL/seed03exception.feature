@@ -1,6 +1,6 @@
 Feature: Seed03 With Exception - COCO
 
-  Scenario: Seed 03 With Exception For COCO- Family of 4
+  Background: Seed 03 With Exception For COCO- Family of 4
 
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -20,7 +20,7 @@ Feature: Seed03 With Exception - COCO
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -47,7 +47,7 @@ Feature: Seed03 With Exception - COCO
     And I enter residential address details for additional member "103 Coco Drive", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Wife"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
@@ -72,7 +72,7 @@ Feature: Seed03 With Exception - COCO
     And I enter residential address details for additional member "103 Coco Drive", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Daughter"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
@@ -98,7 +98,7 @@ Feature: Seed03 With Exception - COCO
     And I enter residential address details for additional member "103 Coco Drive", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Son"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
@@ -144,3 +144,27 @@ Feature: Seed03 With Exception - COCO
     Then I validate I am on the "CoCo Welcome" page
     And I click on Sign Out in the Header for "Elmo"
 
+   @SLCR-842-WIP
+  Scenario: CCRT-372 - ENR-COCO: EDIT POLICY - RE-INSTATE MEMBER FROM A CANCEL
+     Given I open the login page on the "admin" portal
+     And I validate I am on the "Login" page
+     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+     And I validate I am on the "Admin dashboard" page
+     And I select "coco" checkbox on Admin Portal Dashboard
+     And I search for user and click email from search results
+     Then I click on manage plan button on admin portal Individual dashboard
+     Then I click Make Changes Medical button
+     Then I update the coverage end date
+       | 2:Cancel |
+     And I update the financial end date
+       | 2:Cancel |
+     And I click Save Button Medical
+     And I select the reason to confirm the changes
+     Then I click Make Changes Medical button
+     Then I update the coverage end date
+       | 2:12312025 |
+     And I update the financial end date
+       | 2:12312025 |
+     And I click Save Button Medical
+     And I select the reason to confirm the changes
+     Then logout from Admin Portal

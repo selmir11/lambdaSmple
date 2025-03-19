@@ -15,10 +15,7 @@ import java.text.Collator;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.YearMonth;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
@@ -641,6 +638,9 @@ public class BasicActions {
         LocalDate today = LocalDate.now();
         return Integer.toString(today.getYear());
     }
+    public String getPastYear(int num) {
+        return Integer.toString(Year.now().getValue() - num);
+    }
 
     public String getStartDateOE() {// Today
         LocalDate date = LocalDate.of(Integer.parseInt(getCurrYear()), 11, 1);
@@ -788,6 +788,15 @@ public class BasicActions {
                     break;
                 case "First Day of Current Month":
                     date = firstDateOfCurrMonth();
+                    break;
+                case "Current Year":
+                    date = getCurrYear();
+                    break;
+                case "Previous Year":
+                    date = getPastYear(1);
+                    break;
+                case "Previous Previous Year":
+                    date = getPastYear(2);
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid option: " + dateRequirement);

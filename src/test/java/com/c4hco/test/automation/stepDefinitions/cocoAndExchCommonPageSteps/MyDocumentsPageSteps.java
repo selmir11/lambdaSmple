@@ -111,11 +111,6 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
         myDocumentsPage.clickDoubleChevron();
     }
 
-    @Then("I validate Date Received, Time Received and Download button available")
-    public void iValidateDateReceivedTimeReceivedAndDownloadButtonAvailable() {
-        myDocumentsPage.iValidateDateReceivedTimeReceivedAndDownloadButtonAvailable();
-    }
-
     @Then("I validate no document message")
     public void iValidateNoDocumentMessage(String data) {
         myDocumentsPage.validateNoDocumentMessage(data);
@@ -182,9 +177,9 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     @Then("I validate border colour of type and category dropdown")
     public void I_validate_border_colour_of_type_and_category_dropdown() {myDocumentsPage.validateBorderColourOfTypeAndCategoryDropdown_errorMsg();}
 
-    @And("I verify the page text on the My Documents Page")
-    public void iVerifyThePageTextOnTheMyDocumentsPage(List<String> data) {
-        myDocumentsPage.verifyTextonDocumentPage(data);
+    @And("I verify the page text on the My Documents Page in {string}")
+    public void iVerifyThePageTextOnTheMyDocumentsPage(String language, List<String> data) {
+        myDocumentsPage.verifyTextonDocumentPage(language,data);
     }
     @Then("I validate selection required error message for only document category")
     public void I_validate_selection_required_error_message_for_only_document_category() {myDocumentsPage.validateSelectionRequiredErrMsg_ForOnlyCategoryDoc();}
@@ -270,7 +265,7 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iVerifyDocumentTypeIsSelectedOnModalPopup(String DocTpe) {
         myDocumentsPage.verifyDocumentTypeSelected(DocTpe);
     }
-  
+
     @Then("I see the username in Exch that I am currently logged into")
     public void iSeeTheUsernameInExchThatIAmCurrentlyLoggedInto() {
         myDocumentsPage.verifyUserName();
@@ -318,6 +313,132 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     @And("I click upload MVR button for {string}")
     public void iClickUploadMVRButtonFor(String mvrType) {
         myDocumentsPage.clickUploadMvr(mvrType);
+    }
+
+    @And("I verify Document header on my document page")
+    public void iVerifyDocumentHeaderOnMyDocumentPage(String data) {
+        myDocumentsPage.verifyDocumentHeaderOnMyDocument(data);
+    }
+
+    @Then("I verify Sub header on my document page")
+    public void iVerifySubHeaderOnMyDocumentPage(String data) {
+        myDocumentsPage.verifySubHeaderOnMyDocumentPage(data);
+
+    }
+
+    @Then("I verify container header for information we need")
+    public void iVerifyContainerHeaderForInformationWeNeed(String data) {
+        myDocumentsPage.verifyContaineNameForInfoWeNeed(data);
+    }
+
+    @And("I verify MVR name on the information we need container in {string}")
+    public void iVerifyMVRNameAreCorrect(String language) {
+        myDocumentsPage.verifyMvrNames(language);
+    }
+
+    @Then("I Verify due date are displaying in proper color")
+    public void iVerifyDueDateAreDisplayingInProperColor() {
+        myDocumentsPage.verifyDueDateColor();
+    }
+
+    @Then("I verify member name in MVR type")
+    public void iVerifyMemberNameInMVRType(DataTable datatable) {
+        myDocumentsPage.verifyMemberName(datatable);
+    }
+
+    @Then("I verify mvr type with date, member name and upload button")
+    public void iVerifyMvrTypeWithDateHouseHolderNameAndUploadButton() {
+        myDocumentsPage.verifyMvrTypesWithTextandButtons();
+    }
+
+    @Then("I verify Upload button on the right")
+    public void iVerifyUploadButtonOnTheRight() {
+        myDocumentsPage.verifyUploadBtnForMrv();
+    }
+
+    @And("I verify no document on new account")
+    public void iVerifyNoDocumentOnNewAccount(String data) {
+        myDocumentsPage.verifyNoDocumentMessage(data);
+    }
+
+    @Then("I validate file required error message on modal popup")
+    public void iValidateFileRequiredErrorMessageOnModalPopup(String data) {
+        myDocumentsPage.validateFileRequiredErrorMessage(data);
+    }
+
+    @Then("I validate selection required error message on modal popup")
+    public void iValidateSelectionRequiredErrorMessageOnModalPopup(String data) {
+        myDocumentsPage.validateSelectionRequiredErrorMessage(data);
+    }
+
+    @When("I click on upload documents button in modal popup")
+    public void iClickOnUploadDocumentsButtonInModalPopup() {
+        myDocumentsPage.clickUploadButton();
+    }
+
+    @Then("I validate border colour of category dropdown")
+    public void iValidateBorderColourOfCategoryDropdown() {
+        myDocumentsPage.validateBorderColorofErrorCategory();
+    }
+
+    @Then("I validate selection required error message for only document category on modal popup")
+    public void iValidateSelectionRequiredErrorMessageForOnlyDocumentCategoryOnModalPopup(String data) {
+        myDocumentsPage.validateSelectionRequiredErrorMessage_ForOnlyCategoryDoc(data);
+    }
+
+    @Then("I verify unsupported document error message with red in color")
+    public void iVerifyUnsupportedDocumentErrorMessageWithRedInColor(String data) {
+        myDocumentsPage.validateDocUnsupportedErrorAndTextColour(data);
+    }
+
+    @When("I select any category of document from dropdown in spanish")
+    public void iSelectAnyCategoryOfDocumentFromDropdownInSpanish() {
+        myDocumentsPage.select1stOptionFromDocTypeSpanish();
+    }
+
+    @Then("I verify doc file size large error message in red in Spanish")
+    public void iVerifyDocFileSizeLargeErrorMessageInRedOnModelPopup() {
+        myDocumentsPage.validateDocSizeLargeErrMsgAndTextColourSpanish();
+    }
+
+    @Then("I upload MVR doc for {string} on the My Documents page in {string}")
+    public void iUploadMVRDocForOnTheMyDocumentsPageIn(String mvrType, String language) {
+        myDocumentsPage.uploadMvrDocAndSuccesMessage(mvrType,language);
+    }
+
+    @Then("I upload another doc {string} for {string} on the My Documents page and verify success message in {string}")
+    public void iUploadAnotherDocForOnTheMyDocumentsPageAndVerifySuccessMessageIn(String fileName, String mvrType, String language) {
+        myDocumentsPage.uploadAnotherDocAndSuccessMessage(fileName,mvrType,language);
+    }
+
+    @Then("I validate help drawer open in right side of the page for {string} mvr")
+    public void iValidateHelpDrawerOpenInRightSideOfThePageForMvr(String mvrType) {
+        myDocumentsPage.validateHelpDrawerOpenedForMvr(mvrType);
+    }
+
+    @Then("I select {string} from document and letter dropdown")
+    public void iSelectFromDocumentAndLetterDropdown(String data) {
+        myDocumentsPage.selectDocumentAndLetter(data);
+    }
+
+    @And("I verify plan year label {string}")
+    public void iVerifyPlanYearLabel(String planYearLabel) {
+        myDocumentsPage.verifyPlanYearLabel(planYearLabel);
+    }
+
+    @And("I validate default value in Documents and letters dropdown in {string}")
+    public void iValidateDefaultValueInDocumentsAndLettersDropdownIn(String language) {
+        myDocumentsPage.defaultDocumentLetterValue(language);
+    }
+
+    @Then("I verify Go back to welcome page button")
+    public void iVerifyGoBackToWelcomePageButtonIn(String data) {
+        myDocumentsPage.verifyGoBackToWelcomePageButton(data);
+    }
+
+    @Then("I validate Date Received, Time Received and Download button available in {string}")
+    public void iValidateDateReceivedTimeReceivedAndDownloadButtonAvailableIn(String language) {
+        myDocumentsPage.verifyDateTimeDownloadButton(language);
     }
 }
 

@@ -33,7 +33,7 @@ Feature: UI Page Validation - Enrollment Agreement
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
@@ -52,7 +52,7 @@ Feature: UI Page Validation - Enrollment Agreement
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option

@@ -4,6 +4,7 @@ import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -165,7 +166,9 @@ public class FindACertifiedBrokerPage {
     @FindBy(id = "auth-brok")
     WebElement brokerAuthorizationButton;
 
-    @FindBy (xpath = "//button[.='Continue with my application']")
+    @FindAll({
+            @FindBy (id = "contineOwn-button"),
+            @FindBy (xpath = "//button[.='Continue with my application ']")})
     WebElement continueWithMyOwn;
 
 
@@ -617,6 +620,7 @@ public class FindACertifiedBrokerPage {
     public void clickChangeBrokerOption(String changeBrokerOption) {
         basicActions.waitForElementToBePresent(changeBrokerContainer,10);
         basicActions.waitForElementToBePresent(changeBrokerContainerWarningText,60);
+        basicActions.waitForElementToBeClickable(authorizeBrokerTermsCheckbox,30);
         authorizeBrokerTermsCheckbox.click();
         
         switch (changeBrokerOption){

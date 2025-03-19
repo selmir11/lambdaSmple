@@ -74,14 +74,14 @@ Feature: Secondary User-OHC Individual Insurance Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "Yes" for will claim dependents question
-    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "Other" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Individual Insurance" page
+    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status page
+    Then I click Save and Continue on Tax Status page
+    Then I select "Other" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Individual Insurance" page
 
   @SLER-490 @SecondaryUserOhcIndividualInsuranceElmo
   Scenario: SLER-490 I can see Individual Insurance's dynamic data for Primary and Secondary user - English
@@ -92,11 +92,11 @@ Feature: Secondary User-OHC Individual Insurance Elmo Page
     And I verify the "Third Section" Individual Insurance page data in "English"
     Then I enter the end date as "Current Month" on the Individual Insurance page
     Then I click "No" for insurance ending voluntary for Individual Insurance question
-    Then I click continue on the Elmo OHC Individual Insurance page
+    Then I click continue on the OHC Individual Insurance page
 
-    Then I select "Other" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Individual Insurance" page
+    Then I select "Other" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Individual Insurance" page
     And I verify the "First Section Secondary" Individual Insurance page data in "English"
     Then I click "Yes" for currently enrolled in Individual Insurance question
     And I verify the "Second Section Secondary" Individual Insurance page data in "English"
@@ -118,11 +118,11 @@ Feature: Secondary User-OHC Individual Insurance Elmo Page
     And I verify the "Third Section" Individual Insurance page data in "Spanish"
     Then I enter the end date as "Current Month" on the Individual Insurance page
     Then I click "No" for insurance ending voluntary for Individual Insurance question
-    Then I click continue on the Elmo OHC Individual Insurance page
+    Then I click continue on the OHC Individual Insurance page
 
-    Then I select "Other" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Individual Insurance" page
+    Then I select "Other" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Individual Insurance" page
     And I verify the "First Section Secondary" Individual Insurance page data in "Spanish"
     Then I click "Yes" for currently enrolled in Individual Insurance question
     And I verify the "Second Section Secondary" Individual Insurance page data in "Spanish"

@@ -47,38 +47,38 @@ Feature: Page Validation-OHC Retiree Health Plan Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
-    Then I select "Retiree Health Plan" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Retiree" page
+    Then I select "Retiree Health Plan" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Retiree" page
 
   @SLER-327 @PageValidationOhcRetireeElmo
   Scenario: SLER-327 I can see Retiree's standard errors consistently - English
     And I verify the "First Section" Retiree page data in "English"
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click continue on the OHC Retiree page
     And I verify "Currently Enrolled" error in "English" on the Retiree page
     Then I click "No" for currently enrolled in Retiree question
     And I verify "Currently Enrolled" error does not show for Retiree page
 
     Then I click "Yes" for currently enrolled in Retiree question
     And I verify the "Second Section" Retiree page data in "English"
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click continue on the OHC Retiree page
     And I verify "Insurance Ending" error in "English" on the Retiree page
     Then I click "No" for insurance ending in 60 days in Retiree question
     And I verify "Insurance Ending" error does not show for Retiree page
 
     Then I click "Yes" for insurance ending in 60 days in Retiree question
     And I verify the "Third Section" Retiree page data in "English"
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click continue on the OHC Retiree page
     And I verify "Input Date" error in "English" on the Retiree page
     Then I enter the end date as "Prior Month" on the Retiree page
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click continue on the OHC Retiree page
     And I verify "Input Date" error in "English Prior" on the Retiree page
     Then I enter the end date as "Future Month" on the Retiree page
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click continue on the OHC Retiree page
     And I verify "Input Date" error in "English Future" on the Retiree page
     Then I enter the end date as "Current Month" on the Retiree page
     And I verify "Input Date" error does not show for Retiree page
@@ -89,32 +89,32 @@ Feature: Page Validation-OHC Retiree Health Plan Elmo Page
     And I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-328 @PageValidationOhcRetireeElmo @TAMSmoke
+  @SLER-328 @PageValidationOhcRetireeElmo @TAMSmokeExch
   Scenario: SLER-328 I can see Retiree's standard errors consistently - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
     And I verify the "First Section" Retiree page data in "Spanish"
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click continue on the OHC Retiree page
     And I verify "Currently Enrolled" error in "Spanish" on the Retiree page
     Then I click "No" for currently enrolled in Retiree question
     And I verify "Currently Enrolled" error does not show for Retiree page
 
     Then I click "Yes" for currently enrolled in Retiree question
     And I verify the "Second Section" Retiree page data in "Spanish"
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click continue on the OHC Retiree page
     And I verify "Insurance Ending" error in "Spanish" on the Retiree page
     Then I click "No" for insurance ending in 60 days in Retiree question
     And I verify "Insurance Ending" error does not show for Retiree page
 
     Then I click "Yes" for insurance ending in 60 days in Retiree question
     And I verify the "Third Section" Retiree page data in "Spanish"
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click continue on the OHC Retiree page
     And I verify "Input Date" error in "Spanish" on the Retiree page
     Then I enter the end date as "Prior Month" on the Retiree page
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click continue on the OHC Retiree page
     And I verify "Input Date" error in "Spanish Prior" on the Retiree page
     Then I enter the end date as "Future Month" on the Retiree page
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click continue on the OHC Retiree page
     And I verify "Input Date" error in "Spanish Future" on the Retiree page
     Then I enter the end date as "Current Month" on the Retiree page
     And I verify "Input Date" error does not show for Retiree page
@@ -131,12 +131,12 @@ Feature: Page Validation-OHC Retiree Health Plan Elmo Page
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_health_plan_ind|retiree_enrl_covg_ind3| retiree_covg_end_soon_ind3| retiree_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1          |                      |                           |                           |
     Then I click "Yes" for currently enrolled in Retiree question
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click continue on the OHC Retiree page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_health_plan_ind|retiree_enrl_covg_ind3| retiree_covg_end_soon_ind3| retiree_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1          |                      |                           |                           |
     Then I click "No" for currently enrolled in Retiree question
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click continue on the OHC Retiree page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_health_plan_ind|retiree_enrl_covg_ind3| retiree_covg_end_soon_ind3| retiree_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1          |          0           |                           |                           |
@@ -146,17 +146,17 @@ Feature: Page Validation-OHC Retiree Health Plan Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Retiree" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Retiree" page
     Then I click "Yes" for currently enrolled in Retiree question
     Then I click "Yes" for insurance ending in 60 days in Retiree question
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click continue on the OHC Retiree page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_health_plan_ind|retiree_enrl_covg_ind3| retiree_covg_end_soon_ind3| retiree_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1          |          0           |                           |                           |
     Then I click "No" for insurance ending in 60 days in Retiree question
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click continue on the OHC Retiree page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_health_plan_ind|retiree_enrl_covg_ind3| retiree_covg_end_soon_ind3| retiree_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1          |          1           |             0             |                           |
@@ -166,13 +166,13 @@ Feature: Page Validation-OHC Retiree Health Plan Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Retiree" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Retiree" page
     Then I click "Yes" for insurance ending in 60 days in Retiree question
     Then I enter the end date as "Current Month" on the Retiree page
     Then I click "No" for insurance ending voluntary for Retiree question
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click continue on the OHC Retiree page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_health_plan_ind|retiree_enrl_covg_ind3| retiree_covg_end_soon_ind3| retiree_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1          |          1           |             1             |               0           |
@@ -182,11 +182,11 @@ Feature: Page Validation-OHC Retiree Health Plan Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Retiree" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Retiree" page
     Then I click "Yes" for insurance ending voluntary for Retiree question
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click continue on the OHC Retiree page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_health_plan_ind|retiree_enrl_covg_ind3| retiree_covg_end_soon_ind3| retiree_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1          |          1           |             1             |               1           |
@@ -196,11 +196,11 @@ Feature: Page Validation-OHC Retiree Health Plan Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Retiree" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Retiree" page
     Then I click "No" for insurance ending in 60 days in Retiree question
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click continue on the OHC Retiree page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_health_plan_ind|retiree_enrl_covg_ind3| retiree_covg_end_soon_ind3| retiree_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1          |          1           |             0             |                           |
@@ -210,11 +210,11 @@ Feature: Page Validation-OHC Retiree Health Plan Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Retiree" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Retiree" page
     Then I click "No" for currently enrolled in Retiree question
-    Then I click continue on the Elmo OHC Retiree page
+    Then I click continue on the OHC Retiree page
     And I verify the OHC options selected in the DB for "Primary"
       |emp_sponsored_covg_ind|medicare_ind|va_health_care_ind|cobra_ind|tricare_ind|peace_corps_ind|health_plus_plan_ind|child_health_plan_plus_ind|individual_insurance_ind|hra_ind|retiree_health_plan_ind|retiree_enrl_covg_ind3| retiree_covg_end_soon_ind3| retiree_end_voluntary_ind3|
       |         0            |      0     |         0        |     0   |     0     |       0       |        0           |             0            |            0           |   0   |            1          |          0           |                           |                           |

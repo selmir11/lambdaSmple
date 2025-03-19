@@ -17,13 +17,19 @@ import java.util.List;
 public class ApplicationResultsPage {
     SoftAssert softAssert = new SoftAssert();
 
+    private BasicActions basicActions;
 // TO DO: Update all the below locators
+
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
     @FindBy(id = "month-pay")
     WebElement lblAPTCValue;
     @FindBy(css = ".btn-c4primary")
     WebElement continueBtn;
     @FindBy(xpath = "//*[contains(text(),\"Here's what your household qualifies\")]")
     WebElement headerText;
+    @FindBy(xpath = "//*[contains(text(),\"Usted y/o su familia califica para lo siguiente\")]")
+    WebElement headerTextSP;
     @FindBy(xpath = "//*[contains(text(),\"you do not qualify for a health plan\")]")
     WebElement youDoNotQualify;
     @FindBy(xpath = "//*[contains(text(),\"Submit a new application if your situation changes\")]")
@@ -48,11 +54,68 @@ public class ApplicationResultsPage {
     @FindBy(css = ".tax-ben-table td")
     List<WebElement> textMAEligibility;
 
+
     @FindBy(id = "taxHouseholdsDropdown")
     WebElement selectTaxHouseHold;
 
     @FindBy(css = ".ben-container > table > tbody")
     List<WebElement> ApplicationResultDetails;
+
+    @FindBy(xpath = "//*[@class = 'right-tiny-title']")
+    WebElement overviewText;
+
+    @FindBy(xpath = "//*[@class = 'right-tiny-title']")
+    WebElement overviewTextSP;
+
+    @FindBy(id = "QualifedHealthPlanbtn")
+    WebElement qhpText;
+
+    @FindBy(id = "QualifedHealthPlanbtn")
+    WebElement qhpTextSP;
+
+    @FindBy(id = "PremiumTaxbtn")
+    WebElement primeTaxTextNoQHP;
+
+    @FindBy(xpath = "//span[normalize-space()='Cr\u00e9dito fiscal para el pago de la prima']")
+    WebElement primeTaxTextNoQHPSP;
+
+    @FindBy(id = "QualifedHealthPlanbtn")
+    WebElement qualifiedHealthPlanTextNoQHP;
+
+
+    @FindBy(xpath = "//span[normalize-space()='Plan de salud calificado']")
+    WebElement qualifiedHealthPlanTextNoQHPSP;
+
+
+    @FindBy(xpath = "//*[contains(text(),\"An insurance plan that is certified by Connect for Health Colorado.\")]")
+    WebElement connectForHealthCertifiedText;
+
+    @FindBy(xpath = "//*[contains(text(),\"Un plan de seguro certificado por Connect for Health Colorado.\")]")
+    WebElement connectForHealthCertifiedTextSP;
+
+    @FindBy(xpath = "//*[contains(text(),\"An insurance plan that is certified by Connect for Health Colorado.\")]")
+    WebElement connectForHealthCertifiedTextNoQHP;
+
+    @FindBy(xpath = "//*[contains(text(),\"Un plan de seguro certificado por Connect for Health Colorado.\")]")
+    WebElement connectForHealthCertifiedTextNoQHPSP;
+
+    @FindBy(xpath = "//p[normalize-space()='A tax credit designed to help pay for your monthly premium.']")
+    WebElement taxCreditTextNoQHP;
+
+    @FindBy(xpath = "//p[normalize-space()='Un cr\u00e9dito fiscal creado para ayudarle a pagar su prima mensual.']")
+    WebElement taxCreditTextNoQHPSP;
+
+    @FindBy(id = "HealthFirstCOCHPbtn")
+    WebElement healthFirstColoradoText;
+
+    @FindBy(id = "HealthFirstCOCHPbtn")
+    WebElement healthFirstColoradoTextSP;
+
+    @FindBy(xpath = "//*[contains(text(),\"A state-administered health insurance program that provides free or low-cost health care.\")]")
+    WebElement stateAdministeredText;
+
+    @FindBy(xpath = "//*[contains(text(),\"Un programa de seguro de salud gestionado por el estado que ofrece atenci\u00f3n m\u00e9dica gratuita o de bajo costo.\")]")
+    WebElement stateAdministeredTextSP;
 
     //pop up on the app results page
     @FindBy(css = "b.popup-body-text-2")
@@ -79,7 +142,13 @@ public class ApplicationResultsPage {
     @FindBy(css = "button.back-button-link")
     WebElement backButton;
 
-    private BasicActions basicActions;
+    @FindBy(id ="QualifedHealthPlanbtn")
+    WebElement linkQualifiedPlan;
+
+    @FindBy(id ="HealthFirstCOCHPbtn")
+    WebElement linkHealthFirst;
+
+
 
     public ApplicationResultsPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -247,6 +316,84 @@ public class ApplicationResultsPage {
         softAssert.assertAll();
     }
 
+    public void iValidateApplicationResultsPage(String language){
+        basicActions.waitForElementToBePresentWithRetries( spinner, 30 );
+        switch (language) {
+            case "EnglishQHP":
+                validateApplicationResultsPageEnglish();
+                break;
+            case "SpanishQHP":
+                validateApplicationResultsPageSpanish();
+                break;
+            case "EnglishNoQHP":
+                validateApplicationResultsPageEnglishNoQHP();
+                break;
+            case "SpanishNoQHP":
+                validateApplicationResultsPageSpanishNoQHP();
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + language );
+        }
+    }
 
+    public void validateApplicationResultsPageEnglish(){
+        basicActions.waitForElementToBePresentWithRetries( spinner, 30 );
+        basicActions.waitForElementToBePresent(headerText,20  );
+        softAssert.assertEquals( headerText.getText(), "Here's what your household qualifies for" );
+        softAssert.assertEquals( applicationSummaryLnk.getText(),"View Application Summary >" );
+        softAssert.assertEquals(textMAEligibility.get(1).getText(), "Health First Colorado or CHP+, if the State of Colorado determines you qualify");
+        softAssert.assertEquals( overviewText.getText(), "Overview" );
+        softAssert.assertEquals( qhpText.getText(), "Qualified Health Plan" );
+        softAssert.assertEquals( connectForHealthCertifiedText.getText(), "An insurance plan that is certified by Connect for Health Colorado." );
+        softAssert.assertEquals( healthFirstColoradoText.getText(), "Health First Colorado or CHP+" );
+        softAssert.assertEquals( stateAdministeredText.getText(), "A state-administered health insurance program that provides free or low-cost health care." );
+        softAssert.assertAll();
+    }
+
+    public void validateApplicationResultsPageSpanish(){
+        basicActions.waitForElementToBePresentWithRetries( spinner, 30 );
+        basicActions.waitForElementToBePresent(headerTextSP,20  );
+        softAssert.assertEquals( headerTextSP.getText(), "Usted y/o su familia califica para lo siguiente" );
+        softAssert.assertEquals( applicationSummaryLnk.getText(),"Ver resumen de la solicitud >" );
+        softAssert.assertEquals(textMAEligibility.get(1).getText(), "Health First Colorado o CHP+, si el Gobierno del estado de Colorado decide que usted califica");
+        softAssert.assertEquals( overviewTextSP.getText(), "Resumen" );
+        softAssert.assertEquals( qhpTextSP.getText(), "Plan de salud calificado" );
+        softAssert.assertEquals( connectForHealthCertifiedTextSP.getText(), "Un plan de seguro certificado por Connect for Health Colorado." );
+        softAssert.assertEquals( healthFirstColoradoTextSP.getText(), "Health First Colorado o CHP+" );
+        softAssert.assertEquals( stateAdministeredTextSP.getText(), "Un programa de seguro de salud gestionado por el estado que ofrece atenci\u00f3n m\u00e9dica gratuita o de bajo costo." );
+        softAssert.assertAll();
+    }
+
+    public void validateApplicationResultsPageEnglishNoQHP(){
+        basicActions.waitForElementToBePresentWithRetries( spinner, 30 );
+        basicActions.waitForElementToBePresent(headerText,20  );
+        softAssert.assertEquals( headerText.getText(), "Here's what your household qualifies for" );
+        softAssert.assertEquals( applicationSummaryLnk.getText(),"View Application Summary >" );
+        softAssert.assertEquals(textMAEligibility.get(0).getText(), "Premium Tax Credit");
+        softAssert.assertEquals(textMAEligibility.get(1).getText(), "Qualified Health Plan");
+
+        softAssert.assertEquals( overviewText.getText(), "Overview" );
+        softAssert.assertEquals( primeTaxTextNoQHP.getText(), "Premium Tax Credit" );
+        softAssert.assertEquals( taxCreditTextNoQHP.getText(), "A tax credit designed to help pay for your monthly premium." );
+        softAssert.assertEquals( qualifiedHealthPlanTextNoQHP.getText(), "Qualified Health Plan" );
+        softAssert.assertEquals( connectForHealthCertifiedTextNoQHP.getText(), "An insurance plan that is certified by Connect for Health Colorado." );
+        softAssert.assertAll();
+    }
+
+    public void validateApplicationResultsPageSpanishNoQHP(){
+        basicActions.waitForElementToBePresentWithRetries( spinner, 30 );
+        basicActions.waitForElementToBePresent(headerTextSP,20  );
+        softAssert.assertEquals( headerTextSP.getText(), "Usted y/o su familia califica para lo siguiente" );
+        softAssert.assertEquals( applicationSummaryLnk.getText(),"Ver resumen de la solicitud >" );
+        softAssert.assertEquals(textMAEligibility.get(0).getText(), "Cr\u00e9dito fiscal para el pago de la prima");
+        softAssert.assertEquals(textMAEligibility.get(1).getText(), "Plan de salud calificado");
+
+        softAssert.assertEquals( overviewTextSP.getText(), "Resumen" );
+        softAssert.assertEquals( primeTaxTextNoQHPSP.getText(), "Cr\u00e9dito fiscal para el pago de la prima" );
+        softAssert.assertEquals( taxCreditTextNoQHPSP.getText(), "Un cr\u00e9dito fiscal creado para ayudarle a pagar su prima mensual." );
+        softAssert.assertEquals( qualifiedHealthPlanTextNoQHPSP.getText(), "Plan de salud calificado" );
+        softAssert.assertEquals( connectForHealthCertifiedTextNoQHPSP.getText(), "Un plan de seguro certificado por Connect for Health Colorado." );
+        softAssert.assertAll();
+    }
 
 }

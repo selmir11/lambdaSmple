@@ -35,7 +35,7 @@ Feature: LR Enrollment Period end date is set when user has
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -58,12 +58,12 @@ Feature: LR Enrollment Period end date is set when user has
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "LostCoverage" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -112,7 +112,7 @@ Feature: LR Enrollment Period end date is set when user has
       And I select "No" to the recently denied medicaid question
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
-      Then I validate I am on the "Elmo Race and Ethnicity" page
+      Then I validate I am on the "Race and Ethnicity" page
       And I select "Prefer not to answer" for race and ethnicity for "Primary"
       And I click continue on the Race and Ethnicity page
       Then I validate I am on the "Citizenship" page
@@ -135,12 +135,12 @@ Feature: LR Enrollment Period end date is set when user has
       Then I select the projected income option "No" and continue
       Then I select "No" for will you be claimed as dependent question
       Then I select "Yes" for will file tax return question
-      Then I select the "Single" tax filing option on the Tax Status Elmo page
+      Then I select the "Single" tax filing option on the Tax Status page
       Then I select "No" for will claim dependents question
-      Then I click Save and Continue on Tax Status Elmo page
+      Then I click Save and Continue on Tax Status page
 
-      Then I select "None of these" as ELMO health coverage option
-      Then I click continue on the ELMO health coverage page
+      Then I select "None of these" as health coverage option
+      Then I click continue on the health coverage page
       Then I click continue on family overview page
       Then I select "Marriage" QLCE on tell us about life changes page
       Then I click on Save and Continue
@@ -189,7 +189,7 @@ Feature: LR Enrollment Period end date is set when user has
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -212,12 +212,12 @@ Feature: LR Enrollment Period end date is set when user has
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "GainedLawfulPresence" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -266,7 +266,7 @@ Feature: LR Enrollment Period end date is set when user has
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -289,12 +289,12 @@ Feature: LR Enrollment Period end date is set when user has
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -344,7 +344,7 @@ Feature: LR Enrollment Period end date is set when user has
       And I select "No" to the recently denied medicaid question
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
-      Then I validate I am on the "Elmo Race and Ethnicity" page
+      Then I validate I am on the "Race and Ethnicity" page
       And I select "Prefer not to answer" for race and ethnicity for "Primary"
       And I click continue on the Race and Ethnicity page
       Then I validate I am on the "Citizenship" page
@@ -367,12 +367,12 @@ Feature: LR Enrollment Period end date is set when user has
       Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
-      Then I select "None of these" as ELMO health coverage option
-      Then I click continue on the ELMO health coverage page
+      Then I select "None of these" as health coverage option
+      Then I click continue on the health coverage page
       Then I click continue on family overview page
       Then I select "GainOfTribalStatus" QLCE on tell us about life changes page
       Then I click on Save and Continue

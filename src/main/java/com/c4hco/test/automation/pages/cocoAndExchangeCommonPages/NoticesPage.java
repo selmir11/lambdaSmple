@@ -593,7 +593,7 @@ public class NoticesPage {
     public void verifyTheNoticeEXCH(String noticeNumber, String language) {
         switch (noticeNumber) {
             case "AM-016-01":
-                VerifyTheNoticeTextAM01601Exch();
+                VerifyTheNoticeTextAM01601Exch(language);
                 break;
             case "ELG-101-01":
                 VerifyTheELG10101NoticeText(language);
@@ -605,7 +605,7 @@ public class NoticesPage {
                 VerifyTheNoticeTextAM01605();
                 break;
             case "AM-001-01":
-                VerifyTheNoticeTextAM00101();
+                VerifyTheNoticeTextAM00101(language);
                 break;
             case "EN-002-04":
                 VerifyTheNoticeTextEN00204();
@@ -912,11 +912,23 @@ public class NoticesPage {
         softAssert.assertAll();
     }
 
-    private void VerifyTheNoticeTextAM00101() {
-        softAssert.assertTrue(bodyTextAM00101.get(0).getText().contains("Dear"));
-        softAssert.assertTrue(bodyTextAM00101.get(1).getText().contains("Welcome to Connect for Health Colorado\u00AE. An account was opened for you on"));
-        softAssert.assertEquals(body2TextAM00101.get(0).getText(), "You are now ready to choose a health insurance plan that best fits your needs. To get started, follow the link below to log in and begin shopping!");
-        softAssert.assertTrue(body2TextAM00101.get(2).getText().contains("The communication preference you chose is email. All future communications will be sent via email to "));
+    private void VerifyTheNoticeTextAM00101(String language) {
+        switch (language) {
+            case "English":
+                softAssert.assertTrue(bodyTextAM00101.get(0).getText().contains("Dear"));
+                softAssert.assertTrue(bodyTextAM00101.get(1).getText().contains("Welcome to Connect for Health Colorado\u00AE. An account was opened for you on"));
+                softAssert.assertEquals(body2TextAM00101.get(0).getText(), "You are now ready to choose a health insurance plan that best fits your needs. To get started, follow the link below to log in and begin shopping!");
+                softAssert.assertTrue(body2TextAM00101.get(2).getText().contains("The communication preference you chose is email. All future communications will be sent via email to "));
+                break;
+            case "Spanish":
+                softAssert.assertTrue(bodyTextAM00101.get(0).getText().contains("Apreciable"));
+                softAssert.assertTrue(bodyTextAM00101.get(1).getText().contains("Le damos la bienvenida a Connect for Health Colorado\u00AE. Se le cre\u00F3 una cuenta el"));
+                softAssert.assertTrue(body2TextAM00101.get(0).getText().contains("Ya puede elegir el plan de seguro de salud que mejor se ajuste a sus necesidades. Para empezar, haga clic en el enlace que aparece a continuaci\u00F3n"));
+                softAssert.assertTrue(body2TextAM00101.get(2).getText().contains("Usted eligi\u00F3 el correo electr\u00F3nico como medio de comunicaci\u00F3n preferido. Todas las comunicaciones futuras se enviar\u00E1n por correo electr\u00F3nico"));
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
         softAssert.assertAll();
     }
 
@@ -973,11 +985,22 @@ public class NoticesPage {
         softAssert.assertAll();
     }
 
-    public void VerifyTheNoticeTextAM01601Exch() {
-        softAssert.assertTrue(bodyText.get(1).getText().contains("Your Username for Connect for Health Colorado\u00AE is:"));
-        softAssert.assertEquals(bodyText.get(2).getText(), "Return to the Connect for Heath Colorado\u00AE website and enter this username plus your password to log in to your account.");
-        softAssert.assertTrue(bodyText.get(3).getText().contains( "If you did not request to have your Username emailed to you, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m."));
-        softAssert.assertTrue(bodyText2.getText().contains("please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m."));
+    public void VerifyTheNoticeTextAM01601Exch(String language) {
+        switch (language) {
+            case "English":
+                softAssert.assertTrue(bodyText.get(1).getText().contains("Your Username for Connect for Health Colorado\u00AE is:"));
+                softAssert.assertEquals(bodyText.get(2).getText(), "Return to the Connect for Heath Colorado\u00AE website and enter this username plus your password to log in to your account.");
+                softAssert.assertTrue(bodyText.get(3).getText().contains( "If you did not request to have your Username emailed to you, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m."));
+                softAssert.assertTrue(bodyText2.getText().contains("please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m."));
+                break;
+            case "Spanish" :
+                softAssert.assertTrue(bodyText.get(1).getText().contains("Su Nombre de usuario para Connect for Health Colorado\u00AE es:"));
+                softAssert.assertEquals(bodyText.get(2).getText(),"Regrese al sitio web de Connect for Health Colorado\u00AE e introduzca este nombre de usuario y su contrase\u00F1a para ingresar en su cuenta.");
+                softAssert.assertEquals(bodyText.get(3).getText(), "Si no solicit\u00F3 el envio por correo electr\u00F3nico de su Nombre de usario, llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-695-5935) de lunes a viernes de 8:00 a.m. a 6:00 p.m.");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
         softAssert.assertAll();
     }
 

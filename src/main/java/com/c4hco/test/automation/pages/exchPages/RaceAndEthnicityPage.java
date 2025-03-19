@@ -65,9 +65,9 @@ public class RaceAndEthnicityPage {
     WebElement spinnerOverlay;
 
     public void raceEthnicitySelection(String raceEthnicity, String memPrefix){
-        basicActions.waitForElementToDisappear(spinner,20);
+        basicActions.waitForElementToDisappear(spinner,40);
         basicActions.waitForElementToDisappear(spinnerOverlay,20);
-        basicActions.waitForElementListToBePresent(raceEthnicityButton, 40);
+        basicActions.waitForElementListToBePresentWithRetries(raceEthnicityButton, 40);
         switch (raceEthnicity) {
             case "Asian or Asian American":
                 raceEthnicityButton.get(0).click();

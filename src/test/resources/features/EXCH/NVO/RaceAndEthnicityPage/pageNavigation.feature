@@ -34,14 +34,14 @@ Feature: Page Navigation-Race And Ethnicity page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click Go back on the Race and Ethnicity page
     Then I validate I am on the "Additional Information for Yourself" page
     And I click continue on the Add Address page
     And I select "Native Hawaiian or Pacific Islander" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I click Go back on the Citizenship page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
@@ -62,14 +62,14 @@ Feature: Page Navigation-Race And Ethnicity page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click Go back on the Race and Ethnicity page
     Then I validate I am on the "Additional Information for Yourself" page
     And I click continue on the Add Address page
     And I select "White or European" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I click Go back on the Citizenship page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click continue on the Race and Ethnicity page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option

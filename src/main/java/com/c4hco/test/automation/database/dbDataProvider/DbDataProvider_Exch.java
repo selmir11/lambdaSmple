@@ -657,6 +657,9 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultFor("ind_ssap_data", exchDbQueries.getOverriddenAmountDetails());
     }
 
+    public String getVlpRequestCount(){
+        return postgresHandler.getResultFor("count", exchDbQueries.getVlpRequestCountQuery());}
 
-
+    public String getEligibilityType(){
+        return postgresHandler.getResultFor("eligibility_type", exchDbQueries.getEligibilityTypeQuery());}
 }

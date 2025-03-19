@@ -74,14 +74,14 @@ Feature: Secondary User-OHC VA Healthcare Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "Yes" for will claim dependents question
-    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "VA Health Care" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc VA Healthcare" page
+    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status page
+    Then I click Save and Continue on Tax Status page
+    Then I select "VA Health Care" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc VA Healthcare" page
 
   @SLER-624 @SecondaryUserOhcVAHealthcareElmo
   Scenario: SLER-624 I can see VA Healthcare's dynamic data for Primary and Secondary user - English
@@ -92,11 +92,11 @@ Feature: Secondary User-OHC VA Healthcare Elmo Page
     And I verify the "Third Section" VA Healthcare page data in "English"
     Then I enter the end date as "Current Month" on the VA Healthcare page
     Then I click "No" for insurance ending voluntary for VA Healthcare question
-    Then I click continue on the Elmo OHC VA Healthcare page
+    Then I click continue on the OHC VA Healthcare page
 
-    Then I select "VA Health Care" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc VA Healthcare" page
+    Then I select "VA Health Care" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc VA Healthcare" page
     And I verify the "First Section Secondary" VA Healthcare page data in "English"
     Then I click "Yes" for currently enrolled in VA Healthcare question
     And I verify the "Second Section Secondary" VA Healthcare page data in "English"
@@ -107,7 +107,7 @@ Feature: Secondary User-OHC VA Healthcare Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-625 @SecondaryUserOhcVAHealthcareElmo @TAMSmoke
+  @SLER-625 @SecondaryUserOhcVAHealthcareElmo @TAMSmokeExch
   Scenario: SLER-625 I can see VA Healthcare's dynamic data for Primary and Secondary user - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
@@ -118,11 +118,11 @@ Feature: Secondary User-OHC VA Healthcare Elmo Page
     And I verify the "Third Section" VA Healthcare page data in "Spanish"
     Then I enter the end date as "Current Month" on the VA Healthcare page
     Then I click "No" for insurance ending voluntary for VA Healthcare question
-    Then I click continue on the Elmo OHC VA Healthcare page
+    Then I click continue on the OHC VA Healthcare page
 
-    Then I select "VA Health Care" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc VA Healthcare" page
+    Then I select "VA Health Care" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc VA Healthcare" page
     And I verify the "First Section Secondary" VA Healthcare page data in "Spanish"
     Then I click "Yes" for currently enrolled in VA Healthcare question
     And I verify the "Second Section Secondary" VA Healthcare page data in "Spanish"

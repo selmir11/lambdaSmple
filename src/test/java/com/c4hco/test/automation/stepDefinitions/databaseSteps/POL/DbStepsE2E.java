@@ -12,17 +12,26 @@ public class DbStepsE2E {
     private final Ob999DbValidations ob999DbValidations = new Ob999DbValidations();
     private final PolicyTableDbValidations policyTableDbValidations = new PolicyTableDbValidations();
     private final Ob834PreEdiDbValidations ob834PreEdiDbValidations = new Ob834PreEdiDbValidations();
+    private final Ob834DbValForMember ob834DbValForMember = new Ob834DbValForMember();
     private final Ib834DbValidations ib834DbValidations = new Ib834DbValidations();
-
+    private final PolicyTableMemberDbValidations policyTableMemberDbValidations = new PolicyTableMemberDbValidations();
 
     @And("I validate {string} entities from policy tables")
     public void validateMedicalRecordsForGroups(String recordType){
         policyTableDbValidations.groupRecordsValidations(recordType);
     }
+    @And("I validate {string} entities for {string} from policy tables")
+    public void validateMedicalRecordsForMem(String recordType, String memberPrefix){
+        policyTableMemberDbValidations.MemberMedicalRecordsValidations(recordType, memberPrefix);
+    }
 
     @And("I validate {string} entities from pre edi db tables")
     public void validateOb834MedicalRecords(String recordType, List<Map<String, String>> expectedValues){
         ob834PreEdiDbValidations.groupRecordsValidations(recordType, expectedValues);
+    }
+    @And("I validate {string} entities for {string} from pre edi db tables")
+    public void validateOb834MedicalRecordForMember(String recordType,String memPrefix, List<Map<String, String>> expectedValues){
+        ob834DbValForMember.ob834MedRecordsValForMember(recordType, memPrefix, expectedValues);
     }
 
     @And("I validate {string} entities from ib999_details db table")

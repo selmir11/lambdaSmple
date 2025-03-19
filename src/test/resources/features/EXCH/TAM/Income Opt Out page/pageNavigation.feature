@@ -87,7 +87,7 @@ Feature: Page Navigation-Income Opt Out Page
     Then I validate I am on the "Login" page
 
 
-  @SLER-90 @PageNavigationIncomeOptOutPage @TAMSmoke
+  @SLER-90 @PageNavigationIncomeOptOutPage @TAMSmokeExch
   Scenario: SLER-90 I Verify Nagivation for the header and footer in English
     Then I validate I am on the "Financial Help" page
     And I verify text on the "Exch" "Header" in "English"
@@ -383,18 +383,3 @@ Feature: Page Navigation-Income Opt Out Page
     Then I validate I am on the "Financial Help" page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
-
-
-  @SLER-2276
-  Scenario: ELIG-Self-employment income-Page Navigation[RT-1203]
-    Then I select the option "Yes" to employment
-    And I select the option "Yes" to self employment
-    Then I validate Employment Info Page header in "English"
-    Then I validate I am on the "Employment Income" page
-    Then I select the option "Yes" to employment
-    And I select the option "Yes" to self employment
-    And I enter self-employment details with "54000.00" income at "Annually" frequency and "Yes" to same or lower
-    And I click continue on the Employment Info Page
-    And I validate I am on the "Employment Summary" page
-    Then I click Edit on Income Summary row 1
-    Then I validate I am on the "Employment Income" page

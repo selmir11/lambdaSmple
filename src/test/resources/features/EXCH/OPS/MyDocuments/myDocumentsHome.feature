@@ -1,7 +1,7 @@
 @OPS
 Feature: My Document Home Page validations
 
-  @SLER-2090 @OPSRegression
+  @SLER-2090
   Scenario: OPS MyDocs Navigating to file explorer[RT-1819]
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -23,7 +23,7 @@ Feature: My Document Home Page validations
     And I close button to close modal
     Then I see the username that I am currently logged into
 
-  @SLER-2109 @OPSRegression
+  @SLER-2109
   Scenario: OPS MyDocs Select Type and checks errors[RT-1938]
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -69,15 +69,19 @@ Feature: My Document Home Page validations
     Then I validate I am on the "My Documents" page
     Then I validate I am on "Past Documents and Letters" container
     And I validate current year defaulted in plan Year
+    Then I select "Letters" from document and letter dropdown
     And  I select year "All" in plan year
     Then I validate all uploaded documents or notices loaded for my account start with "IND"
       | IND_Plan Selection and Payment Confirmation (EN-002-04)|
       | IND_Renewal Plan Still Available (EN-007-01)         |
       | IND_Eligibility Change with SEP (ELG-101-03)               |
       | IND_Welcome Message (AM-001-01)                            |
+      | IND_Welcome Message (AM-001-03)                            |
+      | IND_Initial Eligibility notice (ELG-101-01)                |
     And  I Click on double chevron in Past Documents and Letters Container
-    Then I validate Date Received, Time Received and Download button available
+    Then I validate Date Received, Time Received and Download button available in "English"
     And I select year "Previous Year" in plan year
+    Then I select "Documents and Letters" from document and letter dropdown
     And  I Click on double chevron in Past Documents and Letters Container
     Then I validate document date shows for selected year
     And I select year "Current Year" in plan year
@@ -86,11 +90,16 @@ Feature: My Document Home Page validations
     And I change the language from header to "Spanish"
     Then I validate no document message
       |No tiene documentos ni cartas en este momento |
+    Then I validate I am on "Documentos y Cartas Anteriores" container
+    And I verify plan year label "Año:"
+    And I validate current year defaulted in plan Year
+    And I validate default value in Documents and letters dropdown in "Spanish"
+    Then I validate no document message
+      |No tiene documentos ni cartas en este momento |
+    Then I verify Go back to welcome page button
+      | Volver a la Pagina de Bienvenida |
     And I change the language from header to "English"
     Then  I click on Sign Out in the Header for "Elmo"
-
-
-
 
 
   @SLER-2102
@@ -208,7 +217,7 @@ Feature: My Document Home Page validations
     Then I validate I am on the "Account Overview" page
     Then I click link my docs on accountOverview page
     Then I validate I am on the "My Documents" page
-    And I verify the page text on the My Documents Page
+    And I verify the page text on the My Documents Page in "English"
       | My Documents and Letters |
       | We need more information to confirm or verify what you told us in your application. |
       | Help me understand this page                                                        |
@@ -218,7 +227,7 @@ Feature: My Document Home Page validations
     And I click on upload another document
     And I click on cancel button on upload document pop up
     And I change the language from header to "Spanish"
-    And I verify the page text on the My Documents Page
+    And I verify the page text on the My Documents Page in "Spanish"
       | Mis Documentos y Cartas |
       | Necesitamos más información para confirmar o verificar lo que nos informó en su solicitud. |
       | Ayuda para entender esta página                                                        |
@@ -417,7 +426,7 @@ Feature: My Document Home Page validations
     And I change the language from header to "Spanish NonElmo"
     Then I click link my docs on accountOverview page
     Then I validate I am on the "My Document Spanish" page
-    And I verify the page text on the My Documents Page
+    And I verify the page text on the My Documents Page in "Spanish"
       | Mis Documentos y Cartas |
       | Necesitamos más información para confirmar o verificar lo que nos informó en su solicitud. |
       | Ayuda para entender esta página                                                        |
@@ -481,9 +490,8 @@ Feature: My Document Home Page validations
     Then  I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-2234 @OPSRegression
+  @SLER-2234
   Scenario: Verify Welcome letter downloaded with proper name format [RT-1996]
-
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -503,7 +511,7 @@ Feature: My Document Home Page validations
     Then I verify file "IND_Welcome Message (AM-001-01)" downloaded with Proper name format in ".pdf" type
     Then  I click on Sign Out in the Header for "Elmo"
 
-  @SLER-2252 @OPSRegression
+  @SLER-2252
   Scenario: Verify user can upload Document to the MVR for all Document Category [RT-1979]
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -587,7 +595,7 @@ Feature: My Document Home Page validations
     Then I upload MVR doc on the My Documents page and verify success message
     Then  I click on Sign Out in the Header for "Elmo"
 
-    @SLER-2259 @OPSRegression
+    @SLER-2259
     Scenario: OPS: Verify Document Success Message for Another and Upload [RT-1991]
       Given I open the login page on the "admin" portal
       And I refresh the page
@@ -647,11 +655,11 @@ Feature: My Document Home Page validations
       Then I validate I am on the "Tax status" page
       Then I select "No" for will you be claimed as dependent question
       Then I select "Yes" for will file tax return question
-      Then I select the "Single" tax filing option on the Tax Status Elmo page
+      Then I select the "Single" tax filing option on the Tax Status page
       Then I select "No" for will claim dependents question
-      Then I click Save and Continue on Tax Status Elmo page
-      Then I select "None of these" as ELMO health coverage option
-      Then I click continue on the ELMO health coverage page
+      Then I click Save and Continue on Tax Status page
+      Then I select "None of these" as health coverage option
+      Then I click continue on the health coverage page
       Then I click continue on family overview page
       Then I select "Birth" QLCE on tell us about life changes page
       Then I click on Save and Continue
@@ -666,7 +674,7 @@ Feature: My Document Home Page validations
       Then I upload another doc "TestMyDocs.docx" for "Social Security Number" on the My Documents page and verify success message
       Then  I click on Sign Out in the Header for "Elmo"
 
-  @SLER-2265 @OPSRegression
+  @SLER-2265
   Scenario: Verify Document uploaded for Income type and downloaded with proper name format [RT-1989]
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -689,7 +697,7 @@ Feature: My Document Home Page validations
     Then I verify file "Income" downloaded with Proper name format in ".docx" type
     Then  I click on Sign Out in the Header for "Elmo"
 
- @SLER-2268 @OPSRegression
+ @SLER-2268
   Scenario: Verify upload document modal Errors[RT-1999]
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -700,7 +708,7 @@ Feature: My Document Home Page validations
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
     Then I click link my docs on accountOverview page
-    And I verify the page text on the My Documents Page
+    And I verify the page text on the My Documents Page in "English"
       | My Documents and Letters |
       | We need more information to confirm or verify what you told us in your application. |
       | Help me understand this page                                                        |
@@ -756,7 +764,7 @@ Feature: My Document Home Page validations
     Then I verify file "Income" downloaded with Proper name format in ".docx" type
     Then  I click on Sign Out in the Header for "Elmo"
 
-  @SLER-2282 @OPSRegression
+  @SLER-2282
   Scenario:  OPS: MyDocs: verify Document Type blank when new document category selected [RT-2003]
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -840,7 +848,7 @@ Feature: My Document Home Page validations
     Then  I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-2290 @OPSRegression
+  @SLER-2290
   Scenario: Verify Help drawer text on the document page [RT-2020]
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -848,7 +856,7 @@ Feature: My Document Home Page validations
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I select "individual" checkbox on Admin Portal Dashboard
-    Then I enter an "accountID" in any env "7724352002" "7867062002" to search user
+    Then I enter an "accountID" in any env "7724352002" "5990496490" to search user
     Then I click on Search button in AP dashboard page
     Then I select the first record from the search results
     And I click "On Behalf Of (OBO)" from application links dropdown
@@ -871,7 +879,7 @@ Feature: My Document Home Page validations
       | Did your document request expire? If the upload button is still available, provide the documentation for review.                            |
       | If you are not able to upload your document(s), please contact our Service Center at 1-855-752-6749. |
     And I verify help drawer "footer" text on the My Document page
-      | Need more help? Contact us |
+      | Need more help?  Contact us |
     And I click on the help drawer icon to close on the document page
     Then I validate help drawer closed on the document page
     And I click on "Help me understand this page" link in Help Drawer
@@ -882,7 +890,7 @@ Feature: My Document Home Page validations
     And I validate I am on the "We Can Help" page and close tab
     And I click on the help drawer icon to close on the document page
     And I click upload MVR button for "Financial Help Eligibility"
-    Then I validate help drawer open in right side of the page
+    Then I validate help drawer open in right side of the page for "Income" mvr
     And I verify help drawer "Income header" text on the My Document page
       | Help |
     And I verify help drawer "Income sub header" text on the My Document page
@@ -895,7 +903,7 @@ Feature: My Document Home Page validations
       | (2) Confirming that you previously filed and reconciled APTC on your federal taxes, or were not required to. |
       | More information is available on our website. |
     And I verify help drawer "Income footer" text on the My Document page
-      | Need more help? Contact us |
+      | Need more help?  Contact us |
     And I click on "our website" link in Help Drawer
     And I validate I am on the "Submit Documents" page and close tab
     And I click on "Contact Us" link in Help Drawer
@@ -903,5 +911,310 @@ Feature: My Document Home Page validations
     And I close button to close modal
     Then  I click on Sign Out in the Header for "Elmo"
 
+  @SLER-2297 @OPSRegression
+  Scenario: Verify due date color on document page for MVR Types in Spanish [RT-2017]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    Then I enter an "accountID" in any env "2343002676" "5990496490" to search user
+    Then I click on Search button in AP dashboard page
+    Then I select the first record from the search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I change the language from header to "Spanish"
+    And I verify Document header on my document page
+      | Mis Documentos y Cartas |
+    Then I verify Sub header on my document page
+      | Necesitamos más información para confirmar o verificar lo que nos informó en su solicitud. |
+    Then I verify container header for information we need
+      | Información que Necesitamos |
+    And I verify MVR name on the information we need container in "Spanish"
+    Then I Verify due date are displaying in proper color
+    Then I verify member name in MVR type
+    # Member names for an account 2343002676 in QA Env
+      |     memberNames            |      Env     |
+      | Primarynfdxxg YtkvelwTest    |      qa      |
+      | Spousepjjrzdxm Nombyeyptqssf |      qa      |
+      | Sonrgonmbvx Stxcyheghapri    |      qa      |
+    # Member Names for an account 5990496490 in Staging Env
+      | apelizfadst apindefurdst     |      staging  |
+      | gsdertetr apindefurdst       |      staging  |
+    Then I verify Upload button on the right
+    Then I verify mvr type with date, member name and upload button
+    And I close current tab and switch back to previous tab
+    Then I click Go Back on admin portal broker dashboard
+    Then I click create account on admin portal
+    And I enter general mandatory data for "exchange" account creation
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    And I change the language from header to "Spanish"
+    And I verify Document header on my document page
+      | Mis Documentos y Cartas |
+    Then I verify Sub header on my document page
+      | Necesitamos más información para confirmar o verificar lo que nos informó en su solicitud. |
+    Then I verify container header for information we need
+      | Información que Necesitamos |
+    And I verify no document on new account
+      | En este momento no es necesario que cargue ningún documento |
+    And I change the language from header to "English"
+    Then  I click on Sign Out in the Header for "Elmo"
+
+
+  @SLER-2322 @OPSRegression
+  Scenario: Verify due date color on document page for MVR Types in English [RT-1813]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    Then I enter an "accountID" in any env "2343002676" "5990496490" to search user
+    Then I click on Search button in AP dashboard page
+    Then I select the first record from the search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I verify Document header on my document page
+      | My Documents and Letters |
+    Then I verify Sub header on my document page
+      | We need more information to confirm or verify what you told us in your application. |
+    Then I verify container header for information we need
+      | Information We Need |
+    And I verify MVR name on the information we need container in "English"
+    Then I Verify due date are displaying in proper color
+    Then I verify member name in MVR type
+    # Member names for an account 2343002676 in QA Env
+      |     memberNames            |      Env     |
+      | Primarynfdxxg YtkvelwTest    |      qa      |
+      | Spousepjjrzdxm Nombyeyptqssf |      qa      |
+      | Sonrgonmbvx Stxcyheghapri    |      qa      |
+    # Member Names for an account 5990496490 in Staging Env
+      | apelizfadst apindefurdst     |      staging  |
+      | gsdertetr apindefurdst       |      staging  |
+      | michael lipsitz              |   staging  |
+      | nicolasa lipsitz              |  staging  |
+    Then I verify Upload button on the right
+    Then I verify mvr type with date, member name and upload button
+    And I close current tab and switch back to previous tab
+    Then I click Go Back on admin portal broker dashboard
+    Then I click create account on admin portal
+    And I enter general mandatory data for "exchange" account creation
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    And I verify Document header on my document page
+      | My Documents and Letters |
+    Then I verify Sub header on my document page
+      | We need more information to confirm or verify what you told us in your application. |
+    Then I verify container header for information we need
+      | Information We Need |
+    And I verify no document on new account
+      | You don't need to upload any documents at this time|
+    Then  I click on Sign Out in the Header for "Elmo"
+
+
+  @SLER-2298 @OPSRegression
+  Scenario: Verify Modal pop up error in Spanish  [RT-2019]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    Then I click create account on admin portal
+    And I enter general mandatory data for "exchange" account creation
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I change the language from header to "Spanish"
+    And I click on upload another document link
+    Then I click on upload documents button in modal popup
+    Then I validate selection required error message on modal popup
+      | Debe hacer una Selección |
+    Then I validate font colour height and size of selection required error
+    Then I validate border colour of type and category dropdown
+    Then I validate file required error message on modal popup
+     | Archivo requerido para cargar, adjunte un archivo y inténtelo de nuevo. |
+    Then I validate font colour height and size of file required error
+    Then I validate border colour of type and category dropdown
+    Then I select any type of document from dropdown
+    Then I click on upload documents button in modal popup
+    Then I validate selection required error message for only document category on modal popup
+      | Debe hacer una Selección |
+    Then I validate border colour of category dropdown
+    Then I validate file required error message on modal popup
+      | Archivo requerido para cargar, adjunte un archivo y inténtelo de nuevo. |
+    Then  I select any category of document from dropdown in spanish
+    Then  I click on upload documents button in modal popup
+    Then I validate file required error message on modal popup
+      | Archivo requerido para cargar, adjunte un archivo y inténtelo de nuevo. |
+    Then I validate font colour height and size of file required error
+    And I close button to close modal
+    And I click on upload another document link
+    Then I select document "TestMyDocs.docx" and upload
+    Then I click on upload documents button in modal popup
+    Then I validate selection required error message on modal popup
+      | Debe hacer una Selección |
+    Then I validate font colour height and size of selection required error
+    Then I validate border colour of type and category dropdown
+    Then I select any type of document from dropdown
+    Then I click on upload documents button in modal popup
+    Then I validate selection required error message for only document category on modal popup
+      | Debe hacer una Selección |
+    Then I validate border colour of category dropdown
+    Then I select any category of document from dropdown in spanish
+    Then I select document "OversizeTestJPEG.jpg" and upload
+    Then I click on upload documents button in modal popup
+    Then I verify doc file size large error message in red in Spanish
+    Then I validate already selected file text box border is red
+    Then I select document "TestTIFF.tif" and upload
+    Then I click on upload documents button in modal popup
+    Then I verify unsupported document error message with red in color
+    | No se admite este tipo de archivo. Los archivos deben ser pdf, doc, docx, gif, jpeg, jpg, o png.|
+    Then I validate already selected file text box border is red
+    And I close button to close modal
+    And I change the language from header to "English"
+    Then  I click on Sign Out in the Header for "Elmo"
+
+
+  @SLER-2324 @OPSRegression
+  Scenario: OPS: Verify Document Success Message for Another and Upload in Spanish [RT-2016]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    Then I click create account on admin portal
+    And I enter general mandatory data for "exchange" account creation
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I select "member" from the who are you question
+    And I am a member with SSN "" City "Denver" in State "CO" with dob "01011980" in county "DENVER" with zipcode "80205"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    Then I click I don't have a Social Security Number box and "Yes" on Tell us about yourself page
+    And I click continue on Tell us about yourself page
+    Then I enter member with address line1 "1234 Street" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    Then I click continue on the Race and Ethnicity page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    Then I click continue on family overview page
+    Then I validate I am on the "Financial Help" page
+    And I Apply for financial help
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "4000000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    Then I validate I am on the "Tax status" page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    Then I click continue on family overview page
+    Then I select "Birth" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I click on view results and shop
+    Then I validate I am on the "Application Results" page
+    Then I click the provide documents link on the app results page
+    And I change the language from header to "Spanish"
+    Then I upload MVR doc for "Número de Seguro Social" on the My Documents page in "Spanish"
+    And I click on upload another document in spanish
+    Then I upload another doc "TestMyDocs.docx" for "Número de Seguro Social" on the My Documents page and verify success message in "Spanish"
+    And I change the language from header to "English"
+    Then  I click on Sign Out in the Header for "Elmo"
+
+
+
+  @SLER-2332 @OPSRegression
+  Scenario: Verify user can see their Documents and Notices in the Documents and Notices container [RT-2013]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    Then I enter an "accountID" in any env "1903086579" "4006848148" to search user
+    Then I click on Search button in AP dashboard page
+    Then I select the first record from the search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    Then I validate I am on the "My Documents" page
+    And I change the language from header to "Spanish"
+    Then I validate I am on "Documentos y Cartas Anteriores" container
+    And I validate current year defaulted in plan Year
+    Then I select "Cartas" from document and letter dropdown
+    And  I select year "Todos" in plan year
+    Then I validate all uploaded documents or notices loaded for my account start with "IND"
+      | IND_Plan Selection and Payment Confirmation (EN-002-04)|
+      | IND_Renewal Plan Still Available (EN-007-01)         |
+      | IND_Eligibility Change with SEP (ELG-101-03)               |
+      | IND_Welcome Message (AM-001-01)                            |
+      | IND_Welcome Message (AM-001-03)                            |
+      | IND_Initial Eligibility notice (ELG-101-01)                |
+    And  I Click on double chevron in Past Documents and Letters Container
+    Then I validate Date Received, Time Received and Download button available in "Spanish"
+    And I select year "Previous Year" in plan year
+    Then I select "Documentos y cartas" from document and letter dropdown
+    And  I Click on double chevron in Past Documents and Letters Container
+    Then I validate document date shows for selected year
+    And I select year "Current Year" in plan year
+    Then I validate no document message
+      |No tiene documentos ni cartas en este momento |
+    Then I validate I am on "Documentos y Cartas Anteriores" container
+    And I verify plan year label "Año:"
+    And I validate current year defaulted in plan Year
+    And I validate default value in Documents and letters dropdown in "Spanish"
+    Then I validate no document message
+      | No tiene documentos ni cartas en este momento |
+    Then I verify Go back to welcome page button
+      | Volver a la Pagina de Bienvenida |
+    And I change the language from header to "English"
+    Then  I click on Sign Out in the Header for "Elmo"
 
 

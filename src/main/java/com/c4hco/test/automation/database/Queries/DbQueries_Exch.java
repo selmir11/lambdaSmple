@@ -828,7 +828,24 @@ public class DbQueries_Exch {
         System.out.println("Executing Query: " + query);
         return query;
     }
-	
-	
-	
+
+    public String getVlpRequestCountQuery() {
+            return "select count(evr.*) from " + dbName + ".es_member em, " + dbName + ".es_household eh, " + dbName + ".es_vlp_req evr \n" +
+                    "where eh.household_id = em.household_id and em.member_id = evr.member_id \n" +
+                    "and eh.account_id = '" + acctId + "'";
+        }
+
+    public String getEligibilityTypeQuery() {
+        String query = "Select d.eligibility_type \n" +
+                "From " + dbName + ".es_household a\n" +
+                "join " + dbName + ".es_member b on b.household_id = a.household_id\n" +
+                "join " + dbName + ".es_application c on c.household_id = b.household_id\n" +
+                "join " + dbName + ".es_member_rules_result d on d.evaluation_id = c.evaluation_id\n" +
+                "join " + dbName + ".es_member e on d.member_id = e.member_id\n" +
+                "where account_id = '" + acctId + "'\n" +
+                "and b.household_contact = 1\n" +
+                "and d.ref_obj_id is not null order by d.evaluation_id asc";
+        System.out.println("Executing Query: " + query);
+        return query;
+    }
 }

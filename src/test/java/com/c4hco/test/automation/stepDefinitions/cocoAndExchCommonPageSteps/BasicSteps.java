@@ -326,49 +326,40 @@ public class BasicSteps {
                 pageUrl = "nes/household";
                 break;
             case "Tax status":
-                pageUrl = "nes/taxReturns";
+                pageUrl = "TaxReturnPortal/members";
                 break;
             case "Tax status dependent":
                 pageUrl = "nes/taxReturn";
                 break;
-            case "Tax status Elmo":
-                pageUrl = "TaxReturnPortal/members";
-                break;
             case "Employment Summary":
                 pageUrl = "/employmentInfo/summary";
                 break;
-            case "Elmo Other Health Coverage":
+            case "Other Health Coverage":
                 pageUrl = "/otherHealthCoverage";
                 break;
-            case "Elmo COBRA":
+            case "Ohc COBRA":
                 pageUrl = "/otherHealthCoverage/cobra";
                 break;
-            case "ESI":
+            case "Ohc ESI":
                 pageUrl = "otherHealthCoverage/employerSponsored";
                 break;
-            case "HRA":
-                pageUrl = "nes/memberHra";
+            case "Ohc Retiree":
+                pageUrl = "/otherHealthCoverage/retiree";
                 break;
-            case "Medicare":
-                pageUrl = "nes/medicare";
+            case "Ohc Medicare":
+                pageUrl = "/otherHealthCoverage/medicare";
                 break;
-            case "VA Healthcare":
-                pageUrl = "nes/vaHealth";
+            case "Ohc VA Healthcare":
+                pageUrl = "/otherHealthCoverage/va";
                 break;
-            case "COBRA":
-                pageUrl = "nes/cobra";
+            case "Ohc Individual Insurance":
+                pageUrl = "/otherHealthCoverage/individual";
                 break;
-            case "Retiree Health Plan":
-                pageUrl = "nes/retireeHealth";
+            case "Ohc Peace Corps":
+                pageUrl = "/otherHealthCoverage/peaceCorps";
                 break;
-            case "TRICARE":
-                pageUrl = "nes/tricare";
-                break;
-            case "Peace Corps":
-                pageUrl = "nes/peaceCorps";
-                break;
-            case "Individual Insurance":
-                pageUrl = "nes/individualInsurance";
+            case "Ohc Tricare":
+                pageUrl = "/otherHealthCoverage/tricare";
                 break;
             case "Enrollment Agreements":
                 pageUrl = "PaymentPortal/enrollmentAgreements";
@@ -415,7 +406,7 @@ public class BasicSteps {
             case "EDI Transactions":
                 pageUrl = "/edi-transactions";
                 break;
-            case "Elmo Race and Ethnicity":
+            case "Race and Ethnicity":
                 pageUrl = "/member-details-portal/race-ethnicity/";
                 break;
             case "Ethnicity and Race":
@@ -429,24 +420,6 @@ public class BasicSteps {
                 break;
             case "CoCo Additional info for additional member":
                 pageUrl = "/coco/member-details-portal/member-additional-information/";
-                break;
-            case "Elmo Ohc Retiree":
-                pageUrl = "/otherHealthCoverage/retiree";
-                break;
-            case "Elmo Ohc Medicare":
-                pageUrl = "/otherHealthCoverage/medicare";
-                break;
-            case "Elmo Ohc VA Healthcare":
-                pageUrl = "/otherHealthCoverage/va";
-                break;
-            case "Elmo Ohc Individual Insurance":
-                pageUrl = "/otherHealthCoverage/individual";
-                break;
-            case "Elmo Ohc Peace Corps":
-                pageUrl = "/otherHealthCoverage/peaceCorps";
-                break;
-            case "Elmo Ohc Tricare":
-                pageUrl = "/otherHealthCoverage/tricare";
                 break;
             case "CoCo Employment Income":
                 pageUrl = "/employmentInfo";
@@ -529,7 +502,7 @@ public class BasicSteps {
             case "Access Gateway":
                 pageUrl = "/AdminPortal/";
                 break;
-            case "Elmo HRA":
+            case "HRA":
                 pageUrl = "otherHealthCoverage/hra";
                 break;
             case "Program Manager":

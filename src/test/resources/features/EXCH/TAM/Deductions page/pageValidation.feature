@@ -115,7 +115,7 @@ Feature: Page Verification-Deductions Page
 
 
 
-  @SLER-236 @PageVerificationDeductionsPage @TAMSmoke
+  @SLER-236 @PageVerificationDeductionsPage @TAMSmokeExch
   Scenario: SLER-236 I see the Errors Cleared on the Deductions page - Spanish
     And I change the language from header to "Spanish"
     Then I validate I am on the "Spanish" page
@@ -199,7 +199,7 @@ Feature: Page Verification-Deductions Page
     Then I validate I am on the "Login" page
 
   @SLER-2260
-  Scenario: [RT-2711] As an Exchange user on the ELMO Income pages, I want errors cleared on the Deductions page so that I don't see errors when I select an option
+  Scenario: SLER-2260 As an Exchange user on the ELMO Income pages, I want errors cleared on the Deductions page so that I don't see errors when I select an option
     Then I click continue on the Deductions page
     Then I verify "English" error shows for Deductions page
     Then I verify all checkbox deduction errors for "English"
@@ -209,7 +209,7 @@ Feature: Page Verification-Deductions Page
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-2284
-  Scenario: [RT-2622] ELIG-DB: As an Exchange user on the Deductions page, I want to be able to save, update and remove my deduction information so that my deduction information is available and accurate
+  Scenario: SLER-2284 ELIG-DB: As an Exchange user on the Deductions page, I want to be able to save, update and remove my deduction information so that my deduction information is available and accurate
 
     Then I validate I am on the "Deductions" page
     Then I click "School tuition and fees" as deduction option with "1000.00" amount at "Monthly" frequency

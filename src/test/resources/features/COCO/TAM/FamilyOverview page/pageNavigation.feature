@@ -13,7 +13,7 @@ Feature: Tests related to the Family Overview page
     And I apply for the current year in CoCo
     And I click Continue on my own button from Manage who helps you page
 
-  @SLCR-149 @PageNavigationFamilyOverview @TAMSmoke
+  @SLCR-149 @PageNavigationFamilyOverview @TAMSmokeCoCo
   Scenario: SLCR-149 The 'Find Expert Assistance' link stops working when navigate back to the error and unauthorized pages in Family Overview portal
     #Step1
     Then I validate I am on the "CoCo Family Overview" page

@@ -17,7 +17,7 @@ import java.util.NoSuchElementException;
 
 public class CRMDashboardPage {
 
-    @FindBy(id = "GlobalSearchBox")
+    @FindBy(xpath = "//*[@id=\"GlobalSearchBox\"]")
     WebElement txtCRMDashSearchBox;
 
     @FindBy(css = "#navigateBackButtontab-id-0 > span")

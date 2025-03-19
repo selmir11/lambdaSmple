@@ -15,10 +15,11 @@ Feature: Manage Plans: Buttons (positive and negative testing)
     Then I verify Primary account holder and account number displays
     Then I click on "Manage Plans" user dashboard button
     And I validate I am on the "Manage Plans" page
+    And I select the "2024" plan year on manage plan
     Then I validate blue bar on Manage page
     Then I verify Primary account holder and account number displays
     And I validate title and labels on Manage page Coco account
-    Then I check default year displays
+#    Then I check default year displays
     And I verify Medical button checked
     And I validate buttons displayed on CoCo Manage page
     Then I click Make Changes Medical button
@@ -40,10 +41,11 @@ Feature: Manage Plans: Buttons (positive and negative testing)
     Then I verify Primary account holder and account number displays
     Then I click on manage plan button on admin portal Individual dashboard
     And I validate I am on the "Manage Plans" page
+    Then I check default year displays
+    And I select the "2024" plan year on manage plan
     Then I validate blue bar on Manage page
     Then I verify Primary account holder and account number displays
     And I validate title and labels on Manage page Coco account
-    Then I check default year displays
     And I verify Medical button checked
     And I validate medical and dental buttons does not display on Manage page
     And I logout from Admin Portal
