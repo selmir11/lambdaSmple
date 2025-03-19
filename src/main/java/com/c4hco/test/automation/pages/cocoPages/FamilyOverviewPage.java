@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.ApplicationProperties;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import org.openqa.selenium.By;
@@ -20,6 +21,8 @@ import java.util.regex.Pattern;
 public class FamilyOverviewPage {
 
     Actions actions = new Actions(WebDriverManager.getDriver());
+    String memberId1;
+    String exchangeMemberId1;
 
     @FindBy(xpath = "//h1[contains(text(), 'Family Overview: Here’s what you’ve told us so far')]")
     WebElement familyOverviewHeader;
@@ -56,6 +59,9 @@ public class FamilyOverviewPage {
 
     @FindBy(css = ".family-overview-exclamation .red-circle svg")
     List<WebElement> redCircleExclamationMarkForBasicHouseholdAndAnnualFinancialInformation;
+
+    @FindBy(xpath = "//lib-unauthorized[@class='ng-star-inserted']")
+    List<WebElement> unAuthorizedBanner;
 
     SoftAssert softAssert = new SoftAssert();
 
@@ -204,6 +210,71 @@ public class FamilyOverviewPage {
         softAssert.assertTrue(editUpdateLink.get(0).isDisplayed(),"Edit/Update link is not visible");
         softAssert.assertTrue(redCircleExclamationMarkForBasicHouseholdAndAnnualFinancialInformation.get(0).isDisplayed(),"Red circle exclamation mark for Basic Household Information is not visible");
         softAssert.assertTrue(redCircleExclamationMarkForBasicHouseholdAndAnnualFinancialInformation.get(1).isDisplayed(),"Red circle exclamation mark for Annual Financial Information is not visible");
+        softAssert.assertAll();
+    }
+    public  void retrievePrimaryMemberId(){
+        String memberId = basicActions.getMemberIDFromURL();
+        SharedData.getPrimaryMember().setMemberId(memberId);
+        memberId1=memberId;
+    }
+    public void retrievePrimaryMemberIdForExchangeAccount(){
+        String memberId = basicActions.getMemberIDFromURL();
+        SharedData.getPrimaryMember().setMemberId(memberId);
+        exchangeMemberId1=memberId;
+    }
+
+    public void validateCocoUrlToReflectMemberID(String pageName){
+        String urlSameHouseHoldCoco;
+        String urlDifferentHouseHoldCoco;
+        String urlExchangeAccount;
+        String memberId2 = basicActions.getMember("Primary").getMemberId();
+
+        switch (pageName){
+            case "Employment Info":
+                urlSameHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/member/"+memberId2+"/employmentInfo";
+                urlDifferentHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/member/"+memberId1+"/employmentInfo";
+                urlExchangeAccount="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/member/"+exchangeMemberId1+"/employmentInfo";
+                validatePageAuthorization(urlSameHouseHoldCoco,urlDifferentHouseHoldCoco,urlExchangeAccount);
+                break;
+            case "Additional Income":
+                urlSameHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/additionalIncome/"+memberId2;
+                urlDifferentHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/additionalIncome/"+memberId1;
+                urlExchangeAccount="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/additionalIncome/"+exchangeMemberId1;
+                validatePageAuthorization(urlSameHouseHoldCoco,urlDifferentHouseHoldCoco,urlExchangeAccount);
+                break;
+            case "Deductions":
+                urlSameHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/deductions/"+memberId2;
+                urlDifferentHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/deductions/"+memberId1;
+                urlExchangeAccount="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/deductions/"+exchangeMemberId1;
+                validatePageAuthorization(urlSameHouseHoldCoco,urlDifferentHouseHoldCoco,urlExchangeAccount);
+                break;
+            case "Summary Details":
+                urlSameHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/summaryDetails/"+memberId2;
+                urlDifferentHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/summaryDetails/"+memberId1;
+                urlExchangeAccount="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/summaryDetails/"+exchangeMemberId1;
+                validatePageAuthorization(urlSameHouseHoldCoco,urlDifferentHouseHoldCoco,urlExchangeAccount);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +pageName);
+
+        }
+    }
+    private void validatePageAuthorization(String urlSameHouseHoldCoco,String urlDifferentHouseHoldCoco,String urlExchangeAccount){
+        basicActions.openNewTab();
+        basicActions.getDriver().get(urlSameHouseHoldCoco);
+        softAssert.assertTrue(unAuthorizedBanner.isEmpty(),"Unauthorized banner displayed for same house hold coco");
+        basicActions.getDriver().navigate().to(urlDifferentHouseHoldCoco);
+        basicActions.wait(1000);
+        softAssert.assertTrue(!unAuthorizedBanner.isEmpty(),"Unauthorized banner not displayed for different house hold coco");
+        basicActions.closeBrowserTab();
+        basicActions.switchTabs(0);
+        basicActions.openNewTab();
+        basicActions.getDriver().navigate().to(urlExchangeAccount);
+        basicActions.wait(1000);
+        softAssert.assertTrue(!unAuthorizedBanner.isEmpty(),"Unauthorized banner not displayed for exchange member id");
+        softAssert.assertAll();
+        basicActions.closeBrowserTab();
+        basicActions.switchTabs(0);
         softAssert.assertAll();
     }
 }
