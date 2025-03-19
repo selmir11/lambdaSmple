@@ -17,9 +17,15 @@ import org.testng.asserts.SoftAssert;
 
 import javax.xml.crypto.dom.DOMCryptoContext;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 import java.io.IOException;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+
 
 public class MedicalDetailPage {
     PDF pdf = new PDF( WebDriverManager.getDriver() );
@@ -576,49 +582,26 @@ public class MedicalDetailPage {
                 softAssert.assertTrue( actualString0.contains( "Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220065-01" ) );
 
                 lnkDocument0.click();
+                //wait for download to complete
+                // 30 seconds is the max time to wait for the download to complete
+                // this method will return the name of the downloaded file
+                // if the file is not downloaded within 30 seconds, it will return null
+                // so we need to check if the file exists and has a length greater than 0
+                // if the file exists and has a length greater than 0, we can proceed to the next step
+                // if the file does not exist or has a length of 0, we need to fail the test
                 waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
 
+                // next step would be to verify the file title
+                String localPathDownload1 = (SharedData.getLocalPathToDownloadFile());
+                File downloadedFile = new File( localPathDownload1, "Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220065-01" );
+                softAssert.assertTrue( downloadedFile.exists(), "Downloaded file does not exist: " + downloadedFile.getAbsolutePath() );
+                softAssert.assertTrue( downloadedFile.length() > 0, "Downloaded file is empty: " + downloadedFile.getAbsolutePath() );
 
-                // at the step above the cursor is found on the downloaded document - next step would be to copy the file title and verify it
 
-                // Define the path where the PDF is downloaded
-                String downloadDirectory = System.getProperty("user.home") + "/Downloads/";
-                String pdfFileName = "expectedFilename.pdf";  // Adjust with the expected PDF filename
 
-                // Get the downloaded file
-                File downloadedFile = new File(downloadDirectory + pdfFileName);
 
-                // Validate if file exists
-                if (downloadedFile.exists()) {
-                    // Extract the title of the PDF document
-                    String pdfTitle = getPdfTitle(downloadedFile);
 
-                    // Expected title to validate against
-                    String expectedTitle = "Expected PDF Title";
-
-                    // Compare and print result
-                    if (pdfTitle.equals(expectedTitle)) {
-                        System.out.println("PDF Title matches the expected title.");
-                    } else {
-                        System.out.println("PDF Title does NOT match the expected title.");
-                    }
-                } else {
-                    System.out.println("PDF file not found.");
-                }
-
-                // Close the WebDriver
-                driver.quit();
         }
 
-        // Method to extract the title from a PDF file
-        private static String getPdfTitle(File pdfFile) throws IOException {
-            PDDocument document = PDDocument.load(pdfFile);
-            String title = document.getDocumentInformation().getTitle();
-            document.close();
-            return title;
-        }
     }
-
-
 }
-
