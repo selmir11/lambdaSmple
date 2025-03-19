@@ -247,6 +247,35 @@ public class EmploymentInfoPageSteps {
 
     @Then("I verify no errors show for Income frequency field and Income same or lower question field")
     public void iVerifyNoErrorsShowForFrequencyAndIncomeSameLowerField()  { employmentInfoPage.verifyNoErrorsShowForFrequencyAndIncomeSameLowerField(); }
+    @Then("I verify page header in English in Employment Income page")
+    public void iVerifyPageHeaderInEnglish(List<String> pageHeader) {
+        employmentInfoPage.validateHeaderOnEmploymentIncome(pageHeader);
+    }
+
+    @Then("I validate All error message colour and text in Employment Income page")
+    public void iValidateAllErrorMessageColourAndTextInEmploymentIncomePage(List<String> errorMessages) {
+        employmentInfoPage.validateAllErrorMessageColourAndText(errorMessages);
+    }
+
+    @Then("I validate max length of each text field in Employment Income page")
+    public void iValidateMaxLengthOfEachTextFieldInEmploymentIncomePage() {
+        employmentInfoPage.validateMaxLengthOfEachTextField();
+    }
+
+    @Then("I validate zip code and include commission text box field")
+    public void iValidateZipCodeAndCommissionTextBoxField() {
+        employmentInfoPage.validateZipCodeAndCommissionTextField();
+    }
+
+    @Then("I verify the income frequency dropdown allows single selection")
+    public void iVerifyTheIncomeFrequencyDropdownAllowsSingleSelection() {
+        employmentInfoPage.validateIncomeFreAllowsSingleSelection();
+    }
+
+    @Then("I validate functionality of {string} question")
+    public void iValidateFunctionalityOfQuestion(String question) {
+        employmentInfoPage.validateFunctionalityOfQuestions(question);
+    }
 
 
 

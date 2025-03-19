@@ -4,6 +4,7 @@ import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -76,7 +77,7 @@ public class EmploymentInfoPage {
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsIncomeSeasonal-NoButton")
     WebElement btnIsSeasonalNo;
 
-    @FindBy(id = "ELIG-summaryDetails-YesButton")
+    @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsIncomeSame-YesButton")
     WebElement btnIncomeSameYes;
 
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-IsIncomeSame-NoButton")
@@ -207,6 +208,15 @@ public class EmploymentInfoPage {
 
     @FindBy(xpath = "(//div[@class=\"input-error-message error-icon ng-star-inserted\"]/span)[2]")
     WebElement IncomeSameOrLowerNextYearErrorMessage;
+
+    @FindBy(xpath = "//div[@class='header-1 text-center ng-star-inserted']")
+    WebElement txtEmploymentHeader1;
+
+    @FindBy(xpath = "//div[@class='header-2 text-center ng-star-inserted']/span")
+    WebElement txtEmploymentHeader2;
+
+    @FindBy(xpath = "//*[@class='error-message c4-text-body-100 ng-star-inserted']")
+    List<WebElement> c4bodyTextError;
 
     public void clickEditUpdateLink(int employer) {
         basicActions.waitForElementListToBePresent(EditUpdateLink, 10);
@@ -1049,7 +1059,88 @@ public class EmploymentInfoPage {
         softAssert.assertAll();
     }
 
+    public void validateHeaderOnEmploymentIncome(List<String> pageHeader) {
+        String Firstname = SharedData.getPrimaryMember().getFirstName();
+        String Lastname = SharedData.getPrimaryMember().getLastName();
+        softAssert.assertEquals(txtEmploymentHeader1.getText(), pageHeader.get(0) + " " + Firstname + " " + Lastname);
+        softAssert.assertEquals(txtEmploymentHeader2.getText(), pageHeader.get(1));
+        softAssert.assertAll();
 
+    }
+
+    public void validateAllErrorMessageColourAndText(List<String> errorMessages) {
+        for (WebElement webElement : c4bodyTextError) {
+            softAssert.assertEquals(webElement.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        }
+        for (int i = 0; i < errorMessages.size(); i++) {
+
+            softAssert.assertEquals(c4bodyTextError.get(i).getText(), errorMessages.get(i), "Error message is not correct");
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateMaxLengthOfEachTextField() {
+        txtCompanyName.sendKeys(basicActions.generateRandomStringWithAnyLength(105));
+        softAssert.assertTrue(txtCompanyName.getAttribute("value").length() == 100, "Company name accepting more than 100 chars");
+        txtAddressOne.sendKeys(basicActions.generateRandomStringWithAnyLength(130));
+        softAssert.assertTrue(txtAddressOne.getAttribute("value").length() == 128, "Address Line 1 accepting more than 128 chars");
+        txtAddressTwo.sendKeys(basicActions.generateRandomStringWithAnyLength(130));
+        softAssert.assertTrue(txtAddressTwo.getAttribute("value").length() == 128, "Address Line 2 accepting more than 128 chars");
+        txtCity.sendKeys(basicActions.generateRandomStringWithAnyLength(55));
+        softAssert.assertTrue(txtAddressTwo.getAttribute("value").length() == 128, "Address Line 2 accepting more than 128 chars");
+        txtZip.sendKeys("5809089");
+        softAssert.assertTrue(txtZip.getAttribute("value").length() == 5, "Zip field accepting more than 5 numbers");
+        txtIncomeAmount.sendKeys("1234567891234");
+        softAssert.assertTrue(txtIncomeAmount.getAttribute("value").replaceAll("\\D", "").length() == 11, "Amount accepting more than 11 numerical");
+        softAssert.assertAll();
+    }
+    public void validateZipCodeAndCommissionTextField(){
+        txtZip.click();
+        txtIncomeAmount.click();
+        basicActions.sendTextUsingJavaScript(txtZip,"ABCDE");
+        txtZip.click();
+        txtZip.sendKeys(Keys.BACK_SPACE);
+        softAssert.assertEquals(c4bodyTextError.get(0).getText(),"Zip code must be 5 numbers","Accepting Only Chars");
+        txtZip.clear();
+        basicActions.sendTextUsingJavaScript(txtZip,"123");
+        softAssert.assertEquals(c4bodyTextError.get(0).getText(),"Zip code must be 5 numbers","Accepting less than 5 numbers");
+        txtZip.clear();
+        basicActions.sendTextUsingJavaScript(txtZip,"!@#$%");
+        softAssert.assertEquals(c4bodyTextError.get(0).getText(),"Zip code must be 5 numbers","Accepting special characters");
+        txtIncomeAmount.clear();
+        txtIncomeAmount.sendKeys("ABCDE");
+        softAssert.assertTrue(txtIncomeAmount.getAttribute("value").isEmpty(),"Amount accepting Characters");
+        txtIncomeAmount.clear();
+        txtIncomeAmount.sendKeys("!@#$%");
+        softAssert.assertTrue(txtIncomeAmount.getAttribute("value").isEmpty(),"Amount accepting special Characters");
+        softAssert.assertAll();
+    }
+
+    public void validateIncomeFreAllowsSingleSelection(){
+        Assert.assertFalse( basicActions.isMultipleSelection(selectIncomeFreq));
+    }
+    public void validateFunctionalityOfQuestions(String question){
+        switch (question){
+            case "Is this income part of seasonal":
+                basicActions.waitForElementToBePresent(btnIsSeasonalYes,10);
+                btnIsSeasonalYes.click();
+                softAssert.assertTrue(btnIsSeasonalYes.getAttribute("class").contains("selected"),"Yes button not Selected");
+                softAssert.assertFalse(btnIsSeasonalNo.getAttribute("class").contains("selected"),"No button is selected");
+                softAssert.assertEquals(incomeSeasonalQuestion.getText(),"Is this income part of seasonal, commission, or tip based employment?","text is not matching for seasonal");
+                softAssert.assertAll();
+                break;
+            case "Will this income be the same":
+                basicActions.waitForElementToBePresent(btnIncomeSameYes,10);
+                btnIncomeSameYes.click();
+                softAssert.assertTrue(btnIncomeSameYes.getAttribute("class").contains("selected"),"Yes button not Selected");
+                softAssert.assertFalse(btnIncomeSameNo.getAttribute("class").contains("selected"),"No button is Selected");
+                softAssert.assertEquals(incomeSameLowerNextYearQuestionWhenNoToSelfEmployedQuestion.getText(),"Will this income be the same or lower next year?","text is not matching for same or lower");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " +question);
+        }
+    }
 }
 
 

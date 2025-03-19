@@ -39,7 +39,6 @@ Feature: Page Text-Income Opt Out Page
     And I click continue on the Citizenship page
     Then I click continue on family overview page
     And I Apply for financial help
-
     And I validate I am on the "Employment Income" page
 
   @SLER-2339
@@ -94,3 +93,27 @@ Feature: Page Text-Income Opt Out Page
     And I verify no errors show for Income frequency field and Income same or lower question field
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLER-2341
+  Scenario: ELIG-Employment Income-Page Validation (not self-employment)(RT-1200)
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I click continue on the Employment Info Page
+    Then I verify page header in English in Employment Income page
+      |Income: |
+      |Employment Income|
+    Then I validate All error message colour and text in Employment Income page
+      |Employer name is required|
+      |Street address is required|
+      |City is required|
+      |State is required|
+      |Zip code is required|
+      |Amount is required|
+      |Please select one of the options below|
+    Then I validate max length of each text field in Employment Income page
+    And I select the option "Yes" to self employment
+    And I select the option "No" to self employment
+    Then I validate zip code and include commission text box field
+    Then I verify the income frequency dropdown allows single selection
+    Then I validate functionality of "Is this income part of seasonal" question
+    Then I validate functionality of "Will this income be the same" question
