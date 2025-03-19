@@ -127,6 +127,10 @@ public class DbDataProvider_Exch {
         return csrAmount;
     }
 
+    public Map<String,String> getSubscriberCSRDataFromDb_aian(){
+        Map<String,String> csrAmount =  postgresHandler.getResultForTwoColumnValuesInMap("coverage_type","csr_amt", exchDbQueries.getMedCSRRecords_aian());
+        return csrAmount;
+    }
 
     public void setDataFromDb(){
         String fipcode = getFipcode();
@@ -197,7 +201,7 @@ public class DbDataProvider_Exch {
         String[] issuerNameId = getIssuerNameId(hiosIssuerId);
         String issuerName = issuerNameId[0];
         String issuerId = issuerNameId[1];
-        Map<String,String> csrMap = getSubscriberCSRDataFromDb();
+        Map<String,String> csrMap = SharedData.getIsAiAn()? getSubscriberCSRDataFromDb_aian() : getSubscriberCSRDataFromDb();
         String csrAmtMed =csrMap.get("1");
         Map<String, PlanDbData> medicalPlanDetailsFromDb = SharedData.getMedicalPlanDbData();
         if(medicalPlanDetailsFromDb==null) {
@@ -221,7 +225,7 @@ public class DbDataProvider_Exch {
         String issuerName = issuerNameId[0];
         String issuerId = issuerNameId[1];
         Map<String,String> csrMap = getSubscriberCSRDataFromDb();
-        String csrAmtMed =csrMap.get("1");
+        String csrAmtMed = csrMap.get("1");
         List<Map<String, PlanDbData>> medicalPlanDetailsFromDb = SharedData.getMedicalPlanDbDataNew();
         if(medicalPlanDetailsFromDb == null) {
             medicalPlanDetailsFromDb = new ArrayList<>();

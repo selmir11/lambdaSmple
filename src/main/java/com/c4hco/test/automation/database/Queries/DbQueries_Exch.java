@@ -200,6 +200,16 @@ public class DbQueries_Exch {
                 "WHERE p.account_id = '" + acctId + "'";
     }
 
+    public String getMedCSRRecords_aian() {
+        return "SELECT DISTINCT mcf.csr_amt, p.coverage_type\n" +
+                "FROM  " + dbName + ".en_member_coverage_financial_ah mcf\n" +
+                "JOIN " + dbName + ".en_policy_member_coverage_ah pmc ON mcf.policy_member_coverage_id = pmc.policy_member_coverage_id\n" +
+                "JOIN " + dbName + ".en_policy_member_ah pm ON pmc.policy_member_id = pm.policy_member_id\n" +
+                "JOIN " + dbName + ".en_policy_ah p ON pm.policy_id = p.policy_id\n" +
+                "WHERE p.account_id = '" + acctId + "'" +
+                "AND mcf.csr_amt >0";
+    }
+
     public String getPolicyDqCheck() {
         return "select eph.policy_ah_id, " + dbName + ".en_policy_dq_check(policy_ah_id) from en_policy_ah eph where account_id = " + acctId + " and eph.current_ind = '1'";
     }
