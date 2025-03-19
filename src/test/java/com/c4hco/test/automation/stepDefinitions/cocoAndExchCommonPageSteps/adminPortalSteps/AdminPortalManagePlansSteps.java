@@ -357,6 +357,15 @@ public class AdminPortalManagePlansSteps {
     public void iValidateTheExpectedEHBErrorMessageIsDisplayed(String expectedErrorMessage) {
         adminPortalManagePlansPage.validateTheExpectedEHBErrorMessageIsDisplayed(expectedErrorMessage);
     }
+    @Then("I validate {string} message is displayed")
+    public void iValidateNoPlanMessageIsDisplayed(String expectedMessage) {
+        adminPortalManagePlansPage.validateNoPlanMessageIsDisplayed(expectedMessage);
+    }
+
+    @Then("I verify Plan ID data with plan selected {string} {string} and {string} {string}")
+    public void iVerifyPlanIDDataMatchesDataInDropDownForSelectedPlan(String planSTG, String planOptionDropDownSTG, String planQA, String planOptionDropDownQA) {
+        adminPortalManagePlansPage.verifyPlanIDDataMatchesDataInDropDownForSelectedPlan(planSTG, planOptionDropDownSTG, planQA, planOptionDropDownQA );
+    }
 }
 
 
