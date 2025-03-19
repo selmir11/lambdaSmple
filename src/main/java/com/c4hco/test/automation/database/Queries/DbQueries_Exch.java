@@ -183,18 +183,6 @@ public class DbQueries_Exch {
                 "limit 1";
     }
 
-    public String csrLevelAiAn() {
-        return "select esm.first_name, esm.last_name, esh.household_id, err.* \n" +
-                "From "+dbName+".ES_MEMBER esm, "+dbName+".ES_MEMBER_RULES_RESULT err, "+dbName+".es_household esh \n" +
-                "Where esm.member_id = err.member_id \n" +
-                "And esm.household_id = esh.household_id \n" +
-                "And esh.account_id ='"+SharedData.getPrimaryMember().getAccount_id()+"' \n" +
-                "And eligibility_type = 'CSR' \n" +
-                "And determination = 'CSR' \n" +
-                "Order by err.created_ts desc \n" +
-                "limit 1";
-    }
-
     public String commissionTin() {
         return "SELECT bpa.commission_tin\n" +
                 "FROM " + dbName + ".bp_client_authorization bpa\n" +

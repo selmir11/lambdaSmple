@@ -116,7 +116,7 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultFor("exch_person_id", exchDbQueries.exchPersonId(memId));
     }
     public String getCSRLevel(){
-        return postgresHandler.getResultFor("csr_level", SharedData.getIsAiAn()? exchDbQueries.csrLevelAiAn(): exchDbQueries.csrLevel());
+        return postgresHandler.getResultFor("csr_level", exchDbQueries.csrLevel());
     }
     public String getTinNumForBroker() {
         return postgresHandler.getResultFor("commission_tin", exchDbQueries.commissionTin());
@@ -138,7 +138,7 @@ public class DbDataProvider_Exch {
                 brokerTinNum = getTinNumForBroker();
             }
         if (!SharedData.getAppType().equals("coco")) {
-            csrLevel = getCSRLevel();
+            csrLevel = SharedData.getIsAiAn()? "03" : getCSRLevel();
         }
         DbData dbData = new DbData();
 
