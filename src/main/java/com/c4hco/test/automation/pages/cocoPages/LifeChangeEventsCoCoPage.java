@@ -957,7 +957,7 @@ public class LifeChangeEventsCoCoPage {
         softAssert.assertEquals(element.getCssValue("border"), "1px solid rgb(150, 0, 0)", element + " Border mismatch");
     }
 
-    public void verifyTextFormatInGivenLanguage(String language,List<String> expectedText){
+    public void verifyTextFormatInGivenLanguage(List<String> expectedText){
 
         basicActions.waitForElementToBePresent(saveAndContinueButton,5);
         basicActions.click(saveAndContinueButton);

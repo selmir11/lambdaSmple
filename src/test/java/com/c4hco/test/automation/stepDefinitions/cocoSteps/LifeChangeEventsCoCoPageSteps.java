@@ -54,7 +54,7 @@ public class LifeChangeEventsCoCoPageSteps {
     public void iVerifyErrorFormat(String incomeType){lifeChangeEventsCoCoPage.verifyErrorFormat(incomeType);}
 
     @Then("I validate the text format is aligned with {string} language")
-    public void i_validate_the_text_format_is_aligned_with_language(String language, List<String> expectedText) {
-    lifeChangeEventsCoCoPage.verifyTextFormatInGivenLanguage(language,expectedText);
+    public void i_validate_the_text_format_is_aligned_with_language(List<String> expectedText) {
+    lifeChangeEventsCoCoPage.verifyTextFormatInGivenLanguage(expectedText);
     }
 }
