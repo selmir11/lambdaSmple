@@ -1492,3 +1492,50 @@ Feature: End to End Testing
     And I verify outcome_ind is "1"
 
     And I click on Sign Out in the Header for "Elmo"
+
+  @SLCR-852
+  Scenario: SLCR-852 ELIG-OE: QLCE testing - verify eligibility_purpose in es_application table
+    Then I enter details on tell us about yourself page and continue with "05101994", "Male", and applying "Yes"
+    And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for mailing address option
+    And I select "Yes" for live in Colorado option
+    And I click continue on the Add info for yourself page
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I click save and continue on the Race and Ethnicity page
+    And I select "Yes" employment option
+    And I enter "2514.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+    And I select "Alimony Received" as additional income option with "15841.00" amount at "Annually" frequency
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "Alimony" as deduction option with "52.00" amount at "Annually" frequency
+    And I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    And I select continue on the Family Overview page
+    And I select "Birth" life change event with event date of "Today"
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    Then I click continue on coco start shopping page
+    And I select the first medical plan option CoCo
+    And I click Continue on the Medical Plans Page CoCo
+    And I click Continue button on the Medical Dental Page CoCo
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+    Then I click all done from payment portal page coco
+    Then I validate I am on the "CoCo Welcome" page
+    And I verify the primary's eligibility type is "QLCE"
+    And I verify the most recent determination is "GAIN_DEP_QLCE" with an effective date of "First Of Next Month"
+    And I verify outcome_ind is "1"
+
+    And I click on Sign Out in the Header for "Elmo"
