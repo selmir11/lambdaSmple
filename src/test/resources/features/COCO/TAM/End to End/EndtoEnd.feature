@@ -1627,3 +1627,95 @@ Feature: End to End Testing
     And I verify removed_effective_date is first of next year
 
     And I click on Sign Out in the Header for "Elmo"
+
+  @SLCR-858
+  Scenario: SLCR-858 ELIG-CE or OE: QLCE testing - applying_for_coverage_ind for Divorce
+    Then I enter details on tell us about yourself page and continue with "05101994", "Male", and applying "Yes"
+    And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for mailing address option
+    And I select "Yes" for live in Colorado option
+    And I click continue on the Add info for yourself page
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I click save and continue on the Race and Ethnicity page
+    And I select "Yes" employment option
+    And I enter "20000.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    Then I select add another family member on the Family Overview page
+    Then I enter details on tell us about additional members of your household page with "Spouse", "10101994", "Female", and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members of your household page
+    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+    And I select "Prefer not to answer" for race and ethnicity option for "Spouse"
+    And I click save and continue on the Race and Ethnicity page
+    And I select "Yes" employment option
+    And I enter "20000.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+    And I select "InsuranceLoss" life change event with event date of "Today"
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse" coco
+    Then I click continue on coco start shopping page
+    Then I click continue on grouping Members Medical coco page
+    And I select the first medical plan option CoCo
+    And I click Continue on the Medical Plans Page CoCo
+    And I click Continue button on the Medical Dental Page CoCo
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+    Then I click all done from payment portal page coco
+#report divorce
+    Then I validate I am on the "CoCo Welcome" page
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I select "Divorce" life change event with event date of "Today"
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    And I click Continue on the Application Results Page CoCo
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    Then I click continue on coco start shopping page
+    And I click Continue on the Medical Plans Page CoCo
+    And I click Continue button on the Medical Dental Page CoCo
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+    Then I click all done from payment portal page coco
+    Then I validate I am on the "CoCo Welcome" page
+    And I verify the most recent determination is "DIVORCE_QLCE" with an effective date of "First Of Next Month"
+    And I verify "Spouse"'s applying_for_coverage_ind is "0"
+
+    And I click on Sign Out in the Header for "Elmo"
