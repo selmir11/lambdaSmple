@@ -618,16 +618,16 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultFor("outcome_ind", exchDbQueries.getCyaEligibility());
     }
 
-    public String getVLPResponseCode() {
-        return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPResponseCodeInfo());
+    public String getVLPResponseCode(String requestType) {
+        return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPResponseCodeInfo(requestType));
     }
 
-    public String getVLPRetryType() {
-        return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPRetryType());
+    public String getFDSHRetryType() {
+        return postgresHandler.getResultFor("response_code", exchDbQueries.getFDSHRetryType());
     }
 
-    public String getVLPRetryStatus() {
-        return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPRetryStatus());
+    public String getFDSHRetryStatus() {
+        return postgresHandler.getResultFor("response_code", exchDbQueries.getFDSHRetryStatus());
     }
 
     public List<String> getSubscribers(String memId) {

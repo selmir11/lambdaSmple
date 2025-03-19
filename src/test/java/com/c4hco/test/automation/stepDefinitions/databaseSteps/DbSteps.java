@@ -328,14 +328,14 @@ public class DbSteps {
         dbValidations.validateCyaEligibility();
     }
 
-    @And("I Validate VLP response code as {string}")
-    public void validateEnrolmentEndDate(String responseCode) {
-        dbValidations.validateVLPResponseCode(responseCode);
+    @And("I Validate VLP response code as {string} for request type {string}")
+    public void validateEnrolmentEndDate(String responseCode, String requestType) {
+        dbValidations.validateVLPResponseCode(responseCode, requestType);
     }
 
-    @And("I Validate VLP retry type as {string} and VLP retry status as {string}")
-    public void validateVLPRetryTypeAndStatus(String retryType, String retryStatus) {
-        dbValidations.validateVLPRetryTypeandStatus(retryType,retryStatus);
+    @And("I Validate FDSH retry type as {string} and retry status as {string}")
+    public void validateFDSHRetryTypeAndStatus(String retryType, String retryStatus) {
+        dbValidations.validateFDSHRetryTypeandStatus(retryType,retryStatus);
     }
 
     @And("I verify the Member reason code as {string}")
