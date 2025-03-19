@@ -750,18 +750,18 @@ public class DbQueries_Exch {
                 "And esh.account_id ='" + acctId + "' and err.determination = 'CYA'";
     }
 
-    public String getVLPResponseCodeInfo() {
-        return "select evr.response_code from " + dbName + ".es_member em, " + dbName + ".es_household eh, " + dbName + ".es_vlp_resp\n" +
-                " evr where eh.household_id = em.household_id and em.member_id = evr.member_id and evr.request_type = '2'\n" +
-                " and eh.account_id = '" + acctId + "'";
+    public String getVLPResponseCodeInfo(String requestType) {
+        return "SELECT response_code FROM " + dbName + ".es_vlp_resp\n" +
+                "WHERE member_id = '"+SharedData.getPrimaryMember().getMemberId()+"'\n" +
+                "AND request_type = '"+requestType+"'";
     }
 
-    public String getVLPRetryType() {
+    public String getFDSHRetryType() {
         return "select service_type from " + dbName + ".es_fdsh_retry_control\n" +
                 " where account_id = '" + acctId + "'";
     }
 
-    public String getVLPRetryStatus() {
+    public String getFDSHRetryStatus() {
         return "select status from " + dbName + ".es_fdsh_retry_control\n" +
                 " where account_id = '" + acctId + "'";
     }
@@ -834,4 +834,54 @@ public class DbQueries_Exch {
                     "where eh.household_id = em.household_id and em.member_id = evr.member_id \n" +
                     "and eh.account_id = '" + acctId + "'";
         }
+
+    public String getEligibilityTypeQuery() {
+        String query = "Select d.eligibility_type \n" +
+                "From " + dbName + ".es_household a\n" +
+                "join " + dbName + ".es_member b on b.household_id = a.household_id\n" +
+                "join " + dbName + ".es_application c on c.household_id = b.household_id\n" +
+                "join " + dbName + ".es_member_rules_result d on d.evaluation_id = c.evaluation_id\n" +
+                "join " + dbName + ".es_member e on d.member_id = e.member_id\n" +
+                "where account_id = '" + acctId + "'\n" +
+                "and b.household_contact = 1\n" +
+                "and d.ref_obj_id is not null order by d.evaluation_id asc";
+        System.out.println("Executing Query: " + query);
+        return query;
+    }
+
+    public String getgetDeterminationEffectiveDateDetails() {
+        String query = "Select d.effective_date, d.determination \n" +
+                "From " + dbName + ".es_household a\n" +
+                "join " + dbName + ".es_member b on a.household_id = b.household_id\n" +
+                "join " + dbName + ".es_application c on b.household_id = c.household_id\n" +
+                "join " + dbName + ".es_member_rules_result d on c.evaluation_id = d.evaluation_id\n" +
+                "where a.account_id = " + acctId + "\n" +
+                "and b.household_contact = 1\n" +
+                "and d.ref_obj_id is not null order by d.created_ts desc limit 1";
+        System.out.println("Executing Query: " + query);
+        return query;
+    }
+
+    public String getOutcomeIndQuery() {
+        String query = "Select d.outcome_ind\n" +
+                "From " + dbName + ".es_household a\n" +
+                "join " + dbName + ".es_member b on a.household_id = b.household_id\n" +
+                "join " + dbName + ".es_application c on b.household_id = c.household_id\n" +
+                "join " + dbName + ".es_member_rules_result d on d.member_id = b.member_id and d.evaluation_id =c.evaluation_id\n" +
+                "Where account_id = " + acctId + "\n" +
+                "And household_contact = 1\n" +
+                "And d.ref_obj_id is not null order by d.evaluation_id asc limit 1";
+        System.out.println("Executing Query: " + query);
+        return query;
+    }
+
+    public String getRemovedEffectiveDateQuery() {
+        String query = "Select b.removed_effective_date \n" +
+                "From " + dbName + ".es_household a\n" +
+                "join " + dbName + ".es_member b on a.household_id = b.household_id\n" +
+                "where a.account_id = " + acctId + "\n" +
+                "and b.household_contact = 0";
+        System.out.println("Executing Query: " + query);
+        return query;
+    }
 }

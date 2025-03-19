@@ -328,14 +328,14 @@ public class DbSteps {
         dbValidations.validateCyaEligibility();
     }
 
-    @And("I Validate VLP response code as {string}")
-    public void validateEnrolmentEndDate(String responseCode) {
-        dbValidations.validateVLPResponseCode(responseCode);
+    @And("I Validate VLP response code as {string} for request type {string}")
+    public void validateEnrolmentEndDate(String responseCode, String requestType) {
+        dbValidations.validateVLPResponseCode(responseCode, requestType);
     }
 
-    @And("I Validate VLP retry type as {string} and VLP retry status as {string}")
-    public void validateVLPRetryTypeAndStatus(String retryType, String retryStatus) {
-        dbValidations.validateVLPRetryTypeandStatus(retryType,retryStatus);
+    @And("I Validate FDSH retry type as {string} and retry status as {string}")
+    public void validateFDSHRetryTypeAndStatus(String retryType, String retryStatus) {
+        dbValidations.validateFDSHRetryTypeandStatus(retryType,retryStatus);
     }
 
     @And("I verify the Member reason code as {string}")
@@ -368,6 +368,22 @@ public class DbSteps {
     public void iValidateVLPCallsHaveBeenMadeForTheMember(int number) {
         dbValidations.verifyVLPCallsMadeForMember(number);
     }
+
+    @And("I verify the primary's eligibility type is {string}")
+    public void iVerifyPrimaryEligibilityType(String reasonCode) {dbValidations.verifyPrimaryEligibilityType(reasonCode);}
+
+    @And("I verify the most recent determination is {string} with an effective date of {string}")
+    public void iVerifyDeterminationEffectiveDate(String qlceType, String dateType) {dbValidations.verifyDeterminationEffectiveDate(qlceType, dateType);}
+
+    @And("I verify outcome_ind is {string}")
+    public void iValidateOutcomeInd(String outcome) {dbValidations.validateOutcomeInd(outcome);}
+
+    @And("I verify removed_effective_date is first of next year")
+    public void iValidateRemovedEffectiveDate() {dbValidations.validateRemovedEffectiveDate();}
+
+    @And("I verify {string}'s applying_for_coverage_ind is {string}")
+    public void iValidateApplyingForCoverageIndDB(String FName, String applying) {dbValidations.validateApplyingForCoverageIndDB(FName, applying);}
+
 }
 
 

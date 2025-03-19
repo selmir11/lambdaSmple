@@ -192,9 +192,21 @@ public class EmploymentInfoPage {
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinnerOverlay;
+
     @FindBy(xpath = "//label[@for='ELIG-Exch-EmploymentIncomeJob-IsEmployed']")
     WebElement employmentStatusLabel;
 
+    @FindBy(xpath = "(//div[@class=\"input-error-message error-icon ng-star-inserted\"]/span)[1]")
+    WebElement CompanyNameErrorMessage;
+
+    @FindBy(xpath = "(//div[@class=\"input-error-message error-icon ng-star-inserted\"]/span)[2]")
+    WebElement EnterProfitAmountError;
+
+    @FindBy(xpath = "(//div[@class=\"input-error-message error-icon ng-star-inserted\"]/span)[1]")
+    WebElement IncomeTypeFrequencyErrorMessage;
+
+    @FindBy(xpath = "(//div[@class=\"input-error-message error-icon ng-star-inserted\"]/span)[2]")
+    WebElement IncomeSameOrLowerNextYearErrorMessage;
 
     public void clickEditUpdateLink(int employer) {
         basicActions.waitForElementListToBePresent(EditUpdateLink, 10);
@@ -276,6 +288,7 @@ public class EmploymentInfoPage {
         txtZip.sendKeys("80205");
         txtIncomeAmount.clear();
         txtIncomeAmount.sendKeys(Salary);
+        SharedData.setFinancialIncome(Salary);
 
         dropdown = new Select(selectIncomeFreq);
         dropdown.selectByVisibleText(" " + Frequency + " ");
@@ -964,6 +977,79 @@ public class EmploymentInfoPage {
         softAssert.assertTrue(basicActions.waitForElementToDisappear(employmentStatusLabel,20), "Employment Status Label is present, but it should NOT be.");
         softAssert.assertAll();
     }
+
+    public void clickOnCompanyNameInputFieldAndClickOutOfIt() {
+        basicActions.waitForElementToBePresent(txtCompanyName, 10);
+        txtCompanyName.click();
+        companyNameLabel.click();
+    }
+
+    public void validateCompanyNameErrorMessage(String expectedErrorMessage) {
+        basicActions.waitForElementToBePresent(CompanyNameErrorMessage, 10);
+        softAssert.assertEquals(CompanyNameErrorMessage.getText(),expectedErrorMessage,"Error Message related to company name field is not matching");
+        softAssert.assertAll();
+    }
+
+    public void enterValueInCompanyNameInputField(String value) {
+        basicActions.waitForElementToBePresent(txtCompanyName, 10);
+        txtCompanyName.clear();
+        txtCompanyName.sendKeys(value);
+    }
+
+    public void validateFieldDoesNotAcceptMoreThan100Characters() {
+        basicActions.waitForElementToBePresent( txtCompanyName,20);
+        txtCompanyName.clear();
+        txtCompanyName.sendKeys("IEnter110characterskdsjvbsdkjvbdjkvcjkjkdcbkjewbckjwefbcewuifuieihuqowiruzxlkcnsjdkhfdgrtwehoifvejweutcnvbdjsk");
+        softAssert.assertTrue(txtCompanyName.getAttribute("value").length()<101,"Company name field accepting more than 100 characters");
+        softAssert.assertAll();
+    }
+
+    public void verifyCompanyNameFieldNoError(){
+        basicActions.waitForElementToDisappear(CompanyNameErrorMessage, 10);
+        softAssert.assertAll();
+    }
+
+    public void clickOnEnterProfitInputFieldAndClickOutOfIt() {
+        basicActions.waitForElementToBePresent(txtIncomeAmount, 10);
+        txtIncomeAmount.click();
+        currentNetIncomeQuestion.click();
+    }
+
+    public void validateEnterProfitAmountErrorMessage(String expectedErrorMessage) {
+        basicActions.waitForElementToBePresent(EnterProfitAmountError, 40);
+        softAssert.assertEquals(EnterProfitAmountError.getText(),expectedErrorMessage,"Error Message related to Enter profit amount is not matching");
+        softAssert.assertAll();
+    }
+
+    public void validateEnterProfitAmount(String expectedAmount) {
+        basicActions.waitForElementToBePresent(txtIncomeAmount, 40);
+        softAssert.assertEquals(txtIncomeAmount.getAttribute("value"),expectedAmount,"Expected and Actual Income amount not matching");
+        softAssert.assertAll();
+    }
+
+    public void verifyEnterProfitIncomeFieldNoError(){
+        basicActions.waitForElementToDisappear(EnterProfitAmountError, 10);
+        softAssert.assertAll();
+    }
+
+    public void validateIncomeFrequencyErrorMessage(String expectedErrorMessage) {
+        basicActions.waitForElementToBePresent(IncomeTypeFrequencyErrorMessage, 40);
+        softAssert.assertEquals(IncomeTypeFrequencyErrorMessage.getText(),expectedErrorMessage,"Error Message for Income frequency type is not matching");
+        softAssert.assertAll();
+    }
+
+    public void validateIncomeSameOrLowerErrorMessage(String expectedErrorMessage) {
+        basicActions.waitForElementToBePresent(IncomeSameOrLowerNextYearErrorMessage, 40);
+        softAssert.assertEquals(IncomeSameOrLowerNextYearErrorMessage.getText(),expectedErrorMessage,"Error Message for Income same or lower question is not matching");
+        softAssert.assertAll();
+    }
+
+    public void verifyNoErrorsShowForFrequencyAndIncomeSameLowerField(){
+        basicActions.waitForElementToDisappear(IncomeTypeFrequencyErrorMessage, 20);
+        basicActions.waitForElementToDisappear(IncomeSameOrLowerNextYearErrorMessage, 20);
+        softAssert.assertAll();
+    }
+
 
 }
 

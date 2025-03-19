@@ -900,12 +900,44 @@ public void verifyHeadersAdditionalIncomePage(String language){
         softAssert.assertAll();
     }
 
-    public void verifyTheAmountAndNoErrorMessageDisplaying(String amount){
-        basicActions.waitForElementToBePresent(pensionAmount,10);
+    public void verifyTheAmountAndNoErrorMessageDisplaying(String addtlIncomeOption, String amount){
+        WebElement inputAmount = getIncomeInputField(addtlIncomeOption);
+        basicActions.waitForElementToBePresent(inputAmount,10);
         basicActions.waitForElementListToDisappear(addtlIncomeAmountError, 10);
         basicActions.waitForElementListToDisappear(additlIncomeFrequencyError, 10);
-        softAssert.assertEquals(pensionAmount.getAttribute("value"), amount);
+        softAssert.assertEquals(inputAmount.getAttribute("value"), amount);
         softAssert.assertAll();
+    }
+
+    private WebElement getIncomeInputField(String addtlIncomeOption) {
+        switch (addtlIncomeOption) {
+            case "Alimony Received":
+                return alimonyAmount;
+            case "Capital Gains":
+                return capGainsAmount;
+            case "Income from rental property":
+                return rentalAmount;
+            case "Pension":
+                return pensionAmount;
+            case "Private Retirement Income":
+                return retirementAmount;
+            case "Income from Social Security":
+                return socialSecurityAmount;
+            case "Unemployment Insurance Benefit":
+                return unemploymentAmount;
+            case "Investment Income":
+                return investmentAmount;
+            case "Cash Support":
+                return cashSupportAmount;
+            case "Untaxed Foreign Income":
+                return untaxedForeignAmount;
+            case "Royalty Income":
+                return royaltyAmount;
+            case "Taxable income from Tribal Sources":
+                return taxableAmount;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + addtlIncomeOption);
+        }
     }
 
     public void selectAdditionalIncomeOptionAndIncome(String addtlIncomeOption, String amount) {
@@ -914,32 +946,13 @@ public void verifyHeadersAdditionalIncomePage(String language){
         enterAmount(addtlIncomeOption, amount);
     }
 
-    public void ValidateLanguageDisplayedInPage(String language,List<String> expectedText) {
-        softAssert.assertEquals(hdrAddInfoForYourself.getText(), expectedText.get(1) + " " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
-        softAssert.assertEquals(hdr_AdditionalIncome.getText(), expectedText.get(2), "Label Not Matching");
-        softAssert.assertEquals(DidURcvFolIncome.getText(), expectedText.get(3), "Label Not Matching");
-        softAssert.assertEquals(selectIncomeSentence.getText(), expectedText.get(4), "Label Not Matching");
-        softAssert.assertEquals(alimonyText.getText(), expectedText.get(5), "Label Not Matching");
-        softAssert.assertEquals(capGainsText.getText(), expectedText.get(6), "Label Not Matching");
-        softAssert.assertEquals(rentalText.getText(), expectedText.get(7), "Label Not Matching");
-        softAssert.assertEquals(pensionText.getText(), expectedText.get(8), "Label Not Matching");
-        softAssert.assertEquals(pensionAmount.getAttribute("placeholder"), expectedText.get(18));
-        softAssert.assertEquals(retirementText.getText(), expectedText.get(9), "Label Not Matching");
-        softAssert.assertEquals(socialSecurityText.getText(), expectedText.get(10), "Label Not Matching");
-        softAssert.assertEquals(unemploymentText.getText(), expectedText.get(11), "Label Not Matching");
-        softAssert.assertEquals(investmentText.getText(), expectedText.get(12), "Label Not Matching");
-        softAssert.assertEquals(cashSupportText.getText(), expectedText.get(13), "Label Not Matching");
-        softAssert.assertEquals(untaxedForeignText.getText(), expectedText.get(14), "Label Not Matching");
-        softAssert.assertEquals(royaltyText.getText(), expectedText.get(15), "Label Not Matching");
-        softAssert.assertEquals(taxableText.getText(), expectedText.get(16), "Label Not Matching");
-        softAssert.assertEquals(noneOfTheseText.getText(), expectedText.get(17), "Label Not Matching");
-        pensionFrequency.click();
-        Select dropdown = new Select(pensionFrequency);
-        softAssert.assertEquals(dropdown.getOptions().get(1).getText(), expectedText.get(19), "Label Not Matching");
-        softAssert.assertEquals(dropdown.getOptions().get(2).getText(), expectedText.get(20), "Label Not Matching");
-        softAssert.assertEquals(dropdown.getOptions().get(3).getText(), expectedText.get(21), "Label Not Matching");
-        softAssert.assertEquals(dropdown.getOptions().get(4).getText(), expectedText.get(22), "Label Not Matching");
-        softAssert.assertEquals(dropdown.getOptions().get(5).getText(), expectedText.get(23), "Label Not Matching");
+    public void verifyMinMax(String addtlIncomeOption, String language){
+        WebElement inputAmount = getIncomeInputField(addtlIncomeOption);
+        String amountPlaceholder = language.equalsIgnoreCase("Spanish") ? "cantidad" : "amount";
+        basicActions.waitForElementToBePresent(inputAmount,10);
+        softAssert.assertEquals(inputAmount.getAttribute("min"), "0.01");
+        softAssert.assertEquals(inputAmount.getAttribute("max"), "999999999.99");
+        softAssert.assertEquals(inputAmount.getAttribute("placeholder"), amountPlaceholder);
         softAssert.assertAll();
     }
 }
