@@ -122,8 +122,8 @@ Feature: Regression Tests that require Seed 1
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
-#    And I verify the policy data quality check with Policy Ah keyset size 2
-#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
@@ -174,7 +174,6 @@ Feature: Regression Tests that require Seed 1
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
-
 
   @SLER-296-WIP
   Scenario: RT-2248 ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - DOB
@@ -439,8 +438,7 @@ Feature: Regression Tests that require Seed 1
     And I validate the ob999 "medical" file data
     And I validate the ob999 "dental" file data
 
-
-  @SLER-1992 @n1
+  @SLER-1992-R4V-WIP
   Scenario: RT-2052 ENR-EXCH: APPS - CSR LEVEL CHANGE (LCE: Gained AI/AN Tribal Status) SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -492,8 +490,8 @@ Feature: Regression Tests that require Seed 1
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
     And I reset the previous file names in shared data
-    #And I verify the policy data quality check with Policy Ah keyset size 2
-    #And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
       | 001                   | 001                | 25                    | FINANCIAL CHANGE or CSR VARIANT CHANGE |            |
