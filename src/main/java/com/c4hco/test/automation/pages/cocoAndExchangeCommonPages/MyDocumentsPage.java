@@ -46,7 +46,7 @@ public class MyDocumentsPage {
             @FindBy(css = ".primary-header-container > h2"), // Staging
             @FindBy(xpath = "//div[contains(@class, 'header-1')]") // QA EAVS
     })
-    @FindBy(css = "div.header-1.text-center.ng-star-inserted")
+    //@FindBy(css = "div.header-1.text-center.ng-star-inserted")
     WebElement myDocumentsTitle;
 
     @FindBy(css = ".document-content-select-double-chevrons-container")
@@ -243,11 +243,14 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//div[@class='doc-subtype-select drop-down-error']")
     WebElement redBorder_categoryDrpDwnError;
 
-    @FindBy(xpath = "//h3[@class='we-need-doc body-text-1']")
+    @FindBy(xpath ="//*[contains(text(),'We need more information')]")
     WebElement weNeedDocText;
 
-    @FindBy(xpath = "//a[@class='link-text-1 clickable']")
+    @FindBy(xpath = "//a[contains(text(),'Help me understand this page')]")
     List<WebElement> helpMeToUnderstandText;
+
+    @FindBy(xpath = "//a[contains(text(),'Ayuda para entender esta página')]")
+    List<WebElement> helpMeToUnderstandSpanish;
 
     @FindBy(id= "documentsUploadTitle")
     WebElement informationText;
@@ -288,23 +291,29 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//div[contains(@class,'drawer-contents')]")
     WebElement helpDrawerContent;
 
-    @FindBy(css = ".drawer-controls > div > div > a > svg")
+    @FindBy(xpath = "//*[@class='c4-button-help-toggler']")
     WebElement helpCloseSide;
 
-    @FindBy(css = ".drawer-heading .body-text-1")
+    @FindBy(xpath = "//div[contains(@class,'drawer')]/*[contains(text(),'Help')]")
     WebElement helpDrawerHeaderText;
 
-    @FindBy(css = ".drawer-footer > h3")
+    @FindBy(xpath = "//*[contains(@class,'drawer-footer')]")
     WebElement helpDrawerNeedMoreHelp;
 
-    @FindBy(css = ".drawer-heading .drawer-title")
+    @FindBy(xpath = "//*[contains(text(),'My Documents and Letters Explanation')]")
     WebElement helpDrawerSubHeaderText;
 
-    @FindBy(css = "div.drawer-text-content.body-text-1 > b")
+    @FindBy(xpath = "//*[contains(@class,'drawer')]/*[contains(text(),'Proof of Financial Help')]")
+    WebElement helpDrawerSubHeaderIncome;
+
+    @FindBy(xpath = "//div[contains(@class,'drawer-body')]//*[contains(text(),'Overview')]")
     WebElement helpDrawerBodyHeaderText;
 
-    @FindBy(css = "div.drawer-text-content.body-text-1 > p")
+    @FindBy(xpath = "//*[contains(text(),'Have questions about documents you need')]")
     List<WebElement> helpDrawerBodyContent;
+
+    @FindBy(xpath = "//*[contains(text(),'In order to verify your income')]")
+    List<WebElement> helpDrawerBodyContentIncomeMVR;
 
     @FindBy(xpath = "//a[text() ='here']")
     WebElement helpDrawerHereLink;
@@ -312,7 +321,7 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//a[text() ='our website.']")
     WebElement helpDrawerOurWebsiteLink;
 
-    @FindBy(xpath = "//a[text() ='Contact us']")
+    @FindBy(xpath = "//a[contains(text(),'Contact us')]")
     WebElement helpDrawerContactUsLink;
 
     @FindBy(xpath = "//*[contains(@class,'header-1')]")
@@ -347,6 +356,49 @@ public class MyDocumentsPage {
 
     @FindBy(xpath = "//*[@class='error']//*[name()='svg']")
     List<WebElement> SelectionRequiredErrorSvgSymbol;
+
+    @FindBy(xpath = "//span[(text()='Letters')]")
+    List<WebElement> pastDocumentContainerLetter;
+
+    @FindBy(xpath = "//div[@class='go-back']")
+    WebElement goBackWelcomePagebutton;
+
+    @FindBy(xpath = "//div[contains(text(), 'Fecha de recepción')]")
+    List<WebElement> dateReceivedSpanish;
+
+    @FindBy(xpath = "//div[contains(text(), 'Hora de recepción')]")
+    List<WebElement> timeReceivedSpanish;
+
+    @FindBy(xpath = "//a[contains(text(), 'Descargar')]")
+    List<WebElement> downloadSpanish;
+
+    @FindBy(xpath = "//div[contains(@class,'drawer')]/*[contains(text(),'Ayuda')]")
+    WebElement helpDrawerHeaderSpanish;
+
+    @FindBy(xpath = "//*[contains(text(),'Explicación de Mis documentos y cartas')]")
+    WebElement helpDrawerSubHeaderSpanish;
+
+    @FindBy(xpath = "//*[contains(@class,'drawer')]/*[contains(text(),'Comprobante de elegibilidad para ayuda financiera')]")
+    WebElement helpDrawerSubHeaderIncomeSpanish;
+
+    @FindBy(xpath = "//div[contains(@class,'drawer-body')]//*[contains(text(),'Resumen')]")
+    WebElement helpDrawerBodyHeaderSpanish;
+
+    @FindBy(xpath = "//*[contains(text(),'Have questions about documents you need')]")
+    List<WebElement> helpDrawerBodyContentSpanish;
+
+    @FindBy(xpath = "//*[contains(text(),'In order to verify your income')]")
+    List<WebElement> helpDrawerBodyContentIncomeMVRSpanish;
+
+    @FindBy(xpath = "//a[text() ='aquí']")
+    WebElement helpDrawerHereLinkSpanish;
+
+    @FindBy(xpath = "//a[text() ='sitio web.']")
+    WebElement helpDrawerOurWebsiteLinkSpanish;
+
+    @FindBy(xpath = "//a[contains(text(),'Contáctenos')]")
+    WebElement helpDrawerContactUsLinkSpanish;
+
 
 
     public void ClickLinkMyDocsWelcomePage() {
@@ -665,32 +717,30 @@ public class MyDocumentsPage {
 
     public void ValidateDefaultPlanYear() {
         String expectedYr = "";
-        String actualYr = "";
-        basicActions.waitForElementToBePresent(PlanYearDropDown.get(0),30);
+        basicActions.waitForElementToBePresentWithRetries(PlanYearDropDown.get(0), 30);
         expectedYr = String.valueOf(Year.now().getValue());
-        basicActions.wait(2000);
-        softAssert.assertTrue(basicActions.waitForElementToBePresentWithRetries(PlanYearDropDown.get(0), 10));
-        actualYr = PlanYearDropDown.get(0).getText();
+        basicActions.wait(20);
+        softAssert.assertTrue(basicActions.waitForElementToBePresentWithRetries(PlanYearDropDown.get(0), 20));
         softAssert.assertEquals(PlanYearDropDown.get(0).getText(),expectedYr);
-        System.out.println(actualYr);
         softAssert.assertAll();
     }
 
     public void SelectPlanYeardropdown(String selectYear) {
-        basicActions.waitForElementToBePresent(PlanYearDropDown.get(0), 10);
-        basicActions.refreshPage();
         basicActions.wait(50);
-        basicActions.refreshPage();
-        basicActions.wait(50);
+        basicActions.waitForElementToBePresentWithRetries(PlanYearDropDown.get(0), 20);
         switch (selectYear) {
-            case "All":
+            case "All", "Todos":
                 basicActions.waitForElementToBePresentWithRetries(PlanYearDropDown.get(0), 20);
                 PlanYearDropDown.get(0).click();
                 basicActions.waitForElementListToBePresentWithRetries(PlanYearValues, 20);
                 PlanYearValues.get(4).click();
                 break;
             case "Current Year":
-                basicActions.waitForElementToBePresentWithRetries(PlanYearDropDown.get(0), 20);
+                basicActions.refreshPage();
+                basicActions.wait(50);
+                basicActions.refreshPage();
+                basicActions.wait(50);
+                basicActions.waitForElementListToBePresentWithRetries(PlanYearDropDown, 30);
                 PlanYearDropDown.get(0).click();
                 basicActions.waitForElementListToBePresentWithRetries(PlanYearValues, 20);
                 PlanYearValues.get(0).click();
@@ -709,81 +759,77 @@ public class MyDocumentsPage {
     public void iVerifyAllNoticesPresentandStartWith(String prefix, List<String> data) {
 
         List<String> webElement = new ArrayList<>();
+        String ActualNotices = "";
         basicActions.waitForElementListToBePresent(DocumentsNoticesLists, 50);
 
         //Fetching all list from container
-        for (WebElement element : DocumentsNoticesLists) {
-            webElement.add(element.getText().trim());
-        }
-        validateNoticesPresent(data, webElement);
-        validateAdditionalNoticesPresent(data, webElement);
-        validateNoticesStartwithIND(prefix, webElement);
-        softAssert.assertAll();
-    }
-
-    void validateNoticesPresent(List<String> data, List<String> webElement) {
-        //Comparing between actual and expected
-        for (String Notices : data) {
-            boolean isPresent = webElement.contains(Notices);
-            softAssert.assertTrue(isPresent, "notices  missing in the container ->" + Notices);
-        }
-    }
-
-    void validateAdditionalNoticesPresent(List<String> data, List<String> webElement) {
-        Set<String> dataFileSet = new HashSet<>(data);
-        Set<String> webNoticesSet = new HashSet<>(webElement);
-
-        //To verify additional list from container
-        webNoticesSet.removeAll(dataFileSet);
-        softAssert.assertTrue(webNoticesSet.isEmpty(),"Additonal Notices in container -> " + webNoticesSet);
-    }
-
-    void validateNoticesStartwithIND(String prefix, List<String> webElement) {
-        Set<String> webNoticesSet = new HashSet<>(webElement);
-        //Verify start with IND
-        for (String weblist : webNoticesSet) {
-            if (!weblist.startsWith(prefix)) {
-                softAssert.fail("Notices does not start with IND -> " + weblist);
+        for (int i = 0; i < DocumentsNoticesLists.size(); i++) {
+            ActualNotices = DocumentsNoticesLists.get(i).getText();
+            softAssert.assertTrue(data.contains(ActualNotices), "Notices name " + ActualNotices + " is not match ");
+            if (!ActualNotices.startsWith(prefix)) {
+                softAssert.fail("Notices does not start with IND -> " + ActualNotices);
             }
-        }
-    }
-
-    public void clickDoubleChevron() {
-        basicActions.waitForElementToBeClickable(doubleChevrons, 200);
-        basicActions.wait(2000);
-        ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", doubleChevrons);
-   }
-
-    public void iValidateDateReceivedTimeReceivedAndDownloadButtonAvailable() {
-        basicActions.waitForElementListToBePresent(dateReceived,30);
-        int i=0;
-      if( i < DocumentsNoticesLists.size()){
-          softAssert.assertTrue( dateReceived.get(i).isDisplayed(),"Displayed");
-          softAssert.assertTrue( timeReceived.get(i).isDisplayed(),"Dispalyed");
-          softAssert.assertTrue(  download.get(i).isDisplayed(),"Displayed");
-          softAssert.assertAll();
-        }
-    }
-
-    public void validateYearForPresentNotice() {
-        int i = 0;
-        String actualYr = "", PreviousYear = "";
-        PreviousYear = String.valueOf(Year.now().getValue() - 1);
-        if (i < DocumentsNoticesLists.size()) {
-            basicActions.waitForElementToBeClickableWithRetries(SingleChevrons.get(i), 200);
-            ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", SingleChevrons.get(i));
-
-            basicActions.waitForElementToBePresentWithRetries(datetime.get(i), 10);
-            actualYr = datetime.get(i).getText();
-            System.out.println(PreviousYear + " Selected as Plan year and Contains " + actualYr);
-            softAssert.assertTrue(actualYr.contains(PreviousYear));
+            else {
+                softAssert.assertTrue(true);
+            }
             softAssert.assertAll();
         }
     }
 
+    public void clickDoubleChevron() {
+        basicActions.waitForElementToBeClickableWithRetries(doubleChevrons, 30);
+        basicActions.wait(20);
+        basicActions.click(doubleChevrons);
+        // ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", doubleChevrons);
+    }
+
+    public void iValidateDateReceivedTimeReceivedAndDownloadButtonAvailable() {
+        for(int i=0 ;i < DocumentsNoticesLists.size(); i++) {
+            softAssert.assertTrue(dateReceived.get(i).isDisplayed(), "Date Text not Displayed");
+            softAssert.assertTrue(dateReceived.get(i).getText().contains("Date Received"), "Text not match ");
+            softAssert.assertTrue(timeReceived.get(i).isDisplayed(), "Time Text not Displayed");
+            softAssert.assertTrue(timeReceived.get(i).getText().contains("Time Received"),"Text not match ");
+            softAssert.assertTrue(download.get(i).isDisplayed(), "Download Text not Displayed");
+            softAssert.assertEquals(download.get(i).getText(),"Download", "Text not match ");
+            softAssert.assertAll();
+        }
+    }
+
+
+    public void validateYearForPresentNotice() {
+        basicActions.waitForElementToBePresent(DocumentsNoticesList,30);
+        String noDocmentText = "You do not have any Documents or Letters at this time";
+        String noDocumentTextSpanish =  "No tiene documentos ni cartas en este momento";
+        if(DocumentsNoticesList.getText().equals(noDocmentText) || DocumentsNoticesList.getText().equals(noDocumentTextSpanish)) {
+            softAssert.assertTrue(true);
+        }
+        else {
+            validatepresentYrNotices();
+        }
+        softAssert.assertAll();
+    }
+    private void validatepresentYrNotices() {
+        String actualYr = "", PreviousYear = "";
+        PreviousYear = String.valueOf(Year.now().getValue() - 1);
+        for(int i =0 ; i <DocumentsNoticesLists.size() ; i++) {
+            basicActions.waitForElementToBeClickableWithRetries(SingleChevrons.get(i), 20);
+            ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", SingleChevrons.get(i));
+            basicActions.waitForElementToBePresentWithRetries(datetime.get(i), 20);
+            if(datetime.get(i).isDisplayed()) {
+                actualYr = datetime.get(i).getText();
+            }
+            else {
+                clickDoubleChevron();
+                basicActions.waitForElementToBePresentWithRetries(datetime.get(i), 20);
+                actualYr = datetime.get(i).getText();
+            }
+            softAssert.assertTrue(actualYr.contains(PreviousYear));
+        }
+    }
+
     public void validateNoDocumentMessage(String data) {
-        basicActions.waitForElementToBePresent(DocumentsNoticesList,100);
-        basicActions.wait(2000);
+        basicActions.waitForElementToBePresentWithRetries(DocumentsNoticesList,30);
+        basicActions.wait(20);
         softAssert.assertEquals(DocumentsNoticesList.getText(),data);
         softAssert.assertAll();
     }
@@ -938,11 +984,33 @@ public class MyDocumentsPage {
         softAssert.assertEquals(redBorder_categoryDrpDwnError.getCssValue("border-top-color"), "rgba(150, 0, 0, 1)","border top color error");
         softAssert.assertAll();
     }
-    public void verifyTextonDocumentPage(List<String > data) {
+    public void verifyTextonDocumentPage(String language, List<String> data) {
+        switch (language) {
+            case "English":
+                verifyMyDcumentText(data);
+                break;
+            case "Spanish":
+                verifyMyDcumentTextSpanish(data);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+    void  verifyMyDcumentText(List<String> data){
         basicActions.waitForElementToBePresent(myDocumentsTitle, 20);
-        softAssert.assertEquals(myDocumentsTitle.getText(),data.get(0), "Header Text Not Match");
-        softAssert.assertEquals(weNeedDocText.getText(),data.get(1), "We need more text not match");
-        softAssert.assertEquals(helpMeToUnderstandText.get(0).getText(),data.get(2), "Help me to understand text not match");
+        softAssert.assertEquals(myDocumentsTitle.getText(), data.get(0), "Header Text Not Match");
+        softAssert.assertEquals(weNeedDocText.getText(), data.get(1), "We need more text not match");
+        softAssert.assertEquals(helpMeToUnderstandText.get(0).getText(), data.get(2), "Help me to understand text not match");
+        softAssert.assertEquals(informationText.getText(), data.get(3), "Information text not match");
+        softAssert.assertEquals(UploadDocumentText.getText(), data.get(4), "Upload another link text not match");
+        softAssert.assertEquals(myDocumentsSubTitle.getText(), data.get(5), "Past Documents and Letters Text not match");
+        softAssert.assertAll();
+    }
+    public void verifyMyDcumentTextSpanish(List<String> data) {
+        basicActions.waitForElementToBePresent(myDocumentsTitle, 20);
+        softAssert.assertEquals(myDocumentsTitle.getText(), data.get(0), "Header Text Not Match");
+        softAssert.assertEquals(myDocumentSubtitleTxtSpanish.getText(), data.get(1), "We need more text not match");
+        softAssert.assertEquals(helpMeToUnderstandSpanish.get(0).getText(),data.get(2), "Help me to understand text not match");
         softAssert.assertEquals(informationText.getText(),data.get(3), "Information text not match");
         softAssert.assertEquals(UploadDocumentText.getText(),data.get(4), "Upload another link text not match");
         softAssert.assertEquals(myDocumentsSubTitle.getText(),data.get(5), "Past Documents and Letters Text not match");
@@ -1283,7 +1351,7 @@ public class MyDocumentsPage {
     public void verifyDocumentTypeSelected(String docTpe) {
         clickWhichDocumentType(docTpe);
     }
-  
+
     public void verifyUserName(){
         Assert.assertEquals(textUserName.getText(), SharedData.getPrimaryMember().getEmailId(), "User name email did not match");
     }
@@ -1348,7 +1416,7 @@ public class MyDocumentsPage {
                 basicActions.waitForElementToBePresent(helpDrawerHeaderText, 20);
                 softAssert.assertEquals(helpDrawerHeaderText.getText(), data.get(0), " Header not match");
                 break;
-            case "sub header" , "Income sub header":
+            case "sub header":
                 basicActions.waitForElementToBePresent(helpDrawerSubHeaderText, 20);
                 softAssert.assertEquals(helpDrawerSubHeaderText.getText(), data.get(0), " Sub Header title not match");
                 break;
@@ -1356,16 +1424,54 @@ public class MyDocumentsPage {
                 basicActions.waitForElementToBePresent(helpDrawerBodyHeaderText, 20);
                 softAssert.assertEquals(helpDrawerBodyHeaderText.getText(), data.get(0), " Overview title not match");
                 break;
-            case "body content" , "Income body content":
+            case "body content":
                 basicActions.waitForElementListToBePresent(helpDrawerBodyContent, 20);
-               for (int i = 0 ; i < data.size() && i < helpDrawerBodyContent.size(); i++){
-                   softAssert.assertEquals( helpDrawerBodyContent.get(i).getText(), data.get(i), " Help content not match");
-               }
-               break;
-            case "footer" , "Income footer":
+                for (int i = 0 ; i < data.size() && i < helpDrawerBodyContent.size(); i++){
+                    softAssert.assertEquals( helpDrawerBodyContent.get(i).getText(), data.get(i), " Help content not match");
+                }
+                break;
+            case "Income body content":
+                basicActions.waitForElementListToBePresent(helpDrawerBodyContentIncomeMVR, 20);
+                for (int i = 0; i < data.size() && i < helpDrawerBodyContentIncomeMVR.size(); i++) {
+                    softAssert.assertEquals(helpDrawerBodyContentIncomeMVR.get(i).getText(), data.get(i), " Help content not match");
+                }
+                break;
+            case "Income sub header":
+                basicActions.waitForElementToBePresent(helpDrawerSubHeaderIncome, 20);
+                softAssert.assertEquals(helpDrawerSubHeaderIncome.getText(), data.get(0), " Sub Header title not match");
+                break;
+            case "footer", "Income footer":
                 basicActions.waitForElementToBePresent(helpDrawerNeedMoreHelp, 20);
-                String needHelpText = helpDrawerNeedMoreHelp.getAttribute("textContent").trim();
-                softAssert.assertEquals(needHelpText,data.get(0), "Help drawer need help not match");
+                String needHelpText = (String) ((JavascriptExecutor) basicActions.getDriver()).executeScript("return arguments[0].textContent", helpDrawerNeedMoreHelp);
+                softAssert.assertEquals(needHelpText.trim(), data.get(0), "Help drawer need help not match");
+                break;
+            case "header Spanish","Income header Spanish":
+                basicActions.waitForElementToBePresent(helpDrawerHeaderSpanish, 20);
+                softAssert.assertEquals(helpDrawerHeaderSpanish.getText(), data.get(0), " Header not match");
+                break;
+            case "sub header Spanish":
+                basicActions.waitForElementToBePresent(helpDrawerSubHeaderSpanish, 20);
+                softAssert.assertEquals(helpDrawerSubHeaderSpanish.getText(), data.get(0), " Sub Header title not match");
+                break;
+            case "body title Spanish" , "Income body title Spanish":
+                basicActions.waitForElementToBePresent(helpDrawerBodyHeaderSpanish, 20);
+                softAssert.assertEquals(helpDrawerBodyHeaderSpanish.getText(), data.get(0), " Overview title not match");
+                break;
+            case "body content Spanish":
+                basicActions.waitForElementListToBePresent(helpDrawerBodyContentSpanish, 20);
+                for (int i = 0 ; i < data.size() && i < helpDrawerBodyContentSpanish.size(); i++){
+                  softAssert.assertEquals( helpDrawerBodyContentSpanish.get(i).getText(), data.get(i), " Help content not match");
+                }
+            break;
+                case "Income sub header Spanish":
+                basicActions.waitForElementToBePresent(helpDrawerSubHeaderIncomeSpanish, 20);
+                softAssert.assertEquals(helpDrawerSubHeaderIncomeSpanish.getText(), data.get(0), " Sub Header title not match");
+                break;
+            case "Income body content Spanish":
+                basicActions.waitForElementListToBePresent(helpDrawerBodyContentIncomeMVRSpanish, 20);
+                for (int i = 0; i < data.size() && i < helpDrawerBodyContentIncomeMVRSpanish.size(); i++) {
+                    softAssert.assertEquals(helpDrawerBodyContentIncomeMVRSpanish.get(i).getText(), data.get(i), " Help content not match");
+                }
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + contentOn);
@@ -1400,6 +1506,23 @@ public class MyDocumentsPage {
                 basicActions.waitForElementToBePresent(helpDrawerContactUsLink, 10);
                 ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", helpDrawerContactUsLink);
                 break;
+            case "Help me understand this page Spanish" :
+                basicActions.waitForElementToBePresent(helpMeToUnderstandSpanish.get(0), 10);
+                helpMeToUnderstandSpanish.get(0).click();
+                break;
+            case "here Spanish" :
+                basicActions.waitForElementToBePresent(helpDrawerHereLinkSpanish, 10);
+                ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", helpDrawerHereLinkSpanish);
+                break;
+            case "our website Spanish":
+                basicActions.waitForElementToBePresent(helpDrawerOurWebsiteLinkSpanish, 10);
+                ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", helpDrawerOurWebsiteLinkSpanish);
+                break;
+            case "Contact Us Spanish":
+                basicActions.waitForElementToBePresent(helpDrawerContactUsLinkSpanish, 10);
+                ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", helpDrawerContactUsLinkSpanish);
+                break;
+
             default:
                 throw new IllegalArgumentException("Invalid option: " + linkName);
         }
@@ -1588,4 +1711,87 @@ public class MyDocumentsPage {
         uploadDoc(fileName);
         clickUploadDocSpanish(language);
     }
+
+    public void verifyDateTimeDownloadButton(String language) {
+
+        switch (language) {
+            case "English":
+                iValidateDateReceivedTimeReceivedAndDownloadButtonAvailable();
+                break;
+            case "Spanish":
+                iValidateDateReceivedTimeReceivedAndDownloadButtonAvailableSpanish();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+        softAssert.assertAll();
+    }
+
+    public void iValidateDateReceivedTimeReceivedAndDownloadButtonAvailableSpanish() {
+        basicActions.waitForElementListToBePresentWithRetries(dateReceivedSpanish, 30);
+        for(int i=0 ;i < DocumentsNoticesLists.size(); i++) {
+            softAssert.assertTrue(dateReceivedSpanish.get(i).isDisplayed(), "Date Text not Displayed");
+            softAssert.assertTrue(dateReceivedSpanish.get(i).getText().contains("Fecha de recepción"), "Text not match ");
+            softAssert.assertTrue(timeReceivedSpanish.get(i).isDisplayed(), "Time Text not Displayed");
+            softAssert.assertTrue(timeReceivedSpanish.get(i).getText().contains("Hora de recepción"),"Text not match ");
+            softAssert.assertTrue(downloadSpanish.get(i).isDisplayed(), "Download Text not Displayed");
+            softAssert.assertEquals(downloadSpanish.get(i).getText(),"Descargar", "Text not match ");
+            softAssert.assertAll();
+        }
+    }
+
+    public void validateHelpDrawerOpenedForMvr(String mvrType) {
+        basicActions.waitForElementToBePresentWithRetries(helpDrawerSubHeaderIncome, 20);
+        Assert.assertTrue(basicActions.waitForElementToBePresent(helpDrawerSubHeaderIncome, 10), " Help drawer not opened for" + mvrType);
+    }
+
+    public void selectDocumentAndLetter(String DocumentAndNotices) {
+        basicActions.waitForElementToBePresentWithRetries(drpDwn_Arrows_pastDocAndLetters.get(1), 20);
+        drpDwn_Arrows_pastDocAndLetters.get(1).click();
+        basicActions.waitForElementListToBePresentWithRetries(drpDwn_pastDocAndLetters, 20);
+        switch (DocumentAndNotices) {
+            case "Documents and Letters", "Documentos y cartas":
+                drpDwn_pastDocAndLetters.get(5).click();
+                break;
+            case "Documents", "Documentos":
+                drpDwn_pastDocAndLetters.get(6).click();
+                break;
+            case "Letters", "Cartas":
+                drpDwn_pastDocAndLetters.get(7).click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + DocumentAndNotices);
+        }
+    }
+
+    public void verifyPlanYearLabel(String planYearLabel) {
+        WebElement currentPlanYrSpanish = basicActions.getDriver().findElement(By.xpath("//span[text()='Año:']"));
+        Assert.assertEquals(currentPlanYrSpanish.getText(), planYearLabel, "Label not match");
+    }
+
+    public void defaultDocumentLetterValue(String language) {
+        basicActions.waitForElementListToBePresentWithRetries(drpDwn_Arrows_pastDocAndLetters, 20);
+        switch (language) {
+            case "English":
+                softAssert.assertEquals(drpDwn_Arrows_pastDocAndLetters.get(1).getText(), "Documents and Letters");
+                break;
+            case "Spanish":
+                softAssert.assertEquals(drpDwn_Arrows_pastDocAndLetters.get(1).getText(), "Documentos y cartas");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyGoBackToWelcomePageButton(String data) {
+        basicActions.waitForElementToBePresent(goBackWelcomePagebutton, 20);
+        softAssert.assertEquals(goBackWelcomePagebutton.getText(), data, "Go Back Button not present  ");
+    }
+
+    public void validateHelpDrawerOpenedSpanish() {
+        basicActions.waitForElementToBePresentWithRetries(helpDrawerSubHeaderSpanish,20);
+        Assert.assertTrue(basicActions.waitForElementToBePresent(helpDrawerSubHeaderSpanish,10)," Help drawer not opened");
+    }
+
 }

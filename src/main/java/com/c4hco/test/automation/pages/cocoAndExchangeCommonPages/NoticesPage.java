@@ -593,7 +593,7 @@ public class NoticesPage {
     public void verifyTheNoticeEXCH(String noticeNumber, String language) {
         switch (noticeNumber) {
             case "AM-016-01":
-                VerifyTheNoticeTextAM01601Exch();
+                VerifyTheNoticeTextAM01601Exch(language);
                 break;
             case "ELG-101-01":
                 VerifyTheELG10101NoticeText(language);
@@ -985,11 +985,22 @@ public class NoticesPage {
         softAssert.assertAll();
     }
 
-    public void VerifyTheNoticeTextAM01601Exch() {
-        softAssert.assertTrue(bodyText.get(1).getText().contains("Your Username for Connect for Health Colorado\u00AE is:"));
-        softAssert.assertEquals(bodyText.get(2).getText(), "Return to the Connect for Heath Colorado\u00AE website and enter this username plus your password to log in to your account.");
-        softAssert.assertTrue(bodyText.get(3).getText().contains( "If you did not request to have your Username emailed to you, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m."));
-        softAssert.assertTrue(bodyText2.getText().contains("please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m."));
+    public void VerifyTheNoticeTextAM01601Exch(String language) {
+        switch (language) {
+            case "English":
+                softAssert.assertTrue(bodyText.get(1).getText().contains("Your Username for Connect for Health Colorado\u00AE is:"));
+                softAssert.assertEquals(bodyText.get(2).getText(), "Return to the Connect for Heath Colorado\u00AE website and enter this username plus your password to log in to your account.");
+                softAssert.assertTrue(bodyText.get(3).getText().contains( "If you did not request to have your Username emailed to you, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m."));
+                softAssert.assertTrue(bodyText2.getText().contains("please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m."));
+                break;
+            case "Spanish" :
+                softAssert.assertTrue(bodyText.get(1).getText().contains("Su Nombre de usuario para Connect for Health Colorado\u00AE es:"));
+                softAssert.assertEquals(bodyText.get(2).getText(),"Regrese al sitio web de Connect for Health Colorado\u00AE e introduzca este nombre de usuario y su contrase\u00F1a para ingresar en su cuenta.");
+                softAssert.assertEquals(bodyText.get(3).getText(), "Si no solicit\u00F3 el envio por correo electr\u00F3nico de su Nombre de usario, llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:855-695-5935) de lunes a viernes de 8:00 a.m. a 6:00 p.m.");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
         softAssert.assertAll();
     }
 

@@ -97,6 +97,9 @@ public class LifeChangeEventsPage {
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
+    @FindBy(css = "#selectOption")
+    WebElement errorText;
+
     public void selectLCE(String lceOption){
         basicActions.waitForElementToDisappear( spinner, 20 );
         basicActions.waitForElementToBePresent(saveAndContinueOnlyButton,20);
@@ -305,5 +308,71 @@ public class LifeChangeEventsPage {
     public void clickHelpMeUnderstandLink(){
         basicActions.waitForElementToBeClickable(lnkHelpLink, 20);
         lnkHelpLink.click();
+    }
+
+    public void validateCheckBoxes() {
+        basicActions.waitForElementToBePresent(textReportLifeChangeHeader, 10);
+
+        for (WebElement element : lceInputCheckbox) {
+            softAssert.assertTrue(element.isDisplayed(), "Checkbox is not displayed.");
+            softAssert.assertTrue(element.isEnabled(), "Checkbox is not enabled.");
+
+            // First toggle (Check)
+            element.click();
+            softAssert.assertTrue(element.isSelected(), "Checkbox was not checked.");
+
+            // Second toggle (Uncheck)
+            element.click();
+            softAssert.assertFalse(element.isSelected(), "Checkbox was not unchecked.");
+        }
+
+        softAssert.assertAll(); // Collects all assertion results at the end
+    }
+
+    public void validateErrorMessage(String errorMessage) {
+        basicActions.waitForElementToBePresent(textReportLifeChangeHeader,10);
+
+        // Ensure all checkboxes are unchecked
+        for (WebElement checkbox : lceInputCheckbox) {
+            if (checkbox.isSelected()) {
+                checkbox.click();
+            }
+        }
+
+        saveAndContinueButton.get(0).click();
+        softAssert.assertEquals(errorText.getText(), errorMessage, "Error message mismatch");
+        softAssert.assertAll();
+    }
+
+    public void validateMultipleCheckBoxes() {
+        basicActions.waitForElementToBePresent(textReportLifeChangeHeader, 10);
+
+        // Step 1: Select checkboxes 0-8
+        for (int i = 0; i < 9; i++) {
+            lceInputCheckbox.get(i).click();
+        }
+
+        // Step 2: Verify checkboxes 0-8 are selected and checkbox 9 is not
+        for (int i = 0; i < lceInputCheckbox.size(); i++) {
+            if (i < 9) {
+                softAssert.assertTrue(lceInputCheckbox.get(i).isSelected(), "Checkbox at index " + i + " is not selected.");
+            } else {
+                softAssert.assertFalse(lceInputCheckbox.get(i).isSelected(), "Checkbox at index 9 should not be selected yet.");
+            }
+        }
+
+        // Step 3: Check checkbox 9, which should uncheck checkboxes 0-8
+        lceInputCheckbox.get(9).click();
+
+        // Step 4: Verify that checkboxes 0-8 are now unchecked and 9 is checked
+        for (int i = 0; i < lceInputCheckbox.size(); i++) {
+            if (i < 9) {
+                softAssert.assertFalse(lceInputCheckbox.get(i).isSelected(), "Checkbox at index " + i + " should be unchecked when 9 is checked.");
+            } else {
+                softAssert.assertTrue(lceInputCheckbox.get(i).isSelected(), "Checkbox at index 9 should be selected.");
+            }
+        }
+
+        softAssert.assertAll(); // Collect all assertion results at the end
     }
 }

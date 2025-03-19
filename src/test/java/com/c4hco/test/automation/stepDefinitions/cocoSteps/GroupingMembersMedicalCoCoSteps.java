@@ -14,6 +14,9 @@ public class GroupingMembersMedicalCoCoSteps {
         groupingMembersCoCoMedical.clickContinue();
     }
 
+    @And("I click continue on coco medical grouping page")
+    public void iClickContinue() {groupingMembersCoCoMedical.iClickContinue();}
+
     @Then("I click on edit enrollment groups link in coco page")
     public void clickOnEditEnrollmentgroupsLink(){
         groupingMembersCoCoMedical.clickOnEditMedicalGroupinglink();

@@ -57,6 +57,11 @@ public class GroupingMembersMedicalCoCoPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
+    public void iClickContinue(){
+        basicActions.waitForElementToBeClickableWithRetries(continueButton, 30);
+        basicActions.click(continueButton);
+    }
+
     public void clickContinue() {
         basicActions.waitForElementToDisappear( spinner,30 );
         basicActions.waitForElementToBePresent(goBackBtn, 10);
