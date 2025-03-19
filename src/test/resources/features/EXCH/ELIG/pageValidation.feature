@@ -3283,3 +3283,27 @@ Feature: Page validations on ELIG pages
     And I validate the error message "Seleccione una o más de las opciones siguientes" is thrown while clicking on Continue button when no answers are selected for military or honorably discharged veterans question
     Then I click on Sign Out in the Header for "NonElmo"
     Then I validate I am on the "Login" page
+
+  @SLER-2347 @PageValidation
+  Scenario: SLER-2347 - ELIG-Report a life change (Initial)-Page Validation [RT-1170]
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    Then I validate I am on the "Report a life change" page
+    And I validate the check boxes are interactive and can be selected and deselected
+    And I verify that multiple checkboxes can be selected, and choosing None of the above clears them all
+    And I validate the error message "Please select one or more of the options below" is thrown when no option is selected
+    Then I click back button on Report a Life Change Page
+    Then I validate I am on the "Before you begin" page
+    Then I click on continue with  application button on Before you begin page
+    Then I validate I am on the "Report a life change" page
+    And I report "Birth" and click continue
+    Then I validate I am on the "Who Are You" page
+    Then I click on Sign Out in the Header for "NonElmo"
+    Then I validate I am on the "Login" page
