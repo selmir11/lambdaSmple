@@ -308,7 +308,7 @@ public class EthnicityAndRacePage {
 
 
     public void raceEthnicitySelectionMembers(String raceEthnicity, String memPrefix){
-        basicActions.waitForElementListToBePresent(raceEthnicityButton, 40);
+        basicActions.waitForElementListToBePresentWithRetries(raceEthnicityButton, 60);
         switch (raceEthnicity) {
             case "Asian or Asian American":
                 raceEthnicityButton.get(0).click();

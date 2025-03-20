@@ -372,6 +372,34 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//a[contains(text(), 'Descargar')]")
     List<WebElement> downloadSpanish;
 
+    @FindBy(xpath = "//div[contains(@class,'drawer')]/*[contains(text(),'Ayuda')]")
+    WebElement helpDrawerHeaderSpanish;
+
+    @FindBy(xpath = "//*[contains(text(),'Explicación de Mis documentos y cartas')]")
+    WebElement helpDrawerSubHeaderSpanish;
+
+    @FindBy(xpath = "//*[contains(@class,'drawer')]/*[contains(text(),'Comprobante de elegibilidad para ayuda financiera')]")
+    WebElement helpDrawerSubHeaderIncomeSpanish;
+
+    @FindBy(xpath = "//div[contains(@class,'drawer-body')]//*[contains(text(),'Resumen')]")
+    WebElement helpDrawerBodyHeaderSpanish;
+
+    @FindBy(xpath = "//*[contains(text(),'Have questions about documents you need')]")
+    List<WebElement> helpDrawerBodyContentSpanish;
+
+    @FindBy(xpath = "//*[contains(text(),'In order to verify your income')]")
+    List<WebElement> helpDrawerBodyContentIncomeMVRSpanish;
+
+    @FindBy(xpath = "//a[text() ='aquí']")
+    WebElement helpDrawerHereLinkSpanish;
+
+    @FindBy(xpath = "//a[text() ='sitio web.']")
+    WebElement helpDrawerOurWebsiteLinkSpanish;
+
+    @FindBy(xpath = "//a[contains(text(),'Contáctenos')]")
+    WebElement helpDrawerContactUsLinkSpanish;
+
+
 
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
@@ -1417,6 +1445,34 @@ public class MyDocumentsPage {
                 String needHelpText = (String) ((JavascriptExecutor) basicActions.getDriver()).executeScript("return arguments[0].textContent", helpDrawerNeedMoreHelp);
                 softAssert.assertEquals(needHelpText.trim(), data.get(0), "Help drawer need help not match");
                 break;
+            case "header Spanish","Income header Spanish":
+                basicActions.waitForElementToBePresent(helpDrawerHeaderSpanish, 20);
+                softAssert.assertEquals(helpDrawerHeaderSpanish.getText(), data.get(0), " Header not match");
+                break;
+            case "sub header Spanish":
+                basicActions.waitForElementToBePresent(helpDrawerSubHeaderSpanish, 20);
+                softAssert.assertEquals(helpDrawerSubHeaderSpanish.getText(), data.get(0), " Sub Header title not match");
+                break;
+            case "body title Spanish" , "Income body title Spanish":
+                basicActions.waitForElementToBePresent(helpDrawerBodyHeaderSpanish, 20);
+                softAssert.assertEquals(helpDrawerBodyHeaderSpanish.getText(), data.get(0), " Overview title not match");
+                break;
+            case "body content Spanish":
+                basicActions.waitForElementListToBePresent(helpDrawerBodyContentSpanish, 20);
+                for (int i = 0 ; i < data.size() && i < helpDrawerBodyContentSpanish.size(); i++){
+                  softAssert.assertEquals( helpDrawerBodyContentSpanish.get(i).getText(), data.get(i), " Help content not match");
+                }
+            break;
+                case "Income sub header Spanish":
+                basicActions.waitForElementToBePresent(helpDrawerSubHeaderIncomeSpanish, 20);
+                softAssert.assertEquals(helpDrawerSubHeaderIncomeSpanish.getText(), data.get(0), " Sub Header title not match");
+                break;
+            case "Income body content Spanish":
+                basicActions.waitForElementListToBePresent(helpDrawerBodyContentIncomeMVRSpanish, 20);
+                for (int i = 0; i < data.size() && i < helpDrawerBodyContentIncomeMVRSpanish.size(); i++) {
+                    softAssert.assertEquals(helpDrawerBodyContentIncomeMVRSpanish.get(i).getText(), data.get(i), " Help content not match");
+                }
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + contentOn);
         }
@@ -1450,6 +1506,23 @@ public class MyDocumentsPage {
                 basicActions.waitForElementToBePresent(helpDrawerContactUsLink, 10);
                 ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", helpDrawerContactUsLink);
                 break;
+            case "Help me understand this page Spanish" :
+                basicActions.waitForElementToBePresent(helpMeToUnderstandSpanish.get(0), 10);
+                helpMeToUnderstandSpanish.get(0).click();
+                break;
+            case "here Spanish" :
+                basicActions.waitForElementToBePresent(helpDrawerHereLinkSpanish, 10);
+                ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", helpDrawerHereLinkSpanish);
+                break;
+            case "our website Spanish":
+                basicActions.waitForElementToBePresent(helpDrawerOurWebsiteLinkSpanish, 10);
+                ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", helpDrawerOurWebsiteLinkSpanish);
+                break;
+            case "Contact Us Spanish":
+                basicActions.waitForElementToBePresent(helpDrawerContactUsLinkSpanish, 10);
+                ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", helpDrawerContactUsLinkSpanish);
+                break;
+
             default:
                 throw new IllegalArgumentException("Invalid option: " + linkName);
         }
@@ -1715,4 +1788,10 @@ public class MyDocumentsPage {
         basicActions.waitForElementToBePresent(goBackWelcomePagebutton, 20);
         softAssert.assertEquals(goBackWelcomePagebutton.getText(), data, "Go Back Button not present  ");
     }
+
+    public void validateHelpDrawerOpenedSpanish() {
+        basicActions.waitForElementToBePresentWithRetries(helpDrawerSubHeaderSpanish,20);
+        Assert.assertTrue(basicActions.waitForElementToBePresent(helpDrawerSubHeaderSpanish,10)," Help drawer not opened");
+    }
+
 }

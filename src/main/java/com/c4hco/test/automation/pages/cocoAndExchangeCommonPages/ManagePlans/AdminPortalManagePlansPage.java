@@ -415,6 +415,12 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//*[@id='form-edit-pan-member-info']/div/div[7]/div/div[2]")
     WebElement aptcEHBError;
     List<WebElement> PlanContainer;
+    @FindBy(css = "#enrollments-container > div.no-plan-message.body-text-1")
+    WebElement noPlanMessage;
+    @FindBy(xpath = "//app-drop-down-select[@id='selectPolicy']//div[@class='drop-down-option drop-down-option-selected']")
+    WebElement planSelected;
+    @FindBy(xpath = "//*[@id='enrollment-info']/div/div[28]")
+    WebElement planId;
 
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
@@ -1451,6 +1457,21 @@ public void selectThePlanYearOnManagePlan(String planYear) {
     }
     public void validateTheExpectedEHBErrorMessageIsDisplayed(String expectedErrorMessage){
         softAssert.assertEquals(aptcEHBError.getText(), expectedErrorMessage, "APTC entered exceeds EHB amount");
+        softAssert.assertAll();
+    }
+    public void validateNoPlanMessageIsDisplayed(String expectedMessage){
+        basicActions.waitForElementToBePresent(noPlanMessage, 30);
+        softAssert.assertEquals(noPlanMessage.getText(), expectedMessage, "Select a plan year to view policies");
+        softAssert.assertAll();
+    }
+    public void verifyPlanIDDataMatchesDataInDropDownForSelectedPlan(String planSTG, String planOptionDropDownSTG, String planQA, String planOptionDropDownQA){
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(planId.getText(), planSTG);
+            softAssert.assertEquals(planSelected.getText(), planOptionDropDownSTG);
+        } else {
+            softAssert.assertEquals(planId.getText(), planQA);
+            softAssert.assertEquals(planSelected.getText(), planOptionDropDownQA);
+        }
         softAssert.assertAll();
     }
 }

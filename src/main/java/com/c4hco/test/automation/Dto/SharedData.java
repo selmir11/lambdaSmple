@@ -96,6 +96,7 @@ public class SharedData {
     @Getter @Setter private static BigDecimal oldAccountId;
     @Getter @Setter private static AssisterDetails assisterDetails;
     @Getter @Setter private static List<String> Companyname;
+    @Getter @Setter private static String FinancialIncome;
 
 
 
@@ -147,6 +148,7 @@ public class SharedData {
         medGroupCtlNumbers = null;
         denGroupCtlNumbers = null;
         Companyname = null;
+        FinancialIncome = null;
     }
 
 }

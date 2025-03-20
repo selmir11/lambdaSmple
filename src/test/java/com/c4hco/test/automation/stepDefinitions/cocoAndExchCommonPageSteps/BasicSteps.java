@@ -830,4 +830,9 @@ public class BasicSteps {
     public void setMinor(){
         basicActions.setMinor();
     }
+
+    @And("I navigate to the same page with a random member ID")
+    public void changeMemberIdInUrl() {
+        basicActions.changeMemberIdInUrlWithRandom();
+    }
 }
