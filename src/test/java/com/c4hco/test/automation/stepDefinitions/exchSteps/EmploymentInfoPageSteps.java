@@ -248,6 +248,16 @@ public class EmploymentInfoPageSteps {
     @Then("I verify no errors show for Income frequency field and Income same or lower question field")
     public void iVerifyNoErrorsShowForFrequencyAndIncomeSameLowerField()  { employmentInfoPage.verifyNoErrorsShowForFrequencyAndIncomeSameLowerField(); }
 
+    @Then("I validate Employment Income page for text design")
+    public void iverifiEmploymentIncomeTextDesign()  { employmentInfoPage.verifiEmploymentIncomeTextDesign(); }
+
+
+    @Then("I validate Employment Income page for YesOption text design")
+    public void iverifiEmploymentIncomeTextDesignYesOption()  { employmentInfoPage.verifiEmploymentIncomeTextDesignYesOption(); }
+
+
+    @Then("I validate Employment Income page for NoOption text design")
+    public void iverifiEmploymentIncomeTextDesignNoOption()  { employmentInfoPage.verifiEmploymentIncomeTextDesignNoOption(); }
 
 
 }

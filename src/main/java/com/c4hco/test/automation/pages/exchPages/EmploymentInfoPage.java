@@ -187,7 +187,7 @@ public class EmploymentInfoPage {
     @FindBy(id = "ELIG-summaryDetails-incomeAmountInput")
     WebElement projectedIncomeInput;
 
-    @FindBy(css=".fas.fa-spinner.fa-spin")
+    @FindBy(css = ".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
@@ -214,8 +214,8 @@ public class EmploymentInfoPage {
     }
 
     public void isUserEmployed(String employmentOption) {
-        basicActions.waitForElementToDisappear(spinner,60);
-        basicActions.waitForElementToDisappear(spinnerOverlay,60);
+        basicActions.waitForElementToDisappear(spinner, 60);
+        basicActions.waitForElementToDisappear(spinnerOverlay, 60);
         basicActions.waitForElementToBePresent(btnYesEmployed, 15);
         switch (employmentOption) {
             case "Yes":
@@ -391,7 +391,7 @@ public class EmploymentInfoPage {
     }
 
     public void projectedIncomeQuestion(String projectedIncomeOption) {
-        basicActions.waitForElementToBePresent(btnIncomeSameYes,30);
+        basicActions.waitForElementToBePresent(btnIncomeSameYes, 30);
         switch (projectedIncomeOption) {
             case "Yes":
                 btnIncomeSameYes.click();
@@ -405,8 +405,8 @@ public class EmploymentInfoPage {
     }
 
     public void saveAndContinue() {
-        basicActions.waitForElementToDisappear(spinner,90);
-        basicActions.waitForElementToDisappear(spinnerOverlay,90);
+        basicActions.waitForElementToDisappear(spinner, 90);
+        basicActions.waitForElementToDisappear(spinnerOverlay, 90);
         basicActions.waitForElementToBePresent(btnContinue, 90);
         basicActions.waitForElementToBePresent(txtHeaderPart1, 90);
         basicActions.scrollToElement(btnContinue);
@@ -467,9 +467,10 @@ public class EmploymentInfoPage {
         basicActions.waitForElementToBePresent(helpDrawerContactUsLink, 10);
         helpDrawerContactUsLink.click();
     }
+
     public void goBackButton() {
-        basicActions.waitForElementToDisappear(spinner,15);
-        basicActions.waitForElementToDisappear(spinnerOverlay,15);
+        basicActions.waitForElementToDisappear(spinner, 15);
+        basicActions.waitForElementToDisappear(spinnerOverlay, 15);
         basicActions.waitForElementToBePresent(goBackButton, 90);
         basicActions.waitForElementToBePresent(txtHeaderPart1, 90);
         basicActions.scrollToElement(goBackButton);
@@ -931,7 +932,7 @@ public class EmploymentInfoPage {
         List<WebElement> options = dropdown.getOptions();
 
         List<String> actualOptions = options.stream().map(WebElement::getText).collect(Collectors.toList());
-    List<String> expectedOptions = new ArrayList<>();
+        List<String> expectedOptions = new ArrayList<>();
 
         switch (language.toLowerCase()) {
             case "english":
@@ -941,7 +942,7 @@ public class EmploymentInfoPage {
                 break;
             case "spanish":
                 // Expected values in the dropdown menu in Spanish
-                 expectedOptions = Arrays.asList("Anualmente", "Cada dos semanas", "Mensualmente", "Dos veces por mes", "Semanalmente");
+                expectedOptions = Arrays.asList("Anualmente", "Cada dos semanas", "Mensualmente", "Dos veces por mes", "Semanalmente");
                 break;
             default:
                 Assert.fail("Invalid option: " + language);
@@ -953,7 +954,6 @@ public class EmploymentInfoPage {
     }
 
 
-
     public void validateCompanyName() {
         basicActions.wait(500);
         basicActions.waitForElementListToBePresent(Companynames, 30);
@@ -962,7 +962,7 @@ public class EmploymentInfoPage {
             actualList.add(element.getText().trim());
         }
         List<String> expectedList = SharedData.getCompanyname();
-        softAssert.assertEquals(actualList, expectedList, "Company names do not match! expected: "+expectedList+ " actual: "+actualList );
+        softAssert.assertEquals(actualList, expectedList, "Company names do not match! expected: " + expectedList + " actual: " + actualList);
         softAssert.assertAll();
     }
 
@@ -974,7 +974,7 @@ public class EmploymentInfoPage {
     }
 
     public void validateEmploymentStatusLabelAbsence() {
-        softAssert.assertTrue(basicActions.waitForElementToDisappear(employmentStatusLabel,20), "Employment Status Label is present, but it should NOT be.");
+        softAssert.assertTrue(basicActions.waitForElementToDisappear(employmentStatusLabel, 20), "Employment Status Label is present, but it should NOT be.");
         softAssert.assertAll();
     }
 
@@ -986,7 +986,7 @@ public class EmploymentInfoPage {
 
     public void validateCompanyNameErrorMessage(String expectedErrorMessage) {
         basicActions.waitForElementToBePresent(CompanyNameErrorMessage, 10);
-        softAssert.assertEquals(CompanyNameErrorMessage.getText(),expectedErrorMessage,"Error Message related to company name field is not matching");
+        softAssert.assertEquals(CompanyNameErrorMessage.getText(), expectedErrorMessage, "Error Message related to company name field is not matching");
         softAssert.assertAll();
     }
 
@@ -997,14 +997,14 @@ public class EmploymentInfoPage {
     }
 
     public void validateFieldDoesNotAcceptMoreThan100Characters() {
-        basicActions.waitForElementToBePresent( txtCompanyName,20);
+        basicActions.waitForElementToBePresent(txtCompanyName, 20);
         txtCompanyName.clear();
         txtCompanyName.sendKeys("IEnter110characterskdsjvbsdkjvbdjkvcjkjkdcbkjewbckjwefbcewuifuieihuqowiruzxlkcnsjdkhfdgrtwehoifvejweutcnvbdjsk");
-        softAssert.assertTrue(txtCompanyName.getAttribute("value").length()<101,"Company name field accepting more than 100 characters");
+        softAssert.assertTrue(txtCompanyName.getAttribute("value").length() < 101, "Company name field accepting more than 100 characters");
         softAssert.assertAll();
     }
 
-    public void verifyCompanyNameFieldNoError(){
+    public void verifyCompanyNameFieldNoError() {
         basicActions.waitForElementToDisappear(CompanyNameErrorMessage, 10);
         softAssert.assertAll();
     }
@@ -1017,40 +1017,224 @@ public class EmploymentInfoPage {
 
     public void validateEnterProfitAmountErrorMessage(String expectedErrorMessage) {
         basicActions.waitForElementToBePresent(EnterProfitAmountError, 40);
-        softAssert.assertEquals(EnterProfitAmountError.getText(),expectedErrorMessage,"Error Message related to Enter profit amount is not matching");
+        softAssert.assertEquals(EnterProfitAmountError.getText(), expectedErrorMessage, "Error Message related to Enter profit amount is not matching");
         softAssert.assertAll();
     }
 
     public void validateEnterProfitAmount(String expectedAmount) {
         basicActions.waitForElementToBePresent(txtIncomeAmount, 40);
-        softAssert.assertEquals(txtIncomeAmount.getAttribute("value"),expectedAmount,"Expected and Actual Income amount not matching");
+        softAssert.assertEquals(txtIncomeAmount.getAttribute("value"), expectedAmount, "Expected and Actual Income amount not matching");
         softAssert.assertAll();
     }
 
-    public void verifyEnterProfitIncomeFieldNoError(){
+    public void verifyEnterProfitIncomeFieldNoError() {
         basicActions.waitForElementToDisappear(EnterProfitAmountError, 10);
         softAssert.assertAll();
     }
 
     public void validateIncomeFrequencyErrorMessage(String expectedErrorMessage) {
         basicActions.waitForElementToBePresent(IncomeTypeFrequencyErrorMessage, 40);
-        softAssert.assertEquals(IncomeTypeFrequencyErrorMessage.getText(),expectedErrorMessage,"Error Message for Income frequency type is not matching");
+        softAssert.assertEquals(IncomeTypeFrequencyErrorMessage.getText(), expectedErrorMessage, "Error Message for Income frequency type is not matching");
         softAssert.assertAll();
     }
 
     public void validateIncomeSameOrLowerErrorMessage(String expectedErrorMessage) {
         basicActions.waitForElementToBePresent(IncomeSameOrLowerNextYearErrorMessage, 40);
-        softAssert.assertEquals(IncomeSameOrLowerNextYearErrorMessage.getText(),expectedErrorMessage,"Error Message for Income same or lower question is not matching");
+        softAssert.assertEquals(IncomeSameOrLowerNextYearErrorMessage.getText(), expectedErrorMessage, "Error Message for Income same or lower question is not matching");
         softAssert.assertAll();
     }
 
-    public void verifyNoErrorsShowForFrequencyAndIncomeSameLowerField(){
+    public void verifyNoErrorsShowForFrequencyAndIncomeSameLowerField() {
         basicActions.waitForElementToDisappear(IncomeTypeFrequencyErrorMessage, 20);
         basicActions.waitForElementToDisappear(IncomeSameOrLowerNextYearErrorMessage, 20);
         softAssert.assertAll();
     }
 
+    public void verifiEmploymentIncomeTextDesign() {
+        basicActions.waitForElementToDisappear(txtHeaderPart1, 20);
+
+        softAssert.assertEquals(txtHeaderPart1.getCssValue("font-size"), "36px", "Font size mismatch for Income");
+        softAssert.assertEquals(txtHeaderPart1.getCssValue("font-weight"), "700", "Font weight mismatch for Income");
+        softAssert.assertEquals(txtHeaderPart1.getCssValue("line-height"), "48px", "Line height mismatch for Income");
+        softAssert.assertEquals(txtHeaderPart1.getCssValue("color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(43, 49, 60)", "Color mismatch for Income");
+
+        softAssert.assertEquals(txtHeaderPart2.getText(), "Employment Income", "Header text mismatch for Employment Income");
+        softAssert.assertEquals(txtHeaderPart2.getCssValue("font-size"), "28px", "Font size mismatch for Employment Income");
+        softAssert.assertEquals(txtHeaderPart2.getCssValue("font-weight"), "700", "Font weight mismatch for Employment Income");
+        softAssert.assertEquals(txtHeaderPart2.getCssValue("color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(43, 49, 60)", "Color mismatch for Employment Income");
+
+        softAssert.assertEquals(haveAJobOrEmployedQuestion.getText(), "Do you have a job or are you currently employed?", "Text mismatch for employment question");
+        softAssert.assertEquals(haveAJobOrEmployedQuestion.getCssValue("font-size"), "16px", "Font size mismatch for employment question");
+        softAssert.assertEquals(haveAJobOrEmployedQuestion.getCssValue("font-weight"), "400", "Font weight mismatch for employment question");
+        softAssert.assertEquals(haveAJobOrEmployedQuestion.getCssValue("color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(43, 49, 60)", "Color mismatch for employment question");
+
+        // Yes Button
+        softAssert.assertEquals(btnYesEmployed.getText(), "Yes", "Text mismatch for Yes button");
+        softAssert.assertEquals(btnYesEmployed.getCssValue("font-size"), "16px", "Font size mismatch for Yes button");
+        softAssert.assertEquals(btnYesEmployed.getCssValue("font-weight"), "400", "Font weight mismatch for Yes button");
+        softAssert.assertEquals(btnYesEmployed.getCssValue("color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(77, 77, 79)", "Color mismatch for Yes button");
+        softAssert.assertEquals(btnYesEmployed.getCssValue("background-color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(255, 255, 255)", "Background color mismatch for Yes button");
+        softAssert.assertEquals(btnYesEmployed.getCssValue("border-color"), "rgb(149, 147, 147)", "Border color mismatch for Yes button");
+        softAssert.assertEquals(btnYesEmployed.getCssValue("border-width"), "1px", "Border width mismatch for Yes button");
+        softAssert.assertEquals(btnYesEmployed.getCssValue("border-radius"), "4px", "Border radius mismatch for Yes button");
+
+        // No Button
+        softAssert.assertEquals(btnNoEmployed.getText(), "No", "Text mismatch for No button");
+        softAssert.assertEquals(btnNoEmployed.getCssValue("font-size"), "16px", "Font size mismatch for No button");
+        softAssert.assertEquals(btnNoEmployed.getCssValue("font-weight"), "400", "Font weight mismatch for No button");
+        softAssert.assertEquals(btnNoEmployed.getCssValue("color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(77, 77, 79)", "Color mismatch for No button");
+        softAssert.assertEquals(btnNoEmployed.getCssValue("background-color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(255, 255, 255)", "Background color mismatch for No button");
+        softAssert.assertEquals(btnNoEmployed.getCssValue("border-color"), "rgb(149, 147, 147)", "Border color mismatch for No button");
+        softAssert.assertEquals(btnNoEmployed.getCssValue("border-width"), "1px", "Border width mismatch for No button");
+        softAssert.assertEquals(btnNoEmployed.getCssValue("border-radius"), "4px", "Border radius mismatch for No button");
+
+        // Go Back Button
+        softAssert.assertEquals(goBackButton.getText(), "Go back", "Text mismatch for Go Back button");
+        softAssert.assertEquals(goBackButton.getCssValue("font-family").replace("\"", ""), "PT Sans, sans-serif", "Font family mismatch");
+        softAssert.assertEquals(goBackButton.getCssValue("font-weight"), "700", "Font weight mismatch");
+        softAssert.assertEquals(goBackButton.getCssValue("font-size"), "20px", "Font size mismatch");
+        softAssert.assertEquals(goBackButton.getCssValue("color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(26, 112, 179)", "Color mismatch");
+
+        // Continue Button
+        softAssert.assertEquals(btnContinue.getCssValue("background-color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(26, 112, 179)", "Background color mismatch");
+        softAssert.assertEquals(btnContinue.getCssValue("border-color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(26, 112, 179)", "Border color mismatch");
+        softAssert.assertEquals(btnContinue.getCssValue("padding"), "12px 20px", "Padding mismatch");
+        softAssert.assertEquals(btnContinue.getCssValue("border-width"), "2px", "Border width mismatch");
+        softAssert.assertEquals(btnContinue.getCssValue("border-radius"), "4px", "Border radius mismatch");
+
+        softAssert.assertAll();
+    }
+
+    public void verifiEmploymentIncomeTextDesignYesOption() {
+
+        basicActions.waitForElementToDisappear(txtHeaderPart1, 20);
+
+        softAssert.assertEquals(txtHeaderPart1.getCssValue("font-size"), "36px", "Font size mismatch for Income");
+        softAssert.assertEquals(txtHeaderPart1.getCssValue("font-weight"), "700", "Font weight mismatch for Income");
+        softAssert.assertEquals(txtHeaderPart1.getCssValue("line-height"), "48px", "Line height mismatch for Income");
+        softAssert.assertEquals(txtHeaderPart1.getCssValue("color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(43, 49, 60)", "Color mismatch for Income");
+
+        softAssert.assertEquals(txtHeaderPart2.getText(), "Employment Income", "Header text mismatch for Employment Income");
+        softAssert.assertEquals(txtHeaderPart2.getCssValue("font-size"), "28px", "Font size mismatch for Employment Income");
+        softAssert.assertEquals(txtHeaderPart2.getCssValue("font-weight"), "700", "Font weight mismatch for Employment Income");
+        softAssert.assertEquals(txtHeaderPart2.getCssValue("color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(43, 49, 60)", "Color mismatch for Employment Income");
+
+        softAssert.assertEquals(haveAJobOrEmployedQuestion.getText(), "Do you have a job or are you currently employed?", "Label text mismatch");
+        softAssert.assertEquals(haveAJobOrEmployedQuestion.getCssValue("font-family").replace("'", ""), "ptSans, sans-serif", "Font family mismatch");
+        softAssert.assertEquals(haveAJobOrEmployedQuestion.getCssValue("font-weight"), "400", "Font weight mismatch");
+        softAssert.assertEquals(haveAJobOrEmployedQuestion.getCssValue("font-size"), "16px", "Font size mismatch");
+        softAssert.assertEquals(haveAJobOrEmployedQuestion.getCssValue("color"), "rgb(43, 49, 60)", "Font color mismatch");
+
+        softAssert.assertEquals(btnYesEmployed.getText(), "Yes", "Yes button text mismatch");
+        softAssert.assertEquals(btnNoEmployed.getText(), "No", "No button text mismatch");
+        softAssert.assertEquals(selfEmploymentQuestion.getText(), "Is this job self-employment?", "Label text mismatch");
+        softAssert.assertEquals(selfEmploymentQuestion.getCssValue("font-family").replace("'", ""), "ptSans, sans-serif", "Font family mismatch");
+        softAssert.assertEquals(selfEmploymentQuestion.getCssValue("font-weight"), "400", "Font weight mismatch");
+        softAssert.assertEquals(selfEmploymentQuestion.getCssValue("font-size"), "16px", "Font size mismatch");
+        softAssert.assertEquals(selfEmploymentQuestion.getCssValue("color"), "rgb(43, 49, 60)", "Font color mismatch");
+
+        softAssert.assertEquals(btnYesEmployed.getText(), "Yes", "Yes button text mismatch");
+        softAssert.assertEquals(btnYesEmployed.getCssValue("font-family").replace("'", ""), "ptSans, sans-serif", "Font family mismatch");
+        softAssert.assertEquals(btnYesEmployed.getCssValue("font-weight"), "400", "Font weight mismatch");
+        softAssert.assertEquals(btnYesEmployed.getCssValue("font-size"), "16px", "Font size mismatch");
+        softAssert.assertEquals(btnYesEmployed.getCssValue("color"), "rgb(77, 77, 79)", "Font color mismatch");
+        softAssert.assertEquals(btnYesEmployed.getCssValue("background-color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(255, 255, 255)", "Background color mismatch");
+        softAssert.assertEquals(btnYesEmployed.getCssValue("border-color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(149, 147, 147)", "Border color mismatch");
+        softAssert.assertEquals(btnYesEmployed.getCssValue("padding"), "1px 6px", "Padding mismatch");
+        softAssert.assertEquals(btnYesEmployed.getCssValue("border-radius"), "4px", "Border radius mismatch");
+
+
+        softAssert.assertEquals(btnNoEmployed.getText(), "No", "No button text mismatch");
+        softAssert.assertEquals(btnNoEmployed.getCssValue("font-family").replace("'", ""), "ptSans, sans-serif", "Font family mismatch");
+        softAssert.assertEquals(btnNoEmployed.getCssValue("font-weight"), "400", "Font weight mismatch");
+        softAssert.assertEquals(btnNoEmployed.getCssValue("font-size"), "16px", "Font size mismatch");
+        softAssert.assertEquals(btnNoEmployed.getCssValue("color"), "rgb(77, 77, 79)", "Font color mismatch");
+        softAssert.assertEquals(btnNoEmployed.getCssValue("background-color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(255, 255, 255)", "Background color mismatch");
+        softAssert.assertEquals(btnNoEmployed.getCssValue("border-color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(149, 147, 147)", "Border color mismatch");
+        softAssert.assertEquals(btnNoEmployed.getCssValue("padding"), "1px 6px", "Padding mismatch");
+        softAssert.assertEquals(btnNoEmployed.getCssValue("border-radius"), "4px", "Border radius mismatch");
+
+    }
+
+    public void verifiEmploymentIncomeTextDesignNoOption() {
+
+        basicActions.waitForElementToDisappear(txtHeaderPart1, 20);
+
+        // Header Part 1
+        softAssert.assertEquals(txtHeaderPart1.getCssValue("font-size"), "36px", "Font size mismatch for Income");
+        softAssert.assertEquals(txtHeaderPart1.getCssValue("font-weight"), "700", "Font weight mismatch for Income");
+        softAssert.assertEquals(txtHeaderPart1.getCssValue("line-height"), "48px", "Line height mismatch for Income");
+        softAssert.assertEquals(txtHeaderPart1.getCssValue("color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(43, 49, 60)", "Color mismatch for Income");
+
+        // Header Part 2
+        softAssert.assertEquals(txtHeaderPart2.getText(), "Employment Income", "Header text mismatch for Employment Income");
+        softAssert.assertEquals(txtHeaderPart2.getCssValue("font-size"), "28px", "Font size mismatch for Employment Income");
+        softAssert.assertEquals(txtHeaderPart2.getCssValue("font-weight"), "700", "Font weight mismatch for Employment Income");
+        softAssert.assertEquals(txtHeaderPart2.getCssValue("color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(43, 49, 60)", "Color mismatch for Employment Income");
+
+        // Employment Question
+        softAssert.assertEquals(haveAJobOrEmployedQuestion.getText(), "Do you have a job or are you currently employed?", "Label text mismatch");
+        softAssert.assertTrue(haveAJobOrEmployedQuestion.getCssValue("font-family").contains("PT Sans"), "Font family mismatch");
+        softAssert.assertEquals(haveAJobOrEmployedQuestion.getCssValue("font-weight"), "700", "Font weight mismatch");
+        softAssert.assertEquals(haveAJobOrEmployedQuestion.getCssValue("font-size"), "16px", "Font size mismatch");
+        softAssert.assertEquals(haveAJobOrEmployedQuestion.getCssValue("color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(43, 49, 60)", "Font color mismatch");
+
+        // Self-Employment Question
+        softAssert.assertEquals(selfEmploymentQuestion.getText(), "Is this job self-employment?", "Label text mismatch");
+        softAssert.assertEquals(selfEmploymentQuestion.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch");
+        softAssert.assertEquals(selfEmploymentQuestion.getCssValue("font-weight"), "400", "Font weight mismatch");
+        softAssert.assertEquals(selfEmploymentQuestion.getCssValue("font-size"), "16px", "Font size mismatch");
+        softAssert.assertEquals(selfEmploymentQuestion.getCssValue("color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(43, 49, 60)", "Font color mismatch");
+
+
+        // Address Labels
+        softAssert.assertEquals(addressLine1Label.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch for Address Line 1");
+        softAssert.assertEquals(addressLine1Label.getCssValue("font-weight"), "400", "Font weight mismatch for Address Line 1");
+        softAssert.assertEquals(addressLine1Label.getCssValue("font-size"), "16px", "Font size mismatch for Address Line 1");
+        softAssert.assertEquals(addressLine1Label.getCssValue("color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(43, 49, 60)", "Font color mismatch for Address Line 1");
+
+
+        softAssert.assertEquals(addressLine2Label.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch for Address Line 2");
+        softAssert.assertEquals(addressLine2Label.getCssValue("font-weight"), "400", "Font weight mismatch for Address Line 2");
+        softAssert.assertEquals(addressLine2Label.getCssValue("font-size"), "16px", "Font size mismatch for Address Line 2");
+        softAssert.assertEquals(addressLine2Label.getCssValue("color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(43, 49, 60)", "Font color mismatch for Address Line 2");
+
+        softAssert.assertEquals(cityLabel.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch for City");
+        softAssert.assertEquals(cityLabel.getCssValue("font-weight"), "400", "Font weight mismatch for City");
+        softAssert.assertEquals(cityLabel.getCssValue("font-size"), "16px", "Font size mismatch for City");
+        softAssert.assertEquals(cityLabel.getCssValue("color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(43, 49, 60)", "Font color mismatch for City");
+
+
+        softAssert.assertEquals(stateLabel.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch for State");
+        softAssert.assertEquals(stateLabel.getCssValue("font-weight"), "400", "Font weight mismatch for State");
+        softAssert.assertEquals(stateLabel.getCssValue("font-size"), "16px", "Font size mismatch for State");
+        softAssert.assertEquals(stateLabel.getCssValue("color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(43, 49, 60)", "Font color mismatch for State");
+
+        softAssert.assertEquals(zipCodeLabel.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch for Zip Code");
+        softAssert.assertEquals(zipCodeLabel.getCssValue("font-weight"), "400", "Font weight mismatch for Zip Code");
+        softAssert.assertEquals(zipCodeLabel.getCssValue("font-size"), "16px", "Font size mismatch for Zip Code");
+        softAssert.assertEquals(zipCodeLabel.getCssValue("color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(43, 49, 60)", "Font color mismatch for Zip Code");
+
+        // Income Question
+        softAssert.assertEquals(currentGrossIncomeQuestion.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch for Gross Income");
+        softAssert.assertEquals(currentGrossIncomeQuestion.getCssValue("font-weight"), "400", "Font weight mismatch for Gross Income");
+        softAssert.assertEquals(currentGrossIncomeQuestion.getCssValue("font-size"), "16px", "Font size mismatch for Gross Income");
+        softAssert.assertEquals(currentGrossIncomeQuestion.getCssValue("color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(43, 49, 60)", "Font color mismatch for Gross Income");
+
+        // Commission Label
+        softAssert.assertEquals(commissionLabel.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch for Commission Label");
+        softAssert.assertEquals(commissionLabel.getCssValue("font-weight"), "400", "Font weight mismatch for Commission Label");
+        softAssert.assertEquals(commissionLabel.getCssValue("font-size"), "14px", "Font size mismatch for Commission Label");
+        softAssert.assertEquals(commissionLabel.getCssValue("color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(43, 49, 60)", "Font color mismatch for Commission Label");
+
+        // Income Lower Next Year Question
+        softAssert.assertEquals(incomeSameLowerNextYearQuestionWhenNoToSelfEmployedQuestion.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch for Income Lower Next Year Question");
+        softAssert.assertEquals(incomeSameLowerNextYearQuestionWhenNoToSelfEmployedQuestion.getCssValue("font-weight"), "400", "Font weight mismatch for Income Lower Next Year Question");
+        softAssert.assertEquals(incomeSameLowerNextYearQuestionWhenNoToSelfEmployedQuestion.getCssValue("font-size"), "16px", "Font size mismatch for Income Lower Next Year Question");
+        softAssert.assertEquals(incomeSameLowerNextYearQuestionWhenNoToSelfEmployedQuestion.getCssValue("color").replace("rgba(", "rgb(").replace(", 1)", ")"), "rgb(43, 49, 60)", "Font color mismatch for Income Lower Next Year Question");
+
+
+    }
 
 }
-
 
