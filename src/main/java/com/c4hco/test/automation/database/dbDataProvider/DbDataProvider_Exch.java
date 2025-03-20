@@ -163,7 +163,7 @@ public class DbDataProvider_Exch {
             if(SharedData.getHasBroker()){
                 brokerTinNum = getTinNumForBroker();
             }
-            csrLevel = SharedData.getRecType()!=null && SharedData.getRecType().contains("medical") && SharedData.getIsAiAn()? "03" :getCSRLevel();
+            csrLevel = getCSRLevel();
         }
         DbData dbData = new DbData();
 
@@ -238,7 +238,6 @@ public class DbDataProvider_Exch {
         planDbData.setIssuerId(issuerId);
         planDbData.setHiosIssuerId(hiosIssuerId);
         planDbData.setCsrAmt(csrAmtMed);
-
         planDbDataMap.put(name, planDbData);
 
         medicalPlanDetailsFromDb.add(planDbDataMap);

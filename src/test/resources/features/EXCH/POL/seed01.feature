@@ -98,12 +98,6 @@ Feature: Regression Tests that require Seed 1
     And I enter householder signature on the Enrollment Agreements page
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
-    Given I set the dynamic policy, coverage and financial dates for "medical" plan
-      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
-    Given I set the dynamic policy, coverage and financial dates for "dental" plan
-      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
 
@@ -209,9 +203,9 @@ Feature: Regression Tests that require Seed 1
     And I validate "dental" entities from policy tables
 
     And I validate member details from ob834_details table
-      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
-      |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
-      |          021          | 021                 | 25                   |                          |                             |                    |
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
+      | 021                   | 021                | 25                    | 70                       | 34                          | DEMOGRAPHIC CHANGE |
+      | 021                   | 021                | 25                    |                          |                             |                    |
     And I validate the ob834 files should have the values
 
   @SLER-2030-WIP-@R4V
@@ -438,7 +432,7 @@ Feature: Regression Tests that require Seed 1
     And I validate the ob999 "medical" file data
     And I validate the ob999 "dental" file data
 
-  @SLER-1992-R4V-WIP
+  @SLER-1992
   Scenario: RT-2052 ENR-EXCH: APPS - CSR LEVEL CHANGE (LCE: Gained AI/AN Tribal Status) SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -484,8 +478,8 @@ Feature: Regression Tests that require Seed 1
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
       | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     Given I set the dynamic policy, coverage and financial dates for "dental" plan
-      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
@@ -493,11 +487,11 @@ Feature: Regression Tests that require Seed 1
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
     And I validate "medical" entities from pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
-      | 001                   | 001                | 25                    | FINANCIAL CHANGE or CSR VARIANT CHANGE |            |
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason                      | sep_reason |
+      | 001                   | 001                | AI                    | FINANCIAL CHANGE or CSR VARIANT CHANGE |            |
     And I validate "dental" entities from pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
-      | 001                   | 001                | 25                    | FINANCIAL CHANGE or CSR VARIANT CHANGE |            |
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
