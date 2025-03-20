@@ -852,15 +852,15 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-    public void validateVLPResponseCode(String expectedResponseCode) {
-        String actualResponseCode = exchDbDataProvider.getVLPResponseCode();
+    public void validateVLPResponseCode(String expectedResponseCode, String requestType) {
+        String actualResponseCode = exchDbDataProvider.getVLPResponseCode(requestType);
         softAssert.assertEquals(actualResponseCode.trim(), expectedResponseCode);
         softAssert.assertAll();
     }
 
-    public void validateVLPRetryTypeandStatus(String expectedRetryType, String expectedStatus) {
-        String actualRetryType = exchDbDataProvider.getVLPRetryType();
-        String actualRetryStatus = exchDbDataProvider.getVLPRetryStatus();
+    public void validateFDSHRetryTypeandStatus(String expectedRetryType, String expectedStatus) {
+        String actualRetryType = exchDbDataProvider.getFDSHRetryType();
+        String actualRetryStatus = exchDbDataProvider.getFDSHRetryStatus();
         softAssert.assertEquals(actualRetryType.trim(), expectedRetryType);
         softAssert.assertEquals(actualRetryStatus.trim(), expectedStatus);
         softAssert.assertAll();
@@ -970,6 +970,25 @@ public class DbValidations {
         String outcomeIndDb = exchDbDataProvider.getOutcomeInd();
         softAssert.assertEquals(outcomeIndDb, outcome);
         softAssert.assertAll();
+    }
+
+    public void validateRemovedEffectiveDate() {
+        String removedEffectiveDate = exchDbDataProvider.getRemovedEffectiveDate();
+        softAssert.assertEquals(removedEffectiveDate, basicActions.getDateBasedOnRequirement("First Day Of Next Year") + " 00:00:00");
+        softAssert.assertAll();
+    }
+
+    public void validateApplyingForCoverageIndDB(String FName, String applying){
+        List<MemberDetails> memberList=basicActions.getAllMem();
+        for(MemberDetails actualMember : memberList) {
+            if(actualMember.getFirstName().contains(FName)) {
+                String FirstName = actualMember.getFirstName();
+                List<String> dbValues = exchDbDataProvider.getInfoForTellAboutAdditionalInformation(FirstName);
+                softAssert.assertEquals(dbValues.get(5), applying);
+                softAssert.assertAll();
+                break;
+            }
+        }
     }
 }
 
