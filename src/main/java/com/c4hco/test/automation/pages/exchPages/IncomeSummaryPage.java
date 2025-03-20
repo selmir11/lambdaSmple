@@ -131,6 +131,9 @@ public class IncomeSummaryPage {
     @FindBy(css = "span.error-message.c4-text-body-100")
     private WebElement errorMessage;
 
+    @FindBy(css = ".input-error-message .error-message")
+    private WebElement ActiveErrorMessage;
+
     public void selectProjectedIncome(String projectedIncomeOption){
         basicActions.waitForElementToDisappear(loaderIcon, 120);
         basicActions.waitForElementToDisappear(spinner,60);
@@ -153,6 +156,7 @@ public class IncomeSummaryPage {
 
     public void clickSaveandContinue(){
         basicActions.waitForElementToBeClickable(saveAndContinueBtn,30);
+        basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
     }
 
@@ -179,6 +183,36 @@ public class IncomeSummaryPage {
     public void clickHelpContactUsNavigation() {
             basicActions.waitForElementToBePresent(helpDrawerContactUsLink, 10);
             helpDrawerContactUsLink.click();
+    }
+
+    public void selectOneOfTheProjectedIncomeOptions(String projectedIncomeOption){
+        basicActions.waitForElementToBePresentWithRetries(projectedIncomeYes,10);
+        basicActions.waitForElementToBePresentWithRetries(projectedIncomeNo,10);
+        switch(projectedIncomeOption){
+            case "Yes":
+            case "Sí":
+                basicActions.waitForElementToBePresentWithRetries(hdr_Income,30);
+                basicActions.waitForElementToBePresentWithRetries(hdr_IncomeSummary,30);
+                basicActions.waitForElementToBeClickableWithRetries(projectedIncomeYes, 30);
+                basicActions.scrollToElement(projectedIncomeYes);
+                projectedIncomeYes.click();
+                break;
+            case "No":
+                basicActions.waitForElementToBePresentWithRetries(hdr_Income,30);
+                basicActions.waitForElementToBePresentWithRetries(hdr_IncomeSummary,30);
+                basicActions.waitForElementToBeClickableWithRetries(projectedIncomeNo, 30);
+                basicActions.scrollToElement(projectedIncomeNo);
+                projectedIncomeNo.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option given for Projected Income");
+        }
+    }
+
+    public void enterProjectedIncomeAmount(String projectedIncome) {
+        basicActions.waitForElementToBePresent(ProjectedIncomeInputTextField, 20);
+        ProjectedIncomeInputTextField.sendKeys(projectedIncome);
+        ProjectedIncomeLabel.click();
     }
 
 
@@ -335,6 +369,18 @@ public class IncomeSummaryPage {
         softAssert.assertTrue(errorMessage.isDisplayed(), "Error message is not displayed.");
         ProjectedIncomeInputTextField.sendKeys("11111111111");
         softAssert.assertTrue(errorMessage.isDisplayed(), "Error message is not displayed.");
+        softAssert.assertAll();
+    }
+
+    public void verifyActiveErrorMessage(String expectedErrorMessage){
+        basicActions.waitForElementToBeClickable(ActiveErrorMessage,30);
+        softAssert.assertEquals(ActiveErrorMessage.getText(), expectedErrorMessage,"Actual and Expected Error message is not matching");
+        softAssert.assertAll();
+    }
+
+    public void verifyNoErrors() {
+        basicActions.waitForElementToDisappear(ActiveErrorMessage,30);
+        softAssert.assertFalse(basicActions.waitForElementPresence(ActiveErrorMessage,20));
         softAssert.assertAll();
     }
 

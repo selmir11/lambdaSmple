@@ -38,6 +38,7 @@ public class Ob834PreEdiDbValidations {
     List<PolicyTablesEntity> dentalPolicyEnitities = new ArrayList<>();
 
     public void groupRecordsValidations(String recordType, List<Map<String, String>> expectedValues) {
+        SharedData.setRecType(recordType);
         switch (recordType) {
             case "medical":
                 setMedicalData();
@@ -429,7 +430,7 @@ public class Ob834PreEdiDbValidations {
         softAssert.assertEquals("1", ob834Entity.getTotal_subscribers(), "total subscribers did not match");
         softAssert.assertEquals(SharedData.getPlanYear(), ob834Entity.getPlan_year(), "plan year did not match");
         softAssert.assertTrue(dbDataMap.get(name).getRatingAreaName().contains(ob834Entity.getRate_area()));
-        softAssert.assertEquals(ob834Entity.getCsr_level(), dbDataMap.get(name).getCsrLevel(), "CSR level does not match");
+        softAssert.assertEquals(ob834Entity.getCsr_level(), SharedData.getRecType()!=null && SharedData.getRecType().contains("medical")&&SharedData.getIsAiAn()?"03":dbDataMap.get(name).getCsrLevel(), "CSR level does not match");
         softAssert.assertEquals(enrollees, ob834Entity.getTotal_enrollees().trim(), "Total enrollees does not match");
         softAssert.assertEquals(String.valueOf(Integer.parseInt(enrollees)-1), ob834Entity.getTotal_dependents().toString().trim(), "total dependents did not match");
         softAssert.assertEquals(getGrpNum(ob834Entity), ob834Entity.getMember_group(), "member group did not match");
