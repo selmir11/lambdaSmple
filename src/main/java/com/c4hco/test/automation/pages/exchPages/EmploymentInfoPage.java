@@ -1062,7 +1062,7 @@ public class EmploymentInfoPage {
 
     public void validateHeaderOnEmploymentIncome(List<String> pageHeader) {
         String signature=SharedData.getPrimaryMember().getSignature();
-        softAssert.assertEquals(txtEmploymentHeader1.getText(), pageHeader.get(0) +signature);
+        softAssert.assertEquals(txtEmploymentHeader1.getText(), pageHeader.get(0)+" "+signature);
         softAssert.assertEquals(txtEmploymentHeader2.getText(), pageHeader.get(1));
         softAssert.assertAll();
     }

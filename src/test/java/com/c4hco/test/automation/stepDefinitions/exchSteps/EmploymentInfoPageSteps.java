@@ -276,7 +276,4 @@ public class EmploymentInfoPageSteps {
     public void iValidateFunctionalityOfQuestion(String question) {
         employmentInfoPage.validateFunctionalityOfQuestions(question);
     }
-
-
-
 }
