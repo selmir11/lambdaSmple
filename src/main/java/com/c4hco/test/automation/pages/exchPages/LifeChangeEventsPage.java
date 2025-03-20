@@ -2,7 +2,6 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -121,6 +120,7 @@ public class LifeChangeEventsPage {
                 break;
             case "GainedAmericanIndianAlaskaNative":
                 lceInputCheckbox.get(5).click();
+                SharedData.setIsAiAn(true);
                 break;
             case "MovedToColorado":
                 lceInputCheckbox.get(6).click();
