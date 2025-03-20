@@ -276,4 +276,16 @@ public class EmploymentInfoPageSteps {
     public void iValidateFunctionalityOfQuestion(String question) {
         employmentInfoPage.validateFunctionalityOfQuestions(question);
     }
+
+    @Then("I validate Employment Income page for text design")
+    public void iverifiEmploymentIncomeTextDesign()  { employmentInfoPage.verifiEmploymentIncomeTextDesign(); }
+
+
+    @Then("I validate Employment Income page for YesOption text design")
+    public void iverifiEmploymentIncomeTextDesignYesOption()  { employmentInfoPage.verifiEmploymentIncomeTextDesignYesOption(); }
+
+
+    @Then("I validate Employment Income page for NoOption text design")
+    public void iverifiEmploymentIncomeTextDesignNoOption()  { employmentInfoPage.verifiEmploymentIncomeTextDesignNoOption(); }
+
 }
