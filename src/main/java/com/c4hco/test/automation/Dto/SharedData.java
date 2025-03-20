@@ -98,6 +98,7 @@ public class SharedData {
     @Getter @Setter private static List<String> Companyname;
     @Getter @Setter private static String FinancialIncome;
     @Getter @Setter private static Boolean isAiAn = false;
+    @Getter @Setter private static String recType = null;
 
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;
@@ -149,6 +150,7 @@ public class SharedData {
         Companyname = null;
         FinancialIncome = null;
         isAiAn = false;
+        recType = null;
     }
 
 }

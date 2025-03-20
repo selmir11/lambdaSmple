@@ -28,10 +28,9 @@ public class PolicyTableDbValidations {
     List<MemberDetails> subscribers;
     String policyStatus;
     String policyMemCoverageStatus;
-    String recType;
 
     public void groupRecordsValidations(String recordType) {
-        recType = recordType;
+        SharedData.setRecType(recordType);
             switch (recordType) {
                 case "medical":
                     policyStatus ="SUBMITTED";
@@ -115,7 +114,7 @@ public class PolicyTableDbValidations {
              dentalPlanDbDataMap = new HashMap<>();
              dbDataMap = new HashMap<>();
              subscribers = new ArrayList<>();
-             if(recType.contains("medical")){
+             if(SharedData.getRecType()!=null && SharedData.getRecType().contains("medical")){
                  SharedData.setDbDataNew(dbDataMapList);
                  SharedData.setMedicalPlanDbDataNew(medicalPlanDbDataMapList);
              }

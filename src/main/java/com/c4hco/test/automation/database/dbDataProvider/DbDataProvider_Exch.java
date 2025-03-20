@@ -163,7 +163,7 @@ public class DbDataProvider_Exch {
             if(SharedData.getHasBroker()){
                 brokerTinNum = getTinNumForBroker();
             }
-            csrLevel = SharedData.getIsAiAn()? "03" : getCSRLevel();
+            csrLevel = SharedData.getRecType()!=null && SharedData.getRecType().contains("medical") && SharedData.getIsAiAn()? "03" :getCSRLevel();
         }
         DbData dbData = new DbData();
 
