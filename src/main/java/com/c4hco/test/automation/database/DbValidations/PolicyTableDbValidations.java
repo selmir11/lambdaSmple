@@ -28,8 +28,10 @@ public class PolicyTableDbValidations {
     List<MemberDetails> subscribers;
     String policyStatus;
     String policyMemCoverageStatus;
+    String recType;
 
     public void groupRecordsValidations(String recordType) {
+        recType = recordType;
             switch (recordType) {
                 case "medical":
                     policyStatus ="SUBMITTED";
@@ -113,7 +115,10 @@ public class PolicyTableDbValidations {
              dentalPlanDbDataMap = new HashMap<>();
              dbDataMap = new HashMap<>();
              subscribers = new ArrayList<>();
-             SharedData.setDbDataNew(dbDataMapList);
+             if(recType.contains("medical")){
+                 SharedData.setDbDataNew(dbDataMapList);
+                 SharedData.setMedicalPlanDbDataNew(medicalPlanDbDataMapList);
+             }
         }
 
         private void medicalRecordsValidations() {
@@ -132,6 +137,7 @@ public class PolicyTableDbValidations {
                 }
             }
         }
+
             private void validateSubscriberMedDetails(MemberDetails subscriber, PolicyTablesEntity policyTablesEntity) {
                 getMedicalPlanDbDataMap(subscriber.getFirstName());
                softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), "SELF", "Relationship to subscriber does not match");

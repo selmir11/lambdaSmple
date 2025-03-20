@@ -142,7 +142,7 @@ public class DbDataProvider_Exch {
                 brokerTinNum = getTinNumForBroker();
             }
         if (!SharedData.getAppType().equals("coco")) {
-            csrLevel = SharedData.getIsAiAn()? "03" : getCSRLevel();
+            csrLevel = getCSRLevel();
         }
         DbData dbData = new DbData();
 
@@ -163,7 +163,7 @@ public class DbDataProvider_Exch {
             if(SharedData.getHasBroker()){
                 brokerTinNum = getTinNumForBroker();
             }
-            csrLevel = getCSRLevel();
+            csrLevel = SharedData.getIsAiAn()? "03" : getCSRLevel();
         }
         DbData dbData = new DbData();
 
@@ -201,7 +201,7 @@ public class DbDataProvider_Exch {
         String[] issuerNameId = getIssuerNameId(hiosIssuerId);
         String issuerName = issuerNameId[0];
         String issuerId = issuerNameId[1];
-        Map<String,String> csrMap = SharedData.getIsAiAn()? getSubscriberCSRDataFromDb_aian() : getSubscriberCSRDataFromDb();
+        Map<String,String> csrMap = getSubscriberCSRDataFromDb();
         String csrAmtMed =csrMap.get("1");
         Map<String, PlanDbData> medicalPlanDetailsFromDb = SharedData.getMedicalPlanDbData();
         if(medicalPlanDetailsFromDb==null) {
@@ -224,7 +224,7 @@ public class DbDataProvider_Exch {
         String[] issuerNameId = getIssuerNameId(hiosIssuerId);
         String issuerName = issuerNameId[0];
         String issuerId = issuerNameId[1];
-        Map<String,String> csrMap = getSubscriberCSRDataFromDb();
+        Map<String,String> csrMap = SharedData.getIsAiAn()? getSubscriberCSRDataFromDb_aian() : getSubscriberCSRDataFromDb();
         String csrAmtMed = csrMap.get("1");
         List<Map<String, PlanDbData>> medicalPlanDetailsFromDb = SharedData.getMedicalPlanDbDataNew();
         if(medicalPlanDetailsFromDb == null) {
