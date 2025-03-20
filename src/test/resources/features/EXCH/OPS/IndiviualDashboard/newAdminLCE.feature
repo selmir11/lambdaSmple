@@ -35,7 +35,7 @@ Feature: new admin LCE
     Then I click on application data dropdown arrow
     Then I click on Recreate application link number 1 for plan year 2025 on the Admin LCE page
     Then I verify Confirm change effective dates pop up displays on Admin LCE page
-#    Then I enter the effective date to "0430"
+    Then I enter the effective date to "0430" for year "2025" on Admin LCE page
     Then I click on confirm button on Admin LCE page
 
 
