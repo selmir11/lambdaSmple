@@ -432,7 +432,7 @@ Feature: Regression Tests that require Seed 1
     And I validate the ob999 "medical" file data
     And I validate the ob999 "dental" file data
 
-  @SLER-1992
+  @SLER-1992 @pol_exch_passed
   Scenario: RT-2052 ENR-EXCH: APPS - CSR LEVEL CHANGE (LCE: Gained AI/AN Tribal Status) SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
