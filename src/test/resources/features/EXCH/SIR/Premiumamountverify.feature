@@ -1,4 +1,4 @@
-@SIRRegression @Premium
+@SIR-EXCH17 @SIRRegression @Premium
   #SLER-1093
 Feature: Premium is not $0 when 4+ children
   @SLER-1093
