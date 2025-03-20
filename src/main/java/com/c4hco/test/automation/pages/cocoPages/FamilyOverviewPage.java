@@ -21,8 +21,8 @@ import java.util.regex.Pattern;
 public class FamilyOverviewPage {
 
     Actions actions = new Actions(WebDriverManager.getDriver());
-    String memberId1;
-    String exchangeMemberId1;
+    String memberId;
+    String exchangeMemberId;
 
     @FindBy(xpath = "//h1[contains(text(), 'Family Overview: Here’s what you’ve told us so far')]")
     WebElement familyOverviewHeader;
@@ -213,50 +213,37 @@ public class FamilyOverviewPage {
         softAssert.assertAll();
     }
     public  void retrievePrimaryMemberId(){
-        String memberId = basicActions.getMemberIDFromURL();
+        memberId = basicActions.getMemberIDFromURL();
         SharedData.getPrimaryMember().setMemberId(memberId);
-        memberId1=memberId;
     }
     public void retrievePrimaryMemberIdForExchangeAccount(){
         String memberId = basicActions.getMemberIDFromURL();
         SharedData.getPrimaryMember().setMemberId(memberId);
-        exchangeMemberId1=memberId;
+        exchangeMemberId=memberId;
     }
 
     public void validateCocoUrlToReflectMemberID(String pageName){
         String urlSameHouseHoldCoco;
         String urlDifferentHouseHoldCoco;
         String urlExchangeAccount;
-        String memberId2 = basicActions.getMember("Primary").getMemberId();
+        String memberIDCocoSameHouseHold = basicActions.getMember("Primary").getMemberId();
 
         switch (pageName){
             case "Employment Info":
-                urlSameHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/member/"+memberId2+"/employmentInfo";
-                urlDifferentHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/member/"+memberId1+"/employmentInfo";
-                urlExchangeAccount="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/member/"+exchangeMemberId1+"/employmentInfo";
+                urlSameHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/member/"+memberIDCocoSameHouseHold+"/employmentInfo";
+                urlDifferentHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/member/"+memberId+"/employmentInfo";
+                urlExchangeAccount="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/member/"+exchangeMemberId+"/employmentInfo";
                 validatePageAuthorization(urlSameHouseHoldCoco,urlDifferentHouseHoldCoco,urlExchangeAccount);
                 break;
-            case "Additional Income":
-                urlSameHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/additionalIncome/"+memberId2;
-                urlDifferentHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/additionalIncome/"+memberId1;
-                urlExchangeAccount="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/additionalIncome/"+exchangeMemberId1;
-                validatePageAuthorization(urlSameHouseHoldCoco,urlDifferentHouseHoldCoco,urlExchangeAccount);
-                break;
-            case "Deductions":
-                urlSameHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/deductions/"+memberId2;
-                urlDifferentHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/deductions/"+memberId1;
-                urlExchangeAccount="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/deductions/"+exchangeMemberId1;
-                validatePageAuthorization(urlSameHouseHoldCoco,urlDifferentHouseHoldCoco,urlExchangeAccount);
-                break;
-            case "Summary Details":
-                urlSameHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/summaryDetails/"+memberId2;
-                urlDifferentHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/summaryDetails/"+memberId1;
-                urlExchangeAccount="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/summaryDetails/"+exchangeMemberId1;
+            case "Additional Income", "Deductions", "Summary Details":
+                basicActions.wait(1000);
+                urlSameHouseHoldCoco = basicActions.getCurrentUrl().replaceAll("\\d+$", memberIDCocoSameHouseHold);
+                urlDifferentHouseHoldCoco= basicActions.getCurrentUrl().replaceAll("\\d+$", memberId);
+                urlExchangeAccount=basicActions.getCurrentUrl().replaceAll("\\d+$", exchangeMemberId);
                 validatePageAuthorization(urlSameHouseHoldCoco,urlDifferentHouseHoldCoco,urlExchangeAccount);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " +pageName);
-
         }
     }
     private void validatePageAuthorization(String urlSameHouseHoldCoco,String urlDifferentHouseHoldCoco,String urlExchangeAccount){

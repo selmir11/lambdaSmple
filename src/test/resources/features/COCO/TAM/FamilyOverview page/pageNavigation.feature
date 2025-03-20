@@ -240,6 +240,7 @@ Feature: Tests related to the Family Overview page
     Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "spouse"
     And I click save and continue on the Race and Ethnicity page
+    Then I validate I am on the "Employment Income" page
 
     #Validation Part
     Then I validate CoCo URL to reflect a Member ID of a CoCo member within or without the current household for "Employment Info" page
