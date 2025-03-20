@@ -194,6 +194,14 @@ public class OhcEmployerSponsoredHealthInsurancePage {
     @FindBy(xpath = "//span[text()='Please select one of the options below']//following::span[15]")
     WebElement errVolEndInsEn;
 
+    @FindBy(css = "div.input-error-message.error-icon.ng-star-inserted span.error-message")
+    WebElement healthinsuranceenrollmentstatuserrorMessage;
+
+    @FindBy(xpath = "//button[contains(@id,'CoverageTypeNoAccessButton')]//span[@class='ng-star-inserted']")
+    List<WebElement> coverageTypeNoAccessButtonLabels;
+
+    
+
 
     public void clickGoBack() {
         basicActions.waitForElementToBeClickable(goBackButton, 20);
@@ -1577,5 +1585,16 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(errVolEndInsEn.getText(), dataText.get(4), "Label Not matching");
         softAssert.assertAll();
     }
+
+    public void verifyErrorMessageForHealthInsuranceEnrollmentStatus() {
+        basicActions.waitForElementToBeClickable(healthinsuranceenrollmentstatuserrorMessage, 25);
+        softAssert.assertEquals(healthinsuranceenrollmentstatuserrorMessage.getText(), "Please select one option for each individual below");
+        softAssert.assertEquals(healthinsuranceenrollmentstatuserrorMessage.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+        softAssert.assertEquals(healthinsuranceenrollmentstatuserrorMessage.getCssValue("font-size"), "14px");
+        softAssert.assertEquals(healthinsuranceenrollmentstatuserrorMessage.getCssValue("font-weight"), "400");
+        softAssert.assertEquals(healthinsuranceenrollmentstatuserrorMessage.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        softAssert.assertAll();
+    }
+
 
 }

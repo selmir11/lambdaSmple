@@ -5,6 +5,8 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+
 public class LifeChangeEventsCoCoPageSteps {
     LifeChangeEventsCoCoPage lifeChangeEventsCoCoPage = new LifeChangeEventsCoCoPage(WebDriverManager.getDriver());
 
@@ -50,4 +52,9 @@ public class LifeChangeEventsCoCoPageSteps {
 
     @Then("I verify LCE CoCo error format for {string}")
     public void iVerifyErrorFormat(String incomeType){lifeChangeEventsCoCoPage.verifyErrorFormat(incomeType);}
+
+    @Then("I verify that the text format follows either the English or Spanish format listed below")
+    public void i_validate_the_text_format_is_aligned_with_language(List<String> expectedText) {
+    lifeChangeEventsCoCoPage.verifyTextFormatInGivenLanguage(expectedText);
+    }
 }
