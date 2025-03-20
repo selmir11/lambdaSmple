@@ -11,7 +11,6 @@ import org.testng.Assert;
 import java.io.File;
 import java.net.URI;
 import java.net.URL;
-import java.security.SecureRandom;
 import java.text.Collator;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -660,6 +659,13 @@ public class BasicActions {
         return Integer.toString(today.getYear() + 1);
     }
 
+    public String getFirstOfJanNextYr() { // January 1st of next year
+        LocalDate today = LocalDate.now();
+        LocalDate date = LocalDate.of(today.getYear() + 1, 1, 1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return date.format(formatter);
+    }
+
     public String getFirstOfJanCurrYr() { // January 1st of current year
         LocalDate today = LocalDate.now();
         LocalDate date = LocalDate.of(today.getYear(), 1, 1);
@@ -798,6 +804,9 @@ public class BasicActions {
                     break;
                 case "Previous Previous Year":
                     date = getPastYear(2);
+                    break;
+                case "First Day Of Next Year":
+                    date = getFirstOfJanNextYr();
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid option: " + dateRequirement);
@@ -1333,32 +1342,13 @@ public class BasicActions {
         } while (previousSize != currentSize);
         return true;
     }
-    public boolean isMultipleSelection(WebElement dropdownElement) {
-        boolean status;
-        Select select=new Select(dropdownElement);
-        if (select.isMultiple()) {System.out.println("This select element allows multiple selections.");
-            status=true;
-        } else {
-            System.out.println("This select element allows single selection.");
-            status=false;
-        }
-        return status;
-    }
-    public String generateRandomStringWithAnyLength(int length) {
-        final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        final SecureRandom random = new SecureRandom();
-        StringBuilder result = new StringBuilder(length);
-        for (int i = 0; i < length; i++) {
-            int index = random.nextInt(CHARACTERS.length());
-            result.append(CHARACTERS.charAt(index));
-        }
-        return result.toString();
-    }
-    public void sendTextUsingJavaScript(WebElement element,String text) {
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) getDriver();
-        jsExecutor.executeScript("arguments[0].value = arguments[1];", element, text);
-    }
 
+    public void changeMemberIdInUrlWithRandom() {
+        String currentUrl = driver.getCurrentUrl();
+        String randomMemberId = String.format("%08d", new Random().nextInt(100000000));
+        String newUrl = currentUrl.replaceAll("/\\d+$", "/" + randomMemberId);
+        driver.navigate().to(newUrl);
+    }
 }
 
 

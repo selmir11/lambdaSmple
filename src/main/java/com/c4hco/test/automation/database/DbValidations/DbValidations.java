@@ -852,15 +852,15 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-    public void validateVLPResponseCode(String expectedResponseCode) {
-        String actualResponseCode = exchDbDataProvider.getVLPResponseCode();
+    public void validateVLPResponseCode(String expectedResponseCode, String requestType) {
+        String actualResponseCode = exchDbDataProvider.getVLPResponseCode(requestType);
         softAssert.assertEquals(actualResponseCode.trim(), expectedResponseCode);
         softAssert.assertAll();
     }
 
-    public void validateVLPRetryTypeandStatus(String expectedRetryType, String expectedStatus) {
-        String actualRetryType = exchDbDataProvider.getVLPRetryType();
-        String actualRetryStatus = exchDbDataProvider.getVLPRetryStatus();
+    public void validateFDSHRetryTypeandStatus(String expectedRetryType, String expectedStatus) {
+        String actualRetryType = exchDbDataProvider.getFDSHRetryType();
+        String actualRetryStatus = exchDbDataProvider.getFDSHRetryStatus();
         softAssert.assertEquals(actualRetryType.trim(), expectedRetryType);
         softAssert.assertEquals(actualRetryStatus.trim(), expectedStatus);
         softAssert.assertAll();
@@ -957,6 +957,38 @@ public class DbValidations {
         String eligibilityType = exchDbDataProvider.getEligibilityType();
         softAssert.assertEquals(eligibilityType, reasonCode, "Amount does not match! Expected to contain: " + reasonCode + " Found: " + eligibilityType);
         softAssert.assertAll();
+    }
+
+    public void verifyDeterminationEffectiveDate(String qlceType, String dateType){
+        String dbValues[] = exchDbDataProvider.getDeterminationEffectiveDate();
+        softAssert.assertEquals(dbValues[0], qlceType, "QLCE Type was " + dbValues[0] + " instead of " + qlceType);
+        softAssert.assertEquals(dbValues[1], basicActions.getDateBasedOnRequirement(dateType) + " 00:00:00", "QLCE Type was " + dbValues[1] + " instead of " + basicActions.getDateBasedOnRequirement(dateType) + " 00:00:00");
+        softAssert.assertAll();
+    }
+
+    public void validateOutcomeInd(String outcome) {
+        String outcomeIndDb = exchDbDataProvider.getOutcomeInd();
+        softAssert.assertEquals(outcomeIndDb, outcome);
+        softAssert.assertAll();
+    }
+
+    public void validateRemovedEffectiveDate() {
+        String removedEffectiveDate = exchDbDataProvider.getRemovedEffectiveDate();
+        softAssert.assertEquals(removedEffectiveDate, basicActions.getDateBasedOnRequirement("First Day Of Next Year") + " 00:00:00");
+        softAssert.assertAll();
+    }
+
+    public void validateApplyingForCoverageIndDB(String FName, String applying){
+        List<MemberDetails> memberList=basicActions.getAllMem();
+        for(MemberDetails actualMember : memberList) {
+            if(actualMember.getFirstName().contains(FName)) {
+                String FirstName = actualMember.getFirstName();
+                List<String> dbValues = exchDbDataProvider.getInfoForTellAboutAdditionalInformation(FirstName);
+                softAssert.assertEquals(dbValues.get(5), applying);
+                softAssert.assertAll();
+                break;
+            }
+        }
     }
 }
 

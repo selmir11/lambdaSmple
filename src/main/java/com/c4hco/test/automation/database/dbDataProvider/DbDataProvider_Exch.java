@@ -618,16 +618,16 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultFor("outcome_ind", exchDbQueries.getCyaEligibility());
     }
 
-    public String getVLPResponseCode() {
-        return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPResponseCodeInfo());
+    public String getVLPResponseCode(String requestType) {
+        return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPResponseCodeInfo(requestType));
     }
 
-    public String getVLPRetryType() {
-        return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPRetryType());
+    public String getFDSHRetryType() {
+        return postgresHandler.getResultFor("response_code", exchDbQueries.getFDSHRetryType());
     }
 
-    public String getVLPRetryStatus() {
-        return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPRetryStatus());
+    public String getFDSHRetryStatus() {
+        return postgresHandler.getResultFor("response_code", exchDbQueries.getFDSHRetryStatus());
     }
 
     public List<String> getSubscribers(String memId) {
@@ -662,4 +662,14 @@ public class DbDataProvider_Exch {
 
     public String getEligibilityType(){
         return postgresHandler.getResultFor("eligibility_type", exchDbQueries.getEligibilityTypeQuery());}
+
+    public String[] getDeterminationEffectiveDate(){
+        return postgresHandler.getResultForTwoColumnValues("determination", "effective_date", exchDbQueries.getgetDeterminationEffectiveDateDetails());
+    }
+
+    public String getOutcomeInd(){
+        return postgresHandler.getResultFor("outcome_ind", exchDbQueries.getOutcomeIndQuery());}
+
+    public String getRemovedEffectiveDate(){
+        return postgresHandler.getResultFor("removed_effective_date", exchDbQueries.getRemovedEffectiveDateQuery());}
 }
