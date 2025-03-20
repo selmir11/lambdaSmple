@@ -1,13 +1,14 @@
-@SIR-EXCH4 @SIRRegression @Dental
-  # SLER-1098
-Feature: UI Page Validation - Plan Results (Dental)
+@SIR-EXCH15 @MedicalPDF @SIR
+  # contains SLER-2009-WIP,
+Feature: Medical Plan Detail page related tests
 
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-1098
-  Scenario: SLER-1098 - This test case will verify the page content, navigation, and functionality of the Plan Results (Dental) page
+  @SLER-2009-WIP @MedicalDetailDocumentSuccessfulDownload
+    # application properties - pdf testing row must be set to "yes" otherwise this will fail
+  Scenario Outline: SLER-2009 - Validate the documents found on the Detail Plans page when the Network Links are switched (Medical)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -24,14 +25,12 @@ Feature: UI Page Validation - Plan Results (Dental)
     Then I click on continue with  application button on Before you begin page
 
     # Question not asked during Open Enrollment
-    And I report "Birth" and click continue
+    And I report "MovedToColorado" and click continue
 
     Then I validate I am on the "Who Are You" page
     Then I select "member" from the who are you question
     And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
-
     Then I answer all Id proofing questions and click continue
-
     And I click continue button on Congratulations page
 
     Then I validate I am on the "Find Expert Help" page
@@ -56,7 +55,7 @@ Feature: UI Page Validation - Plan Results (Dental)
     And I click continue on the Citizenship page
     Then I click continue on family overview page
     And I Apply for no financial help
-    Then I select "Birth" QLCE on tell us about life changes page
+    Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
     And I Declare as Tax Household 1
     Then I click Continue on the Declarations And Signature Page
@@ -69,18 +68,19 @@ Feature: UI Page Validation - Plan Results (Dental)
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    Then I click skip on medical plan results page
+    And I select the Insurance Company dropdown
+    And I select "<carrierOption>" to filter for desired plan provider
+    And I select the first plan detail
 
-    Then I validate I am on the "Dental Plan Results" page
-    And  I validate the text in dental plan results page
-    Then I click on the First Dental Detail button
+    Then I validate I am on the "Medical Plan Detail" page
 
-    Then I validate I am on the "Dental Plan Detail" page
-    And I click Go Back on the Dental Detail page
-
-    Then I validate I am on the "Dental Plan Results" page
-    Then I select first dental plan
-    And  I click on the remove plan button on dental plan results page
-    And I click on Sign Out in the Header for "Portal"
-
-
+    And I validate the "<carrierDocs>" document upload links for the Medical Detail page
+    Then I click on Sign Out in the Header for "Portal"
+    Examples:
+      | carrierOption | carrierDocs |
+      | Anthem        | Anthem      |
+     # | Cigna Healthcare                  | Cigna       |
+    #  | Denver Health                     | Denver      |
+    #  | Kaiser Permanente                 | Kaiser      |
+     # | Rocky Mountain Health Plans / UHC | Rocky       |
+     # | Select Health                     | Select      |

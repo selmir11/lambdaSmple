@@ -1,4 +1,4 @@
-@SIR-EXCH4 @DentalPlans
+@SIR-EXCH5 @DentalPlans
   #contains SLER-747, SLER-1003,
 Feature: Tests related to dental plans
 
