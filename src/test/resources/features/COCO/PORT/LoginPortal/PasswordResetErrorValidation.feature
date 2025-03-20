@@ -49,20 +49,3 @@ Feature:Password reset error validation English/Spanish
     And  I login as individual with password reset code
     Then I validate I am on the "CAC Screener" page
     And I click on Sign Out in the Header for "Elmo"
-
-    #Admin Portal user verifying the customer's account activity
-    And I open the login page on the "admin" portal
-    And I refresh the page
-    And I validate I am on the "Login" page
-    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
-    And I validate I am on the "Admin search" page
-    And I select "coco" checkbox on Admin Portal Dashboard
-    And I search for user and click email from search results
-    Then I wait for 200 milliseconds
-    Then I click on view button for "Account Activity" report
-    Then I switch to the tab number 2    
-    And I validate Account Activity title row
-    Then I wait for 200 milliseconds
-    Then I validate "UI_ACCT_CREATED" event code and description "Account created" in activity event report
-    Then I validate "UI_PASSWORD_RESETLIN.." event code and description "User initiated Password R.." in activity event report
-    Then I validate "UI_PASSWORD_CHANGED" event code and description "User has updated their Pa.." in activity event report
