@@ -327,7 +327,7 @@ Feature: Seed04 - Exchange
     And I click on Sign Out in the Header for "Elmo"
     Given I set the dynamic policy, coverage and financial dates for "medical" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate | FinancialEndDate         |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of NextMonth | Last Day Of Current Year |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
     And I validate "medical" entities from pre edi db tables
