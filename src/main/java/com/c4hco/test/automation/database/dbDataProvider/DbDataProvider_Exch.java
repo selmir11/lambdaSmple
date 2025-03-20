@@ -3,7 +3,6 @@ package com.c4hco.test.automation.database.dbDataProvider;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
-import com.c4hco.test.automation.database.Queries.DBQueries_qa_coco;
 import com.c4hco.test.automation.database.Queries.DbQueries_Exch;
 import com.c4hco.test.automation.database.dbHandler.*;
 import com.c4hco.test.automation.utils.BasicActions;
@@ -128,6 +127,10 @@ public class DbDataProvider_Exch {
         return csrAmount;
     }
 
+    public Map<String,String> getSubscriberCSRDataFromDb_aian(){
+        Map<String,String> csrAmount =  postgresHandler.getResultForTwoColumnValuesInMap("coverage_type","csr_amt", exchDbQueries.getMedCSRRecords_aian());
+        return csrAmount;
+    }
 
     public void setDataFromDb(){
         String fipcode = getFipcode();
@@ -221,8 +224,8 @@ public class DbDataProvider_Exch {
         String[] issuerNameId = getIssuerNameId(hiosIssuerId);
         String issuerName = issuerNameId[0];
         String issuerId = issuerNameId[1];
-        Map<String,String> csrMap = getSubscriberCSRDataFromDb();
-        String csrAmtMed =csrMap.get("1");
+        Map<String,String> csrMap = SharedData.getIsAiAn()? getSubscriberCSRDataFromDb_aian() : getSubscriberCSRDataFromDb();
+        String csrAmtMed = csrMap.get("1");
         List<Map<String, PlanDbData>> medicalPlanDetailsFromDb = SharedData.getMedicalPlanDbDataNew();
         if(medicalPlanDetailsFromDb == null) {
             medicalPlanDetailsFromDb = new ArrayList<>();
@@ -235,7 +238,6 @@ public class DbDataProvider_Exch {
         planDbData.setIssuerId(issuerId);
         planDbData.setHiosIssuerId(hiosIssuerId);
         planDbData.setCsrAmt(csrAmtMed);
-
         planDbDataMap.put(name, planDbData);
 
         medicalPlanDetailsFromDb.add(planDbDataMap);
