@@ -345,7 +345,7 @@ Feature: Seed02 - Coco
     Then I validate I am on the "CoCo Family Overview" page
     And I click EditUpdate on Family Overview page for "Spouse"
     And I click continue on Tell us about additional members of your household page
-    And I update the residential AddressLine1 "101 Texas Road", AddressLine2 "Suite 4B", City "Austin", State "TX", Zipcode "73301", and County "TRAVIS" for additional member
+    And I update the residential for member "Spouse" to AddressLine1 "101 Texas Road", AddressLine2 "Suite 4B", City "Austin", State "TX", Zipcode "73301", and County "TRAVIS" for additional member
     And I select "No" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Race and Ethnicity" page

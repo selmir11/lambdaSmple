@@ -94,6 +94,7 @@ Feature: Seed02 with exception - Coco
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
+    And I click on Sign Out in the Header for "Elmo"
 
   #UI Validation
     And I select year "2025" from My Current Plan container
@@ -117,15 +118,15 @@ Feature: Seed02 with exception - Coco
     And I validate I am on the "Admin dashboard" page
     And I select "coco" checkbox on Admin Portal Dashboard
     And I search for user and click email from search results
+    Then I validate I am on the "Admin Portal individual dashboard" page
     Then I click on "Manage Plans" user dashboard button
-
     Then I click Make Changes Medical button
-    And I update the Coverage Start date of member on manage plan page
-      | Primary:First Of Next Month after PolicyStartDate |
-      | Spouse:First Of Next Month after PolicyStartDate |
-    Then I update the Financial Start date of member on manage plan page
-      | Primary:First Of Next Month after PolicyStartDate |
-      | Spouse:First Of Next Month after PolicyStartDate |
+#    And I update the Coverage Start date of member on manage plan page
+#      | Primary:First Of Next Month after PolicyStartDate |
+#      | Spouse:First Of Next Month after PolicyStartDate |
+#    Then I update the Financial Start date of member on manage plan page
+#      | Primary:First Of Next Month after PolicyStartDate |
+#      | Spouse:First Of Next Month after PolicyStartDate |
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab

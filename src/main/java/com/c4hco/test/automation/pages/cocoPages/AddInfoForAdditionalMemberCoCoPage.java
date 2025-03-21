@@ -345,7 +345,7 @@ public class AddInfoForAdditionalMemberCoCoPage {
             }
         }
     }
-    public void updateResidentialAddressAddlMem(String addressLine1, String addressLine2,String city, String state, String zipcode,String county ){
+    public void updateResidentialAddressAddlMem(String memPrefix, String addressLine1, String addressLine2,String city, String state, String zipcode,String county ){
         basicActions.waitForElementToBePresent(addressLine1Input, 30);
         addressLine1Input.click();
         addressLine1Input.clear();
