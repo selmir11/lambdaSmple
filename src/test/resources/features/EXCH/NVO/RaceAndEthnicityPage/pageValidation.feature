@@ -47,7 +47,7 @@ Feature: Page Validation-Race And Ethnicity page
     #Footer
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
-    Then I validate I am on the "Deductions" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms Of Use" page and close tab
     Then I validate I am on the "Race and Ethnicity" page
