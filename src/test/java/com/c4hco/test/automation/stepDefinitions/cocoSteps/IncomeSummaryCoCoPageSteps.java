@@ -76,5 +76,8 @@ public class IncomeSummaryCoCoPageSteps {
     @And("I verify no error shows on the Income Summary page")
     public void iVerifyNoErrors(){incomeSummaryCoCoPage.verifyNoErrors();}
 
+    @Then("I verify the deduction Amount {string} on the Income Summary Coco Page")
+    public void iVerifyDeductionAmount(String amount) {incomeSummaryCoCoPage.verifyDeductionAmount(amount);}
+
 
 }

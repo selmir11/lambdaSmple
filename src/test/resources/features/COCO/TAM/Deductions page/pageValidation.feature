@@ -324,7 +324,7 @@ Feature: Tests related to the Deductions page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-    @SLCR-799
+  @SLCR-799
   Scenario: SLCR-799 - As CoCo user on the ELMO Income pages, I verify errors cleared on the Deductions page so that I don't see errors when I select an option[CCRT-728]
     And I select continue on the Deductions CoCo page
     Then I verify error for Deductions no option in "English" CoCo page
@@ -349,7 +349,7 @@ Feature: Tests related to the Deductions page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-819 
+  @SLCR-819
   Scenario: SLCR-819 As COCO user, I want to see the ELMO Deductions page
   so that I can enter my deduction information [CCRT-537]
     #Step1
@@ -429,3 +429,20 @@ Feature: Tests related to the Deductions page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
     Then I validate I am on the "CoCo Deductions" page
+
+
+  @SLCR-838
+  Scenario: As CoCo user on the Income Summary page,
+  I want to see my Income and Deductions so that I can review my financial information [CCRT-552]
+    And I select continue on the Deductions CoCo page
+    Then I verify the header for Primary Member on the CoCo Deductions page in "English"
+    Then I verify User name Link is displayed in the "CoCo" Header
+    And I verify text on the "CoCo" "Header" in "English"
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "School tuition" as deduction option with "2000.00" amount at "Annually" frequency
+    Then I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I verify the deduction Amount "$2,000.00" on the Income Summary Coco Page
+    And I select continue on the income Summary CoCo page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I verify the deduction Amount "-$2,000.00" on the CoCo Family Overview page

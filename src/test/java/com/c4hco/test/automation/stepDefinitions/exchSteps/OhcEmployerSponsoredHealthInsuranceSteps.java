@@ -142,5 +142,11 @@ public class OhcEmployerSponsoredHealthInsuranceSteps {
     public void i_verify_the_standard_errors_reflected_in_the_esi_page(List<String> dataText) {
         ohcEmployerSponsoredHealthInsurancePage.verifyStdErrorTextInESIPage(dataText);
     }
+    @Then("I validate the health insurance enrollment status error message")
+    public void validateHealthInsuranceEnrollmentStatusError() {
+        ohcEmployerSponsoredHealthInsurancePage.verifyErrorMessageForHealthInsuranceEnrollmentStatus();
+    }
+
+
 
 }
