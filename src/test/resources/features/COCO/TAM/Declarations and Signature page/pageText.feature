@@ -266,3 +266,17 @@ Feature: PageText-Declarations and Signature Page
     And I verify the error message "Signature must match name" when I click on continue button without entering the value in Electronic signature input box
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLCR-861 @SLCR-862
+  Scenario Outline: <TestNumber> Verify verbiage consistency on Declarations and Signature page - <Language>
+    Then I change the language from header to "<Language>"
+    And I verify the header for Primary Member on the CoCo Declarations And Signature page in "<Language>"
+    Then I verify the text on CoCo Declarations and Signature page in "<Language>"
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+    Examples:
+      | TestNumber | Language |
+      | SLCR-861   | English  |
+      | SLCR-862   | Spanish  |

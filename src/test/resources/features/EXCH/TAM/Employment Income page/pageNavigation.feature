@@ -420,7 +420,11 @@ Feature: Page Text-Employment Income Page
     Then I click Edit on Income Summary row 1
     Then I validate I am on the "Employment Income" page
 
-
-
-
-
+    @SLER-2354 @wip
+    Scenario: Navigation on the ELMO Employment Details Income Page in EXCH [RT-2579]
+      Then I select the option "Yes" to employment
+      And I select the option "No" to self employment
+      And I enter employment details with "1276000" income at "Annually" frequency
+      And I select the option "No" to seasonal employment
+      And I select the option "No" to projected income
+      Then I click continue on the Employment Info Page
