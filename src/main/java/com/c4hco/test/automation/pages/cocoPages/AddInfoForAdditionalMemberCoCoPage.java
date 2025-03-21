@@ -345,4 +345,23 @@ public class AddInfoForAdditionalMemberCoCoPage {
             }
         }
     }
+    public void updateResidentialAddressAddlMem(String addressLine1, String addressLine2,String city, String state, String zipcode,String county ){
+        basicActions.waitForElementToBePresent(addressLine1Input, 30);
+        addressLine1Input.click();
+        addressLine1Input.clear();
+        addressLine1Input.sendKeys(addressLine1);
+        addressLine2Input.click();
+        addressLine2Input.clear();
+        addressLine2Input.sendKeys(addressLine2);
+        cityInput.click();
+        cityInput.clear();
+        cityInput.sendKeys(city);
+        stateDropdown.click();
+        basicActions.selectValueFromDropdown(stateDropdown, stateDropdownOptions, state);
+        zipcodeInput.click();
+        zipcodeInput.clear();
+        zipcodeInput.sendKeys(zipcode);
+        countyDropdown.click();
+        basicActions.selectValueFromDropdown(countyDropdown, countyDropdownOptions, county);
+    }
 }

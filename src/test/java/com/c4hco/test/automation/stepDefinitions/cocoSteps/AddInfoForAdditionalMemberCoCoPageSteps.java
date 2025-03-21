@@ -58,4 +58,7 @@ public class AddInfoForAdditionalMemberCoCoPageSteps {
     public void updateaddressLine1AndaddressLine2(String addressLine1, String addressLine2){
         addInfoForAdditionalMemberPage.updateAddressLine1AndAddressLine2AddtlMem(addressLine1, addressLine2);
     }
+    @And("I update the residential AddressLine1 {string}, AddressLine2 {string}, City {string}, State {string}, Zipcode {string}, and County {string} for additional member")
+    public void updateResidentialAddressAddlMem(String addressLine1, String addressLine2,String city, String state, String zipcode,String county){
+        addInfoForAdditionalMemberPage.updateResidentialAddressAddlMem(addressLine1, addressLine2, city, state, zipcode, county);}
 }

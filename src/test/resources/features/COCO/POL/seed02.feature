@@ -332,4 +332,37 @@ Feature: Seed02 - Coco
       Then I validate I am on the "Application Results CoCo" page
       And I click on Sign Out in the Header for "Elmo"
 
+  @SLCR-856-WIP
+  Scenario: CCRT-130 - ENR-COCO: AUTO PROCESS POLICY - MEMBER NOT ELIGIBLE (Not a Colorado Resident)
+    Given I open the login page on the "login" portal
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
+    And I click make Changes button on welcome page
+    Then I validate I am on the "Find Expert Help" page
+    And I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I click EditUpdate on Family Overview page for "Spouse"
+    And I click continue on Tell us about additional members of your household page
+    And I update the residential AddressLine1 "101 Texas Road", AddressLine2 "Suite 4B", City "Austin", State "TX", Zipcode "73301", and County "TRAVIS" for additional member
+    And I select "No" for live in Colorado option for additional member
+    And I click continue on the Additional information for additional member page
+    Then I validate I am on the "Race and Ethnicity" page
+    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Employment income page
+    And I select continue on the Additional Income CoCO page
+    And I select continue on the Deductions CoCo page
+    And I select continue on the income Summary CoCo page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I select "Move:Spouse" life change event with event date of "Today"
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    Then I validate I am on the "Application Results CoCo" page
+    And I click on Sign Out in the Header for "Elmo"
+
 

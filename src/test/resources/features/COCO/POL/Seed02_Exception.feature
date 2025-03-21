@@ -1,6 +1,6 @@
 Feature: Seed02 with exception - Coco
 
-  Scenario: Seed 02 For Coco -  Husband+Wife with FA
+  Background: Seed 02 With Exception For Coco -  Husband+Wife with FA
 
     Given I set the test scenario details in coco
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
@@ -108,3 +108,24 @@ Feature: Seed02 with exception - Coco
       | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
     And I validate the coco ob834 medical file data that present in localPath or coco sftp server "/outboundedi/"
     And I validate the coco ob834 medical file data
+
+  @SLCR-807-WIP
+  Scenario: CCRT-369 - ENR-COCO: EDIT POLICY - COVERAGE & FINANCIAL START DATES LATER THAN POLICY START DATE
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin dashboard" page
+    And I select "coco" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    Then I click on "Manage Plans" user dashboard button
+    Then I click Make Changes Medical button
+    And I update the Coverage Start date of member on manage plan page
+      | Primary:Future |
+      | Spouse:Future |
+    Then I update the Financial Start date of member on manage plan page
+      | Primary:Future |
+      | Spouse:Future |
+    And I click Save Button Medical
+    And I select the reason to confirm the changes
+    Then I close current tab and switch back to previous tab
+    And logout from Admin Portal
