@@ -14,6 +14,7 @@ import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,8 +22,7 @@ import java.util.regex.Pattern;
 public class FamilyOverviewPage {
 
     Actions actions = new Actions(WebDriverManager.getDriver());
-    String memberId;
-    String exchangeMemberId;
+    List<String> memberIDs=new ArrayList<>();
 
     @FindBy(xpath = "//h1[contains(text(), 'Family Overview: Here’s what you’ve told us so far')]")
     WebElement familyOverviewHeader;
@@ -212,34 +212,32 @@ public class FamilyOverviewPage {
         softAssert.assertTrue(redCircleExclamationMarkForBasicHouseholdAndAnnualFinancialInformation.get(1).isDisplayed(),"Red circle exclamation mark for Annual Financial Information is not visible");
         softAssert.assertAll();
     }
+
     public  void retrievePrimaryMemberId(){
-        memberId = basicActions.getMemberIDFromURL();
-        SharedData.getPrimaryMember().setMemberId(memberId);
-    }
-    public void retrievePrimaryMemberIdForExchangeAccount(){
         String memberId = basicActions.getMemberIDFromURL();
         SharedData.getPrimaryMember().setMemberId(memberId);
-        exchangeMemberId=memberId;
+        memberIDs.add(memberId);
     }
 
     public void validateCocoUrlToReflectMemberID(String pageName){
         String urlSameHouseHoldCoco;
         String urlDifferentHouseHoldCoco;
         String urlExchangeAccount;
-        String memberIDCocoSameHouseHold = basicActions.getMember("Primary").getMemberId();
-
+        String memberIdCocoSameHouseHold = basicActions.getMember("Primary").getMemberId();
+        String memberIdDifferentHouseHold=memberIDs.get(0);
+        String memberIDExchangeAccount=memberIDs.get(1);
         switch (pageName){
             case "Employment Info":
-                urlSameHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/member/"+memberIDCocoSameHouseHold+"/employmentInfo";
-                urlDifferentHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/member/"+memberId+"/employmentInfo";
-                urlExchangeAccount="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/member/"+exchangeMemberId+"/employmentInfo";
+                urlSameHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/member/"+memberIdCocoSameHouseHold+"/employmentInfo";
+                urlDifferentHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/member/"+memberIdDifferentHouseHold+"/employmentInfo";
+                urlExchangeAccount="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/member/"+memberIDExchangeAccount+"/employmentInfo";
                 validatePageAuthorization(urlSameHouseHoldCoco,urlDifferentHouseHoldCoco,urlExchangeAccount);
                 break;
             case "Additional Income", "Deductions", "Summary Details":
                 basicActions.wait(1000);
-                urlSameHouseHoldCoco = basicActions.getCurrentUrl().replaceAll("\\d+$", memberIDCocoSameHouseHold);
-                urlDifferentHouseHoldCoco= basicActions.getCurrentUrl().replaceAll("\\d+$", memberId);
-                urlExchangeAccount=basicActions.getCurrentUrl().replaceAll("\\d+$", exchangeMemberId);
+                urlSameHouseHoldCoco = basicActions.getCurrentUrl().replaceAll("\\d+$", memberIdCocoSameHouseHold);
+                urlDifferentHouseHoldCoco= basicActions.getCurrentUrl().replaceAll("\\d+$",memberIdDifferentHouseHold);
+                urlExchangeAccount=basicActions.getCurrentUrl().replaceAll("\\d+$", memberIDExchangeAccount);
                 validatePageAuthorization(urlSameHouseHoldCoco,urlDifferentHouseHoldCoco,urlExchangeAccount);
                 break;
             default:

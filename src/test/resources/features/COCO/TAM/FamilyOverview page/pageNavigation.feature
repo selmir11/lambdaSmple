@@ -195,7 +195,7 @@ Feature: Tests related to the Family Overview page
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I retrieve the memberId of primary member from url for exchange account
+    And I retrieve the memberId of primary member from url
     And I click on Sign Out in the Header for "Elmo"
 
     When I click create a new account on login page

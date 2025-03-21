@@ -45,12 +45,8 @@ public class FamilyOverviewSteps {
     public void iVerifyWeNeedMoreInfoTextAndOtherDetails() { familyOverviewPage.verifyWeNeedMoreInfoTextAndOtherDetails(); }
 
     @And("I retrieve the memberId of primary member from url")
-    public void iRetrieveTheMemberIdOfPrimaryMemberFromUrl() {
+    public void iRetrieveTheMemberIdOfMemberFromUrl() {
         familyOverviewPage.retrievePrimaryMemberId();
-    }
-    @And("I retrieve the memberId of primary member from url for exchange account")
-    public void I_retrieve_the_memberId_of_primary_member_from_url_for_exchange_account() {
-        familyOverviewPage.retrievePrimaryMemberIdForExchangeAccount();
     }
     @Then("I validate CoCo URL to reflect a Member ID of a CoCo member within or without the current household for {string} page")
     public void iValidateCoCoURLToReflectAMemberIDOfACoCoMemberWithinTheCurrentHouseholdFor(String pageName) {
