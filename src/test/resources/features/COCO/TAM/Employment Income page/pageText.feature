@@ -286,7 +286,7 @@ Feature: Tests related to the Employment Income page
     Then I verify the income frequency options in "Spanish"
     Then I verify the navigation buttons on the CoCo Employment Income page in "Spanish"
 
-  @SLCR-774 @SLCR-865 @test
+  @SLCR-774 @SLCR-865
   Scenario Outline: <TestNumber> Page Validation-Employment Income - <Language>
     Then I change the language from header to "<Language>"
     And I click continue on the Employment income page
@@ -308,7 +308,7 @@ Feature: Tests related to the Employment Income page
       |SLCR-774  |English |Amount is required          |Please select one of the options below   |
       |SLCR-865  |Spanish |Esta cantidad es obligatoria|Seleccione una de las siguientes opciones|
 
-  @SLCR-793 @SLCR-864 @test
+  @SLCR-793 @SLCR-864
   Scenario Outline: <TestNumber> I want error focus state for all components updated so that they are consistent with the style definitions in the Design System - Employer Income - <Language>
     Then I change the language from header to "<Language>"
     And I verify the header for Primary Member on the CoCo Employment income page in "<Language>"
