@@ -88,21 +88,22 @@ Feature: Regression Tests that require Seed 1 w/exception
     And I validate "dental" details on my policies page
     And I click on Sign Out in the Header for "Elmo"
 
+    #DB Validation
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
     And I validate "medical" entities from pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
     And I validate "dental" entities from pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
-    And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
-  @SLER-1993-WIP-@R4V
+  @SLER-1993 @pol_exch_passed
   Scenario: RT-2327 ENR-EXCH: EDIT POLICY - COVERAGE & FINANCIAL END DATES  (CANCEL)
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
@@ -110,18 +111,39 @@ Feature: Regression Tests that require Seed 1 w/exception
     And I validate I am on the "Admin dashboard" page
     And I search for user and click email from search results
     Then I click on manage plan button on admin portal Individual dashboard
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate     | PolicyEndDate      | CoverageStartDate   | CoverageEndDate     | FinancialStartDate  | FinancialEndDate    |
+      | First Of Next Month |First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate     | PolicyEndDate      | CoverageStartDate   | CoverageEndDate     | FinancialStartDate  | FinancialEndDate    |
+      | First Of Next Month |First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month |
     Then I click Make Changes Medical button
-    Then I update the coverage end date
-      | 1:Cancel |
-    And I update the financial end date
-      | 1:Cancel |
+    And I update the Coverage End date of member on manage plan page
+      | Primary:Cancel |
+    And I update the Financial End date of member on manage plan page
+      | Primary:Cancel |
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I click Make Changes Dental button
-    Then I update the coverage end date
-      | 1:Cancel |
-    And I update the financial end date
-      | 1:Cancel|
+    And I update the Coverage End date of member on manage plan page
+      | Primary:Cancel |
+    And I update the Financial End date of member on manage plan page
+      | Primary:Cancel |
     And I click Save Button Dental
     And I select the reason to confirm the changes
     Then logout from Admin Portal
+        #DB Validation
+    And I validate "medical-cancelled" entities from policy tables
+    And I validate "dental-cancelled" entities from policy tables
+
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason|
+      | 024                   | 024                | AI                    |   CANCEL          |           |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason|
+      | 024                   | 024                | AI                    |   CANCEL          |           |
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
