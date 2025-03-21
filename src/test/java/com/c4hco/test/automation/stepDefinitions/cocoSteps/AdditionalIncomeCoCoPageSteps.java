@@ -59,6 +59,9 @@ public class AdditionalIncomeCoCoPageSteps {
     @Then("I validate {string} option is selected on the Additional Income CoCo page")
     public void iValidateOptionSelection(String incomeOption){additionalIncomeCoCoPage.verifyOptionSelected_AdditionalIncome(incomeOption);}
 
+    @Then("I validate {string} option is not selected on the Additional Income CoCo page")
+    public void iValidateOptionNotSelection(String incomeOption){additionalIncomeCoCoPage.verifyOptionNotSelected_AdditionalIncome(incomeOption);}
+
     @Then("I verify error for additional income no option in {string} CoCo page")
     public void iVerifyAddtlIncomeOptionHdrError(String language){additionalIncomeCoCoPage.verifyAddtlIncomeOptionHdrError(language);}
 
@@ -88,5 +91,8 @@ public class AdditionalIncomeCoCoPageSteps {
 
     @Then("I verify Additional Income CoCo amount Minimum and Maximum for {string} in {string}")
     public void iVerifyMinMax(String addtlIncomeOption, String language){additionalIncomeCoCoPage.verifyMinMax(addtlIncomeOption, language);}
+
+    @Then("I verify Additional Income CoCo placeholders for {string} in {string}")
+    public void iVerifyPlaceholder(String addtlIncomeOption, String language){additionalIncomeCoCoPage.verifyPlaceholder(addtlIncomeOption, language);}
 
 }

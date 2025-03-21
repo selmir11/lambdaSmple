@@ -44,11 +44,8 @@ public class FamilyOverviewSteps {
     @Then("I verify we need more information text along with the red exclamation marks and edit update link")
     public void iVerifyWeNeedMoreInfoTextAndOtherDetails() { familyOverviewPage.verifyWeNeedMoreInfoTextAndOtherDetails(); }
 
-
-
-
-
-
-
+    @Then("I verify the deduction Amount {string} on the CoCo Family Overview page")
+    public void iVerifyDeductionAmountInFamilyOverviewPage(String amount) {
+        familyOverviewPage.verifyDeductionAmount(amount);}
 
 }

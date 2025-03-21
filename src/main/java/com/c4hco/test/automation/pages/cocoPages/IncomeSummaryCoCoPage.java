@@ -85,6 +85,9 @@ public class IncomeSummaryCoCoPage {
     @FindBy(css = ".input-error-message span")
     WebElement ErrorMessage;
 
+    @FindBy(xpath = "//lib-fi[@id='edit-deductions-button']//following::div")
+    WebElement deductionAmt;
+
     public void clickprojectedIncomeNo(){
         basicActions.waitForElementToDisappear(spinner,20);
         basicActions.waitForElementToBeClickableWithRetries( projectedIncomeNo,15 );
@@ -602,5 +605,9 @@ public class IncomeSummaryCoCoPage {
         softAssert.assertFalse(basicActions.waitForElementPresence(ErrorMessage,10));
         softAssert.assertAll();
     }
-    
+    public void verifyDeductionAmount(String amount){
+        basicActions.waitForElementToDisappear(spinner, 30);
+        softAssert.assertEquals(deductionAmt.getText(),amount);
+        softAssert.assertAll();
+    }
 }
