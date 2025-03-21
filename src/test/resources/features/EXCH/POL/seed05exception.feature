@@ -191,7 +191,7 @@ Feature: Seed05exception - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-    @SLER-1837_WIP_@R4V
+    @SLER-1837 @pol_exch_passed
     Scenario: RT-2247 ENR-EXCH: DEMOGRAPHIC CHANGE (ADD'L MEMBER) - IDENTIFYING DETAILS - SSN
       Given I open the login page on the "login" portal
       And I validate I am on the "Login" page
