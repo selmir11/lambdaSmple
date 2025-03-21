@@ -166,10 +166,10 @@ public class FindACertifiedBrokerPage {
     @FindBy(id = "auth-brok")
     WebElement brokerAuthorizationButton;
 
-//    @FindAll({
-//            @FindBy (id = "contineOwn-button"),
-//            @FindBy (xpath = "//button[.='Continue with my application ']")})
-//    WebElement continueWithMyOwn;
+    @FindAll({
+            @FindBy (id = "contineOwn-button"),
+            @FindBy (xpath = "//button[.='Continue with my application ']")})
+    WebElement continueWithMyOwn;
 
     @FindBy(id ="contineOwn-button")
     WebElement ContinueOnMyOwnButton;
@@ -635,8 +635,8 @@ public class FindACertifiedBrokerPage {
     }
 
     public void ClickContinueWithMyApplication() {
-        basicActions.waitForElementToBePresent(ContinueOnMyOwnButton,30);
-        ContinueOnMyOwnButton.click();
+        basicActions.waitForElementToBePresent(continueWithMyOwn,30);
+        continueWithMyOwn.click();
 
     }
 
