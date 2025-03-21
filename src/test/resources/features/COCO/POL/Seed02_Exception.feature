@@ -118,13 +118,14 @@ Feature: Seed02 with exception - Coco
     And I select "coco" checkbox on Admin Portal Dashboard
     And I search for user and click email from search results
     Then I click on "Manage Plans" user dashboard button
+
     Then I click Make Changes Medical button
     And I update the Coverage Start date of member on manage plan page
-      | Primary:Future |
-      | Spouse:Future |
+      | Primary:First Of Next Month after PolicyStartDate |
+      | Spouse:First Of Next Month after PolicyStartDate |
     Then I update the Financial Start date of member on manage plan page
-      | Primary:Future |
-      | Spouse:Future |
+      | Primary:First Of Next Month after PolicyStartDate |
+      | Spouse:First Of Next Month after PolicyStartDate |
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab
