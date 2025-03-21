@@ -1,6 +1,7 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.BrokerPortalPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -47,10 +48,10 @@ public class YourInformationPage {
     @FindBy(id = "last-name-license-errorMsg")
     WebElement licenseLastNameErrorMessage;
 
-    @FindBy(xpath = "//*[@id='number-license-errorMsg']/div")
+    @FindBy(id = "sln-num-error")
     WebElement licenseErrorMessage;
 
-    @FindBy(id = "number-license-errorMsg")
+    @FindBy(xpath = "//span[@id='sln-mf-error']")
     WebElement licenseRequiredErrorMessage;
 
     @FindBy(id = "BP-YourInformation-GoBack")
@@ -59,16 +60,16 @@ public class YourInformationPage {
     @FindBy(id = "state-license-num")
     WebElement license;
 
-    @FindBy(id = "license-valid-from")
+    @FindBy(xpath = "//input[@id='license-valid-from']")
     WebElement licenseValidFromDate;
 
-    @FindBy(id = "valid-from-errorMsg")
+    @FindBy(xpath = "//span[@id='lvf-date-error']")
     WebElement licenseValidFromDateErrorMessage;
 
-    @FindBy(id = "license-valid-to")
+    @FindBy(xpath = "//input[@id='license-valid-to']")
     WebElement licenseValidToDate;
 
-    @FindBy(id = "valid-to-errorMsg")
+    @FindBy(xpath = "//span[@id='lvt-date-error']")
     WebElement licenseValidToDateErrorMessage;
 
     @FindBy(id = "agencyOwner-errorMsg")
@@ -89,9 +90,6 @@ public class YourInformationPage {
     @FindBy(id = "have-code-checkbox-input")
     WebElement noCodeCheckbox;
 
-    @FindBy(id = "noCode-checkbox-errorMsg")
-    WebElement noInviteCodeErrorMessage;
-
     @FindBy(id = "communication-preference-button")
     WebElement  continueYourInformation;
 
@@ -101,7 +99,7 @@ public class YourInformationPage {
     @FindBy(id= "agencyOwner-no")
     WebElement disabledBookOfBusinessNo;
 
-    @FindBy(id="valid-to-invalidDate-errorMsg")
+    @FindBy(id="ldm-error")
     WebElement invalidErrorMsg;
 
     private BasicActions basicActions;
@@ -116,10 +114,16 @@ public class YourInformationPage {
         softAssert.assertAll();
     }
 
-    public void validateFirstNameAutoPopulated(){
+    public void validateFirstNameAutoPopulated(String portalUserType){
         basicActions.waitForElementToBePresent(firstName,10);
-        BrokerDetails broker = SharedData.getAdminStaff();
-        softAssert.assertEquals(firstName.getAttribute("value"), broker.getFirstName());
+        switch (portalUserType){
+            case "Broker":
+                softAssert.assertEquals(firstName.getAttribute("value"), SharedData.getBroker().getFirstName());
+                break;
+            case "Admin Staff":
+                softAssert.assertEquals(firstName.getAttribute("value"), SharedData.getAdminStaff().getFirstName());
+                break;
+        }
         softAssert.assertAll();
     }
 
@@ -131,10 +135,16 @@ public class YourInformationPage {
         softAssert.assertAll();
     }
 
-    public void validateLastNameAutoPopulated(){
+    public void validateLastNameAutoPopulated(String portalUserType){
         basicActions.waitForElementToBePresent(lastName,10);
-        BrokerDetails broker = SharedData.getAdminStaff();
-        softAssert.assertEquals(lastName.getAttribute("value"), broker.getLastName());
+        switch (portalUserType){
+            case "Broker":
+                softAssert.assertEquals(lastName.getAttribute("value"), SharedData.getBroker().getLastName());
+                break;
+            case "Admin Staff":
+                softAssert.assertEquals(lastName.getAttribute("value"), SharedData.getAdminStaff().getLastName());
+                break;
+        }
         softAssert.assertAll();
     }
 
@@ -154,6 +164,7 @@ public class YourInformationPage {
     public void validateLicenseFirstNameErrorMessage(){
         basicActions.waitForElementToBePresent(licenseFirstName,10);
         licenseFirstName.sendKeys("123$# @");
+        licenseFirstName.sendKeys(Keys.ENTER);
         softAssert.assertEquals(licenseFirstNameErrorMessage.getText(),"First Name on License is required");
         softAssert.assertAll();
     }
@@ -203,15 +214,7 @@ public class YourInformationPage {
     public void validateInviteCodeErrorMessage(){
         basicActions.waitForElementToBePresent(inviteCode,10);
         inviteCode.sendKeys("AAA");
-        softAssert.assertEquals(invitationCodeErrorMessage.getText(),"Please enter valid invitation code\n" +
-                "or select 'I do not have a code' below");
-        softAssert.assertAll();
-    }
-
-    public void validateNoInviteCodeCheckboxErrorMessage(){
-        basicActions.waitForElementToBePresent(noInviteCodeErrorMessage,10);
-        continueYourInformation.click();
-        softAssert.assertEquals(noInviteCodeErrorMessage.getText(),"Response is Required");
+        softAssert.assertEquals(invitationCodeErrorMessage.getText(),"Please enter valid invitation code or select 'I do not have a code' below");
         softAssert.assertAll();
     }
 
