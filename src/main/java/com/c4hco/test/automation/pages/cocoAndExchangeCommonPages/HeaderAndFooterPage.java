@@ -1262,15 +1262,14 @@ public class HeaderAndFooterPage {
     }
 
     public void verifyFooterlinktextNavigation(String language, DataTable dataTable) {
-        basicActions.waitForElementToDisappear(spinner, 40);
-
+        basicActions.waitForElementToDisappear(spinner, 60);
+        basicActions.waitForElementToBePresent(privacyPolicyLink,200);
         List<Map<String, String>> data = dataTable.asMaps();
         for (Map<String, String> row : data) {
             String hyperlinkText = row.get("HyperLinkText");
             String expectedPageTitle = row.get("ExpectedPageTitle");
             String containsUrl = row.get("ContainsUrl");
             WebElement hyperlink;
-
             switch (hyperlinkText.toLowerCase()) {
                 case "facebookicon":
                     hyperlink = FacebookIcon;
@@ -1294,11 +1293,11 @@ public class HeaderAndFooterPage {
                     hyperlink = basicActions.getDriver().findElement(By.partialLinkText(hyperlinkText));
                     break;
             }
-
             Actions actionKey = new Actions(basicActions.getDriver());
+            basicActions.wait(200);
             actionKey.keyDown(Keys.CONTROL).click(hyperlink).keyUp(Keys.CONTROL).build().perform();
             basicActions.switchtoactiveTab();
-            basicActions.waitForElementToDisappear(spinner, 30);
+            basicActions.waitForElementToDisappear(spinner, 400);
             String actualTitle = basicActions.getDriver().getTitle();
             String currentUrl = basicActions.getDriver().getCurrentUrl();
             softAssert.assertTrue(actualTitle.contains(expectedPageTitle),"Expected title is not present");
@@ -1307,7 +1306,6 @@ public class HeaderAndFooterPage {
             basicActions.getDriver().close();
             basicActions.switchtoPreviousTab();
         }
-
         softAssert.assertAll();
     }
 
