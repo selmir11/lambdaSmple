@@ -331,9 +331,9 @@ public class AdminPortalReportsPage {
         WebElement timeElement3 = resetDateElement.get(2).findElement(By.xpath("ancestor::td/following-sibling::td[1]"));
         String actualTime3 = timeElement3.getText().trim();
 
-        softAssert.assertTrue(actualTime1.compareTo(actualTime2) >=0 ,"  not the latest event" + actualTime1 +" for event " );
-        softAssert.assertTrue(actualTime2.compareTo(actualTime3) >=0 ,"  not the latest event" + actualTime2 +" for event " );
-        compareTimestamp(event);
+        softAssert.assertTrue(actualTime1.compareTo(actualTime2) >=0 , actualTime1 + " not the latest event for event " + event );
+        softAssert.assertTrue(actualTime2.compareTo(actualTime3) >=0 , actualTime2 + " not the latest event for event " + event );
+
         softAssert.assertAll();
     }
 

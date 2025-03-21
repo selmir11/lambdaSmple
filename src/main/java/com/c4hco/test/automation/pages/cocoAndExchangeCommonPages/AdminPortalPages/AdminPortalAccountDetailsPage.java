@@ -92,7 +92,7 @@ public class AdminPortalAccountDetailsPage {
 
     private void validateContactMethod(MemberDetails primaryMem) {
         softAssert.assertEquals(accDetailsLabelAndValues.get(18).getText(), "Preferred Contact Method:", "Preferred Contact Method: label did not match");
-        if(accDetailsLabelAndValues.get(19).getText().equals("Mail")) {
+        if(primaryMem.getContactPref() != null) {
             softAssert.assertEquals(accDetailsLabelAndValues.get(19).getText(),primaryMem.getContactPref(), "Preferred Contact Method: did not match");
         }
         else {

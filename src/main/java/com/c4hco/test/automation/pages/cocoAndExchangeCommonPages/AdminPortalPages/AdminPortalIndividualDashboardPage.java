@@ -1019,10 +1019,10 @@ public class AdminPortalIndividualDashboardPage {
     }
 
     private void verifyDOB() {
-        String formatedDOB = SharedData.getPrimaryMember().getDob().replaceFirst("(\\d{2})(\\d{2})(\\d+)", "$1/$2/$3");
         softAssert.assertEquals(selectedMemberLabelTxt.get(4).getText(), "Date of Birth:", "Label not match");
         softAssert.assertTrue(selectedMemberDataTxt.get(4).isDisplayed());
-        softAssert.assertEquals(selectedMemberDataTxt.get(4).getText(), formatedDOB, "Date of Birth not match");
+        softAssert.assertEquals(selectedMemberDataTxt.get(4).getText(), basicActions.changeDateFormat(SharedData.getPrimaryMember().getDob(),
+                "MMddyyyy", "MM/dd/yyyy"), "DOB did not match!");
     }
 
     private void verifyEmail() {

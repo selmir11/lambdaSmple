@@ -97,13 +97,16 @@ Feature: Admin Portal as OBO verify member data on the left
     And I search for the user with account id
     Then I select the first record from the search results
     Then I validate I am on the "Admin Portal individual dashboard" page
+
+    #Validation for original data
     Then I verify Primary account holder and account number displays
     Then I validate Selected Member label and member data on the far left side
     Then I click on manage account details button on admin portal Individual dashboard
     Then I validate I am on the "account details" page
     Then I validate all details for primary holder on account details page
     Then I click on Edit Fields via OBO button on the account details page
-    Then I switch to the tab number 2
+    Then I close current tab and switch back to previous tab
+    Then I switch to the tab number 1
     And I click on Make Changes Button
 
     # updating email, address, Contact method and language for the first time on same account
