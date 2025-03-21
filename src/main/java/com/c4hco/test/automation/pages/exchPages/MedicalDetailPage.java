@@ -165,6 +165,16 @@ public class MedicalDetailPage {
     @FindBy(xpath = "//td[normalize-space()='Quality Overview Rocky Mountain Health Plan Spanish']")
     WebElement linkDoc10Rocky;
 
+   @FindBy (id = "MedicalCarrierDetails-downloadPlanDocument_11")
+   WebElement lnkDocument11;
+    @FindBy (xpath = "//td[normalize-space()='Brochure Rocky Mountain Health Plan Spanish']")
+    WebElement linkDoc11Rocky;
+
+    @FindBy (id = "MedicalCarrierDetails-downloadPlanDocument_12")
+    WebElement lnkDocument12;
+    @FindBy (xpath = "//td[normalize-space()='Brochure Rocky Mountain Health Plan English']")
+    WebElement linkDoc12Rocky;
+
 
 
     @FindBy(css = "#MedicalCarrierDetails-InNetworkTier1")
@@ -486,82 +496,7 @@ public class MedicalDetailPage {
         softAssert.assertAll();
     }
 
-    public void validateDocumentsUpload(String carrier) {
-        basicActions.waitForElementToBePresent( spinner, 100 );
-        basicActions.waitForElementToBePresentWithRetries( headerDocEnglish, 60 );
-        softAssert.assertEquals( headerDocEnglish.getText(), "Plan Documents" );
-
-        // test for different carrier docs
-        switch (carrier) {
-            case "Anthem":
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument0, 60 );
-                lnkDocument0.isDisplayed();
-                String actualString0 = (linkDoc0Anthem.getText());
-                softAssert.assertTrue( actualString0.contains( "Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220065-01" ) );
-
-                lnkDocument0.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-                // at the step above the cursor is found on the downloaded document - next step would be to copy the file title and verify it
-
-                //getLocalPathToDownloadFile = "/ThisPC/Downloads";
-                //fileInput = document.getElementById("Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220065-01");
-                //fileInput.value = getLocalPathToDownloadFile;
-
-
-                //String localPathDownload1 = (SharedData.getLocalPathToDownloadFile());
-                //softAssert.assertTrue( localPathDownload1.contains( "Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220065-01" ) );
-                //softAssert.assertAll();
-
-            case "Rocky":
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument0, 60 );
-                lnkDocument0.isDisplayed();
-                softAssert.assertEquals( lnkDocument0, "Summary of Benefits and Coverage CO Supplement Denver Health English 0030008-01" );
-                lnkDocument0.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-                softAssert.assertAll();
-
-            case "Kaiser":
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument0, 60 );
-                lnkDocument0.isDisplayed();
-                softAssert.assertEquals( lnkDocument0, "Summary of Benefits and Coverage CO Supplement Denver Health English 0030008-01" );
-                lnkDocument0.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-                softAssert.assertAll();
-
-
-            case "Denver":
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument0, 60 );
-                lnkDocument0.isDisplayed();
-                softAssert.assertEquals( lnkDocument0, "Summary of Benefits and Coverage CO Supplement Denver Health English 0030008-01" );
-                lnkDocument0.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-                softAssert.assertAll();
-
-            case "Cigna":
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument0, 60 );
-                lnkDocument0.isDisplayed();
-                softAssert.assertEquals( lnkDocument0, "Summary of Benefits and Coverage CO Supplement Denver Health English 0030008-01" );
-                lnkDocument0.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                softAssert.assertAll();
-
-            case "Select":
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument0, 60 );
-                lnkDocument0.isDisplayed();
-                softAssert.assertEquals( lnkDocument0, "Summary of Benefits and Coverage CO Supplement Denver Health English 0030008-01" );
-                lnkDocument0.click();
-                waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 30 );
-
-
-                softAssert.assertAll();
-        }
-    }
+    /// PDF validation functions -------------------------------------------------------------------------------
 
 
     public static String waitForDownloadToComplete(String localPath, int timeoutInSeconds) {
@@ -606,7 +541,7 @@ public class MedicalDetailPage {
 
 
     public void validateDocumentsUpload2(String carrier) {
-        basicActions.waitForElementToBePresent( spinner, 100 );
+        basicActions.waitForElementToBePresent( spinner, 120 );
         basicActions.waitForElementToBePresentWithRetries( headerDocEnglish, 60 );
         softAssert.assertEquals( headerDocEnglish.getText(), "Plan Documents" );
 
@@ -619,21 +554,14 @@ public class MedicalDetailPage {
                 softAssert.assertTrue( actualString0.contains( "Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220065-01" ) );
                 lnkDocument0.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
-                //String localPathDownload0 = (SharedData.getLocalPathToDownloadFile());
-                //String pdfContent = extractTextFromPDF(Path.of(pathAndName));
-                //File downloadedFile = new File( localPathDownload0, "Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220065-01" );
                     String filePath = SharedData.getLocalPathToDownloadFile();
                     String fileName = SharedData.getNoticeFileName();
-                    String pathAndName = filePath+"//"+fileName;
+                    String pathAndName = filePath+"/Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220065-01/"+fileName;
                     System.out.println("path and name is "+pathAndName);
 
-
-
-                softAssert.assertTrue( fileName.contains("Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220065-0"), "Downloaded file does not exist: " );
-                softAssert.assertTrue( fileName.length() > 0, "Downloaded file is empty: " );
-                softAssert.assertAll();
-                break;
-                case "Anthem1":
+                    softAssert.assertTrue( fileName.contains("Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220065-01"), "Downloaded file does not exist: " );
+                    softAssert.assertTrue( fileName.length() > 0, "Downloaded file is empty: " );
+                    softAssert.assertAll();
 
                 basicActions.waitForElementToBePresentWithRetries( lnkDocument1, 60 );
                 lnkDocument1.isDisplayed();
@@ -641,24 +569,29 @@ public class MedicalDetailPage {
                 softAssert.assertTrue( actualString1.contains( "Summary of Benefits and Coverage CO Supplement Anthem BCBS English 0220065-01" ) );
                 lnkDocument1.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
-                String localPathDownload1 = (SharedData.getLocalPathToDownloadFile());
-                File downloadedFile1 = new File( localPathDownload1, "Summary of Benefits and Coverage CO Supplement Anthem BCBS English 0220065-01" );
-                softAssert.assertTrue( downloadedFile1.exists(), "Downloaded file does not exist: " + downloadedFile1.getAbsolutePath() );
-                softAssert.assertTrue( downloadedFile1.length() > 0, "Downloaded file is empty: " + downloadedFile1.getAbsolutePath() );
-                softAssert.assertAll();
-                break;
+                    String filePath1 = SharedData.getLocalPathToDownloadFile();
+                    String fileName1 = SharedData.getNoticeFileName();
+                    String pathAndName1 = filePath1+"/Summary of Benefits and Coverage CO Supplement Anthem BCBS English 0220065-01/"+fileName1;
+                    System.out.println("path and name is "+pathAndName1);
 
-                case "Anthem2":
+                    softAssert.assertTrue( fileName1.contains("Summary of Benefits and Coverage CO Supplement Anthem BCBS English 0220065-01"), "Downloaded file does not exist: " );
+                    softAssert.assertTrue( fileName1.length() > 0, "Downloaded file is empty: " );
+                    softAssert.assertAll();
+
                 basicActions.waitForElementToBePresentWithRetries( lnkDocument2, 60 );
                 lnkDocument2.isDisplayed();
                 String actualString2 = (lnkDocument2.getText());
                 softAssert.assertTrue( actualString2.contains( "Evidence of Coverage Anthem BCBS English 0220065-01" ) );
                 lnkDocument2.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
-                String localPathDownload2 = (SharedData.getLocalPathToDownloadFile());
-                File downloadedFile2 = new File( localPathDownload2, "Evidence of Coverage Anthem BCBS English 0220065-01" );
-                softAssert.assertTrue( downloadedFile2.exists(), "Downloaded file does not exist: " + downloadedFile2.getAbsolutePath() );
-                softAssert.assertTrue( downloadedFile2.length() > 0, "Downloaded file is empty: " + downloadedFile2.getAbsolutePath() );
+                    String filePath2 = SharedData.getLocalPathToDownloadFile();
+                    String fileName2 = SharedData.getNoticeFileName();
+                    String pathAndName2 = filePath2+"/Evidence of Coverage Anthem BCBS English 0220065-01/"+fileName2;
+                    System.out.println("path and name is "+pathAndName2);
+
+                    softAssert.assertTrue( fileName2.contains("Evidence of Coverage Anthem BCBS English 0220065-01"), "Downloaded file does not exist: " );
+                    softAssert.assertTrue( fileName2.length() > 0, "Downloaded file is empty: " );
+                    softAssert.assertAll();
 
                 basicActions.waitForElementToBePresentWithRetries( lnkDocument3, 60 );
                 lnkDocument3.isDisplayed();
@@ -666,10 +599,14 @@ public class MedicalDetailPage {
                 softAssert.assertTrue( actualString3.contains( "Evidence of Coverage Anthem BCBS Spanish 0220065-01" ) );
                 lnkDocument3.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
-                String localPathDownload3 = (SharedData.getLocalPathToDownloadFile());
-                File downloadedFile3 = new File( localPathDownload3, "Evidence of Coverage Anthem BCBS Spanish 0220065-01" );
-                softAssert.assertTrue( downloadedFile3.exists(), "Downloaded file does not exist: " + downloadedFile3.getAbsolutePath() );
-                softAssert.assertTrue( downloadedFile3.length() > 0, "Downloaded file is empty: " + downloadedFile3.getAbsolutePath() );
+                    String filePath3 = SharedData.getLocalPathToDownloadFile();
+                    String fileName3 = SharedData.getNoticeFileName();
+                    String pathAndName3 = filePath3+"/Evidence of Coverage Anthem BCBS Spanish 0220065-01/"+fileName3;
+                    System.out.println("path and name is "+pathAndName3);
+
+                    softAssert.assertTrue( fileName3.contains("Evidence of Coverage Anthem BCBS Spanish 0220065-01"), "Downloaded file does not exist: " );
+                    softAssert.assertTrue( fileName3.length() > 0, "Downloaded file is empty: " );
+                    softAssert.assertAll();
 
                 basicActions.waitForElementToBePresentWithRetries( lnkDocument4, 60 );
                 lnkDocument4.isDisplayed();
@@ -677,10 +614,16 @@ public class MedicalDetailPage {
                 softAssert.assertTrue( actualString4.contains( "Summary of Benefits and Coverage Anthem BCBS English 0220065-01" ) );
                 lnkDocument4.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
-                String localPathDownload4 = (SharedData.getLocalPathToDownloadFile());
-                File downloadedFile4 = new File( localPathDownload4, "Summary of Benefits and Coverage Anthem BCBS English 0220065-01" );
-                softAssert.assertTrue( downloadedFile4.exists(), "Downloaded file does not exist: " + downloadedFile4.getAbsolutePath() );
-                softAssert.assertTrue( downloadedFile4.length() > 0, "Downloaded file is empty: " + downloadedFile4.getAbsolutePath() );
+                    String filePath4 = SharedData.getLocalPathToDownloadFile();
+                    String fileName4 = SharedData.getNoticeFileName();
+                    String pathAndName4 = filePath4+"/Summary of Benefits and Coverage Anthem BCBS English 0220065-01/"+fileName4;
+                    System.out.println("path and name is "+pathAndName4);
+
+                    softAssert.assertTrue( fileName4.contains("Summary of Benefits and Coverage Anthem BCBS English 0220065-01"), "Downloaded file does not exist: " );
+                    softAssert.assertTrue( fileName4.length() > 0, "Downloaded file is empty: " );
+                    softAssert.assertAll();
+
+
 
                 basicActions.waitForElementToBePresentWithRetries( lnkDocument5, 60 );
                 lnkDocument5.isDisplayed();
@@ -688,21 +631,31 @@ public class MedicalDetailPage {
                 softAssert.assertTrue( actualString5.contains( "Summary of Benefits and Coverage Anthem BCBS Spanish 0220065-01" ) );
                 lnkDocument5.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
-                String localPathDownload5 = (SharedData.getLocalPathToDownloadFile());
-                File downloadedFile5 = new File( localPathDownload5, "Summary of Benefits and Coverage Anthem BCBS Spanish 0220065-01" );
-                softAssert.assertTrue( downloadedFile5.exists(), "Downloaded file does not exist: " + downloadedFile5.getAbsolutePath() );
-                softAssert.assertTrue( downloadedFile5.length() > 0, "Downloaded file is empty: " + downloadedFile5.getAbsolutePath() );
+                    String filePath5 = SharedData.getLocalPathToDownloadFile();
+                    String fileName5 = SharedData.getNoticeFileName();
+                    String pathAndName5 = filePath5+"/Summary of Benefits and Coverage Anthem BCBS Spanish 0220065-01/"+fileName5;
+                    System.out.println("path and name is "+pathAndName5);
+
+                    softAssert.assertTrue( fileName5.contains("Summary of Benefits and Coverage Anthem BCBS Spanish 0220065-01"), "Downloaded file does not exist: " );
+                    softAssert.assertTrue( fileName5.length() > 0, "Downloaded file is empty: " );
+                    softAssert.assertAll();
+
+
 
                 basicActions.waitForElementToBePresentWithRetries( lnkDocument6, 60 );
                 lnkDocument6.isDisplayed();
                 String actualString6 = (linkDoc6Anthem.getText());
                 softAssert.assertTrue( actualString6.contains( "Brochure Anthem Medical English" ) );
-                lnkDocument1.click();
+                lnkDocument6.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
-                String localPathDownload6 = (SharedData.getLocalPathToDownloadFile());
-                File downloadedFile6 = new File( localPathDownload6, "Brochure Anthem Medical English" );
-                softAssert.assertTrue( downloadedFile6.exists(), "Downloaded file does not exist: " + downloadedFile6.getAbsolutePath() );
-                softAssert.assertTrue( downloadedFile6.length() > 0, "Downloaded file is empty: " + downloadedFile6.getAbsolutePath() );
+                    String filePath6 = SharedData.getLocalPathToDownloadFile();
+                    String fileName6 = SharedData.getNoticeFileName();
+                    String pathAndName6 = filePath6+"/Brochure Anthem Medical English/"+fileName6;
+                    System.out.println("path and name is "+pathAndName6);
+
+                    softAssert.assertTrue( fileName6.contains("Brochure Anthem Medical English"), "Downloaded file does not exist: " );
+                    softAssert.assertTrue( fileName6.length() > 0, "Downloaded file is empty: " );
+                    softAssert.assertAll();
 
                 basicActions.waitForElementToBePresentWithRetries( lnkDocument7, 60 );
                 lnkDocument7.isDisplayed();
@@ -710,21 +663,30 @@ public class MedicalDetailPage {
                 softAssert.assertTrue( actualString7.contains( "Provider Network Anthem Pathway Essentials" ) );
                 lnkDocument7.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
-                String localPathDownload7 = (SharedData.getLocalPathToDownloadFile());
-                File downloadedFile7 = new File( localPathDownload7, "Provider Network Anthem Pathway Essentials" );
-                softAssert.assertTrue( downloadedFile7.exists(), "Downloaded file does not exist: " + downloadedFile7.getAbsolutePath() );
-                softAssert.assertTrue( downloadedFile7.length() > 0, "Downloaded file is empty: " + downloadedFile7.getAbsolutePath() );
+                    String filePath7 = SharedData.getLocalPathToDownloadFile();
+                    String fileName7 = SharedData.getNoticeFileName();
+                    String pathAndName7 = filePath7+"/Provider Network Anthem Pathway Essentials/"+fileName7;
+                    System.out.println("path and name is "+pathAndName7);
+
+                    softAssert.assertTrue( fileName7.contains("Provider Network Anthem Pathway Essentials"), "Downloaded file does not exist: " );
+                    softAssert.assertTrue( fileName3.length() > 0, "Downloaded file is empty: " );
+                    softAssert.assertAll();
 
                 basicActions.waitForElementToBePresentWithRetries( lnkDocument8, 60 );
                 lnkDocument8.isDisplayed();
                 String actualString8 = (linkDoc8Anthem.getText());
                 softAssert.assertTrue( actualString8.contains( "Quality Overview Anthem English" ) );
-                lnkDocument1.click();
+                lnkDocument8.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
-                String localPathDownload8 = (SharedData.getLocalPathToDownloadFile());
-                File downloadedFile8 = new File( localPathDownload8, "Quality Overview Anthem English" );
-                softAssert.assertTrue( downloadedFile8.exists(), "Downloaded file does not exist: " + downloadedFile8.getAbsolutePath() );
-                softAssert.assertTrue( downloadedFile8.length() > 0, "Downloaded file is empty: " + downloadedFile8.getAbsolutePath() );
+                    String filePath8 = SharedData.getLocalPathToDownloadFile();
+                    String fileName8 = SharedData.getNoticeFileName();
+                    String pathAndName8 = filePath8+"/Quality Overview Anthem English/"+fileName8;
+                    System.out.println("path and name is "+pathAndName8);
+
+                    softAssert.assertTrue( fileName8.contains("Quality Overview Anthem English"), "Downloaded file does not exist: " );
+                    softAssert.assertTrue( fileName8.length() > 0, "Downloaded file is empty: " );
+                    softAssert.assertAll();
+
 
                 basicActions.waitForElementToBePresentWithRetries( lnkDocument1, 60 );
                 lnkDocument9.isDisplayed();
@@ -732,10 +694,15 @@ public class MedicalDetailPage {
                 softAssert.assertTrue( actualString9.contains( "Quality Overview Anthem Spanish" ) );
                 lnkDocument9.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
-                String localPathDownload9 = (SharedData.getLocalPathToDownloadFile());
-                File downloadedFile9 = new File( localPathDownload9, "Quality Overview Anthem Spanish" );
-                softAssert.assertTrue( downloadedFile9.exists(), "Downloaded file does not exist: " + downloadedFile9.getAbsolutePath() );
-                softAssert.assertTrue( downloadedFile9.length() > 0, "Downloaded file is empty: " + downloadedFile9.getAbsolutePath() );
+                    String filePath9 = SharedData.getLocalPathToDownloadFile();
+                    String fileName9 = SharedData.getNoticeFileName();
+                    String pathAndName9 = filePath9+"/Quality Overview Anthem Spanish/"+fileName9;
+                    System.out.println("path and name is "+pathAndName9);
+
+                    softAssert.assertTrue( fileName9.contains("Quality Overview Anthem Spanish"), "Downloaded file does not exist: " );
+                    softAssert.assertTrue( fileName9.length() > 0, "Downloaded file is empty: " );
+                    softAssert.assertAll();
+
 
                 basicActions.waitForElementToBePresentWithRetries( lnkDocument10, 60 );
                 lnkDocument10.isDisplayed();
@@ -743,25 +710,204 @@ public class MedicalDetailPage {
                 softAssert.assertTrue( actualString10.contains( "Brochure Anthem Medical Spanish" ) );
                 lnkDocument10.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
-                String localPathDownload10 = (SharedData.getLocalPathToDownloadFile());
-                File downloadedFile10 = new File( localPathDownload10, "Brochure Anthem Medical Spanish" );
-                softAssert.assertTrue( downloadedFile10.exists(), "Downloaded file does not exist: " + downloadedFile10.getAbsolutePath() );
-                softAssert.assertTrue( downloadedFile10.length() > 0, "Downloaded file is empty: " + downloadedFile10.getAbsolutePath() );
-                softAssert.assertAll();
-                break;
+                    String filePath10 = SharedData.getLocalPathToDownloadFile();
+                    String fileName10 = SharedData.getNoticeFileName();
+                    String pathAndName10 = filePath10+"/Brochure Anthem Medical Spanish/"+fileName10;
+                    System.out.println("path and name is "+pathAndName10);
+
+                    softAssert.assertTrue( fileName10.contains("Brochure Anthem Medical Spanish"), "Downloaded file does not exist: " );
+                    softAssert.assertTrue( fileName10.length() > 0, "Downloaded file is empty: " );
+                    softAssert.assertAll();
+
+                    break;
 
             case "Rocky":
                 basicActions.waitForElementToBePresentWithRetries( lnkDocument0, 60 );
                 lnkDocument0.isDisplayed();
-                String actualStringR0 = (linkDoc0Rocky.getText());
-                softAssert.assertTrue( actualStringR0.contains( "Summary of Benefits and Coverage CO Supplement Rocky Mountain English 0420062-01 Colorado Option" ) );
+                String actualString210 = (lnkDocument0.getText());
+                softAssert.assertTrue( actualString210.contains( "\tSummary of Benefits and Coverage CO Supplement Rocky Mountain English 0420062-01 Colorado Option" ) );
                 lnkDocument0.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
-                String localPathDownloadR0 = (SharedData.getLocalPathToDownloadFile());
-                File downloadedFileR0 = new File( localPathDownloadR0, "Summary of Benefits and Coverage CO Supplement Rocky Mountain English 0420062-01 Colorado Option" );
-                softAssert.assertTrue( downloadedFileR0.exists(), "Downloaded file does not exist: " + downloadedFileR0.getAbsolutePath() );
-                softAssert.assertTrue( downloadedFileR0.length() > 0, "Downloaded file is empty: " + downloadedFileR0.getAbsolutePath() );
+                String filePath210 = SharedData.getLocalPathToDownloadFile();
+                String fileName210 = SharedData.getNoticeFileName();
+                String pathAndName210 = filePath210+"/\tSummary of Benefits and Coverage CO Supplement Rocky Mountain English 0420062-01 Colorado Option/"+fileName210;
+                System.out.println("path and name is "+pathAndName210);
+
+                softAssert.assertTrue( fileName210.contains("\tSummary of Benefits and Coverage CO Supplement Rocky Mountain English 0420062-01 Colorado Option"), "Downloaded file does not exist: " );
+                softAssert.assertTrue( fileName210.length() > 0, "Downloaded file is empty: " );
                 softAssert.assertAll();
+
+                basicActions.waitForElementToBePresentWithRetries( lnkDocument1, 60 );
+                lnkDocument1.isDisplayed();
+                String actualString211 = (lnkDocument1.getText());
+                softAssert.assertTrue( actualString211.contains( "Summary of Benefits and Coverage CO Supplement Rocky Mountain Spanish 0420062-01 Colorado Option" ) );
+                lnkDocument1.click();
+                basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
+                String filePath211 = SharedData.getLocalPathToDownloadFile();
+                String fileName211 = SharedData.getNoticeFileName();
+                String pathAndName211 = filePath211+"/Summary of Benefits and Coverage CO Supplement Rocky Mountain Spanish 0420062-01 Colorado Option/"+fileName211;
+                System.out.println("path and name is "+pathAndName211);
+
+                softAssert.assertTrue( fileName211.contains("Summary of Benefits and Coverage CO Supplement Rocky Mountain Spanish 0420062-01 Colorado Option"), "Downloaded file does not exist: " );
+                softAssert.assertTrue( fileName211.length() > 0, "Downloaded file is empty: " );
+                softAssert.assertAll();
+
+                basicActions.waitForElementToBePresentWithRetries( lnkDocument2, 60 );
+                lnkDocument2.isDisplayed();
+                String actualString212 = (lnkDocument2.getText());
+                softAssert.assertTrue( actualString212.contains( "Evidence of Coverage Rocky Mountain English 0420062-01 Colorado Option" ) );
+                lnkDocument2.click();
+                basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
+                String filePath212 = SharedData.getLocalPathToDownloadFile();
+                String fileName212 = SharedData.getNoticeFileName();
+                String pathAndName212 = filePath212+"/Evidence of Coverage Rocky Mountain English 0420062-01 Colorado Option/"+fileName212;
+                System.out.println("path and name is "+pathAndName212);
+
+                softAssert.assertTrue( fileName212.contains("Evidence of Coverage Rocky Mountain English 0420062-01 Colorado Option"), "Downloaded file does not exist: " );
+                softAssert.assertTrue( fileName212.length() > 0, "Downloaded file is empty: " );
+                softAssert.assertAll();
+
+                basicActions.waitForElementToBePresentWithRetries( lnkDocument3, 60 );
+                lnkDocument3.isDisplayed();
+                String actualString213 = (lnkDocument3.getText());
+                softAssert.assertTrue( actualString213.contains( "Evidence of Coverage Anthem BCBS Spanish 0220065-01" ) );
+                lnkDocument3.click();
+                basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
+                String filePath213 = SharedData.getLocalPathToDownloadFile();
+                String fileName213 = SharedData.getNoticeFileName();
+                String pathAndName213 = filePath213+"/Evidence of Coverage Anthem BCBS Spanish 0220065-01/"+fileName213;
+                System.out.println("path and name is "+pathAndName213);
+
+                softAssert.assertTrue( fileName213.contains("Evidence of Coverage Anthem BCBS Spanish 0220065-01"), "Downloaded file does not exist: " );
+                softAssert.assertTrue( fileName213.length() > 0, "Downloaded file is empty: " );
+                softAssert.assertAll();
+
+                basicActions.waitForElementToBePresentWithRetries( lnkDocument4, 60 );
+                lnkDocument4.isDisplayed();
+                String actualString214 = (lnkDocument4.getText());
+                softAssert.assertTrue( actualString214.contains( "Evidence of Coverage Rocky Mountain Spanish 0420062-01 Colorado Option" ) );
+                lnkDocument4.click();
+                basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
+                String filePath214 = SharedData.getLocalPathToDownloadFile();
+                String fileName214 = SharedData.getNoticeFileName();
+                String pathAndName214 = filePath214+"/Evidence of Coverage Rocky Mountain Spanish 0420062-01 Colorado Option/"+fileName214;
+                System.out.println("path and name is "+pathAndName214);
+
+                softAssert.assertTrue( fileName214.contains("Evidence of Coverage Rocky Mountain Spanish 0420062-01 Colorado Option"), "Downloaded file does not exist: " );
+                softAssert.assertTrue( fileName214.length() > 0, "Downloaded file is empty: " );
+                softAssert.assertAll();
+
+
+
+                basicActions.waitForElementToBePresentWithRetries( lnkDocument5, 60 );
+                lnkDocument5.isDisplayed();
+                String actualString215 = (lnkDocument5.getText());
+                softAssert.assertTrue( actualString215.contains( "Summary of Benefits and Coverage Rocky Mountain English 0420062-01 Colorado Option" ) );
+                lnkDocument5.click();
+                basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
+                String filePath215 = SharedData.getLocalPathToDownloadFile();
+                String fileName215 = SharedData.getNoticeFileName();
+                String pathAndName215 = filePath215+"/Summary of Benefits and Coverage Rocky Mountain English 0420062-01 Colorado Option/"+fileName215;
+                System.out.println("path and name is "+pathAndName215);
+
+                softAssert.assertTrue( fileName215.contains("Summary of Benefits and Coverage Rocky Mountain English 0420062-01 Colorado Option"), "Downloaded file does not exist: " );
+                softAssert.assertTrue( fileName215.length() > 0, "Downloaded file is empty: " );
+                softAssert.assertAll();
+
+
+
+                basicActions.waitForElementToBePresentWithRetries( lnkDocument6, 60 );
+                lnkDocument6.isDisplayed();
+                String actualString216 = (linkDoc6Anthem.getText());
+                softAssert.assertTrue( actualString216.contains( "Summary of Benefits and Coverage Rocky Mountain Spanish 0420062-01 Colorado Option" ) );
+                lnkDocument6.click();
+                basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
+                String filePath216 = SharedData.getLocalPathToDownloadFile();
+                String fileName216 = SharedData.getNoticeFileName();
+                String pathAndName216 = filePath216+"/Summary of Benefits and Coverage Rocky Mountain Spanish 0420062-01 Colorado Option/"+fileName216;
+                System.out.println("path and name is "+pathAndName216);
+
+                softAssert.assertTrue( fileName216.contains("Summary of Benefits and Coverage Rocky Mountain Spanish 0420062-01 Colorado Option"), "Downloaded file does not exist: " );
+                softAssert.assertTrue( fileName216.length() > 0, "Downloaded file is empty: " );
+                softAssert.assertAll();
+
+                basicActions.waitForElementToBePresentWithRetries( lnkDocument7, 60 );
+                lnkDocument7.isDisplayed();
+                String actualString217 = (linkDoc7Anthem.getText());
+                softAssert.assertTrue( actualString217.contains( "Brochure RMHP-UHC English" ) );
+                lnkDocument7.click();
+                basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
+                String filePath217 = SharedData.getLocalPathToDownloadFile();
+                String fileName217 = SharedData.getNoticeFileName();
+                String pathAndName217 = filePath217+"/Brochure RMHP-UHC English/"+fileName217;
+                System.out.println("path and name is "+pathAndName217);
+
+                softAssert.assertTrue( fileName217.contains("Brochure RMHP-UHC English"), "Downloaded file does not exist: " );
+                softAssert.assertTrue( fileName217.length() > 0, "Downloaded file is empty: " );
+                softAssert.assertAll();
+
+                basicActions.waitForElementToBePresentWithRetries( lnkDocument8, 60 );
+                lnkDocument8.isDisplayed();
+                String actualString218 = (linkDoc8Anthem.getText());
+                softAssert.assertTrue( actualString218.contains( "Brochure RMHP-UHC Spanish" ) );
+                lnkDocument8.click();
+                basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
+                String filePath218 = SharedData.getLocalPathToDownloadFile();
+                String fileName218 = SharedData.getNoticeFileName();
+                String pathAndName218 = filePath218+"/Brochure RMHP-UHC Spanish/"+fileName218;
+                System.out.println("path and name is "+pathAndName218);
+
+                softAssert.assertTrue( fileName218.contains("\tBrochure RMHP-UHC Spanish"), "Downloaded file does not exist: " );
+                softAssert.assertTrue( fileName218.length() > 0, "Downloaded file is empty: " );
+                softAssert.assertAll();
+
+
+                basicActions.waitForElementToBePresentWithRetries( lnkDocument9, 60 );
+                lnkDocument9.isDisplayed();
+                String actualString219 = (linkDoc9Anthem.getText());
+                softAssert.assertTrue( actualString219.contains( "Provider Network Rocky Mountain Health Plans Rocky Mountain Valley" ) );
+                lnkDocument9.click();
+                basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
+                String filePath219 = SharedData.getLocalPathToDownloadFile();
+                String fileName219 = SharedData.getNoticeFileName();
+                String pathAndName219 = filePath219+"/Provider Network Rocky Mountain Health Plans Rocky Mountain Valley/"+fileName219;
+                System.out.println("path and name is "+pathAndName219);
+
+                softAssert.assertTrue( fileName219.contains("Provider Network Rocky Mountain Health Plans Rocky Mountain Valley"), "Downloaded file does not exist: " );
+                softAssert.assertTrue( fileName219.length() > 0, "Downloaded file is empty: " );
+                softAssert.assertAll();
+
+
+                basicActions.waitForElementToBePresentWithRetries( lnkDocument10, 60 );
+                lnkDocument10.isDisplayed();
+                String actualString2110 = (linkDoc10Anthem.getText());
+                softAssert.assertTrue( actualString2110.contains( "Quality Overview Rocky Mountain Health Plan English" ) );
+                lnkDocument10.click();
+                basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
+                String filePath2110 = SharedData.getLocalPathToDownloadFile();
+                String fileName2110= SharedData.getNoticeFileName();
+                String pathAndName2110 = filePath2110+"/Quality Overview Rocky Mountain Health Plan English/"+fileName2110;
+                System.out.println("path and name is "+pathAndName2110);
+
+                softAssert.assertTrue( fileName2110.contains("Quality Overview Rocky Mountain Health Plan English"), "Downloaded file does not exist: " );
+                softAssert.assertTrue( fileName2110.length() > 0, "Downloaded file is empty: " );
+                softAssert.assertAll();
+
+                basicActions.waitForElementToBePresentWithRetries( lnkDocument11, 60 );
+                lnkDocument11.isDisplayed();
+                String actualString2111 = (linkDoc9Anthem.getText());
+                softAssert.assertTrue( actualString2111.contains( "Quality Overview Rocky Mountain Health Plan Spanish" ) );
+                lnkDocument9.click();
+                basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
+                String filePath2111 = SharedData.getLocalPathToDownloadFile();
+                String fileName2111 = SharedData.getNoticeFileName();
+                String pathAndName2111 = filePath2111+"/Quality Overview Rocky Mountain Health Plan Spanish/"+fileName2111;
+                System.out.println("path and name is "+pathAndName2111);
+
+                softAssert.assertTrue( fileName2111.contains("Quality Overview Rocky Mountain Health Plan Spanish"), "Downloaded file does not exist: " );
+                softAssert.assertTrue( fileName2111.length() > 0, "Downloaded file is empty: " );
+                softAssert.assertAll();
+
                 break;
 
             case "Kaiser":
