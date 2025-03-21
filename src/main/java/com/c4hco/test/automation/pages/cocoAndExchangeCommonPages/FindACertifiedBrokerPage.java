@@ -264,7 +264,6 @@ public class FindACertifiedBrokerPage {
         broker.setAgencyName(agencyDisplayedName.getText());
         SharedData.setBroker(broker);
         SharedData.setAgencyOwner(broker);
-
     }
 
     public void clickMoreDetailsBroker() {

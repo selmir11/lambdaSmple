@@ -1,4 +1,4 @@
-@SIR-EXCH10 @medicalDentalPlanSummary
+@SIR-EXCH16 @medicalDentalPlanSummary
   # SLER-100, SLER-515
 Feature: Medical and Dental Plan Summary Verification test
 

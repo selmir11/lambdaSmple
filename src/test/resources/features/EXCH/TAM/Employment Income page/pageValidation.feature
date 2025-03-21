@@ -39,7 +39,6 @@ Feature: Page Text-Income Opt Out Page
     And I click continue on the Citizenship page
     Then I click continue on family overview page
     And I Apply for financial help
-
     And I validate I am on the "Employment Income" page
 
   @SLER-2339
@@ -94,3 +93,81 @@ Feature: Page Text-Income Opt Out Page
     And I verify no errors show for Income frequency field and Income same or lower question field
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLER-2342
+  Scenario: SLER-2342-ELIG-Self-employment income-Page Validation-Spanish (RT-1202)
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I Verify the page text on Employment Income page, which is in initial state
+      | Ingresos:                               |
+      | Ingresos por empleo                     |
+      | ¿Tiene un trabajo o empleo actualmente? |
+      | Sí                                      |
+      | No                                      |
+      | Volver                                  |
+      | Guardar y continuar                     |
+      | Ayuda                                   |
+    Then I select the option "Yes" to employment
+    And I select the option "Yes" to self employment
+    Then I click on company Name input field and click out of it
+    Then I verify the company name error message "Se requiere el nombre del empleador"
+    And I refresh the page
+    Then I select the option "Yes" to employment
+    And I select the option "Yes" to self employment
+    And I click continue on the Employment Info Page
+    Then I verify the company name error message "Se requiere el nombre del empleador"
+    Then I enter the value "s" in company name input field
+    Then I verify the company name error message "El nombre del empleador debe tener al menos 2 caracteres"
+    Then I enter the value of 110 characters in Company Name Input field and validate that it does not accept the characters more than 100
+    Then I enter the value "Rockwell Ltd" in company name input field
+    And I verify no errors show for company name field
+    And I refresh the page
+    Then I select the option "Yes" to employment
+    And I select the option "Yes" to self employment
+    Then I click on company Name input field and click out of it
+    Then I click on enter profit input field and click out of it
+    Then I verify the Enter profit amount error message "Esta cantidad es obligatoria"
+    And I refresh the page
+    Then I select the option "Yes" to employment
+    And I select the option "Yes" to self employment
+    Then I click on company Name input field and click out of it
+    Then I click on enter profit input field and click out of it
+    And I click continue on the Employment Info Page
+    Then I verify the Enter profit amount error message "Esta cantidad es obligatoria"
+    And I edit the income level to "3249587435348754394.987324"
+    Then I verify the Enter profit amount error message "Esta cantidad es obligatoria"
+    And I edit the income level to "324958SAD@"
+    Then I verify the income gets converted to "3,249.58"
+    And I edit the income level to "561332.78"
+    And I verify no errors show for Enter profit Income field
+    Then I enter the value "Rockwell Ltd" in company name input field
+    And I click continue on the Employment Info Page
+    Then I verify the income frequency type error message "Seleccione una de las siguientes opciones"
+    Then I verify the Income same or Lower question error message "Seleccione una de las siguientes opciones"
+    And I enter self-employment details with "101.58" income at "Semanalmente" frequency and "No" to same or lower
+    And I verify no errors show for Income frequency field and Income same or lower question field
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+  @SLER-2341
+  Scenario: ELIG-Employment Income-Page Validation (not self-employment)(RT-1200)
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I click continue on the Employment Info Page
+    Then I verify page header in English in Employment Income page
+      |Income: |
+      |Employment Income|
+    Then I validate All error message colour and text in Employment Income page
+      |Employer name is required|
+      |Street address is required|
+      |City is required|
+      |State is required|
+      |Zip code is required|
+      |Amount is required|
+      |Please select one of the options below|
+    Then I validate max length of each text field in Employment Income page
+    And I select the option "Yes" to self employment
+    And I select the option "No" to self employment
+    Then I validate zip code and include commission text box field
+    Then I verify the income frequency dropdown allows single selection
+    Then I validate functionality of "Is this income part of seasonal" question
+    Then I validate functionality of "Will this income be the same" question

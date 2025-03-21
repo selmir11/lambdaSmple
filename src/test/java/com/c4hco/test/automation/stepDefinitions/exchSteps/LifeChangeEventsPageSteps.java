@@ -60,4 +60,19 @@ public class LifeChangeEventsPageSteps {
     public void iClickHelpMeUnderstandThisPageLink(){
         lifeChangeEventsPage.clickHelpMeUnderstandLink();
     }
+
+    @And("I validate the check boxes are interactive and can be selected and deselected")
+    public void iValidateTheCheckBoxesAreInteractiveAndCanBeSelectedAndDeselected() {
+        lifeChangeEventsPage.validateCheckBoxes();
+    }
+
+    @And("I validate the error message {string} is thrown when no option is selected")
+    public void iValidateTheErrorMessageIsThrownWhenNoOptionIsSelected(String errorMessage) {
+        lifeChangeEventsPage.validateErrorMessage(errorMessage);
+    }
+
+    @And("I verify that multiple checkboxes can be selected, and choosing None of the above clears them all")
+    public void iValidateMoreThanOneCheckBoxCanBeSelectedFromTheList() {
+        lifeChangeEventsPage.validateMultipleCheckBoxes();
+    }
 }
