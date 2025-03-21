@@ -22,6 +22,11 @@ public class DeclarationsAndSignaturePageCoCoSteps {
     @And("I enter a OBO signature on the Declarations And Signature Page CoCo")
     public void enterOBOSignature() {declarationsAndSignaturePageCoCo.enterOBOSignature();}
 
+    @Then("I enter invalid signature name on the Declarations And Signature Page CoCo")
+    public void iEnterInvalidSignatureName(){
+        declarationsAndSignaturePageCoCo.enterInvalidSignatureName();
+    }
+
 
 
     // ############################## VALIDATION STEPS #########################
@@ -48,8 +53,8 @@ public class DeclarationsAndSignaturePageCoCoSteps {
         declarationsAndSignaturePageCoCo.validateLabelTextAndStyleProp(dataTable);
     }
 
-    @Then("I enter invalid signature name on the Declarations And Signature Page CoCo")
-    public void iEnterInvalidSignatureName(){
-        declarationsAndSignaturePageCoCo.enterInvalidSignatureName();
+    @Then("I verify the text on CoCo Declarations and Signature page in {string}")
+    public void verifyTextEnglishAndSpanish(String languageOption){
+        declarationsAndSignaturePageCoCo.verifyTextEnglishAndSpanishInDASPage(languageOption);
     }
 }
