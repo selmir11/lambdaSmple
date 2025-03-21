@@ -17,4 +17,8 @@ public class AdminPortalAccountDetailsSteps {
         adminPortalAccountDetailsPage.clickEditFieldsViaOBOButton();
     }
 
+    @Then("I validate all details for primary holder on account details page")
+    public void iValidateAllDetailsOfPrimary() {
+        adminPortalAccountDetailsPage.validateAllDetailsOfPrimaryHolder();
+    }
 }

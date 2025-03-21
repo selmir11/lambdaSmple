@@ -290,6 +290,15 @@ public class AdminPortalIndividualDashboardPage {
     @FindBy(css = "#account-status")
     WebElement passwordReset;
 
+    @FindBy(xpath = "//*[@class='member-prop-container']/label")
+    List<WebElement> selectedMemberLabelTxt;
+
+    @FindBy(xpath = "//*[@class='member-prop-container']/span")
+    List<WebElement> selectedMemberDataTxt;
+
+    @FindBy(xpath = "//a[contains(text(),'Manage Account Details')]")
+    WebElement btnManageAccountDetails;
+
     public void clickBtnOnAccSummContainer(String btnName) {
         basicActions.waitForElementListToBePresent(accSummaryBtns, 10);
         switch (btnName) {
@@ -985,6 +994,67 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertEquals(summaryTitle.getText(), summaryContainer);
          softAssert.assertEquals(reportsTitle.getText(), reportsContainer);
         softAssert.assertAll();
+    }
+
+    public void VerifyOriginalSidebarDetails() {
+        basicActions.waitForElementToBePresent(selectedMember, 30);
+        verifyFullName();
+        verifyUserName();
+        verifyPhoneNumber();
+        verifyEmail();
+        verifyDOB();
+        verifyResidentailAddress();
+        softAssert.assertAll();
+    }
+
+    private void verifyResidentailAddress() {
+        softAssert.assertEquals(selectedMemberLabelTxt.get(5).getText(), "Residential Address:", "Label not match");
+        softAssert.assertTrue(selectedMemberDataTxt.get(5).isDisplayed());
+        String AddressLine1 =  SharedData.getPrimaryMember().getResAddress().getAddressLine1();
+        String AddressCounty =  SharedData.getPrimaryMember().getResAddress().getAddressCity();
+        String AddressState =  SharedData.getPrimaryMember().getResAddress().getAddressState();
+        String AddressZipcode =  SharedData.getPrimaryMember().getResAddress().getAddressZipcode();
+        String ResAddress = AddressLine1 +"\n"+AddressCounty +", "+AddressState +" "+AddressZipcode ;
+        softAssert.assertEquals(selectedMemberDataTxt.get(5).getText(),ResAddress, "Residential Address name not match");
+    }
+
+    private void verifyDOB() {
+        String formatedDOB = SharedData.getPrimaryMember().getDob().replaceFirst("(\\d{2})(\\d{2})(\\d+)", "$1/$2/$3");
+        softAssert.assertEquals(selectedMemberLabelTxt.get(4).getText(), "Date of Birth:", "Label not match");
+        softAssert.assertTrue(selectedMemberDataTxt.get(4).isDisplayed());
+        softAssert.assertEquals(selectedMemberDataTxt.get(4).getText(), formatedDOB, "Date of Birth not match");
+    }
+
+    private void verifyEmail() {
+        softAssert.assertEquals(selectedMemberLabelTxt.get(3).getText(), "Email:", "Email Label not match");
+        softAssert.assertTrue(selectedMemberDataTxt.get(3).isDisplayed());
+        softAssert.assertEquals(selectedMemberDataTxt.get(3).getText(), SharedData.getPrimaryMember().getEmailId(), "Email not match");
+    }
+
+    private void verifyPhoneNumber() {
+        String formatedPhoneNumber = SharedData.getPrimaryMember().getPhoneNumber().replaceFirst("(\\d{3})(\\d{3})(\\d+)", "$1-$2-$3");
+        softAssert.assertEquals(selectedMemberLabelTxt.get(2).getText(), "Phone Number:", "Phone Number Label not match");
+        softAssert.assertTrue(selectedMemberDataTxt.get(2).isDisplayed());
+        softAssert.assertEquals(selectedMemberDataTxt.get(2).getText(),formatedPhoneNumber, "Phone Number not match");
+    }
+
+    private void verifyUserName() {
+        String userNameText =  SharedData.getPrimaryMember().getUserName();
+        softAssert.assertEquals(selectedMemberLabelTxt.get(1).getText(), "Username:", "Username Label not match");
+        softAssert.assertTrue(selectedMemberDataTxt.get(1).isDisplayed());
+        softAssert.assertEquals(selectedMemberDataTxt.get(1).getText(), userNameText, "Username not match");
+    }
+
+    private void verifyFullName() {
+        softAssert.assertEquals(selectedMemberLabelTxt.get(0).getText(), "Full Name:", "Full Name Label not match");
+        softAssert.assertTrue(selectedMemberDataTxt.get(0).isDisplayed());
+        softAssert.assertEquals(selectedMemberDataTxt.get(0).getText(), SharedData.getPrimaryMember().getCompleteFullName(), "Full name not match");
+    }
+
+    public void clickManageAccountDetails() {
+        basicActions.waitForElementToBeClickable(btnManageAccountDetails, 10);
+        basicActions.click(btnManageAccountDetails);
+        basicActions.switchtoactiveTab();
     }
 }
 

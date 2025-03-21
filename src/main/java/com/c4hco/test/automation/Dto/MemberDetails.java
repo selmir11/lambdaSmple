@@ -99,6 +99,7 @@ public class MemberDetails {
     String medicalSesAmt;
     Boolean isProfileChange = false;
     Boolean isResAddChange = false;
+    String userName;
 }
 
 
