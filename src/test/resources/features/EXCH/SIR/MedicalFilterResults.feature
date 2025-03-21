@@ -1,4 +1,4 @@
-@SIR-EXCH8 @medicalPlanFilterResults
+@SIR-EXCH12 @medicalPlanFilterResults
   # contains SLER-25, SLER-36, SLER-44, SLER-53, SLER-56, SLER-62, SLER-63, SLER-72, SLER-74
 Feature: Medical Plan Verification test
 
