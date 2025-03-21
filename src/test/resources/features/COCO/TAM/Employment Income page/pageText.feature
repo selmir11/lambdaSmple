@@ -286,25 +286,32 @@ Feature: Tests related to the Employment Income page
     Then I verify the income frequency options in "Spanish"
     Then I verify the navigation buttons on the CoCo Employment Income page in "Spanish"
 
-  @SLCR-774
-  Scenario: SLCR-774 Page Validation-Employment Income
+  @SLCR-774 @SLCR-865 @test
+  Scenario Outline: <TestNumber> Page Validation-Employment Income - <Language>
+    Then I change the language from header to "<Language>"
     And I click continue on the Employment income page
     And I verify validation text on the CoCo Employment Income page
-      | Text                                   | fontSize | fontFamily            | fontWeight | color   |
-      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | #960000 |
+      | Text           | fontSize | fontFamily            | fontWeight | color   |
+      | <PleaseSelect> | 14px     | "PT Sans", sans-serif | 400        | #960000 |
     And I select "Yes" employment option
     And I click continue on the Employment income page
     And I verify validation text on the CoCo Employment Income page
-      | Text                                   | fontSize | fontFamily            | fontWeight | color   |
-      | Amount is required                     | 14px     | "PT Sans", sans-serif | 400        | #960000 |
-      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | #960000 |
-      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | #960000 |
-      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | #960000 |
+      | Text           | fontSize | fontFamily            | fontWeight | color   |
+      | <AmtRequired>  | 14px     | "PT Sans", sans-serif | 400        | #960000 |
+      | <PleaseSelect> | 14px     | "PT Sans", sans-serif | 400        | #960000 |
+      | <PleaseSelect> | 14px     | "PT Sans", sans-serif | 400        | #960000 |
+      | <PleaseSelect> | 14px     | "PT Sans", sans-serif | 400        | #960000 |
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-793
-  Scenario: SLCR-793 I want error focus state for all components updated so that they are consistent with the style definitions in the Design System - Employer Income
-    And I verify the header for Primary Member on the CoCo Employment income page in "English"
+    Examples:
+      |TestNumber|Language|AmtRequired                 |PleaseSelect                             |
+      |SLCR-774  |English |Amount is required          |Please select one of the options below   |
+      |SLCR-865  |Spanish |Esta cantidad es obligatoria|Seleccione una de las siguientes opciones|
+
+  @SLCR-793 @SLCR-864 @test
+  Scenario Outline: <TestNumber> I want error focus state for all components updated so that they are consistent with the style definitions in the Design System - Employer Income - <Language>
+    Then I change the language from header to "<Language>"
+    And I verify the header for Primary Member on the CoCo Employment income page in "<Language>"
     And I click continue on the Employment income page
     Then I verify Employment Income CoCo error format for "Do you have a job"
     And I select "Yes" employment option
@@ -315,3 +322,8 @@ Feature: Tests related to the Employment Income page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+    Examples:
+      | TestNumber | Language |
+      | SLCR-793   | English  |
+      | SLCR-864   | Spanish  |
