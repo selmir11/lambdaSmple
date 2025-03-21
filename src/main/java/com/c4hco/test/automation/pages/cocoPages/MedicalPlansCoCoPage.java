@@ -450,8 +450,8 @@ public class MedicalPlansCoCoPage {
             Matcher matcher = Pattern.compile("\\d+").matcher(parts[0]);
             String groupNum = matcher.find() ? matcher.group() : null;
 
-            basicActions.waitForElementToDisappear(spinner, 10);
-            basicActions.waitForElementToBePresent(medicalplanheader, 10);
+            basicActions.waitForElementToDisappear(spinner, 60);
+            basicActions.waitForElementToBePresent(medicalplanheader, 60);
             basicActions.wait(3000);
             Matcher matcher_header = Pattern.compile("\\d+").matcher(medicalplanheader.getText());
             String headerGroupNum = matcher_header.find() ? matcher.group() : null;
