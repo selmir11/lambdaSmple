@@ -57,6 +57,9 @@ public class FamilyOverviewPage {
     @FindBy(css = ".family-overview-exclamation .red-circle svg")
     List<WebElement> redCircleExclamationMarkForBasicHouseholdAndAnnualFinancialInformation;
 
+    @FindBy(xpath = "//h1[contains(text(),'Family Overview: Here’s what you’ve told us so far')]//following::div[28]")
+    WebElement annualFinInfoAmt;
+
     SoftAssert softAssert = new SoftAssert();
 
     private BasicActions basicActions;
@@ -204,6 +207,12 @@ public class FamilyOverviewPage {
         softAssert.assertTrue(editUpdateLink.get(0).isDisplayed(),"Edit/Update link is not visible");
         softAssert.assertTrue(redCircleExclamationMarkForBasicHouseholdAndAnnualFinancialInformation.get(0).isDisplayed(),"Red circle exclamation mark for Basic Household Information is not visible");
         softAssert.assertTrue(redCircleExclamationMarkForBasicHouseholdAndAnnualFinancialInformation.get(1).isDisplayed(),"Red circle exclamation mark for Annual Financial Information is not visible");
+        softAssert.assertAll();
+    }
+
+    public void verifyDeductionAmount(String amount){
+        basicActions.waitForElementListToBePresent(editUpdateLink, 10);
+        softAssert.assertEquals(annualFinInfoAmt.getText(),amount);
         softAssert.assertAll();
     }
 }
