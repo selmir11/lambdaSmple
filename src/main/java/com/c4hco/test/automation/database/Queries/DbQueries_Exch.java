@@ -895,4 +895,13 @@ public class DbQueries_Exch {
         System.out.println("Executing Query: " + query);
         return query;
     }
+
+    public String getEsMemberLceAhDetails(String memberId) {
+        String query = "select l.member_lce_id lce_member_lce_id, lah.member_lce_id lce_ah_member_lce_id,l.evaluation_id lce_evaluation_id, lah.evaluation_id lce_ah_evaluation_id, l.lce_report_date lce_report_date, lah.lce_report_date lce_ah_report_date,l.lce_event_date lce_event_date, lah.lce_event_date lce_ah_event_date\n" +
+                "from " + dbName + ".es_member_lce l \n" +
+                "join " + dbName + ".es_member_lce_ah lah on l.member_lce_id = lah.member_lce_id\n" +
+                "where l.member_id = " + memberId;
+        System.out.println("Executing Query: " + query);
+        return query;
+    }
 }

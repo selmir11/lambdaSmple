@@ -105,7 +105,7 @@ public class TellUsAboutYourselfCoCoPage {
         subscriber.setApplyingforCov(applying);
     }
 
-    private void genderSelection(String gender) {
+    public void genderSelection(String gender) {
         basicActions.waitForElementListToBePresent(genderButton, 30);
         switch (gender) {
             case "Male":

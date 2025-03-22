@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.datatable.DataTable;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -14,11 +15,13 @@ import java.util.Map;
 
 public class EmploymentIncomePage {
     private BasicActions basicActions;
+    Actions action;
 
     SoftAssert softAssert = new SoftAssert();
 
     public EmploymentIncomePage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
+        action = new Actions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
@@ -269,6 +272,11 @@ public class EmploymentIncomePage {
             case "Yes":
                 basicActions.waitForElementToBePresent(employmentYesButton, 60);
                 softAssert.assertTrue(employmentYesButton.getAttribute("class").contains("selected"));
+                softAssert.assertEquals(employmentYesButton.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(employmentYesButton.getCssValue("font-size"), "20px");
+                softAssert.assertEquals(employmentYesButton.getCssValue("line-height"), "32px");
+                softAssert.assertEquals(employmentYesButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
+                softAssert.assertEquals(employmentYesButton.getCssValue("background-color"), "rgba(252, 252, 252, 1)");
                 softAssert.assertAll();
                 break;
             case "No":
@@ -349,12 +357,26 @@ public class EmploymentIncomePage {
                 softAssert.assertEquals(goBackButton.getCssValue("line-height"), "32px");
                 softAssert.assertEquals(goBackButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
                 softAssert.assertEquals(goBackButton.getCssValue("background-color"), "rgba(252, 252, 252, 1)");
+                action.moveToElement(goBackButton).pause(1000L).build().perform();
+                softAssert.assertEquals(goBackButton.getText(), "Go back");
+                softAssert.assertEquals(goBackButton.getCssValue("font-family"), "\"PT Sans\", sans-serif","Go back hover font-family");
+                softAssert.assertEquals(goBackButton.getCssValue("font-size"), "20px","Go back hover font-size");
+                softAssert.assertEquals(goBackButton.getCssValue("font-weight"), "700","Go back hover font-weight");
+                softAssert.assertEquals(goBackButton.getCssValue("color"), "rgba(26, 112, 179, 1)","Go back hover color");
+                softAssert.assertEquals(goBackButton.getCssValue("background-color"), "rgba(226, 241, 248, 1)","Go back hover background");
                 softAssert.assertEquals(saveAndContinueButton.getText(), "Save and continue");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("font-size"), "20px");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("line-height"), "32px");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(252, 252, 252, 1)");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("background-color"), "rgba(26, 112, 179, 1)");
+                action.moveToElement(saveAndContinueButton).pause(1000L).build().perform();
+                softAssert.assertEquals(saveAndContinueButton.getText(), "Save and continue");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("font-family"), "\"PT Sans\", sans-serif","Save and continue hover font-family");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("font-size"), "20px","Save and continue hover font-size");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("font-weight"), "700","Save and continue hover font-weight");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(252, 252, 252, 1)","Save and continue hover color");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("background-color"), "rgba(22, 156, 216, 1)","Save and continue hover background");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -581,5 +603,59 @@ public class EmploymentIncomePage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + incomeChange);
         }
+    }
+
+    public void validateYesNoButtons(String incomeType, String language) {
+        basicActions.waitForElementToBePresent(hdr_EmploymentIncome, 15);
+        WebElement elementYes;
+        WebElement elementNo;
+        boolean isInputStyle = false;
+
+        switch (incomeType) {
+            case "Do you have a job":
+                elementYes = employmentYesButton;
+                elementNo = employmentNoButton;
+                break;
+            case "total income":
+                elementYes = incomeInput;
+                elementNo = incomeFrequencyDropdown;
+                isInputStyle = true;
+                break;
+            case "seasonal":
+                elementYes = incomeSeasonalYesButton;
+                elementNo = incomeSeasonalNoButton;
+                break;
+            case "income change":
+                elementYes = incomeChangesYesButton;
+                elementNo = incomeChangesNoButton;
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported type: " + incomeType);
+        }
+
+        if (isInputStyle) {
+            verifyInputStyles(elementYes);
+            verifyInputStyles(elementNo);
+        } else {
+            verifyYesNoStyles(elementYes);
+            verifyYesNoStyles(elementNo);
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyYesNoStyles(WebElement element) {
+        softAssert.assertEquals(element.getCssValue("border-radius"), "4px", element + " Border radius mismatch");
+        softAssert.assertEquals(element.getCssValue("border-color"), "rgb(149, 147, 147)", element + " Border color mismatch");
+        softAssert.assertEquals(element.getCssValue("background-color"), "rgba(255, 255, 255, 1)", element + " Background color mismatch");
+        softAssert.assertEquals(element.getCssValue("color"), "rgba(77, 77, 79, 1)", element + " Text color mismatch");
+        softAssert.assertEquals(element.getCssValue("border"), "1px solid rgb(149, 147, 147)", element + " Border mismatch");
+    }
+
+    public void verifyInputStyles(WebElement element) {
+        softAssert.assertEquals(element.getCssValue("border-radius"), "6px", element + " Border radius mismatch");
+        softAssert.assertEquals(element.getCssValue("border-color"), "rgb(149, 147, 147)", element + " Border color mismatch");
+        softAssert.assertEquals(element.getCssValue("background-color"), "rgba(255, 255, 255, 1)", element + " Background color mismatch");
+        softAssert.assertEquals(element.getCssValue("color"), "rgba(77, 77, 79, 1)", element + " Text color mismatch");
+        softAssert.assertEquals(element.getCssValue("border"), "1px solid rgb(149, 147, 147)", element + " Border mismatch");
     }
 }

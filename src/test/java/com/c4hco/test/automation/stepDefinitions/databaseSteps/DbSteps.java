@@ -384,6 +384,9 @@ public class DbSteps {
     @And("I verify {string}'s applying_for_coverage_ind is {string}")
     public void iValidateApplyingForCoverageIndDB(String FName, String applying) {dbValidations.validateApplyingForCoverageIndDB(FName, applying);}
 
+    @And("I verify {string}'s LCE data is moved to ah table")
+    public void iValidateLceMovedToAh(String FName) {dbValidations.validateLceMovedToAh(FName);}
+
 }
 
 

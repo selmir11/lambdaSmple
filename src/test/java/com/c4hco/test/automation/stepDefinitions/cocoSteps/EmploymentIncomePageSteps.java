@@ -75,4 +75,7 @@ public class EmploymentIncomePageSteps {
 
     @And("I verify selected data on the CoCo Employment Income data")
     public void iVerifySelectedData(List<Map<String, String>> employmentData){employmentIncomePage.verifySelectedData(employmentData);}
+
+    @Then("I validate yes and no buttons for {string} on the Employment Income page in {string}")
+    public void iValidateYesNoButtons(String incomeType, String language) {employmentIncomePage.validateYesNoButtons(incomeType, language);}
 }
