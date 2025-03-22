@@ -52,4 +52,8 @@ public class AddInfoForYourselfPageSteps {
         addInfoForYourselfPage.validateCountyField();
     }
 
+    @And("I update my mailing address {string}, {string}, {string}, {string}, {string}")
+    public void updateMemberMailingCOAddress(String addressLine1, String city, String state, String zipcode, String county){addInfoForYourselfPage.updateCocoMailingAddress(addressLine1, city, state, zipcode, county);}
+
+
 }

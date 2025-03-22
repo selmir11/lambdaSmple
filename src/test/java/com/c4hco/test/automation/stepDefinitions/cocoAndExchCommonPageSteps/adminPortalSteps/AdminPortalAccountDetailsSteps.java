@@ -21,4 +21,10 @@ public class AdminPortalAccountDetailsSteps {
     public void iValidateAllDetailsOfPrimary() {
         adminPortalAccountDetailsPage.validateAllDetailsOfPrimaryHolder();
     }
+
+    @Then("I validate all Coco details for primary holder on account details page")
+    public void iValidateCocoDetailsOfPrimary() {
+        adminPortalAccountDetailsPage.validateCocoDetailsOfPrimaryHolder();
+    }
+
 }

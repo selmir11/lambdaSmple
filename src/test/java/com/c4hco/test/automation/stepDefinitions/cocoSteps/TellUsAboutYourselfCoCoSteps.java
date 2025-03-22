@@ -77,4 +77,9 @@ public class TellUsAboutYourselfCoCoSteps {
     @And("I update applying for coverage to {string} in coco")
     public void applyingForCoverage(String applying) {tellUsAboutYourselfCoCoPage.applyingForCoverage(applying);}
 
+    @Then("I update Coco DOB to new DOB of {string}")
+    public void iUpdateCocoDOB(String newDob) {
+        tellUsAboutYourselfCoCoPage.updateCocoDOB(newDob);
+    }
+
 }

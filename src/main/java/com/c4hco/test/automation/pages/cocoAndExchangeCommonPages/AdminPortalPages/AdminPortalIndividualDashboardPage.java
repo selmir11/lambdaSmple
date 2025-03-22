@@ -321,7 +321,12 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertEquals(accountSummaryTitle.getText(), "Account Summary", "Account Summary Title did not match!");
         softAssert.assertEquals(unameAndNameTitles.get(0).getText(), "Username:", "Username Text did not match");
         softAssert.assertEquals(unameAndNameTitles.get(1).getText(), "Full Name:", "Full name text did not match");
-        softAssert.assertEquals(individualNames.get(0).getText(), primaryMem.getEmailId(), "Email Id did not match");
+        if( primaryMem.getIncorrectEmail() !=  null) {
+            softAssert.assertEquals(individualNames.get(0).getText(), primaryMem.getIncorrectEmail(), "Email Id did not match");
+        }
+        else {
+            softAssert.assertEquals(individualNames.get(0).getText(), primaryMem.getEmailId(), "Email Id did not match");
+        }
         softAssert.assertEquals(individualNames.get(1).getText(), primaryMem.getCompleteFullName(), "Name of primary person did not match");
         softAssert.assertEquals(hhMemTitle.getText(), "Household Members", "Household Members title did not match");
         List<String> memberNamesUi = new ArrayList<>();

@@ -42,6 +42,9 @@ public class AdminPortalAccountDetailsPage {
     @FindBy(xpath = "//*[text()='Full Name:']")
     WebElement fullNameLabel;
 
+    @FindBy(xpath = "//*[@id='individualDashboardCocoTitle']")
+    WebElement CocoDashboardHeader;
+
 
     public void validatePrimaryMemDetails(){
         basicActions.waitForElementListToBePresent(accDetailsLabelAndValues, 10);
@@ -152,7 +155,12 @@ public class AdminPortalAccountDetailsPage {
 
     private void validateUserName(MemberDetails primaryMem) {
         softAssert.assertEquals(accDetailsLabelAndValues.get(2).getText(), "Username:", "Username label did not match");
-        softAssert.assertEquals(accDetailsLabelAndValues.get(3).getText(), primaryMem.getUserName(), "Username did not match");
+        if(primaryMem.getIncorrectEmail() != null) {
+            softAssert.assertEquals(accDetailsLabelAndValues.get(3).getText(),primaryMem.getIncorrectEmail(), "Preferred Contact Method: did not match");
+        }
+        else {
+            softAssert.assertEquals(accDetailsLabelAndValues.get(3).getText(), primaryMem.getEmailId(), "Username did not match");
+        }
     }
 
     private void validateFullName(MemberDetails primaryMem) {
@@ -169,4 +177,41 @@ public class AdminPortalAccountDetailsPage {
         String [] AccountID = accountIDText.getText().split(",");
         softAssert.assertEquals(AccountID[0], "Account ID: " +primaryMem.getAccount_id() + " ",  "Account did not match");
     }
+
+    public void validateCocoDetailsOfPrimaryHolder() {
+        basicActions.wait(10000);
+        basicActions.refreshPage();
+        basicActions.waitForElementListToBePresent(accDetailsLabelAndValues, 10);
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        validateCocoHeaderDetails(primaryMem);
+        validateCocoAccountNumber(primaryMem);
+
+        validateSubHeaderDetails();
+        validateFullName(primaryMem);
+        validateUserName(primaryMem);
+        validateResAddress(primaryMem);
+        validateMailingAddress(primaryMem);
+        validateSSN(primaryMem);
+        validateDOB(primaryMem);
+        validateEmailAddress(primaryMem);
+        validateHomeNumber(primaryMem);
+        validateMobileNumber(primaryMem);
+        validateContactMethod(primaryMem);
+        validatePreferreddLanguage(primaryMem);
+        softAssert.assertAll();
+
+    }
+
+    private void validateCocoAccountNumber(MemberDetails primaryMem) {
+        String [] AccountID = accountIDText.getText().split(",");
+        softAssert.assertEquals(AccountID[0], "Account ID: " +primaryMem.getAccount_id() , "Account did not match");
+    }
+
+    private void validateCocoHeaderDetails(MemberDetails primaryMem){
+        basicActions.waitForElementToBePresent(headerText, 10);
+        softAssert.assertEquals(CocoDashboardHeader.getText() , "Colorado Connect" , "Coco header not match");
+        softAssert.assertEquals(headerText.getText(), "Primary Account Holder: "+primaryMem.getSignature(), "Primary person's name from header did not match");
+
+    }
+
 }
