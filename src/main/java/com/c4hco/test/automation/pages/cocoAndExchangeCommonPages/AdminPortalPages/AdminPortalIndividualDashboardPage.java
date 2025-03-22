@@ -1044,10 +1044,15 @@ public class AdminPortalIndividualDashboardPage {
     }
 
     private void verifyUserName() {
-        String userNameText =  SharedData.getPrimaryMember().getUserName();
         softAssert.assertEquals(selectedMemberLabelTxt.get(1).getText(), "Username:", "Username Label not match");
         softAssert.assertTrue(selectedMemberDataTxt.get(1).isDisplayed());
-        softAssert.assertEquals(selectedMemberDataTxt.get(1).getText(), userNameText, "Username not match");
+        if(SharedData.getPrimaryMember().getIncorrectEmail() != null){
+            softAssert.assertEquals(selectedMemberDataTxt.get(1).getText(), SharedData.getPrimaryMember().getIncorrectEmail() , "Username not match");
+        }
+        else {
+            softAssert.assertEquals(selectedMemberDataTxt.get(1).getText(), SharedData.getPrimaryMember().getEmailId() , "Username not match");
+        }
+
     }
 
     private void verifyFullName() {

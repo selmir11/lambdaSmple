@@ -386,7 +386,6 @@ public class CreateAccountPage {
         subscriber.setWrittenLanguage("English");
         subscriber.setRelation_to_subscriber("SELF");
         primaryUserCheckbox.click();
-        subscriber.setUserName(subscriber.getEmailId());
         SharedData.setPrimaryMember(subscriber);
     }
 

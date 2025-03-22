@@ -101,7 +101,7 @@ Feature: Admin Portal as OBO verify member data on the left
     #Validation for original data
     Then I verify Primary account holder and account number displays
     Then I validate Selected Member label and member data on the far left side
-    Then I validate Account Summary Container details
+    Then I validate content from Account Summary Container
     Then I click on manage account details button on admin portal Individual dashboard
     Then I validate I am on the "account details" page
     Then I validate all details for primary holder on account details page
@@ -185,7 +185,7 @@ Feature: Admin Portal as OBO verify member data on the left
     Then I validate I am on the "Admin Portal individual dashboard" page
     Then I verify Primary account holder and account number displays
     Then I validate Selected Member label and member data on the far left side
-    Then I validate Account Summary Container details
+    Then I validate content from Account Summary Container
     Then I click on manage account details button on admin portal Individual dashboard
     Then I validate I am on the "account details" page
 
