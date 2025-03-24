@@ -158,10 +158,10 @@ public class IncomeSummaryCoCoPage {
     }
 
     public void verifyHeadersIncomeSummaryPageEnglish(){
-        basicActions.wait(250);
+        basicActions.wait(500);
         basicActions.waitForElementToBePresentWithRetries(hdr_Income,60);
         basicActions.waitForElementToBePresentWithRetries(hdr_IncomeSummary,60);
-        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
+        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()),"Found: " + hdr_Income.getText() + " Expecting: Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
         softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
         softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700");
         softAssert.assertEquals(hdr_Income.getCssValue("font-family"), "\"PT Sans\", sans-serif");
