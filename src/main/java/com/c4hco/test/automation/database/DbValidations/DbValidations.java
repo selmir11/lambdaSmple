@@ -145,6 +145,7 @@ public class DbValidations {
         softAssert.assertAll();
 
     }
+
    public void validateBookOfBusinessQMedical(String coverageType, String eventType){
         switch(coverageType) {
             case "medical":
@@ -924,7 +925,7 @@ public class DbValidations {
     }
 
     public void validateMemberRowCount(int expectedRowCount) {
-//        basicActions.wait(5000);
+        basicActions.wait(5000);
         int actualRowCount = Integer.parseInt(exchDbDataProvider.getEmployerIncomeRowCount());
         softAssert.assertEquals(actualRowCount, expectedRowCount, "Row count mismatch!");
         softAssert.assertAll();
@@ -1004,6 +1005,12 @@ public class DbValidations {
         basicActions.wait(7000);
         int actualRowCount = Integer.parseInt(exchDbDataProvider.getDeductionRowCount());
         softAssert.assertEquals(actualRowCount, expectedRowCount, "Row count mismatch!");
+        softAssert.assertAll();
+    }
+
+    public void validateEnrollmentPlanYear(String year) {
+        String enrolmentPlanYear = exchDbDataProvider.getEnrollmentPlanYear();
+        softAssert.assertEquals(enrolmentPlanYear, basicActions.getDateBasedOnRequirement(year));
         softAssert.assertAll();
     }
 }
