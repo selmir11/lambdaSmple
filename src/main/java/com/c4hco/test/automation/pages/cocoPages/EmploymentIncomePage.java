@@ -2,7 +2,6 @@ package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.datatable.DataTable;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -660,6 +659,7 @@ public class EmploymentIncomePage {
         basicActions.waitForElementToBePresent(hdr_EmploymentIncome, 15);
         WebElement elementYes;
         WebElement elementNo;
+        boolean isInputStyle = false;
 
         switch (incomeType) {
             case "Do you have a job":
@@ -669,6 +669,7 @@ public class EmploymentIncomePage {
             case "total income":
                 elementYes = incomeInput;
                 elementNo = incomeFrequencyDropdown;
+                isInputStyle = true;
                 break;
             case "seasonal":
                 elementYes = incomeSeasonalYesButton;
@@ -681,16 +682,41 @@ public class EmploymentIncomePage {
             default:
                 throw new IllegalArgumentException("Unsupported type: " + incomeType);
         }
-        verifyNotSelectedButton(elementYes);
-        verifyNotSelectedButton(elementNo);
+
+        if (isInputStyle) {
+            verifyNotSelectedInput(elementYes);
+            verifyNotSelectedDropdown(elementNo);
+        } else {
+            verifyNotSelectedButton(elementYes);
+            verifyNotSelectedButton(elementNo);
+        }
+        softAssert.assertAll();
     }
 
     public void verifyNotSelectedButton(WebElement element) {
-        softAssert.assertTrue(element.getAttribute("class").equals("button ng-star-inserted option-button"));
-        softAssert.assertEquals(element.getCssValue("font-weight"), "700");
+        softAssert.assertTrue(element.getAttribute("class").equals("button option-button ng-star-inserted"),"Element: " + element + " Expected: button option-button ng-star-inserted Found: " + element.getAttribute("class"));
+        softAssert.assertEquals(element.getCssValue("font-weight"), "400");
         softAssert.assertEquals(element.getCssValue("font-size"), "16px");
         softAssert.assertEquals(element.getCssValue("line-height"), "28px");
-        softAssert.assertEquals(element.getCssValue("color"), "rgba(255, 255, 255, 1)");
-        softAssert.assertEquals(element.getCssValue("background-color"), "rgba(112, 163, 0, 1)");
+        softAssert.assertEquals(element.getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(element.getCssValue("background-color"), "rgba(255, 255, 255, 1)");
+    }
+
+    public void verifyNotSelectedInput(WebElement element) {
+        softAssert.assertTrue(element.getAttribute("class").equals("form-control monetary-input ng-untouched ng-pristine ng-invalid"),"Element: " + element + " Expected: form-control monetary-input ng-untouched ng-pristine ng-invalid Found: " + element.getAttribute("class"));
+        softAssert.assertEquals(element.getCssValue("font-weight"), "400");
+        softAssert.assertEquals(element.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(element.getCssValue("line-height"), "24px");
+        softAssert.assertEquals(element.getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(element.getCssValue("background-color"), "rgba(255, 255, 255, 1)");
+    }
+
+    public void verifyNotSelectedDropdown(WebElement element) {
+        softAssert.assertTrue(element.getAttribute("class").equals("form-select ng-untouched ng-pristine ng-invalid"),"Element: " + element + " Expected: form-select ng-untouched ng-pristine ng-invalid Found: " + element.getAttribute("class"));
+        softAssert.assertEquals(element.getCssValue("font-weight"), "400");
+        softAssert.assertEquals(element.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(element.getCssValue("line-height"), "24px");
+        softAssert.assertEquals(element.getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(element.getCssValue("background-color"), "rgba(255, 255, 255, 1)");
     }
 }
