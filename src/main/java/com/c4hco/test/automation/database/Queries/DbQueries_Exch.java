@@ -823,6 +823,16 @@ public class DbQueries_Exch {
                 "AND i.kind = '" + kindValue + "';";
     }
 
+    public String getDeductionAmountCount(String memberId) {
+        String query =  "SELECT count(i.kind)" +
+                "FROM " + dbName + ".es_member m " +
+                "JOIN " + dbName + ".es_income i ON m.member_id = i.member_id " +
+                "WHERE m.member_id = '" + memberId + "' " +
+                "AND i.type = 'DEDUCTION';";
+        System.out.println("Executing Query: " + query);
+        return query;
+    }
+
     public String getApplicationIdFromHouseholdTable(){
         return "select esh.account_id, esh.household_id, esa.created_ts, esa.application_id\n" +
                 "from "+dbName+".es_household esh, "+dbName+".es_application esa\n" +

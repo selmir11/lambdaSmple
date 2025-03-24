@@ -924,7 +924,7 @@ public class DbValidations {
     }
 
     public void validateMemberRowCount(int expectedRowCount) {
-        basicActions.wait(5000);
+//        basicActions.wait(5000);
         int actualRowCount = Integer.parseInt(exchDbDataProvider.getEmployerIncomeRowCount());
         softAssert.assertEquals(actualRowCount, expectedRowCount, "Row count mismatch!");
         softAssert.assertAll();
@@ -997,6 +997,13 @@ public class DbValidations {
         softAssert.assertEquals(dbValues[2], dbValues[3], "Second set");
         softAssert.assertEquals(dbValues[4], dbValues[5] + " 00:00:00", "Third set");
         softAssert.assertEquals(dbValues[6], dbValues[7] + " 00:00:00", "Forth set");
+        softAssert.assertAll();
+    }
+
+    public void validateDeductionRowCount(int expectedRowCount) {
+        basicActions.wait(7000);
+        int actualRowCount = Integer.parseInt(exchDbDataProvider.getDeductionRowCount());
+        softAssert.assertEquals(actualRowCount, expectedRowCount, "Row count mismatch!");
         softAssert.assertAll();
     }
 }
