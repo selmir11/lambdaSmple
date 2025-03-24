@@ -20,4 +20,8 @@ public class CRMDVRPageSteps {
 
     @And("I verify time and date of DVR is {string} in the CRM")
     public void iCompareLastTwoDvrDateTimes(String matchType){crmDVRPage.compareLastTwoDvrDateTimes(matchType);}
+
+    @Then("I click Deactivate button in CRM")
+    public void iClickDeactivateButtonInCRM() {
+        crmDVRPage.clickDeactivateButtonInCRM();    }
 }
