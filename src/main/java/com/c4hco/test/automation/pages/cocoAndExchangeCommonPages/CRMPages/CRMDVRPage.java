@@ -123,7 +123,6 @@ public class CRMDVRPage {
         basicActions.waitForElementToBePresentWithRetries(btnDeactivate, 60);
         btnDeactivate.click();
         basicActions.wait(2000);
-        // basicActions.switchtoactiveTab();
         basicActions.waitForElementToBePresentWithRetries(btnDeactivateConfirmation, 60);
         btnDeactivateConfirmation.click();
 }

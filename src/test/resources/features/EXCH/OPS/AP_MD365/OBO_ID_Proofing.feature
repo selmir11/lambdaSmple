@@ -60,4 +60,3 @@ Feature: OPS: Create individual account and verify that can be found in MD365
     Then I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     Then I click continue on family overview page
-    
