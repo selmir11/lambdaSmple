@@ -277,6 +277,21 @@ Feature: Seed06 - Exchange
       Then I validate I am on the "Application History" page
       And I click on Sign Out in the Header for "NonElmo"
 
+  @SLER-2360-WIP
+  Scenario: RT-2305 - ENR-EXCH: USER INITIATED DISENROLLMENT (TERM) - DENTAL - ALL MEMBERS
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    And I validate I am on the "Account Overview" page
+    Then I click on ClickHere link for "My Plans"
+    And I validate I am on the "My Policies" page
+    And I click on "Cancel Dental Plan" button
+    And I validate I am on the "Cancellation Request" page
+    Then I affirm and cancel the active plan
+    Then I click continue on Cancellation Request page
+    Then I click Okay on Thank you popup
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "Account Overview" page
 
 
 
