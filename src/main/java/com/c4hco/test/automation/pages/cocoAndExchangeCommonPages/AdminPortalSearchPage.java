@@ -134,7 +134,7 @@ public class AdminPortalSearchPage {
     @FindBy(xpath = "//tbody/tr/td[3]")
     List<WebElement> LastName;
 
-    @FindBy(xpath = "//table[1]/tbody[1]/tr[6]/td[1]") // This locator just using to avoid hard wait
+    @FindBy(xpath = "//table[1]/tbody[1]/tr[3]/td[1]") // This locator just using to avoid hard wait
     WebElement rowTenth;
 
     @FindBy(xpath = "(//button[@type='button'][normalize-space()='Reset'])[2]")
@@ -520,7 +520,7 @@ public class AdminPortalSearchPage {
 
     public void verifyAccountDetails(String category) {
         switch (category) {
-            case "ProgrammeManager":
+            case "Program Manager":
                 verifyPMAccountTitledetails();
                 verifyPMData();
                 break;
