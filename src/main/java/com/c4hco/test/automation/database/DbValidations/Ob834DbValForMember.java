@@ -125,7 +125,7 @@ public class Ob834DbValForMember {
         String name = getName(ob834Entity, member);
         getDentalPlanDbDataMap(name);
         String formatPlanStartDate = SharedData.getExpectedCalculatedDates_dentalPlan().getCoverageStartDate().replaceAll("-", "");
-        String formatMedicalPlanEndDate = SharedData.getExpectedCalculatedDates_dentalPlan().getPolicyEndDate().replaceAll("-", "");
+        String formatDentalPlanEndDate = SharedData.getExpectedCalculatedDates_dentalPlan().getCoverageEndDate().replaceAll("-", "");
         String formatedFinStartDate = SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialStartDate().replaceAll("-", "");
 
         softAssert.assertEquals(ob834Entity.getHios_plan_id(), dentalPlanDbDataMap.get(name).getBaseId(), "Dental Hios id did not match!");
@@ -133,7 +133,7 @@ public class Ob834DbValForMember {
         softAssert.assertEquals(ob834Entity.getInsurer_id(), dentalPlanDbDataMap.get(name).getIssuerId(), "Dental Insurer Id did not match!");
 
         softAssert.assertEquals(ob834Entity.getBenefit_begin_date(), formatPlanStartDate, "Dental plan start date is not correct");
-        softAssert.assertEquals(ob834Entity.getBenefit_end_date(), formatMedicalPlanEndDate, "Dental plan end date is not correct");
+        softAssert.assertEquals(ob834Entity.getBenefit_end_date(), formatDentalPlanEndDate, "Dental plan end date is not correct");
         softAssert.assertEquals(ob834Entity.getFinancial_effective_date(), formatedFinStartDate, "Dental Financial start date is not correct");
 
         validateDetailsFromStep(ob834Entity, expectedValues.get(0));
@@ -228,7 +228,7 @@ public class Ob834DbValForMember {
         String name = getName(ob834Entity, member);
         getMedicalPlanDbDataMap(name);
         String formatPlanStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getCoverageStartDate().replaceAll("-", "");
-        String formatMedicalPlanEndDate = SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyEndDate().replaceAll("-", "");
+        String formatMedicalPlanEndDate = SharedData.getExpectedCalculatedDates_medicalPlan().getCoverageEndDate().replaceAll("-", "");
         String formatedFinStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialStartDate().replaceAll("-", "");
 
         softAssert.assertEquals(ob834Entity.getHios_plan_id(), medicalPlanDbDataMap.get(name).getBaseId(), "Medical Hios id did not match!");

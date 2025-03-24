@@ -48,6 +48,18 @@ public class PolicyTableMemberDbValidations {
                 setMedicalCancelData();
                 valMemMedicalRecordsValidations(memberPrefix);
                 break;
+            case "medical-disenroll-submitted":
+                policyStatus = "SUBMITTED";
+                policyMemCoverageStatus = "DISENROLL_SUBMITTED";
+                setMedicalData();
+                valMemMedicalRecordsValidations(memberPrefix);
+                break;
+            case "dental-disenroll-submitted":
+                policyStatus = "SUBMITTED";
+                policyMemCoverageStatus = "DISENROLL_SUBMITTED";
+                setDentalData();
+                dentalRecordsValidations(memberPrefix);
+                break;
             default:
                 Assert.fail("Record Type entered is not valid");
         }
