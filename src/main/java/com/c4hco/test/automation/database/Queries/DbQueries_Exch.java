@@ -627,8 +627,10 @@ public class DbQueries_Exch {
     }
 
     public String getEnrollmentPeriodEndDate() {
-        return "SELECT * from " + dbName + ".es_enrollment_period_end_date\n" +
+        String query =  "SELECT * from " + dbName + ".es_enrollment_period_end_date\n" +
                 "where application_id = '" + applicationId + "'";
+        System.out.println("Executing Query: " + query);
+        return query;
     }
 
     public String getBrokerEmailIn() {
