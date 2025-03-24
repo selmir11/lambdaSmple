@@ -683,4 +683,7 @@ public class DbDataProvider_Exch {
         String memberId = basicActions.getMemberId("Primary");
         return postgresHandler.getResultFor("count", exchDbQueries.getDeductionAmountCount(memberId));
     }
+
+    public String getEnrollmentPlanYear() {
+        return postgresHandler.getResultFor("plan_year", exchDbQueries.getEnrollmentPeriodEndDate());}
 }
