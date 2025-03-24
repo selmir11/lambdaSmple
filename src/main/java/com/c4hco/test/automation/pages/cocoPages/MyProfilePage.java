@@ -483,10 +483,23 @@ public class MyProfilePage {
             newPrimaryMem.setPhoneNumber(primaryMem.getPhoneNumber());
             newPrimaryMem.setResAddress(primaryMem.getResAddress());
             newPrimaryMem.setMailingAddress(primaryMem.getMailingAddress());
+            setRelation(newPrimaryMem);
             memberList.remove(newPrimaryMem);
             SharedData.setPrimaryMember(newPrimaryMem);
         });
         SharedData.setMembers(memberList);
+    }
+    private void setRelation(MemberDetails member){
+        String relation = member.getRelation_to_subscriber();
+        MemberDetails memWithPrimaryPrefix = basicActions.getMember("Primary");;
+        if(relation.toLowerCase().contains("spouse") || relation.toLowerCase().contains("wife") || relation.toLowerCase().contains("husband")){
+            if(memWithPrimaryPrefix.getGender().toLowerCase().equals("male")){
+                memWithPrimaryPrefix.setRelation_to_subscriber("HUSBAND");
+            } else{
+                memWithPrimaryPrefix.setRelation_to_subscriber("WIFE");
+            }
+        }
+        member.setRelation_to_subscriber("SELF");
     }
 
     public void SelectTheHouseholdMemberAsPrimaryContactCoco(String memberName) {
@@ -495,6 +508,7 @@ public class MyProfilePage {
         String firstName = SharedData.getPrimaryMember().getFirstName();
         System.out.println(firstName);
         primaryContactDRPCoCo.click();
+        basicActions.wait(2000);
         primaryContactDRPCoCo.sendKeys(firstName);
         primaryContactDRPCoCo.sendKeys(Keys.ENTER);
         savePrimaryContactCoCo.click();
