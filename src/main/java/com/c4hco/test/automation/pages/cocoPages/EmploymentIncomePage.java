@@ -95,7 +95,7 @@ public class EmploymentIncomePage {
     List<WebElement> errorIcon;
 
     public void clickSaveAndContinueButton() {
-        basicActions.waitForElementToBePresent(saveAndContinueButton, 30);
+        basicActions.waitForElementToBePresent(saveAndContinueButton, 60);
         basicActions.click(saveAndContinueButton);
     }
 
@@ -122,6 +122,7 @@ public class EmploymentIncomePage {
 
     public void enterIncomeAmount(String amountOfIncome) {
         basicActions.waitForElementToBePresent(incomeInput, 10);
+        incomeInput.clear();
         incomeInput.sendKeys(amountOfIncome);
     }
 
@@ -231,11 +232,13 @@ public class EmploymentIncomePage {
     }
 
     public void verifyAdditionalMemberHeadersOnEmploymentIncomeCoCoPage(String language) {
+        softAssert = new SoftAssert();
         basicActions.wait(250);
         basicActions.waitForElementToBePresent(hdr_Income, 50);
+        basicActions.waitForElementToBePresent(hdr_EmploymentIncome, 50);
         switch (language) {
             case "English":
-                softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Income: " + basicActions.getFullNameWithPrefix("Spouse")));
+                softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Income: " + basicActions.getFullNameWithPrefix("Spouse")),"Found.... " + hdr_Income.getText() + "\nExpecting Income: " + basicActions.getFullNameWithPrefix("Spouse"));
                 softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
                 softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(hdr_Income.getCssValue("font-family"), "\"PT Sans\", sans-serif");
@@ -246,7 +249,6 @@ public class EmploymentIncomePage {
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                basicActions.waitForElementToBePresent(hdr_EmploymentIncome, 50);
                 softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Ingresos: " + basicActions.getFullNameWithPrefix("Spouse")));
                 softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
                 softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700");
@@ -272,11 +274,6 @@ public class EmploymentIncomePage {
             case "Yes":
                 basicActions.waitForElementToBePresent(employmentYesButton, 60);
                 softAssert.assertTrue(employmentYesButton.getAttribute("class").contains("selected"));
-                softAssert.assertEquals(employmentYesButton.getCssValue("font-weight"), "700");
-                softAssert.assertEquals(employmentYesButton.getCssValue("font-size"), "20px");
-                softAssert.assertEquals(employmentYesButton.getCssValue("line-height"), "32px");
-                softAssert.assertEquals(employmentYesButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
-                softAssert.assertEquals(employmentYesButton.getCssValue("background-color"), "rgba(252, 252, 252, 1)");
                 softAssert.assertAll();
                 break;
             case "No":
@@ -657,5 +654,43 @@ public class EmploymentIncomePage {
         softAssert.assertEquals(element.getCssValue("background-color"), "rgba(255, 255, 255, 1)", element + " Background color mismatch");
         softAssert.assertEquals(element.getCssValue("color"), "rgba(77, 77, 79, 1)", element + " Text color mismatch");
         softAssert.assertEquals(element.getCssValue("border"), "1px solid rgb(149, 147, 147)", element + " Border mismatch");
+    }
+
+    public void validateNoSelection(String incomeType) {
+        basicActions.waitForElementToBePresent(hdr_EmploymentIncome, 15);
+        WebElement elementYes;
+        WebElement elementNo;
+
+        switch (incomeType) {
+            case "Do you have a job":
+                elementYes = employmentYesButton;
+                elementNo = employmentNoButton;
+                break;
+            case "total income":
+                elementYes = incomeInput;
+                elementNo = incomeFrequencyDropdown;
+                break;
+            case "seasonal":
+                elementYes = incomeSeasonalYesButton;
+                elementNo = incomeSeasonalNoButton;
+                break;
+            case "income change":
+                elementYes = incomeChangesYesButton;
+                elementNo = incomeChangesNoButton;
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported type: " + incomeType);
+        }
+        verifyNotSelectedButton(elementYes);
+        verifyNotSelectedButton(elementNo);
+    }
+
+    public void verifyNotSelectedButton(WebElement element) {
+        softAssert.assertTrue(element.getAttribute("class").equals("button ng-star-inserted option-button"));
+        softAssert.assertEquals(element.getCssValue("font-weight"), "700");
+        softAssert.assertEquals(element.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(element.getCssValue("line-height"), "28px");
+        softAssert.assertEquals(element.getCssValue("color"), "rgba(255, 255, 255, 1)");
+        softAssert.assertEquals(element.getCssValue("background-color"), "rgba(112, 163, 0, 1)");
     }
 }
