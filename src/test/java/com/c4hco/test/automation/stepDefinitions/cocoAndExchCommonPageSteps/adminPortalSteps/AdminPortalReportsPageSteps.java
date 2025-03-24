@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.adm
 
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalPages.AdminPortalReportsPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 public class AdminPortalReportsPageSteps {
@@ -29,5 +30,25 @@ public class AdminPortalReportsPageSteps {
     @Then("I validate the account activity record for {string} for {string}")
     public void validateAccActivityRecord(String recordType, String userType) {
         adminPortalReportsPage.validateRecord(recordType, userType);
+    }
+
+    @And("I validate Account Activity title")
+    public void iValidateAccountActivityTitle() {
+        adminPortalReportsPage.validateActivityTitle();
+    }
+
+    @Then("I verify Activity report table column names")
+    public void iVerifyAccountReportTableColumnNames() {
+        adminPortalReportsPage.validateActivityReportColumnNames();
+    }
+
+    @Then("I verify Primary account holder and account number displays on Activity Report")
+    public void iVerifyPrimaryAccountHolderAndAccountNumberDisplaysOnActivityReport() {
+        adminPortalReportsPage.validateMemberNameAndAccountID();
+    }
+
+    @Then("I validate {string} event code and their description {string} in activity event report")
+    public void ValidateEventCodeAndDescription(String eventType, String description) {
+        adminPortalReportsPage.validateEventCodeWithDescription(eventType, description);
     }
 }

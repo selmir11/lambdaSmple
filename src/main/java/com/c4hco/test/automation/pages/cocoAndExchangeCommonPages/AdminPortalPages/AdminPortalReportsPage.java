@@ -44,6 +44,28 @@ public class AdminPortalReportsPage {
     @FindBy(css = ".tooltip .tooltip-inner")
     WebElement tooltipText;
 
+    @FindBy(xpath = "//td[@class='column-header']/span")
+    List<WebElement> columnsLabel;
+
+    @FindBy(xpath = "//*[@class='column-sort-controls']")
+    List<WebElement> columnSortControls;
+
+    @FindBy(xpath = "//*[@class='dashboardHeader1']")
+    WebElement memberPrimary;
+
+    @FindBy(xpath = "//*[@class='dashboardHeader2']")
+    WebElement memberAcctId;
+
+    @FindBy(xpath = "//table[@class='sort-table']//td[3]")
+    List<WebElement> eventListColumn;
+
+    @FindBy(xpath = "//table[@class='sort-table']//td[6]")
+    List<WebElement> descriptionListColumn;
+
+
+
+
+
     public void validateTitleAccountActivity() {
         basicActions.waitForElementListToBePresentWithRetries(eventCodeList, 50);
         softAssert.assertEquals("Account Activity", titleAccountActivity.getText());
@@ -261,6 +283,62 @@ public class AdminPortalReportsPage {
                         ", name:" + nameTo +
                         ", updatedBy:" + updatedBy,
                 "detail value did not match");
+        softAssert.assertAll();
+    }
+
+    public void validateActivityTitle() {
+        basicActions.waitForElementToBePresentWithRetries(titleAccountActivity, 50);
+        softAssert.assertEquals(titleAccountActivity.getText(),"Account Activity", "Title not match");
+    }
+
+    public void validateActivityReportColumnNames() {
+        basicActions.waitForElementToBePresentWithRetries(titleAccountActivity, 50);
+        softAssert.assertEquals(columnsLabel.get(0).getText(),"Person ID", "Title not match");
+        softAssert.assertTrue(columnSortControls.get(0).isDisplayed(),"Sort control not displayed");
+        softAssert.assertEquals(columnsLabel.get(1).getText(),"Event Code", "Title not match");
+        softAssert.assertTrue(columnSortControls.get(1).isDisplayed(),"Sort control not displayed");
+        softAssert.assertEquals(columnsLabel.get(2).getText(),"Time", "Title not match");
+        softAssert.assertTrue(columnSortControls.get(2).isDisplayed(),"Sort control not displayed");
+        softAssert.assertEquals(columnsLabel.get(3).getText(),"Username", "Title not match");
+        softAssert.assertTrue(columnSortControls.get(3).isDisplayed(),"Sort control not displayed");
+        softAssert.assertEquals(columnsLabel.get(4).getText(),"Description", "Title not match");
+        softAssert.assertTrue(columnSortControls.get(4).isDisplayed(),"Sort control not displayed");
+        softAssert.assertEquals(columnsLabel.get(5).getText(),"Detail Key", "Title not match");
+        softAssert.assertTrue(columnSortControls.get(5).isDisplayed(),"Sort control not displayed");
+        softAssert.assertEquals(columnsLabel.get(6).getText(),"Detail Value", "Title not match");
+        softAssert.assertTrue(columnSortControls.get(6).isDisplayed(),"Sort control not displayed");
+        softAssert.assertAll();
+    }
+
+    public void validateMemberNameAndAccountID() {
+        basicActions.wait(250);
+        basicActions.waitForElementToBePresent(memberPrimary, 100);
+        softAssert.assertTrue(memberPrimary.isDisplayed());
+        basicActions.waitForElementToBePresent(memberAcctId, 100);
+        softAssert.assertTrue(memberAcctId.isDisplayed());
+
+        if (SharedData.getPrimaryMember() != null) {
+            softAssert.assertEquals(memberPrimary.getText(), "Primary Account Holder: " + SharedData.getPrimaryMember().getSignature());
+            int commaIndex = memberAcctId.getText().indexOf(',');
+            String accountIdFromHeader = memberAcctId.getText().substring(0, commaIndex).trim();
+            softAssert.assertEquals(accountIdFromHeader, "Account ID:" + SharedData.getPrimaryMember().getAccount_id());
+        }
+        softAssert.assertAll();
+    }
+
+
+    public void validateEventCodeWithDescription(String eventTypeData, String descriptionData) {
+        basicActions.waitForElementListToBePresent(eventListColumn,20);
+        boolean found = false;
+        for (int i = 1; i < eventListColumn.size() && i < descriptionListColumn .size(); i++) {
+            String EventCode = eventListColumn.get(i).getText().trim();
+            String DescriptionValue = descriptionListColumn.get(i).getText().trim();
+            if (EventCode.equals(eventTypeData)) {
+                softAssert.assertTrue(DescriptionValue.equals(descriptionData), "Event code " + EventCode + " not match  with description " + descriptionData);
+                found = true;
+            }
+        }
+        softAssert.assertTrue(found, " Event type " + eventTypeData + "and their description "+ descriptionData + " not match");
         softAssert.assertAll();
     }
 }
