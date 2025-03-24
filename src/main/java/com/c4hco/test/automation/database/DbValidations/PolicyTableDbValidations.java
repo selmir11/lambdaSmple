@@ -30,6 +30,7 @@ public class PolicyTableDbValidations {
     String policyMemCoverageStatus;
 
     public void groupRecordsValidations(String recordType) {
+        SharedData.setRecType(recordType);
             switch (recordType) {
                 case "medical":
                     policyStatus ="SUBMITTED";
@@ -113,7 +114,10 @@ public class PolicyTableDbValidations {
              dentalPlanDbDataMap = new HashMap<>();
              dbDataMap = new HashMap<>();
              subscribers = new ArrayList<>();
-             SharedData.setDbDataNew(dbDataMapList);
+            SharedData.setDbDataNew(dbDataMapList);
+             if(SharedData.getRecType()!=null && SharedData.getRecType().contains("medical")){
+                 SharedData.setMedicalPlanDbDataNew(medicalPlanDbDataMapList);
+             }
         }
 
         private void medicalRecordsValidations() {
@@ -132,6 +136,7 @@ public class PolicyTableDbValidations {
                 }
             }
         }
+
             private void validateSubscriberMedDetails(MemberDetails subscriber, PolicyTablesEntity policyTablesEntity) {
                 getMedicalPlanDbDataMap(subscriber.getFirstName());
                softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), "SELF", "Relationship to subscriber does not match");
@@ -175,8 +180,8 @@ public class PolicyTableDbValidations {
             softAssert.assertEquals(policyTablesEntity.getPolicy_status(), policyStatus, "Policy status does not match");
             softAssert.assertEquals(policyTablesEntity.getPolicy_member_coverage_status(), policyMemCoverageStatus, "Dental member coverage status does not match");
             softAssert.assertEquals(policyTablesEntity.getRating_area_id(), dbDataMap.get(subscriber.getFirstName()).getRatingAreaId(), "Rating area id does not match");
-            softAssert.assertEquals(policyTablesEntity.getCsr_level_epfh(), dbDataMap.get(subscriber.getFirstName()).getCsrLevel(), "epfh CSR level does not match");
-            softAssert.assertEquals(policyTablesEntity.getCsr_level_emcfh(), dbDataMap.get(subscriber.getFirstName()).getCsrLevel(), "emcfh CSR level does not match");
+            softAssert.assertEquals(policyTablesEntity.getCsr_level_epfh(), SharedData.getRecType()!=null && SharedData.getRecType().contains("medical")&& SharedData.getIsAiAn()? "03": dbDataMap.get(subscriber.getFirstName()).getCsrLevel(), "epfh CSR level does not match");
+            softAssert.assertEquals(policyTablesEntity.getCsr_level_emcfh(),  SharedData.getRecType()!=null && SharedData.getRecType().contains("medical")&& SharedData.getIsAiAn()? "03": dbDataMap.get(subscriber.getFirstName()).getCsrLevel(), "emcfh CSR level does not match");
             softAssert.assertNull(policyTablesEntity.getResponsible_adult_ind(), "Responsible adult indicator is always null except when a minor only kid(s) applying");
             softAssert.assertNull(policyTablesEntity.getDisenrollment_reason(), "Disenrollment reason mismatch");
             softAssert.assertAll();
@@ -253,7 +258,8 @@ public class PolicyTableDbValidations {
             getMedicalPlanDbDataMap(name);
             getDbDataMap(name);
             System.out.println("Name:: "+policyTablesEntity.getFirst_name());
-            softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), medicalPlanDbDataMap.get(name).getBaseId() + "-" + dbDataMap.get(name).getCsrLevel(), "Medical Hios id does not match");
+            String csrLevel = SharedData.getIsAiAn() ? "03" : dbDataMap.get(name).getCsrLevel();
+            softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), medicalPlanDbDataMap.get(name).getBaseId() + "-" + csrLevel, "Medical Hios id does not match");
             softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate(), "Coverage type 1, Policy start date does not match");
             softAssert.assertEquals(policyTablesEntity.getPolicy_end_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyEndDate(), "Coverage type 1, Policy end date does not match");
 

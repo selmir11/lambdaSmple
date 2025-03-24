@@ -26,6 +26,15 @@ public class IncomeSummaryPageSteps {
     @Then("I click on Contact Us link in Help Drawer on the Income Summary page")
     public void iClickHelpDrawerContactUs(){incomeSummaryPage.clickHelpContactUsNavigation();}
 
+    @Then("I select the projected income option as {string}")
+    public void iSelectOneOfTheProjectedIncomeOptions(String projectedIncomeOption) {
+        incomeSummaryPage.selectOneOfTheProjectedIncomeOptions(projectedIncomeOption);
+    }
+
+    @Then("I enter the projected income amount as {string}")
+    public void iEnterProjectedIncomeAmount(String projectedIncome) {
+        incomeSummaryPage.enterProjectedIncomeAmount(projectedIncome);
+    }
 
 
     // ############################## VALIDATION STEPS #########################
@@ -53,5 +62,14 @@ public class IncomeSummaryPageSteps {
     public void iverifyErrorMessage() {
         incomeSummaryPage.verifyErrorMessage();
     }
+
+    @And("I verify the active error message as {string}")
+    public void iVerifyActiveErrorMessage(String expectedErrorMessage) {
+        incomeSummaryPage.verifyActiveErrorMessage(expectedErrorMessage);
+    }
+
+    @And("I verify no error is displayed on the Income Summary page")
+    public void iVerifyNoErrors(){incomeSummaryPage.verifyNoErrors();}
+
 
 }

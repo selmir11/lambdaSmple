@@ -100,7 +100,8 @@ public class SharedData {
     @Getter @Setter private static String EffectiveDate;
 
 
-
+    @Getter @Setter private static Boolean isAiAn = false;
+    @Getter @Setter private static String recType = null;
 
     public static void reset(){
         firstPlanNameOnMedicalResultsPage = null;
@@ -152,6 +153,8 @@ public class SharedData {
         Companyname = null;
         FinancialIncome = null;
         EffectiveDate = null;
+        isAiAn = false;
+        recType = null;
     }
 
 }
