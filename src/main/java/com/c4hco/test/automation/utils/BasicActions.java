@@ -819,7 +819,7 @@ public class BasicActions {
                     String policyStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate();
                     date = firstDateOfNextMonthAfterSpecificDate(policyStartDate);
                     break;
-                case "end of month":
+                case "end of current month":
                     date = endOfMonthDate();
                     break;
                 case "Cancel":
