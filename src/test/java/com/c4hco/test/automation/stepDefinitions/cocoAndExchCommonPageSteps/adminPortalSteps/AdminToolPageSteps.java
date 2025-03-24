@@ -118,7 +118,7 @@ public class AdminToolPageSteps {
 
     @Then("I validate confirmation message for plan year {int} on admin LCE confirmation page with effective date")
     public void iValidateConfirmationMessageForPlanYearOnAdminLCEConfirmationPageWithEffectiveDate(int year) {
-        adminLceToolPage.confirnMessageValidation(year);
+        adminLceToolPage.confirmMessageValidation(year);
     }
 
     @And("I click Continue via OBO button on Admin LCE page")

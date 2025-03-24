@@ -306,7 +306,7 @@ public class AdminLceToolPage {
 
     public void enterDate(String endDate, String year) {
         dateInputField.sendKeys(endDate);
-        SharedData.setEffectiveDate(endDate+year);
+        SharedData.setEffectiveLCEDate(endDate+year);
     }
 
     public void clickConfirmButton(){
@@ -332,19 +332,14 @@ public class AdminLceToolPage {
         closeTabAndSwitchToCurrentWindow();
     }
 
-    public void confirnMessageValidation(int year){
+    public void confirmMessageValidation(int year) {
         basicActions.waitForElementToBePresent(confirmationMessageTitle, 50);
-        softAssert.assertEquals(confirmationMessageTitle.getText(), "Changes Confirmed for Plan Year ["+year+"]");
+        softAssert.assertEquals(confirmationMessageTitle.getText(), "Changes Confirmed for Plan Year [" + year + "]");
         softAssert.assertEquals(plantTitleText.getText(), "Changes have been submitted to the application below with an effective date of: [" + basicActions.changeDateFormat(SharedData.getEffectiveDate(), "MMddyyyy", "MM/dd/yyyy") + "]");
-        softAssert.assertEquals(nextStepText.getText(),"Next Step: View results and shop on behalf of the customer.");
-        String actualMessage = nextStepMessageDetails.getText()
-                .replace("‘", "'")  // Replace left curly quote with straight quote
-                .replace("’", "'")  // Replace right curly quote with straight quote
-                .replaceAll("[^\\x20-\\x7E]", "")  // Remove all non-ASCII characters
-                .trim();  // Remove leading or trailing spaces
-        String expectedMessage = "Continue through the On Behalf Of shopping process and confirm or change details in Manage Plans if necessary."
-                .replaceAll("[^\\x20-\\x7E]", "")  // Remove all non-ASCII characters (if necessary)
-                .trim();  // Remove any leading/trailing spaces
+        softAssert.assertEquals(nextStepText.getText(), "Next Step: View results and shop on behalf of the customer.");
+
+        String actualMessage = nextStepMessageDetails.getText();
+        String expectedMessage = "Continue through the \u2018On Behalf Of\u2019 shopping process and confirm or change details in \u2018Manage Plans\u2019 if necessary.";
         softAssert.assertEquals(actualMessage, expectedMessage);
         softAssert.assertAll();
     }

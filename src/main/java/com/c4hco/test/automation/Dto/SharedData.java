@@ -97,7 +97,7 @@ public class SharedData {
     @Getter @Setter private static AssisterDetails assisterDetails;
     @Getter @Setter private static List<String> Companyname;
     @Getter @Setter private static String FinancialIncome;
-    @Getter @Setter private static String EffectiveDate;
+    @Getter @Setter private static String EffectiveLCEDate;
 
 
     @Getter @Setter private static Boolean isAiAn = false;
@@ -152,7 +152,7 @@ public class SharedData {
         denGroupCtlNumbers = null;
         Companyname = null;
         FinancialIncome = null;
-        EffectiveDate = null;
+        EffectiveLCEDate = null;
         isAiAn = false;
         recType = null;
     }
