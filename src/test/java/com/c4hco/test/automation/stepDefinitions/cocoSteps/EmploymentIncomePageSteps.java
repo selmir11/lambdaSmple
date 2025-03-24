@@ -78,4 +78,7 @@ public class EmploymentIncomePageSteps {
 
     @Then("I validate yes and no buttons for {string} on the Employment Income page in {string}")
     public void iValidateYesNoButtons(String incomeType, String language) {employmentIncomePage.validateYesNoButtons(incomeType, language);}
+
+    @Then("I validate {string} option has no selection on the Employment income page")
+    public void iValidateNoSelection(String incomeType){employmentIncomePage.validateNoSelection(incomeType);}
 }
