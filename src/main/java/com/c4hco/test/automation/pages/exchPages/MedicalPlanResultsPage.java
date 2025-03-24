@@ -68,7 +68,7 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "MedicalPlanResults-Okay")
     WebElement compareWarningOKbutton;
 
-    @FindBy(id = "PlanResults-InsuranceCompany")
+    @FindBy(css = "#PlanResults-InsuranceCompany")
     WebElement insuranceCompanyDropdown;
 
     @FindBy(id = "PlanResults-ResetFilters")
@@ -188,7 +188,7 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickInsuranceCompanyDropdown() {
-        basicActions.waitForElementToDisappear( spinner,150 );
+        basicActions.waitForElementToDisappear( spinner,160 );
         basicActions.waitForElementToBePresentWithRetries( insuranceCompanyDropdown,80 );
         insuranceCompanyDropdown.click();
 
