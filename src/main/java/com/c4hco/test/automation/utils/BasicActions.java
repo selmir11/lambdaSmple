@@ -688,6 +688,12 @@ public class BasicActions {
         return firstDayOfNextMonth.format(formatter);
     }
 
+    public String firstDateOfNextMonthAfterSpecificDate(String dateStr){
+        DateTimeFormatter inputOutputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate firstDayOfNextMonth = LocalDate.parse(dateStr, inputOutputFormatter).plusMonths(1).withDayOfMonth(1);
+        return firstDayOfNextMonth.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
+
     public String firstDateOfLastMonth() {
         LocalDate today = LocalDate.now();
         LocalDate firstDayOfLastMonth = today.minusMonths(1).withDayOfMonth(1);
@@ -808,6 +814,10 @@ public class BasicActions {
                     break;
                 case "First Day Of Next Year":
                     date = getFirstOfJanNextYr();
+                    break;
+                case "First Of Next Month after PolicyStartDate":
+                    String policyStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate();
+                    date = firstDateOfNextMonthAfterSpecificDate(policyStartDate);
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid option: " + dateRequirement);

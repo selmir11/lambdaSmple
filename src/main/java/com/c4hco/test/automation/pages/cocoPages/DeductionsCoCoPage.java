@@ -316,6 +316,7 @@ public class DeductionsCoCoPage {
 
     //////////////////////////////////////////////VALIDATION METHODS//////////////////////////////////////////////////
     public void verifyHeadersDeductionsPage(String language){
+        basicActions.wait(500);
         switch (language){
             case "English":
                 verifyHeadersDeductionsPageEnglish();
@@ -362,7 +363,6 @@ public class DeductionsCoCoPage {
     }
 
     public void verifyHeadersDeductionsPageEnglish(){
-        basicActions.wait(250);
         basicActions.waitForElementToBePresentWithRetries(hdr_Deductions,120);
         basicActions.waitForElementToBePresentWithRetries(hdr_Deductions2,120);
         softAssert.assertTrue(hdr_Deductions.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
@@ -377,7 +377,6 @@ public class DeductionsCoCoPage {
     }
 
     public void verifyHeadersDeductionsPageSpanish(){
-        basicActions.wait(250);
         basicActions.waitForElementToBePresentWithRetries(hdr_Deductions,90);
         basicActions.waitForElementToBePresentWithRetries(hdr_Deductions2,90);
         basicActions.waitForElementToBePresentWithRetries(saveAndContinueButton,90);
