@@ -96,8 +96,6 @@ Feature: Dashboard Search Sort All Users
     Then I enter an "FirstName" in any env "a" "a" to search user
     Then I click on Search button in AP dashboard page
     Then I wait for 1000 milliseconds
-#    Then I validate message for over hundred records OPS 6314   ////  staging only QA have no data
-
   Scenario: SLER-2359  Agency: Search, sort, reset, and error
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
@@ -140,7 +138,6 @@ Feature: Dashboard Search Sort All Users
     Then I wait for 20000 milliseconds
     Then I validate message for over hundred records
     When I click on reset button on admin portal search page
-   # Program Manager dashboard
   Scenario: SLER-2359  Program Manager dashboard: Search, sort, reset, and error
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
