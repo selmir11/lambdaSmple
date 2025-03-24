@@ -1385,7 +1385,11 @@ public class BasicActions {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) getDriver();
         jsExecutor.executeScript("arguments[0].value = arguments[1];", element, text);
     }
-
+    public String removeCommaAndDollarSignFromAmount(String input){
+        String amountWithoutDollarSign = input.replace("$", "");
+        // Remove commas
+        return amountWithoutDollarSign.replaceAll(",", "");
+    }
 }
 
 

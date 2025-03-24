@@ -4,6 +4,7 @@ import com.c4hco.test.automation.pages.exchPages.IncomeSummaryPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 import java.util.List;
 
@@ -53,7 +54,6 @@ public class IncomeSummaryPageSteps {
     @Then("I verify the following text along with the dollar sign after clicking yes button to the Income different than the amount Question")
     public void iVerifyTextAfterClickingYesToDifferentIncomeQuestion(List<String> dataText) {incomeSummaryPage.verifyTextAfterClickingYesToDifferentIncomeQuestion(dataText);}
 
-
     @And("I click on Go Back on income summary page")
     public void iClickOnGoBackOnIncomeSummaryPage() {
         incomeSummaryPage.clickGoBackOnIncomeSummary();
@@ -71,5 +71,43 @@ public class IncomeSummaryPageSteps {
     @And("I verify no error is displayed on the Income Summary page")
     public void iVerifyNoErrors(){incomeSummaryPage.verifyNoErrors();}
 
+    @Then("I verify page Header text in income summary page")
+    public void iVerifyPageHeaderTextInIncomeSummaryPage() {
+        incomeSummaryPage.validatePageHeaderText();
+    }
 
+    @Then("I validate font colour height and format of text in income summary page")
+    public void iValidateFontColourHeightAndFormatOfTextInIncomeSummaryPage() {
+        incomeSummaryPage.validateTextFontColourEtc();
+    }
+
+    @Then("I verify added income name is visible in income summary page")
+    public void iVerifyAddedIncomeNameIsVisibleInIncomeSummaryPage() {
+        incomeSummaryPage.validateAddedIncomeName();
+    }
+
+    @When("I click on {string} in income summary page")
+    public void iClickOnInIncomeSummaryPage(String editButton) {
+        incomeSummaryPage.clickOnEditIncomeButton(editButton);
+    }
+
+    @Then("I validate All income amounts for {int} additional income amount")
+    public void iValidateAllIncomeAmountsForAdditionalIncomeAmount(int number) {
+        incomeSummaryPage.validateAllIncomeAmounts(number);
+    }
+
+    @Then("I validate deduction amount displayed in income summary page")
+    public void iValidateDeductionAmountDisplayedInIncomeSummaryPage() {
+        incomeSummaryPage.validateDeductionAmount();
+    }
+
+    @Then("I validate income and deduction calculations")
+    public void iValidateIncomeAndDeductionCalculations() {
+        incomeSummaryPage.validateIncomeDeductionCalculations();
+    }
+
+    @Then("I verify spouse name in income summary page")
+    public void iVerifyAdditionalMemberNameInIncomeSummaryPage() {
+        incomeSummaryPage.validateSpouseName();
+    }
 }
