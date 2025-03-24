@@ -13,6 +13,10 @@ public class TellUsAboutYourselfPageSteps {
     public void userSexQuestion(String Sex) {
         tellUsAboutYourselfPage.userSexQuestion(Sex);
     }
+    @Then("I update the demographic changes")
+    public void setIncorrectEntities(List<String> incorrectEntities){
+        tellUsAboutYourselfPage.iSetIncorrectentities(incorrectEntities);
+    }
 
     @And("I select {string} as pregnancy option")
     public void userPregnancyQuestion(String Pregnant) {

@@ -155,7 +155,7 @@ Feature: Seed03 - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-1835-WIP_@R4V
+  @SLER-1835 @pol_exch_passed
   Scenario: RT-2250 ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - GENDER & RACE
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -169,6 +169,8 @@ Feature: Seed03 - Exchange
     And I click Continue With Application button on Report Life Change Page
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
+    Then I update the demographic changes
+      | Gender,Race:Primary |
     Then I select "Female" as sex option
     Then I select "No" as pregnancy option
     Then I select new relationship of members to primary
@@ -190,7 +192,32 @@ Feature: Seed03 - Exchange
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
+    Then I click on view results and shop
+    Then I validate I am on the "Application Results" page
     And I click on Sign Out in the Header for "NonElmo"
+
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
+
+# Primary
+    And I validate "medical" entities for "Primary" from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
+      | 001                   | 001                | 25                     | DEMOGRAPHIC CHANGE |            |
+    And I validate "dental" entities for "Primary" from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
+      | 001                   | 001                | 25                     | DEMOGRAPHIC CHANGE |            |
+#Spouse
+    And I validate "medical" entities for "Spouse" from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 001                   | 001                | AI                    | NO CHANGE         |            |
+    And I validate "dental" entities for "Spouse" from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 001                   | 001                | AI                    | NO CHANGE         |            |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
 
   @SLER-94 @pol_exch_passed
   Scenario: RT-2075 ENR-EXCH: APPS - REMOVE MEMBER (LCE: Divorce) SAME PLANS
