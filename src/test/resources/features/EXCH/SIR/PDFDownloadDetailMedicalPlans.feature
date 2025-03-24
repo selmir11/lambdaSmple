@@ -6,7 +6,7 @@ Feature: Medical Plan Detail page related tests
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-2009-WIP @MedicalDetailDocumentSuccessfulDownload
+  @SLER-2009
     # application properties - pdf testing row must be set to "yes" otherwise this will fail
   Scenario Outline: SLER-2009 - Validate the Anthem document download process (Medical)
     When I click create a new account on login page
