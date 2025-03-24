@@ -30,10 +30,26 @@ Feature: new admin LCE
 
   @SLER-1996
   Scenario: New admin LCE: Recreate application link navigation and verify links from page
-    Then I enter an account ID in "5020327630" "5020327630" accountID field
+    Then I enter an account ID in "8574680700" "8574680700" accountID field
     Then I click on Look up button
     Then I click on application data dropdown arrow
     Then I click on Recreate application link number 1 for plan year 2025 on the Admin LCE page
     Then I verify Confirm change effective dates pop up displays on Admin LCE page
-    Then I enter the effective date to "0430"
+    Then I enter the effective date to "0430" for year "2025" on Admin LCE page
     Then I click on confirm button on Admin LCE page
+
+
+  @SLER-2078
+  Scenario: New admin LCE: Validate changes after submitting LCE - Open bugs # NVO-5515, OPS- 6605
+    Then I enter an account ID in "5020327630" "5020327630" accountID field
+    Then I click on Look up button
+    Then I wait for 3000 milliseconds
+    Then I click on application data dropdown arrow
+    Then I click on Recreate application link number 1 for plan year 2025 on the Admin LCE page
+    Then I verify Confirm change effective dates pop up displays for plan year 2025 on Admin LCE page
+    Then I enter the effective date to "0101" for year "2025" on Admin LCE page
+    Then I click on confirm button on Admin LCE page
+#    And I validate I am on the "Admin LCE confirmation" page - not working now
+    And I wait for 2000 milliseconds
+    Then I validate confirmation message for plan year 2025 on admin LCE confirmation page with effective date
+    And I click Continue via OBO button on Admin LCE page
