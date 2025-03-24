@@ -768,19 +768,8 @@ public class AdminPortalManagePlansPage {
             String index = nameElementID.replace("firstName_","");
             String matchingname = memberUpdates.stream().map(m->m.get("key")).filter(memberFullName::startsWith).findFirst().orElse(null);
             Assert.assertNotNull(matchingname, "Member Name not found: " + memberFullName);
-            WebElement coverageStartDateElement = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageStartDate_" +index+ "']//input[1]"));
-            String updatedDate = "";
             String inputDate = memberUpdates.stream().map(m->m.get("value")).findFirst().orElse("");
-            switch (inputDate) {
-                case "end of month":
-                    updatedDate = basicActions.endOfMonthDate();
-                    break;
-                case "Cancel":
-                    updatedDate = basicActions.changeDateFormat(coverageStartDateElement.getAttribute("value"), "yyyy-MM-dd", "MMddyyyy");
-                    break;
-                default:
-                    updatedDate = basicActions.changeDateFormat(basicActions.getDateBasedOnRequirement(inputDate), "yyyy-MM-dd", "MM/dd/yyyy");
-            }
+            String updatedDate = basicActions.getDateBasedOnRequirement(inputDate);
             String coverageEndDateElement = "//div[@id='coverageEndDate_" +index+ "']//input[1]";
             basicActions.waitForElementToBeClickable(coverageEndDate, 30);
             basicActions.updateElementWithRetries(coverageEndDateElement, updatedDate);
@@ -804,19 +793,8 @@ public class AdminPortalManagePlansPage {
             String index = nameElementID.replace("firstName_","");
             String matchingname = memberUpdates.stream().map(m->m.get("key")).filter(memberFullName::startsWith).findFirst().orElse(null);
             Assert.assertNotNull(matchingname, "Member Name not found: " + memberFullName);
-            WebElement financialStartDateElement = basicActions.getDriver().findElement(By.xpath("//div[@id='financialStartDate_"+index+"']//input[1]"));
-            String updatedDate = "";
             String inputDate = memberUpdates.stream().map(m->m.get("value")).findFirst().orElse("");
-            switch (inputDate) {
-                case "end of month":
-                    updatedDate = basicActions.endOfMonthDate();
-                    break;
-                case "Cancel":
-                    updatedDate = basicActions.changeDateFormat(financialStartDateElement.getAttribute("value"), "yyyy-MM-dd", "MMddyyyy");
-                    break;
-                default:
-                    updatedDate = basicActions.changeDateFormat(basicActions.getDateBasedOnRequirement(inputDate), "yyyy-MM-dd", "MM/dd/yyyy");
-            }
+            String updatedDate = basicActions.getDateBasedOnRequirement(inputDate);
             String financialEndDateElement = "//div[@id='financialEndDate_"+index+"']//input[1]";
             basicActions.waitForElementToBeClickable(financialEndDate, 30);
             basicActions.scrollToElement(financialEndDate);
