@@ -80,5 +80,5 @@ Feature: Medical Plan Detail page related tests
       | carrierOption | carrierDocs |
       | Anthem        | Anthem      |
 
-    
+
 
