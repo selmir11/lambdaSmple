@@ -145,6 +145,7 @@ public class DbValidations {
         softAssert.assertAll();
 
     }
+
    public void validateBookOfBusinessQMedical(String coverageType, String eventType){
         switch(coverageType) {
             case "medical":
