@@ -143,7 +143,7 @@ Feature: Seed03 - Exchange
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
     And I verify the policy data quality check with Policy Ah keyset size 2
-#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
@@ -386,12 +386,12 @@ Feature: Seed03 - Exchange
       | 021                   | 021                | EC                    |                   | RELEASED_FROM_INCARCERATION |
 
     And I verify the policy data quality check with Policy Ah keyset size 2
-#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-2182-WIP-@R4V @n1
+  @SLER-2182 @pol_exch_passed
   Scenario: RT-2531 ENR-EXCH: AGENT BROKER INFO - REMOVE BROKER
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -432,20 +432,16 @@ Feature: Seed03 - Exchange
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
     And I click on Sign Out in the Header for "Elmo"
-
-    Given I set the dynamic policy, coverage and financial dates for "medical" plan
-      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate | FinancialEndDate         |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+      | 001                   | 001                | AI                    | AGENT BROKER INFO |            |
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+      | 001                   | 001                | AI                    | AGENT BROKER INFO |            |
     And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+   And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
