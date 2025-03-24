@@ -22,7 +22,7 @@ Feature: My profile page
     And I click on Save Button
     And  I validate chat widget is present
 
-    #Footer
+    #Footer - English
     Then I validate I am on the "My Profile" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
@@ -51,7 +51,45 @@ Feature: My profile page
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
     Then I validate I am on the "My Profile" page
+
+    #Footer - Spanish
+    Then I validate I am on the "My Profile" page
     And I change the language from header to "Spanish"
+    And I click on Privacy Policy in the "Individual Portal" Footer
+    And I validate I am on the "Privacy Policy" page and close tab
+    Then I validate I am on the "My Profile" page
+    And I verify text on My profile page "Spanish"
+    And I click on Terms Of Use in the "Individual Portal" Footer
+    And I validate I am on the "Terms Of Use" page and close tab
+    Then I validate I am on the "My Profile" page
+    And I verify text on My profile page "Spanish"
+    And I click on Contact Us in the "Exch" Footer
+    And I validate I am on the "Contact Us" page and close tab
+    Then I validate I am on the "My Profile" page
+    And I verify text on My profile page "Spanish"
+    And I click on "Facebook" Icon in the Footer
+    And I validate I am on the "Facebook" page and close tab
+    Then I validate I am on the "My Profile" page
+    And I verify text on My profile page "Spanish"
+    And I click on "X" Icon in the Footer
+    And I validate I am on the "X" page and close tab
+    Then I validate I am on the "My Profile" page
+    And I verify text on My profile page "Spanish"
+    And I click on "YouTube" Icon in the Footer
+    And I validate I am on the "YouTube" page and close tab
+    Then I validate I am on the "My Profile" page
+    And I verify text on My profile page "Spanish"
+    And I click on "Instagram" Icon in the Footer
+    And I validate I am on the "Instagram" page and close tab
+    Then I validate I am on the "My Profile" page
+    And I click on "LinkedIn" Icon in the Footer
+    And I validate I am on the "LinkedIn" page and close tab
+    Then I validate I am on the "My Profile" page
+    And I verify text on My profile page "Spanish"
+    And I click on "Threads" Icon in the Footer
+    And I validate I am on the "Threads" page and close tab
+    Then I validate I am on the "My Profile" page
+    And I change the language from header to "English"
 
     #Header
     And I verify text on the "Exch" "Header" in "English"
