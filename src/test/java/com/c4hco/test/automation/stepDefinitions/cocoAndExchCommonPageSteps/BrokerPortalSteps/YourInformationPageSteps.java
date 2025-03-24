@@ -13,9 +13,9 @@ public class YourInformationPageSteps {
         yourInformationPage.validateYourInformationTitle();
     }
 
-    @Then("I validate the First Name field shows my name")
-    public void iValidateFirstNameAutoPopulated( ){
-        yourInformationPage.validateFirstNameAutoPopulated();
+    @Then("I validate the First Name field shows my {string} name")
+    public void iValidateFirstNameAutoPopulated(String portalUserType){
+        yourInformationPage.validateFirstNameAutoPopulated(portalUserType);
     }
 
     @Then("I validate the First Name mandatory field error message")
@@ -23,9 +23,9 @@ public class YourInformationPageSteps {
         yourInformationPage.validateFirstNameErrorMessage();
     }
 
-    @Then("I validate the Last Name field shows my name")
-    public void iValidateLastNameAutoPopulated( ){
-        yourInformationPage.validateLastNameAutoPopulated();
+    @Then("I validate the Last Name field shows my {string} name")
+    public void iValidateLastNameAutoPopulated(String portalUserType){
+        yourInformationPage.validateLastNameAutoPopulated(portalUserType);
     }
 
     @Then("I validate the Last Name mandatory field error message")
@@ -106,11 +106,6 @@ public class YourInformationPageSteps {
     @Then("I validate the invitation code error message")
     public void iValidateInviteCodeErrorMessage(){
         yourInformationPage.validateInviteCodeErrorMessage();
-    }
-
-    @Then("I validate the no invitation code checkbox error message")
-    public void iValidateNoInviteCodeCheckboxErrorMessage(){
-        yourInformationPage.validateNoInviteCodeCheckboxErrorMessage();
     }
 
     @Then("I enter the admin staff invitation code on the Your Information page")

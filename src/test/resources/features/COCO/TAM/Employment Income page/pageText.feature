@@ -327,3 +327,24 @@ Feature: Tests related to the Employment Income page
       | TestNumber | Language |
       | SLCR-793   | English  |
       | SLCR-864   | Spanish  |
+
+  @SLCR-869 @SLCR-870
+  Scenario Outline: <TestNumber> As COCO account user on the Employment Income page, I see the structure of the page so that I can provide my basic income information - <Language>
+    Then I change the language from header to "<Language>"
+    Then I validate yes and no buttons for "Do you have a job" on the Employment Income page in "<Language>"
+    And I select "Yes" employment option
+    And I verify the header for Primary Member on the CoCo Employment income page in "<Language>"
+    Then I validate all text on the Employment Income page in "<Language>"
+    Then I verify the income frequency options in "<Language>"
+    Then I validate yes and no buttons for "total income" on the Employment Income page in "<Language>"
+    Then I validate yes and no buttons for "seasonal" on the Employment Income page in "<Language>"
+    Then I validate yes and no buttons for "income change" on the Employment Income page in "<Language>"
+    Then I verify the navigation buttons on the CoCo Employment Income page in "<Language>"
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+    Examples:
+      | TestNumber | Language |
+      | SLCR-793   | English  |
+      | SLCR-864   | Spanish  |
