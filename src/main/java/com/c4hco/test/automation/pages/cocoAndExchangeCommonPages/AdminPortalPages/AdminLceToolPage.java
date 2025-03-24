@@ -335,7 +335,7 @@ public class AdminLceToolPage {
     public void confirmMessageValidation(int year) {
         basicActions.waitForElementToBePresent(confirmationMessageTitle, 50);
         softAssert.assertEquals(confirmationMessageTitle.getText(), "Changes Confirmed for Plan Year [" + year + "]");
-        softAssert.assertEquals(plantTitleText.getText(), "Changes have been submitted to the application below with an effective date of: [" + basicActions.changeDateFormat(SharedData.getEffectiveDate(), "MMddyyyy", "MM/dd/yyyy") + "]");
+        softAssert.assertEquals(plantTitleText.getText(), "Changes have been submitted to the application below with an effective date of: [" + basicActions.changeDateFormat(SharedData.getEffectiveLCEDate(), "MMddyyyy", "MM/dd/yyyy") + "]");
         softAssert.assertEquals(nextStepText.getText(), "Next Step: View results and shop on behalf of the customer.");
 
         String actualMessage = nextStepMessageDetails.getText();
