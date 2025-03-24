@@ -60,25 +60,4 @@ Feature: OPS: Create individual account and verify that can be found in MD365
     Then I click continue on the Race and Ethnicity page
     And I click continue on the Citizenship page
     Then I click continue on family overview page
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#    Then I sign out of CRM
-#    And I validate I am on the "MD365 Login" page
-
-    #Then I validate the verbiage on the RIDP - Congratulations page in "exchange"
+    
