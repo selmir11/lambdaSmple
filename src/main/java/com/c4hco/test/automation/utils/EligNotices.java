@@ -238,8 +238,8 @@ public class EligNotices {
                             "You can enroll in a new plan or make changes to your current plan by "+lceCloseDate+".\n");
                 }
                 case "Spanish" -> {
-                    return String.format("Recibimos informaci\u00F3n nueva o actualizada sobre su familia el "+timestamp+". El cambio en la informaci\u00F3n de\n" +
-                    "su familia se considera un Evento de vida calificado, lo que significa que usted puede inscribirse en un nuevo plan de\n" +
+                    return String.format("Recibimos informaci\u00F3n nueva o actualizada sobre su familia el "+timestamp+". El cambio en la informaci\u00F3n de su\n" +
+                    "familia se considera un Evento de vida calificado, lo que significa que usted puede inscribirse en un nuevo plan de\n" +
                     "seguro de salud o hacer cambios a su plan actual a trav\u00E9s de un Per\u00EDodo de inscripci\u00F3n especial.\n" +
                     "Puede inscribirse en un nuevo plan o hacer cambios en su plan actual antes del "+lceCloseDate+".\n");
                 }
@@ -258,6 +258,7 @@ public class EligNotices {
             case "Ineligible: Not CO Resident" -> ineligNotCORes(language, memberNumber, basicActions);
             case "ANAI" -> ANAIGain(docType, language, memberNumber, basicActions);
             case "QHP" -> QHP(docType, language, memberNumber, basicActions);
+            case "Eligibile: APTC" -> premiumTaxCredits(docType, language, memberNumber, basicActions);
             default -> throw new IllegalArgumentException("Invalid option: " + docType);
         };
     }
@@ -1728,4 +1729,85 @@ public class EligNotices {
                 "disponible en https://connectforhealthco.com/es/politica-de-privacidad/.\n" +
                 "Ayuda Lengua Adicional");
     }
-}
+    public static String premiumTaxCredits(String docType, String language, String memberNumber, BasicActions basicActions) {
+        String englishTemplate = ", starting as early as "+getFirstOfNextMonth(language, basicActions)+" you are approved for:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String englishTemplate2 = "Enroll in a plan by "+getLceCloseDate(language, docType, basicActions)+".\n";
+        String englishTemplate3 = ", you do not qualify for the following:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String spanishTemplate = ", a partir del "+getFirstOfNextMonth(language, basicActions)+" usted est\u00E1 aprobado para:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String spanishTemplate2 = "Inscr\u00EDbase en un plan antes del "+getLceCloseDate(language, docType, basicActions)+".\n";
+        String spanishTemplate3 = ", no califica para lo siguiente:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String atpc = "$178.11";
+
+        List<MemberDetails> memberList = SharedData.getMembers();
+        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
+
+        return switch (memberNumber) {
+            case "1" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate +
+                                "Premium\n" +
+                                "Tax Credits\n" +
+                                "for "+basicActions.getCurrYear()+"\n" +
+                                "Your household qualifies to receive up to "+atpc+" a month to use towards\n" +
+                                "lowering the cost of your monthly health insurance premiums when you\n" +
+                                "enroll through Connect for Health Colorado. Based on your application,\n" +
+                                "this applies to "+SharedData.getPrimaryMember().getFullName()+"\n" +
+                                englishTemplate2 +
+                                englishTemplate +
+                                "Health\n" +
+                                "insurance\n" +
+                                "plan for "+basicActions.getCurrYear()+"\n" +
+                                "You can enroll in a health insurance plan for 2025 if you qualify for a Special Enrollment \n" +
+                                "Period or if it\u2019s Open Enrollment.\n" +
+                                englishTemplate2 +
+                                englishTemplate3 +
+                                "Cost-Sharing\n" +
+                                "Reduction for\n" +
+                                basicActions.getCurrYear()+"\n"+
+                                "You do not qualify for Cost-Sharing Reduction because:\n" +
+                                "Your household's income is too high\n"
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate +
+                                "Cr\u00E9ditos\n" +
+                                "fiscales para\n" +
+                                "el pago de la\n" +
+                                "cuota para\n" +
+                                basicActions.getCurrYear()+"\n" +
+                                "Su familia tiene derecho a recibir hasta $178.11 al mes para reducir el\n" +
+                                "monto de las cuotas mensuales de su seguro de salud cuando se inscribe\n" +
+                                "a trav\u00E9s de Connect for Health Colorado. De acuerdo con su solicitud,\n" +
+                                "estos ahorros se aplican a: "+SharedData.getPrimaryMember().getFullName()+"\n" +
+                                spanishTemplate2 +
+                                spanishTemplate +
+                                "Plan de\n" +
+                                "seguro de\n" +
+                                "salud para\n" +
+                                basicActions.getCurrYear()+"\n" +
+                                "Puede inscribirse en un plan de seguro de salud para 2025 si califica para un per\u00EDodo\n" +
+                                "de inscripci\u00F3n especial o si est\u00E1 activa la inscripci\u00F3n abierta.\n" +
+                                spanishTemplate2 +
+                                spanishTemplate3 +
+                                "Reducci\u00F3n\n" +
+                                "de los costos\n" +
+                                "compartidos\n" +
+                                "para "+ basicActions.getCurrYear()+"\n" +
+                                "Reducci\u00F3n de los costos compartidos no califica para lo siguiente:\n" +
+                                "Sus ingresos familiares son demasiado altos\n"
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            case "2" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate + englishTemplate2 + englishTemplate3
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate + spanishTemplate2 + spanishTemplate3
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            default -> throw new IllegalArgumentException("Invalid member number: " + memberNumber);
+        };
+
+    }
+    }

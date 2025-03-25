@@ -483,10 +483,23 @@ public class MyProfilePage {
             newPrimaryMem.setPhoneNumber(primaryMem.getPhoneNumber());
             newPrimaryMem.setResAddress(primaryMem.getResAddress());
             newPrimaryMem.setMailingAddress(primaryMem.getMailingAddress());
+            setRelation(newPrimaryMem);
             memberList.remove(newPrimaryMem);
             SharedData.setPrimaryMember(newPrimaryMem);
         });
         SharedData.setMembers(memberList);
+    }
+    private void setRelation(MemberDetails member){
+        String relation = member.getRelation_to_subscriber();
+        MemberDetails memWithPrimaryPrefix = basicActions.getMember("Primary");;
+        if(relation.toLowerCase().contains("spouse") || relation.toLowerCase().contains("wife") || relation.toLowerCase().contains("husband")){
+            if(memWithPrimaryPrefix.getGender().toLowerCase().equals("male")){
+                memWithPrimaryPrefix.setRelation_to_subscriber("HUSBAND");
+            } else{
+                memWithPrimaryPrefix.setRelation_to_subscriber("WIFE");
+            }
+        }
+        member.setRelation_to_subscriber("SELF");
     }
 
     public void SelectTheHouseholdMemberAsPrimaryContactCoco(String memberName) {
@@ -495,6 +508,7 @@ public class MyProfilePage {
         String firstName = SharedData.getPrimaryMember().getFirstName();
         System.out.println(firstName);
         primaryContactDRPCoCo.click();
+        basicActions.wait(2000);
         primaryContactDRPCoCo.sendKeys(firstName);
         primaryContactDRPCoCo.sendKeys(Keys.ENTER);
         savePrimaryContactCoCo.click();
@@ -518,9 +532,9 @@ public class MyProfilePage {
         basicActions.waitForElementToBePresent(headerChangePrimaryCoCo, 2000);
         softAssert.assertEquals(headerChangePrimaryCoCo.getText(), "Change Primary Contact");
         primaryContactDRPCoCo.click();
-        softAssert.assertEquals(dpdPrimaryChangeOpt1CoCo.getText(), SharedData.getMembers().get(1).getFirstName() + " " + SharedData.getMembers().get(1).getMiddleName() +" "+ SharedData.getMembers().get(1).getLastName());
+        softAssert.assertEquals(dpdPrimaryChangeOpt1CoCo.getText(), SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getMiddleName() +" "+ SharedData.getMembers().get(0).getLastName());
         softAssert.assertEquals(dpdPrimaryChangeOpt2CoCo.getText(), SharedData.getPrimaryMember().getFullName());
-        String firstName = SharedData.getMembers().get(1).getFirstName();
+        String firstName = SharedData.getMembers().get(0).getFirstName();
         primaryContactDRPCoCo.sendKeys(firstName);
         primaryContactDRPCoCo.sendKeys(Keys.ENTER);
         softAssert.assertEquals(cancelPrimaryPopupCoCo.getText(), "Cancel");
@@ -536,9 +550,9 @@ public class MyProfilePage {
         basicActions.waitForElementToBePresent(headerChangePrimaryCoCo, 10);
         softAssert.assertEquals(headerChangePrimaryCoCo.getText(), "Cambiar el contacto principal");
         primaryContactDRPCoCo.click();
-        softAssert.assertEquals(dpdPrimaryChangeOpt1CoCo.getText(), SharedData.getMembers().get(1).getFirstName() + " " + SharedData.getMembers().get(1).getMiddleName() +" "+ SharedData.getMembers().get(1).getLastName());
+        softAssert.assertEquals(dpdPrimaryChangeOpt1CoCo.getText(), SharedData.getMembers().get(0).getFirstName() + " " + SharedData.getMembers().get(0).getMiddleName() +" "+ SharedData.getMembers().get(0).getLastName());
         softAssert.assertEquals(dpdPrimaryChangeOpt2CoCo.getText(), SharedData.getPrimaryMember().getFullName());
-        String firstName = SharedData.getMembers().get(1).getFirstName();
+        String firstName = SharedData.getMembers().get(0).getFirstName();
         primaryContactDRPCoCo.sendKeys(firstName);
         primaryContactDRPCoCo.sendKeys(Keys.ENTER);
         softAssert.assertEquals(getCancelPrimaryPopupSpCoCo.getText(), "Cancelar");
@@ -1071,6 +1085,7 @@ public class MyProfilePage {
           signature = primaryName.get(0).getText() + " " +primaryName.get(1).getText()+" "+ primaryName.get(2).getText();
       }
         primaryMem.setSignature(signature);
+        SharedData.getPrimaryMember().setCompleteFullName(signature);
     }
 
     public void verifyPreferredLanguage(String expectedLanguage) {

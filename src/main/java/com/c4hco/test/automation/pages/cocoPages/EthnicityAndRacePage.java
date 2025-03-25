@@ -5,6 +5,7 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
@@ -295,9 +296,11 @@ public class EthnicityAndRacePage {
         saveAndContinue_Button.click();
     }
 
-    public void selectNotListedAndEnterCustomText(String customText) {
+    public void selectNotListedAndEnterCustomText(String customText, String memPrefix) {
         basicActions.waitForElementListToBePresent(raceEthnicityButton, 10);
         raceEthnicityButton.get(7).click();
+        setRaceAndEthnicity("Not listed", memPrefix);
+        setMemberID(memPrefix);
         basicActions.waitForElementToBePresent(notListedReason, 10);
         notListedReason.sendKeys(customText);
     }
@@ -305,7 +308,7 @@ public class EthnicityAndRacePage {
 
 
     public void raceEthnicitySelectionMembers(String raceEthnicity, String memPrefix){
-        basicActions.waitForElementListToBePresent(raceEthnicityButton, 40);
+        basicActions.waitForElementListToBePresentWithRetries(raceEthnicityButton, 60);
         switch (raceEthnicity) {
             case "Asian or Asian American":
                 raceEthnicityButton.get(0).click();

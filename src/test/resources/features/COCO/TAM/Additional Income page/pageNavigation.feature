@@ -27,7 +27,7 @@ Feature: Tests related to the Additional Income page
     And I select "No" income changes option
     And I click continue on the Employment income page
 
-  @SLCR-133 @PageNavigationAdditionalIncome @TAMSmoke
+  @SLCR-133 @PageNavigationAdditionalIncome @TAMSmokeCoCo
   Scenario: SLCR-133 There is "None of these" option is selected on the Additional Income page in the first tab after changes are made in the second tab
     #Step1
     Then I validate I am on the "CoCo Additional Income" page
@@ -292,7 +292,7 @@ Feature: Tests related to the Additional Income page
     Then I click EditUpdate on Family Overview page for "Primary"
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click save and continue on the Race and Ethnicity page
     And I validate I am on the "Employment Income" page
     And I click continue on the Employment income page

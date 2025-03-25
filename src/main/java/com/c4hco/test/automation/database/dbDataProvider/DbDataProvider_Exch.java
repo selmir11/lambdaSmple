@@ -3,7 +3,6 @@ package com.c4hco.test.automation.database.dbDataProvider;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
-import com.c4hco.test.automation.database.Queries.DBQueries_qa_coco;
 import com.c4hco.test.automation.database.Queries.DbQueries_Exch;
 import com.c4hco.test.automation.database.dbHandler.*;
 import com.c4hco.test.automation.utils.BasicActions;
@@ -86,7 +85,7 @@ public class DbDataProvider_Exch {
         MemberDetails member = basicActions.getMember(name);
         String zipcode = member.getResAddress().getAddressZipcode();
         String county = member.getResAddress().getAddressCounty();
-        if(member.getIsProfileChange()){
+        if(member.getIsProfileChange()&&member.getIsResAddChange()){
             zipcode = member.getOldResAddress().getAddressZipcode();
             county = member.getOldResAddress().getAddressCounty();
         }
@@ -128,6 +127,10 @@ public class DbDataProvider_Exch {
         return csrAmount;
     }
 
+    public Map<String,String> getSubscriberCSRDataFromDb_aian(){
+        Map<String,String> csrAmount =  postgresHandler.getResultForTwoColumnValuesInMap("coverage_type","csr_amt", exchDbQueries.getMedCSRRecords_aian());
+        return csrAmount;
+    }
 
     public void setDataFromDb(){
         String fipcode = getFipcode();
@@ -221,8 +224,8 @@ public class DbDataProvider_Exch {
         String[] issuerNameId = getIssuerNameId(hiosIssuerId);
         String issuerName = issuerNameId[0];
         String issuerId = issuerNameId[1];
-        Map<String,String> csrMap = getSubscriberCSRDataFromDb();
-        String csrAmtMed =csrMap.get("1");
+        Map<String,String> csrMap = SharedData.getIsAiAn()? getSubscriberCSRDataFromDb_aian() : getSubscriberCSRDataFromDb();
+        String csrAmtMed = csrMap.get("1");
         List<Map<String, PlanDbData>> medicalPlanDetailsFromDb = SharedData.getMedicalPlanDbDataNew();
         if(medicalPlanDetailsFromDb == null) {
             medicalPlanDetailsFromDb = new ArrayList<>();
@@ -235,7 +238,6 @@ public class DbDataProvider_Exch {
         planDbData.setIssuerId(issuerId);
         planDbData.setHiosIssuerId(hiosIssuerId);
         planDbData.setCsrAmt(csrAmtMed);
-
         planDbDataMap.put(name, planDbData);
 
         medicalPlanDetailsFromDb.add(planDbDataMap);
@@ -618,16 +620,16 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultFor("outcome_ind", exchDbQueries.getCyaEligibility());
     }
 
-    public String getVLPResponseCode() {
-        return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPResponseCodeInfo());
+    public String getVLPResponseCode(String requestType) {
+        return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPResponseCodeInfo(requestType));
     }
 
-    public String getVLPRetryType() {
-        return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPRetryType());
+    public String getFDSHRetryType() {
+        return postgresHandler.getResultFor("response_code", exchDbQueries.getFDSHRetryType());
     }
 
-    public String getVLPRetryStatus() {
-        return postgresHandler.getResultFor("response_code", exchDbQueries.getVLPRetryStatus());
+    public String getFDSHRetryStatus() {
+        return postgresHandler.getResultFor("response_code", exchDbQueries.getFDSHRetryStatus());
     }
 
     public List<String> getSubscribers(String memId) {
@@ -653,6 +655,35 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultForThreeColumnValues("kind", "amount", "period", exchDbQueries.getDeductionamountDetails(memberId, kindValue));
     }
 
+    public String getOverriddenAmount() {
+        return postgresHandler.getResultFor("ind_ssap_data", exchDbQueries.getOverriddenAmountDetails());
+    }
 
+    public String getVlpRequestCount(){
+        return postgresHandler.getResultFor("count", exchDbQueries.getVlpRequestCountQuery());}
 
+    public String getEligibilityType(){
+        return postgresHandler.getResultFor("eligibility_type", exchDbQueries.getEligibilityTypeQuery());}
+
+    public String[] getDeterminationEffectiveDate(){
+        return postgresHandler.getResultForTwoColumnValues("determination", "effective_date", exchDbQueries.getgetDeterminationEffectiveDateDetails());
+    }
+
+    public String getOutcomeInd(){
+        return postgresHandler.getResultFor("outcome_ind", exchDbQueries.getOutcomeIndQuery());}
+
+    public String getRemovedEffectiveDate(){
+        return postgresHandler.getResultFor("removed_effective_date", exchDbQueries.getRemovedEffectiveDateQuery());}
+
+    public List<String> getEsMemberLceAh(String memberId) {
+        return postgresHandler.getResultForDynamicColumns(exchDbQueries.getEsMemberLceAhDetails(memberId),"lce_member_lce_id","lce_ah_member_lce_id","lce_evaluation_id","lce_ah_evaluation_id","lce_report_date","lce_ah_report_date","lce_event_date","lce_ah_event_date");
+    }
+
+    public String getDeductionRowCount(){
+        String memberId = basicActions.getMemberId("Primary");
+        return postgresHandler.getResultFor("count", exchDbQueries.getDeductionAmountCount(memberId));
+    }
+
+    public String getEnrollmentPlanYear() {
+        return postgresHandler.getResultFor("plan_year", exchDbQueries.getEnrollmentPeriodEndDate());}
 }

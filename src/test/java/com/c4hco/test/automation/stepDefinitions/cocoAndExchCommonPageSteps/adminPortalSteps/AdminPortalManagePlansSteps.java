@@ -94,6 +94,14 @@ public class AdminPortalManagePlansSteps {
     public void financialStartDate(List<String> memberFinancialStrtDtList) {
         adminPortalManagePlansPage.memberFinancialStrtDate(memberFinancialStrtDtList);
     }
+    @And("I update the Coverage Start date of member on manage plan page")
+    public void coverageStartDateCOCO(List<String> memberCoverageStrtDtList) {
+        adminPortalManagePlansPage.memberCoverageStrtDateNew(memberCoverageStrtDtList);
+    }
+    @And("I update the Financial Start date of member on manage plan page")
+    public void financialStartDateCOCO(List<String> memberFinancialStrtDtList) {
+        adminPortalManagePlansPage.memberFinancialStrtDateNew(memberFinancialStrtDtList);
+    }
     @And ("I select the reason to confirm the changes")
     public void iselectTheReason (){
         adminPortalManagePlansPage.selectReasonForTheChange();
@@ -344,6 +352,19 @@ public class AdminPortalManagePlansSteps {
     @And("I validate SES entered exceeds EHB amount error is displaying for")
     public void iValidateSESEnteredExceedsEHBAmountErrorIsDisplayingFor() {
         adminPortalManagePlansPage.validateEHBErrorsCoCo();
+    }
+    @Then("I validate the expected {string} message is displayed")
+    public void iValidateTheExpectedEHBErrorMessageIsDisplayed(String expectedErrorMessage) {
+        adminPortalManagePlansPage.validateTheExpectedEHBErrorMessageIsDisplayed(expectedErrorMessage);
+    }
+    @Then("I validate {string} message is displayed")
+    public void iValidateNoPlanMessageIsDisplayed(String expectedMessage) {
+        adminPortalManagePlansPage.validateNoPlanMessageIsDisplayed(expectedMessage);
+    }
+
+    @Then("I verify Plan ID data with plan selected {string} {string} and {string} {string}")
+    public void iVerifyPlanIDDataMatchesDataInDropDownForSelectedPlan(String planSTG, String planOptionDropDownSTG, String planQA, String planOptionDropDownQA) {
+        adminPortalManagePlansPage.verifyPlanIDDataMatchesDataInDropDownForSelectedPlan(planSTG, planOptionDropDownSTG, planQA, planOptionDropDownQA );
     }
 }
 

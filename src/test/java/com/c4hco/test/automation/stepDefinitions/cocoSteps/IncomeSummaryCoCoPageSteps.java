@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 
 import com.c4hco.test.automation.pages.cocoPages.IncomeSummaryCoCoPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
@@ -25,6 +26,10 @@ public class IncomeSummaryCoCoPageSteps {
 
     @And("I click on the edit {string} icon on the Income Summary CoCo page")
     public void iSelectEditIcon(String type) {incomeSummaryCoCoPage.selectEditIcon(type);}
+
+    @And("I click on the Projected Income Input field and click out of this field")
+    public void iClickOnProjectedIncomeInputFieldAndClickOutOfIt() {incomeSummaryCoCoPage.clickOnProjectedIncomeInputFieldAndClickOutOfIt();}
+
 
 
 
@@ -57,5 +62,22 @@ public class IncomeSummaryCoCoPageSteps {
 
     @Then("I verify income Summary CoCo error format for {string}")
     public void iVerifyErrorFormat(String incomeType){incomeSummaryCoCoPage.verifyErrorFormat(incomeType);}
+
+    @Then("I validate the error text along with its properties on the CoCo Income Summary page")
+    public void iVerifyErrorMessageAndItsProperties(DataTable dataTable){
+        incomeSummaryCoCoPage.validateErrorMessageAndItsProperties(dataTable);
+    }
+
+    @Then("I validate the label text along with its properties on the CoCo Income Summary page")
+    public void iVerifyLabelTextAndItsProperties(DataTable dataTable){
+        incomeSummaryCoCoPage.validateLabelTextAndItsProperties(dataTable);
+    }
+
+    @And("I verify no error shows on the Income Summary page")
+    public void iVerifyNoErrors(){incomeSummaryCoCoPage.verifyNoErrors();}
+
+    @Then("I verify the deduction Amount {string} on the Income Summary Coco Page")
+    public void iVerifyDeductionAmount(String amount) {incomeSummaryCoCoPage.verifyDeductionAmount(amount);}
+
 
 }

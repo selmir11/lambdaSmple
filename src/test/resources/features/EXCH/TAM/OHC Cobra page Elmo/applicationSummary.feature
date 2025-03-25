@@ -56,16 +56,16 @@ Feature: Tests related to the Application Summary/Detail for Cobra
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "COBRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I select "COBRA" as health coverage option
+    Then I click continue on the health coverage page
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click "Yes" for insurance ending in 60 days in COBRA question
     Then I enter the end date as "Current Month" on the Cobra page
     Then I click "Yes" for insurance ending voluntary for COBRA question
-    Then I click continue on the Elmo OHC Cobra page
+    Then I click continue on the OHC Cobra page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -80,12 +80,10 @@ Feature: Tests related to the Application Summary/Detail for Cobra
     Then I validate I am on the "Application Summary Completed" page
     And I verify the OHC header on Application Summary in "English"
     Then I click on Download as PDF on Application Summary
-    And I wait for 500 milliseconds
     Then I validate PDF "Other Health Coverage" Header in "English"
     And I change the language from header to "Spanish NonElmo"
     And I verify the OHC header on Application Summary in "Spanish"
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2500 milliseconds
     Then I validate PDF "Other Health Coverage" Header in "Spanish"
 #    Steps 3 & 4
     And I change the language from header to "English NonElmo"
@@ -110,13 +108,11 @@ Feature: Tests related to the Application Summary/Detail for Cobra
     Then I validate I am on the "Application Details" page
     And I verify the OHC header highlight "Plain header" on Application Details
     Then I click on Download as PDF on Application Details
-    Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
       |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |    COBRA    |       Yes        |      Yes       |Current Month|         Yes                |
     And I change the language from header to "Spanish NonElmo"
     Then I click on Download as PDF on Application Details
-    Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "Spanish"
       |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |    COBRA    |       Yes        |      Yes       |Current Month|         Yes                |
@@ -141,18 +137,18 @@ Feature: Tests related to the Application Summary/Detail for Cobra
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "COBRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo COBRA" page
+    Then I click Save and Continue on Tax Status page
+    Then I select "COBRA" as health coverage option
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc COBRA" page
 #    Step 2
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click "Yes" for insurance ending in 60 days in COBRA question
     Then I enter the end date as "Current Month" on the Cobra page
     Then I click "Yes" for insurance ending voluntary for COBRA question
-    Then I click continue on the Elmo OHC Cobra page
+    Then I click continue on the OHC Cobra page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -181,11 +177,11 @@ Feature: Tests related to the Application Summary/Detail for Cobra
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo COBRA" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc COBRA" page
     Then I click "No" for insurance ending in 60 days in COBRA question
-    Then I click continue on the Elmo OHC Cobra page
+    Then I click continue on the OHC Cobra page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -204,7 +200,6 @@ Feature: Tests related to the Application Summary/Detail for Cobra
       |   OHC Type  |Currently Enrolled|   End date  |
       |    COBRA    |       Yes        |             |
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "English"
       |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |    COBRA    |       Yes        |                |             |                            |
@@ -216,7 +211,6 @@ Feature: Tests related to the Application Summary/Detail for Cobra
       |   OHC Type  |Currently Enrolled|   End date  |
       |    COBRA    |        Sí        |             |
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "Spanish"
       |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |    COBRA    |       Sí         |                |             |                            |
@@ -241,13 +235,13 @@ Feature: Tests related to the Application Summary/Detail for Cobra
     Then I click continue on the Deductions page
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo COBRA" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc COBRA" page
     Then I click "Yes" for insurance ending in 60 days in COBRA question
     Then I enter the end date as "Current Month" on the Cobra page
     Then I click "Yes" for insurance ending voluntary for COBRA question
-    Then I click continue on the Elmo OHC Cobra page
+    Then I click continue on the OHC Cobra page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -266,7 +260,6 @@ Feature: Tests related to the Application Summary/Detail for Cobra
       |   OHC Type  |Currently Enrolled|     End date     |
       |    COBRA    |       Yes        |Last Current Month|
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "English"
       |Coverage Type|Currently Enrolled|Insurance Ending|     End date     |Voluntarily ending insurance|
       |    COBRA    |       Yes        |      Yes       |Last Current Month|           Yes              |
@@ -278,7 +271,6 @@ Feature: Tests related to the Application Summary/Detail for Cobra
       |   OHC Type  |Currently Enrolled|     End date     |
       |    COBRA    |        Sí        |Last Current Month|
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "Spanish"
       |Coverage Type|Currently Enrolled|Insurance Ending|     End date     |Voluntarily ending insurance|
       |    COBRA    |       Sí         |      Sí        |Last Current Month|           Sí               |
@@ -302,11 +294,11 @@ Feature: Tests related to the Application Summary/Detail for Cobra
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo COBRA" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc COBRA" page
     Then I click "No" for currently enrolled in COBRA question
-    Then I click continue on the Elmo OHC Cobra page
+    Then I click continue on the OHC Cobra page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -325,7 +317,6 @@ Feature: Tests related to the Application Summary/Detail for Cobra
       |   OHC Type  |Currently Enrolled|     End date     |
       |    COBRA    |        No        |                  |
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "English"
       |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |    COBRA    |       No         |                |             |                            |
@@ -337,7 +328,6 @@ Feature: Tests related to the Application Summary/Detail for Cobra
       |   OHC Type  |Currently Enrolled|     End date     |
       |    COBRA    |        No        |                  |
     Then I click on Download as PDF on Application Summary
-    Then I wait for 2000 milliseconds
     Then I validate PDF OHC data on Application Summary in "Spanish"
       |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |    COBRA    |       No         |                |             |                            |
@@ -361,18 +351,18 @@ Feature: Tests related to the Application Summary/Detail for Cobra
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "COBRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo COBRA" page
+    Then I click Save and Continue on Tax Status page
+    Then I select "COBRA" as health coverage option
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc COBRA" page
 #    Step 2
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click "Yes" for insurance ending in 60 days in COBRA question
     Then I enter the end date as "Current Month" on the Cobra page
     Then I click "Yes" for insurance ending voluntary for COBRA question
-    Then I click continue on the Elmo OHC Cobra page
+    Then I click continue on the OHC Cobra page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -401,12 +391,12 @@ Feature: Tests related to the Application Summary/Detail for Cobra
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo COBRA" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc COBRA" page
     Then I enter the end date as "Future Day:3" on the Cobra page
     Then I click "No" for insurance ending voluntary for COBRA question
-    Then I click continue on the Elmo OHC Cobra page
+    Then I click continue on the OHC Cobra page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -443,7 +433,6 @@ Feature: Tests related to the Application Summary/Detail for Cobra
       |   OHC Type  |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date  |Date Highlight|Voluntarily ending|Voluntarily Highlight|
       |    COBRA    |     Plain    |       Yes        |      Plain       |      Yes       |     Plain      |Future Day:3|    Yellow    |        No        |       Yellow        |
     Then I click on Download as PDF on Application Details
-    Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
       |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |    COBRA    |       Yes        |      Yes       | Future Day:3|           Yes              |
@@ -467,11 +456,11 @@ Feature: Tests related to the Application Summary/Detail for Cobra
     Then I click continue on the Deductions page
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo COBRA" page
+    Then I click Save and Continue on Tax Status page
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc COBRA" page
     Then I click "No" for currently enrolled in COBRA question
-    Then I click continue on the Elmo OHC Cobra page
+    Then I click continue on the OHC Cobra page
     Then I click continue on family overview page
     Then I select "Birth" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -493,7 +482,6 @@ Feature: Tests related to the Application Summary/Detail for Cobra
       |   OHC Type  |Type Highlight|Currently enrolled|Enrolled Highlight|Insurance ending|Ending Highlight|  End date   |Date Highlight|Voluntarily ending|Voluntarily Highlight|
       |    COBRA    |     Plain    |       No         |      Yellow      |                |      Red       |             |     Red      |                  |        Red          |
     Then I click on Download as PDF on Application Details
-    Then I wait for 2000 milliseconds
     Then I validate basic PDF OHC data on Application Details in "English"
       |Coverage Type|Currently Enrolled|Insurance Ending|   End date  |Voluntarily ending insurance|
       |    COBRA    |        No        |                |             |                            |
@@ -518,11 +506,11 @@ Feature: Tests related to the Application Summary/Detail for Cobra
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     And I click plus icon next to member on household page for "Primary"
     And I click View Details under member on household page for "Primary"
     And I verify Existing health insurance is "No" on the Application Summary page in "English"
@@ -558,15 +546,15 @@ Feature: Tests related to the Application Summary/Detail for Cobra
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "COBRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo COBRA" page
+    Then I click Save and Continue on Tax Status page
+    Then I select "COBRA" as health coverage option
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Ohc COBRA" page
     Then I click "Yes" for currently enrolled in COBRA question
     Then I click "Yes" for insurance ending in 60 days in COBRA question
     Then I enter the end date as "Current Month" on the Cobra page
     Then I click "Yes" for insurance ending voluntary for COBRA question
-    Then I click continue on the Elmo OHC Cobra page
+    Then I click continue on the OHC Cobra page
     And I click plus icon next to member on household page for "Primary"
     And I click View Details under member on household page for "Primary"
     And I verify Existing health insurance is "COBRA" on the Application Summary page in "English"
@@ -636,9 +624,9 @@ Feature: Tests related to the Application Summary/Detail for Cobra
     Then I click continue on the Deductions page
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     And I click plus icon next to member on household page for "Primary"
     And I click View Details under member on household page for "Primary"
     And I verify Existing health insurance is "No" on the Application Summary page in "English"

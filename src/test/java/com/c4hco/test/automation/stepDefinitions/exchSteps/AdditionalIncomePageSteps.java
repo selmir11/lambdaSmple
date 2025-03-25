@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.exchSteps;
 
 import com.c4hco.test.automation.pages.exchPages.AdditionalIncomePage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
@@ -68,4 +69,24 @@ public class AdditionalIncomePageSteps {
     @Then("I verify Additional Income checkbox in {string} state")
     public void iVerifyStateOfAddIncomeCheckbox(String state){
         additionalIncomePage.verifyAddtlIncomeOptionCheckbox(state);}
+
+    @Then("I click on the Back button on the Additionalincomepage")
+    public void iClickOnTheBackButton() {
+        additionalIncomePage.clickOnBackButton();
+    }
+
+    @Then("I validate the error text with its properties and the error icon on the Additional Income page")
+    public void iVerifyErrorMessageAndItsProperties(DataTable dataTable){additionalIncomePage.validateErrorMessageAndItsProperties(dataTable);}
+
+    @And("I verify the Active Error message as {string}")
+    public void iVerifyActiveErrorMessage(String expectedErrorMessage) {
+        additionalIncomePage.verifyActiveErrorMessage(expectedErrorMessage);
+    }
+
+    @And("I enter the value {string} and verify that the value is converted to {string}")
+    public void iEnterAndVerifyTheAmount(String enteredValue,String expectedValue) {
+        additionalIncomePage.enterAndVerifyTheAmount(enteredValue,expectedValue);
+    }
+
+
 }

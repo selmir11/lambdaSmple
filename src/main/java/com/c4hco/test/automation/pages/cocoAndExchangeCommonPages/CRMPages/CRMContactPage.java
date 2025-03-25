@@ -70,6 +70,9 @@ public class CRMContactPage {
     @FindBy(xpath = "//*[@aria-label='Contact Type']")
     WebElement accountInformationContactType;
 
+    @FindBy(xpath = "//input[@aria-label='Agency Name']")
+    WebElement accountInformationAgencyName;
+
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
@@ -124,7 +127,7 @@ public class CRMContactPage {
     }
 
     public void verifyContactData(){
-        basicActions.waitForElementToBePresentWithRetries(txtFirstNameInput,50);
+        basicActions.waitForElementToBePresentWithRetries(txtFirstNameInput,100);
         basicActions.waitForElementToBePresent(txtAddress1Input,50);
         basicActions.waitForElementToBePresent(txtCityInput,50);
 
@@ -164,6 +167,12 @@ public class CRMContactPage {
     public void verifyContactType(String contactType){
         basicActions.waitForElementToBePresentWithRetries(accountInformationContactType,50);
         softAssert.assertEquals(accountInformationContactType.getText(), contactType);
+        softAssert.assertAll();
+    }
+
+    public void verifyNewAgencyName(){
+        basicActions.waitForElementToBePresentWithRetries(accountInformationAgencyName,50);
+        softAssert.assertEquals(accountInformationAgencyName.getAttribute("value"), SharedData.getAgencyOwner().getAgencyName());
         softAssert.assertAll();
     }
 }

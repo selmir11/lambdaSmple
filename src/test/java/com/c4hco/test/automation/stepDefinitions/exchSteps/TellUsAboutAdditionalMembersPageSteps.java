@@ -36,8 +36,8 @@ public class TellUsAboutAdditionalMembersPageSteps {
     }
 
 
-    @Then("I update member SSN number to new SSN number {string}")
-    public void iUpdateMemSSN(String updatedSSN) {tellUsAboutAdditionalMemberPage.updateMemSSN(updatedSSN);
+    @Then("I update {string} SSN number to new SSN number {string}")
+    public void iUpdateMemSSN(String memprefix, String updatedSSN) {tellUsAboutAdditionalMemberPage.updateMemSSN(memprefix, updatedSSN);
     }
     @And("I click back on Tell us about additional members page")
     public void clickbackButton(){tellUsAboutAdditionalMemberPage.clickBackButton();}

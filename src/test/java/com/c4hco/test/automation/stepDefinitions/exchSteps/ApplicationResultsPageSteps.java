@@ -79,4 +79,6 @@ public class ApplicationResultsPageSteps {
     public void iValidateTheHealthPlanDisqualificationMessage() {
         applicationResultsPage.validateHealthPlanMessage();}
 
+    @And ("I validate the {string} text on the Application Results page")
+    public void iValidateApplicationResultsPage(String language){applicationResultsPage.iValidateApplicationResultsPage(language);}
 }

@@ -197,7 +197,7 @@ Feature: Tests related to the Deductions page
       Then I click EditUpdate on Family Overview page for "Primary"
       Then I click Save and Continue only on the tell us about yourself page
       And I click continue on the Add info for yourself page
-      Then I validate I am on the "Elmo Race and Ethnicity" page
+      Then I validate I am on the "Race and Ethnicity" page
       And I click save and continue on the Race and Ethnicity page
       And I validate I am on the "Employment Income" page
       And I click continue on the Employment income page

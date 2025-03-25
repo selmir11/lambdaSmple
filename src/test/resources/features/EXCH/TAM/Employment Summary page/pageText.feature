@@ -194,7 +194,7 @@ Feature: Page Text-Income Opt Out Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-244 @PageTextEmploymentSummary @TAMSmoke
+  @SLER-244 @PageTextEmploymentSummary @TAMSmokeExch
   Scenario: SLER-244 I can see Employment Summary's Header and footer - Spanish
     And I validate I am on the "Employment Summary" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
@@ -366,6 +366,38 @@ Feature: Page Text-Income Opt Out Page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLER-2327
+  Scenario: RT-2594[ELIG-As an Exchange User on Employment Summary page, I want the ability to see the page in English or Spanish so that I can review and update the income information]
+    And I validate I am on the "Employment Summary" page
+    Then I validate Employment Summary text in "English"
+    And I validate I am on the "Employment Summary" page
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I validate Employment Summary text in "Spanish"
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+  @SLER-2333
+  Scenario: RT-2587[ As a Exch user on the Employment Summary page, I want to see the structure of the page so that I can review and update basic employment information
+    And I validate I am on the "Employment Summary" page
+    Then I validate Employment Summary text in "English"
+    And I validate I am on the "Employment Summary" page
+    Then I validate Employment Summary bold text in Employment Summary Page
+    Then I validate page Navigation works for Footer hyperlink text in "English"
+      | HyperLinkText  | ExpectedPageTitle | ContainsUrl                           |
+      | Privacy Policy | Privacy Policy    | connectforhealthco.com/privacy-policy |
+      | Terms          | Terms of Use      | connectforhealthco.com/terms-of-use   |
+      | Contact Us     | Contact Us        | connectforhealthco.com/contact-us     |
+      | FacebookIcon   | Facebook          | facebook.com                          |
+      | xIcon          | X                 | x.com                                 |
+      | YouTubeIcon    | YouTube           | youtube.com                           |
+      | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
+      | InstagramIcon  | instagram         | instagram.com                         |
+      | ThreadsIcon    | Threads           | threads.net                           |
+    And I click on Sign Out in the Header for "Elmo"
+
+
+
     
     
     

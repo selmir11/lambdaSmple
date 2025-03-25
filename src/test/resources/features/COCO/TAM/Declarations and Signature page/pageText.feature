@@ -37,7 +37,7 @@ Feature: PageText-Declarations and Signature Page
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
 
-  @SLCR-191 @PageTextD&SPage @TAMSmoke
+  @SLCR-191 @PageTextD&SPage @TAMSmokeCoCo
   Scenario: SLCR-191 I can see Declarations and Signature Page's Header and footer - English
     And I verify the header for Primary Member on the CoCo Declarations And Signature page in "English"
     And I verify text on the "CoCo" "Header" in "English"
@@ -220,3 +220,63 @@ Feature: PageText-Declarations and Signature Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
+  @SLCR-811
+  Scenario: SLCR-811 As a user on the CoCo D&S page, I verify error messages in English & Spanish so that users can understand the errors(CCRT-729)
+    And I verify the header for Primary Member on the CoCo Declarations And Signature page in "English"
+    And I verify the username electronic signature label along with the signature input box in "English"
+    And I click Continue on the Declarations And Signature Page CoCo
+    And I verify the error message "Electronic signature is required" when I click on continue button without entering the value in Electronic signature input box
+    And I verify validation text for error message on the CoCo Declarations and Signature page
+      | Text                             | fontSize | fontFamily            | fontWeight | color              | lineHeight | textAlign |
+      | Electronic signature is required | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) | 24px       | start     |
+    And I verify the label text style above the Error message on CoCo Declarations and Signature page
+      | fontSize | fontFamily            | fontWeight | color              | lineHeight | textAlign |
+      | 16px     | "PT Sans", sans-serif | 700        | rgba(150, 0, 0, 1) | 28px       | start     |
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    And I verify the username electronic signature label along with the signature input box in "Spanish"
+    And I verify the error message "Se requiere firma electrónica" when I click on continue button without entering the value in Electronic signature input box
+    And I verify validation text for error message on the CoCo Declarations and Signature page
+      | Text                             | fontSize | fontFamily            | fontWeight | color              | lineHeight | textAlign |
+      | Se requiere firma electrónica    | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) | 24px       | start     |
+    And I verify the label text style above the Error message on CoCo Declarations and Signature page
+      | fontSize | fontFamily            | fontWeight | color              | lineHeight | textAlign |
+      | 16px     | "PT Sans", sans-serif | 700        | rgba(150, 0, 0, 1) | 28px       | start     |
+    And I change the language from header to "English"
+    And I verify the error message "Electronic signature is required" when I click on continue button without entering the value in Electronic signature input box
+    And I enter invalid signature name on the Declarations And Signature Page CoCo
+    And I verify the error message "Signature must match name" when I click on continue button without entering the value in Electronic signature input box
+    And I verify validation text for error message on the CoCo Declarations and Signature page
+      | Text                             | fontSize | fontFamily            | fontWeight | color              | lineHeight | textAlign |
+      | Signature must match name        | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) | 24px       | start     |
+    And I verify the username electronic signature label along with the signature input box in "English"
+    And I verify the label text style above the Error message on CoCo Declarations and Signature page
+      | fontSize | fontFamily            | fontWeight | color              | lineHeight | textAlign |
+      | 16px     | "PT Sans", sans-serif | 700        | rgba(150, 0, 0, 1) | 28px       | start     |
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    And I verify the error message "La firma debe coincidir con el nombre" when I click on continue button without entering the value in Electronic signature input box
+    And I verify validation text for error message on the CoCo Declarations and Signature page
+      | Text                                         | fontSize | fontFamily            | fontWeight | color              | lineHeight | textAlign |
+      | La firma debe coincidir con el nombre        | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) | 24px       | start     |
+    And I verify the username electronic signature label along with the signature input box in "Spanish"
+    And I verify the label text style above the Error message on CoCo Declarations and Signature page
+      | fontSize | fontFamily            | fontWeight | color              | lineHeight | textAlign |
+      | 16px     | "PT Sans", sans-serif | 700        | rgba(150, 0, 0, 1) | 28px       | start     |
+    And I change the language from header to "English"
+    And I verify the username electronic signature label along with the signature input box in "English"
+    And I verify the error message "Signature must match name" when I click on continue button without entering the value in Electronic signature input box
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+  @SLCR-861 @SLCR-862
+  Scenario Outline: <TestNumber> Verify verbiage consistency on Declarations and Signature page - <Language>
+    Then I change the language from header to "<Language>"
+    And I verify the header for Primary Member on the CoCo Declarations And Signature page in "<Language>"
+    Then I verify the text on CoCo Declarations and Signature page in "<Language>"
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+    Examples:
+      | TestNumber | Language |
+      | SLCR-861   | English  |
+      | SLCR-862   | Spanish  |

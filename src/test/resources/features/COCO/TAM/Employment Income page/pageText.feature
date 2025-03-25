@@ -22,7 +22,7 @@ Feature: Tests related to the Employment Income page
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
 
-  @SLCR-58 @PageTextEmploymentIncome @TAMSmoke
+  @SLCR-58 @PageTextEmploymentIncome @TAMSmokeCoCo
   Scenario: SLCR-58 I can see Employment Income's Header and footer - English
     And I verify the header for Primary Member on the CoCo Employment income page in "English"
     And I verify text on the "CoCo" "Header" in "English"
@@ -218,7 +218,7 @@ Feature: Tests related to the Employment Income page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLCR-422 @PageTextEmploymentIncome @TAMSmoke
+  @SLCR-422 @PageTextEmploymentIncome @TAMSmokeCoCo
   Scenario: SLCR-422 I verify Employment Income's page text - English
     And I select "Yes" employment option
     And I verify the header for Primary Member on the CoCo Employment income page in "English"
@@ -226,7 +226,7 @@ Feature: Tests related to the Employment Income page
     Then I verify the income frequency options in "English"
     Then I verify the navigation buttons on the CoCo Employment Income page in "English"
 
-  @SLCR-423 @PageTextEmploymentIncome @TAMSmoke
+  @SLCR-423 @PageTextEmploymentIncome @TAMSmokeCoCo
   Scenario: SLCR-423 I verify Employment Income's page text - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I select "Yes" employment option
@@ -235,7 +235,7 @@ Feature: Tests related to the Employment Income page
     Then I verify the income frequency options in "Spanish"
     Then I verify the navigation buttons on the CoCo Employment Income page in "Spanish"
 
-  @SLCR-424 @PageTextEmploymentIncome @TAMSmoke
+  @SLCR-424 @PageTextEmploymentIncome @TAMSmokeCoCo
   Scenario: SLCR-424 I verify Employment Income's page text for additional members - English
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -260,7 +260,7 @@ Feature: Tests related to the Employment Income page
     Then I verify the income frequency options in "English"
     Then I verify the navigation buttons on the CoCo Employment Income page in "English"
 
-  @SLCR-425 @PageTextEmploymentIncome @TAMSmoke
+  @SLCR-425 @PageTextEmploymentIncome @TAMSmokeCoCo
   Scenario: SLCR-425 I verify Employment Income's page text for additional members - Spanish
     And I select "No" employment option
     And I click continue on the Employment income page
@@ -286,25 +286,32 @@ Feature: Tests related to the Employment Income page
     Then I verify the income frequency options in "Spanish"
     Then I verify the navigation buttons on the CoCo Employment Income page in "Spanish"
 
-  @SLCR-774
-  Scenario: SLCR-774 Page Validation-Employment Income
+  @SLCR-774 @SLCR-865
+  Scenario Outline: <TestNumber> Page Validation-Employment Income - <Language>
+    Then I change the language from header to "<Language>"
     And I click continue on the Employment income page
     And I verify validation text on the CoCo Employment Income page
-      | Text                                   | fontSize | fontFamily            | fontWeight | color   |
-      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | #960000 |
+      | Text           | fontSize | fontFamily            | fontWeight | color   |
+      | <PleaseSelect> | 14px     | "PT Sans", sans-serif | 400        | #960000 |
     And I select "Yes" employment option
     And I click continue on the Employment income page
     And I verify validation text on the CoCo Employment Income page
-      | Text                                   | fontSize | fontFamily            | fontWeight | color   |
-      | Amount is required                     | 14px     | "PT Sans", sans-serif | 400        | #960000 |
-      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | #960000 |
-      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | #960000 |
-      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | #960000 |
+      | Text           | fontSize | fontFamily            | fontWeight | color   |
+      | <AmtRequired>  | 14px     | "PT Sans", sans-serif | 400        | #960000 |
+      | <PleaseSelect> | 14px     | "PT Sans", sans-serif | 400        | #960000 |
+      | <PleaseSelect> | 14px     | "PT Sans", sans-serif | 400        | #960000 |
+      | <PleaseSelect> | 14px     | "PT Sans", sans-serif | 400        | #960000 |
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLCR-793
-  Scenario: SLCR-793 I want error focus state for all components updated so that they are consistent with the style definitions in the Design System - Employer Income
-    And I verify the header for Primary Member on the CoCo Employment income page in "English"
+    Examples:
+      |TestNumber|Language|AmtRequired                 |PleaseSelect                             |
+      |SLCR-774  |English |Amount is required          |Please select one of the options below   |
+      |SLCR-865  |Spanish |Esta cantidad es obligatoria|Seleccione una de las siguientes opciones|
+
+  @SLCR-793 @SLCR-864
+  Scenario Outline: <TestNumber> I want error focus state for all components updated so that they are consistent with the style definitions in the Design System - Employer Income - <Language>
+    Then I change the language from header to "<Language>"
+    And I verify the header for Primary Member on the CoCo Employment income page in "<Language>"
     And I click continue on the Employment income page
     Then I verify Employment Income CoCo error format for "Do you have a job"
     And I select "Yes" employment option
@@ -315,3 +322,29 @@ Feature: Tests related to the Employment Income page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+    Examples:
+      | TestNumber | Language |
+      | SLCR-793   | English  |
+      | SLCR-864   | Spanish  |
+
+  @SLCR-869 @SLCR-870
+  Scenario Outline: <TestNumber> As COCO account user on the Employment Income page, I see the structure of the page so that I can provide my basic income information - <Language>
+    Then I change the language from header to "<Language>"
+    Then I validate yes and no buttons for "Do you have a job" on the Employment Income page in "<Language>"
+    And I select "Yes" employment option
+    And I verify the header for Primary Member on the CoCo Employment income page in "<Language>"
+    Then I validate all text on the Employment Income page in "<Language>"
+    Then I verify the income frequency options in "<Language>"
+    Then I validate yes and no buttons for "total income" on the Employment Income page in "<Language>"
+    Then I validate yes and no buttons for "seasonal" on the Employment Income page in "<Language>"
+    Then I validate yes and no buttons for "income change" on the Employment Income page in "<Language>"
+    Then I verify the navigation buttons on the CoCo Employment Income page in "<Language>"
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+    Examples:
+      | TestNumber | Language |
+      | SLCR-793   | English  |
+      | SLCR-864   | Spanish  |

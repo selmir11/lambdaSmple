@@ -24,7 +24,7 @@ Feature: Tests related to the Additional Income page
     And I click continue on the Employment income page
     Then I validate I am on the "CoCo Additional Income" page
 
-  @SLCR-61 @PageTextAdditionalIncome @TAMSmoke
+  @SLCR-61 @PageTextAdditionalIncome @TAMSmokeCoCo
   Scenario: SLCR-61 I can see Additional Income's Header and footer - English
     And I verify text on the "CoCo" "Header" in "English"
     And I verify text on the "CoCo" "Footer" in "English"
@@ -314,3 +314,51 @@ Feature: Tests related to the Additional Income page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLCR-866 @SLCR-868
+  Scenario Outline: <TestNumber> As COCO user, I want to see the Additional income sources page so that I can enter my additional income information - <Language>
+    Then I change the language from header to "<Language>"
+    And I verify the header for Primary Member on the CoCo Additional Income page in "<Language>"
+    Then I verify the text on the CoCo Additional Income page in "<Language>"
+    Then I verify the navigation buttons on the CoCO Additional Income page in "<Language>"
+    Then I verify Additional Income checkbox COCO in "Not Selected" state
+    Then I select "All Income" as additional income option CoCO page
+    Then I validate "All Income" option is selected on the Additional Income CoCo page
+    Then I validate "None of these" option is not selected on the Additional Income CoCo page
+
+    Then I verify "Alimony Received" as additional income option with "" amount at "0: null" frequency CoCo page
+    Then I verify Additional Income CoCo placeholders for "Alimony Received" in "<Language>"
+    Then I verify "Capital Gains" as additional income option with "" amount at "0: null" frequency CoCo page
+    Then I verify Additional Income CoCo placeholders for "Capital Gains" in "<Language>"
+    Then I verify "Income from rental property" as additional income option with "" amount at "0: null" frequency CoCo page
+    Then I verify Additional Income CoCo placeholders for "Income from rental property" in "<Language>"
+    Then I verify "Pension" as additional income option with "" amount at "0: null" frequency CoCo page
+    Then I verify Additional Income CoCo placeholders for "Pension" in "<Language>"
+    Then I verify "Private Retirement Income" as additional income option with "" amount at "0: null" frequency CoCo page
+    Then I verify Additional Income CoCo placeholders for "Private Retirement Income" in "<Language>"
+    Then I verify "Income from Social Security" as additional income option with "" amount at "0: null" frequency CoCo page
+    Then I verify Additional Income CoCo placeholders for "Income from Social Security" in "<Language>"
+    Then I verify "Unemployment Insurance Benefit" as additional income option with "" amount at "0: null" frequency CoCo page
+    Then I verify Additional Income CoCo placeholders for "Unemployment Insurance Benefit" in "<Language>"
+    Then I verify "Investment Income" as additional income option with "" amount at "0: null" frequency CoCo page
+    Then I verify Additional Income CoCo placeholders for "Investment Income" in "<Language>"
+    Then I verify "Cash Support" as additional income option with "" amount at "0: null" frequency CoCo page
+    Then I verify Additional Income CoCo placeholders for "Cash Support" in "<Language>"
+    Then I verify "Untaxed Foreign Income" as additional income option with "" amount at "0: null" frequency CoCo page
+    Then I verify Additional Income CoCo placeholders for "Untaxed Foreign Income" in "<Language>"
+    Then I verify "Royalty Income" as additional income option with "" amount at "0: null" frequency CoCo page
+    Then I verify Additional Income CoCo placeholders for "Royalty Income" in "<Language>"
+    Then I verify "Taxable income from Tribal Sources" as additional income option with "" amount at "0: null" frequency CoCo page
+    Then I verify Additional Income CoCo placeholders for "Taxable income from Tribal Sources" in "<Language>"
+
+    Then I select "None of these" as additional income option CoCO page
+    Then I validate "None of these" option is selected on the Additional Income CoCo page
+    Then I validate "All Income" option is not selected on the Additional Income CoCo page
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+    Examples:
+      | TestNumber | Language |
+      | SLCR-866   | English  |
+      | SLCR-868   | Spanish  |

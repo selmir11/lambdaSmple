@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 import com.c4hco.test.automation.Dto.SharedData;
 
 import java.util.List;
+import java.util.Map;
 
 
 public class AdditionalIncomePage {
@@ -62,6 +64,9 @@ public class AdditionalIncomePage {
     @FindBy(css = ".body-text-1")
     List <WebElement> txtAdditionalIncomeText;
 
+    @FindBy(id = "ELIG-AdditionalIncome-ALMR-amountInput")
+    WebElement txtAlimonyReceivedAmount;
+
     @FindBy(id = "ELIG-AdditionalIncome-CAPG-amountInput")
     WebElement txtCapitalGainsAmount;
 
@@ -70,6 +75,9 @@ public class AdditionalIncomePage {
 
     @FindBy(id = "ELIG-AdditionalIncome-PENS-amountInput")
     WebElement txtPrivateRetirementIncomeAmount;
+
+    @FindBy(id = "ELIG-AdditionalIncome-ALMR-frequencySelect")
+    WebElement selectALMRFrequency;
 
     @FindBy(id = "ELIG-AdditionalIncome-CAPG-frequencySelect")
     WebElement selectCAPGFrequency;
@@ -146,6 +154,66 @@ public class AdditionalIncomePage {
     @FindBy(css = ".drawer-footer h3 a")
     WebElement helpDrawerContactUsLink;
 
+    @FindBy(css = ".error-message")
+    List<WebElement> ActiveErrorMessage;
+
+    @FindBy(css = ".error-icon .error-icon")
+    List<WebElement> ActiveErrorIcon;
+
+    @FindBy(xpath = "//input[@type='text']")
+    WebElement ActiveInputTextField;
+
+    @FindBy(id = "ELIG-AdditionalIncome-PENS-amountInput")
+    WebElement txtPensionIncomeAmount;
+
+    @FindBy(id = "ELIG-AdditionalIncome-RETR-amountInput")
+    WebElement txtPrivateRetrIncomeAmount;
+
+    @FindBy(id = "ELIG-AdditionalIncome-RETR-frequencySelect")
+    WebElement selectRETRFrequency;
+
+    @FindBy(id = "ELIG-AdditionalIncome-TTWI-amountInput")
+    WebElement txtSocialSecurityIncome;
+
+    @FindBy(id = "ELIG-AdditionalIncome-TTWI-frequencySelect")
+    WebElement selectTTWIFrequency;
+
+    @FindBy(id = "ELIG-AdditionalIncome-UNEP-amountInput")
+    WebElement txtUnemploymentInsuranceBenefitIncome;
+
+    @FindBy(id = "ELIG-AdditionalIncome-UNEP-frequencySelect")
+    WebElement selectUNEPFrequency;
+
+    @FindBy(id = "ELIG-AdditionalIncome-INVI-amountInput")
+    WebElement txtInvestmentIncome;
+
+    @FindBy(id = "ELIG-AdditionalIncome-INVI-frequencySelect")
+    WebElement selectINVIFrequency;
+
+    @FindBy(id = "ELIG-AdditionalIncome-CASP-amountInput")
+    WebElement txtCashSupportIncome;
+
+    @FindBy(id = "ELIG-AdditionalIncome-CASP-frequencySelect")
+    WebElement selectCASPFrequency;
+
+    @FindBy(id = "ELIG-AdditionalIncome-UTFI-amountInput")
+    WebElement txtUntaxedForeignIncome;
+
+    @FindBy(id = "ELIG-AdditionalIncome-UTFI-frequencySelect")
+    WebElement selectUTFIFrequency;
+
+    @FindBy(id = "ELIG-AdditionalIncome-RLTI-amountInput")
+    WebElement txtRoyaltyIncomeAmount;
+
+    @FindBy(id = "ELIG-AdditionalIncome-RLTI-frequencySelect")
+    WebElement selectRLTIFrequency;
+
+    @FindBy(id = "ELIG-AdditionalIncome-TRBI-amountInput")
+    WebElement txtTaxableIncomeFromTribalSourcesAmount;
+
+    @FindBy(id = "ELIG-AdditionalIncome-TRBI-frequencySelect")
+    WebElement selectTRBIFrequency;
+
     private BasicActions basicActions;
     public BasicActions getDriver(){
         return BasicActions.getInstance();
@@ -160,6 +228,78 @@ public class AdditionalIncomePage {
         basicActions.waitForElementToBeClickable(saveAndContinueBtn, 10);
 
         switch (addtlIncomeOption) {
+            case "Alimony Received":
+                addtlIncomeOptionsCheckbox.get(0).click();
+                basicActions.waitForElementToBeClickable(txtAlimonyReceivedAmount, 10);
+                txtAlimonyReceivedAmount.sendKeys(Amount);
+
+                Select dropdown1 = new Select(selectALMRFrequency);
+                dropdown1.selectByVisibleText(" " + Frequency + " ");
+                break;
+            case "Private Retirement Income":
+                addtlIncomeOptionsCheckbox.get(4).click();
+                basicActions.waitForElementToBeClickable(txtPrivateRetrIncomeAmount, 10);
+                txtPrivateRetrIncomeAmount.sendKeys(Amount);
+
+                Select dropdown51 = new Select(selectRETRFrequency);
+                dropdown51.selectByVisibleText(" " + Frequency + " ");
+                break;
+            case "Income from Social Security":
+                addtlIncomeOptionsCheckbox.get(5).click();
+                basicActions.waitForElementToBeClickable(txtSocialSecurityIncome, 10);
+                txtSocialSecurityIncome.sendKeys(Amount);
+
+                Select dropdown6 = new Select(selectTTWIFrequency);
+                dropdown6.selectByVisibleText(" " + Frequency + " ");
+                break;
+            case "Unemployment insurance benefit":
+                addtlIncomeOptionsCheckbox.get(6).click();
+                basicActions.waitForElementToBeClickable(txtUnemploymentInsuranceBenefitIncome, 10);
+                txtUnemploymentInsuranceBenefitIncome.sendKeys(Amount);
+
+                Select dropdown7 = new Select(selectUNEPFrequency);
+                dropdown7.selectByVisibleText(" " + Frequency + " ");
+                break;
+            case "Investment Income":
+                addtlIncomeOptionsCheckbox.get(7).click();
+                basicActions.waitForElementToBeClickable(txtInvestmentIncome, 10);
+                txtInvestmentIncome.sendKeys(Amount);
+
+                Select dropdown8 = new Select(selectINVIFrequency);
+                dropdown8.selectByVisibleText(" " + Frequency + " ");
+                break;
+            case "Cash Support":
+                addtlIncomeOptionsCheckbox.get(8).click();
+                basicActions.waitForElementToBeClickable(txtCashSupportIncome, 10);
+                txtCashSupportIncome.sendKeys(Amount);
+
+                Select dropdown9 = new Select(selectCASPFrequency);
+                dropdown9.selectByVisibleText(" " + Frequency + " ");
+                break;
+            case "Untaxed foreign income":
+                addtlIncomeOptionsCheckbox.get(9).click();
+                basicActions.waitForElementToBeClickable(txtUntaxedForeignIncome, 10);
+                txtUntaxedForeignIncome.sendKeys(Amount);
+
+                Select dropdown10 = new Select(selectUTFIFrequency);
+                dropdown10.selectByVisibleText(" " + Frequency + " ");
+                break;
+            case "Royalty income":
+                addtlIncomeOptionsCheckbox.get(10).click();
+                basicActions.waitForElementToBeClickable(txtRoyaltyIncomeAmount, 10);
+                txtRoyaltyIncomeAmount.sendKeys(Amount);
+
+                Select dropdown11 = new Select(selectRLTIFrequency);
+                dropdown11.selectByVisibleText(" " + Frequency + " ");
+                break;
+            case "Taxable income from Tribal Sources":
+                addtlIncomeOptionsCheckbox.get(11).click();
+                basicActions.waitForElementToBeClickable(txtTaxableIncomeFromTribalSourcesAmount, 10);
+                txtTaxableIncomeFromTribalSourcesAmount.sendKeys(Amount);
+
+                Select dropdown12 = new Select(selectTRBIFrequency);
+                dropdown12.selectByVisibleText(" " + Frequency + " ");
+                break;
             case "Capital Gains":
                 addtlIncomeOptionsCheckbox.get(1).click();
                 basicActions.waitForElementToBeClickable(txtCapitalGainsAmount, 10);
@@ -175,6 +315,14 @@ public class AdditionalIncomePage {
 
                 Select dropdown3 = new Select(selectIFRPFrequency);
                 dropdown3.selectByVisibleText(" " + Frequency + " ");
+                break;
+            case "Pension":
+                addtlIncomeOptionsCheckbox.get(3).click();
+                basicActions.waitForElementToBeClickable(txtPensionIncomeAmount, 10);
+                txtPrivateRetirementIncomeAmount.sendKeys(Amount);
+
+                Select dropdown4 = new Select(selectPENSFrequency);
+                dropdown4.selectByVisibleText(" " + Frequency + " ");
                 break;
             case "Private Retirement income":
                 addtlIncomeOptionsCheckbox.get(4).click();
@@ -210,6 +358,7 @@ public class AdditionalIncomePage {
     }
 
     public void clickHelpIcon(String label) {
+        basicActions.wait(250);
         basicActions.waitForElementListToBePresent(helpLnk, 10);
         switch(label){
             case "Help me understand":
@@ -638,6 +787,12 @@ public class AdditionalIncomePage {
                 basicActions.waitForElementToBePresent(txtPrivateRetirementIncomeAmount,20);
                 softAssert.assertEquals(txtPrivateRetirementIncomeAmount.getAttribute("value"), Amount);
                 softAssert.assertEquals(selectPENSFrequency.getAttribute("value"), Frequency);
+                softAssert.assertAll();
+                break;
+            case "Taxable income from Tribal Sources":
+                basicActions.waitForElementToBePresent(txtTaxableIncomeFromTribalSourcesAmount,20);
+                softAssert.assertEquals(txtTaxableIncomeFromTribalSourcesAmount.getAttribute("value"), Amount);
+                softAssert.assertEquals(selectTRBIFrequency.getAttribute("value"), Frequency);
                 softAssert.assertAll();
                 break;
             default:
@@ -1214,5 +1369,43 @@ public class AdditionalIncomePage {
             element1.click();
             hdr_Income.click();
         }
+    }
+    public void clickOnBackButton() {
+        basicActions.waitForElementToBePresent(backBtn,20);
+        backBtn.click();
+    }
+
+    public void validateErrorMessageAndItsProperties(DataTable dataTable) {
+        basicActions.waitForElementListToBePresent(ActiveErrorIcon, 10);
+        basicActions.waitForElementListToBePresent(ActiveErrorMessage, 10);
+
+        List<Map<String, String>> data = dataTable.asMaps();
+        for (int i = 0; i < data.size(); i++) {
+            softAssert.assertTrue(ActiveErrorIcon.get(i).isDisplayed(), "Error Icon for error '" + data.get(i).get("Text") + "' is not visible in the page");
+            softAssert.assertTrue(ActiveErrorMessage.get(i).isDisplayed(), "Error Message for error '" + data.get(i).get("Text") + "' is not visible in the page");
+            softAssert.assertEquals(ActiveErrorMessage.get(i).getText(), data.get(i).get("Text"),"Expected and Actual Error message is not matching");
+            softAssert.assertEquals(ActiveErrorMessage.get(i).getCssValue("font-size"), data.get(i).get("fontSize"),"Expected and Actual Font size for the error '" + data.get(i).get("Text") +"' is not matching.");
+            softAssert.assertEquals(ActiveErrorMessage.get(i).getCssValue("font-family"), data.get(i).get("fontFamily"),"Expected and Actual Font family for the error '" + data.get(i).get("Text") +"' is not matching.");
+            softAssert.assertEquals(ActiveErrorMessage.get(i).getCssValue("font-weight"), data.get(i).get("fontWeight"),"Expected and Actual Font weight for the error '" + data.get(i).get("Text") +"' is not matching.");
+            softAssert.assertEquals(ActiveErrorMessage.get(i).getCssValue("color"), data.get(i).get("color"),"Expected and Actual Font color for the error '" + data.get(i).get("Text") +"' is not matching.");
+            softAssert.assertAll();
+        }
+    }
+
+    public void verifyActiveErrorMessage(String expectedErrorMessage){
+        basicActions.waitForElementListToBePresent(ActiveErrorMessage,30);
+        softAssert.assertEquals(ActiveErrorMessage.get(0).getText(), expectedErrorMessage,"Actual and Expected Error message is not matching");
+        softAssert.assertAll();
+    }
+
+    public void enterAndVerifyTheAmount(String enteredValue,String expectedValue){
+        basicActions.waitForElementToBePresent(ActiveInputTextField,30);
+        ActiveInputTextField.clear();
+        ActiveInputTextField.sendKeys(enteredValue);
+        basicActions.wait(20);
+        softAssert.assertEquals(ActiveInputTextField.getAttribute("value"), expectedValue,"Actual and Expected Amount is not matching");
+        softAssert.assertAll();
+
+
     }
 }

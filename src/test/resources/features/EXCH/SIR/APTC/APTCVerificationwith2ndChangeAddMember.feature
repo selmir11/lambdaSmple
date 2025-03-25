@@ -7,7 +7,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I validate I am on the "Login" page
 
   @SLER-325
-  Scenario: SLER-325- ELIG- APTCRules - formerly RT-2397 - born 1982 and 2011
+  Scenario: SLER-325- ELIG- APTCRules - born 1982 and 2011
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -82,16 +82,16 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -203,11 +203,11 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Income Summary" page
     Then I click the save and continue button on the Income Summary Detail page
 
-    Then I validate I am on the "Tax status Elmo" page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I validate I am on the "Tax status" page
+    Then I click Save and Continue on Tax Status page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -249,7 +249,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
 
     @SLER-999
-    Scenario Outline: SLER-999 - ELIG - APTCRules  - 1 member add enrollment - income change - formerly RT-2346
+    Scenario Outline: SLER-999 - ELIG - APTCRules  - 1 member add enrollment - income change
       When I click create a new account on login page
       Then I click create my account from pre-screen page
       And I enter general mandatory data for "exchange" account creation
@@ -319,16 +319,16 @@ Feature: UI Tests related to APTC after second enrollment change
 
       Then I select the projected income option "No" and continue
 
-      Then I validate I am on the "Tax status Elmo" page
+      Then I validate I am on the "Tax status" page
       Then I select "No" for will you be claimed as dependent question
       Then I select "Yes" for will file tax return question
-      Then I select the "Single" tax filing option on the Tax Status Elmo page
+      Then I select the "Single" tax filing option on the Tax Status page
       Then I select "No" for will claim dependents question
-      Then I click Save and Continue on Tax Status Elmo page
+      Then I click Save and Continue on Tax Status page
 
-      And I validate I am on the "Elmo Other Health Coverage" page
-      Then I select "None of these" as ELMO health coverage option
-      Then I click continue on the ELMO health coverage page
+      And I validate I am on the "Other Health Coverage" page
+      Then I select "None of these" as health coverage option
+      Then I click continue on the health coverage page
 
       Then I validate I am on the "Family Overview" page
       Then I click continue on family overview page
@@ -472,20 +472,20 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Income Summary" page
       Then I select the projected income option "No" and continue
 
-      Then I validate I am on the "Tax status Elmo" page
+      Then I validate I am on the "Tax status" page
       Then I select "No" for will you be claimed as dependent question
       Then I select "Yes" for will file tax return question
-      Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-      Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+      Then I select the "Married filing jointly" tax filing option on the Tax Status page
+      Then I select "Spouse" as filing jointly with option on the Tax Status page
       Then I select "No" for will claim dependents question
-      Then I click Save and Continue on Tax Status Elmo page
+      Then I click Save and Continue on Tax Status page
 
-      And I validate I am on the "Elmo Other Health Coverage" page
-      Then I click continue on the ELMO health coverage page
+      And I validate I am on the "Other Health Coverage" page
+      Then I click continue on the health coverage page
 
-      And I validate I am on the "Elmo Other Health Coverage" page
-      Then I select "None of these" as ELMO health coverage option
-      Then I click continue on the ELMO health coverage page
+      And I validate I am on the "Other Health Coverage" page
+      Then I select "None of these" as health coverage option
+      Then I click continue on the health coverage page
 
       Then I validate I am on the "Family Overview" page
       Then I click continue on family overview page
@@ -538,7 +538,7 @@ Feature: UI Tests related to APTC after second enrollment change
 
 
   @SLER-998
-  Scenario Outline: SLER-998 - ELIG - APTCRules - 1 member add enrollment - income change - formerly RT-2344
+  Scenario Outline: SLER-998 - ELIG - APTCRules - 1 member add enrollment - income change
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -608,16 +608,16 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -762,20 +762,20 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I click continue on the health coverage page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -826,8 +826,8 @@ Feature: UI Tests related to APTC after second enrollment change
 
 
   @SLER-807
-      # ELIG-APTCRules - SLER - 807 - formerly RT-2400
-    Scenario Outline: SLER-807 - APTCRules - formerly RT-2400 - Add a daughter on 2nd enrollmnent
+      # ELIG-APTCRules - SLER - 807
+    Scenario Outline: SLER-807 - APTCRules - Add a daughter on 2nd enrollmnent
       When I click create a new account on login page
       Then I click create my account from pre-screen page
       And I enter general mandatory data for "exchange" account creation
@@ -894,16 +894,16 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Income Summary" page
       Then I select the projected income option "No" and continue
 
-      Then I validate I am on the "Tax status Elmo" page
+      Then I validate I am on the "Tax status" page
       Then I select "No" for will you be claimed as dependent question
       Then I select "Yes" for will file tax return question
-      Then I select the "Single" tax filing option on the Tax Status Elmo page
+      Then I select the "Single" tax filing option on the Tax Status page
       Then I select "No" for will claim dependents question
-      Then I click Save and Continue on Tax Status Elmo page
+      Then I click Save and Continue on Tax Status page
 
-      And I validate I am on the "Elmo Other Health Coverage" page
-      Then I select "None of these" as ELMO health coverage option
-      Then I click continue on the ELMO health coverage page
+      And I validate I am on the "Other Health Coverage" page
+      Then I select "None of these" as health coverage option
+      Then I click continue on the health coverage page
 
       Then I validate I am on the "Family Overview" page
       Then I click continue on family overview page
@@ -1050,20 +1050,20 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I validate I am on the "Income Summary" page
       Then I select the projected income option "No" and continue
 
-      Then I validate I am on the "Tax status Elmo" page
+      Then I validate I am on the "Tax status" page
       Then I select "No" for will you be claimed as dependent question
       Then I select "Yes" for will file tax return question
-      Then I select the "Single" tax filing option on the Tax Status Elmo page
+      Then I select the "Single" tax filing option on the Tax Status page
       Then I select "Yes" for will claim dependents question
-      Then I select "Daughter" for who will be claimed as dependent question on the Tax Status Elmo page
-      Then I click Save and Continue on Tax Status Elmo page
+      Then I select "Daughter" for who will be claimed as dependent question on the Tax Status page
+      Then I click Save and Continue on Tax Status page
 
-      And I validate I am on the "Elmo Other Health Coverage" page
-      Then I click continue on the ELMO health coverage page
+      And I validate I am on the "Other Health Coverage" page
+      Then I click continue on the health coverage page
 
-      And I validate I am on the "Elmo Other Health Coverage" page
-      Then I select "None of these" as ELMO health coverage option
-      Then I click continue on the ELMO health coverage page
+      And I validate I am on the "Other Health Coverage" page
+      Then I select "None of these" as health coverage option
+      Then I click continue on the health coverage page
 
       Then I validate I am on the "Family Overview" page
       Then I click continue on family overview page
@@ -1119,7 +1119,7 @@ Feature: UI Tests related to APTC after second enrollment change
         |Leadville  |CO       |01011990   |Lake     |80461        |1500000  |$0.00      |5240000      |$362.74/mo      |-$362.74    |01012007   |
 
   @SLER-804
-  Scenario Outline: SLER-804 -APTCRules - formerly RT-2411 - Add a daughter on 2nd enrollmnent - primary income change
+  Scenario Outline: SLER-804 -APTCRules - Add a daughter only on 2nd enrollmnent - primary income change
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1188,16 +1188,16 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -1339,21 +1339,20 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Head of household" tax filing option on the Tax Status page
     Then I select "Yes" for will claim dependents question
-    Then I select "Daughter" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I select "Daughter" for who will be claimed as dependent question on the Tax Status page
+    Then I click Save and Continue on Tax Status page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I click continue on the health coverage page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -1405,7 +1404,7 @@ Feature: UI Tests related to APTC after second enrollment change
       |Granby     |CO       |01011990   |Grand    |80446        |1500000  |$0.00      |7500000      |$412.32/mo      |-$412.32    | 01012011  |
 
   @SLER-1007
-  Scenario Outline: SLER-1007 -APTCRules - adding 4 dependents after 2nd enrollment - primary income is static 100K - formerly RT-2345
+  Scenario Outline: SLER-1007 -APTCRules - adding 4 dependents after 2nd enrollment - primary income is static 100K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1481,16 +1480,16 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -1722,36 +1721,36 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "Yes" for will claim dependents question
-    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I select "DaughterOne" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I select "DaughterTwo" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status page
+    Then I select "DaughterOne" for who will be claimed as dependent question on the Tax Status page
+    Then I select "DaughterTwo" for who will be claimed as dependent question on the Tax Status page
+    Then I click Save and Continue on Tax Status page
     
     # member 1
-    And I validate I am on the "Elmo Other Health Coverage" page
+    And I validate I am on the "Other Health Coverage" page
     #The question is skipped here because the primary member answered the question in initial enrollment
-    Then I click continue on the ELMO health coverage page
+    Then I click continue on the health coverage page
 
     # member 2
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     # member 3
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     # member 4
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -1874,16 +1873,16 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I click None of these as deduction option and continue
       Then I select the projected income option "No" and continue
 
-      Then I validate I am on the "Tax status Elmo" page
+      Then I validate I am on the "Tax status" page
       Then I select "No" for will you be claimed as dependent question
       Then I select "Yes" for will file tax return question
-      Then I select the "Single" tax filing option on the Tax Status Elmo page
+      Then I select the "Single" tax filing option on the Tax Status page
       Then I select "No" for will claim dependents question
-      Then I click Save and Continue on Tax Status Elmo page
+      Then I click Save and Continue on Tax Status page
 
-      And I validate I am on the "Elmo Other Health Coverage" page
-      Then I select "None of these" as ELMO health coverage option
-      Then I click continue on the ELMO health coverage page
+      And I validate I am on the "Other Health Coverage" page
+      Then I select "None of these" as health coverage option
+      Then I click continue on the health coverage page
 
       Then I validate I am on the "Family Overview" page
       Then I click continue on family overview page
@@ -2045,20 +2044,20 @@ Feature: UI Tests related to APTC after second enrollment change
       Then I select the projected income option "No" and continue
 
 
-    Then I validate I am on the "Tax status Elmo" page
+    Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
-      And I validate I am on the "Elmo Other Health Coverage" page
-      Then I click continue on the ELMO health coverage page
+      And I validate I am on the "Other Health Coverage" page
+      Then I click continue on the health coverage page
 
-      And I validate I am on the "Elmo Other Health Coverage" page
-      And I select "None of these" as ELMO health coverage option
-      Then I click continue on the ELMO health coverage page
+      And I validate I am on the "Other Health Coverage" page
+      And I select "None of these" as health coverage option
+      Then I click continue on the health coverage page
 
       Then I validate I am on the "Family Overview" page
       Then I click continue on family overview page

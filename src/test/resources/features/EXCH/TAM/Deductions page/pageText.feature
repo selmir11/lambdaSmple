@@ -45,7 +45,7 @@ Feature: Page Text-Deductions Page
 
     Then I validate I am on the "Deductions" page
 
-  @SLER-247 @PageTextDeductionsPage @TAMSmoke
+  @SLER-247 @PageTextDeductionsPage @TAMSmokeExch
   Scenario: SLER-247 I can see Deduction's Header and footer - English
     And I verify text on the "Exch" "Header" in "English"
     And I verify text on the "Exch" "Footer" in "English"

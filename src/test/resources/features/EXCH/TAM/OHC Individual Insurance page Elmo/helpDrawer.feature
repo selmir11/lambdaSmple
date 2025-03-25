@@ -52,13 +52,13 @@ Feature: Help Drawer-Other Health Coverage Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "Other" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Ohc Individual Insurance" page
-    And I set the browser resolution to 2000 x 800
+    Then I click Save and Continue on Tax Status page
+    Then I select "Other" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc Individual Insurance" page
+    And I set the browser resolution to 1536 x 864
 
   @SLER-914 @HelpDrawerIndividualInsurancePage
   Scenario: SLER-914 Validate help drawer text on the Individual Insurance page - English
@@ -92,7 +92,7 @@ Feature: Help Drawer-Other Health Coverage Page
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-915 @HelpDrawerIndividualInsurancePage @TAMSmoke
+  @SLER-915 @HelpDrawerIndividualInsurancePage @TAMSmokeExch
   Scenario: SLER-915 Validate help drawer text on the Individual Insurance page - Spanish
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     And I validate I am on the "Spanish" page

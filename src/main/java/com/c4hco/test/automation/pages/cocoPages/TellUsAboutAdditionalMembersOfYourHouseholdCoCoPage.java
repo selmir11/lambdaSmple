@@ -88,6 +88,11 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         basicActions.waitForElementToBeClickable(MemberDOB, 30);
         MemberDOB.sendKeys(dateOfBirth);
     }
+    public void updateMemberDOB(String dateOfBirth, String memPrefix) {
+        basicActions.waitForElementToBeClickable(MemberDOB, 30);
+        MemberDOB.clear();
+        MemberDOB.sendKeys(dateOfBirth);
+    }
 
     public void clickSaveandContinueButton() {
         basicActions.waitForElementToBeClickable(SaveandContinueButton, 30);
@@ -357,7 +362,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         softAssert.assertEquals(genderButton.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(genderButton.get(1).getCssValue("font-size"), "20px");
         softAssert.assertEquals(genderButton.get(1).getCssValue("color"), "rgba(255, 255, 255, 1)");
-        softAssert.assertEquals(textValidation.get(6).getText(), SharedData.getMembers().get(1).getFirstName()+" "+SharedData.getMembers().get(1).getLastName()+" is "+Character.toUpperCase(SharedData.getPrimaryMember().getFirstName().charAt(0)) + SharedData.getPrimaryMember().getFirstName().substring(1) + " " +
+        softAssert.assertEquals(textValidation.get(6).getText(), SharedData.getMembers().get(0).getFirstName()+" "+SharedData.getMembers().get(0).getLastName()+" is "+Character.toUpperCase(SharedData.getPrimaryMember().getFirstName().charAt(0)) + SharedData.getPrimaryMember().getFirstName().substring(1) + " " +
                 Character.toUpperCase(SharedData.getPrimaryMember().getLastName().charAt(0)) + SharedData.getPrimaryMember().getLastName().substring(1)+"'s?");
         softAssert.assertEquals(textValidation.get(6).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(textValidation.get(6).getCssValue("font-size"), "16px");

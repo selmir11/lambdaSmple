@@ -23,7 +23,7 @@ public class AssistnetDashboardPage {
 
     @FindBy(id = "viewMyClients")
     WebElement viewMyClientBTN ;
-    @FindBy(xpath = "//span[@class='mdc-button__label']")
+    @FindBy(id= "print-button")
     WebElement printBtn;
     @FindBy(id = "user-first-name")
     WebElement usernamedrp;

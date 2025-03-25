@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import io.cucumber.datatable.DataTable;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
+import java.util.Map;
 
 public class IncomeSummaryCoCoPage {
 
@@ -76,6 +78,15 @@ public class IncomeSummaryCoCoPage {
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
+
+    @FindBy(css = ".input-error-message lib-fi svg")
+    WebElement ErrorIcon;
+
+    @FindBy(css = ".input-error-message span")
+    WebElement ErrorMessage;
+
+    @FindBy(xpath = "//lib-fi[@id='edit-deductions-button']//following::div")
+    WebElement deductionAmt;
 
     public void clickprojectedIncomeNo(){
         basicActions.waitForElementToDisappear(spinner,20);
@@ -147,10 +158,10 @@ public class IncomeSummaryCoCoPage {
     }
 
     public void verifyHeadersIncomeSummaryPageEnglish(){
-        basicActions.wait(250);
+        basicActions.wait(500);
         basicActions.waitForElementToBePresentWithRetries(hdr_Income,60);
         basicActions.waitForElementToBePresentWithRetries(hdr_IncomeSummary,60);
-        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
+        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()),"Found: " + hdr_Income.getText() + " Expecting: Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
         softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
         softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700");
         softAssert.assertEquals(hdr_Income.getCssValue("font-family"), "\"PT Sans\", sans-serif");
@@ -549,5 +560,54 @@ public class IncomeSummaryCoCoPage {
         softAssert.assertEquals(element.getCssValue("color"), "rgba(150, 0, 0, 1)", element + " Text color mismatch");
         softAssert.assertEquals(element.getCssValue("border"), "1px solid rgb(150, 0, 0)", element + " Border mismatch");
     }
-    
+
+    public void clickOnProjectedIncomeInputFieldAndClickOutOfIt() {
+        basicActions.waitForElementToBePresent(projectedIncomeInput, 15);
+        projectedIncomeInput.click();
+        projectedIncomeText.click();
+    }
+
+    public void validateErrorMessageAndItsProperties(DataTable dataTable){
+        basicActions.waitForElementToBePresent(ErrorIcon,20);
+        basicActions.waitForElementToBePresent(ErrorMessage,10);
+
+        List<Map<String,String>> data = dataTable.asMaps();
+        softAssert.assertTrue(ErrorIcon.isDisplayed(),"Error Icon is not visible in the page");
+        softAssert.assertTrue(ErrorMessage.isDisplayed(),"Error Message is not visible in the page");
+        softAssert.assertEquals(ErrorMessage.getText(), data.get(0).get("Text"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("font-size"), data.get(0).get("fontSize"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("font-family"), data.get(0).get("fontFamily"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("font-weight"), data.get(0).get("fontWeight"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("color"), data.get(0).get("color"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("line-height"), data.get(0).get("lineHeight"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("text-align"), data.get(0).get("textAlign"));
+        softAssert.assertAll();
+    }
+
+    public void validateLabelTextAndItsProperties(DataTable dataTable){
+        basicActions.waitForElementToBePresent(enterProjectedIncomeText,10);
+
+        List<Map<String,String>> data = dataTable.asMaps();
+        softAssert.assertTrue(enterProjectedIncomeText.isDisplayed(),"Enter your projected income text is not visible in the page");
+        softAssert.assertEquals(enterProjectedIncomeText.getText(), data.get(0).get("Text"));
+        softAssert.assertEquals(enterProjectedIncomeText.getCssValue("font-size"), data.get(0).get("fontSize"));
+        softAssert.assertEquals(enterProjectedIncomeText.getCssValue("font-family"), data.get(0).get("fontFamily"));
+        softAssert.assertEquals(enterProjectedIncomeText.getCssValue("font-weight"), data.get(0).get("fontWeight"));
+        softAssert.assertEquals(enterProjectedIncomeText.getCssValue("color"), data.get(0).get("color"));
+        softAssert.assertEquals(enterProjectedIncomeText.getCssValue("line-height"), data.get(0).get("lineHeight"));
+        softAssert.assertEquals(enterProjectedIncomeText.getCssValue("text-align"), data.get(0).get("textAlign"));
+        softAssert.assertAll();
+    }
+
+    public void verifyNoErrors() {
+        basicActions.wait(50);
+        basicActions.waitForElementToBePresent(ErrorMessage,10);
+        softAssert.assertFalse(basicActions.waitForElementPresence(ErrorMessage,10));
+        softAssert.assertAll();
+    }
+    public void verifyDeductionAmount(String amount){
+        basicActions.waitForElementToDisappear(spinner, 30);
+        softAssert.assertEquals(deductionAmt.getText(),amount);
+        softAssert.assertAll();
+    }
 }

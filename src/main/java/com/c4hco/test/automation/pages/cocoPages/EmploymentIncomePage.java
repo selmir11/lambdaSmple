@@ -14,11 +14,13 @@ import java.util.Map;
 
 public class EmploymentIncomePage {
     private BasicActions basicActions;
+    Actions action;
 
     SoftAssert softAssert = new SoftAssert();
 
     public EmploymentIncomePage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
+        action = new Actions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
@@ -92,7 +94,7 @@ public class EmploymentIncomePage {
     List<WebElement> errorIcon;
 
     public void clickSaveAndContinueButton() {
-        basicActions.waitForElementToBePresent(saveAndContinueButton, 30);
+        basicActions.waitForElementToBePresent(saveAndContinueButton, 60);
         basicActions.click(saveAndContinueButton);
     }
 
@@ -119,6 +121,7 @@ public class EmploymentIncomePage {
 
     public void enterIncomeAmount(String amountOfIncome) {
         basicActions.waitForElementToBePresent(incomeInput, 10);
+        incomeInput.clear();
         incomeInput.sendKeys(amountOfIncome);
     }
 
@@ -228,11 +231,13 @@ public class EmploymentIncomePage {
     }
 
     public void verifyAdditionalMemberHeadersOnEmploymentIncomeCoCoPage(String language) {
+        softAssert = new SoftAssert();
         basicActions.wait(250);
         basicActions.waitForElementToBePresent(hdr_Income, 50);
+        basicActions.waitForElementToBePresent(hdr_EmploymentIncome, 50);
         switch (language) {
             case "English":
-                softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Income: " + basicActions.getFullNameWithPrefix("Spouse")));
+                softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Income: " + basicActions.getFullNameWithPrefix("Spouse")),"Found.... " + hdr_Income.getText() + "\nExpecting Income: " + basicActions.getFullNameWithPrefix("Spouse"));
                 softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
                 softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(hdr_Income.getCssValue("font-family"), "\"PT Sans\", sans-serif");
@@ -243,7 +248,6 @@ public class EmploymentIncomePage {
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                basicActions.waitForElementToBePresent(hdr_EmploymentIncome, 50);
                 softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Ingresos: " + basicActions.getFullNameWithPrefix("Spouse")));
                 softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
                 softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700");
@@ -349,12 +353,26 @@ public class EmploymentIncomePage {
                 softAssert.assertEquals(goBackButton.getCssValue("line-height"), "32px");
                 softAssert.assertEquals(goBackButton.getCssValue("color"), "rgba(26, 112, 179, 1)");
                 softAssert.assertEquals(goBackButton.getCssValue("background-color"), "rgba(252, 252, 252, 1)");
+                action.moveToElement(goBackButton).pause(1000L).build().perform();
+                softAssert.assertEquals(goBackButton.getText(), "Go back");
+                softAssert.assertEquals(goBackButton.getCssValue("font-family"), "\"PT Sans\", sans-serif","Go back hover font-family");
+                softAssert.assertEquals(goBackButton.getCssValue("font-size"), "20px","Go back hover font-size");
+                softAssert.assertEquals(goBackButton.getCssValue("font-weight"), "700","Go back hover font-weight");
+                softAssert.assertEquals(goBackButton.getCssValue("color"), "rgba(26, 112, 179, 1)","Go back hover color");
+                softAssert.assertEquals(goBackButton.getCssValue("background-color"), "rgba(226, 241, 248, 1)","Go back hover background");
                 softAssert.assertEquals(saveAndContinueButton.getText(), "Save and continue");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("font-weight"), "700");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("font-size"), "20px");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("line-height"), "32px");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(252, 252, 252, 1)");
                 softAssert.assertEquals(saveAndContinueButton.getCssValue("background-color"), "rgba(26, 112, 179, 1)");
+                action.moveToElement(saveAndContinueButton).pause(1000L).build().perform();
+                softAssert.assertEquals(saveAndContinueButton.getText(), "Save and continue");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("font-family"), "\"PT Sans\", sans-serif","Save and continue hover font-family");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("font-size"), "20px","Save and continue hover font-size");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("font-weight"), "700","Save and continue hover font-weight");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("color"), "rgba(252, 252, 252, 1)","Save and continue hover color");
+                softAssert.assertEquals(saveAndContinueButton.getCssValue("background-color"), "rgba(22, 156, 216, 1)","Save and continue hover background");
                 softAssert.assertAll();
                 break;
             case "Spanish":
@@ -581,5 +599,124 @@ public class EmploymentIncomePage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + incomeChange);
         }
+    }
+
+    public void validateYesNoButtons(String incomeType, String language) {
+        basicActions.waitForElementToBePresent(hdr_EmploymentIncome, 15);
+        WebElement elementYes;
+        WebElement elementNo;
+        boolean isInputStyle = false;
+
+        switch (incomeType) {
+            case "Do you have a job":
+                elementYes = employmentYesButton;
+                elementNo = employmentNoButton;
+                break;
+            case "total income":
+                elementYes = incomeInput;
+                elementNo = incomeFrequencyDropdown;
+                isInputStyle = true;
+                break;
+            case "seasonal":
+                elementYes = incomeSeasonalYesButton;
+                elementNo = incomeSeasonalNoButton;
+                break;
+            case "income change":
+                elementYes = incomeChangesYesButton;
+                elementNo = incomeChangesNoButton;
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported type: " + incomeType);
+        }
+
+        if (isInputStyle) {
+            verifyInputStyles(elementYes);
+            verifyInputStyles(elementNo);
+        } else {
+            verifyYesNoStyles(elementYes);
+            verifyYesNoStyles(elementNo);
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyYesNoStyles(WebElement element) {
+        softAssert.assertEquals(element.getCssValue("border-radius"), "4px", element + " Border radius mismatch");
+        softAssert.assertEquals(element.getCssValue("border-color"), "rgb(149, 147, 147)", element + " Border color mismatch");
+        softAssert.assertEquals(element.getCssValue("background-color"), "rgba(255, 255, 255, 1)", element + " Background color mismatch");
+        softAssert.assertEquals(element.getCssValue("color"), "rgba(77, 77, 79, 1)", element + " Text color mismatch");
+        softAssert.assertEquals(element.getCssValue("border"), "1px solid rgb(149, 147, 147)", element + " Border mismatch");
+    }
+
+    public void verifyInputStyles(WebElement element) {
+        softAssert.assertEquals(element.getCssValue("border-radius"), "6px", element + " Border radius mismatch");
+        softAssert.assertEquals(element.getCssValue("border-color"), "rgb(149, 147, 147)", element + " Border color mismatch");
+        softAssert.assertEquals(element.getCssValue("background-color"), "rgba(255, 255, 255, 1)", element + " Background color mismatch");
+        softAssert.assertEquals(element.getCssValue("color"), "rgba(77, 77, 79, 1)", element + " Text color mismatch");
+        softAssert.assertEquals(element.getCssValue("border"), "1px solid rgb(149, 147, 147)", element + " Border mismatch");
+    }
+
+    public void validateNoSelection(String incomeType) {
+        basicActions.waitForElementToBePresent(hdr_EmploymentIncome, 15);
+        WebElement elementYes;
+        WebElement elementNo;
+        boolean isInputStyle = false;
+
+        switch (incomeType) {
+            case "Do you have a job":
+                elementYes = employmentYesButton;
+                elementNo = employmentNoButton;
+                break;
+            case "total income":
+                elementYes = incomeInput;
+                elementNo = incomeFrequencyDropdown;
+                isInputStyle = true;
+                break;
+            case "seasonal":
+                elementYes = incomeSeasonalYesButton;
+                elementNo = incomeSeasonalNoButton;
+                break;
+            case "income change":
+                elementYes = incomeChangesYesButton;
+                elementNo = incomeChangesNoButton;
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported type: " + incomeType);
+        }
+
+        if (isInputStyle) {
+            verifyNotSelectedInput(elementYes);
+            verifyNotSelectedDropdown(elementNo);
+        } else {
+            verifyNotSelectedButton(elementYes);
+            verifyNotSelectedButton(elementNo);
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyNotSelectedButton(WebElement element) {
+        softAssert.assertTrue(element.getAttribute("class").equals("button option-button ng-star-inserted"),"Element: " + element + " Expected: button option-button ng-star-inserted Found: " + element.getAttribute("class"));
+        softAssert.assertEquals(element.getCssValue("font-weight"), "400");
+        softAssert.assertEquals(element.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(element.getCssValue("line-height"), "28px");
+        softAssert.assertEquals(element.getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(element.getCssValue("background-color"), "rgba(255, 255, 255, 1)");
+    }
+
+    public void verifyNotSelectedInput(WebElement element) {
+        softAssert.assertTrue(element.getAttribute("class").equals("form-control monetary-input ng-untouched ng-pristine ng-invalid"),"Element: " + element + " Expected: form-control monetary-input ng-untouched ng-pristine ng-invalid Found: " + element.getAttribute("class"));
+        softAssert.assertEquals(element.getCssValue("font-weight"), "400");
+        softAssert.assertEquals(element.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(element.getCssValue("line-height"), "24px");
+        softAssert.assertEquals(element.getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(element.getCssValue("background-color"), "rgba(255, 255, 255, 1)");
+    }
+
+    public void verifyNotSelectedDropdown(WebElement element) {
+        softAssert.assertTrue(element.getAttribute("class").equals("form-select ng-untouched ng-pristine ng-invalid"),"Element: " + element + " Expected: form-select ng-untouched ng-pristine ng-invalid Found: " + element.getAttribute("class"));
+        softAssert.assertEquals(element.getCssValue("font-weight"), "400");
+        softAssert.assertEquals(element.getCssValue("font-size"), "16px");
+        softAssert.assertEquals(element.getCssValue("line-height"), "24px");
+        softAssert.assertEquals(element.getCssValue("color"), "rgba(77, 77, 79, 1)");
+        softAssert.assertEquals(element.getCssValue("background-color"), "rgba(255, 255, 255, 1)");
     }
 }

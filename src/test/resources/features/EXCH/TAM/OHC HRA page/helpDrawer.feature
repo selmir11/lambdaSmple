@@ -52,18 +52,18 @@ Feature: Help Drawer-Other Health Coverage Page HRA
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "HRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo HRA" page
-    And I set the browser resolution to 2000 x 800
+    Then I click Save and Continue on Tax Status page
+    Then I select "HRA" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "HRA" page
+    And I set the browser resolution to 1536 x 864
 
   @SLER-901 @HelpDrawerOhcHraElmo
   Scenario: SLER-901 Validate help drawer text on the ELMO OHC HRA page - English
-    Then I select Current Year year dropdown on the Elmo OHC HRA page
-    Then I enter "5.00" amount on the Elmo OHC HRA page
+    Then I select Current Year year dropdown on the OHC HRA page
+    Then I enter "5.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
     And I select "Help me understand" icon on the HRA Page
     Then I validate HRA help drawer verbiage in "English"
@@ -79,6 +79,7 @@ Feature: Help Drawer-Other Health Coverage Page HRA
     Then I validate HRA help drawer verbiage in "English"
     And I click HRA Contact Us link in help drawer footer
     And I validate I am on the "We Can Help" page and close tab
+    And I set the browser resolution to Maximized
     And I select "opt out" icon on the HRA Page
 
     And I click on Sign Out in the Header for "Elmo"
@@ -87,8 +88,8 @@ Feature: Help Drawer-Other Health Coverage Page HRA
   Scenario: SLER-902 Validate help drawer text on the ELMO OHC HRA page - Spanish
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
-    Then I select Current Year year dropdown on the Elmo OHC HRA page
-    Then I enter "5.00" amount on the Elmo OHC HRA page
+    Then I select Current Year year dropdown on the OHC HRA page
+    Then I enter "5.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
     And I select "Help me understand" icon on the HRA Page
     Then I validate HRA help drawer verbiage in "Spanish"
@@ -99,6 +100,7 @@ Feature: Help Drawer-Other Health Coverage Page HRA
     Then I validate HRA help drawer verbiage in "Spanish"
     And I click HRA Contact Us link in help drawer footer
     And I validate I am on the "We Can Help" page and close tab
+    And I set the browser resolution to Maximized
     And I select "employer contribution" icon on the HRA Page
     And I select "opt out" icon on the HRA Page
     Then I validate HRA help drawer verbiage in "Spanish"

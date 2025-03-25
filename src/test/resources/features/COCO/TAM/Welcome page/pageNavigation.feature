@@ -12,7 +12,7 @@ Feature: Navigation-Welcome Page
     Then I click continue signing in on the CAC Screener page
     Then I validate I am on the "CoCo Welcome" page
 
-    @SLCR-28 @PageNavigationWelcomePage @TAMSmoke
+    @SLCR-28 @PageNavigationWelcomePage @TAMSmokeCoCo
   Scenario: SLCR-28 I check navigation from CoCo Welcome page - English
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
@@ -73,9 +73,8 @@ Feature: Navigation-Welcome Page
     Then I validate I am on the "Login" page
 
 
-  @SLCR-40 @PageNavigationWelcomePage @TAMSmoke
+  @SLCR-40 @PageNavigationWelcomePage @TAMSmokeCoCo
   Scenario: SLCR-40 I check navigation from CoCo Welcome page - Spanish
-    Then I wait for 200 milliseconds
     And I change the language from header to "Spanish"
     Then I validate I am on the "CoCo Welcome" page
     Then I validate I am on the "Spanish" page
@@ -275,7 +274,7 @@ Feature: Navigation-Welcome Page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
     And I wait for 900 milliseconds
@@ -586,7 +585,7 @@ Feature: Navigation-Welcome Page
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
     And I wait for 900 milliseconds

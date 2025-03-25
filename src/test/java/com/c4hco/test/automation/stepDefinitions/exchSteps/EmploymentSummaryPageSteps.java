@@ -4,6 +4,7 @@ import com.c4hco.test.automation.pages.exchPages.EmploymentSummaryPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class EmploymentSummaryPageSteps {
     EmploymentSummaryPage employmentSummaryPage = new EmploymentSummaryPage(WebDriverManager.getDriver());
@@ -41,4 +42,15 @@ public class EmploymentSummaryPageSteps {
 
     @Then("I validate Employment Summary help drawer verbiage in {string}")
     public void iValidateHelp(String language){employmentSummaryPage.validateHelpVerbiage(language);}
+
+    @Then("I validate Employment Summary text in {string}")
+    public void ivalidateTextEmploymentSummaryPage(String language){employmentSummaryPage.validateTextEmploymentSummaryPage(language);}
+
+    @Then("I validate Employment Summary bold text in Employment Summary Page")
+    public void ivalidateBoldTextEmploymentSummaryPage(){employmentSummaryPage.validateBoldTextEmploymentSummaryPage();}
+
+    @When("I click on Go Back button in employment summary page")
+    public void iClickOnGoBackButtonInEmploymentSummaryPage() {
+        employmentSummaryPage.clickOnGoBack();
+    }
 }

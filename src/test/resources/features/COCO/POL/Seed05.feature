@@ -1,6 +1,6 @@
 Feature: Seed05 - COCO
 # verification WIP
-  Scenario: Seed 05 For COCO- MULTI-GROUP (DIFFERENT RATING AREAS)
+  Background: Seed 05 For COCO- MULTI-GROUP (DIFFERENT RATING AREAS)
 
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -20,7 +20,7 @@ Feature: Seed05 - COCO
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -47,7 +47,7 @@ Feature: Seed05 - COCO
     And I enter residential address details for additional member "105 Coco Drive", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Wife"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
@@ -72,7 +72,7 @@ Feature: Seed05 - COCO
     And I enter complete residential address details for additional member addressLine1 "101 Diff Drive",addressLine2 "Seed05",city "Denver",state "CO",zipcode "80205",county "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Son"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -101,7 +101,7 @@ Feature: Seed05 - COCO
     And I enter complete residential address details for additional member addressLine1 "101 Diff Drive",addressLine2 "Seed05",city "Denver",state "CO",zipcode "80205",county "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "DIL"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
@@ -184,3 +184,35 @@ Feature: Seed05 - COCO
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab
     And logout from Admin Portal
+
+  @SLCR-855-WIP
+  Scenario: CCRT-129 - ENR-COCO: AUTO PROCESS POLICY - MEMBER NOT APPLYING (w/o LCE)
+    Given I open the login page on the "login" portal
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
+    And I click make Changes button on welcome page
+    Then I validate I am on the "Find Expert Help" page
+    And I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I click EditUpdate on Family Overview page for "DIL"
+    And I update applying for coverage option to "No"
+    And I click continue on Tell us about additional members of your household page
+    And I click continue on the Additional information for additional member page
+    Then I validate I am on the "Race and Ethnicity" page
+    And I click save and continue on the Race and Ethnicity page
+    And I click continue on the Employment income page
+    And I select continue on the Additional Income CoCO page
+    And I select continue on the Deductions CoCo page
+    And I select continue on the income Summary CoCo page
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+    Then I validate I am on the "CoCo life change event" page
+    And I check "None of these" life change event checkbox
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+    Then I validate I am on the "Application Results CoCo" page
+    And I click on Sign Out in the Header for "Elmo"

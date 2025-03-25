@@ -3,10 +3,7 @@ package com.c4hco.test.automation.pages.cocoPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
@@ -108,7 +105,7 @@ public class TellUsAboutYourselfCoCoPage {
         subscriber.setApplyingforCov(applying);
     }
 
-    private void genderSelection(String gender) {
+    public void genderSelection(String gender) {
         basicActions.waitForElementListToBePresent(genderButton, 30);
         switch (gender) {
             case "Male":
@@ -259,7 +256,7 @@ public class TellUsAboutYourselfCoCoPage {
         softAssert.assertEquals(genderButton.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(genderButton.get(1).getCssValue("font-size"), "20px");
         softAssert.assertEquals(genderButton.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
-        softAssert.assertEquals(pageValidationText.get(6).getText(), SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName() + " is " + Character.toUpperCase(SharedData.getMembers().get(1).getFirstName().charAt(0)) + SharedData.getMembers().get(1).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(1).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(1).getLastName().charAt(0)) + SharedData.getMembers().get(1).getLastName().substring(1) + "'s?");
+        softAssert.assertEquals(pageValidationText.get(6).getText(), SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName() + " is " + Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(0).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(0).getLastName().charAt(0)) + SharedData.getMembers().get(0).getLastName().substring(1) + "'s?");
         softAssert.assertEquals(pageValidationText.get(6).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(pageValidationText.get(6).getCssValue("font-size"), "16px");
         softAssert.assertEquals(pageValidationText.get(6).getCssValue("color"), "rgba(43, 49, 60, 1)");
@@ -328,7 +325,7 @@ public class TellUsAboutYourselfCoCoPage {
         softAssert.assertEquals(genderButton.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(genderButton.get(1).getCssValue("font-size"), "20px");
         softAssert.assertEquals(genderButton.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)");
-        softAssert.assertEquals(pageValidationText.get(6).getText(), SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName() + " es " + Character.toUpperCase(SharedData.getMembers().get(1).getFirstName().charAt(0)) + SharedData.getMembers().get(1).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(1).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(1).getLastName().charAt(0)) + SharedData.getMembers().get(1).getLastName().substring(1) + "'s?");
+        softAssert.assertEquals(pageValidationText.get(6).getText(), SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName() + " es " + Character.toUpperCase(SharedData.getMembers().get(0).getFirstName().charAt(0)) + SharedData.getMembers().get(0).getFirstName().substring(1) + " " + Character.toUpperCase(SharedData.getMembers().get(0).getMiddleName().charAt(0)) + ". " + Character.toUpperCase(SharedData.getMembers().get(0).getLastName().charAt(0)) + SharedData.getMembers().get(0).getLastName().substring(1) + "'s?");
         softAssert.assertEquals(pageValidationText.get(6).getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertEquals(pageValidationText.get(6).getCssValue("font-size"), "16px");
         softAssert.assertEquals(pageValidationText.get(6).getCssValue("color"), "rgba(43, 49, 60, 1)");
@@ -517,6 +514,12 @@ public class TellUsAboutYourselfCoCoPage {
         lastNameText.sendKeys(newLastName);
     }
 
+    public void updateCocoDOB(String newDob) {
+        basicActions.waitForElementToBePresent(memberDOBTbox, 20);
+        memberDOBTbox.clear();
+        memberDOBTbox.sendKeys(newDob);
+        SharedData.getPrimaryMember().setDob(newDob);
+    }
 }
 
 

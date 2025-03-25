@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.cocoPages;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -148,6 +149,12 @@ public class DeductionsCoCoPage {
     @FindBy(css = "lib-dropdown .error-message")
     List<WebElement> deductionsFrequencyError;
 
+    @FindBy(css = ".input-error-message lib-fi svg")
+    WebElement ErrorIcon;
+
+    @FindBy(css = ".error-message")
+    WebElement ErrorMessage;
+
     @FindBy(id = "Deductions-SaveAndContinue")
     WebElement saveAndContinueButton;
 
@@ -175,6 +182,13 @@ public class DeductionsCoCoPage {
         selectDeductionOptionOnly(deductionOption);
         enterAmount(deductionOption, amount);
         selectFrequency(deductionOption, frequency);
+    }
+
+    public void selectDeductionAmountOnly(String deductionOption, String amount) {
+        basicActions.waitForElementToBeClickable(saveAndContinueButton, 10);
+
+        selectDeductionOptionOnly(deductionOption);
+        enterAmount(deductionOption, amount);
     }
 
     public void selectDeductionOptionOnly(String deductionOption) {
@@ -302,6 +316,7 @@ public class DeductionsCoCoPage {
 
     //////////////////////////////////////////////VALIDATION METHODS//////////////////////////////////////////////////
     public void verifyHeadersDeductionsPage(String language){
+        basicActions.wait(500);
         switch (language){
             case "English":
                 verifyHeadersDeductionsPageEnglish();
@@ -315,9 +330,12 @@ public class DeductionsCoCoPage {
     }
 
     public void verifyAddtlMemHeadersDeductionsPage(String language){
+        basicActions.waitForElementToBePresentWithRetries(hdr_Deductions,90);
+        basicActions.waitForElementToBePresent(hdr_Deductions2,90);
+        basicActions.waitForElementToBePresent(saveAndContinueButton,90);
+        basicActions.waitForElementToBePresent(backButton,90);
         switch (language){
             case "English":
-                basicActions.waitForElementToBePresent(hdr_Deductions,15);
                 softAssert.assertTrue(hdr_Deductions.getText().equalsIgnoreCase( "Income: " + basicActions.getMemFirstLastNames("Spouse")));
                 softAssert.assertEquals(hdr_Deductions.getCssValue("font-size"), "36px");
                 softAssert.assertEquals(hdr_Deductions.getCssValue("font-weight"), "700");
@@ -329,10 +347,6 @@ public class DeductionsCoCoPage {
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                basicActions.waitForElementToBePresent(hdr_Deductions,90);
-                basicActions.waitForElementToBePresent(hdr_Deductions2,90);
-                basicActions.waitForElementToBePresent(saveAndContinueButton,90);
-                basicActions.waitForElementToBePresent(backButton,90);
                 softAssert.assertTrue(hdr_Deductions.getText().equalsIgnoreCase("Ingresos: " + basicActions.getMemFirstLastNames("Spouse")));
                 softAssert.assertEquals(hdr_Deductions.getCssValue("font-size"), "36px");
                 softAssert.assertEquals(hdr_Deductions.getCssValue("font-weight"), "700");
@@ -349,7 +363,6 @@ public class DeductionsCoCoPage {
     }
 
     public void verifyHeadersDeductionsPageEnglish(){
-        basicActions.wait(250);
         basicActions.waitForElementToBePresentWithRetries(hdr_Deductions,120);
         basicActions.waitForElementToBePresentWithRetries(hdr_Deductions2,120);
         softAssert.assertTrue(hdr_Deductions.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
@@ -364,7 +377,6 @@ public class DeductionsCoCoPage {
     }
 
     public void verifyHeadersDeductionsPageSpanish(){
-        basicActions.wait(250);
         basicActions.waitForElementToBePresentWithRetries(hdr_Deductions,90);
         basicActions.waitForElementToBePresentWithRetries(hdr_Deductions2,90);
         basicActions.waitForElementToBePresentWithRetries(saveAndContinueButton,90);
@@ -443,42 +455,14 @@ public class DeductionsCoCoPage {
         softAssert.assertAll();
     }
 
-    public void verifyDeductionsEnteredData(String addtlIncomeOption, String Amount, String Frequency){
+    public void verifyDeductionsEnteredData(String deductionsOption, String Amount, String Frequency){
 //        Frequency will have a number ex: "1: Annually", "3: Monthly", "5: Weekly"
-        switch (addtlIncomeOption) {
-            case "Domestic production":
-                basicActions.waitForElementToBePresent(domesticProductionAmount,20);
-                softAssert.assertEquals(domesticProductionAmount.getAttribute("value"), Amount);
-                softAssert.assertEquals(domesticProductionFrequency.getAttribute("value"), Frequency);
-                softAssert.assertAll();
-                break;
-            case "School tuition":
-                basicActions.waitForElementToBePresent(schoolTuitionAmount,20);
-                softAssert.assertEquals(schoolTuitionAmount  .getAttribute("value"), Amount);
-                softAssert.assertEquals(schoolTuitionFrequency.getAttribute("value"), Frequency);
-                softAssert.assertAll();
-                break;
-            case "Student loan":
-                basicActions.waitForElementToBePresent(studentLoanAmount,20);
-                softAssert.assertEquals(studentLoanAmount  .getAttribute("value"), Amount);
-                softAssert.assertEquals(studentLoanFrequency.getAttribute("value"), Frequency);
-                softAssert.assertAll();
-                break;
-            case "Pre-tax retirement":
-                basicActions.waitForElementToBePresent(pretaxRetirementAmount,20);
-                softAssert.assertEquals(pretaxRetirementAmount  .getAttribute("value"), Amount);
-                softAssert.assertEquals(pretaxRetirementFrequency.getAttribute("value"), Frequency);
-                softAssert.assertAll();
-                break;
-            case "HSA":
-                basicActions.waitForElementToBePresent(hsaAmount,20);
-                softAssert.assertEquals(hsaAmount  .getAttribute("value"), Amount);
-                softAssert.assertEquals(hsaFrequency.getAttribute("value"), Frequency);
-                softAssert.assertAll();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + addtlIncomeOption);
-        }
+        WebElement inputAmount = getDeductionInputField(deductionsOption);
+        WebElement inputFrequency = getDeductionFrequencyField(deductionsOption);
+        basicActions.waitForElementToBePresent(inputAmount,20);
+        softAssert.assertEquals(inputAmount.getAttribute("value"), Amount);
+        softAssert.assertEquals(inputFrequency.getAttribute("value"), Frequency);
+        softAssert.assertAll();
     }
 
     public void verifyDeductionsText(String language){
@@ -754,5 +738,84 @@ public class DeductionsCoCoPage {
         softAssert.assertEquals(element.getCssValue("background-color"), "rgba(255, 255, 255, 1)", element + " Background color mismatch");
         softAssert.assertEquals(element.getCssValue("color"), "rgba(150, 0, 0, 1)", element + " Text color mismatch");
         softAssert.assertEquals(element.getCssValue("border"), "1px solid rgb(150, 0, 0)", element + " Border mismatch");
+    }
+
+    public void validateErrorMessageAndItsProperties(DataTable dataTable){
+        basicActions.waitForElementToBePresent(ErrorIcon,10);
+        basicActions.waitForElementToBePresent(ErrorMessage,10);
+
+        List<Map<String,String>> data = dataTable.asMaps();
+        softAssert.assertTrue(ErrorIcon.isDisplayed(),"Error Icon is not visible in the page");
+        softAssert.assertTrue(ErrorMessage.isDisplayed(),"Error Message is not visible in the page");
+        softAssert.assertEquals(ErrorMessage.getText(), data.get(0).get("Text"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("font-size"), data.get(0).get("fontSize"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("font-family"), data.get(0).get("fontFamily"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("font-weight"), data.get(0).get("fontWeight"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("color"), data.get(0).get("color"));
+        softAssert.assertAll();
+    }
+
+    private WebElement getDeductionInputField(String deductionsOption) {
+        switch (deductionsOption) {
+            case "Alimony":
+                return alimonyAmount;
+            case "Domestic production":
+                return domesticProductionAmount;
+            case "HSA":
+                return hsaAmount;
+            case "Pre-tax retirement":
+                return pretaxRetirementAmount;
+            case "School tuition":
+                return schoolTuitionAmount;
+            case "Self-employment tax":
+                return selfemploymentTaxAmount;
+            case "Student loan":
+                return studentLoanAmount;
+            case "Self-employment health insurance":
+                return selfemploymentInsuranceAmount;
+            case "Self-employment retirement":
+                return selfemploymentRetirementAmount;
+            case "Moving expenses":
+                return movingExpensesAmount;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + deductionsOption);
+        }
+    }
+
+    private WebElement getDeductionFrequencyField(String deductionsOption) {
+        switch (deductionsOption) {
+            case "Alimony":
+                return alimonyFrequency;
+            case "Domestic production":
+                return domesticProductionFrequency;
+            case "HSA":
+                return hsaFrequency;
+            case "Pre-tax retirement":
+                return pretaxRetirementFrequency;
+            case "School tuition":
+                return schoolTuitionFrequency;
+            case "Self-employment tax":
+                return selfemploymentTaxFrequency;
+            case "Student loan":
+                return studentLoanFrequency;
+            case "Self-employment health insurance":
+                return selfemploymentInsuranceFrequency;
+            case "Self-employment retirement":
+                return selfemploymentRetirementFrequency;
+            case "Moving expenses":
+                return movingExpensesFrequency;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + deductionsOption);
+        }
+    }
+
+    public void verifyMinMax(String deductionsOption, String language){
+        WebElement inputAmount = getDeductionInputField(deductionsOption);
+        String amountPlaceholder = language.equalsIgnoreCase("Spanish") ? "cantidad" : "amount";
+        basicActions.waitForElementToBePresent(inputAmount,10);
+        softAssert.assertEquals(inputAmount.getAttribute("min"), "0.01");
+        softAssert.assertEquals(inputAmount.getAttribute("max"), "999999999.99");
+        softAssert.assertEquals(inputAmount.getAttribute("placeholder"), amountPlaceholder);
+        softAssert.assertAll();
     }
 }

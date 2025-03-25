@@ -32,6 +32,32 @@ public class AdminPortalProgramManagerPage {
     WebElement email;
     @FindBy(xpath = "//app-account-activity/div/a/button")
     WebElement accountActivityReport;
+    @FindBy(xpath = "//div[@class='group-box summary-container']/p")
+    WebElement profileSummary;
+    @FindBy(xpath = "//div[@class='account-title-div']")
+    WebElement assistNetName;
+    @FindBy(xpath = "//td[@id='username']")
+    WebElement assistNetUsername;
+    @FindBy(xpath = "//td[@id='program-manager-email']")
+    WebElement assistNetEmail;
+    @FindBy(xpath = "//td[@id='prim-phone']")
+    WebElement assistNetPhone;
+    @FindBy(xpath = "//td[.='Username:']")
+    WebElement assistNetUsernameLabel;
+    @FindBy(xpath = "//div[2]/table/tr[2]/td[1]")
+    WebElement assistNetEmailLabel;
+    @FindBy(xpath = "//div[2]/table/tr[4]/td[1]")
+    WebElement assistNetPhoneLabel;
+    @FindBy(xpath = "//div[@class='group-box organization-container']//p[1]")
+    WebElement organizationDetailsLabel;
+    @FindBy(xpath = "//label[@for='organization-id']")
+    WebElement orgDroupDetailsLabel;
+    @FindBy(xpath = "//label[@for='name']")
+    WebElement orgNameLabel;
+    @FindBy(xpath = "//p[@id='id']")
+    WebElement orgDroupDetails;
+    @FindBy(xpath = "//p[@id='name']")
+    WebElement orgName;
 
 
     public void clickTheOnTheAPProgramManagerDashboard(String option) {
@@ -78,4 +104,43 @@ public class AdminPortalProgramManagerPage {
         softAssert.assertAll();
     }
 
+    public void validateTheAssistnetDataInProfileSummaryContainer() {
+        basicActions.waitForElementToBePresentWithRetries(profileSummary,30);
+        basicActions.waitForElementToBePresentWithRetries(assistNetEmailLabel,60);
+        softAssert.assertEquals(profileSummary.getText(),"Profile Summary");
+        softAssert.assertEquals(assistNetUsernameLabel.getText(),"Username:");
+        softAssert.assertEquals(assistNetEmailLabel.getText(),"Email Address:");
+        softAssert.assertEquals(assistNetPhoneLabel.getText(),"Phone Number:");
+
+        if (SharedData.getEnv().equals("qa")){
+            softAssert.assertEquals(assistNetName.getText(),"Morgan Martin");
+            softAssert.assertEquals(assistNetUsername.getText(),"carrimautomation+PM@gmail.com");
+            softAssert.assertEquals(assistNetEmail.getText(),"carrimautomation+PM@gmail.com");
+            softAssert.assertEquals(assistNetPhone.getText(),"303-123-6549");
+
+        }else{
+            softAssert.assertEquals(assistNetName.getText(),"adstaygpvi adsopibhuxo");
+            softAssert.assertEquals(assistNetUsername.getText(),"c4assistorportal+6D9xrQWta@gmail.com");
+            softAssert.assertEquals(assistNetEmail.getText(),"c4assistorportal+6D9xrQWta@gmail.com");
+            softAssert.assertEquals(assistNetPhone.getText(),"317-360-5536");
+        }
+
+        softAssert.assertAll();
+    }
+
+    public void validateTheAssistNetOrganizationDetailsInAdminPortal() {
+        softAssert.assertEquals(organizationDetailsLabel.getText(),"Organization Information");
+        softAssert.assertEquals(orgDroupDetailsLabel.getText(),"Organization Group ID:");
+        softAssert.assertEquals(orgNameLabel.getText(),"Organization Name:");
+
+        if (SharedData.getEnv().equals("qa")){
+            softAssert.assertEquals(orgDroupDetails.getText(),"133015479");
+            softAssert.assertEquals(orgName.getText(),"PuppyPower");
+        }else {
+            softAssert.assertEquals(orgDroupDetails.getText(),"61745879");
+            softAssert.assertEquals(orgName.getText(),"apvizpfcoigbwckxtepvlhctbjs");
+        }
+
+        softAssert.assertAll();
+    }
 }

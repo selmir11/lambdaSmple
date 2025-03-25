@@ -96,7 +96,7 @@ public class AdminPortalIndividualDashboardPage {
     WebElement memberEmail;
     @FindBy(css = "#dob")
     WebElement memberDob;
-    @FindBy(css = "body app-root div:nth-child(6)")
+    @FindBy(xpath = "//*[@id=\"app-individual-selected-member-75\"]/div/div[6]")
     WebElement memberAddress;
     @FindBy(xpath = "//p[normalize-space()='Plans']")
     WebElement plansTitle;
@@ -281,7 +281,7 @@ public class AdminPortalIndividualDashboardPage {
     WebElement tax;
     @FindBy(xpath = "//td[normalize-space()='Application ID:']")
     WebElement applicationId;
-    @FindBy(css = "#app-individual-selected-member-80 > label")
+    @FindBy(css = ".selected-member-header")
     WebElement selectedMemberLabel;
     @FindBy(css = "#app-individual-selected-member-80 > div")
     WebElement selectedMemberData;
@@ -289,6 +289,15 @@ public class AdminPortalIndividualDashboardPage {
     WebElement suspended;
     @FindBy(css = "#account-status")
     WebElement passwordReset;
+
+    @FindBy(xpath = "//*[@class='member-prop-container']/label")
+    List<WebElement> selectedMemberLabelTxt;
+
+    @FindBy(xpath = "//*[@class='member-prop-container']/span")
+    List<WebElement> selectedMemberDataTxt;
+
+    @FindBy(xpath = "//a[contains(text(),'Manage Account Details')]")
+    WebElement btnManageAccountDetails;
 
     public void clickBtnOnAccSummContainer(String btnName) {
         basicActions.waitForElementListToBePresent(accSummaryBtns, 10);
@@ -312,7 +321,12 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertEquals(accountSummaryTitle.getText(), "Account Summary", "Account Summary Title did not match!");
         softAssert.assertEquals(unameAndNameTitles.get(0).getText(), "Username:", "Username Text did not match");
         softAssert.assertEquals(unameAndNameTitles.get(1).getText(), "Full Name:", "Full name text did not match");
-        softAssert.assertEquals(individualNames.get(0).getText(), primaryMem.getEmailId(), "Email Id did not match");
+        if( primaryMem.getIncorrectEmail() !=  null) {
+            softAssert.assertEquals(individualNames.get(0).getText(), primaryMem.getIncorrectEmail(), "Email Id did not match");
+        }
+        else {
+            softAssert.assertEquals(individualNames.get(0).getText(), primaryMem.getEmailId(), "Email Id did not match");
+        }
         softAssert.assertEquals(individualNames.get(1).getText(), primaryMem.getCompleteFullName(), "Name of primary person did not match");
         softAssert.assertEquals(hhMemTitle.getText(), "Household Members", "Household Members title did not match");
         List<String> memberNamesUi = new ArrayList<>();
@@ -978,6 +992,79 @@ public class AdminPortalIndividualDashboardPage {
         basicActions.waitForElementToBePresent(accountStatus, 30);
         softAssert.assertEquals(passwordReset.getText(), "Account Status: Password Reset");
         softAssert.assertAll();
+    }
+    public void validateCoCoDashboardContainerTitles(String PlansContainer, String summaryContainer, String reportsContainer) {
+        basicActions.waitForElementToBePresent(plansTitle, 30);
+        softAssert.assertEquals(plansTitle.getText(), PlansContainer);
+        softAssert.assertEquals(summaryTitle.getText(), summaryContainer);
+         softAssert.assertEquals(reportsTitle.getText(), reportsContainer);
+        softAssert.assertAll();
+    }
+
+    public void VerifyOriginalSidebarDetails() {
+        basicActions.waitForElementToBePresent(selectedMember, 30);
+        verifyFullName();
+        verifyUserName();
+        verifyPhoneNumber();
+        verifyEmail();
+        verifyDOB();
+        verifyResidentailAddress();
+        softAssert.assertAll();
+    }
+
+    private void verifyResidentailAddress() {
+        softAssert.assertEquals(selectedMemberLabelTxt.get(5).getText(), "Residential Address:", "Label not match");
+        softAssert.assertTrue(selectedMemberDataTxt.get(5).isDisplayed());
+        String AddressLine1 =  SharedData.getPrimaryMember().getResAddress().getAddressLine1();
+        String AddressCounty =  SharedData.getPrimaryMember().getResAddress().getAddressCity();
+        String AddressState =  SharedData.getPrimaryMember().getResAddress().getAddressState();
+        String AddressZipcode =  SharedData.getPrimaryMember().getResAddress().getAddressZipcode();
+        String ResAddress = AddressLine1 +"\n"+AddressCounty +", "+AddressState +" "+AddressZipcode ;
+        softAssert.assertEquals(selectedMemberDataTxt.get(5).getText(),ResAddress, "Residential Address name not match");
+    }
+
+    private void verifyDOB() {
+        softAssert.assertEquals(selectedMemberLabelTxt.get(4).getText(), "Date of Birth:", "Label not match");
+        softAssert.assertTrue(selectedMemberDataTxt.get(4).isDisplayed());
+        softAssert.assertEquals(selectedMemberDataTxt.get(4).getText(), basicActions.changeDateFormat(SharedData.getPrimaryMember().getDob(),
+                "MMddyyyy", "MM/dd/yyyy"), "DOB did not match!");
+    }
+
+    private void verifyEmail() {
+        softAssert.assertEquals(selectedMemberLabelTxt.get(3).getText(), "Email:", "Email Label not match");
+        softAssert.assertTrue(selectedMemberDataTxt.get(3).isDisplayed());
+        softAssert.assertEquals(selectedMemberDataTxt.get(3).getText(), SharedData.getPrimaryMember().getEmailId(), "Email not match");
+    }
+
+    private void verifyPhoneNumber() {
+        String formatedPhoneNumber = SharedData.getPrimaryMember().getPhoneNumber().replaceFirst("(\\d{3})(\\d{3})(\\d+)", "$1-$2-$3");
+        softAssert.assertEquals(selectedMemberLabelTxt.get(2).getText(), "Phone Number:", "Phone Number Label not match");
+        softAssert.assertTrue(selectedMemberDataTxt.get(2).isDisplayed());
+        softAssert.assertEquals(selectedMemberDataTxt.get(2).getText(),formatedPhoneNumber, "Phone Number not match");
+    }
+
+    private void verifyUserName() {
+        softAssert.assertEquals(selectedMemberLabelTxt.get(1).getText(), "Username:", "Username Label not match");
+        softAssert.assertTrue(selectedMemberDataTxt.get(1).isDisplayed());
+        if(SharedData.getPrimaryMember().getIncorrectEmail() != null){
+            softAssert.assertEquals(selectedMemberDataTxt.get(1).getText(), SharedData.getPrimaryMember().getIncorrectEmail() , "Username not match");
+        }
+        else {
+            softAssert.assertEquals(selectedMemberDataTxt.get(1).getText(), SharedData.getPrimaryMember().getEmailId() , "Username not match");
+        }
+
+    }
+
+    private void verifyFullName() {
+        softAssert.assertEquals(selectedMemberLabelTxt.get(0).getText(), "Full Name:", "Full Name Label not match");
+        softAssert.assertTrue(selectedMemberDataTxt.get(0).isDisplayed());
+        softAssert.assertEquals(selectedMemberDataTxt.get(0).getText(), SharedData.getPrimaryMember().getCompleteFullName(), "Full name not match");
+    }
+
+    public void clickManageAccountDetails() {
+        basicActions.waitForElementToBeClickable(btnManageAccountDetails, 10);
+        basicActions.click(btnManageAccountDetails);
+        basicActions.switchtoactiveTab();
     }
 }
 

@@ -20,7 +20,7 @@ Feature: Programme Manager
       | OrganisationName    | Organ                    | stg             |
       | siteID              | jrzvp                    | eNrQp           |
     Then I click on Search button in AP dashboard page
-    Then I verify account results for "ProgrammeManager" on admin portal search page
+    Then I verify account results for "Program Manager" on admin portal search page
     When I click on reset button on admin portal search page
     Then I verify data in the fields on the admin portal search page should be blank
       | accountID        |
@@ -47,7 +47,7 @@ Feature: Programme Manager
     Then I validate the list is sorted in order by "Account ID" and "desc"
     Then I refresh the page
     And I select "Program Manager" checkbox on Admin Portal Dashboard
-    Then I enter an "FirstName" in any env "a" "a" to search user
+    Then I enter an "FirstName" in any env "ad" "ad" to search user
     Then I click on Search button in AP dashboard page
     Then I wait for 1000 milliseconds
     Then I validate message for over hundred records
