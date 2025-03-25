@@ -1101,4 +1101,24 @@ public class MyProfileExchPage {
         softAssert.assertTrue(changePrimaryContactnotdisplay.isEmpty(),"Button displayed when not expected");
         softAssert.assertAll();
     }
+
+    public void PreferredWritternLanguage(String langContactPreferred) {
+        clickPreferredLanguageDrp();
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        switch (langContactPreferred) {
+            case "English":
+                LanguageDrpOptions.get(1).click();
+                primaryMem.setWrittenLanguage("English");
+                primaryMem.setIncorrectLanguage("Spanish");
+                break;
+            case "Spanish":
+                LanguageDrpOptions.get(2).click();
+                primaryMem.setWrittenLanguage("Spanish");
+                primaryMem.setIncorrectLanguage("English");
+                break;
+            default:
+                Assert.fail("Invalid argument passed");
+        }
+    }
+
 }

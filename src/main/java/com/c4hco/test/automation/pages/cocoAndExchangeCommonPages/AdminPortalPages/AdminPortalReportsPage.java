@@ -44,6 +44,13 @@ public class AdminPortalReportsPage {
     @FindBy(css = ".tooltip .tooltip-inner")
     WebElement tooltipText;
 
+    @FindBy(xpath = "//*[@class='dashboardHeader1']")
+    WebElement Header;
+
+    @FindBy(xpath = "//*[@class='dashboardHeader2']")
+    WebElement AccountIDHeader;
+
+
     public void validateTitleAccountActivity() {
         basicActions.waitForElementListToBePresentWithRetries(eventCodeList, 50);
         softAssert.assertEquals("Account Activity", titleAccountActivity.getText());
@@ -261,6 +268,85 @@ public class AdminPortalReportsPage {
                         ", name:" + nameTo +
                         ", updatedBy:" + updatedBy,
                 "detail value did not match");
+        softAssert.assertAll();
+    }
+
+    public void VerifyEventAndTime(String text, String timeCondition) {
+        WebElement eventTime = basicActions.getDriver().findElement(By.xpath("//tbody[1]/tr[5]/td[3]/app-max-length-tooltip[1]/span[1]"));
+        basicActions.hardRefreshUntilVisible(eventTime, 250000, 1000);
+
+        String TextXPath = "//span[contains(text(),'" + text + "')]";
+        WebElement resetDateElement = basicActions.getDriver().findElement(By.xpath(TextXPath));
+
+        WebElement timeElement = resetDateElement.findElement(By.xpath("ancestor::td/following-sibling::td[1]"));
+        String actualTime = timeElement.getText().trim();
+
+        if (timeCondition.equals("todays date within last 10 min timestamp")) {
+            basicActions.validateTimeWithinLast10Minutes(actualTime);
+        } else {
+            validateExactTimestamp(actualTime, timeCondition);
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateActivityHeader() {
+        basicActions.wait(250);
+        basicActions.waitForElementToBePresent(Header, 100);
+        softAssert.assertTrue(Header.isDisplayed());
+        basicActions.waitForElementToBePresent(AccountIDHeader, 100);
+        softAssert.assertTrue(AccountIDHeader.isDisplayed());
+
+        if (SharedData.getPrimaryMember() != null) {
+            softAssert.assertEquals(Header.getText(), "Primary Account Holder: " + SharedData.getPrimaryMember().getSignature());
+            int commaIndex = AccountIDHeader.getText().indexOf(',');
+            String accountIdFromHeader = AccountIDHeader.getText().substring(0, commaIndex).trim();
+            softAssert.assertEquals(accountIdFromHeader, "Account ID: " + SharedData.getPrimaryMember().getAccount_id());
+        }
+        softAssert.assertAll();
+    }
+
+    public void VerifyAndCompareEventAndTime(String event) {
+        WebElement eventTime = basicActions.getDriver().findElement(By.xpath("//tbody[1]/tr[5]/td[3]/app-max-length-tooltip[1]/span[1]"));
+        basicActions.hardRefreshUntilVisible(eventTime, 250000, 1000);
+
+        String event1 = "//span[contains(text(),'" + event + "')]";
+        List<WebElement> resetDateElement = basicActions.getDriver().findElements(By.xpath(event1));
+
+        WebElement timeElement1 = resetDateElement.get(0).findElement(By.xpath("ancestor::td/following-sibling::td[1]"));
+        String actualTime1 = timeElement1.getText().trim();
+
+        WebElement timeElement2 = resetDateElement.get(1).findElement(By.xpath("ancestor::td/following-sibling::td[1]"));
+        String actualTime2 = timeElement2.getText().trim();
+
+        WebElement timeElement3 = resetDateElement.get(2).findElement(By.xpath("ancestor::td/following-sibling::td[1]"));
+        String actualTime3 = timeElement3.getText().trim();
+
+        softAssert.assertTrue(actualTime1.compareTo(actualTime2) >=0 , actualTime1 + " not the latest event for event " + event );
+        softAssert.assertTrue(actualTime2.compareTo(actualTime3) >=0 , actualTime2 + " not the latest event for event " + event );
+
+        softAssert.assertAll();
+    }
+
+    public void compareTimestamp(String event) {
+        WebElement table = basicActions.getDriver().findElement(By.xpath("//table[@class='sort-table']"));
+        List<WebElement> rows = table.findElements(By.xpath("//table[@class='sort-table']//tr"));
+        List<String> expectedTimeStamp = new ArrayList<>();
+
+        for (int i = 1; i < rows.size(); i++) {
+            WebElement row = rows.get(i);
+            List<WebElement> columns = row.findElements(By.xpath("//table[@class='sort-table']//td"));
+            if (columns.size() >= 2) {
+                String eventcode = columns.get(1).getText().trim();
+                String timeText = columns.get(2).getText().trim();
+                if (eventcode.equals(event)) {
+                    expectedTimeStamp.add(timeText);
+                }
+            }
+        }
+        for ( int i=0; i< expectedTimeStamp.size()-1; i++) {
+            softAssert.assertTrue(expectedTimeStamp.get(i).compareTo(expectedTimeStamp.get(i + 1)) >= 0,
+                    "order incorrect at index " + i + ":" + expectedTimeStamp.get(i) + " should be after " + expectedTimeStamp.get(i + 1));
+        }
         softAssert.assertAll();
     }
 }
