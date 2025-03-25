@@ -1,5 +1,5 @@
 @SIR-EXCH15 @MedicalPDF @SIR
-  # contains SLER-2009-WIP,
+  # contains SLER-2009,
 Feature: Medical Plan Detail page related tests
 
   Background:
