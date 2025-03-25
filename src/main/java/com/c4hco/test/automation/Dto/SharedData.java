@@ -156,6 +156,7 @@ public class SharedData {
         EffectiveLCEDate = null;
         isAiAn = false;
         recType = null;
+        carrierPdfFileName = null;
     }
 
 }

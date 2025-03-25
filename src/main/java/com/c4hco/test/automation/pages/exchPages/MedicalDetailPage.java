@@ -441,7 +441,7 @@ public class MedicalDetailPage {
                 lnkDocument0.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                     String filePath = SharedData.getLocalPathToDownloadFile();
-                    String fileName = SharedData.getNoticeFileName();
+                    String fileName = SharedData.getCarrierPdfFileName();
                     String pathAndName = filePath+"/Summary of Benefits and Coverage CO Supplement Anthem BCBS Spanish 0220065-01/"+fileName;
                     System.out.println("path and name is "+pathAndName);
 
@@ -456,7 +456,7 @@ public class MedicalDetailPage {
                 lnkDocument1.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                     String filePath1 = SharedData.getLocalPathToDownloadFile();
-                    String fileName1 = SharedData.getNoticeFileName();
+                    String fileName1 = SharedData.getCarrierPdfFileName();
                     String pathAndName1 = filePath1+"/Summary of Benefits and Coverage CO Supplement Anthem BCBS English 0220065-01/"+fileName1;
                     System.out.println("path and name is "+pathAndName1);
 
@@ -471,7 +471,7 @@ public class MedicalDetailPage {
                 lnkDocument2.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                     String filePath2 = SharedData.getLocalPathToDownloadFile();
-                    String fileName2 = SharedData.getNoticeFileName();
+                    String fileName2 = SharedData.getCarrierPdfFileName();
                     String pathAndName2 = filePath2+"/Evidence of Coverage Anthem BCBS English 0220065-01/"+fileName2;
                     System.out.println("path and name is "+pathAndName2);
 
@@ -486,7 +486,7 @@ public class MedicalDetailPage {
                 lnkDocument3.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                     String filePath3 = SharedData.getLocalPathToDownloadFile();
-                    String fileName3 = SharedData.getNoticeFileName();
+                    String fileName3 = SharedData.getCarrierPdfFileName();
                     String pathAndName3 = filePath3+"/Evidence of Coverage Anthem BCBS Spanish 0220065-01/"+fileName3;
                     System.out.println("path and name is "+pathAndName3);
 
@@ -501,7 +501,7 @@ public class MedicalDetailPage {
                 lnkDocument4.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                     String filePath4 = SharedData.getLocalPathToDownloadFile();
-                    String fileName4 = SharedData.getNoticeFileName();
+                    String fileName4 = SharedData.getCarrierPdfFileName();
                     String pathAndName4 = filePath4+"/Summary of Benefits and Coverage Anthem BCBS English 0220065-01/"+fileName4;
                     System.out.println("path and name is "+pathAndName4);
 
@@ -518,7 +518,7 @@ public class MedicalDetailPage {
                 lnkDocument5.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                     String filePath5 = SharedData.getLocalPathToDownloadFile();
-                    String fileName5 = SharedData.getNoticeFileName();
+                    String fileName5 = SharedData.getCarrierPdfFileName();
                     String pathAndName5 = filePath5+"/Summary of Benefits and Coverage Anthem BCBS Spanish 0220065-01/"+fileName5;
                     System.out.println("path and name is "+pathAndName5);
 
@@ -535,7 +535,7 @@ public class MedicalDetailPage {
                 lnkDocument6.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                     String filePath6 = SharedData.getLocalPathToDownloadFile();
-                    String fileName6 = SharedData.getNoticeFileName();
+                    String fileName6 = SharedData.getCarrierPdfFileName();
                     String pathAndName6 = filePath6+"/Brochure Anthem Medical English/"+fileName6;
                     System.out.println("path and name is "+pathAndName6);
 
@@ -550,7 +550,7 @@ public class MedicalDetailPage {
                 lnkDocument7.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                     String filePath7 = SharedData.getLocalPathToDownloadFile();
-                    String fileName7 = SharedData.getNoticeFileName();
+                    String fileName7 = SharedData.getCarrierPdfFileName();
                     String pathAndName7 = filePath7+"/Provider Network Anthem Pathway Essentials/"+fileName7;
                     System.out.println("path and name is "+pathAndName7);
 
@@ -565,7 +565,7 @@ public class MedicalDetailPage {
                 lnkDocument8.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                     String filePath8 = SharedData.getLocalPathToDownloadFile();
-                    String fileName8 = SharedData.getNoticeFileName();
+                    String fileName8 = SharedData.getCarrierPdfFileName();
                     String pathAndName8 = filePath8+"/Quality Overview Anthem English/"+fileName8;
                     System.out.println("path and name is "+pathAndName8);
 
@@ -581,7 +581,7 @@ public class MedicalDetailPage {
                 lnkDocument9.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                     String filePath9 = SharedData.getLocalPathToDownloadFile();
-                    String fileName9 = SharedData.getNoticeFileName();
+                    String fileName9 = SharedData.getCarrierPdfFileName();
                     String pathAndName9 = filePath9+"/Quality Overview Anthem Spanish/"+fileName9;
                     System.out.println("path and name is "+pathAndName9);
 
@@ -597,7 +597,7 @@ public class MedicalDetailPage {
                 lnkDocument10.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                     String filePath10 = SharedData.getLocalPathToDownloadFile();
-                    String fileName10 = SharedData.getNoticeFileName();
+                    String fileName10 = SharedData.getCarrierPdfFileName();
                     String pathAndName10 = filePath10+"/Brochure Anthem Medical Spanish/"+fileName10;
                     System.out.println("path and name is "+pathAndName10);
 
@@ -615,7 +615,7 @@ public class MedicalDetailPage {
                 lnkDocument0.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath210 = SharedData.getLocalPathToDownloadFile();
-                String fileName210 = SharedData.getNoticeFileName();
+                String fileName210 = SharedData.getCarrierPdfFileName();
                 String pathAndName210 = filePath210+"/Summary of Benefits and Coverage CO Supplement Rocky Mountain English 0420062-01 Colorado Option/"+fileName210;
                 System.out.println("path and name is "+pathAndName210);
                 softAssert.assertTrue( fileName210.contains("Summary of Benefits and Coverage CO Supplement Rocky Mountain English 0420062-01 Colorado Option"), "Downloaded file does not exist: " );
@@ -629,7 +629,7 @@ public class MedicalDetailPage {
                 lnkDocument1.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath211 = SharedData.getLocalPathToDownloadFile();
-                String fileName211 = SharedData.getNoticeFileName();
+                String fileName211 = SharedData.getCarrierPdfFileName();
                 String pathAndName211 = filePath211+"/Summary of Benefits and Coverage CO Supplement Rocky Mountain Spanish 0420062-01 Colorado Option/"+fileName211;
                 System.out.println("path and name is "+pathAndName211);
                 softAssert.assertTrue( fileName211.contains("Summary of Benefits and Coverage CO Supplement Rocky Mountain Spanish 0420062-01 Colorado Option"), "Downloaded file does not exist: " );
@@ -643,7 +643,7 @@ public class MedicalDetailPage {
                 lnkDocument2.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath212 = SharedData.getLocalPathToDownloadFile();
-                String fileName212 = SharedData.getNoticeFileName();
+                String fileName212 = SharedData.getCarrierPdfFileName();
                 String pathAndName212 = filePath212+"/Evidence of Coverage Rocky Mountain English 0420062-01 Colorado Option/"+fileName212;
                 System.out.println("path and name is "+pathAndName212);
                 softAssert.assertTrue( fileName212.contains("Evidence of Coverage Rocky Mountain English 0420062-01 Colorado Option"), "Downloaded file does not exist: " );
@@ -657,7 +657,7 @@ public class MedicalDetailPage {
                 lnkDocument3.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath213 = SharedData.getLocalPathToDownloadFile();
-                String fileName213 = SharedData.getNoticeFileName();
+                String fileName213 = SharedData.getCarrierPdfFileName();
                 String pathAndName213 = filePath213+"/Evidence of Coverage Rocky Mountain Spanish 0420062-01 Colorado Option/"+fileName213;
                 System.out.println("path and name is "+pathAndName213);
                 softAssert.assertTrue( fileName213.contains("Evidence of Coverage Rocky Mountain Spanish 0420062-01 Colorado Option"), "Downloaded file does not exist: " );
@@ -671,7 +671,7 @@ public class MedicalDetailPage {
                 lnkDocument4.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath214 = SharedData.getLocalPathToDownloadFile();
-                String fileName214 = SharedData.getNoticeFileName();
+                String fileName214 = SharedData.getCarrierPdfFileName();
                 String pathAndName214 = filePath214+"/Summary of Benefits and Coverage Rocky Mountain English 0420062-01 Colorado Option/"+fileName214;
                 System.out.println("path and name is "+pathAndName214);
                 softAssert.assertTrue( fileName214.contains("Summary of Benefits and Coverage Rocky Mountain English 0420062-01 Colorado Option"), "Downloaded file does not exist: " );
@@ -686,7 +686,7 @@ public class MedicalDetailPage {
                 lnkDocument5.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath215 = SharedData.getLocalPathToDownloadFile();
-                String fileName215 = SharedData.getNoticeFileName();
+                String fileName215 = SharedData.getCarrierPdfFileName();
                 String pathAndName215 = filePath215+"/Summary of Benefits and Coverage Rocky Mountain Spanish 0420062-01 Colorado Option/"+fileName215;
                 System.out.println("path and name is "+pathAndName215);
                 softAssert.assertTrue( fileName215.contains("Summary of Benefits and Coverage Rocky Mountain Spanish 0420062-01 Colorado Option"), "Downloaded file does not exist: " );
@@ -701,7 +701,7 @@ public class MedicalDetailPage {
                 lnkDocument6.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath216 = SharedData.getLocalPathToDownloadFile();
-                String fileName216 = SharedData.getNoticeFileName();
+                String fileName216 = SharedData.getCarrierPdfFileName();
                 String pathAndName216 = filePath216+"/Brochure RMHP-UHC English/"+fileName216;
                 System.out.println("path and name is "+pathAndName216);
                 softAssert.assertTrue( fileName216.contains("Brochure RMHP-UHC English"), "Downloaded file does not exist: " );
@@ -715,7 +715,7 @@ public class MedicalDetailPage {
                 lnkDocument7.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath217 = SharedData.getLocalPathToDownloadFile();
-                String fileName217 = SharedData.getNoticeFileName();
+                String fileName217 = SharedData.getCarrierPdfFileName();
                 String pathAndName217 = filePath217+"/Brochure RMHP-UHC Spanish/"+fileName217;
                 System.out.println("path and name is "+pathAndName217);
                 softAssert.assertTrue( fileName217.contains("Brochure RMHP-UHC Spanish"), "Downloaded file does not exist: " );
@@ -730,7 +730,7 @@ public class MedicalDetailPage {
                 lnkDocument8.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath218 = SharedData.getLocalPathToDownloadFile();
-                String fileName218 = SharedData.getNoticeFileName();
+                String fileName218 = SharedData.getCarrierPdfFileName();
                 String pathAndName218 = filePath218+"/Provider Network Rocky Mountain Health Plans Rocky Mountain Valley/"+fileName218;
                 System.out.println("path and name is "+pathAndName218);
                 softAssert.assertTrue( fileName218.contains("Provider Network Rocky Mountain Health Plans Rocky Mountain Valley"), "Downloaded file does not exist: " );
@@ -745,7 +745,7 @@ public class MedicalDetailPage {
                 lnkDocument9.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath219 = SharedData.getLocalPathToDownloadFile();
-                String fileName219= SharedData.getNoticeFileName();
+                String fileName219= SharedData.getCarrierPdfFileName();
                 String pathAndName219 = filePath219+"/Quality Overview Rocky Mountain Health Plan English/"+fileName219;
                 System.out.println("path and name is "+pathAndName219);
                 softAssert.assertTrue( fileName219.contains("Quality Overview Rocky Mountain Health Plan English"), "Downloaded file does not exist: " );
@@ -759,7 +759,7 @@ public class MedicalDetailPage {
                 lnkDocument10.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath2110 = SharedData.getLocalPathToDownloadFile();
-                String fileName2110 = SharedData.getNoticeFileName();
+                String fileName2110 = SharedData.getCarrierPdfFileName();
                 String pathAndName2110 = filePath2110+"/Quality Overview Rocky Mountain Health Plan Spanish/"+fileName2110;
                 System.out.println("path and name is "+pathAndName2110);
                 softAssert.assertTrue( fileName2110.contains("Quality Overview Rocky Mountain Health Plan Spanish"), "Downloaded file does not exist: " );
@@ -776,7 +776,7 @@ public class MedicalDetailPage {
                 lnkDocument0.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath220 = SharedData.getLocalPathToDownloadFile();
-                String fileName220 = SharedData.getNoticeFileName();
+                String fileName220 = SharedData.getCarrierPdfFileName();
                 String pathAndName220 = filePath220+"/Summary of Benefits and Coverage CO Supplement Cigna English 0060032-01 Colorado Option/"+fileName220;
                 System.out.println("path and name is "+pathAndName220);
                 softAssert.assertTrue( fileName220.contains("Summary of Benefits and Coverage CO Supplement Cigna English 0060032-01 Colorado Option"), "Downloaded file does not exist: " );
@@ -790,7 +790,7 @@ public class MedicalDetailPage {
                 lnkDocument1.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath221 = SharedData.getLocalPathToDownloadFile();
-                String fileName221 = SharedData.getNoticeFileName();
+                String fileName221 = SharedData.getCarrierPdfFileName();
                 String pathAndName221 = filePath221+"/Summary of Benefits and Coverage CO Supplement Cigna Spanish 0060032-01 Colorado Option/"+fileName221;
                 System.out.println("path and name is "+pathAndName221);
                 softAssert.assertTrue( fileName221.contains("Summary of Benefits and Coverage CO Supplement Cigna Spanish 0060032-01 Colorado Option"), "Downloaded file does not exist: " );
@@ -804,7 +804,7 @@ public class MedicalDetailPage {
                 lnkDocument2.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath222 = SharedData.getLocalPathToDownloadFile();
-                String fileName222 = SharedData.getNoticeFileName();
+                String fileName222 = SharedData.getCarrierPdfFileName();
                 String pathAndName222 = filePath222+"/Evidence of Coverage Cigna English 0060032-01 Colorado Option/"+fileName222;
                 System.out.println("path and name is "+pathAndName222);
                 softAssert.assertTrue( fileName222.contains("Evidence of Coverage Cigna English 0060032-01 Colorado Option"), "Downloaded file does not exist: " );
@@ -818,7 +818,7 @@ public class MedicalDetailPage {
                 lnkDocument3.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath223 = SharedData.getLocalPathToDownloadFile();
-                String fileName223 = SharedData.getNoticeFileName();
+                String fileName223 = SharedData.getCarrierPdfFileName();
                 String pathAndName223 = filePath223+"/Evidence of Coverage Cigna Spanish 0060032-01 Colorado Option/"+fileName223;
                 System.out.println("path and name is "+pathAndName223);
                 softAssert.assertTrue( fileName223.contains("Evidence of Coverage Cigna Spanish 0060032-01 Colorado Option"), "Downloaded file does not exist: " );
@@ -832,7 +832,7 @@ public class MedicalDetailPage {
                 lnkDocument4.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath224 = SharedData.getLocalPathToDownloadFile();
-                String fileName224 = SharedData.getNoticeFileName();
+                String fileName224 = SharedData.getCarrierPdfFileName();
                 String pathAndName224 = filePath224+"/Summary of Benefits and Coverage Cigna English 0060032-01 Colorado Option/"+fileName224;
                 System.out.println("path and name is "+pathAndName224);
                 softAssert.assertTrue( fileName224.contains("Summary of Benefits and Coverage Cigna English 0060032-01 Colorado Option"), "Downloaded file does not exist: " );
@@ -847,7 +847,7 @@ public class MedicalDetailPage {
                 lnkDocument5.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath225 = SharedData.getLocalPathToDownloadFile();
-                String fileName225 = SharedData.getNoticeFileName();
+                String fileName225 = SharedData.getCarrierPdfFileName();
                 String pathAndName225 = filePath225+"/Summary of Benefits and Coverage Cigna Spanish 0060032-01 Colorado Option/"+fileName225;
                 System.out.println("path and name is "+pathAndName225);
                 softAssert.assertTrue( fileName225.contains("Summary of Benefits and Coverage Cigna Spanish 0060032-01 Colorado Option"), "Downloaded file does not exist: " );
@@ -862,7 +862,7 @@ public class MedicalDetailPage {
                 lnkDocument6.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath226 = SharedData.getLocalPathToDownloadFile();
-                String fileName226 = SharedData.getNoticeFileName();
+                String fileName226 = SharedData.getCarrierPdfFileName();
                 String pathAndName226 = filePath226+"/Brochure Cigna English/"+fileName226;
                 System.out.println("path and name is "+pathAndName226);
                 softAssert.assertTrue( fileName226.contains("Brochure Cigna English"), "Downloaded file does not exist: " );
@@ -876,7 +876,7 @@ public class MedicalDetailPage {
                 lnkDocument7.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath227 = SharedData.getLocalPathToDownloadFile();
-                String fileName227 = SharedData.getNoticeFileName();
+                String fileName227 = SharedData.getCarrierPdfFileName();
                 String pathAndName227 = filePath227+"/Brochure Cigna Spanish/"+fileName227;
                 System.out.println("path and name is "+pathAndName227);
                 softAssert.assertTrue( fileName227.contains("Brochure Cigna Spanish"), "Downloaded file does not exist: " );
@@ -891,7 +891,7 @@ public class MedicalDetailPage {
                 lnkDocument8.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath228 = SharedData.getLocalPathToDownloadFile();
-                String fileName228 = SharedData.getNoticeFileName();
+                String fileName228 = SharedData.getCarrierPdfFileName();
                 String pathAndName228 = filePath228+"/Provider Network Cigna/"+fileName228;
                 System.out.println("path and name is "+pathAndName228);
                 softAssert.assertTrue( fileName228.contains("Provider Network Cigna"), "Downloaded file does not exist: " );
@@ -906,7 +906,7 @@ public class MedicalDetailPage {
                 lnkDocument9.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath229 = SharedData.getLocalPathToDownloadFile();
-                String fileName229= SharedData.getNoticeFileName();
+                String fileName229= SharedData.getCarrierPdfFileName();
                 String pathAndName229 = filePath229+"/Quality Overview Cigna English/"+fileName229;
                 System.out.println("path and name is "+pathAndName229);
                 softAssert.assertTrue( fileName229.contains("Quality Overview Cigna English"), "Downloaded file does not exist: " );
@@ -920,7 +920,7 @@ public class MedicalDetailPage {
                 lnkDocument10.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath2210 = SharedData.getLocalPathToDownloadFile();
-                String fileName2210 = SharedData.getNoticeFileName();
+                String fileName2210 = SharedData.getCarrierPdfFileName();
                 String pathAndName2210 = filePath2210+"/Quality Overview Cigna Spanish/"+fileName2210;
                 System.out.println("path and name is "+pathAndName2210);
                 softAssert.assertTrue( fileName2210.contains("Quality Overview Cigna Spanish"), "Downloaded file does not exist: " );
@@ -937,7 +937,7 @@ public class MedicalDetailPage {
                 lnkDocument0.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath230 = SharedData.getLocalPathToDownloadFile();
-                String fileName230 = SharedData.getNoticeFileName();
+                String fileName230 = SharedData.getCarrierPdfFileName();
                 String pathAndName230 = filePath230+"/Summary of Benefits and Coverage CO Supplement Denver Health English 0030008-01/"+fileName230;
                 System.out.println("path and name is "+pathAndName230);
                 softAssert.assertTrue( fileName230.contains("Summary of Benefits and Coverage CO Supplement Denver Health English 0030008-01"), "Downloaded file does not exist: " );
@@ -951,7 +951,7 @@ public class MedicalDetailPage {
                 lnkDocument1.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath231 = SharedData.getLocalPathToDownloadFile();
-                String fileName231 = SharedData.getNoticeFileName();
+                String fileName231 = SharedData.getCarrierPdfFileName();
                 String pathAndName231 = filePath231+"/Summary of Benefits and Coverage CO Supplement Denver Health Spanish 0030008-01/"+fileName231;
                 System.out.println("path and name is "+pathAndName231);
                 softAssert.assertTrue( fileName231.contains("Summary of Benefits and Coverage CO Supplement Denver Health Spanish 0030008-01"), "Downloaded file does not exist: " );
@@ -965,7 +965,7 @@ public class MedicalDetailPage {
                 lnkDocument2.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath232 = SharedData.getLocalPathToDownloadFile();
-                String fileName232 = SharedData.getNoticeFileName();
+                String fileName232 = SharedData.getCarrierPdfFileName();
                 String pathAndName232 = filePath232+"/Evidence of Coverage Denver Health English 0030008-01/"+fileName232;
                 System.out.println("path and name is "+pathAndName232);
                 softAssert.assertTrue( fileName232.contains("Evidence of Coverage Denver Health English 0030008-01"), "Downloaded file does not exist: " );
@@ -979,7 +979,7 @@ public class MedicalDetailPage {
                 lnkDocument3.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath233 = SharedData.getLocalPathToDownloadFile();
-                String fileName233 = SharedData.getNoticeFileName();
+                String fileName233 = SharedData.getCarrierPdfFileName();
                 String pathAndName233 = filePath233+"/Evidence of Coverage Denver Health Spanish 0030008-01/"+fileName233;
                 System.out.println("path and name is "+pathAndName233);
                 softAssert.assertTrue( fileName233.contains("Evidence of Coverage Denver Health Spanish 0030008-01"), "Downloaded file does not exist: " );
@@ -993,7 +993,7 @@ public class MedicalDetailPage {
                 lnkDocument4.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath234 = SharedData.getLocalPathToDownloadFile();
-                String fileName234 = SharedData.getNoticeFileName();
+                String fileName234 = SharedData.getCarrierPdfFileName();
                 String pathAndName234 = filePath234+"/Summary of Benefits and Coverage Denver Health English 0030008-01/"+fileName234;
                 System.out.println("path and name is "+pathAndName234);
                 softAssert.assertTrue( fileName234.contains("Summary of Benefits and Coverage Denver Health English 0030008-01"), "Downloaded file does not exist: " );
@@ -1008,7 +1008,7 @@ public class MedicalDetailPage {
                 lnkDocument5.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath235 = SharedData.getLocalPathToDownloadFile();
-                String fileName235 = SharedData.getNoticeFileName();
+                String fileName235 = SharedData.getCarrierPdfFileName();
                 String pathAndName235 = filePath235+"/Summary of Benefits and Coverage Denver Health Spanish 0030008-01/"+fileName235;
                 System.out.println("path and name is "+pathAndName235);
                 softAssert.assertTrue( fileName235.contains("Summary of Benefits and Coverage Denver Health Spanish 0030008-01"), "Downloaded file does not exist: " );
@@ -1023,7 +1023,7 @@ public class MedicalDetailPage {
                 lnkDocument6.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath236 = SharedData.getLocalPathToDownloadFile();
-                String fileName236 = SharedData.getNoticeFileName();
+                String fileName236 = SharedData.getCarrierPdfFileName();
                 String pathAndName236 = filePath236+"/Brochure Denver Health English/"+fileName236;
                 System.out.println("path and name is "+pathAndName236);
                 softAssert.assertTrue( fileName236.contains("Brochure Denver Health English"), "Downloaded file does not exist: " );
@@ -1037,7 +1037,7 @@ public class MedicalDetailPage {
                 lnkDocument7.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath237 = SharedData.getLocalPathToDownloadFile();
-                String fileName237 = SharedData.getNoticeFileName();
+                String fileName237 = SharedData.getCarrierPdfFileName();
                 String pathAndName237 = filePath237+"/Brochure Denver Health Spanish/"+fileName237;
                 System.out.println("path and name is "+pathAndName237);
                 softAssert.assertTrue( fileName237.contains("Brochure Denver Health Spanish"), "Downloaded file does not exist: " );
@@ -1052,7 +1052,7 @@ public class MedicalDetailPage {
                 lnkDocument8.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath238 = SharedData.getLocalPathToDownloadFile();
-                String fileName238 = SharedData.getNoticeFileName();
+                String fileName238 = SharedData.getCarrierPdfFileName();
                 String pathAndName238 = filePath238+"/Provider Network Denver Health/"+fileName238;
                 System.out.println("path and name is "+pathAndName238);
                 softAssert.assertTrue( fileName238.contains("Provider Network Denver Health"), "Downloaded file does not exist: " );
@@ -1066,7 +1066,7 @@ public class MedicalDetailPage {
                 lnkDocument9.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath239 = SharedData.getLocalPathToDownloadFile();
-                String fileName239= SharedData.getNoticeFileName();
+                String fileName239= SharedData.getCarrierPdfFileName();
                 String pathAndName239 = filePath239+"/Quality Overview Denver Health English/"+fileName239;
                 System.out.println("path and name is "+pathAndName239);
                 softAssert.assertTrue( fileName239.contains("Quality Overview Denver Health English"), "Downloaded file does not exist: " );
@@ -1080,7 +1080,7 @@ public class MedicalDetailPage {
                 lnkDocument10.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath2310 = SharedData.getLocalPathToDownloadFile();
-                String fileName2310 = SharedData.getNoticeFileName();
+                String fileName2310 = SharedData.getCarrierPdfFileName();
                 String pathAndName2310 = filePath2310+"/Quality Overview Denver Health Spanish/"+fileName2310;
                 System.out.println("path and name is "+pathAndName2310);
                 softAssert.assertTrue( fileName2310.contains("Quality Overview Denver Health Spanish"), "Downloaded file does not exist: " );
@@ -1098,7 +1098,7 @@ public class MedicalDetailPage {
                 lnkDocument0.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath240 = SharedData.getLocalPathToDownloadFile();
-                String fileName240 = SharedData.getNoticeFileName();
+                String fileName240 = SharedData.getCarrierPdfFileName();
                 String pathAndName240 = filePath240+"/Summary of Benefits and Coverage CO Supplement Kaiser Permanente English 0410052-01/"+fileName240;
                 System.out.println("path and name is "+pathAndName240);
                 softAssert.assertTrue( fileName240.contains("Summary of Benefits and Coverage CO Supplement Kaiser Permanente English 0410052-01"), "Downloaded file does not exist: " );
@@ -1112,7 +1112,7 @@ public class MedicalDetailPage {
                 lnkDocument1.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath241 = SharedData.getLocalPathToDownloadFile();
-                String fileName241 = SharedData.getNoticeFileName();
+                String fileName241 = SharedData.getCarrierPdfFileName();
                 String pathAndName241 = filePath241+"/Summary of Benefits and Coverage CO Supplement Kaiser Permanente Spanish 0410052-01/"+fileName241;
                 System.out.println("path and name is "+pathAndName241);
                 softAssert.assertTrue( fileName241.contains("Summary of Benefits and Coverage CO Supplement Kaiser Permanente Spanish 0410052-01"), "Downloaded file does not exist: " );
@@ -1126,7 +1126,7 @@ public class MedicalDetailPage {
                 lnkDocument2.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath242 = SharedData.getLocalPathToDownloadFile();
-                String fileName242 = SharedData.getNoticeFileName();
+                String fileName242 = SharedData.getCarrierPdfFileName();
                 String pathAndName242 = filePath242+"/Evidence of Coverage Kaiser Permanente English 0410052-01/"+fileName242;
                 System.out.println("path and name is "+pathAndName242);
                 softAssert.assertTrue( fileName242.contains("Evidence of Coverage Kaiser Permanente English 0410052-01"), "Downloaded file does not exist: " );
@@ -1140,7 +1140,7 @@ public class MedicalDetailPage {
                 lnkDocument3.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath243 = SharedData.getLocalPathToDownloadFile();
-                String fileName243 = SharedData.getNoticeFileName();
+                String fileName243 = SharedData.getCarrierPdfFileName();
                 String pathAndName243 = filePath243+"/Summary of Benefits and Coverage Kaiser Permanente English 0410052-01/"+fileName243;
                 System.out.println("path and name is "+pathAndName243);
                 softAssert.assertTrue( fileName243.contains("Summary of Benefits and Coverage Kaiser Permanente English 0410052-01"), "Downloaded file does not exist: " );
@@ -1154,7 +1154,7 @@ public class MedicalDetailPage {
                 lnkDocument4.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath244 = SharedData.getLocalPathToDownloadFile();
-                String fileName244 = SharedData.getNoticeFileName();
+                String fileName244 = SharedData.getCarrierPdfFileName();
                 String pathAndName244 = filePath244+"/Summary of Benefits and Coverage Kaiser Permanente Spanish 0410052-01/"+fileName244;
                 System.out.println("path and name is "+pathAndName244);
                 softAssert.assertTrue( fileName244.contains("Summary of Benefits and Coverage Kaiser Permanente Spanish 0410052-01"), "Downloaded file does not exist: " );
@@ -1169,7 +1169,7 @@ public class MedicalDetailPage {
                 lnkDocument5.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath245 = SharedData.getLocalPathToDownloadFile();
-                String fileName245 = SharedData.getNoticeFileName();
+                String fileName245 = SharedData.getCarrierPdfFileName();
                 String pathAndName245 = filePath245+"/Brochure Kaiser Permanente English/"+fileName245;
                 System.out.println("path and name is "+pathAndName245);
                 softAssert.assertTrue( fileName245.contains("Brochure Kaiser Permanente English"), "Downloaded file does not exist: " );
@@ -1184,7 +1184,7 @@ public class MedicalDetailPage {
                 lnkDocument6.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath246 = SharedData.getLocalPathToDownloadFile();
-                String fileName246 = SharedData.getNoticeFileName();
+                String fileName246 = SharedData.getCarrierPdfFileName();
                 String pathAndName246 = filePath246+"/Provider Network Kaiser Permanente Select/"+fileName246;
                 System.out.println("path and name is "+pathAndName246);
                 softAssert.assertTrue( fileName246.contains("Provider Network Kaiser Permanente Select"), "Downloaded file does not exist: " );
@@ -1198,7 +1198,7 @@ public class MedicalDetailPage {
                 lnkDocument7.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath247 = SharedData.getLocalPathToDownloadFile();
-                String fileName247 = SharedData.getNoticeFileName();
+                String fileName247 = SharedData.getCarrierPdfFileName();
                 String pathAndName247 = filePath247+"/Quality Overview Kaiser Permanente English/"+fileName247;
                 System.out.println("path and name is "+pathAndName247);
                 softAssert.assertTrue( fileName247.contains("Quality Overview Kaiser Permanente English"), "Downloaded file does not exist: " );
@@ -1213,7 +1213,7 @@ public class MedicalDetailPage {
                 lnkDocument8.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath248 = SharedData.getLocalPathToDownloadFile();
-                String fileName248 = SharedData.getNoticeFileName();
+                String fileName248 = SharedData.getCarrierPdfFileName();
                 String pathAndName248 = filePath248+"/Quality Overview Kaiser Permanente Spanish/"+fileName248;
                 System.out.println("path and name is "+pathAndName248);
                 softAssert.assertTrue( fileName248.contains("Quality Overview Kaiser Permanente Spanish"), "Downloaded file does not exist: " );
@@ -1228,7 +1228,7 @@ public class MedicalDetailPage {
                 lnkDocument9.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath249 = SharedData.getLocalPathToDownloadFile();
-                String fileName249= SharedData.getNoticeFileName();
+                String fileName249= SharedData.getCarrierPdfFileName();
                 String pathAndName249 = filePath249+"/Evidence of Coverage Kaiser Permanente Spanish 0410052-01/"+fileName249;
                 System.out.println("path and name is "+pathAndName249);
                 softAssert.assertTrue( fileName249.contains("Evidence of Coverage Kaiser Permanente Spanish 0410052-01"), "Downloaded file does not exist: " );
@@ -1247,7 +1247,7 @@ public class MedicalDetailPage {
                 lnkDocument0.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath250 = SharedData.getLocalPathToDownloadFile();
-                String fileName250 = SharedData.getNoticeFileName();
+                String fileName250 = SharedData.getCarrierPdfFileName();
                 String pathAndName250 = filePath250+"/Summary of Benefits and Coverage CO Supplement Select Health English 0030009-01/"+fileName250;
                 System.out.println("path and name is "+pathAndName250);
                 softAssert.assertTrue( fileName250.contains("Summary of Benefits and Coverage CO Supplement Select Health English 0030009-01"), "Downloaded file does not exist: " );
@@ -1261,7 +1261,7 @@ public class MedicalDetailPage {
                 lnkDocument1.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath251 = SharedData.getLocalPathToDownloadFile();
-                String fileName251 = SharedData.getNoticeFileName();
+                String fileName251 = SharedData.getCarrierPdfFileName();
                 String pathAndName251 = filePath251+"/Summary of Benefits and Coverage CO Supplement Select Health Spanish 0030009-01/"+fileName251;
                 System.out.println("path and name is "+pathAndName251);
                 softAssert.assertTrue( fileName251.contains("Summary of Benefits and Coverage CO Supplement Select Health Spanish 0030009-01"), "Downloaded file does not exist: " );
@@ -1275,7 +1275,7 @@ public class MedicalDetailPage {
                 lnkDocument2.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath252 = SharedData.getLocalPathToDownloadFile();
-                String fileName252 = SharedData.getNoticeFileName();
+                String fileName252 = SharedData.getCarrierPdfFileName();
                 String pathAndName252 = filePath252+"/Evidence of Coverage Select Health English 0030009-01/"+fileName252;
                 System.out.println("path and name is "+pathAndName252);
                 softAssert.assertTrue( fileName252.contains("Evidence of Coverage Select Health English 0030009-01"), "Downloaded file does not exist: " );
@@ -1289,7 +1289,7 @@ public class MedicalDetailPage {
                 lnkDocument3.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath253 = SharedData.getLocalPathToDownloadFile();
-                String fileName253 = SharedData.getNoticeFileName();
+                String fileName253 = SharedData.getCarrierPdfFileName();
                 String pathAndName253 = filePath253+"/Evidence of Coverage Select Health Spanish 0030009-01/"+fileName253;
                 System.out.println("path and name is "+pathAndName253);
                 softAssert.assertTrue( fileName253.contains("Evidence of Coverage Select Health Spanish 0030009-01"), "Downloaded file does not exist: " );
@@ -1303,7 +1303,7 @@ public class MedicalDetailPage {
                 lnkDocument4.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath254 = SharedData.getLocalPathToDownloadFile();
-                String fileName254 = SharedData.getNoticeFileName();
+                String fileName254 = SharedData.getCarrierPdfFileName();
                 String pathAndName254 = filePath254+"/Summary of Benefits and Coverage Select Health English 0030009-01/"+fileName254;
                 System.out.println("path and name is "+pathAndName254);
                 softAssert.assertTrue( fileName254.contains("Summary of Benefits and Coverage Select Health English 0030009-01"), "Downloaded file does not exist: " );
@@ -1318,7 +1318,7 @@ public class MedicalDetailPage {
                 lnkDocument5.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath255 = SharedData.getLocalPathToDownloadFile();
-                String fileName255 = SharedData.getNoticeFileName();
+                String fileName255 = SharedData.getCarrierPdfFileName();
                 String pathAndName255 = filePath255+"/Summary of Benefits and Coverage Select Health Spanish 0030009-01/"+fileName255;
                 System.out.println("path and name is "+pathAndName255);
                 softAssert.assertTrue( fileName255.contains("Summary of Benefits and Coverage Select Health Spanish 0030009-01"), "Downloaded file does not exist: " );
@@ -1333,7 +1333,7 @@ public class MedicalDetailPage {
                 lnkDocument6.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath256 = SharedData.getLocalPathToDownloadFile();
-                String fileName256 = SharedData.getNoticeFileName();
+                String fileName256 = SharedData.getCarrierPdfFileName();
                 String pathAndName256 = filePath256+"/Brochure Select Health English/"+fileName256;
                 System.out.println("path and name is "+pathAndName256);
                 softAssert.assertTrue( fileName256.contains("Brochure Select Health English"), "Downloaded file does not exist: " );
@@ -1347,7 +1347,7 @@ public class MedicalDetailPage {
                 lnkDocument7.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath257 = SharedData.getLocalPathToDownloadFile();
-                String fileName257 = SharedData.getNoticeFileName();
+                String fileName257 = SharedData.getCarrierPdfFileName();
                 String pathAndName257 = filePath257+"/Brochure Select Health Spanish/"+fileName257;
                 System.out.println("path and name is "+pathAndName257);
                 softAssert.assertTrue( fileName257.contains("Brochure Select Health Spanish"), "Downloaded file does not exist: " );
@@ -1362,7 +1362,7 @@ public class MedicalDetailPage {
                 lnkDocument8.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath258 = SharedData.getLocalPathToDownloadFile();
-                String fileName258 = SharedData.getNoticeFileName();
+                String fileName258 = SharedData.getCarrierPdfFileName();
                 String pathAndName258 = filePath258+"/Provider Network Select Health/"+fileName258;
                 System.out.println("path and name is "+pathAndName258);
                 softAssert.assertTrue( fileName258.contains("Provider Network Select Health"), "Downloaded file does not exist: " );
@@ -1377,7 +1377,7 @@ public class MedicalDetailPage {
                 lnkDocument9.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath259 = SharedData.getLocalPathToDownloadFile();
-                String fileName259= SharedData.getNoticeFileName();
+                String fileName259= SharedData.getCarrierPdfFileName();
                 String pathAndName259 = filePath259+"/Quality Overview Select Health Plan English/"+fileName259;
                 System.out.println("path and name is "+pathAndName259);
                 softAssert.assertTrue( fileName259.contains("Quality Overview Select Health Plan English"), "Downloaded file does not exist: " );
@@ -1391,7 +1391,7 @@ public class MedicalDetailPage {
                 lnkDocument10.click();
                 basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
                 String filePath2510 = SharedData.getLocalPathToDownloadFile();
-                String fileName2510 = SharedData.getNoticeFileName();
+                String fileName2510 = SharedData.getCarrierPdfFileName();
                 String pathAndName2510 = filePath2510+"/Quality Overview Select Health Plan Spanish/"+fileName2510;
                 System.out.println("path and name is "+pathAndName2510);
                 softAssert.assertTrue( fileName2510.contains("Quality Overview Select Health Plan Spanish"), "Downloaded file does not exist: " );
