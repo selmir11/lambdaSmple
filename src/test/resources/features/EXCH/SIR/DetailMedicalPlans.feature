@@ -297,5 +297,5 @@ Feature: Medical Plan Detail page related tests
     And I validate the document links for the Network Detail page
     And I click the English Plan Detail OutNetwork Link
     And I validate the document links for the Network Detail page
-
+    
     Then I click on Sign Out in the Header for "Portal"
