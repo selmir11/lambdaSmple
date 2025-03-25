@@ -273,12 +273,7 @@ public class AdminPortalReportsPage {
 
     public void VerifyEventAndTime(String text, String timeCondition) {
         WebElement eventTime = basicActions.getDriver().findElement(By.xpath("//tbody[1]/tr[5]/td[3]/app-max-length-tooltip[1]/span[1]"));
-        Boolean result = basicActions.hardRefreshUntilVisible(eventTime, 250000, 1000);
-
-        if (!result) {
-            System.out.println("Element was not found after the timeout.");
-            return;
-        }
+        basicActions.hardRefreshUntilVisible(eventTime, 250000, 1000);
 
         String TextXPath = "//span[contains(text(),'" + text + "')]";
         WebElement resetDateElement = basicActions.getDriver().findElement(By.xpath(TextXPath));
@@ -312,12 +307,7 @@ public class AdminPortalReportsPage {
 
     public void VerifyAndCompareEventAndTime(String event) {
         WebElement eventTime = basicActions.getDriver().findElement(By.xpath("//tbody[1]/tr[5]/td[3]/app-max-length-tooltip[1]/span[1]"));
-        Boolean result = basicActions.hardRefreshUntilVisible(eventTime, 250000, 1000);
-
-        if (!result) {
-            System.out.println("Element was not found after the timeout.");
-            return;
-        }
+        basicActions.hardRefreshUntilVisible(eventTime, 250000, 1000);
 
         String event1 = "//span[contains(text(),'" + event + "')]";
         List<WebElement> resetDateElement = basicActions.getDriver().findElements(By.xpath(event1));
