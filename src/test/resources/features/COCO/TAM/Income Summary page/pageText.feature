@@ -703,34 +703,7 @@ Feature: Tests related to the Deductions page
     I want to see the total annual income and projected income so that 
     I know the income amounts that will be used in determining eligibility [CCRT-253]
       And I verify no error shows on the Income Summary page
-#      And I click on Sign Out in the Header for "Elmo"
-#      Then I validate I am on the "Login" page
-#      Given I open the login page on the "login" portal
-#      When I click create a new account on login page
-#      Then I click create my account from pre-screen page
-#      And I enter general mandatory data for "coco" account creation
-#      Then I validate I am on the "Login" page
-#      And  I enter valid credentials to login
-#      Then I click continue signing in on the CAC Screener page
-#      Then I validate I am on the "CoCo Welcome" page
-#      And I apply for the current year in CoCo
-#      And I click Continue on my own button from Manage who helps you page
-#      Then I click EditUpdate on Family Overview page for "Primary"
-#      Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
-#      And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
-#      And I select "Yes" for mailing address option
-#      And I select "Yes" for live in Colorado option
-#      And I click continue on the Add info for yourself page
-#      And I select "Prefer not to answer" for race and ethnicity option for "Primary"
-#      And I click save and continue on the Race and Ethnicity page
-#      And I select "No" employment option
-#      And I click continue on the Employment income page
-#      And I select None of these as additional income option
-#      And I select continue on the Additional Income CoCO page
-#      And I select "None of these" as deductions option
-#      And I select continue on the Deductions CoCo page
       Then I validate I am on the "CoCo Income Summary" page
-#      And I select the projected income option "Yes" on Income Summary CoCo page
       And I select go back on the income summary CoCo page
       And I select Back on the Deductions CoCo page
       And I select Go Back on the Additional Income CoCo page
@@ -745,12 +718,9 @@ Feature: Tests related to the Deductions page
       Then I verify income "All Jobs/Employers" in "English" on the income summary CoCo page
       And I select go back on the income summary CoCo page
       And I select Back on the Deductions CoCo page
-      ## Line 301 ref
       And I select "Alimony Received" as additional income option with "5000.00" amount at "Annually" frequency
       And I select continue on the Additional Income CoCO page
       And I select "School tuition" as deduction option with "2000.00" amount at "Annually" frequency
       And I select continue on the Deductions CoCo page
       Then I validate I am on the "CoCo Income Summary" page
       Then I validate that the Total Annual Income is correctly determined by adding the Employment Income "10000.00" and Additional Income "5000.00", then subtracting the Deduction Amount "2000.00"
-      Then I wait for 1000 milliseconds
-      

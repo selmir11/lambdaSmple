@@ -96,17 +96,17 @@ public class IncomeSummaryCoCoPage {
     @FindBy(xpath = "//div[@class='body-text-1 income-details-row ng-star-inserted']//following-sibling::div")
     WebElement incomeAmtFrmEmployer;
 
-    @FindBy (xpath = "//div[@class='body-text-1 income-details-row margin-top-sm ng-star-inserted']//following-sibling::div")
+    @FindBy(xpath = "//div[@class='body-text-1 income-details-row margin-top-sm ng-star-inserted']//following-sibling::div")
     WebElement additionaIncomeAmt;
 
-    public void clickprojectedIncomeNo(){
-        basicActions.waitForElementToDisappear(spinner,20);
-        basicActions.waitForElementToBeClickableWithRetries( projectedIncomeNo,15 );
+    public void clickprojectedIncomeNo() {
+        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementToBeClickableWithRetries(projectedIncomeNo, 15);
         projectedIncomeNo.click();
         projectedIncomeNo.click();
     }
 
-    public void clickGoBackButton(){
+    public void clickGoBackButton() {
         basicActions.waitForElementToDisappear(spinner, 15);
         basicActions.waitForElementToBeClickableWithRetries(goBackButton, 15);
         goBackButton.click();
@@ -118,8 +118,8 @@ public class IncomeSummaryCoCoPage {
         saveAndContinueButton.click();
     }
 
-    public void selectProjectedIncome(String projectedIncome){
-        switch(projectedIncome){
+    public void selectProjectedIncome(String projectedIncome) {
+        switch (projectedIncome) {
             case "Yes":
                 basicActions.waitForElementListToBePresent(projectedIncomeButtons, 15);
                 projectedIncomeButtons.get(0).click();
@@ -133,14 +133,14 @@ public class IncomeSummaryCoCoPage {
         }
     }
 
-    public void enterProjectedIncomeAmountCoCo(String amount){
+    public void enterProjectedIncomeAmountCoCo(String amount) {
         basicActions.waitForElementToBePresent(projectedIncomeInput, 10);
         projectedIncomeInput.sendKeys(amount);
     }
 
-    public void selectEditIcon(String type){
+    public void selectEditIcon(String type) {
         basicActions.waitForElementToBePresent(incomeEditIcon, 15);
-        switch(type){
+        switch (type) {
             case "Income":
                 incomeEditIcon.click();
                 break;
@@ -152,11 +152,10 @@ public class IncomeSummaryCoCoPage {
         }
     }
 
-    
-    
+
     //////////////////////////////////////////////VALIDATION METHODS//////////////////////////////////////////////////
-    public void verifyHeadersIncomeSummaryPage(String language){
-        switch (language){
+    public void verifyHeadersIncomeSummaryPage(String language) {
+        switch (language) {
             case "English":
                 verifyHeadersIncomeSummaryPageEnglish();
                 break;
@@ -168,11 +167,11 @@ public class IncomeSummaryCoCoPage {
         }
     }
 
-    public void verifyHeadersIncomeSummaryPageEnglish(){
+    public void verifyHeadersIncomeSummaryPageEnglish() {
         basicActions.wait(500);
-        basicActions.waitForElementToBePresentWithRetries(hdr_Income,60);
-        basicActions.waitForElementToBePresentWithRetries(hdr_IncomeSummary,60);
-        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()),"Found: " + hdr_Income.getText() + " Expecting: Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
+        basicActions.waitForElementToBePresentWithRetries(hdr_Income, 60);
+        basicActions.waitForElementToBePresentWithRetries(hdr_IncomeSummary, 60);
+        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()), "Found: " + hdr_Income.getText() + " Expecting: Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName());
         softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px");
         softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700");
         softAssert.assertEquals(hdr_Income.getCssValue("font-family"), "\"PT Sans\", sans-serif");
@@ -183,10 +182,10 @@ public class IncomeSummaryCoCoPage {
         softAssert.assertAll();
     }
 
-    public void verifyHeadersIncomeSummaryPageSpanish(){
+    public void verifyHeadersIncomeSummaryPageSpanish() {
         basicActions.wait(250);
-        basicActions.waitForElementToBePresentWithRetries(hdr_Income,60);
-        basicActions.waitForElementToBePresentWithRetries(hdr_IncomeSummary,60);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Income, 60);
+        basicActions.waitForElementToBePresentWithRetries(hdr_IncomeSummary, 60);
         String actualText = hdr_Income.getText().replace("\u00A0", " ").trim();
         String expectedText = "Ingresos: " + basicActions.getMemFirstLastNames("Primary").replace("\u00A0", " ").trim();
         softAssert.assertTrue(actualText.equalsIgnoreCase(expectedText), "Header text mismatch! Expected: '" + expectedText + "', but found: '" + actualText + "'");
@@ -200,7 +199,7 @@ public class IncomeSummaryCoCoPage {
         softAssert.assertAll();
     }
 
-    public void verifyTotalAnnualIncome(String Amount){
+    public void verifyTotalAnnualIncome(String Amount) {
         basicActions.waitForElementToBePresentWithRetries(totalAnnualIncome, 15);
         basicActions.waitForElementToDisappear(spinner, 30);
         softAssert.assertTrue(totalAnnualIncome.getText().contains(Amount), "Amount is incorrect");
@@ -210,7 +209,7 @@ public class IncomeSummaryCoCoPage {
         softAssert.assertAll();
     }
 
-    public void verifyTotalAnnualIncomeDescription(String language){
+    public void verifyTotalAnnualIncomeDescription(String language) {
         basicActions.waitForElementToDisappear(spinner, 30);
         basicActions.waitForElementToBePresentWithRetries(totalAnnualIncomeDescription, 15);
         softAssert.assertEquals(totalAnnualIncomeDescription.getCssValue("font-weight"), "400");
@@ -218,7 +217,7 @@ public class IncomeSummaryCoCoPage {
         softAssert.assertEquals(totalAnnualIncomeDescription.getCssValue("color"), "rgba(77, 77, 79, 1)");
         softAssert.assertEquals(totalAnnualIncomeDescription.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertAll();
-        switch (language){
+        switch (language) {
             case "English":
                 softAssert.assertEquals(totalAnnualIncomeDescription.getText(), "Income minus Deductions = Total annual income");
                 softAssert.assertAll();
@@ -232,7 +231,7 @@ public class IncomeSummaryCoCoPage {
         }
     }
 
-    public void verifyProjectedIncomeText(String language){
+    public void verifyProjectedIncomeText(String language) {
         basicActions.waitForElementToDisappear(spinner, 30);
         basicActions.waitForElementToBePresentWithRetries(projectedIncomeHeader, 15);
         softAssert.assertEquals(projectedIncomeHeader.getCssValue("font-weight"), "700");
@@ -244,7 +243,7 @@ public class IncomeSummaryCoCoPage {
         softAssert.assertEquals(projectedIncomeText.getCssValue("color"), "rgba(43, 49, 60, 1)");
         softAssert.assertEquals(projectedIncomeText.getCssValue("font-family"), "\"PT Sans\", sans-serif");
         softAssert.assertAll();
-        switch (language){
+        switch (language) {
             case "English":
                 softAssert.assertEquals(projectedIncomeHeader.getText(), "Projected Income");
                 softAssert.assertEquals(projectedIncomeText.getText(), "Based on the income information you've provided so far, we've calculated your annual income as listed above. Do you expect your income to be different than the amount we calculated above for 2025?");
@@ -260,7 +259,7 @@ public class IncomeSummaryCoCoPage {
         }
     }
 
-    public void verifyEditIcon(){
+    public void verifyEditIcon() {
         basicActions.waitForElementToBePresent(incomeEditIcon, 10);
         basicActions.waitForElementToDisappear(spinner, 15);
         softAssert.assertEquals(incomeEditIcon.getCssValue("color"), "rgba(26, 112, 179, 1)");
@@ -276,7 +275,7 @@ public class IncomeSummaryCoCoPage {
         softAssert.assertAll();
     }
 
-    public void verifyIncomeName(String income, String language){
+    public void verifyIncomeName(String income, String language) {
         basicActions.waitForElementToDisappear(spinner, 15);
         basicActions.waitForElementToBeClickable(goBackButton, 30);
         switch (language) {
@@ -291,50 +290,50 @@ public class IncomeSummaryCoCoPage {
         }
     }
 
-    public void verifyIncomeNameEnglish(String income){
+    public void verifyIncomeNameEnglish(String income) {
         basicActions.waitForElementToDisappear(spinner, 15);
-        switch (income){
+        switch (income) {
             case "None":
-                softAssert.assertEquals(incomeName.getText(),"No income reported");
+                softAssert.assertEquals(incomeName.getText(), "No income reported");
                 break;
             case "All Jobs/Employers":
-                softAssert.assertEquals(incomeName.getText(),"All Jobs/Employers");
+                softAssert.assertEquals(incomeName.getText(), "All Jobs/Employers");
                 break;
             case "Alimony Received":
-                softAssert.assertEquals(incomeName.getText(),"Alimony Received");
+                softAssert.assertEquals(incomeName.getText(), "Alimony Received");
                 break;
             case "Capital Gains":
-                softAssert.assertEquals(incomeName.getText(),"Capital Gains");
+                softAssert.assertEquals(incomeName.getText(), "Capital Gains");
                 break;
             case "Income from rental property":
-                softAssert.assertEquals(incomeName.getText(),"Income from rental property");
+                softAssert.assertEquals(incomeName.getText(), "Income from rental property");
                 break;
             case "Pension":
-                softAssert.assertEquals(incomeName.getText(),"Pension");
+                softAssert.assertEquals(incomeName.getText(), "Pension");
                 break;
             case "Private Retirement Income":
-                softAssert.assertEquals(incomeName.getText(),"Private Retirement Income");
+                softAssert.assertEquals(incomeName.getText(), "Private Retirement Income");
                 break;
             case "Income from Social Security":
-                softAssert.assertEquals(incomeName.getText(),"Income from Social Security");
+                softAssert.assertEquals(incomeName.getText(), "Income from Social Security");
                 break;
             case "Unemployment Insurance Benefit":
-                softAssert.assertEquals(incomeName.getText(),"Unemployment Insurance Benefit");
+                softAssert.assertEquals(incomeName.getText(), "Unemployment Insurance Benefit");
                 break;
             case "Investment Income":
-                softAssert.assertEquals(incomeName.getText(),"Investment Income");
+                softAssert.assertEquals(incomeName.getText(), "Investment Income");
                 break;
             case "Cash Support":
-                softAssert.assertEquals(incomeName.getText(),"Cash Support");
+                softAssert.assertEquals(incomeName.getText(), "Cash Support");
                 break;
             case "Untaxed Foreign Income":
-                softAssert.assertEquals(incomeName.getText(),"Untaxed Foreign Income");
+                softAssert.assertEquals(incomeName.getText(), "Untaxed Foreign Income");
                 break;
             case "Royalty Income":
-                softAssert.assertEquals(incomeName.getText(),"Royalty Income");
+                softAssert.assertEquals(incomeName.getText(), "Royalty Income");
                 break;
             case "Taxable income from Tribal Sources":
-                softAssert.assertEquals(incomeName.getText(),"Taxable income from Tribal Sources");
+                softAssert.assertEquals(incomeName.getText(), "Taxable income from Tribal Sources");
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + income);
@@ -346,50 +345,50 @@ public class IncomeSummaryCoCoPage {
         softAssert.assertAll();
     }
 
-    public void verifyIncomeNameSpanish(String income){
+    public void verifyIncomeNameSpanish(String income) {
         basicActions.waitForElementToDisappear(spinner, 15);
-        switch (income){
+        switch (income) {
             case "None":
-                softAssert.assertEquals(incomeName.getText(),"No se declara ning\u00fan ingreso");
+                softAssert.assertEquals(incomeName.getText(), "No se declara ning\u00fan ingreso");
                 break;
             case "All Jobs/Employers":
-                softAssert.assertEquals(incomeName.getText(),"Ingresos laborales");
+                softAssert.assertEquals(incomeName.getText(), "Ingresos laborales");
                 break;
             case "Alimony Received":
-                softAssert.assertEquals(incomeName.getText(),"Pensi\u00f3n alimenticia recibida");
+                softAssert.assertEquals(incomeName.getText(), "Pensi\u00f3n alimenticia recibida");
                 break;
             case "Capital Gains":
-                softAssert.assertEquals(incomeName.getText(),"Ganancias de capital");
+                softAssert.assertEquals(incomeName.getText(), "Ganancias de capital");
                 break;
             case "Income from rental property":
-                softAssert.assertEquals(incomeName.getText(),"Ingresos por renta de propiedades");
+                softAssert.assertEquals(incomeName.getText(), "Ingresos por renta de propiedades");
                 break;
             case "Pension":
-                softAssert.assertEquals(incomeName.getText(),"Pensi\u00f3n");
+                softAssert.assertEquals(incomeName.getText(), "Pensi\u00f3n");
                 break;
             case "Private Retirement Income":
-                softAssert.assertEquals(incomeName.getText(),"Ingresos privados por retiro");
+                softAssert.assertEquals(incomeName.getText(), "Ingresos privados por retiro");
                 break;
             case "Income from Social Security":
-                softAssert.assertEquals(incomeName.getText(),"Ingresos por el Seguro Social");
+                softAssert.assertEquals(incomeName.getText(), "Ingresos por el Seguro Social");
                 break;
             case "Unemployment Insurance Benefit":
-                softAssert.assertEquals(incomeName.getText(),"Beneficio del seguro de desempleo");
+                softAssert.assertEquals(incomeName.getText(), "Beneficio del seguro de desempleo");
                 break;
             case "Investment Income":
-                softAssert.assertEquals(incomeName.getText(),"Ingresos derivados de inversiones");
+                softAssert.assertEquals(incomeName.getText(), "Ingresos derivados de inversiones");
                 break;
             case "Cash Support":
-                softAssert.assertEquals(incomeName.getText(),"Apoyo en efectivo");
+                softAssert.assertEquals(incomeName.getText(), "Apoyo en efectivo");
                 break;
             case "Untaxed Foreign Income":
-                softAssert.assertEquals(incomeName.getText(),"Ingresos extranjeros no gravados");
+                softAssert.assertEquals(incomeName.getText(), "Ingresos extranjeros no gravados");
                 break;
             case "Royalty Income":
-                softAssert.assertEquals(incomeName.getText(),"Ingresos por regal\u00edas");
+                softAssert.assertEquals(incomeName.getText(), "Ingresos por regal\u00edas");
                 break;
             case "Taxable income from Tribal Sources":
-                softAssert.assertEquals(incomeName.getText(),"Ingresos gravables de origen tribal");
+                softAssert.assertEquals(incomeName.getText(), "Ingresos gravables de origen tribal");
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + income);
@@ -401,9 +400,9 @@ public class IncomeSummaryCoCoPage {
         softAssert.assertAll();
     }
 
-    public void verifyDeductionName(String deduction, String language){
+    public void verifyDeductionName(String deduction, String language) {
         basicActions.waitForElementToDisappear(spinner, 15);
-        switch (language){
+        switch (language) {
             case "English":
                 verifyDeductionNameEnglish(deduction);
                 break;
@@ -415,45 +414,45 @@ public class IncomeSummaryCoCoPage {
         }
     }
 
-    public void verifyDeductionNameEnglish(String deduction){
+    public void verifyDeductionNameEnglish(String deduction) {
         basicActions.waitForElementToDisappear(spinner, 15);
-        switch (deduction){
+        switch (deduction) {
             case "None":
-                softAssert.assertEquals(noDeductionName.getText(),"No deductions reported");
+                softAssert.assertEquals(noDeductionName.getText(), "No deductions reported");
                 softAssert.assertEquals(noDeductionName.getCssValue("font-size"), "16px");
                 softAssert.assertEquals(noDeductionName.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(noDeductionName.getCssValue("font-family"), "\"PT Sans\", sans-serif");
                 softAssert.assertEquals(noDeductionName.getCssValue("margin-left"), "32px");
                 return;
             case "Alimony or spousal support paid out":
-                softAssert.assertEquals(deductionName.getText(),"Alimony or spousal support paid out");
+                softAssert.assertEquals(deductionName.getText(), "Alimony or spousal support paid out");
                 break;
             case "Domestic production activities":
-                softAssert.assertEquals(deductionName.getText(),"Domestic production activities");
+                softAssert.assertEquals(deductionName.getText(), "Domestic production activities");
                 break;
             case "Health Savings Account contribution":
-                softAssert.assertEquals(deductionName.getText(),"Health Savings Account contribution");
+                softAssert.assertEquals(deductionName.getText(), "Health Savings Account contribution");
                 break;
             case "Pre-tax retirement account contribution":
-                softAssert.assertEquals(deductionName.getText(),"Pre-tax retirement account contribution");
+                softAssert.assertEquals(deductionName.getText(), "Pre-tax retirement account contribution");
                 break;
             case "School tuition and fees":
-                softAssert.assertEquals(deductionName.getText(),"School tuition and fees");
+                softAssert.assertEquals(deductionName.getText(), "School tuition and fees");
                 break;
             case "Self-employment tax":
-                softAssert.assertEquals(deductionName.getText(),"Self-employment tax");
+                softAssert.assertEquals(deductionName.getText(), "Self-employment tax");
                 break;
             case "Student loan interest":
-                softAssert.assertEquals(deductionName.getText(),"Student loan interest");
+                softAssert.assertEquals(deductionName.getText(), "Student loan interest");
                 break;
             case "Self-employment health insurance":
-                softAssert.assertEquals(deductionName.getText(),"Self-employment health insurance");
+                softAssert.assertEquals(deductionName.getText(), "Self-employment health insurance");
                 break;
             case "Self-employment retirement plan":
-                softAssert.assertEquals(deductionName.getText(),"Self-employment retirement plan");
+                softAssert.assertEquals(deductionName.getText(), "Self-employment retirement plan");
                 break;
             case "Moving expenses":
-                softAssert.assertEquals(deductionName.getText(),"Moving expenses");
+                softAssert.assertEquals(deductionName.getText(), "Moving expenses");
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + deduction);
@@ -466,45 +465,45 @@ public class IncomeSummaryCoCoPage {
 
     }
 
-    public void verifyDeductionNameSpanish(String deduction){
+    public void verifyDeductionNameSpanish(String deduction) {
         basicActions.waitForElementToDisappear(spinner, 15);
-        switch (deduction){
+        switch (deduction) {
             case "None":
-                softAssert.assertEquals(noDeductionName.getText(),"No se declaran deducciones");
+                softAssert.assertEquals(noDeductionName.getText(), "No se declaran deducciones");
                 softAssert.assertEquals(noDeductionName.getCssValue("font-size"), "16px");
                 softAssert.assertEquals(noDeductionName.getCssValue("font-weight"), "400");
                 softAssert.assertEquals(noDeductionName.getCssValue("font-family"), "\"PT Sans\", sans-serif");
                 softAssert.assertEquals(noDeductionName.getCssValue("margin-left"), "32px");
                 return;
             case "Alimony or spousal support paid out":
-                softAssert.assertEquals(deductionName.getText(),"Pensi\u00f3n alimenticia o apoyo conyugal que paga");
+                softAssert.assertEquals(deductionName.getText(), "Pensi\u00f3n alimenticia o apoyo conyugal que paga");
                 break;
             case "Domestic production activities":
-                softAssert.assertEquals(deductionName.getText(),"Actividades de producci\u00f3n para el mercado interno");
+                softAssert.assertEquals(deductionName.getText(), "Actividades de producci\u00f3n para el mercado interno");
                 break;
             case "Health Savings Account contribution":
-                softAssert.assertEquals(deductionName.getText(),"Aporte a cuenta de ahorros de salud");
+                softAssert.assertEquals(deductionName.getText(), "Aporte a cuenta de ahorros de salud");
                 break;
             case "Pre-tax retirement account contribution":
-                softAssert.assertEquals(deductionName.getText(),"Aporte a la cuenta de retiro antes de impuestos");
+                softAssert.assertEquals(deductionName.getText(), "Aporte a la cuenta de retiro antes de impuestos");
                 break;
             case "School tuition and fees":
-                softAssert.assertEquals(deductionName.getText(),"Colegiatura y cuotas escolares");
+                softAssert.assertEquals(deductionName.getText(), "Colegiatura y cuotas escolares");
                 break;
             case "Self-employment tax":
-                softAssert.assertEquals(deductionName.getText(),"Impuesto al trabajo independiente");
+                softAssert.assertEquals(deductionName.getText(), "Impuesto al trabajo independiente");
                 break;
             case "Student loan interest":
-                softAssert.assertEquals(deductionName.getText(),"Inter\u00e9s por pr\u00e9stamo de estudiante");
+                softAssert.assertEquals(deductionName.getText(), "Inter\u00e9s por pr\u00e9stamo de estudiante");
                 break;
             case "Self-employment health insurance":
-                softAssert.assertEquals(deductionName.getText(),"Seguro de salud de trabajador independiente");
+                softAssert.assertEquals(deductionName.getText(), "Seguro de salud de trabajador independiente");
                 break;
             case "Self-employment retirement plan":
-                softAssert.assertEquals(deductionName.getText(),"Plan de retiro como trabajador independiente");
+                softAssert.assertEquals(deductionName.getText(), "Plan de retiro como trabajador independiente");
                 break;
             case "Moving expenses":
-                softAssert.assertEquals(deductionName.getText(),"Gastos de mudanza");
+                softAssert.assertEquals(deductionName.getText(), "Gastos de mudanza");
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + deduction);
@@ -517,10 +516,10 @@ public class IncomeSummaryCoCoPage {
 
     }
 
-    public void verifyProjectedIncomePromptText(String language){
+    public void verifyProjectedIncomePromptText(String language) {
         basicActions.waitForElementToDisappear(spinner, 15);
         basicActions.waitForElementToBePresent(enterProjectedIncomeText, 15);
-        switch (language){
+        switch (language) {
             case "English":
                 softAssert.assertEquals(enterProjectedIncomeText.getText(), "Enter your projected income in 2025.");
                 softAssert.assertAll();
@@ -578,13 +577,13 @@ public class IncomeSummaryCoCoPage {
         projectedIncomeText.click();
     }
 
-    public void validateErrorMessageAndItsProperties(DataTable dataTable){
-        basicActions.waitForElementToBePresent(ErrorIcon,20);
-        basicActions.waitForElementToBePresent(ErrorMessage,10);
+    public void validateErrorMessageAndItsProperties(DataTable dataTable) {
+        basicActions.waitForElementToBePresent(ErrorIcon, 20);
+        basicActions.waitForElementToBePresent(ErrorMessage, 10);
 
-        List<Map<String,String>> data = dataTable.asMaps();
-        softAssert.assertTrue(ErrorIcon.isDisplayed(),"Error Icon is not visible in the page");
-        softAssert.assertTrue(ErrorMessage.isDisplayed(),"Error Message is not visible in the page");
+        List<Map<String, String>> data = dataTable.asMaps();
+        softAssert.assertTrue(ErrorIcon.isDisplayed(), "Error Icon is not visible in the page");
+        softAssert.assertTrue(ErrorMessage.isDisplayed(), "Error Message is not visible in the page");
         softAssert.assertEquals(ErrorMessage.getText(), data.get(0).get("Text"));
         softAssert.assertEquals(ErrorMessage.getCssValue("font-size"), data.get(0).get("fontSize"));
         softAssert.assertEquals(ErrorMessage.getCssValue("font-family"), data.get(0).get("fontFamily"));
@@ -595,11 +594,11 @@ public class IncomeSummaryCoCoPage {
         softAssert.assertAll();
     }
 
-    public void validateLabelTextAndItsProperties(DataTable dataTable){
-        basicActions.waitForElementToBePresent(enterProjectedIncomeText,10);
+    public void validateLabelTextAndItsProperties(DataTable dataTable) {
+        basicActions.waitForElementToBePresent(enterProjectedIncomeText, 10);
 
-        List<Map<String,String>> data = dataTable.asMaps();
-        softAssert.assertTrue(enterProjectedIncomeText.isDisplayed(),"Enter your projected income text is not visible in the page");
+        List<Map<String, String>> data = dataTable.asMaps();
+        softAssert.assertTrue(enterProjectedIncomeText.isDisplayed(), "Enter your projected income text is not visible in the page");
         softAssert.assertEquals(enterProjectedIncomeText.getText(), data.get(0).get("Text"));
         softAssert.assertEquals(enterProjectedIncomeText.getCssValue("font-size"), data.get(0).get("fontSize"));
         softAssert.assertEquals(enterProjectedIncomeText.getCssValue("font-family"), data.get(0).get("fontFamily"));
@@ -612,39 +611,37 @@ public class IncomeSummaryCoCoPage {
 
     public void verifyNoErrors() {
         basicActions.wait(50);
-        basicActions.waitForElementToBePresent(ErrorMessage,10);
-        softAssert.assertFalse(basicActions.waitForElementPresence(ErrorMessage,10));
-        softAssert.assertAll();
-    }
-    public void verifyDeductionAmount(String amount){
-        basicActions.waitForElementToDisappear(spinner, 30);
-        softAssert.assertEquals(deductionAmt.getText(),amount);
+        basicActions.waitForElementToBePresent(ErrorMessage, 10);
+        softAssert.assertFalse(basicActions.waitForElementPresence(ErrorMessage, 10));
         softAssert.assertAll();
     }
 
-    public void verifyIncomeAmountCalculations(String EmploymentIncome, String AdditionalIncome, String DeductionAmt){
+    public void verifyDeductionAmount(String amount) {
         basicActions.waitForElementToDisappear(spinner, 30);
+        softAssert.assertEquals(deductionAmt.getText(), amount);
+        softAssert.assertAll();
+    }
 
-        double employmentIncome = Double.parseDouble(EmploymentIncome.replaceAll("[^0-9.]", ""));
-        double additionalIncome = Double.parseDouble(AdditionalIncome.replaceAll("[^0-9.]", ""));
-        double deductionAmount = Double.parseDouble(DeductionAmt.replaceAll("[^0-9.]", ""));
+    public void verifyIncomeAmountCalculations(String EmploymentIncome, String AdditionalIncome, String DeductionAmt) {
+        basicActions.waitForElementToDisappear(spinner, 30);
+        double employmentIncome = (Double.parseDouble(EmploymentIncome.replaceAll("[^0-9]", "")))/100;
+        double additionalIncome = (Double.parseDouble(AdditionalIncome.replaceAll("[^0-9]", "")))/100;
+        double deductionAmount = (Double.parseDouble(DeductionAmt.replaceAll("[^0-9]", "")))/100;
         // Calculate expected total annual income
-        double expectedTotalIncome = (employmentIncome + additionalIncome) - deductionAmount;
+        double expectedTotalIncome = ((employmentIncome + additionalIncome) - deductionAmount) ;
         // Format as US Dollar currency
         NumberFormat currencyFormatCalculated = NumberFormat.getCurrencyInstance(Locale.US);
         String formattedCalculatedAmount = currencyFormatCalculated.format(expectedTotalIncome);
-
         // Calculate expected total annual income from UI
-        double IncomeFrmEmployerValue= Double.parseDouble(incomeAmtFrmEmployer.getText().replaceAll("[^0-9.]",""));
-        double additionaIncomeAmtValue = Double.parseDouble(additionaIncomeAmt.getText().replaceAll("[^0-9.]",""));
-        double deductionAmtValue= Double.parseDouble(deductionAmt.getText().replaceAll("[^0-9.]",""));
-        String expectedTotalIncomeFromWeb = String.valueOf((IncomeFrmEmployerValue + additionaIncomeAmtValue) - deductionAmtValue);
+        double IncomeFrmEmployerValue = Double.parseDouble(incomeAmtFrmEmployer.getText().replaceAll("[^0-9]", ""));
+        double additionaIncomeAmtValue = Double.parseDouble(additionaIncomeAmt.getText().replaceAll("[^0-9]", ""));
+        double deductionAmtValue = Double.parseDouble(deductionAmt.getText().replaceAll("[^0-9]", ""));
+        double expectedTotalIncomeFromWeb = ((IncomeFrmEmployerValue + additionaIncomeAmtValue) - deductionAmtValue) /100;
         // Format as US Dollar currency
         NumberFormat currencyFormatRetrievd = NumberFormat.getCurrencyInstance(Locale.US);
         String formattedCalculatedAmountFrmWeb = currencyFormatRetrievd.format(expectedTotalIncomeFromWeb);
-
-        softAssert.assertEquals(formattedCalculatedAmountFrmWeb,formattedCalculatedAmount,"Expected Amount Does not Match");
-        System.out.println("Expected Income From Web = " + formattedCalculatedAmountFrmWeb + "\n\nExpected Income Calculated = " + formattedCalculatedAmount);
+        softAssert.assertEquals(formattedCalculatedAmountFrmWeb, formattedCalculatedAmount, "Expected Amount Does not Match");
+        System.out.println("Expected Income From Web = " + formattedCalculatedAmountFrmWeb + "\nExpected Income Calculated = " + formattedCalculatedAmount);
         softAssert.assertAll();
     }
 }
