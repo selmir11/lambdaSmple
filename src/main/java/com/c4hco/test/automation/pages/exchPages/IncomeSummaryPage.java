@@ -154,6 +154,25 @@ public class IncomeSummaryPage {
     @FindBy(xpath = "//div[@class='income-details-right']")
     List<WebElement> allIncomeAmounts;
 
+    @FindBy(id = "edit-income-button")
+    WebElement editIncomeButton;
+
+    @FindBy(id = "edit-deductions-button")
+    WebElement editdeductionsButton;
+
+
+
+    public void clickEditDeductionsButton() {
+        basicActions.waitForElementToBePresentWithRetries(editdeductionsButton,30);
+        editdeductionsButton.click();
+    }
+    public void clickEditIncomeButton() {
+        basicActions.waitForElementToBePresentWithRetries(editIncomeButton,30);
+        editIncomeButton.click();
+    }
+
+
+
     public void selectProjectedIncome(String projectedIncomeOption){
         basicActions.waitForElementToDisappear(loaderIcon, 120);
         basicActions.waitForElementToDisappear(spinner,60);

@@ -30,6 +30,7 @@ public class CongratulationsPage {
     WebElement saveAndContinue;
 
     public void clickSaveContinue(){
+        basicActions.waitForElementToBePresent(saveAndContinue,30);
         saveAndContinue.click();
     }
 
