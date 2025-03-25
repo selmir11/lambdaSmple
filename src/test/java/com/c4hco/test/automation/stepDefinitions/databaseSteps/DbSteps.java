@@ -387,6 +387,12 @@ public class DbSteps {
     @And("I verify {string}'s LCE data is moved to ah table")
     public void iValidateLceMovedToAh(String FName) {dbValidations.validateLceMovedToAh(FName);}
 
+    @Then("I validate the number of deduction rows is {int} in DB")
+    public void iValidateDeductionRowCount(int expectedRowCount) {dbValidations.validateDeductionRowCount(expectedRowCount);}
+
+    @And("I verify plan year is {string} in the DB")
+    public void iValidateEnrollmentPlanYear(String year) {dbValidations.validateEnrollmentPlanYear(year);}
+
 }
 
 
