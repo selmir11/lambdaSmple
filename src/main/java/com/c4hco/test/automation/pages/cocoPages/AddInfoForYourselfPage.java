@@ -484,5 +484,37 @@ public class AddInfoForYourselfPage {
            softAssert.assertFalse(countyDropdown.isEnabled(), "Dropdown field is not disabled");
            softAssert.assertAll();
     }
+    public void updateCocoMailingAddress(String AddrLine1, String city, String state, String zipcode, String county) {
+
+        // Mailing Address - Only for primary member
+        MemberDetails subscriber = SharedData.getPrimaryMember();
+        basicActions.wait(100);
+        mailingAddressLine1Input.clear();
+        mailingAddressLine1Input.sendKeys(AddrLine1);
+        mailingCityInput.clear();
+        mailingCityInput.sendKeys(city);
+        mailingStateDropdown.sendKeys(state);
+        mailingZipcodeInput.clear();
+        mailingZipcodeInput.sendKeys(zipcode);
+
+        basicActions.waitForElementToBePresent(mailingStateDropdown, 30);
+        mailingStateDropdown.click();
+        basicActions.selectValueFromDropdown(mailingStateDropdown, mailingStateDropdownOptions, state);
+
+        basicActions.waitForElementToBeClickable(mailingCountyDropdown, 30);
+        mailingCountyDropdown.click();
+        basicActions.selectValueFromDropdown(mailingCountyDropdown, mailingCountyDropdownOptions, county);
+
+        Address mailinglAddress = new Address();
+        mailinglAddress.setAddressLine1(AddrLine1);
+        mailinglAddress.setAddressCity(city);
+        mailinglAddress.setAddressState(state);
+        mailinglAddress.setAddressZipcode(zipcode);
+        mailinglAddress.setAddressCounty(county);
+        subscriber.setMailingAddress(mailinglAddress);
+
+        SharedData.getPrimaryMember().setMailingAddress(mailinglAddress);
+    }
+
 
 }

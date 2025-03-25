@@ -140,5 +140,10 @@ public class MyProfilePageSteps {
     public void iVerifyChangeButtonIsNotDisplayingForPrimaryContactOnTheMyProfilePage() {
         myProfileExchPage.changePrimaryContactnotdisplay();
     }
+
+    @And("I update Preferred Written Language to {string}")
+    public void iUpdatePreferredLanguageContactMethodTo(String langContactPreferred) {
+        myProfileExchPage.PreferredWritternLanguage(langContactPreferred);
+    }
 }
 

@@ -708,6 +708,13 @@ public class BasicActions {
         return firstDayOfCurrMonth.format(formatter);
     }
 
+    public String lastDateOfCurrentMonth() {
+        LocalDate today = LocalDate.now();
+        LocalDate lastDayOfCurrentMonth = YearMonth.from(today).atEndOfMonth();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return lastDayOfCurrentMonth.format(formatter);
+    }
+
     public String lastDateOfNextMonth() {
         LocalDate today = LocalDate.now();
         LocalDate lastDayOfNextMonth = YearMonth.from(today).plusMonths(1).atEndOfMonth();
@@ -819,8 +826,8 @@ public class BasicActions {
                     String policyStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate();
                     date = firstDateOfNextMonthAfterSpecificDate(policyStartDate);
                     break;
-                case "end of current month":
-                    date = endOfMonthDate();
+                case "Last Day Of Current Month":
+                    date = lastDateOfCurrentMonth();
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid option: " + dateRequirement);
@@ -1388,7 +1395,11 @@ public class BasicActions {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) getDriver();
         jsExecutor.executeScript("arguments[0].value = arguments[1];", element, text);
     }
-
+    public String removeCommaAndDollarSignFromAmount(String input){
+        String amountWithoutDollarSign = input.replace("$", "");
+        // Remove commas
+        return amountWithoutDollarSign.replaceAll(",", "");
+    }
 }
 
 
