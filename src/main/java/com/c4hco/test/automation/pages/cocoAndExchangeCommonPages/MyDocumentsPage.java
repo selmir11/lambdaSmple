@@ -1285,6 +1285,9 @@ public class MyDocumentsPage {
             case "Social Security Number":
                 categoryList.get(17).click();
                 break;
+            case "Identity":
+                categoryList.get(11).click();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + mvrType);
         }

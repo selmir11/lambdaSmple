@@ -315,12 +315,27 @@ public class TellUsAboutAdditionalMemberPage {
             // Handle the exception as needed
         }
     }
-    public void updateMemSSN(String updatedSSN) {
+    public void updateMemSSN(String memprefix, String updatedSSN) {
+        List<MemberDetails> members = SharedData.getMembers();
         basicActions.waitForElementToBePresent(txtSSN, 20);
+        for(MemberDetails member: members){
+            if(member.getFirstName().contains(memprefix)){
+                String oldSSN = member.getSsn();
+                System.out.println("Old SSN:: "+oldSSN);
+                member.setSsn(updatedSSN);
+                member.setHasIncorrectEntities(true);
+                member.setIncorrectEntityTypeQualifier("1");
+                member.setIncorrectEntityIdCode("70");
+                member.setIncorrectIdCodeQualifier("34");
+                member.setIncorrect_first_name(member.getFirstName());
+                member.setIncorrect_last_name(member.getLastName());
+                member.setIncorrectIdCode(oldSSN);
+                System.out.println("SSN updated successfully for :: "+ member.getFirstName());
+            }
+        }
         txtSSN.clear();
         txtSSN.sendKeys(updatedSSN);
         txtSSN.sendKeys(Keys.TAB);
-        System.out.println("SSN updated successfully");
     }
 
     public void additionalMemberDetailsSameAsPrimary(String memberCondition,List<String> relations) {

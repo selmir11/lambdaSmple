@@ -179,7 +179,8 @@ public class DbQueries_Exch {
     public String csrLevel() {
         return "SELECT csr_level FROM " + dbName + ".en_member_coverage_financial_ah\n" +
                 "where application_id='" + applicationId + "' \n" +
-                "and current_ind = 1 limit 1";
+                "and current_ind = 1 " +
+                "limit 1";
     }
 
     public String commissionTin() {
@@ -197,6 +198,16 @@ public class DbQueries_Exch {
                 "JOIN " + dbName + ".en_policy_member_ah pm ON pmc.policy_member_id = pm.policy_member_id\n" +
                 "JOIN " + dbName + ".en_policy_ah p ON pm.policy_id = p.policy_id\n" +
                 "WHERE p.account_id = '" + acctId + "'";
+    }
+
+    public String getMedCSRRecords_aian() {
+        return "SELECT DISTINCT mcf.csr_amt, p.coverage_type\n" +
+                "FROM  " + dbName + ".en_member_coverage_financial_ah mcf\n" +
+                "JOIN " + dbName + ".en_policy_member_coverage_ah pmc ON mcf.policy_member_coverage_id = pmc.policy_member_coverage_id \n" +
+                "JOIN " + dbName + ".en_policy_member_ah pm ON pmc.policy_member_id = pm.policy_member_id \n" +
+                "JOIN " + dbName + ".en_policy_ah p ON pm.policy_id = p.policy_id \n" +
+                "WHERE p.account_id = '" + acctId + "' \n" +
+                "AND mcf.csr_amt >0";
     }
 
     public String getPolicyDqCheck() {
@@ -616,8 +627,10 @@ public class DbQueries_Exch {
     }
 
     public String getEnrollmentPeriodEndDate() {
-        return "SELECT * from " + dbName + ".es_enrollment_period_end_date\n" +
+        String query =  "SELECT * from " + dbName + ".es_enrollment_period_end_date\n" +
                 "where application_id = '" + applicationId + "'";
+        System.out.println("Executing Query: " + query);
+        return query;
     }
 
     public String getBrokerEmailIn() {
@@ -812,6 +825,16 @@ public class DbQueries_Exch {
                 "AND i.kind = '" + kindValue + "';";
     }
 
+    public String getDeductionAmountCount(String memberId) {
+        String query =  "SELECT count(i.kind)" +
+                "FROM " + dbName + ".es_member m " +
+                "JOIN " + dbName + ".es_income i ON m.member_id = i.member_id " +
+                "WHERE m.member_id = '" + memberId + "' " +
+                "AND i.type = 'DEDUCTION';";
+        System.out.println("Executing Query: " + query);
+        return query;
+    }
+
     public String getApplicationIdFromHouseholdTable(){
         return "select esh.account_id, esh.household_id, esa.created_ts, esa.application_id\n" +
                 "from "+dbName+".es_household esh, "+dbName+".es_application esa\n" +
@@ -881,6 +904,15 @@ public class DbQueries_Exch {
                 "join " + dbName + ".es_member b on a.household_id = b.household_id\n" +
                 "where a.account_id = " + acctId + "\n" +
                 "and b.household_contact = 0";
+        System.out.println("Executing Query: " + query);
+        return query;
+    }
+
+    public String getEsMemberLceAhDetails(String memberId) {
+        String query = "select l.member_lce_id lce_member_lce_id, lah.member_lce_id lce_ah_member_lce_id,l.evaluation_id lce_evaluation_id, lah.evaluation_id lce_ah_evaluation_id, l.lce_report_date lce_report_date, lah.lce_report_date lce_ah_report_date,l.lce_event_date lce_event_date, lah.lce_event_date lce_ah_event_date\n" +
+                "from " + dbName + ".es_member_lce l \n" +
+                "join " + dbName + ".es_member_lce_ah lah on l.member_lce_id = lah.member_lce_id\n" +
+                "where l.member_id = " + memberId;
         System.out.println("Executing Query: " + query);
         return query;
     }

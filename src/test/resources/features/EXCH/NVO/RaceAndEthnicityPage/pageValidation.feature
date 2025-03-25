@@ -44,9 +44,10 @@ Feature: Page Validation-Race And Ethnicity page
     Then I click Go back on the Citizenship page
     Then I validate I am on the "Race and Ethnicity" page
 
+    #Footer
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
-    Then I validate I am on the "Deductions" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click on Terms Of Use in the "Individual Portal" Footer
     And I validate I am on the "Terms Of Use" page and close tab
     Then I validate I am on the "Race and Ethnicity" page
@@ -71,5 +72,84 @@ Feature: Page Validation-Race And Ethnicity page
     And I click on "Threads" Icon in the Footer
     And I validate I am on the "Threads" page and close tab
     Then I validate I am on the "Race and Ethnicity" page
-    And I click on Sign Out in the Header for "Elmo"
+
+    #Header
+    And I verify text on the "Exch" "Header" in "English"
+    And I click on the Colorado Connect or C4 Logo in the "Elmo" Header
+    Then I validate I am on the "My Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Race and Ethnicity" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "My Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Race and Ethnicity" page
+    And I click on Find a Plan in the "Elmo" Header
+    Then I validate I am on the "Application History" page
+    And I click on Apply for Coverage in the "NonElmo" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+
+    And I validate I am on the "Race and Ethnicity" page
+    And I click on My Account in the "Elmo" Header
+    Then I validate I am on the "My Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Race and Ethnicity" page
+    And I click on Learn More in the Header
+    And I validate I am on the "Faqs" page and close tab
+
+    Then I validate I am on the "Race and Ethnicity" page
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Contact Us in the Header
+    And I validate I am on the "Customer Service" page and close tab
+
+    Then I validate I am on the "Race and Ethnicity" page
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "Exch" Header
+    Then I validate I am on the "Find Expert Help" page
+    And I click on Apply for Coverage in the "ExpertHelp" Header
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+
+    Then I validate I am on the "Race and Ethnicity" page
+    And I click on the Username in the "Exch" Header
+    Then I validate I am on the "My Profile" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "Account Overview" page
+    And I click on Sign Out in the Header for "NonElmo"
     Then I validate I am on the "Login" page
