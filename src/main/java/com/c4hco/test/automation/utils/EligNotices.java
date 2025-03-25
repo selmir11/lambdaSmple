@@ -1799,10 +1799,10 @@ public class EligNotices {
             };
             case "2" -> switch (language) {
                 case "English" -> String.format(
-                        englishTemplate + englishTemplate2
+                        englishTemplate + englishTemplate2 + englishTemplate3
                 );
                 case "Spanish" -> String.format(
-                        spanishTemplate + spanishTemplate2
+                        spanishTemplate + spanishTemplate2 + spanishTemplate3
                 );
                 default -> throw new IllegalArgumentException("Invalid language option: " + language);
             };
