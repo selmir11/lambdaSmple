@@ -1,7 +1,6 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.utils.ApplicationProperties;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import org.openqa.selenium.By;
@@ -14,7 +13,6 @@ import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,7 +20,6 @@ import java.util.regex.Pattern;
 public class FamilyOverviewPage {
 
     Actions actions = new Actions(WebDriverManager.getDriver());
-    List<String> memberIDs=new ArrayList<>();
 
     @FindBy(xpath = "//h1[contains(text(), 'Family Overview: Here’s what you’ve told us so far')]")
     WebElement familyOverviewHeader;
@@ -60,8 +57,8 @@ public class FamilyOverviewPage {
     @FindBy(css = ".family-overview-exclamation .red-circle svg")
     List<WebElement> redCircleExclamationMarkForBasicHouseholdAndAnnualFinancialInformation;
 
-    @FindBy(xpath = "//lib-unauthorized[@class='ng-star-inserted']")
-    List<WebElement> unAuthorizedBanner;
+    @FindBy(xpath = "//h1[contains(text(),'Family Overview: Here’s what you’ve told us so far')]//following::div[28]")
+    WebElement annualFinInfoAmt;
 
     SoftAssert softAssert = new SoftAssert();
 
@@ -213,53 +210,9 @@ public class FamilyOverviewPage {
         softAssert.assertAll();
     }
 
-    public  void retrievePrimaryMemberId(){
-        String memberId = basicActions.getMemberIDFromURL();
-        SharedData.getPrimaryMember().setMemberId(memberId);
-        memberIDs.add(memberId);
-    }
-
-    public void validateCocoUrlToReflectMemberID(String pageName){
-        String urlSameHouseHoldCoco;
-        String urlDifferentHouseHoldCoco;
-        String urlExchangeAccount;
-        String memberIdCocoSameHouseHold = basicActions.getMember("Primary").getMemberId();
-        String memberIdDifferentHouseHold=memberIDs.get(0);
-        String memberIDExchangeAccount=memberIDs.get(1);
-        switch (pageName){
-            case "Employment Info":
-                urlSameHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/member/"+memberIdCocoSameHouseHold+"/employmentInfo";
-                urlDifferentHouseHoldCoco="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/member/"+memberIdDifferentHouseHold+"/employmentInfo";
-                urlExchangeAccount="https://"+ ApplicationProperties.getInstance().getProperty("env")+"-aws.connectforhealthco.com/coco/income-portal/member/"+memberIDExchangeAccount+"/employmentInfo";
-                validatePageAuthorization(urlSameHouseHoldCoco,urlDifferentHouseHoldCoco,urlExchangeAccount);
-                break;
-            case "Additional Income", "Deductions", "Summary Details":
-                basicActions.wait(1000);
-                urlSameHouseHoldCoco = basicActions.getCurrentUrl().replaceAll("\\d+$", memberIdCocoSameHouseHold);
-                urlDifferentHouseHoldCoco= basicActions.getCurrentUrl().replaceAll("\\d+$",memberIdDifferentHouseHold);
-                urlExchangeAccount=basicActions.getCurrentUrl().replaceAll("\\d+$", memberIDExchangeAccount);
-                validatePageAuthorization(urlSameHouseHoldCoco,urlDifferentHouseHoldCoco,urlExchangeAccount);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " +pageName);
-        }
-    }
-    private void validatePageAuthorization(String urlSameHouseHoldCoco,String urlDifferentHouseHoldCoco,String urlExchangeAccount){
-        basicActions.openNewTab();
-        basicActions.getDriver().get(urlSameHouseHoldCoco);
-        softAssert.assertTrue(unAuthorizedBanner.isEmpty(),"Unauthorized banner displayed for same house hold coco");
-        basicActions.getDriver().navigate().to(urlDifferentHouseHoldCoco);
-        basicActions.wait(1000);
-        softAssert.assertTrue(!unAuthorizedBanner.isEmpty(),"Unauthorized banner not displayed for different house hold coco");
-        basicActions.closeBrowserTab();
-        basicActions.switchTabs(0);
-        basicActions.openNewTab();
-        basicActions.getDriver().navigate().to(urlExchangeAccount);
-        basicActions.wait(1000);
-        softAssert.assertTrue(!unAuthorizedBanner.isEmpty(),"Unauthorized banner not displayed for exchange member id");
-        softAssert.assertAll();
-        basicActions.closeBrowserTab();
-        basicActions.switchTabs(0);
+    public void verifyDeductionAmount(String amount){
+        basicActions.waitForElementListToBePresent(editUpdateLink, 10);
+        softAssert.assertEquals(annualFinInfoAmt.getText(),amount);
         softAssert.assertAll();
     }
 }

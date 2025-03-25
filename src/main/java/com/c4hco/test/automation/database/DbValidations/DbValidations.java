@@ -145,6 +145,7 @@ public class DbValidations {
         softAssert.assertAll();
 
     }
+
    public void validateBookOfBusinessQMedical(String coverageType, String eventType){
         switch(coverageType) {
             case "medical":
@@ -989,6 +990,28 @@ public class DbValidations {
                 break;
             }
         }
+    }
+
+    public void validateLceMovedToAh(String FName) {
+        String dbValues[] = exchDbDataProvider.getEsMemberLceAh(basicActions.getMemberId(FName)).toArray(new String[0]);
+        softAssert.assertEquals(dbValues[0], dbValues[1], "First set");
+        softAssert.assertEquals(dbValues[2], dbValues[3], "Second set");
+        softAssert.assertEquals(dbValues[4], dbValues[5] + " 00:00:00", "Third set");
+        softAssert.assertEquals(dbValues[6], dbValues[7] + " 00:00:00", "Forth set");
+        softAssert.assertAll();
+    }
+
+    public void validateDeductionRowCount(int expectedRowCount) {
+        basicActions.wait(7000);
+        int actualRowCount = Integer.parseInt(exchDbDataProvider.getDeductionRowCount());
+        softAssert.assertEquals(actualRowCount, expectedRowCount, "Row count mismatch!");
+        softAssert.assertAll();
+    }
+
+    public void validateEnrollmentPlanYear(String year) {
+        String enrolmentPlanYear = exchDbDataProvider.getEnrollmentPlanYear();
+        softAssert.assertEquals(enrolmentPlanYear, basicActions.getDateBasedOnRequirement(year));
+        softAssert.assertAll();
     }
 }
 

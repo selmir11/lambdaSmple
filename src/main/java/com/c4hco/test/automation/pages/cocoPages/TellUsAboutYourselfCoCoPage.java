@@ -3,10 +3,7 @@ package com.c4hco.test.automation.pages.cocoPages;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
@@ -108,7 +105,7 @@ public class TellUsAboutYourselfCoCoPage {
         subscriber.setApplyingforCov(applying);
     }
 
-    private void genderSelection(String gender) {
+    public void genderSelection(String gender) {
         basicActions.waitForElementListToBePresent(genderButton, 30);
         switch (gender) {
             case "Male":
@@ -517,6 +514,12 @@ public class TellUsAboutYourselfCoCoPage {
         lastNameText.sendKeys(newLastName);
     }
 
+    public void updateCocoDOB(String newDob) {
+        basicActions.waitForElementToBePresent(memberDOBTbox, 20);
+        memberDOBTbox.clear();
+        memberDOBTbox.sendKeys(newDob);
+        SharedData.getPrimaryMember().setDob(newDob);
+    }
 }
 
 

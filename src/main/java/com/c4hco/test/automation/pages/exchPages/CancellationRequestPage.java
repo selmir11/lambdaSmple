@@ -45,7 +45,7 @@ public class CancellationRequestPage {
     @FindBy(css=".mdc-checkbox__native-control")
     WebElement decCheckBox;
 
-    @FindBy(id="mat-mdc-checkbox-1-input")
+    @FindBy(id="mat-mdc-checkbox-0-input")
     WebElement understandCheckBox;
 
     @FindBy(css=".requiredfield.ps-5")

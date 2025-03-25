@@ -187,3 +187,375 @@ Feature: Page Verification-Additional Income Page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLER-2352
+  Scenario: [RT-2581] Automate navigation on the ELMO Additional Income Sources Page in EXCH
+    Then I validate I am on the "Additional income" page
+    Then I click on the Back button on the Additionalincomepage
+    Then I validate I am on the "Income Summary" page
+    And I click continue on the Employment Info Page
+    Then I validate I am on the "Additional income" page
+    Then I validate page Navigation works for Footer hyperlink text in "English"
+      | HyperLinkText  | ExpectedPageTitle | ContainsUrl                           |
+      | Privacy Policy | Privacy Policy    | connectforhealthco.com/privacy-policy |
+      | Terms          | Terms of Use      | connectforhealthco.com/terms-of-use   |
+      | Contact Us     | Contact Us        | connectforhealthco.com/contact-us     |
+      | FacebookIcon   | Facebook          | facebook.com                          |
+      | xIcon          | X                 | x.com                                 |
+      | YouTubeIcon    | YouTube           | youtube.com                           |
+      | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
+      | InstagramIcon  | Instagram         | instagram.com                         |
+      | ThreadsIcon    | Threads           | threads.net                           |
+    And I click on the Colorado Connect or C4 Logo in the "Elmo" Header
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    Then I validate I am on the "Income Summary" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    Then I validate I am on the "Income Summary" page
+    And I click on Find a Plan in the "Elmo" Header
+    Then I validate I am on the "Application History" page
+    And I click on Apply for Coverage in the "NonElmo" Header
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    Then I validate I am on the "Income Summary" page
+    And I click on My Account in the "Elmo" Header
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    Then I validate I am on the "Income Summary" page
+    And I click on Learn More in the Header
+    And I validate I am on the "Faqs" page and close tab
+    Then I validate I am on the "Income Summary" page
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "Exch" Header
+    Then I validate I am on the "Find Expert Help" page
+    And I click on Apply for Coverage in the "ExpertHelp" Header
+
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    Then I validate I am on the "Income Summary" page
+
+    Then I validate I am on the "Additional income" page
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Contact Us in the Header
+    And I validate I am on the "Customer Service" page and close tab
+
+    And I click on the Username in the "Exch" Header
+    Then I validate I am on the "My Profile" page
+
+    And I click on the Colorado Connect or C4 Logo in the "Elmo" Header
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    Then I validate I am on the "Income Summary" page
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    And I click on Sign Out in the Header for "Elmo"
+
+  @SLER-2304
+  Scenario: SLER-2304 As an Exchange account user on the Additional Income Sources page, I want the fields validated so my information is formatted correctly to meet the standards required for my application-English Validations(RT-2595)
+    And I click continue on the Additional Income page
+    Then I verify "English" error shows for additional income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                           | fontSize | fontFamily            | fontWeight | color              |
+      | Please select one or more of the options below | 16px     | "PT Sans", sans-serif | 700        | rgba(150, 0, 0, 1) |
+    Then I click "Alimony Received" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                   | fontSize | fontFamily            | fontWeight | color              |
+      | Amount is required                     | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Alimony Received" as additional income option
+    Then I click "Alimony Received" as additional income option with "48.91" amount at "Weekly" frequency
+    And I verify no errors show for additional income options
+    Then I click "Alimony Received" as additional income option
+    Then I click "Alimony Received" as additional income option with "111111111.11" amount at "Weekly" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Alimony Received" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Capital Gains" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                   | fontSize | fontFamily            | fontWeight | color              |
+      | Amount is required                     | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Capital Gains" as additional income option
+    Then I click "Capital Gains" as additional income option with "48.91" amount at "Weekly" frequency
+    And I verify no errors show for additional income options
+    Then I click "Capital Gains" as additional income option
+    Then I click "Capital Gains" as additional income option with "111111111.11" amount at "Weekly" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Capital Gains" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Income from rental property" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                   | fontSize | fontFamily            | fontWeight | color              |
+      | Amount is required                     | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Income from rental property" as additional income option
+    Then I click "Income from rental property" as additional income option with "48.91" amount at "Weekly" frequency
+    And I verify no errors show for additional income options
+    Then I click "Income from rental property" as additional income option
+    Then I click "Income from rental property" as additional income option with "111111111.11" amount at "Weekly" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Income from rental property" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Pension" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                   | fontSize | fontFamily            | fontWeight | color              |
+      | Amount is required                     | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Pension" as additional income option
+    Then I click "Pension" as additional income option with "48.91" amount at "Weekly" frequency
+    And I verify no errors show for additional income options
+    Then I click "Pension" as additional income option
+    Then I click "Pension" as additional income option with "111111111.11" amount at "Weekly" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Pension" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Private Retirement income" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                   | fontSize | fontFamily            | fontWeight | color              |
+      | Amount is required                     | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Private Retirement income" as additional income option
+    Then I click "Private Retirement Income" as additional income option with "48.91" amount at "Weekly" frequency
+    And I verify no errors show for additional income options
+    Then I click "Private Retirement income" as additional income option
+    Then I click "Private Retirement Income" as additional income option with "111111111.11" amount at "Weekly" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Private Retirement income" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Income from Social Security" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                   | fontSize | fontFamily            | fontWeight | color              |
+      | Amount is required                     | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Income from Social Security" as additional income option
+    Then I click "Income from Social Security" as additional income option with "48.91" amount at "Weekly" frequency
+    And I verify no errors show for additional income options
+    Then I click "Income from Social Security" as additional income option
+    Then I click "Income from Social Security" as additional income option with "111111111.11" amount at "Weekly" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Income from Social Security" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Unemployment insurance benefit" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                   | fontSize | fontFamily            | fontWeight | color              |
+      | Amount is required                     | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Unemployment insurance benefit" as additional income option
+    Then I click "Unemployment insurance benefit" as additional income option with "48.91" amount at "Weekly" frequency
+    And I verify no errors show for additional income options
+    Then I click "Unemployment insurance benefit" as additional income option
+    Then I click "Unemployment insurance benefit" as additional income option with "111111111.11" amount at "Weekly" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Unemployment insurance benefit" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Investment Income" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                   | fontSize | fontFamily            | fontWeight | color              |
+      | Amount is required                     | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Investment Income" as additional income option
+    Then I click "Investment Income" as additional income option with "48.91" amount at "Weekly" frequency
+    And I verify no errors show for additional income options
+    Then I click "Investment Income" as additional income option
+    Then I click "Investment Income" as additional income option with "111111111.11" amount at "Weekly" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Investment Income" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Cash Support" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                   | fontSize | fontFamily            | fontWeight | color              |
+      | Amount is required                     | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Cash Support" as additional income option
+    Then I click "Cash Support" as additional income option with "48.91" amount at "Weekly" frequency
+    And I verify no errors show for additional income options
+    Then I click "Cash Support" as additional income option
+    Then I click "Cash Support" as additional income option with "111111111.11" amount at "Weekly" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Cash Support" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Untaxed foreign income" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                   | fontSize | fontFamily            | fontWeight | color              |
+      | Amount is required                     | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Untaxed foreign income" as additional income option
+    Then I click "Untaxed foreign income" as additional income option with "48.91" amount at "Weekly" frequency
+    And I verify no errors show for additional income options
+    Then I click "Untaxed foreign income" as additional income option
+    Then I click "Untaxed foreign income" as additional income option with "111111111.11" amount at "Weekly" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Untaxed foreign income" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Royalty income" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                   | fontSize | fontFamily            | fontWeight | color              |
+      | Amount is required                     | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Royalty income" as additional income option
+    Then I click "Royalty income" as additional income option with "48.91" amount at "Weekly" frequency
+    And I verify no errors show for additional income options
+    Then I click "Royalty income" as additional income option
+    Then I click "Royalty income" as additional income option with "111111111.11" amount at "Weekly" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Royalty income" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Taxable income from Tribal Sources" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                   | fontSize | fontFamily            | fontWeight | color              |
+      | Amount is required                     | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Please select one of the options below | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Taxable income from Tribal Sources" as additional income option
+    Then I click "Taxable income from Tribal Sources" as additional income option with "48.91" amount at "Weekly" frequency
+    And I verify no errors show for additional income options
+    Then I click "Taxable income from Tribal Sources" as additional income option
+    Then I click "Taxable income from Tribal Sources" as additional income option with "111111111.11" amount at "Weekly" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Amount is required"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Taxable income from Tribal Sources" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Taxable income from Tribal Sources" as additional income option
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I click continue on the Additional Income page
+    Then I click go back button on the Deductions page
+    Then I validate I am on the "Additional income" page
+    Then I verify "Taxable income from Tribal Sources" as additional income option with "4,398,573.45" amount at "5: Weekly" frequency
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page

@@ -14,6 +14,10 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static com.c4hco.test.automation.utils.Race.getCodeForRace;
 
 public class TellUsAboutYourselfPage {
 
@@ -198,11 +202,11 @@ public class TellUsAboutYourselfPage {
                 member.setCompleteFullName(newFirstName+" "+newMiddleName+" "+newLastName);
 
                 basicActions.waitForElementToBePresent(txtFirstName, 50);
-                txtFirstName.clear();
+                basicActions.clearElementWithRetries(txtFirstName);
                 txtFirstName.sendKeys(newFirstName);
-                txtMiddleName.clear();
+                basicActions.clearElementWithRetries(txtMiddleName);
                 txtMiddleName.sendKeys(newMiddleName);
-                txtLastName.clear();
+                basicActions.clearElementWithRetries(txtLastName);
                 txtLastName.sendKeys(newLastName);
                 break;
             }
@@ -361,5 +365,37 @@ public class TellUsAboutYourselfPage {
     public void iClickLinkToAddNewPerson(){
         basicActions.waitForElementToBePresent(linkToAddNewPerson, 20);
         basicActions.click(linkToAddNewPerson);
+    }
+
+    public void iSetIncorrectentities(List<String> demographicMaps) {
+        for(String demoMap : demographicMaps){
+            String[] demographicChanges = demoMap.split(":");
+            String[] demoFields = demographicChanges[0].split(",");
+            String memPrefix = demographicChanges[1];
+
+                List<MemberDetails> members = basicActions.getAllMem();
+                for(MemberDetails member: members){
+                    if(member.getFirstName().contains(memPrefix)){
+                        member.setHasIncorrectEntities(true);
+                        member.setIncorrectEntityTypeQualifier("1");
+                        member.setIncorrectEntityIdCode("70");
+                        member.setIncorrect_first_name(member.getFirstName());
+                        member.setIncorrect_last_name(member.getLastName());
+                        for (String changedField : demoFields) {
+                            switch(changedField){
+                                case "Gender":
+                                    member.setIncorrect_gender(member.getGender().substring(0,1));
+                                    break;
+                                case "Race":
+                                    member.setIncorrect_race(getCodeForRace(member.getRace()));
+                                    break;
+                                case "DOB":
+                                    member.setIncorrect_dob(member.getDob());
+                                    break;
+                            }
+                        }
+                    }
+            }
+        }
     }
 }
