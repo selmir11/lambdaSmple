@@ -9,7 +9,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class IncomeSummaryCoCoPage {
@@ -87,6 +89,15 @@ public class IncomeSummaryCoCoPage {
 
     @FindBy(xpath = "//lib-fi[@id='edit-deductions-button']//following::div")
     WebElement deductionAmt;
+
+    @FindBy(xpath = "//div[@class='margin-bottom-16 income-details-row']//following::div")
+    WebElement totalIncomeAmt;
+
+    @FindBy(xpath = "//div[@class='body-text-1 income-details-row ng-star-inserted']//following-sibling::div")
+    WebElement incomeAmtFrmEmployer;
+
+    @FindBy (xpath = "//div[@class='body-text-1 income-details-row margin-top-sm ng-star-inserted']//following-sibling::div")
+    WebElement additionaIncomeAmt;
 
     public void clickprojectedIncomeNo(){
         basicActions.waitForElementToDisappear(spinner,20);
@@ -608,6 +619,32 @@ public class IncomeSummaryCoCoPage {
     public void verifyDeductionAmount(String amount){
         basicActions.waitForElementToDisappear(spinner, 30);
         softAssert.assertEquals(deductionAmt.getText(),amount);
+        softAssert.assertAll();
+    }
+
+    public void verifyIncomeAmountCalculations(String EmploymentIncome, String AdditionalIncome, String DeductionAmt){
+        basicActions.waitForElementToDisappear(spinner, 30);
+
+        double employmentIncome = Double.parseDouble(EmploymentIncome.replaceAll("[^0-9.]", ""));
+        double additionalIncome = Double.parseDouble(AdditionalIncome.replaceAll("[^0-9.]", ""));
+        double deductionAmount = Double.parseDouble(DeductionAmt.replaceAll("[^0-9.]", ""));
+        // Calculate expected total annual income
+        double expectedTotalIncome = (employmentIncome + additionalIncome) - deductionAmount;
+        // Format as US Dollar currency
+        NumberFormat currencyFormatCalculated = NumberFormat.getCurrencyInstance(Locale.US);
+        String formattedCalculatedAmount = currencyFormatCalculated.format(expectedTotalIncome);
+
+        // Calculate expected total annual income from UI
+        double IncomeFrmEmployerValue= Double.parseDouble(incomeAmtFrmEmployer.getText().replaceAll("[^0-9.]",""));
+        double additionaIncomeAmtValue = Double.parseDouble(additionaIncomeAmt.getText().replaceAll("[^0-9.]",""));
+        double deductionAmtValue= Double.parseDouble(deductionAmt.getText().replaceAll("[^0-9.]",""));
+        String expectedTotalIncomeFromWeb = String.valueOf((IncomeFrmEmployerValue + additionaIncomeAmtValue) - deductionAmtValue);
+        // Format as US Dollar currency
+        NumberFormat currencyFormatRetrievd = NumberFormat.getCurrencyInstance(Locale.US);
+        String formattedCalculatedAmountFrmWeb = currencyFormatRetrievd.format(expectedTotalIncomeFromWeb);
+
+        softAssert.assertEquals(formattedCalculatedAmountFrmWeb,formattedCalculatedAmount,"Expected Amount Does not Match");
+        System.out.println("Expected Income From Web = " + formattedCalculatedAmountFrmWeb + "\n\nExpected Income Calculated = " + formattedCalculatedAmount);
         softAssert.assertAll();
     }
 }

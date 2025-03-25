@@ -79,5 +79,8 @@ public class IncomeSummaryCoCoPageSteps {
     @Then("I verify the deduction Amount {string} on the Income Summary Coco Page")
     public void iVerifyDeductionAmount(String amount) {incomeSummaryCoCoPage.verifyDeductionAmount(amount);}
 
-
+    @Then("I validate that the Total Annual Income is correctly determined by adding the Employment Income {string} and Additional Income {string}, then subtracting the Deduction Amount {string}")
+    public void iValidateThatTheTotalAnnualIncomeIsCorrectlyDeterminedByAddingTheEmploymentIncomeAndAdditionalIncomeThenSubtractingTheDeductionAmount(String EmploymentIncome, String AdditionalIncome, String DeductionAmt) {
+        incomeSummaryCoCoPage.verifyIncomeAmountCalculations(EmploymentIncome, AdditionalIncome, DeductionAmt);
+    }
 }
