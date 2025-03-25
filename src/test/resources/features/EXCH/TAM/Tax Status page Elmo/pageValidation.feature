@@ -37,6 +37,9 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
+
+  @SLER-1781 @PageValidationTaxStatusElmoPage
+  Scenario: SLER-1781 I verify that income-portal-ui uses common components from ng-common on the new Tax Status page in EXCH
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011983", "Female" and applying "Yes"
@@ -57,9 +60,6 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
-
-  @SLER-1781 @PageValidationTaxStatusElmoPage
-  Scenario: SLER-1781 I verify that income-portal-ui uses common components from ng-common on the new Tax Status page in EXCH
     #step2 - navigate to ELMO Tax Status page
     Then I click continue on family overview page
     And I Apply for financial help
@@ -109,6 +109,26 @@ Feature: Page Validation-Tax Status Elmo Page
 
   @SLER-1809 @PageValidationTaxStatusElmoPage @TAMSmokeExch
   Scenario: SLER-1809 I want to see my data when claimed as dependent so that I can review my Tax Status information
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011983", "Female" and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
     Then I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Son", "05012015", "Male" and applying "Yes"
@@ -199,6 +219,26 @@ Feature: Page Validation-Tax Status Elmo Page
 
   @SLER-1831 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1831 I want to see my data when choosing to file a federal income tax return so that I can review my Tax Status information - English
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011983", "Female" and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
     Then I click continue on family overview page
     And I Apply for financial help
     Then I select the option "No" to employment
@@ -247,6 +287,26 @@ Feature: Page Validation-Tax Status Elmo Page
 
   @SLER-1840 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1840 I want to see my data when choosing to file a federal income tax return so that I can review my Tax Status information - Spanish
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011983", "Female" and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
     Then I click continue on family overview page
     And I Apply for financial help
     Then I select the option "No" to employment
@@ -297,6 +357,26 @@ Feature: Page Validation-Tax Status Elmo Page
 
   @SLER-1842 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1842 I want to see my data when am married filing jointly so that I can review my Tax Status information
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011983", "Female" and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
     Then I click continue on family overview page
     And I Apply for financial help
     Then I select the option "No" to employment
@@ -344,6 +424,26 @@ Feature: Page Validation-Tax Status Elmo Page
 
   @SLER-1844 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1844 I want to be able to save, update or remove my Tax Status information when claimed as dependent so that my Tax Status details are accurate
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011983", "Female" and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
     Then I click continue on family overview page
     And I Apply for financial help
     Then I select the option "No" to employment
@@ -443,6 +543,26 @@ Feature: Page Validation-Tax Status Elmo Page
 
   @SLER-1853 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1853 I want to be able to save, update or remove my Tax Status information when filing a federal income tax return so that my Tax Status details are accurate - Primary
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011983", "Female" and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
     Then I click continue on family overview page
     And I Apply for financial help
     Then I select the option "No" to employment
@@ -577,6 +697,26 @@ Feature: Page Validation-Tax Status Elmo Page
 
   @SLER-1864 @PageValidationTaxStatusElmoPage @TAMSmokeExch
   Scenario: SLER-1864 I want to be able to save, update or remove my Tax Status information when filing a federal income tax return so that my Tax Status details are accurate - Secondary
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011983", "Female" and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
     Then I click continue on family overview page
     And I Apply for financial help
     Then I select the option "No" to employment
@@ -728,6 +868,26 @@ Feature: Page Validation-Tax Status Elmo Page
 
   @SLER-1871 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1871 I want to be able to save, update or remove my Tax Status information when I am married filing jointly so that my Tax Status details are accurate
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011983", "Female" and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
     Then I click continue on family overview page
     And I Apply for financial help
     Then I select the option "No" to employment
@@ -841,6 +1001,26 @@ Feature: Page Validation-Tax Status Elmo Page
 
   @SLER-1884 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1884 I want standard errors displayed when I fail to enter information correctly for "Someone else" so that errors are displayed consistently
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011983", "Female" and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
     Then I click continue on family overview page
     And I Apply for financial help
     Then I select the option "No" to employment
@@ -1072,6 +1252,26 @@ Feature: Page Validation-Tax Status Elmo Page
 
   @SLER-1888 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1888 I want standard errors displayed when I fail to enter information correctly so that errors are displayed consistently - Primary
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011983", "Female" and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
     Then I click continue on family overview page
     And I Apply for financial help
     Then I select the option "No" to employment
@@ -1163,6 +1363,26 @@ Feature: Page Validation-Tax Status Elmo Page
 
   @SLER-1899 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1899 I want standard errors displayed when I fail to enter information correctly so that errors are displayed consistently - Spouse
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011983", "Female" and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
     Then I click continue on family overview page
     And I Apply for financial help
     Then I select the option "No" to employment
@@ -1259,6 +1479,26 @@ Feature: Page Validation-Tax Status Elmo Page
 
   @SLER-1901 @PageValidationTaxStatusElmoPage
   Scenario: SLER-1901 I want the "Someone else" errors cleared so that I don't continue to see these errors as I answer questions
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011983", "Female" and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
     Then I click continue on family overview page
     And I Apply for financial help
     Then I select the option "No" to employment
@@ -1370,3 +1610,87 @@ Feature: Page Validation-Tax Status Elmo Page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLER-2367 @PageValidationTaxStatusElmoPage
+  Scenario: SLER-2367 Validate that a family member doesn't remain to be a dependent on the tax household of a primary member after selection is changed to "Qualified widow(er)" in Tax Return Portal, Exchange
+      #step2 - add a family member (dependent)
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "01012003", "Female" and applying "Yes"
+      | Primary:Daughter |
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" for Foster care in state of Colorado
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Daughter"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+      #step3 - provide all basic information for both users - primary and dependent
+    Then I click continue on family overview page
+    And I Apply for financial help
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    Then I validate I am on the "Tax status" page
+    And I verify the header for "Primary" Member on the Tax Status page in "English"
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status page
+    Then I select "Yes" for will claim dependents question
+    Then I select "Daughter" for who will be claimed as dependent question on the Tax Status page
+    Then I click Save and Continue on Tax Status page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+      #step4 - navigate back to a primary user Tax Status page and change their tax filing status
+    And I validate I am on the "Family Overview" page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I click the save and continue button on the Income Summary Detail page
+    Then I validate I am on the "Tax status" page
+    And I verify the header for "Primary" Member on the Tax Status page in "English"
+    Then I select the "Qualified widow(er)" tax filing option on the Tax Status page
+    Then I click Save and Continue on Tax Status page
+      #step5 - verify the family member doesn't remain to be a dependent in primary's tax household
+    Then I validate I am on the "Tax status" page
+    And I verify the header for "Daughter" Member on the Tax Status page in "English"
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status page
+    And I verify the tax return data for "Primary" in DB
+      |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
+      |    FILER      |                              |      QWD        |           0            |
+    And I verify the tax return data for "Daughter" in DB
+      |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
+      |    FILER      |                              |      SNGL       |           0            |
+    And I validate I am on the "Other Health Coverage" page
+    Then I click continue on the health coverage page
+    And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
+    Then I click continue on the health coverage page
+    And I validate I am on the "Family Overview" page
+
+    And I click on Sign Out in the Header for "NonElmo"
