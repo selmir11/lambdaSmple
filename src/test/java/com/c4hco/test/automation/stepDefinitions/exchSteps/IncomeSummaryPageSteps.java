@@ -88,7 +88,7 @@ public class IncomeSummaryPageSteps {
 
     @When("I click on {string} in income summary page")
     public void iClickOnInIncomeSummaryPage(String editButton) {
-        incomeSummaryPage.clickOnEditIncomeButton(editButton);
+        incomeSummaryPage.clickOnEditIncomeOrDeductionButton(editButton);
     }
 
     @Then("I validate income amounts {string} and {string} in income summary page")
@@ -113,5 +113,25 @@ public class IncomeSummaryPageSteps {
     @Then("I verify spouse name in income summary page")
     public void iVerifyAdditionalMemberNameInIncomeSummaryPage() {
         incomeSummaryPage.validateSpouseName();
+    }
+
+    @Then("I verify projected income question has not been answered")
+    public void iVerifyProjectedIncomeQuestionHasNotBeenAnswered() {
+        incomeSummaryPage.verifyProjectIncomeQstnNotAnswered();
+    }
+
+    @Then("I verify font colour text of Total annual income")
+    public void iVerifyFontColourTextOfTotalAnnualIncome() {
+        incomeSummaryPage.verifyFontColorText();
+    }
+
+    @Then("I verify total annual income amount {string} in income summary page")
+    public void iVerifyTotalAnnualIncomeAmountInIncomeSummaryPage(String amount) {
+        incomeSummaryPage.verifyTotalAnnualIncome(amount);
+    }
+
+    @Then("I validate entered project income amount is {string}")
+    public void iValidateEnteredProjectIncomeIs(String amount) {
+        incomeSummaryPage.verifyEnteredProjectedIncome(amount);
     }
 }

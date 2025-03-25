@@ -69,3 +69,106 @@ Feature: Page Validation-Income Summary Page
     Then I verify no error is displayed on the Income Summary page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLER-2348
+  Scenario: As an Exchange user,I want to see my Income and Deductions so that I can review my financial information[RT-2607]
+    Then I verify page Header text in income summary page
+    Then I validate font colour height and format of text in income summary page
+    And I click on Go Back on income summary page
+    When I click on Go Back button in deductions page
+    And I select "Cash Support" as additional income option with "45.02" amount at "Annually" frequency
+    And I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I verify added income name "Cash Support" and amount "$45.02" in income summary page
+    When I click on "edit_income_button" in income summary page
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "101 park street" and city as "Denver" and state as "CO" and zipcode as "80205" and income "1250000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    And I click continue on the Employment Summary Page
+    And I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I validate I am on the "Income Summary" page
+    Then I validate income amounts "$12,500.00" and "$45.02" in income summary page
+    When I click on "edit_income_button" in income summary page
+    Then I click on Add job or self-employment on the Employment Summary Page
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "102 park street" and city as "Denver" and state as "CO" and zipcode as "80205" and income "1842500" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    And I click continue on the Employment Summary Page
+    And I click continue on the Additional Income page
+    And I click continue on the Deductions page
+    Then I validate I am on the "Income Summary" page
+    Then I validate income amounts "$12,500.00" "$18,425.00" and "$45.02" in income summary page
+    When I click on "edit_deductions_button" in income summary page
+    And I select "Alimony" as deduction option with "485.00" amount at "Annually" frequency
+    And I click continue on the Deductions page
+    Then I validate deduction amount "$485.00" along with income amounts "$12,500.00" "$18,425.00" and "$45.02"
+    Then I validate income and deduction calculations
+    And I click on Go Back on income summary page
+    When I click on Go Back button in deductions page
+    Then I click on the Back button on the Additionalincomepage
+    When I click on Go Back button in employment summary page
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "09051959", "Female" and applying "No"
+      |Primary:Spouse|
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I click continue on the Add Address page
+    Then I validate I am on the "Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity option for "Spouse"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    And I click plus icon next to member on household page for "Spouse"
+    And I click the edit income icon on household page for "Spouse"
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    And I select None of these as additional income option
+    And I click continue on the Additional Income page
+    And I click None of these as deduction option and continue
+    Then I validate I am on the "Income Summary" page
+    Then I verify spouse name in income summary page
+    Then I validate font colour height and format of text in income summary page
+
+  @SLER-2358
+  Scenario: As an Exchange user, I want to see the total annual income and projected income so that it will be used in determining eligibility[RT-2603]
+    Then I verify projected income question has not been answered
+    Then I verify font colour text of Total annual income
+    When I click on "edit_income_button" in income summary page
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "101 park street" and city as "Denver" and state as "CO" and zipcode as "80205" and income "1250000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    And I click continue on the Employment Summary Page
+    And I select "Cash Support" as additional income option with "512.00" amount at "Annually" frequency
+    And I click continue on the Additional Income page
+    And I select "Alimony" as deduction option with "485.00" amount at "Annually" frequency
+    And I click continue on the Deductions page
+    Then I verify total annual income amount "$12,527.00" in income summary page
+    Then I select the projected income option as "Yes"
+    Then I enter the projected income amount as "15200.00"
+    Then I validate entered project income amount is "15,200.00"
+    When I click on "edit_deductions_button" in income summary page
+    Then I click "AOSS" as deduction option only
+    And I select "School tuition" as deduction option with "13012.00" amount at "Annually" frequency
+    And I click continue on the Deductions page
+    Then I verify font colour text of Total annual income
+    Then I verify projected income question has not been answered
+    When I click on "edit_deductions_button" in income summary page
+    Then I click "STAF" as deduction option only
+    And I select "Moving expenses" as deduction option with "18000.00" amount at "Annually" frequency
+    And I click continue on the Deductions page
+    Then I verify total annual income amount "-$4,988.00" in income summary page
