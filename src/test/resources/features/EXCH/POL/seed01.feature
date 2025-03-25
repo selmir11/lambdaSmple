@@ -186,6 +186,7 @@ Feature: Regression Tests that require Seed 1
     Then I update DOB to new DOB of "11/08/1986"
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     Then I validate I am on the "Family Overview" page
     Then I verify the family overview table is present
@@ -197,6 +198,7 @@ Feature: Regression Tests that require Seed 1
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
     And I click on Sign Out in the Header for "NonElmo"
 
     And I validate "medical" entities from policy tables
