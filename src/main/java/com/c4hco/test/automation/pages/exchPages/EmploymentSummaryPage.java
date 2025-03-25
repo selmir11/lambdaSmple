@@ -159,7 +159,10 @@ public class EmploymentSummaryPage {
     WebElement btnGoBack;
 
 
-
+    public void clickOnBackButton() {
+        basicActions.waitForElementToBePresent(btnGoBack,20);
+        btnGoBack.click();
+    }
 
 
     public void clickContinue(){

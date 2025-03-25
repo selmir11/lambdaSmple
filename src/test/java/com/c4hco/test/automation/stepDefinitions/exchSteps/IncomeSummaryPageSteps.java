@@ -72,4 +72,10 @@ public class IncomeSummaryPageSteps {
     public void iVerifyNoErrors(){incomeSummaryPage.verifyNoErrors();}
 
 
+    @And("I click on the edit Income Summary page")
+    public void iclickEditIncomeButton(){incomeSummaryPage.clickEditIncomeButton();}
+
+    @And("I click on the edit Deductions on Income Summary page")
+    public void iclickEditDeductionsButton(){incomeSummaryPage.clickEditDeductionsButton();}
+
 }
