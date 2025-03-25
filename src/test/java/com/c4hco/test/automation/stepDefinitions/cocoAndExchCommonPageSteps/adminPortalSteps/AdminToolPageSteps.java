@@ -82,8 +82,8 @@ public class AdminToolPageSteps {
 
 
     @Then("I verify Confirm change effective dates pop up displays on Admin LCE page")
-    public void iVerifyConfirmChangeEffectiveDatesPopUpDisplaysOnAdminLCEPage() {
-        adminLceToolPage.confirmEffectiveDatePopUp();
+    public void iVerifyConfirmChangeEffectiveDatesPopUpDisplaysOnAdminLCEPage(int year) {
+        adminLceToolPage.confirmEffectiveDatePopUp(year);
     }
 
     @Then("I verify Go back button displays previous page")
@@ -91,9 +91,9 @@ public class AdminToolPageSteps {
         adminLceToolPage.clickGoBackButton();
     }
 
-    @Then("I enter the effective date to {string}")
-    public void iEnterTheEffectiveDateTo(String endDate) {
-        adminLceToolPage.enterDate(endDate);
+    @Then("I enter the effective date to {string} for year {string} on Admin LCE page")
+    public void iEnterTheEffectiveDateTo(String endDate, String year) {
+        adminLceToolPage.enterDate(endDate,year);
     }
 
     @Then("I click on confirm button on Admin LCE page")
@@ -109,5 +109,20 @@ public class AdminToolPageSteps {
     @And("I change effective date to current date from admin portal")
     public void changeEffDate(){
         adminLceToolPage.currentDateAsLCEDate();
+    }
+
+    @Then("I verify Confirm change effective dates pop up displays for plan year {int} on Admin LCE page")
+    public void iVerifyConfirmChangeEffectiveDatesPopUpDisplaysForPlanYearOnAdminLCEPage(int year) {
+        adminLceToolPage.confirmEffectiveDatePopUp(year);
+    }
+
+    @Then("I validate confirmation message for plan year {int} on admin LCE confirmation page with effective date")
+    public void iValidateConfirmationMessageForPlanYearOnAdminLCEConfirmationPageWithEffectiveDate(int year) {
+        adminLceToolPage.confirmMessageValidation(year);
+    }
+
+    @And("I click Continue via OBO button on Admin LCE page")
+    public void iClickContinueViaOBOButtonOnAdminLCEPage() {
+        adminLceToolPage.clickContinueViaOBObutton();
     }
 }
