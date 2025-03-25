@@ -287,5 +287,15 @@ public class AdminPortalIndividualDashboardSteps {
     public void iValidateIndividualDashboardContainerTitlesAreDisplayed(String PlansContainer, String summaryContainer, String reportsContainer) {
         adminPortalIndividualDashboardPage.validateCoCoDashboardContainerTitles(PlansContainer, summaryContainer, reportsContainer);
     }
+
+    @Then("I validate Selected Member label and member data on the far left side")
+    public void iValidateSelectedMemberLabelAndMemberDataOnTheFarLeftSide() {
+        adminPortalIndividualDashboardPage.VerifyOriginalSidebarDetails();
+    }
+
+    @Then("I click on manage account details button on admin portal Individual dashboard")
+    public void iClickOnManageAccountDetailsButtonOnAdminPortalIndividualDashboard() {
+        adminPortalIndividualDashboardPage.clickManageAccountDetails();
+    }
 }
 

@@ -1,4 +1,4 @@
-@OPS
+@OPS @MD365
 Feature: OPS: Create individual account and verify that can be found in MD365
   @SLER-1872
   Scenario:OPS: IndDash: Create individual account
@@ -11,7 +11,7 @@ Feature: OPS: Create individual account and verify that can be found in MD365
     And I enter general mandatory data for "exchange" account creation
     Then I verify account created successfully message displays
     And I search for user and click email from search results
-    And I wait for 7000 milliseconds
+    And I wait for 70000 milliseconds
     Then I log into the CRM system
     Then I search for user's Email
     Then I handle the search results page

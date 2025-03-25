@@ -192,6 +192,11 @@ public class AdminPortalSearchSteps {
     public void iSearchForTheGenerated(String brokerPortal) {
         adminPortalSearchPage.searchForTheBrokerGenerated(brokerPortal);
     }
+
+    @Then("I search for the {string} title")
+    public void iSearchForTitle(String title) {
+        adminPortalSearchPage.validateSearchTitle(title);
+    }
 }
 
 

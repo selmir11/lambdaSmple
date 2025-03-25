@@ -53,6 +53,7 @@ public class SharedData {
     @Getter @Setter private static Set<Map<String, DbData>> dbDataNew;
     @Getter @Setter private static List<Map<String, PlanDbData>> medicalPlanDbDataNew;
     @Getter @Setter private static List<Map<String, PlanDbData>> dentalPlanDbDataNew;
+    @Getter @Setter private static String carrierPdfFileName;
     @Getter @Setter private static String planYear;
     @Getter @Setter private static GroupDetails groupDetails;
     @Getter @Setter private static String dbName;
@@ -97,6 +98,9 @@ public class SharedData {
     @Getter @Setter private static AssisterDetails assisterDetails;
     @Getter @Setter private static List<String> Companyname;
     @Getter @Setter private static String FinancialIncome;
+    @Getter @Setter private static String EffectiveLCEDate;
+
+
     @Getter @Setter private static Boolean isAiAn = false;
     @Getter @Setter private static String recType = null;
 
@@ -149,8 +153,10 @@ public class SharedData {
         denGroupCtlNumbers = null;
         Companyname = null;
         FinancialIncome = null;
+        EffectiveLCEDate = null;
         isAiAn = false;
         recType = null;
+        carrierPdfFileName = null;
     }
 
 }
