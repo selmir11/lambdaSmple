@@ -32,8 +32,8 @@ public class AdminPortalReportsPage {
     WebElement titleAccountActivity;
     @FindBy(xpath = "//tr[@class='sort-table-data-row']")
     List<WebElement> eventCodeList;
-    @FindBy(xpath = "//table[@class='sort-table']//td")
-    List<WebElement> columnsEventCode;
+    @FindBy(xpath = "//tbody[1]/tr[5]/td[3]/app-max-length-tooltip[1]/span[1]")
+    WebElement columnEventCode;
 
     @FindBy(css = ".sort-table-data-row")
     List<WebElement> tableRows;
@@ -43,6 +43,10 @@ public class AdminPortalReportsPage {
 
     @FindBy(css = ".tooltip .tooltip-inner")
     WebElement tooltipText;
+    @FindBy(xpath = "//h2[@class='dashboardHeader1']")
+    WebElement titlePage;
+    @FindBy(xpath = "//h3[@class='dashboardHeader2']")
+    WebElement subTitlePage;
 
     public void validateTitleAccountActivity() {
         basicActions.waitForElementListToBePresentWithRetries(eventCodeList, 50);
@@ -73,6 +77,7 @@ public class AdminPortalReportsPage {
 
     public void VerifyEvents(String text, String timeCondition, String qaUsername, String stagingUsername, String expectedValue, String expectedStatus, String expectedKey) {
         String username = getUsernameBasedOnEnv(qaUsername, stagingUsername);
+        basicActions.waitForElementToBePresentWithRetries(columnEventCode,50);
 
         WebElement eventTime = basicActions.getDriver().findElement(By.xpath("//tbody[1]/tr[5]/td[3]/app-max-length-tooltip[1]/span[1]"));
         Boolean result = basicActions.hardRefreshUntilVisible(eventTime, 250000, 1000);
@@ -261,6 +266,26 @@ public class AdminPortalReportsPage {
                         ", name:" + nameTo +
                         ", updatedBy:" + updatedBy,
                 "detail value did not match");
+        softAssert.assertAll();
+    }
+
+    public void validateTheNameExistInTheHeaderOfActivityReportPage(String qaName, String stgName) {
+        basicActions.waitForElementToBePresentWithRetries(titlePage,30);
+        if (SharedData.getEnv().equals("qa")){
+            softAssert.assertEquals(titlePage.getText(),qaName);
+        }else{
+            softAssert.assertEquals(titlePage.getText(),stgName);
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateTheAccountIDInQAOrStgAndUserTypeIs(String qaAccountId, String stgAccountId, String userType) {
+        basicActions.waitForElementToBePresentWithRetries(subTitlePage,30);
+        if (SharedData.getEnv().equals("qa")){
+            softAssert.assertEquals(subTitlePage.getText(),"Account ID:"+qaAccountId+" User Type: "+userType);
+        }else{
+            softAssert.assertEquals(subTitlePage.getText(),subTitlePage.getText(),"Account ID:"+ stgAccountId+" User Type: "+userType);
+        }
         softAssert.assertAll();
     }
 }
