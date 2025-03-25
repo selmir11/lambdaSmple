@@ -56,7 +56,7 @@ Feature: Page Text-Income Opt Out Page
     And I select "Cash Support" as additional income option with "45.02" amount at "Annually" frequency
     And I click continue on the Additional Income page
     And I click continue on the Deductions page
-    Then I verify added income name is visible in income summary page
+    Then I verify added income name "Cash Support" and amount "$45.02" in income summary page
     When I click on "edit_income_button" in income summary page
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
@@ -68,7 +68,7 @@ Feature: Page Text-Income Opt Out Page
     And I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I validate I am on the "Income Summary" page
-    Then I validate All income amounts for 1 additional income amount
+    Then I validate income amounts "$12,500.00" and "$45.02" in income summary page
     When I click on "edit_income_button" in income summary page
     Then I click on Add job or self-employment on the Employment Summary Page
     And I select the option "No" to self employment
@@ -80,11 +80,11 @@ Feature: Page Text-Income Opt Out Page
     And I click continue on the Additional Income page
     And I click continue on the Deductions page
     Then I validate I am on the "Income Summary" page
-    Then I validate All income amounts for 2 additional income amount
+    Then I validate income amounts "$12,500.00" "$18,425.00" and "$45.02" in income summary page
     When I click on "edit_deductions_button" in income summary page
     And I select "Alimony" as deduction option with "485.00" amount at "Annually" frequency
     And I click continue on the Deductions page
-    Then I validate deduction amount displayed in income summary page
+    Then I validate deduction amount "$485.00" along with income amounts "$12,500.00" "$18,425.00" and "$45.02"
     Then I validate income and deduction calculations
     And I click on Go Back on income summary page
     When I click on Go Back button in deductions page

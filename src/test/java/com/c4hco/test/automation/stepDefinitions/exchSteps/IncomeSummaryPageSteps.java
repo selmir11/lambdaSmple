@@ -81,9 +81,9 @@ public class IncomeSummaryPageSteps {
         incomeSummaryPage.validateTextFontColourEtc();
     }
 
-    @Then("I verify added income name is visible in income summary page")
-    public void iVerifyAddedIncomeNameIsVisibleInIncomeSummaryPage() {
-        incomeSummaryPage.validateAddedIncomeName();
+    @Then("I verify added income name {string} and amount {string} in income summary page")
+    public void iVerifyAddedIncomeNameAndAmountInIncomeSummaryPage(String incomeName,String amount) {
+        incomeSummaryPage.validateAddedIncomeNameAndAmount(incomeName,amount);
     }
 
     @When("I click on {string} in income summary page")
@@ -91,14 +91,18 @@ public class IncomeSummaryPageSteps {
         incomeSummaryPage.clickOnEditIncomeButton(editButton);
     }
 
-    @Then("I validate All income amounts for {int} additional income amount")
-    public void iValidateAllIncomeAmountsForAdditionalIncomeAmount(int number) {
-        incomeSummaryPage.validateAllIncomeAmounts(number);
+    @Then("I validate income amounts {string} and {string} in income summary page")
+    public void iValidateIncomeAmountsAndInIncomeSummaryPage(String amount1, String amount2) {
+        incomeSummaryPage.validateTwoIncomeAmounts(amount1,amount2);
+    }
+    @Then("I validate income amounts {string} {string} and {string} in income summary page")
+    public void iValidateIncomeAmountsAndInIncomeSummaryPage(String amount1, String amount2, String amount3) {
+        incomeSummaryPage.validateThreeIncomeAmounts(amount1,amount2,amount3);
     }
 
-    @Then("I validate deduction amount displayed in income summary page")
-    public void iValidateDeductionAmountDisplayedInIncomeSummaryPage() {
-        incomeSummaryPage.validateDeductionAmount();
+    @Then("I validate deduction amount {string} along with income amounts {string} {string} and {string}")
+    public void iValidateDeductionAmountAlongWithIncomeAmountsAnd(String deductAmount, String incomeAmt1, String incomeAmt2, String incomeAmt3) {
+        incomeSummaryPage.validateDeductionAmount(deductAmount,incomeAmt1,incomeAmt2,incomeAmt3);
     }
 
     @Then("I validate income and deduction calculations")

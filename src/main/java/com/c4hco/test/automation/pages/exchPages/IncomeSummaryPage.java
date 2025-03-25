@@ -433,10 +433,10 @@ public class IncomeSummaryPage {
         softAssert.assertEquals(labelNoDeductionsReported.getCssValue("line-height"), "28px", "Line-height mismatch");
         softAssert.assertAll();
     }
-    public void validateAddedIncomeName(){
+    public void validateAddedIncomeNameAndAmount(String incomeName,String amount){
         basicActions.wait(1000);
-        softAssert.assertEquals(labelNoIncomeReported.getText(),"Cash Support","Added Income Name not matching");
-        softAssert.assertEquals(incomeTotalAmount.getText().trim(),"$45.02","Income Amount Mismatch");
+        softAssert.assertEquals(labelNoIncomeReported.getText(),incomeName,"Added Income Name not matching");
+        softAssert.assertEquals(incomeTotalAmount.getText().trim(),amount,"Income Amount Mismatch");
         softAssert.assertTrue(basicActions.waitForElementToBePresent(labelNoDeductionsReportedUnderDeductions,10));
         softAssert.assertAll();
     }
@@ -455,31 +455,27 @@ public class IncomeSummaryPage {
         }
 
     }
-    public void validateAllIncomeAmounts(int number){
-        switch (number){
-            case 1:
-                softAssert.assertEquals(allIncomeAmounts.get(0).getText().trim(),"$12,500.00","Added Income amount not matching");
-                softAssert.assertEquals(allIncomeAmounts.get(1).getText().trim(),"$45.02","Added Income amount not matching");
-                softAssert.assertTrue(basicActions.waitForElementToBePresent(labelNoDeductionsReportedUnderDeductions,10));
-                softAssert.assertAll();
-                break;
-            case 2:
+    public void validateTwoIncomeAmounts(String amount1,String amount2) {
+        softAssert.assertEquals(allIncomeAmounts.get(0).getText().trim(), amount1, "Added Income amount not matching");
+        softAssert.assertEquals(allIncomeAmounts.get(1).getText().trim(), amount2, "Added Income amount not matching");
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(labelNoDeductionsReportedUnderDeductions, 10));
+        softAssert.assertAll();
+
+    }
+    public void validateThreeIncomeAmounts(String amount1,String amount2,String amount3) {
                 softAssert.assertEquals(allIncomeAmounts.get(0).getText().trim(),"$12,500.00","Added Income amount not matching");
                 softAssert.assertEquals(allIncomeAmounts.get(1).getText().trim(),"$18,425.00","Added Income amount not matching");
                 softAssert.assertEquals(allIncomeAmounts.get(2).getText().trim(),"$45.02","Added Income amount not matching");
                 softAssert.assertTrue(basicActions.waitForElementToBePresent(labelNoDeductionsReportedUnderDeductions,10));
                 softAssert.assertAll();
-                break;
-            default:
-            throw new IllegalArgumentException("Invalid option: " + number);
-        }
     }
-    public void validateDeductionAmount(){
+
+    public void validateDeductionAmount(String deductAmt,String incomeAmt1,String incomeAmt2,String incomeAmt3){
         basicActions.wait(1000);
-        softAssert.assertEquals(allIncomeAmounts.get(0).getText().trim(),"$12,500.00","Added Income amount not matching");
-        softAssert.assertEquals(allIncomeAmounts.get(1).getText().trim(),"$18,425.00","Added Income amount not matching");
-        softAssert.assertEquals(allIncomeAmounts.get(2).getText().trim(),"$45.02","Added Income amount not matching");
-        softAssert.assertEquals(allIncomeAmounts.get(3).getText().trim(),"$485.00","Added deductions amount not matching");
+        softAssert.assertEquals(allIncomeAmounts.get(0).getText().trim(),incomeAmt1,"Added Income amount not matching");
+        softAssert.assertEquals(allIncomeAmounts.get(1).getText().trim(),incomeAmt2,"Added Income amount not matching");
+        softAssert.assertEquals(allIncomeAmounts.get(2).getText().trim(),incomeAmt3,"Added Income amount not matching");
+        softAssert.assertEquals(allIncomeAmounts.get(3).getText().trim(),deductAmt,"Added deductions amount not matching");
         softAssert.assertAll();
     }
     public void validateIncomeDeductionCalculations(){
