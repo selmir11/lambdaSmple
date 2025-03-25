@@ -769,7 +769,12 @@ public class AdminPortalManagePlansPage {
             String matchingname = memberUpdates.stream().map(m->m.get("key")).filter(memberFullName::startsWith).findFirst().orElse(null);
             Assert.assertNotNull(matchingname, "Member Name not found: " + memberFullName);
             String inputDate = memberUpdates.stream().map(m->m.get("value")).findFirst().orElse("");
-            String updatedDate = basicActions.getDateBasedOnRequirement(inputDate);
+            String updatedDate = "";
+            if (inputDate.equalsIgnoreCase("Cancel")){
+                 String policyStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate();
+                 updatedDate = basicActions.changeDateFormat(policyStartDate, "yyyy-MM-dd", "MM/dd/yyyy");
+            } else {
+             updatedDate = basicActions.getDateBasedOnRequirement(inputDate);}
             String coverageEndDateElement = "//div[@id='coverageEndDate_" +index+ "']//input[1]";
             basicActions.waitForElementToBeClickable(coverageEndDate, 30);
             basicActions.updateElementWithRetries(coverageEndDateElement, updatedDate);
@@ -794,7 +799,12 @@ public class AdminPortalManagePlansPage {
             String matchingname = memberUpdates.stream().map(m->m.get("key")).filter(memberFullName::startsWith).findFirst().orElse(null);
             Assert.assertNotNull(matchingname, "Member Name not found: " + memberFullName);
             String inputDate = memberUpdates.stream().map(m->m.get("value")).findFirst().orElse("");
-            String updatedDate = basicActions.getDateBasedOnRequirement(inputDate);
+            String updatedDate = "";
+            if (inputDate.equalsIgnoreCase("Cancel")){
+                String policyStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate();
+                updatedDate = basicActions.changeDateFormat(policyStartDate, "yyyy-MM-dd", "MM/dd/yyyy");
+            } else {
+                updatedDate = basicActions.getDateBasedOnRequirement(inputDate);}
             String financialEndDateElement = "//div[@id='financialEndDate_"+index+"']//input[1]";
             basicActions.waitForElementToBeClickable(financialEndDate, 30);
             basicActions.scrollToElement(financialEndDate);

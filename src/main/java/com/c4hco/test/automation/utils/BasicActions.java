@@ -822,10 +822,6 @@ public class BasicActions {
                 case "end of current month":
                     date = endOfMonthDate();
                     break;
-                case "Cancel":
-                    policyStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate();
-                    date = changeDateFormat(policyStartDate, "yyyy-MM-dd", "MM/dd/yyyy");
-                    break;
                 default:
                     throw new IllegalArgumentException("Invalid option: " + dateRequirement);
             }
