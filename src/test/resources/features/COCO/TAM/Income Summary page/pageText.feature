@@ -697,3 +697,30 @@ Feature: Tests related to the Deductions page
     And I verify no error shows on the Income Summary page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+    
+    @SLCR-887
+    Scenario: ELIG-As a user on the Income Summary page, 
+    I want to see the total annual income and projected income so that 
+    I know the income amounts that will be used in determining eligibility [CCRT-253]
+      And I verify no error shows on the Income Summary page
+      Then I validate I am on the "CoCo Income Summary" page
+      And I select go back on the income summary CoCo page
+      And I select Back on the Deductions CoCo page
+      And I select Go Back on the Additional Income CoCo page
+      And I select "Yes" employment option
+      And I enter "10000.00" income amount
+      And I select "Annually" income frequency option
+      And I select "No" income seasonal option
+      And I select "No" income changes option
+      And I click continue on the Employment income page
+      And I select continue on the Additional Income CoCO page
+      And I select continue on the Deductions CoCo page
+      Then I verify income "All Jobs/Employers" in "English" on the income summary CoCo page
+      And I select go back on the income summary CoCo page
+      And I select Back on the Deductions CoCo page
+      And I select "Alimony Received" as additional income option with "5000.00" amount at "Annually" frequency
+      And I select continue on the Additional Income CoCO page
+      And I select "School tuition" as deduction option with "2000.00" amount at "Annually" frequency
+      And I select continue on the Deductions CoCo page
+      Then I validate I am on the "CoCo Income Summary" page
+      Then I validate that the Total Annual Income is correctly determined by adding the Employment Income "10000.00" and Additional Income "5000.00", then subtracting the Deduction Amount "2000.00"
