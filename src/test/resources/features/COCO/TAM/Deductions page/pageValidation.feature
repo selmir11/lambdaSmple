@@ -446,3 +446,51 @@ Feature: Tests related to the Deductions page
     And I select continue on the income Summary CoCo page
     Then I validate I am on the "CoCo Family Overview" page
     And I verify the deduction Amount "-$2,000.00" on the CoCo Family Overview page
+
+  @SLCR-882
+  Scenario: SLCR-882 ELIG-DB: As CoCo user on the Deductions page, I want to be able to save, update and remove my deduction information so that my deduction information is available and accurate
+    Then I verify the header for Primary Member on the CoCo Deductions page in "English"
+    Then I verify Deductions checkbox COCO in "Not Selected" state
+    And I select "Alimony" as deduction option with "1000.13" amount at "Annually" frequency
+    And I select "Domestic production" as deduction option with "1200.24" amount at "Every 2 weeks" frequency
+    And I select "HSA" as deduction option with "1400.35" amount at "Monthly" frequency
+    And I select "Pre-tax retirement" as deduction option with "1600.46" amount at "Twice a month" frequency
+    And I select "School tuition" as deduction option with "1800.57" amount at "Weekly" frequency
+    And I select continue on the Deductions CoCo page
+    Then I validate the number of deduction rows is 5 in DB
+    Then I validate the deduction for kind "AOSS" with amount "1000.13" and frequency "Annually" in DB
+    Then I validate the deduction for kind "DPAC" with amount "1200.24" and frequency "EveryTwoWeeks" in DB
+    Then I validate the deduction for kind "HSAC" with amount "1400.35" and frequency "Monthly" in DB
+    Then I validate the deduction for kind "PRAC" with amount "1600.46" and frequency "TwiceAMonth" in DB
+    Then I validate the deduction for kind "STAF" with amount "1800.57" and frequency "Weekly" in DB
+
+    And I select go back on the income summary CoCo page
+    And I select "HSA" as deductions option
+    And I select "Pre-tax retirement" as deductions option
+    And I select "School tuition" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I validate the number of deduction rows is 2 in DB
+    Then I validate the deduction for kind "AOSS" with amount "1000.13" and frequency "Annually" in DB
+    Then I validate the deduction for kind "DPAC" with amount "1200.24" and frequency "EveryTwoWeeks" in DB
+
+    And I select go back on the income summary CoCo page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I validate the number of deduction rows is 0 in DB
+
+    And I select go back on the income summary CoCo page
+    And I select "Alimony" as deduction option with "1000.13" amount at "Annually" frequency
+    And I select "Domestic production" as deduction option with "1200.24" amount at "Every 2 weeks" frequency
+    And I select "HSA" as deduction option with "1400.35" amount at "Monthly" frequency
+    And I select "Pre-tax retirement" as deduction option with "1600.46" amount at "Twice a month" frequency
+    And I select "School tuition" as deduction option with "1800.57" amount at "Weekly" frequency
+    And I select continue on the Deductions CoCo page
+    Then I validate the number of deduction rows is 5 in DB
+    Then I validate the deduction for kind "AOSS" with amount "1000.13" and frequency "Annually" in DB
+    Then I validate the deduction for kind "DPAC" with amount "1200.24" and frequency "EveryTwoWeeks" in DB
+    Then I validate the deduction for kind "HSAC" with amount "1400.35" and frequency "Monthly" in DB
+    Then I validate the deduction for kind "PRAC" with amount "1600.46" and frequency "TwiceAMonth" in DB
+    Then I validate the deduction for kind "STAF" with amount "1800.57" and frequency "Weekly" in DB
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page

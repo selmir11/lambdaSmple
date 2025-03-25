@@ -12,12 +12,16 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.text.Normalizer;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+
 public class AdminLceToolPage {
+
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
     private ArrayList<String> tabs;
@@ -103,6 +107,21 @@ public class AdminLceToolPage {
 
     @FindBy(id = "planYear")
     WebElement planYearrDrpdwnOptions;
+
+    @FindBy(xpath = "//app-confirmation-message[1]/div[1]/div[1]/div[1]/p[1]")
+    WebElement confirmationMessageTitle;
+
+    @FindBy(xpath = "//app-confirmation-message[1]/div[1]/div[1]/div[2]/p[1]")
+    WebElement plantTitleText;
+
+    @FindBy(xpath = "//app-confirmation-message[1]/div[1]/div[1]/div[4]/p[1]")
+    WebElement nextStepText;
+
+    @FindBy(xpath = "//app-confirmation-message[1]/div[1]/div[1]/div[4]/p[2]")
+    WebElement nextStepMessageDetails;
+
+    @FindBy(xpath = "//app-confirmation-message[1]/div[1]/div[1]/div[5]/button[1]")
+    WebElement continueViaOBO;
 
 
     public void lookUpAccId() {
@@ -277,15 +296,17 @@ public class AdminLceToolPage {
         basicActions.getDriver().findElement(By.xpath(createlink)).click();
     }
 
-    public void confirmEffectiveDatePopUp() {
+    public void confirmEffectiveDatePopUp(int year) {
         basicActions.waitForElementToBePresent(confirmChangeEffectiveDateTitle, 30);
         softAssert.assertEquals(confirmChangeEffectiveDateTitle.getText(), "Confirm change effective dates");
-        softAssert.assertEquals(confirmChangemessage.getText(), "You have chosen to recreate and make corrections to the application from Plan Year 2025. Please enter the date the changes will become effective and select confirm to begin.");
+        softAssert.assertEquals(confirmChangemessage.getText(),
+                "You have chosen to recreate and make corrections to the application from Plan Year " + year + ". Please enter the date the changes will become effective and select confirm to begin.");
         softAssert.assertAll();
     }
 
-    public void enterDate(String endDate) {
+    public void enterDate(String endDate, String year) {
         dateInputField.sendKeys(endDate);
+        SharedData.setEffectiveLCEDate(endDate+year);
     }
 
     public void clickConfirmButton(){
@@ -310,6 +331,24 @@ public class AdminLceToolPage {
         SharedData.setPrimaryMember(subscriber);
         closeTabAndSwitchToCurrentWindow();
     }
+
+    public void confirmMessageValidation(int year) {
+        basicActions.waitForElementToBePresent(confirmationMessageTitle, 50);
+        softAssert.assertEquals(confirmationMessageTitle.getText(), "Changes Confirmed for Plan Year [" + year + "]");
+        softAssert.assertEquals(plantTitleText.getText(), "Changes have been submitted to the application below with an effective date of: [" + basicActions.changeDateFormat(SharedData.getEffectiveLCEDate(), "MMddyyyy", "MM/dd/yyyy") + "]");
+        softAssert.assertEquals(nextStepText.getText(), "Next Step: View results and shop on behalf of the customer.");
+
+        String actualMessage = nextStepMessageDetails.getText();
+        String expectedMessage = "Continue through the \u2018On Behalf Of\u2019 shopping process and confirm or change details in \u2018Manage Plans\u2019 if necessary.";
+        softAssert.assertEquals(actualMessage, expectedMessage);
+        softAssert.assertAll();
+    }
+
+    public void clickContinueViaOBObutton(){
+        basicActions.waitForElementToBePresent(continueViaOBO, 50);
+        continueViaOBO.click();
+    }
+
 }
 
 
