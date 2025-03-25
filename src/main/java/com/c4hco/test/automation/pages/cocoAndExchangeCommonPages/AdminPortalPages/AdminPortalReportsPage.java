@@ -289,6 +289,7 @@ public class AdminPortalReportsPage {
     public void validateActivityTitle() {
         basicActions.waitForElementToBePresentWithRetries(titleAccountActivity, 50);
         softAssert.assertEquals(titleAccountActivity.getText(),"Account Activity", "Title not match");
+        softAssert.assertAll();
     }
 
     public void validateActivityReportColumnNames() {
