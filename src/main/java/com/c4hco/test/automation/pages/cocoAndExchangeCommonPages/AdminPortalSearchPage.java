@@ -148,6 +148,10 @@ public class AdminPortalSearchPage {
     @FindBy(xpath = "//tr[@class='clickable']/td[1]")
     WebElement firstBrokerResult;
 
+    @FindBy(xpath = "//*[@class='search-title']")
+    WebElement searchTitle;
+
+
 
     public void searchForUser() {
         // TO DO: Make this re-usable if we search for users other than subscriber. Pass the values as param
@@ -717,6 +721,30 @@ public class AdminPortalSearchPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + brokerPortal);
       }
+    }
+
+    public void validateSearchTitle(String title) {
+        basicActions.waitForElementToBePresent(individual, 15);
+        switch (title) {
+            case "individual":
+                softAssert.assertEquals(searchTitle.getText(), "Individual Search" ,"Title not match");
+                break;
+            case "Broker":
+                softAssert.assertEquals(searchTitle.getText(), "Broker Search" ,"Title not match");
+                break;
+            case "Program Manager":
+                softAssert.assertEquals(searchTitle.getText(), "Program Manager Search" ,"Title not match");
+                break;
+            case "Agency":
+                softAssert.assertEquals(searchTitle.getText(), "Agency Search" ,"Title not match");
+                break;
+            case "coco":
+                softAssert.assertEquals(searchTitle.getText(), "Colorado Connect Individual Search" ,"Title not match");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + title);
+        }
+        softAssert.assertAll();
     }
 }
 

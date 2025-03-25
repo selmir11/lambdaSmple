@@ -223,3 +223,76 @@ Feature: Page Navigation-Tax Status Elmo Page
       And I validate I am on the "Family Overview" page
 
       And I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-2362 @PageNavigationTaxStatusElmoPage
+  Scenario: SLER-2362 Validate that a user is able to continue with the application after they remove a family member in Tax Return Portal, Exchange
+      #step2 - add a family member
+    Then I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "01011983", "Female" and applying "Yes"
+      | Primary:Spouse |
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+      #step3 - provide all basic information for both users - primary and additional
+    Then I click continue on family overview page
+    And I Apply for financial help
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    Then I validate I am on the "Tax status" page
+    And I verify the header for "Primary" Member on the Tax Status page in "English"
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Head of household" tax filing option on the Tax Status page
+    Then I select "Yes" for will claim dependents question
+    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status page
+    Then I click Save and Continue on Tax Status page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+      #step4 - remove a family member and navigate back to ELMO Tax Status page
+    And I validate I am on the "Family Overview" page
+    And I click plus icon next to member on household page for "Spouse"
+    Then I click on Remove this Member
+    Then I click on "OK" in the Remove Member frame
+    And I click plus icon next to member on household page for "Primary"
+    And I click View Details under member on household page for "Primary"
+    And I click continue on the Employment Info Page
+    Then I click continue on the Additional Income page
+    Then I click continue on the Deductions page
+    Then I click the save and continue button on the Income Summary Detail page
+    Then I validate I am on the "Tax status" page
+      #step5 - provide tax information for a primary and verify you are navigated to the main OHC page
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status page
+    And I validate I am on the "Other Health Coverage" page
+    Then I click continue on the health coverage page
+    And I validate I am on the "Family Overview" page
+
+    And I click on Sign Out in the Header for "NonElmo"
