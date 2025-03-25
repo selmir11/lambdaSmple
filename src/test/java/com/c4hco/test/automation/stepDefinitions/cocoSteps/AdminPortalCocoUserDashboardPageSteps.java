@@ -12,4 +12,8 @@ public class AdminPortalCocoUserDashboardPageSteps {
         adminPortalCocoUserDashboardPage.clickFromDashboardButtons(DashboardButtons);
     }
 
+    @Then("I verify Coco Primary account holder and account number displays")
+    public void iVerifyCocoPrimaryAccountHolderAndAccountNumberDisplays() {
+        adminPortalCocoUserDashboardPage.verifyCocoPrimaryHolderHeader();
+    }
 }

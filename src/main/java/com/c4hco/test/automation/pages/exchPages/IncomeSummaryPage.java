@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -128,29 +129,30 @@ public class IncomeSummaryPage {
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinnerOverlay;
+
     @FindBy(css = "span.error-message.c4-text-body-100")
     private WebElement errorMessage;
 
     @FindBy(css = ".input-error-message .error-message")
     private WebElement ActiveErrorMessage;
 
-    @FindBy(id = "edit-income-button")
-    WebElement editIncomeButton;
+    @FindBy(xpath = "//*[@class='income-details-left margin-left-32']")
+    WebElement labelNoIncomeReported;
 
-    @FindBy(id = "edit-deductions-button")
-    WebElement editdeductionsButton;
+    @FindBy(xpath = "//*[@class='body-text-1 income-details-row margin-left-32 ng-star-inserted']")
+    WebElement labelNoDeductionsReported;
 
+    @FindBy(xpath="(//div[@class='header-3 income-details-left indent-left'])[2]/following::div[@class='body-text-1 income-details-row margin-left-32 ng-star-inserted']")
+    WebElement labelNoDeductionsReportedUnderDeductions;
 
+    @FindBy(xpath = "//*[@id='edit-income-button']")
+    WebElement btnEditIncome;
 
-    public void clickEditDeductionsButton() {
-        basicActions.waitForElementToBePresentWithRetries(editdeductionsButton,30);
-        editdeductionsButton.click();
-    }
-    public void clickEditIncomeButton() {
-        basicActions.waitForElementToBePresentWithRetries(editIncomeButton,30);
-        editIncomeButton.click();
-    }
+    @FindBy(xpath = " //*[@id='edit-deductions-button']")
+    WebElement btnEditDeductions;
 
+    @FindBy(xpath = "//div[@class='income-details-right']")
+    List<WebElement> allIncomeAmounts;
 
     public void selectProjectedIncome(String projectedIncomeOption){
         basicActions.waitForElementToDisappear(loaderIcon, 120);
@@ -402,7 +404,93 @@ public class IncomeSummaryPage {
         softAssert.assertAll();
     }
 
+    public void validatePageHeaderText(){
+        String signature=SharedData.getPrimaryMember().getSignature();
+        softAssert.assertEquals(hdr_Income.getText(),"Income: "+signature,"Header1 text not matching");
+        softAssert.assertEquals(hdr_IncomeSummary.getText(),"Summary","Header2 is not matching");
+        softAssert.assertAll();
+    }
+    public void validateTextFontColourEtc(){
+        softAssert.assertEquals(incomeTotalAmount.getText().trim(),"$0.00","Income Amount Mismatch");
+        softAssert.assertEquals(deductionsTotalAmount.getText().trim(),"$0.00","Deduction Amount Mismatch");
+        softAssert.assertEquals(incomeTotalAmount.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch");
+        softAssert.assertEquals(incomeTotalAmount.getCssValue("font-size"), "19px", "Font size mismatch");
+        softAssert.assertEquals(incomeTotalAmount.getCssValue("font-weight"), "700", "Font weight mismatch");
+        softAssert.assertEquals(deductionsTotalAmount.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch");
+        softAssert.assertEquals(deductionsTotalAmount.getCssValue("font-size"), "19px", "Font size mismatch");
+        softAssert.assertEquals(deductionsTotalAmount.getCssValue("font-weight"), "700", "Font weight mismatch");
+        softAssert.assertEquals(labelNoIncomeReported.getText().trim(),"No income reported","No income reported text mismatch");
+        softAssert.assertEquals(labelNoIncomeReported.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch");
+        softAssert.assertEquals(labelNoIncomeReported.getCssValue("font-size"), "16px", "Font size mismatch");
+        softAssert.assertEquals(labelNoIncomeReported.getCssValue("font-weight"), "400", "Font weight mismatch");
+        softAssert.assertEquals(labelNoIncomeReported.getCssValue("color"), "rgba(43, 49, 60, 1)", "Color mismatch");
+        softAssert.assertEquals(labelNoIncomeReported.getCssValue("line-height"), "28px", "Line-height mismatch");
+        softAssert.assertEquals(labelNoDeductionsReported.getText().trim(),"No deductions reported","No deductions reported text mismatch");
+        softAssert.assertEquals(labelNoDeductionsReported.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch");
+        softAssert.assertEquals(labelNoDeductionsReported.getCssValue("font-size"), "16px", "Font size mismatch");
+        softAssert.assertEquals(labelNoDeductionsReported.getCssValue("font-weight"), "400", "Font weight mismatch");
+        softAssert.assertEquals(labelNoDeductionsReported.getCssValue("color"), "rgba(43, 49, 60, 1)", "Color mismatch");
+        softAssert.assertEquals(labelNoDeductionsReported.getCssValue("line-height"), "28px", "Line-height mismatch");
+        softAssert.assertAll();
+    }
+    public void validateAddedIncomeNameAndAmount(String incomeName,String amount){
+        basicActions.wait(1000);
+        softAssert.assertEquals(labelNoIncomeReported.getText(),incomeName,"Added Income Name not matching");
+        softAssert.assertEquals(incomeTotalAmount.getText().trim(),amount,"Income Amount Mismatch");
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(labelNoDeductionsReportedUnderDeductions,10));
+        softAssert.assertAll();
+    }
+    public void clickOnEditIncomeButton(String editButton){
+        switch (editButton){
+            case "edit_income_button":
+                basicActions.waitForElementToBePresent(btnEditIncome,10);
+                btnEditIncome.click();
+                break;
+            case "edit_deductions_button":
+                basicActions.waitForElementToBePresent(btnEditDeductions,10);
+                btnEditDeductions.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + editButton);
+        }
 
+    }
+    public void validateTwoIncomeAmounts(String amount1,String amount2) {
+        softAssert.assertEquals(allIncomeAmounts.get(0).getText().trim(), amount1, "Added Income amount not matching");
+        softAssert.assertEquals(allIncomeAmounts.get(1).getText().trim(), amount2, "Added Income amount not matching");
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(labelNoDeductionsReportedUnderDeductions, 10));
+        softAssert.assertAll();
 
+    }
+    public void validateThreeIncomeAmounts(String amount1,String amount2,String amount3) {
+                softAssert.assertEquals(allIncomeAmounts.get(0).getText().trim(),"$12,500.00","Added Income amount not matching");
+                softAssert.assertEquals(allIncomeAmounts.get(1).getText().trim(),"$18,425.00","Added Income amount not matching");
+                softAssert.assertEquals(allIncomeAmounts.get(2).getText().trim(),"$45.02","Added Income amount not matching");
+                softAssert.assertTrue(basicActions.waitForElementToBePresent(labelNoDeductionsReportedUnderDeductions,10));
+                softAssert.assertAll();
+    }
 
+    public void validateDeductionAmount(String deductAmt,String incomeAmt1,String incomeAmt2,String incomeAmt3){
+        basicActions.wait(1000);
+        softAssert.assertEquals(allIncomeAmounts.get(0).getText().trim(),incomeAmt1,"Added Income amount not matching");
+        softAssert.assertEquals(allIncomeAmounts.get(1).getText().trim(),incomeAmt2,"Added Income amount not matching");
+        softAssert.assertEquals(allIncomeAmounts.get(2).getText().trim(),incomeAmt3,"Added Income amount not matching");
+        softAssert.assertEquals(allIncomeAmounts.get(3).getText().trim(),deductAmt,"Added deductions amount not matching");
+        softAssert.assertAll();
+    }
+    public void validateIncomeDeductionCalculations(){
+        double incomeTotalAmountValue=Double.parseDouble( basicActions.removeCommaAndDollarSignFromAmount(incomeTotalAmount.getText().trim()));
+        double incomeAmount1=Double.parseDouble( basicActions.removeCommaAndDollarSignFromAmount(allIncomeAmounts.get(0).getText().trim()));
+        double incomeAmount2=Double.parseDouble( basicActions.removeCommaAndDollarSignFromAmount(allIncomeAmounts.get(1).getText().trim()));
+        double incomeAmount3=Double.parseDouble( basicActions.removeCommaAndDollarSignFromAmount(allIncomeAmounts.get(2).getText().trim()));
+        softAssert.assertTrue(incomeTotalAmountValue==incomeAmount1+incomeAmount2+incomeAmount3,"Addition of income amount is not matching with total amount");
+        double totalAnnualIncomeValue=Double.parseDouble( totalAnnualIncome.getText().replaceAll("[^\\d.]", ""));
+        double deductionTotalAmountValue=Double.parseDouble( basicActions.removeCommaAndDollarSignFromAmount(deductionsTotalAmount.getText().trim()));
+        softAssert.assertTrue(totalAnnualIncomeValue==incomeTotalAmountValue-deductionTotalAmountValue,"Total Annual Income amount mismatch");
+        softAssert.assertAll();
+    }
+    public void validateSpouseName(){
+        String spouseName=basicActions.getMemFirstLastNames("Spouse");
+        Assert.assertEquals(hdr_Income.getText(),"Income: "+spouseName,"Spouse name not matching");
+    }
 }

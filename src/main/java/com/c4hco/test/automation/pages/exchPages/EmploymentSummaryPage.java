@@ -159,11 +159,6 @@ public class EmploymentSummaryPage {
     WebElement btnGoBack;
 
 
-    public void clickOnBackButton() {
-        basicActions.waitForElementToBePresent(btnGoBack,20);
-        btnGoBack.click();
-    }
-
 
     public void clickContinue(){
         basicActions.wait(500);
@@ -665,10 +660,11 @@ public class EmploymentSummaryPage {
         softAssert.assertEquals(btnContinue.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch for Continue");
         softAssert.assertEquals(btnContinue.getCssValue("font-size"), "20px", "Font size mismatch for Continue");
         softAssert.assertEquals(btnContinue.getCssValue("color"), "rgba(252, 252, 252, 1)", "Text color mismatch for Continue");
-
         softAssert.assertAll();
     }
-
-
+    public void clickOnGoBack(){
+        basicActions.waitForElementToBePresent(btnGoBack,10);
+        btnGoBack.click();
+    }
 
 }

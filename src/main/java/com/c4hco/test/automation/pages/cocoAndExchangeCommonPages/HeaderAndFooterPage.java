@@ -1077,22 +1077,22 @@ public class HeaderAndFooterPage {
             case "Facebook":
                 basicActions.waitForElementToBeClickable(FacebookIcon, 10);
                 basicActions.scrollToElement(FacebookIcon);
-                FacebookIcon.click();
+                basicActions.click(FacebookIcon);
                 break;
             case "X":
                 basicActions.waitForElementToBeClickable(xIcon, 10);
                 basicActions.scrollToElement(xIcon);
-                xIcon.click();
+                basicActions.click(xIcon);
                 break;
             case "YouTube":
                 basicActions.waitForElementToBeClickable(YouTubeIcon, 10);
                 basicActions.scrollToElement(YouTubeIcon);
-                YouTubeIcon.click();
+                basicActions.click(YouTubeIcon);
                 break;
             case "Instagram":
                 basicActions.waitForElementToBeClickable(InstagramIcon, 10);
                 basicActions.scrollToElement(InstagramIcon);
-                InstagramIcon.click();
+                basicActions.click(InstagramIcon);
                 break;
             case "LinkedIn":
                 basicActions.waitForElementToBeClickable(LinkedInIcon, 10);
