@@ -48,4 +48,13 @@ public class FamilyOverviewSteps {
     public void iVerifyDeductionAmountInFamilyOverviewPage(String amount) {
         familyOverviewPage.verifyDeductionAmount(amount);}
 
+    @And("I retrieve the memberId of primary member from url")
+    public void iRetrieveTheMemberIdOfMemberFromUrl() {
+        familyOverviewPage.retrievePrimaryMemberId();
+    }
+    @Then("I validate CoCo URL to reflect a Member ID of a CoCo member within or without the current household for {string} page")
+    public void iValidateCoCoURLToReflectAMemberIDOfACoCoMemberWithinTheCurrentHouseholdFor(String pageName) {
+        familyOverviewPage.validateCocoUrlToReflectMemberID(pageName);
+    }
+
 }
