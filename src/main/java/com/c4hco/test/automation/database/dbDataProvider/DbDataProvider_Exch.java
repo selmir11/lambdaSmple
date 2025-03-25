@@ -674,4 +674,16 @@ public class DbDataProvider_Exch {
 
     public String getRemovedEffectiveDate(){
         return postgresHandler.getResultFor("removed_effective_date", exchDbQueries.getRemovedEffectiveDateQuery());}
+
+    public List<String> getEsMemberLceAh(String memberId) {
+        return postgresHandler.getResultForDynamicColumns(exchDbQueries.getEsMemberLceAhDetails(memberId),"lce_member_lce_id","lce_ah_member_lce_id","lce_evaluation_id","lce_ah_evaluation_id","lce_report_date","lce_ah_report_date","lce_event_date","lce_ah_event_date");
+    }
+
+    public String getDeductionRowCount(){
+        String memberId = basicActions.getMemberId("Primary");
+        return postgresHandler.getResultFor("count", exchDbQueries.getDeductionAmountCount(memberId));
+    }
+
+    public String getEnrollmentPlanYear() {
+        return postgresHandler.getResultFor("plan_year", exchDbQueries.getEnrollmentPeriodEndDate());}
 }

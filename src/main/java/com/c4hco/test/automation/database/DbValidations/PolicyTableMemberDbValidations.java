@@ -1,6 +1,5 @@
 package com.c4hco.test.automation.database.DbValidations;
 
-import com.c4hco.test.automation.Dto.Edi.Edi834.Member;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.DbData;
@@ -46,14 +45,27 @@ public class PolicyTableMemberDbValidations {
             case "medical-cancelled":
                 policyStatus = "CANCELLED";
                 policyMemCoverageStatus = "DISENROLL_SUBMITTED";
-//                setMedicalCancelData();
-//                medicalRecordsValidations(memberPrefix);
+                setMedicalCancelData();
+                valMemMedicalRecordsValidations(memberPrefix);
+                break;
+            case "medical-disenroll-submitted":
+                policyStatus = "SUBMITTED";
+                policyMemCoverageStatus = "DISENROLL_SUBMITTED";
+                setMedicalData();
+                valMemMedicalRecordsValidations(memberPrefix);
+                break;
+            case "dental-disenroll-submitted":
+                policyStatus = "SUBMITTED";
+                policyMemCoverageStatus = "DISENROLL_SUBMITTED";
+                setDentalData();
+                dentalRecordsValidations(memberPrefix);
                 break;
             default:
                 Assert.fail("Record Type entered is not valid");
         }
         softAssert.assertAll();
     }
+
     private void setDentalData(){
         resetValues();
         dentalPolicyEntities = exchDbDataProvider.getDataFrmPolicyTables("2");
@@ -80,6 +92,40 @@ public class PolicyTableMemberDbValidations {
         dentalPlanDbDataMapList = SharedData.getDentalPlanDbDataNew();
         setDentalSubscriber();
     }
+
+    private void setMedicalCancelData() {
+        resetValues();
+        medicalPolicyEntities = exchDbDataProvider.getDataFrmPolicyTables("1");
+        List<PolicyTablesEntity> medCancelledPolEntities = new ArrayList<>();
+        for(PolicyTablesEntity entity :medicalPolicyEntities){
+            if(entity.getPolicy_status().equals("CANCELLED")) {
+                medCancelledPolEntities.add(entity);
+            }
+        }
+        SharedData.setMedicalPolicyTablesEntities(medCancelledPolEntities);
+        for (PolicyTablesEntity policyTablesEntity : medicalPolicyEntities) {
+            if (policyTablesEntity.getSubscriber_ind().equals("1")) {
+                for (MemberDetails member : basicActions.getAllMem()) {
+                    if (policyTablesEntity.getFirst_name().equals(member.getFirstName())) {
+                        member.setIsSubscriber("Y");
+                        member.setRelation_to_subscriber("SELF");
+                        break;
+                    }
+                }
+            }
+        }
+
+        subscribers = basicActions.getAllSubscribers();
+        for (MemberDetails subscriber : subscribers) {
+            exchDbDataProvider.setDataFromDb_New(subscriber.getFirstName());
+            exchDbDataProvider.setMedicalPlanDataFromDb_New(subscriber.getFirstName(),subscriber.getMedicalPlan());
+        }
+        setExchPersonId();
+        dbDataMapList = SharedData.getDbDataNew();
+        medicalPlanDbDataMapList = SharedData.getMedicalPlanDbDataNew();
+        setMedicalSubscriber();
+    }
+
     private void setDentalSubscriber(){
         List<MemberDetails> allMem = basicActions.getAllMem();
         for(MemberDetails member: allMem){
