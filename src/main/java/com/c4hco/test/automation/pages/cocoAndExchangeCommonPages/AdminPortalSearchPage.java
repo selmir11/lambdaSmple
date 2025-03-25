@@ -744,6 +744,7 @@ public class AdminPortalSearchPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + title);
         }
+        softAssert.assertAll();
     }
 }
 
