@@ -698,7 +698,7 @@ Feature: Tests related to the Deductions page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
     
-    @SLCR-887 @WIP
+    @SLCR-887
     Scenario: ELIG-As a user on the Income Summary page, 
     I want to see the total annual income and projected income so that 
     I know the income amounts that will be used in determining eligibility [CCRT-253]
