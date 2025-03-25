@@ -547,6 +547,8 @@ Feature: Seed03 - Exchange
       | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     And I validate "medical" entities for "Primary" from policy tables
     And I validate "dental" entities for "Primary" from policy tables
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
     And I validate "medical" entities for "Primary" from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 001                   | 001                | AI                    | FINANCIAL CHANGE  |            |
@@ -572,8 +574,6 @@ Feature: Seed03 - Exchange
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
-    And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
 
   @SLER-2361-WIP
   Scenario: RT-2304 - ENR-EXCH: USER INITIATED DISENROLLMENT (CANCEL) - MEDICAL  ALL MEMBERS (BROKER OBO)
