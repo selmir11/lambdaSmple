@@ -21,6 +21,9 @@ public class DeductionsPageSteps {
     @Then("I click continue on the Deductions page")
     public void clickContinue(){deductionsPage.clickContinue();}
 
+    @Then("I click go back button on the Deductions page")
+    public void clickGoBack(){deductionsPage.clickGoBack();}
+
     @And("I select {string} icon on the Deductions Page")
     public void iSelectHelpIcon(String labelIcon){deductionsPage.clickHelpIcon(labelIcon);}
 
