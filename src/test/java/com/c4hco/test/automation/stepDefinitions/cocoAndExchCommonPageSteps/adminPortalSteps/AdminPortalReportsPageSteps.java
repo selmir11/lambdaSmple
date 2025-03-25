@@ -5,6 +5,8 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+
 public class AdminPortalReportsPageSteps {
 
     AdminPortalReportsPage adminPortalReportsPage = new AdminPortalReportsPage(WebDriverManager.getDriver());
@@ -47,8 +49,8 @@ public class AdminPortalReportsPageSteps {
         adminPortalReportsPage.validateMemberNameAndAccountID();
     }
 
-    @Then("I validate {string} event code and their description {string} in activity event report")
-    public void ValidateEventCodeAndDescription(String eventType, String description) {
-        adminPortalReportsPage.validateEventCodeWithDescription(eventType, description);
+    @Then("I validate description are listed in activity report table")
+    public void ValidateDescription(List<String> description) {
+        adminPortalReportsPage.validateDescription(description);
     }
 }

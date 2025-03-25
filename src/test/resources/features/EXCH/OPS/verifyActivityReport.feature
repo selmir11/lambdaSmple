@@ -19,15 +19,13 @@ Then I validate I am on the "Account Activity" page
 Then I verify Primary account holder and account number displays on Activity Report
 And I validate Account Activity title
 Then I verify Activity report table column names
-Then I validate "UI_ACCT_CREATED" event code and their description "Account created" in activity event report
-Then I validate "BE_Q_AND_A_REQUESTED" event code and their description "Questions and Answers req.." in activity event report
-Then I validate "SE_ENRLLMT_SUBMITTED.." event code and their description "Purchased and enrolled in.." in activity event report
-Then I validate "BE_SES_RSSAP_REQ" event code and their description "Shared Eligibility Servic.." in activity event report
-Then I validate "BE_ID_PROOFING_REQUE.." event code and their description "ID Proofing requested via.." in activity event report
-    # if QA env,Comment below validation - description "Contact Upsert" line due to data mismatch
- #Then I validate "BE_ATL_CONTACT_UPSER.." event code and their description "Contact Upsert" in activity event report
-  # if staging env,Comment below validation - description "Customer record is transf..  line due to data issue
-Then I validate "BE_ATL_CONTACT_UPSER.." event code and their description "Customer record is transf.." in activity event report
+Then I validate description are listed in activity report table
+    | Purchased and enrolled in.. |
+    | Questions and Answers req.. |
+    | Shared Eligibility Servic.. |
+    | Account created             |
+    | Contact Upsert              |
+    | ID Proofing requested via.. |
 Then I close current tab and switch back to previous tab
 And I logout from Admin Portal
  

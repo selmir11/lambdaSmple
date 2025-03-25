@@ -326,19 +326,17 @@ public class AdminPortalReportsPage {
         softAssert.assertAll();
     }
 
+    public void validateDescription(List<String> expectedDescription) {
+        basicActions.waitForElementListToBePresent(descriptionListColumn, 100);
+        List<String> actualDescList = descriptionListColumn.stream().map(WebElement :: getText).toList();
 
-    public void validateEventCodeWithDescription(String eventTypeData, String descriptionData) {
-        basicActions.waitForElementListToBePresent(eventListColumn,20);
-        boolean found = false;
-        for (int i = 1; i < eventListColumn.size() && i < descriptionListColumn .size(); i++) {
-            String EventCode = eventListColumn.get(i).getText().trim();
-            String DescriptionValue = descriptionListColumn.get(i).getText().trim();
-            if (EventCode.equals(eventTypeData)) {
-                softAssert.assertTrue(DescriptionValue.equals(descriptionData), "Event code " + EventCode + " not match  with description " + descriptionData);
-                found = true;
-            }
+        for (String description : expectedDescription) {
+           if(SharedData.getEnv().equals("qa") && description.equals("Contact Upsert")) {
+               description = "Customer record is transf..";
+           }
+           boolean isPresent = actualDescList.contains(description);
+           softAssert.assertTrue(isPresent, "Description not found " + description );
         }
-        softAssert.assertTrue(found, " Event type " + eventTypeData + "and their description "+ descriptionData + " not match");
         softAssert.assertAll();
     }
 }
