@@ -1172,16 +1172,8 @@ public class DeductionsPage {
             addtlDeductionBox.get(i).click();
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
+    public void clickOnGoBackButton(){
+        basicActions.waitForElementToBePresent(goBackButton,10);
+        goBackButton.click();
+    }
 }
