@@ -71,7 +71,7 @@ Feature: Page Validation-Income Summary Page
     Then I validate I am on the "Login" page
 
   @SLER-2353
-  Scenario: RT-2583[ Automate navigation on the ELMO Income Summary Page in EXCH]
+  Scenario: RT-2583 [ Automate navigation on the ELMO Income Summary Page in EXCH]
     And I validate I am on the "Employment Summary" page
     Then I click on Go Back on income summary page
     Then I validate I am on the "Deductions" page

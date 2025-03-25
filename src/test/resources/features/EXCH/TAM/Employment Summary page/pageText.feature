@@ -398,7 +398,7 @@ Feature: Page Text-Income Opt Out Page
 
 
   @SLER-2372
-  Scenario: RT-2580[Automate navigation on the ELMO Employment Summary Income Page in EXCH]
+  Scenario: RT-2580 [Automate navigation on the ELMO Employment Summary Income Page in EXCH]
     And I validate I am on the "Employment Summary" page
     Then I click on Back button on the Employment Summary Page
     And I click plus icon next to member on household page for "Primary"
