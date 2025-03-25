@@ -202,11 +202,11 @@ public class TellUsAboutYourselfPage {
                 member.setCompleteFullName(newFirstName+" "+newMiddleName+" "+newLastName);
 
                 basicActions.waitForElementToBePresent(txtFirstName, 50);
-                txtFirstName.clear();
+                basicActions.clearElementWithRetries(txtFirstName);
                 txtFirstName.sendKeys(newFirstName);
-                txtMiddleName.clear();
+                basicActions.clearElementWithRetries(txtMiddleName);
                 txtMiddleName.sendKeys(newMiddleName);
-                txtLastName.clear();
+                basicActions.clearElementWithRetries(txtLastName);
                 txtLastName.sendKeys(newLastName);
                 break;
             }
