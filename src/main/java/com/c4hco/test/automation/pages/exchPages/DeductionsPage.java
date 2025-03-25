@@ -317,6 +317,14 @@ public class DeductionsPage {
         saveAndContinueBtn.click();
     }
 
+    public void clickGoBack(){
+        basicActions.waitForElementToBePresentWithRetries(DeductionSummaryHeader,5);
+        basicActions.waitForElementToBeClickable(goBackButton, 20);
+        basicActions.scrollToElement(goBackButton);
+        goBackButton.click();
+    }
+
+
     public void clickHelpIcon(String label) {
         basicActions.waitForElementListToBePresent(helpLnk, 10);
         switch(label){
