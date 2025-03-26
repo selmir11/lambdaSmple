@@ -278,7 +278,7 @@ Feature: My Plans Page test
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-2387 @ClickGoBackOnMyPlansPage
-  Scenario: Navigate to My Plans page and select Go Back
+  Scenario: SLER-2387 Navigate to My Plans page and select Go Back
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
