@@ -37,9 +37,5 @@ public class MyPoliciesPageSteps {
         myPoliciesPage.clickCurrentPlans();
     }
 
-    @Then("I click on Cancelled Plans Slider")
-    public void clickCancelledPlansSlider(){
-        myPoliciesPage.clickCancelledPlansSlider();
-    }
 
 }

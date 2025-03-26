@@ -125,7 +125,7 @@ Feature: New payment portal - payment page related tests
     Then I click on Future Plans CoCo
     Then I click on Current Plans CoCo
 
-  @SLCR-867 @CurrentandFuturePlanCoCoSpanish
+  @SLCR-867 @CancelMYPlansCoCo
   Scenario: SLER-867: Navigate to My Plans page and cancel a medical plan
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -182,3 +182,7 @@ Feature: New payment portal - payment page related tests
     Then I click all done from payment portal page coco
     And I click on "My Plans" link on welcome page
     Then I click on Cancel Medical Plans CoCo
+    Then I cancel the active plan detail CoCo
+    Then I click continue on Cancellation Request page CoCo
+    Then I click Okay on Thank you popup CoCo
+    And I click on Sign Out in the Header for "Elmo"

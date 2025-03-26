@@ -220,8 +220,4 @@ public class MyPoliciesPage {
          softAssert.assertFalse(basicActions.elementExists(locator),"Element should be absent but was found.");
     }
 
-    public void clickCancelledPlansSlider(){
-        basicActions.waitForElementToBePresent(CancelPlansSlider, 10);
-        CancelPlansSlider.click();
-    }
 }
