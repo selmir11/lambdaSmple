@@ -235,7 +235,7 @@ Feature: Seed06 - Exchange
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
-    And I click on Sign Out in the Header for "Elmo"
+    And I click on Sign Out in the Header for "NonElmo"
     #DB Validation
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
@@ -251,7 +251,7 @@ Feature: Seed06 - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-    @SLER-1834-WIP_@R4V
+    @SLER-1834 @pol_exch_passed
     Scenario: RT-2306 ENR-EXCH: USER INITIATED DISENROLLMENT (TERM) - DENTAL - ALL MEMBERS - ADMIN OBO
       Given I open the login page on the "admin" portal
       And I validate I am on the "Login" page
@@ -266,9 +266,24 @@ Feature: Seed06 - Exchange
       And I click on "Cancel Dental Plan" button
       And I validate I am on the "Cancellation Request" page
       Then I affirm and cancel the active plan
+      Given I set the dynamic policy, coverage and financial dates for "dental" plan
+        | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+        | First Day Of Current Year | Last Day Of Current Month| First Day Of Current Year | Last Day Of Current Month| First Day Of Current Year | Last Day Of Current Month|
       Then I click continue on Cancellation Request page
       Then I click Okay on Thank you popup
+      And I validate "Dental" details card is not present on my policies page
       And I click on Sign Out in the Header for "Elmo"
+      #DB Validation
+      And I validate "medical" entities from policy tables
+      And I validate "dental-cancelled" entities from policy tables
+      And I validate "dental" entities from pre edi db tables
+        | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason|
+        | 024                   | 024                | AI                    |   TERM            |           |
+      And I verify the policy data quality check with Policy Ah keyset size 2
+      And I verify the BOB entry for "dental" with "POLICY_UPDATE" as event type
+      And I download the medical and dental files from sftp server with location "/outboundedi/"
+      And I validate the ob834 "medical" file data
+      And I validate the ob834 "dental" file data
 
   @SLER-2034-WIP-@R4V
     Scenario: RT-2322 ENR-EXCH: APPS - CHANGE OF SUBSCRIBER
