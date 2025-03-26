@@ -71,4 +71,8 @@ public class DeductionsCoCoPageSteps {
     @Then("I verify Deductions CoCo amount Minimum and Maximum for {string} in {string}")
     public void iVerifyMinMax(String deductionsOption, String language){deductionsCoCoPage.verifyMinMax(deductionsOption, language);}
 
+    @And("I verify Error Icon present in the {string} Error Message")
+    public void iVerifyErrorIconPresentInTheErrorMessage(String errorLine) {
+        deductionsCoCoPage.verifyErrorIcon(errorLine);
+    }
 }
