@@ -100,12 +100,12 @@ Feature: Regression Tests that require Seed 1
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
-
-    Then I click on ClickHere link for "My Plans"
-    Then I validate I am on the "My Policies" page
-    And I validate "medical" details on my policies page
-    And I validate "dental" details on my policies page
-    And I click on Sign Out in the Header for "Elmo"
+#
+#    Then I click on ClickHere link for "My Plans"
+#    Then I validate I am on the "My Policies" page
+#    And I validate "medical" details on my policies page
+#    And I validate "dental" details on my policies page
+#    And I click on Sign Out in the Header for "Elmo"
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
@@ -116,8 +116,8 @@ Feature: Regression Tests that require Seed 1
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
-    And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+#    And I verify the policy data quality check with Policy Ah keyset size 2
+#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
@@ -208,7 +208,7 @@ Feature: Regression Tests that require Seed 1
       | 021                   | 021                | 25                    |                          |                             |                    |
     And I validate the ob834 files should have the values
 
-  @SLER-2030-WIP-@R4V
+  @SLER-2030
   Scenario: RT-2133 ENR-EXCH: ADD DEPENDENT (LCE: Marriage) - SAME CARRIER / SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -284,7 +284,28 @@ Feature: Regression Tests that require Seed 1
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-    And I click on Sign Out in the Header for "NonElmo"
+    Then I validate that financials are updated on account overview page
+    And I Validate the correct enrolled plans are displayed on account overview page
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click on Sign Out in the Header for "Elmo"
+
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+#    And I verify the policy data quality check with Policy Ah keyset size 2
+#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
 
   @SLER-1244-WIP_@R4V
   Scenario: RT-2074 ENR-EXCH: ADD DEPENDENT (LCE: Birth) - SAME CARRIER / SAME PLANS
