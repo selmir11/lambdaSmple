@@ -328,3 +328,11 @@ Feature: Tests related to the Deductions page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+    @SLCR-894 @WIP
+    Scenario:ELIG-As a user on the Deductions page,
+    I want the fields validated so my information is formatted correctly
+    to meet the standards required for my application [CCRT-255]
+      And I verify the header for Primary Member on the CoCo Deductions page in "English"
+      And I select continue on the Deductions CoCo page
+      Then I verify error for Deductions no option in "English" CoCo page
