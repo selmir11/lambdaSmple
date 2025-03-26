@@ -34,8 +34,9 @@ public class AdminPortalReportsPage {
     List<WebElement> eventCodeList;
     @FindBy(xpath = "//tbody[1]/tr[5]/td[3]/app-max-length-tooltip[1]/span[1]")
     WebElement columnEventCode;
+
     @FindBy(xpath = "//table[@class='sort-table']//td")
-    List<WebElement> columnsEventCode1;
+    List<WebElement> EventCodecolumns;
 
     @FindBy(css = ".sort-table-data-row")
     List<WebElement> tableRows;
