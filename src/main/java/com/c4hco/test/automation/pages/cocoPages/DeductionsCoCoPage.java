@@ -164,9 +164,6 @@ public class DeductionsCoCoPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    @FindBy(xpath = "//*[name()='svg' and contains(@class, 'feather-alert-circle')]")
-    WebElement errorIconCircle;
-
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBePresentWithRetries(hdr_Deductions,60);
         basicActions.waitForElementToBePresentWithRetries(hdr_Deductions2,60);
@@ -819,19 +816,6 @@ public class DeductionsCoCoPage {
         softAssert.assertEquals(inputAmount.getAttribute("min"), "0.01");
         softAssert.assertEquals(inputAmount.getAttribute("max"), "999999999.99");
         softAssert.assertEquals(inputAmount.getAttribute("placeholder"), amountPlaceholder);
-        softAssert.assertAll();
-    }
-
-    public void verifyErrorIcon(String errorLine) {
-
-        switch (errorLine) {
-            case "Amount is required":
-                basicActions.waitForElementToBePresent(errorIconCircle, 10);
-                softAssert.assertEquals(errorIconCircle.getAttribute("width"), "24");
-                softAssert.assertEquals(errorIconCircle.getAttribute("height"), "24");
-                softAssert.assertEquals(errorIconCircle.getAttribute("stroke-width"), "2");
-                softAssert.assertEquals(errorIconCircle.getAttribute("stroke-linecap"), "round");
-        }
         softAssert.assertAll();
     }
 }
