@@ -559,3 +559,248 @@ Feature: Page Verification-Additional Income Page
     Then I verify "Taxable income from Tribal Sources" as additional income option with "4,398,573.45" amount at "5: Weekly" frequency
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLER-2374
+  Scenario: SLER-2374 As an Exchange account user on the Additional Income Sources page, I want the fields validated so my information is formatted correctly to meet the standards required for my application-Spanish Validations(RT-2595 Spanish)
+    Then I change the language from header to "Spanish"
+    And I click continue on the Additional Income page
+    Then I verify "Spanish" error shows for additional income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                            | fontSize | fontFamily            | fontWeight | color              |
+      | Seleccione una o más de las siguientes opciones | 16px     | "PT Sans", sans-serif | 700        | rgba(150, 0, 0, 1) |
+    Then I click "Alimony Received" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                      | fontSize | fontFamily            | fontWeight | color              |
+      | Esta cantidad es obligatoria              | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Seleccione una de las siguientes opciones | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Alimony Received" as additional income option
+    Then I click "Alimony Received" as additional income option with "48.91" amount at "Semanalmente" frequency
+    And I verify no errors show for additional income options
+    Then I click "Alimony Received" as additional income option
+    Then I click "Alimony Received" as additional income option with "111111111.11" amount at "Semanalmente" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Alimony Received" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Capital Gains" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                      | fontSize | fontFamily            | fontWeight | color              |
+      | Esta cantidad es obligatoria              | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Seleccione una de las siguientes opciones | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Capital Gains" as additional income option
+    Then I click "Capital Gains" as additional income option with "48.91" amount at "Semanalmente" frequency
+    And I verify no errors show for additional income options
+    Then I click "Capital Gains" as additional income option
+    Then I click "Capital Gains" as additional income option with "111111111.11" amount at "Semanalmente" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Capital Gains" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Income from rental property" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                      | fontSize | fontFamily            | fontWeight | color              |
+      | Esta cantidad es obligatoria              | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Seleccione una de las siguientes opciones | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Income from rental property" as additional income option
+    Then I click "Income from rental property" as additional income option with "48.91" amount at "Semanalmente" frequency
+    And I verify no errors show for additional income options
+    Then I click "Income from rental property" as additional income option
+    Then I click "Income from rental property" as additional income option with "111111111.11" amount at "Semanalmente" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Income from rental property" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Pension" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                      | fontSize | fontFamily            | fontWeight | color              |
+      | Esta cantidad es obligatoria              | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Seleccione una de las siguientes opciones | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Pension" as additional income option
+    Then I click "Pension" as additional income option with "48.91" amount at "Semanalmente" frequency
+    And I verify no errors show for additional income options
+    Then I click "Pension" as additional income option
+    Then I click "Pension" as additional income option with "111111111.11" amount at "Semanalmente" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Pension" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Private Retirement income" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                      | fontSize | fontFamily            | fontWeight | color              |
+      | Esta cantidad es obligatoria              | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Seleccione una de las siguientes opciones | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Private Retirement income" as additional income option
+    Then I click "Private Retirement Income" as additional income option with "48.91" amount at "Semanalmente" frequency
+    And I verify no errors show for additional income options
+    Then I click "Private Retirement income" as additional income option
+    Then I click "Private Retirement Income" as additional income option with "111111111.11" amount at "Semanalmente" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Private Retirement income" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Income from Social Security" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                      | fontSize | fontFamily            | fontWeight | color              |
+      | Esta cantidad es obligatoria              | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Seleccione una de las siguientes opciones | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Income from Social Security" as additional income option
+    Then I click "Income from Social Security" as additional income option with "48.91" amount at "Semanalmente" frequency
+    And I verify no errors show for additional income options
+    Then I click "Income from Social Security" as additional income option
+    Then I click "Income from Social Security" as additional income option with "111111111.11" amount at "Semanalmente" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Income from Social Security" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Unemployment insurance benefit" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                      | fontSize | fontFamily            | fontWeight | color              |
+      | Esta cantidad es obligatoria              | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Seleccione una de las siguientes opciones | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Unemployment insurance benefit" as additional income option
+    Then I click "Unemployment insurance benefit" as additional income option with "48.91" amount at "Semanalmente" frequency
+    And I verify no errors show for additional income options
+    Then I click "Unemployment insurance benefit" as additional income option
+    Then I click "Unemployment insurance benefit" as additional income option with "111111111.11" amount at "Semanalmente" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Unemployment insurance benefit" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Investment Income" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                      | fontSize | fontFamily            | fontWeight | color              |
+      | Esta cantidad es obligatoria              | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Seleccione una de las siguientes opciones | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Investment Income" as additional income option
+    Then I click "Investment Income" as additional income option with "48.91" amount at "Semanalmente" frequency
+    And I verify no errors show for additional income options
+    Then I click "Investment Income" as additional income option
+    Then I click "Investment Income" as additional income option with "111111111.11" amount at "Semanalmente" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Investment Income" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Cash Support" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                      | fontSize | fontFamily            | fontWeight | color              |
+      | Esta cantidad es obligatoria              | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Seleccione una de las siguientes opciones | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Cash Support" as additional income option
+    Then I click "Cash Support" as additional income option with "48.91" amount at "Semanalmente" frequency
+    And I verify no errors show for additional income options
+    Then I click "Cash Support" as additional income option
+    Then I click "Cash Support" as additional income option with "111111111.11" amount at "Semanalmente" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Cash Support" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Untaxed foreign income" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                      | fontSize | fontFamily            | fontWeight | color              |
+      | Esta cantidad es obligatoria              | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Seleccione una de las siguientes opciones | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Untaxed foreign income" as additional income option
+    Then I click "Untaxed foreign income" as additional income option with "48.91" amount at "Semanalmente" frequency
+    And I verify no errors show for additional income options
+    Then I click "Untaxed foreign income" as additional income option
+    Then I click "Untaxed foreign income" as additional income option with "111111111.11" amount at "Semanalmente" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Untaxed foreign income" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Royalty income" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                      | fontSize | fontFamily            | fontWeight | color              |
+      | Esta cantidad es obligatoria              | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Seleccione una de las siguientes opciones | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Royalty income" as additional income option
+    Then I click "Royalty income" as additional income option with "48.91" amount at "Semanalmente" frequency
+    And I verify no errors show for additional income options
+    Then I click "Royalty income" as additional income option
+    Then I click "Royalty income" as additional income option with "111111111.11" amount at "Semanalmente" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Royalty income" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Taxable income from Tribal Sources" as additional income option
+    And I click continue on the Additional Income page
+    And I validate the error text with its properties and the error icon on the Additional Income page
+      | Text                                      | fontSize | fontFamily            | fontWeight | color              |
+      | Esta cantidad es obligatoria              | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+      | Seleccione una de las siguientes opciones | 14px     | "PT Sans", sans-serif | 400        | rgba(150, 0, 0, 1) |
+    Then I click "Taxable income from Tribal Sources" as additional income option
+    Then I click "Taxable income from Tribal Sources" as additional income option with "48.91" amount at "Semanalmente" frequency
+    And I verify no errors show for additional income options
+    Then I click "Taxable income from Tribal Sources" as additional income option
+    Then I click "Taxable income from Tribal Sources" as additional income option with "111111111.11" amount at "Semanalmente" frequency
+    And I click continue on the Additional Income page
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "-324Ab4@_ 5465746547623454" and verify that the value is converted to "324,454,657.46"
+    Then I verify the Active Error message as "Esta cantidad es obligatoria"
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I verify no error shows for additional income page
+    Then I click "Taxable income from Tribal Sources" as additional income option
+    And I verify no error shows for additional income page
+    Then I click "Taxable income from Tribal Sources" as additional income option
+    Then I enter the value "439857345" and verify that the value is converted to "4,398,573.45"
+    And I click continue on the Additional Income page
+    Then I click go back button on the Deductions page
+    Then I validate I am on the "Additional income" page
+    Then I verify "Taxable income from Tribal Sources" as additional income option with "4,398,573.45" amount at "5: Weekly" frequency
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page

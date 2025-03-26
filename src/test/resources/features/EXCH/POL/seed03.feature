@@ -486,7 +486,7 @@ Feature: Seed03 - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-2184-R4V-WIP
+  @SLER-2184 @pol_exch_passed
   Scenario: RT-2053 ENR-EXCH: APPS - MEMBER NOT APPLYING (w/o LCE)
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -527,6 +527,8 @@ Feature: Seed03 - Exchange
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
+    Then I click on view results and shop
+    Then I click on the Colorado Connect or C4 Logo in the "NonElmo" Header
     Then I validate I am on the "Account Overview" page
     Then I validate that financials are updated on account overview page
     And I Validate the correct enrolled plans are displayed on account overview page
@@ -545,6 +547,8 @@ Feature: Seed03 - Exchange
       | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     And I validate "medical" entities for "Primary" from policy tables
     And I validate "dental" entities for "Primary" from policy tables
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
     And I validate "medical" entities for "Primary" from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 001                   | 001                | AI                    | FINANCIAL CHANGE  |            |
@@ -561,8 +565,6 @@ Feature: Seed03 - Exchange
       | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Month | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Month |
     And I validate "medical-disenroll-submitted" entities for "Spouse" from policy tables
     And I validate "dental-disenroll-submitted" entities for "Spouse" from policy tables
-    And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
     And I validate "medical" entities for "Spouse" from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 024                   | 024                | AI                    | TERM              |            |

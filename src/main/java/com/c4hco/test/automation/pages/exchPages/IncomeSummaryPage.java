@@ -154,8 +154,24 @@ public class IncomeSummaryPage {
     @FindBy(xpath = "//div[@class='income-details-right']")
     List<WebElement> allIncomeAmounts;
 
-    @FindBy(xpath = "//*[name()='svg' and @class='feather feather-dollar-sign']")
-    WebElement projectIncomeDollarSign;
+    @FindBy(id = "edit-income-button")
+    WebElement editIncomeButton;
+
+    @FindBy(id = "edit-deductions-button")
+    WebElement editdeductionsButton;
+
+
+
+    public void clickEditDeductionsButton() {
+        basicActions.waitForElementToBePresentWithRetries(editdeductionsButton,30);
+        editdeductionsButton.click();
+    }
+    public void clickEditIncomeButton() {
+        basicActions.waitForElementToBePresentWithRetries(editIncomeButton,30);
+        editIncomeButton.click();
+    }
+
+
 
     public void selectProjectedIncome(String projectedIncomeOption){
         basicActions.waitForElementToDisappear(loaderIcon, 120);
@@ -443,7 +459,7 @@ public class IncomeSummaryPage {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(labelNoDeductionsReportedUnderDeductions,10));
         softAssert.assertAll();
     }
-    public void clickOnEditIncomeOrDeductionButton(String editButton){
+    public void clickOnEditIncomeButton(String editButton){
         switch (editButton){
             case "edit_income_button":
                 basicActions.waitForElementToBePresent(btnEditIncome,10);
@@ -456,21 +472,23 @@ public class IncomeSummaryPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + editButton);
         }
+
     }
     public void validateTwoIncomeAmounts(String amount1,String amount2) {
         softAssert.assertEquals(allIncomeAmounts.get(0).getText().trim(), amount1, "Added Income amount not matching");
         softAssert.assertEquals(allIncomeAmounts.get(1).getText().trim(), amount2, "Added Income amount not matching");
         softAssert.assertTrue(basicActions.waitForElementToBePresent(labelNoDeductionsReportedUnderDeductions, 10));
         softAssert.assertAll();
+
+    }
+    public void validateThreeIncomeAmounts(String amount1,String amount2,String amount3) {
+                softAssert.assertEquals(allIncomeAmounts.get(0).getText().trim(),"$12,500.00","Added Income amount not matching");
+                softAssert.assertEquals(allIncomeAmounts.get(1).getText().trim(),"$18,425.00","Added Income amount not matching");
+                softAssert.assertEquals(allIncomeAmounts.get(2).getText().trim(),"$45.02","Added Income amount not matching");
+                softAssert.assertTrue(basicActions.waitForElementToBePresent(labelNoDeductionsReportedUnderDeductions,10));
+                softAssert.assertAll();
     }
 
-    public void validateThreeIncomeAmounts(String amount1,String amount2,String amount3) {
-        softAssert.assertEquals(allIncomeAmounts.get(0).getText().trim(),"$12,500.00","Added Income amount not matching");
-        softAssert.assertEquals(allIncomeAmounts.get(1).getText().trim(),"$18,425.00","Added Income amount not matching");
-        softAssert.assertEquals(allIncomeAmounts.get(2).getText().trim(),"$45.02","Added Income amount not matching");
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(labelNoDeductionsReportedUnderDeductions,10));
-        softAssert.assertAll();
-    }
     public void validateDeductionAmount(String deductAmt,String incomeAmt1,String incomeAmt2,String incomeAmt3){
         basicActions.wait(1000);
         softAssert.assertEquals(allIncomeAmounts.get(0).getText().trim(),incomeAmt1,"Added Income amount not matching");
@@ -493,36 +511,5 @@ public class IncomeSummaryPage {
     public void validateSpouseName(){
         String spouseName=basicActions.getMemFirstLastNames("Spouse");
         Assert.assertEquals(hdr_Income.getText(),"Income: "+spouseName,"Spouse name not matching");
-    }
-    public void verifyProjectIncomeQstnNotAnswered() {
-        softAssert.assertFalse(projectedIncomeYes.getAttribute("class").contains("button-selected"), "Yes button is Selected");
-        softAssert.assertFalse(projectedIncomeNo.getAttribute("class").contains("button-selected"), "No button is Selected");
-        softAssert.assertAll();
-    }
-
-    public void verifyFontColorText() {
-        basicActions.waitForElementToBePresent(totalAnnualIncome,10);
-        softAssert.assertTrue(totalAnnualIncome.getText().trim().contains("$0.00"), "Income Amount not 0.00");
-        softAssert.assertEquals(totalAnnualIncome.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch");
-        softAssert.assertEquals(totalAnnualIncome.getCssValue("font-size"), "19px", "Font size mismatch");
-        softAssert.assertEquals(totalAnnualIncome.getCssValue("color"), "rgba(77, 77, 79, 1)", "Color mismatch");
-        softAssert.assertAll();
-    }
-
-    public void verifyTotalAnnualIncome(String amount) {
-        basicActions.wait(1000);
-        softAssert.assertEquals(totalAnnualIncome.getText().trim(), "Total annual income " + amount, "Total Annual Income mismatch");
-        softAssert.assertEquals(totalAnnualIncome.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch");
-        softAssert.assertEquals(totalAnnualIncome.getCssValue("font-size"), "19px", "Font size mismatch");
-        softAssert.assertEquals(totalAnnualIncome.getCssValue("color"), "rgba(77, 77, 79, 1)", "Color mismatch");
-        softAssert.assertAll();
-    }
-    public void verifyEnteredProjectedIncome(String projectedAmount){
-        softAssert.assertEquals(ProjectedIncomeInputTextField.getAttribute("value"),projectedAmount,"Entered projected amount is incorrect");
-        softAssert.assertEquals(ProjectedIncomeInputTextField.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch");
-        softAssert.assertEquals(ProjectedIncomeInputTextField.getCssValue("font-size"), "16px", "Font size mismatch");
-        softAssert.assertEquals(ProjectedIncomeInputTextField.getCssValue("color"), "rgba(77, 77, 79, 1)", "Color mismatch");
-        softAssert.assertTrue(projectIncomeDollarSign.isDisplayed(),"Dollar sign not present");
-        softAssert.assertAll();
     }
 }
