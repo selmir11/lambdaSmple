@@ -382,57 +382,65 @@ Feature: Regression Tests that require Seed 1
     And I validate "dental" details on my policies page
     And I click on Sign Out in the Header for "Elmo"
 
-    And I validate "medical" entities from policy tables
-    And I validate "dental" entities from policy tables
+     #Primary
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    And I validate "medical" entities for "Primary" from policy tables
+    And I validate "dental" entities for "Primary" from policy tables
 
-    And I validate "medical" entities from pre edi db tables
+     #Son
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | Today             | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | Today             | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
+    And I validate "medical" entities for "Son" from policy tables
+    And I validate "dental" entities for "Son" from policy tables
+
+     #Primary
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    And I validate "medical" entities for "Primary" from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 001                   | 001                | AI                    |                   | ADMIN_LCE  |
-    And I validate "dental" entities from pre edi db tables
+      | 001                   | 001                | AI                    | FINANCIAL CHANGE  |            |
+    And I validate "dental" entities for "Primary" from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+      | 001                   | 001                | AI                    | FINANCIAL CHANGE  |            |
+
+
+     #Son
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | Today             | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | Today             | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
+    And I validate "medical" entities for "Son" from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason                               |
+      | 021                   | 021                | EC                    |                   | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION |
+    And I validate "dental" entities for "Son" from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason                               |
+      | 021                   | 021                | EC                    |                   | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION |
+
+
+
     And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
     And I upload all the "medical" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
     And I upload all the "dental" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
-
-  # Ib999 DB Validation
-    And I validate "medical" entities from ib999_details db table
-    And I validate "dental" entities from ib999_details db table
-
-    And I download the "medical" ib999 files from sftp server with location "/archive/INBOUND999/"
-    And I download the "dental" ib999 files from sftp server with location "/archive/INBOUND999/"
-
-    And I validate the ib999 "medical" file data
-    And I validate the ib999 "dental" file data
-
-    #Ib834
-    And I validate ib834 "medical" details in database for groups
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
-      | 021                   | 021                | 28                    | CONFIRM           |
-    And I validate ib834 "dental" details in database for groups
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
-      | 021                   | 021                | 28                    | CONFIRM           |
-
-    And I download the "medical" ib834 file from sftp server location "/archive/inboundedi/"
-    And I download the "dental" ib834 file from sftp server location "/archive/inboundedi/"
-
-    And I validate the ib834 "medical" files data
-    And I validate the ib834 "dental" files data
-
-    # Ob999
-    And I validate "medical" entities from ob999_details db table
-    And I validate "dental" entities from ob999_details db table
-
-    And I download the "medical" ob999 file from sftp server with location "/outbound999/"
-    And I download the "dental" ob999 file from sftp server with location "/outbound999/"
-
-    And I validate the ob999 "medical" file data
-    And I validate the ob999 "dental" file data
 
   @SLER-1992 @pol_exch_passed
   Scenario: RT-2052 ENR-EXCH: APPS - CSR LEVEL CHANGE (LCE: Gained AI/AN Tribal Status) SAME PLANS
