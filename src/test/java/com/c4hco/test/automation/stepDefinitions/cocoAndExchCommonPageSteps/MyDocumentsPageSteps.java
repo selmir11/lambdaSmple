@@ -450,5 +450,15 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iClickUploadMVRButtonForInSpanish(String mvrType, String language) {
         myDocumentsPage.clickUploadMvr(mvrType,language);
     }
+
+    @And("I verify I receive access denied message")
+    public void iVerifyIReceiveAccessDeniedMessage() {
+        myDocumentsPage.verifyAccessDenied();
+    }
+
+    @Then("I navigate to {string} url for qa and {string} for staging")
+    public void iNavigateToUrlForQaAndForStaging(String qaurl, String stageurl) {
+        myDocumentsPage.navigateToUrl(qaurl,stageurl);
+    }
 }
 
