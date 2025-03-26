@@ -1,7 +1,7 @@
-@CoCoTransferRemove @portCOCO
-Feature: Transfer Multiple CoCo Clients in Broker Portal My Clients View and validate the account activity report
+@APAccountActivity @portCOCO
+Feature: CoCo client transfer account activity code validation in Admin Portal
 
-  @SLCR-426
+  @SLCR-899
   Scenario: Transfer CoCo clients from one agency to another
     Given I open the login page on the "login" portal
     When I click create a new account on login page
@@ -60,44 +60,16 @@ Feature: Transfer Multiple CoCo Clients in Broker Portal My Clients View and val
     And I validate the Client Transfer Successful message
     Then I click on broker userName and logout
 
-     #Agency owner verifying the new clients
+    #verify activity Table
     Then I validate I am on the "Login" page
-    And I open the login page on the "broker" portal
-    And I login as Broker User any environment "C4PortTesting+TransferTwoSTG@outlook.com" password "ALaska12!" and "C4PortTesting+TransferTwo@outlook.com" password "ALaska12!"
-    And  I validate I am on the "MFA" page
-    Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "C4PortTesting@outlook.com" and "ALaska12!"
-    Then I open the MFA notice
-    And I get the MFA code
-    And I delete the open notice
-    Then I sign out of Outlook
-    Then I enter the MFA code and click Verify
-
-    Then I validate I am on the "Broker Portal Your Clients" page
-    Then I validate the Your Clients page title
-    Then I click on "colorado Connect" tab
-    And I search for clients
-    Then I click on first client search result
-    Then I verify my client's name is displayed
-    Then I select the client searched
-    And I select the "Remove Selected Clients" option from the header of the broker container
-    Then I validate the Remove Client modal title
-    Then I validate the Remove Client modal client count text
-    Then I validate the Remove Client modal confirmation text
-    Then I click "ok" remove client
-
-    Then I click on "colorado Connect" tab
-    And I search for clients
-    Then I validate The Client is removed successfully
-
-    Then I click on broker userName and logout
-
-    #Individual verifying the new broker
-    Then I validate I am on the "Login" page
-    And I open the login page on the "login" portal
-    And  I enter valid credentials to login
-    Then I validate I am on the "CAC Screener" page
-    Then I click on Get Assistance in the "Exch" Header
-    And I click on Find Expert Assistance in the "CoCo" Header
-    Then I validate I am on the "FindExpertHelpCoco" page
-    And I click on Sign Out in the Header for "Elmo"
+    And I open the login page on the "admin" portal
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I select "coco" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    Then I click on view button for "Account Activity" report
+    And I validate Account Activity title row
+    Then I wait for 2000 milliseconds
+    Then I validate "UI_ACCT_CREATED" event code and description "Account created" in activity event report
+    Then I validate "UI_BROKER_AUTHORIZED" event code and description "Broker Authorized" in activity event report
+    Then I validate "UI_ACCT_TRANSFERED" event code and description "Customer record is transf.." in activity event report
