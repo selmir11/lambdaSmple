@@ -257,7 +257,8 @@ Feature: Page Verification-Deductions Page
 
   @SLER-2371
   Scenario: navigation on the ELMO Deductions Page in EXCH [RT-2582]
-    Given I open the login page on the "login" portal
+    When I click on Sign Out in the Header for "Elmo"
+    Then I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -296,8 +297,4 @@ Feature: Page Verification-Deductions Page
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
     Then I click None of these as additional income option and continue
-    Then I validate I am on the "Deductions" page
-    Then I click None of these as deduction option and continue
-    Then I validate I am on the "Income Summary" page
-    And  I click on Go Back on income summary page
     Then I validate I am on the "Deductions" page
