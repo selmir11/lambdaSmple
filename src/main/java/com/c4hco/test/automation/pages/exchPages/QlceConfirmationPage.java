@@ -145,7 +145,7 @@ public class QlceConfirmationPage {
     //None of These
     @FindBy(id = "noneOfThese")
     WebElement noneOfTheseLCE;
-    @FindBy(xpath = "//*[@id='continueButton']")
+    @FindBy(id = "continueButton")
     WebElement saveAndContinue;
     @FindBy(xpath = "//*[@id='submitButton']")
     WebElement btnBack;
@@ -399,7 +399,16 @@ public class QlceConfirmationPage {
                 deathMemCheckbox.click();
                 deathMemEventDate.sendKeys(getCurrentDate());
                 break;
-
+            case "Lost Coverage":
+                basicActions.waitForElementToBeClickable(lostCoverageLCE, 10);
+                lostCoverageLCE.click();
+                WebElement lostCoverageMemCheckbox = basicActions.getDriver().findElement(By.xpath( "//div[@class='col-sm-4 insuranceMemberWrapper']//span[contains(text(),'"+selectMember+"')]/preceding::input[2]"));
+                WebElement lostCoverageEventDate = basicActions.getDriver().findElement(By.xpath( "//div[@class='col-sm-4 insuranceMemberWrapper']//span[contains(text(),'"+selectMember+"')]/following::input[1]"));
+                lostCoverageMemCheckbox.click();
+                String date = basicActions.getDateBasedOnRequirement("Last Day Of Current Month");
+                String endDate = basicActions.changeDateFormat(date, "yyyy-MM-dd", "MM/dd/yyyy");
+                lostCoverageEventDate.sendKeys(endDate);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + QLCEType);
         }

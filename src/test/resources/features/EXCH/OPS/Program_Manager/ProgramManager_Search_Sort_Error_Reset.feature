@@ -20,7 +20,7 @@ Feature: Programme Manager
       | OrganisationName    | Organ                    | stg             |
       | siteID              | jrzvp                    | eNrQp           |
     Then I click on Search button in AP dashboard page
-    Then I verify account results for "ProgrammeManager" on admin portal search page
+    Then I verify account results for "Program Manager" on admin portal search page
     When I click on reset button on admin portal search page
     Then I verify data in the fields on the admin portal search page should be blank
       | accountID        |

@@ -934,3 +934,4 @@ Feature: Elig101-01 - TAM Notices
     And I switch to the tab number 0
 
     And I click on Sign Out in the Header for "Elmo"
+    

@@ -134,7 +134,7 @@ public class AdminPortalSearchPage {
     @FindBy(xpath = "//tbody/tr/td[3]")
     List<WebElement> LastName;
 
-    @FindBy(xpath = "//table[1]/tbody[1]/tr[6]/td[1]") // This locator just using to avoid hard wait
+    @FindBy(xpath = "//table[1]/tbody[1]/tr[3]/td[1]") // This locator just using to avoid hard wait
     WebElement rowTenth;
 
     @FindBy(xpath = "(//button[@type='button'][normalize-space()='Reset'])[2]")
@@ -147,6 +147,10 @@ public class AdminPortalSearchPage {
     WebElement statusMessage;
     @FindBy(xpath = "//tr[@class='clickable']/td[1]")
     WebElement firstBrokerResult;
+
+    @FindBy(xpath = "//*[@class='search-title']")
+    WebElement searchTitle;
+
 
 
     public void searchForUser() {
@@ -520,7 +524,7 @@ public class AdminPortalSearchPage {
 
     public void verifyAccountDetails(String category) {
         switch (category) {
-            case "ProgrammeManager":
+            case "Program Manager":
                 verifyPMAccountTitledetails();
                 verifyPMData();
                 break;
@@ -717,6 +721,30 @@ public class AdminPortalSearchPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + brokerPortal);
       }
+    }
+
+    public void validateSearchTitle(String title) {
+        basicActions.waitForElementToBePresent(individual, 15);
+        switch (title) {
+            case "individual":
+                softAssert.assertEquals(searchTitle.getText(), "Individual Search" ,"Title not match");
+                break;
+            case "Broker":
+                softAssert.assertEquals(searchTitle.getText(), "Broker Search" ,"Title not match");
+                break;
+            case "Program Manager":
+                softAssert.assertEquals(searchTitle.getText(), "Program Manager Search" ,"Title not match");
+                break;
+            case "Agency":
+                softAssert.assertEquals(searchTitle.getText(), "Agency Search" ,"Title not match");
+                break;
+            case "coco":
+                softAssert.assertEquals(searchTitle.getText(), "Colorado Connect Individual Search" ,"Title not match");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + title);
+        }
+        softAssert.assertAll();
     }
 }
 

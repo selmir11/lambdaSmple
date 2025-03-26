@@ -4,6 +4,7 @@ import com.c4hco.test.automation.pages.exchPages.DeductionsPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 import java.util.List;
 
@@ -19,6 +20,9 @@ public class DeductionsPageSteps {
 
     @Then("I click continue on the Deductions page")
     public void clickContinue(){deductionsPage.clickContinue();}
+
+    @Then("I click go back button on the Deductions page")
+    public void clickGoBack(){deductionsPage.clickGoBack();}
 
     @And("I select {string} icon on the Deductions Page")
     public void iSelectHelpIcon(String labelIcon){deductionsPage.clickHelpIcon(labelIcon);}
@@ -81,4 +85,8 @@ public class DeductionsPageSteps {
         deductionsPage.verifyAllDeductioncheckboxErrors(language);
     }
 
+    @When("I click on Go Back button in deductions page")
+    public void iClickOnGoBackButtonInDeductionsPage() {
+        deductionsPage.clickOnGoBackButton();
+    }
 }
