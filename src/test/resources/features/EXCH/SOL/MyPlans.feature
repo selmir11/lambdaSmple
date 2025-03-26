@@ -277,7 +277,7 @@ Feature: My Plans Page test
     Then I click Okay on Thank you popup
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-2314 @CancelMedicalPlan
+  @SLER-2309 @CancelMedicalPlan
   Scenario: SLER-2309 Navigate to My Plans page and cancel a medical plan
     When I click create a new account on login page
     Then I click create my account from pre-screen page

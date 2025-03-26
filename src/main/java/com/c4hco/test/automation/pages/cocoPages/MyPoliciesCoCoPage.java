@@ -154,4 +154,9 @@ public class MyPoliciesCoCoPage {
         CurrentPlans.click();
     }
 
+    public void cancelMedicalPlanbtn(){
+        basicActions.waitForElementToBePresent(cancelMedicalPlanbtn, 10);
+        CurrentPlans.click();
+    }
+
 }
