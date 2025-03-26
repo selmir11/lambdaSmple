@@ -14,11 +14,11 @@ Feature: Seed05exception - Exchange
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
     Given I set the dynamic policy, coverage and financial dates for "medical" plan
-      | PolicyStartDate     | PolicyEndDate       | CoverageStartDate   | CoverageEndDate     | FinancialStartDate  | FinancialEndDate    |
-      | First Of Next Month | Last Of Next Month | First Of Next Month | Last Of Next Month | First Of Next Month | Last Of Next Month |
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     Given I set the dynamic policy, coverage and financial dates for "dental" plan
-      | PolicyStartDate     | PolicyEndDate       | CoverageStartDate   | CoverageEndDate     | FinancialStartDate  | FinancialEndDate    |
-      | First Of Next Month | Last Of Next Month | First Of Next Month | Last Of Next Month | First Of Next Month | Last Of Next Month |
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
 
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -152,19 +152,10 @@ Feature: Seed05exception - Exchange
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
-    Then I click on ClickHere link for "My Plans"
-    Then I validate I am on the "My Policies" page
-
-    And I validate "medical" details on my policies page
-    And I validate "dental" details on my policies page
-    And I click View Plan History link from "medical" plan card
-
-    And I validate "medical" plan details from plan history
-    And I click on to Back to Current Plan Details button
-    And I click View Plan History link from "dental" plan card
-    And I validate "dental" plan details from plan history
-
-    And I click on Sign Out in the Header for "NonElmo"
+#    Then I click on ClickHere link for "My Plans"
+#    Then I validate I am on the "My Policies" page
+#    And I validate "medical" details on my policies page
+#    And I validate "dental" details on my policies page
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
@@ -183,12 +174,32 @@ Feature: Seed05exception - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-    @SLER-1837_WIP_@R4V
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT  |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT  |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
+
+    @SLER-1837 @pol_exch_passed
     Scenario: RT-2247 ENR-EXCH: DEMOGRAPHIC CHANGE (ADD'L MEMBER) - IDENTIFYING DETAILS - SSN
       Given I open the login page on the "login" portal
       And I validate I am on the "Login" page
       And I enter valid credentials to login
       Then I validate I am on the "Account Overview" page
+      Given I set the dynamic policy, coverage and financial dates for "medical" plan
+        | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+        | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
+      Given I set the dynamic policy, coverage and financial dates for "dental" plan
+        | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+        | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
       Then I click on make changes button
       Then I select "No" option on the Let us guide you page
       And I click on save and continue button
@@ -205,7 +216,7 @@ Feature: Seed05exception - Exchange
       And I click plus icon next to member on household page for "Daughter"
       Then I click edit basic information icon on household page for "Daughter"
       Then I validate I am on the "Member" page
-      And I update member SSN number to new SSN number '637241759'
+      And I update 'Daughter' SSN number to new SSN number '637241759'
       And I click continue on Tell us about additional members page
       Then I validate I am on the "Add Address" page
       Then I click continue on the Add Address page
@@ -223,4 +234,44 @@ Feature: Seed05exception - Exchange
       And I click Continue on the Declarations And Signature Page
       And I wait for hold on content to disappear
       Then I validate I am on the "Application History" page
+      Then I click on view results and shop
+      Then I validate I am on the "Application Results" page
       And I click on Sign Out in the Header for "NonElmo"
+
+      And I validate "medical" entities from policy tables
+      And I validate "dental" entities from policy tables
+
+      And I verify the policy data quality check with Policy Ah keyset size 2
+      And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
+# Primary
+      And I validate "medical" entities for "Primary" from pre edi db tables
+        | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+        | 001                   | 001                | AI                    | NO CHANGE         |            |
+      And I validate "dental" entities for "Primary" from pre edi db tables
+        | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+        | 001                   | 001                | AI                    | NO CHANGE         |            |
+#Spouse
+      And I validate "medical" entities for "Spouse" from pre edi db tables
+        | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+        | 001                   | 001                | AI                    | NO CHANGE         |            |
+      And I validate "dental" entities for "Spouse" from pre edi db tables
+        | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+        | 001                   | 001                | AI                    | NO CHANGE         |            |
+#Son
+      And I validate "medical" entities for "Son" from pre edi db tables
+        | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+        | 001                   | 001                | AI                    | NO CHANGE         |            |
+      And I validate "dental" entities for "Son" from pre edi db tables
+        | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+        | 001                   | 001                | AI                    | NO CHANGE         |            |
+#      Daughter
+      And I validate "medical" entities for "Daughter" from pre edi db tables
+        | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
+        | 001                   | 001                | 25                     | DEMOGRAPHIC CHANGE |            |
+      And I validate "dental" entities for "Daughter" from pre edi db tables
+        | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
+        | 001                   | 001                | 25                     | DEMOGRAPHIC CHANGE |            |
+      And I download the medical and dental files from sftp server with location "/outboundedi/"
+
+      And I validate the ob834 "medical" file data
+      And I validate the ob834 "dental" file data

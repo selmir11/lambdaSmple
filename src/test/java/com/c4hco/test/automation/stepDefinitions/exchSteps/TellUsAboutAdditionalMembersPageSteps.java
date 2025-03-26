@@ -36,14 +36,17 @@ public class TellUsAboutAdditionalMembersPageSteps {
     }
 
 
-    @Then("I update member SSN number to new SSN number {string}")
-    public void iUpdateMemSSN(String updatedSSN) {tellUsAboutAdditionalMemberPage.updateMemSSN(updatedSSN);
+    @Then("I update {string} SSN number to new SSN number {string}")
+    public void iUpdateMemSSN(String memprefix, String updatedSSN) {tellUsAboutAdditionalMemberPage.updateMemSSN(memprefix, updatedSSN);
     }
     @And("I click back on Tell us about additional members page")
     public void clickbackButton(){tellUsAboutAdditionalMemberPage.clickBackButton();}
 
     @And("I update member applying for coverage to {string}")
     public void isMemberApplyingForInsurance(String Applying){tellUsAboutAdditionalMemberPage.isMemberApplyingForInsurance(Applying);
+    }
+    @And("I update the member first, middle, and last name")
+    public void updateMemberFullName(){tellUsAboutAdditionalMemberPage.updateMemberFullName();
     }
 
     @And("I select total babies as {int} and set expected due date as {string}")

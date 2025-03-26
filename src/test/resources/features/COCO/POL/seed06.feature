@@ -1,7 +1,6 @@
 Feature: Seed06 - COCO
 
-  Scenario: Seed 06 For COCO - Minor Children Only
-
+  Background: Seed 06 For COCO - Minor Children Only
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -126,7 +125,7 @@ Feature: Seed06 - COCO
     Then I validate I am on the "CoCo Start Shopping" page
     Then I click continue on coco start shopping page
     Then I validate I am on the "CoCo Grouping Members Medical" page
-    Then I click continue on grouping Members Medical coco page
+    And I click continue on coco medical grouping page
     Then I validate I am on the "CoCo Medical Plan Results" page
     #  --SES ON--
     #    And I select "Elevate Health Elevate Colorado Option Silver Enhanced 94%" coco medical plan
@@ -150,6 +149,7 @@ Feature: Seed06 - COCO
     And I validate I am on the "Admin dashboard" page
     And I select "coco" checkbox on Admin Portal Dashboard
     And I search for user and click email from search results
+    Then I validate I am on the "Admin Portal individual dashboard" page
     Then I click on "Manage Plans" user dashboard button
     Then I click Make Changes Medical button
     And I update the Coverage Start date of member
@@ -162,4 +162,18 @@ Feature: Seed06 - COCO
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab
     And logout from Admin Portal
+
+  @SLCR-851-WIP
+  Scenario: CCRT-450 - ENR-COCO: CHANGE PRIMARY CONTACT - RESPONSIBLE PERSON (Minors Only)
+    Given I open the login page on the "login" portal
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
+    And I click on "My Profile" link on welcome page
+    And I click change primary contact on my profile page CoCo
+    And I update "Husband" as primary member coco
+    And I wait for hold on content to disappear
+    Then I validate I am on the "My Profile" page
+    And I click on Sign Out in the Header for "Elmo"
 

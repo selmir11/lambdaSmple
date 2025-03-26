@@ -1077,22 +1077,22 @@ public class HeaderAndFooterPage {
             case "Facebook":
                 basicActions.waitForElementToBeClickable(FacebookIcon, 10);
                 basicActions.scrollToElement(FacebookIcon);
-                FacebookIcon.click();
+                basicActions.click(FacebookIcon);
                 break;
             case "X":
                 basicActions.waitForElementToBeClickable(xIcon, 10);
                 basicActions.scrollToElement(xIcon);
-                xIcon.click();
+                basicActions.click(xIcon);
                 break;
             case "YouTube":
                 basicActions.waitForElementToBeClickable(YouTubeIcon, 10);
                 basicActions.scrollToElement(YouTubeIcon);
-                YouTubeIcon.click();
+                basicActions.click(YouTubeIcon);
                 break;
             case "Instagram":
                 basicActions.waitForElementToBeClickable(InstagramIcon, 10);
                 basicActions.scrollToElement(InstagramIcon);
-                InstagramIcon.click();
+                basicActions.click(InstagramIcon);
                 break;
             case "LinkedIn":
                 basicActions.waitForElementToBeClickable(LinkedInIcon, 10);
@@ -1255,6 +1255,11 @@ public class HeaderAndFooterPage {
                     basicActions.waitForElementToBePresent(followUsText,20);
                     softAssert.assertEquals(followUsText.getText(), "S\u00EDguenos en:");
                     break;
+            case "Copy Rights":
+                String MyCurrentYear = String.valueOf(Year.now().getValue());
+                basicActions.waitForElementToBePresent(APcopyRightText,20);
+                softAssert.assertEquals(APcopyRightText.getText(), "\u00a9 "+MyCurrentYear+" Connect for Health Colorado. All Rights Reserved.");
+                break;
                 default:
                     throw new IllegalArgumentException("Text not present: " + expectedText);
             }

@@ -687,6 +687,17 @@ public class BasicActions {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return firstDayOfNextMonth.format(formatter);
     }
+    public String firstDateOfNextMonthAfterSpecificDate(String dateStr) {
+        DateTimeFormatter formatter;
+        if (dateStr.contains("-")) {
+            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        } else {
+            formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        }
+        LocalDate firstDayOfNextMonth = LocalDate.parse(dateStr, formatter).plusMonths(1).withDayOfMonth(1);
+        return firstDayOfNextMonth.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
+
 
     public String firstDateOfLastMonth() {
         LocalDate today = LocalDate.now();
@@ -700,6 +711,13 @@ public class BasicActions {
         LocalDate firstDayOfCurrMonth = today.withDayOfMonth(1);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return firstDayOfCurrMonth.format(formatter);
+    }
+
+    public String lastDateOfCurrentMonth() {
+        LocalDate today = LocalDate.now();
+        LocalDate lastDayOfCurrentMonth = YearMonth.from(today).atEndOfMonth();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return lastDayOfCurrentMonth.format(formatter);
     }
 
     public String lastDateOfNextMonth() {
@@ -808,6 +826,13 @@ public class BasicActions {
                     break;
                 case "First Day Of Next Year":
                     date = getFirstOfJanNextYr();
+                    break;
+                case "First Of Next Month after PolicyStartDate":
+                    String policyStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate();
+                    date = firstDateOfNextMonthAfterSpecificDate(policyStartDate);
+                    break;
+                case "Last Day Of Current Month":
+                    date = lastDateOfCurrentMonth();
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid option: " + dateRequirement);
@@ -1375,7 +1400,11 @@ public class BasicActions {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) getDriver();
         jsExecutor.executeScript("arguments[0].value = arguments[1];", element, text);
     }
-
+    public String removeCommaAndDollarSignFromAmount(String input){
+        String amountWithoutDollarSign = input.replace("$", "");
+        // Remove commas
+        return amountWithoutDollarSign.replaceAll(",", "");
+    }
 }
 
 

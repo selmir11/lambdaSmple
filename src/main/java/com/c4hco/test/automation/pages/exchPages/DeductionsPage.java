@@ -317,6 +317,14 @@ public class DeductionsPage {
         saveAndContinueBtn.click();
     }
 
+    public void clickGoBack(){
+        basicActions.waitForElementToBePresentWithRetries(DeductionSummaryHeader,5);
+        basicActions.waitForElementToBeClickable(goBackButton, 20);
+        basicActions.scrollToElement(goBackButton);
+        goBackButton.click();
+    }
+
+
     public void clickHelpIcon(String label) {
         basicActions.waitForElementListToBePresent(helpLnk, 10);
         switch(label){
@@ -1172,16 +1180,8 @@ public class DeductionsPage {
             addtlDeductionBox.get(i).click();
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
+    public void clickOnGoBackButton(){
+        basicActions.waitForElementToBePresent(goBackButton,10);
+        goBackButton.click();
+    }
 }

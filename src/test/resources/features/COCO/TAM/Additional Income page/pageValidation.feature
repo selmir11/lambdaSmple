@@ -65,7 +65,7 @@ Feature: Tests related to the Additional Income page
     Then I select "Taxable income from Tribal Sources" as additional income option CoCO page
     Then I select "Private Retirement Income" as additional income option CoCO page
     Then I verify no errors show for additional income options CoCo page
-    Then I verify "Private Retirement income" as additional income option with "500.00" amount at "3: Monthly" frequency CoCo page
+    Then I verify "Private Retirement Income" as additional income option with "500.00" amount at "3: Monthly" frequency CoCo page
     #Step9
     Then I select "None of these" as additional income option CoCO page
     Then I select "Income from Social Security" as additional income option CoCO page
@@ -154,7 +154,7 @@ Feature: Tests related to the Additional Income page
     Then I select "Taxable income from Tribal Sources" as additional income option CoCO page
     Then I select "Private Retirement Income" as additional income option CoCO page
     Then I verify no errors show for additional income options CoCo page
-    Then I verify "Private Retirement income" as additional income option with "500.00" amount at "3: Monthly" frequency CoCo page
+    Then I verify "Private Retirement Income" as additional income option with "500.00" amount at "3: Monthly" frequency CoCo page
     #Step9
     Then I select "None of these" as additional income option CoCO page
     Then I select "Income from Social Security" as additional income option CoCO page
