@@ -1810,7 +1810,7 @@ public class MyDocumentsPage {
     public void verifyAccessDenied()
     {
         basicActions.waitForElementToBePresent(txtMyDocsAccessDenied, 50);
-        softAssert.assertTrue(txtMyDocsAccessDenied.getText().contains("errorMessage"));
+        softAssert.assertTrue(txtMyDocsAccessDenied.getText().contains("Access is denied"));
         softAssert.assertAll();
     }
 
