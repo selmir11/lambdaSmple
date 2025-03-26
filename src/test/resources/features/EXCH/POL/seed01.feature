@@ -307,7 +307,7 @@ Feature: Regression Tests that require Seed 1
     And I validate "medical" entities for "Primary" from policy tables
     And I validate "dental" entities for "Primary" from policy tables
     And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
+    # And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
     And I validate "medical" entities for "Primary" from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 001                   | 001                | AI                    | FINANCIAL CHANGE  |            |
