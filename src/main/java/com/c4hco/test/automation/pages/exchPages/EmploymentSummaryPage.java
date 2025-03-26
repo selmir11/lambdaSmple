@@ -160,6 +160,11 @@ public class EmploymentSummaryPage {
 
 
 
+    public void clickOnBackButton() {
+        basicActions.waitForElementToBePresent(btnGoBack,20);
+        btnGoBack.click();
+    }
+
     public void clickContinue(){
         basicActions.wait(500);
         basicActions.waitForElementToDisappear( spinner,100 );

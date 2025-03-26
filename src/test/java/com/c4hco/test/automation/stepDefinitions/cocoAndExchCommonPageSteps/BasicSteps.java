@@ -558,6 +558,9 @@ public class BasicSteps {
             case "My Document Spanish":
                 pageUrl = "MyDocuments/home?lang=es";
                 break;
+            case "Program Manager dashboard":
+                pageUrl = "AdminPortal/programManager/";
+                break;
             default:
                 throw new IllegalArgumentException("Undefined Page: " + page);
 

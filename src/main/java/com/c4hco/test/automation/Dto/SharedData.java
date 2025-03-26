@@ -53,6 +53,7 @@ public class SharedData {
     @Getter @Setter private static Set<Map<String, DbData>> dbDataNew;
     @Getter @Setter private static List<Map<String, PlanDbData>> medicalPlanDbDataNew;
     @Getter @Setter private static List<Map<String, PlanDbData>> dentalPlanDbDataNew;
+    @Getter @Setter private static String carrierPdfFileName;
     @Getter @Setter private static String planYear;
     @Getter @Setter private static GroupDetails groupDetails;
     @Getter @Setter private static String dbName;
@@ -155,6 +156,7 @@ public class SharedData {
         EffectiveLCEDate = null;
         isAiAn = false;
         recType = null;
+        carrierPdfFileName = null;
     }
 
 }

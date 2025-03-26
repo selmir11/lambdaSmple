@@ -173,7 +173,6 @@ Feature: Seed06 - COCO
     And I click on "My Profile" link on welcome page
     And I click change primary contact on my profile page CoCo
     And I update "Husband" as primary member coco
-    And I click on Save Button on My profile CoCo
     And I wait for hold on content to disappear
     Then I validate I am on the "My Profile" page
     And I click on Sign Out in the Header for "Elmo"

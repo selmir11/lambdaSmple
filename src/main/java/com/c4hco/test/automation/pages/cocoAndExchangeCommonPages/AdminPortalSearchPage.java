@@ -134,7 +134,7 @@ public class AdminPortalSearchPage {
     @FindBy(xpath = "//tbody/tr/td[3]")
     List<WebElement> LastName;
 
-    @FindBy(xpath = "//table[1]/tbody[1]/tr[6]/td[1]") // This locator just using to avoid hard wait
+    @FindBy(xpath = "//table[1]/tbody[1]/tr[3]/td[1]") // This locator just using to avoid hard wait
     WebElement rowTenth;
 
     @FindBy(xpath = "(//button[@type='button'][normalize-space()='Reset'])[2]")
@@ -150,6 +150,41 @@ public class AdminPortalSearchPage {
 
     @FindBy(xpath = "//*[@class='search-title']")
     WebElement searchTitle;
+
+    @FindBy(xpath = "//*[@id='heading']")
+    WebElement cbmsTitle;
+    @FindBy(xpath = "//label[@for='exchangePersonId']")
+    WebElement personIdLabel;
+    @FindBy(xpath = "//label[@for='firstname']")
+    WebElement firstNameLabel;
+    @FindBy(xpath = "//label[@for='lastname']")
+    WebElement lastNameLabel;
+    @FindBy(xpath = "//label[@for='cbmsPersonId']")
+    WebElement cbmsPersonIdLabel;
+    @FindBy(xpath = "//label[@for='ssn']")
+    WebElement ssnLabel;
+    @FindBy(xpath = "//label[@for='dateOfBirth']")
+    WebElement dobLabel;
+    @FindBy(css = "label[for='middleInitial']")
+    WebElement middleLabel;
+    @FindBy(css = "label[for='suffix']")
+    WebElement suffixLabel;
+    @FindBy(css = "label[for='stateId']")
+    WebElement stateIdLabel;
+    @FindBy(css = "label[for='gender']")
+    WebElement sexLabel;
+    @FindBy(xpath = "//div[contains(text(),'Please enter Exchange Person ID')]")
+    WebElement personIdError;
+    @FindBy(xpath = "//div[contains(text(),'Please enter First Name')]")
+    WebElement firstNameError;
+    @FindBy(xpath = "//div[contains(text(),'Please enter Last Name')]")
+    WebElement lastNameError;
+    @FindBy(xpath = "//div[contains(text(),'Please enter Date of Birth')]")
+    WebElement dobError;
+    @FindBy(css = ".btn-primary-action-button.search-button")
+    WebElement cbmsSearchButton;
+    @FindBy(css = ".btn-second-action-button.reset-button")
+    WebElement cbmsResetButton;
 
 
 
@@ -524,7 +559,7 @@ public class AdminPortalSearchPage {
 
     public void verifyAccountDetails(String category) {
         switch (category) {
-            case "ProgrammeManager":
+            case "Program Manager":
                 verifyPMAccountTitledetails();
                 verifyPMData();
                 break;
@@ -746,6 +781,37 @@ public class AdminPortalSearchPage {
         }
         softAssert.assertAll();
     }
+    public void verifyCBMSTitle(){
+        basicActions.switchtoactiveTab();
+        basicActions.waitForElementToBePresent(cbmsTitle, 100);
+        softAssert.assertEquals(cbmsTitle.getText(), "CBMS Case ID Search");        }
+    public void verifySearchLabels(){
+        basicActions.waitForElementToBePresent(personIdLabel, 30);
+        softAssert.assertTrue(personIdLabel.isDisplayed());
+        softAssert.assertTrue(firstNameLabel.isDisplayed());
+        softAssert.assertTrue(lastNameLabel.isDisplayed());
+        softAssert.assertTrue(cbmsPersonIdLabel.isDisplayed());
+        softAssert.assertTrue(ssnLabel.isDisplayed());
+        softAssert.assertTrue(dobLabel.isDisplayed());
+        softAssert.assertTrue(middleLabel.isDisplayed());
+        softAssert.assertTrue(suffixLabel.isDisplayed());
+        softAssert.assertTrue(stateIdLabel.isDisplayed());
+        softAssert.assertTrue(sexLabel.isDisplayed());
+        softAssert.assertAll();     }
+    public void clickCBMSSearchButton() {
+        basicActions.waitForElementToBePresent(cbmsSearchButton,30);
+        cbmsSearchButton.click();
+    }
+    public void verifyRequiredFieldsErrors(){
+        basicActions.waitForElementToBePresent(personIdError, 30);
+        softAssert.assertTrue(personIdError.isDisplayed());
+        softAssert.assertTrue(firstNameError.isDisplayed());
+        softAssert.assertTrue(lastNameError.isDisplayed());
+        softAssert.assertTrue(dobError.isDisplayed());
+        softAssert.assertAll();     }
+    public void clickCBMSResetButton() {
+        basicActions.waitForElementToBePresent(cbmsResetButton,30);
+        cbmsResetButton.click();        }
 }
 
 
