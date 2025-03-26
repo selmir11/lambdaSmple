@@ -175,7 +175,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
             memberDetailswithAge(Integer.parseInt(DOB.replaceAll("\\D", "")));
         }
 
-        List<MemberDetails> membersList = SharedData.getAllMembers();
+        List<MemberDetails> membersList = SharedData.getMembers();
 
         MemberDetails member = new MemberDetails();
         member.setFirstName(frstName);

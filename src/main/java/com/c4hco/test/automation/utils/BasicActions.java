@@ -687,12 +687,17 @@ public class BasicActions {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return firstDayOfNextMonth.format(formatter);
     }
-
-    public String firstDateOfNextMonthAfterSpecificDate(String dateStr){
-        DateTimeFormatter inputOutputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        LocalDate firstDayOfNextMonth = LocalDate.parse(dateStr, inputOutputFormatter).plusMonths(1).withDayOfMonth(1);
+    public String firstDateOfNextMonthAfterSpecificDate(String dateStr) {
+        DateTimeFormatter formatter;
+        if (dateStr.contains("-")) {
+            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        } else {
+            formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        }
+        LocalDate firstDayOfNextMonth = LocalDate.parse(dateStr, formatter).plusMonths(1).withDayOfMonth(1);
         return firstDayOfNextMonth.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
+
 
     public String firstDateOfLastMonth() {
         LocalDate today = LocalDate.now();
