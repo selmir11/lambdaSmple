@@ -1811,6 +1811,7 @@ public class MyDocumentsPage {
     {
         basicActions.waitForElementToBePresent(txtMyDocsAccessDenied, 50);
         softAssert.assertEquals(txtMyDocsAccessDenied.getText(),"errorMessage");
+        softAssert.assertAll();
     }
 
 }
