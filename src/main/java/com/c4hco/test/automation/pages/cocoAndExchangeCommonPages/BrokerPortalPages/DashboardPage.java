@@ -114,7 +114,7 @@ public class DashboardPage {
     @FindBy(id = "inviteCode-errorMsg")
     WebElement agencyInformationEnterInviteCodeError;
 
-    @FindBy(xpath = "//*[@id='button-177']")
+    @FindBy(xpath = "//button[.='View Report']")
     WebElement viewReportButton;
 
     private BasicActions basicActions;

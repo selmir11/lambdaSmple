@@ -403,9 +403,22 @@ public class TellUsAboutAdditionalMemberPage {
         String formattedDate = basicActions.changeDateFormat(resolvedDate, "yyyy-MM-dd", "MM/dd/yyyy");
         expectedDueDate.sendKeys(formattedDate);
     }
+    public void updateMemberFullName() {
+        basicActions.waitForElementToBePresent(txtfirstName, 50);
+        txtfirstName.clear();
+        String newFirstName = "UPDfirst" + basicActions.getUniqueString(5);
+        txtfirstName.sendKeys(newFirstName);
+        System.out.println("First Name updated to "+newFirstName);
 
+        txtmiddleName.clear();
+        String newMiddleName = "UPDmiddle"+basicActions.getUniqueString(5);
+        txtmiddleName.sendKeys(newMiddleName);
+        System.out.println("Middle Name updated to "+newMiddleName);
 
+        txtlastName.clear();
+        String newLastName = "UPDlast"+basicActions.getUniqueString(5);
+        txtlastName.sendKeys(newLastName);
+        System.out.println("Last Name updated to "+newLastName);
+       }
 
-
-
-}
+    }

@@ -105,10 +105,10 @@ Feature: Seed02 with exception - Coco
   # DB Validation
     And I validate "SUBMITTED" Medical entities from COCO policy tables
     And I validate Medical entities from COCO pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code |addl_maint_reason  | sep_reason      |
-      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
-    And I validate the coco ob834 medical file data that present in localPath or coco sftp server "/outboundedi/"
-    And I validate the coco ob834 medical file data
+     | maintenance_type_code | hd_maint_type_code | maintenance_reas_code |addl_maint_reason  | sep_reason      |
+     | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+   And I validate the coco ob834 medical file data that present in localPath or coco sftp server "/outboundedi/"
+   And I validate the coco ob834 medical file data
 
   @SLCR-807-WIP
   Scenario: CCRT-369 - ENR-COCO: EDIT POLICY - COVERAGE & FINANCIAL START DATES LATER THAN POLICY START DATE
@@ -121,12 +121,12 @@ Feature: Seed02 with exception - Coco
     Then I validate I am on the "Admin Portal individual dashboard" page
     Then I click on "Manage Plans" user dashboard button
     Then I click Make Changes Medical button
-#    And I update the Coverage Start date of member on manage plan page
-#      | Primary:First Of Next Month after PolicyStartDate |
-#      | Spouse:First Of Next Month after PolicyStartDate |
-#    Then I update the Financial Start date of member on manage plan page
-#      | Primary:First Of Next Month after PolicyStartDate |
-#      | Spouse:First Of Next Month after PolicyStartDate |
+    And I update the Coverage Start date of member on manage plan page
+      | Primary:First Of Next Month after PolicyStartDate |
+      | Spouse:First Of Next Month after PolicyStartDate |
+    Then I update the Financial Start date of member on manage plan page
+      | Primary:First Of Next Month after PolicyStartDate |
+      | Spouse:First Of Next Month after PolicyStartDate |
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I close current tab and switch back to previous tab
