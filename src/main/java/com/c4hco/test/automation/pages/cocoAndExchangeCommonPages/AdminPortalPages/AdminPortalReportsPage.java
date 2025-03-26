@@ -422,22 +422,6 @@ public class AdminPortalReportsPage {
         softAssert.assertAll();
     }
 
-    public void validateMemberNameAndAccountID() {
-        basicActions.wait(250);
-        basicActions.waitForElementToBePresent(memberPrimary, 100);
-        softAssert.assertTrue(memberPrimary.isDisplayed());
-        basicActions.waitForElementToBePresent(memberAcctId, 100);
-        softAssert.assertTrue(memberAcctId.isDisplayed());
-
-        if (SharedData.getPrimaryMember() != null) {
-            softAssert.assertEquals(memberPrimary.getText(), "Primary Account Holder: " + SharedData.getPrimaryMember().getSignature());
-            int commaIndex = memberAcctId.getText().indexOf(',');
-            String accountIdFromHeader = memberAcctId.getText().substring(0, commaIndex).trim();
-            softAssert.assertEquals(accountIdFromHeader, "Account ID:" + SharedData.getPrimaryMember().getAccount_id());
-        }
-        softAssert.assertAll();
-    }
-
     public void validateDescription(List<String> expectedDescription) {
         basicActions.waitForElementListToBePresent(descriptionListColumn, 100);
         List<String> actualDescList = descriptionListColumn.stream().map(WebElement :: getText).toList();

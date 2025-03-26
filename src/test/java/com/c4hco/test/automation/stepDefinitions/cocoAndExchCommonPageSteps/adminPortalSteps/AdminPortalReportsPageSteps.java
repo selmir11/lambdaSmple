@@ -71,11 +71,6 @@ public class AdminPortalReportsPageSteps {
         adminPortalReportsPage.validateActivityReportColumnNames();
     }
 
-    @Then("I verify Primary account holder and account number displays on Activity Report")
-    public void iVerifyPrimaryAccountHolderAndAccountNumberDisplaysOnActivityReport() {
-        adminPortalReportsPage.validateMemberNameAndAccountID();
-    }
-
     @Then("I validate description are listed in activity report table")
     public void ValidateDescription(List<String> description) {
         adminPortalReportsPage.validateDescription(description);
