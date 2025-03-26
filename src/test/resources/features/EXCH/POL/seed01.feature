@@ -211,7 +211,7 @@ Feature: Regression Tests that require Seed 1
       | 021                   | 021                | 25                    |                          |                             |                    |
     And I validate the ob834 files should have the values
 
-  @SLER-2030 @pol_exch_passed @n1
+  @SLER-2030 @pol_exch_passed
   Scenario: RT-2133 ENR-EXCH: ADD DEPENDENT (LCE: Marriage) - SAME CARRIER / SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -317,7 +317,7 @@ Feature: Regression Tests that require Seed 1
 
     Given I set the dynamic policy, coverage and financial dates for "medical" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate      |
-      | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+      | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     Given I set the dynamic policy, coverage and financial dates for "dental" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate | MemFinancialEndDate      |
       | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
