@@ -250,7 +250,7 @@ Feature: Seed05 - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-2036 @pol_exch_passed @n1
+  @SLER-2036 @pol_exch_passed
   Scenario: RT-2274 ENR-EXCH: APPS - REMOVE MEMBER - DEATH OF DEPENDENT (LCE: Death)
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
