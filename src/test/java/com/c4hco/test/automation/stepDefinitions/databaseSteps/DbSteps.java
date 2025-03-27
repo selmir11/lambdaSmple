@@ -40,6 +40,10 @@ public class DbSteps {
     public void iValidateBookOfBusinessQ(String eventType) {
         dbValidations.validateBookOfBusinessQ(eventType);
     }
+    @And("I verify the data from book of business queue by applicationId with {string} as event type")
+    public void iValidateBOBByApplicationId(String eventType ){
+        dbValidations.validateBobByApplicationId(eventType);
+    }
     @And("I verify the BOB entry for {string} with {string} as event type")
     public void iValidateBoBMedical(String coverageType, String eventType){
         dbValidations.validateBookOfBusinessQMedical(coverageType,eventType);
