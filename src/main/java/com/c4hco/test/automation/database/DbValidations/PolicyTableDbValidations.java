@@ -301,7 +301,6 @@ public class PolicyTableDbValidations {
         private void medValidationsCommonForAllMembers(String name, PolicyTablesEntity policyTablesEntity) {
             getMedicalPlanDbDataMap(name);
             getDbDataMap(name);
-            System.out.println("Name:: "+policyTablesEntity.getFirst_name());
             String csrLevel = SharedData.getIsAiAn() ? "03" : dbDataMap.get(name).getCsrLevel();
             softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), medicalPlanDbDataMap.get(name).getBaseId() + "-" + csrLevel, "Medical Hios id does not match");
             softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate(), "Coverage type 1, Policy start date does not match");
