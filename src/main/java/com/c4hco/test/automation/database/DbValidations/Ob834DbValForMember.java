@@ -126,7 +126,7 @@ public class Ob834DbValForMember {
         getDentalPlanDbDataMap(name);
         String formatPlanStartDate = SharedData.getExpectedCalculatedDates_dentalPlan().getCoverageStartDate().replaceAll("-", "");
         String formatDentalPlanEndDate = SharedData.getExpectedCalculatedDates_dentalPlan().getCoverageEndDate().replaceAll("-", "");
-        String formattedFinStartDate = SharedData.getExpectedCalculatedDates_dentalPlan().getMemberFinancialStartDate()!=null? SharedData.getExpectedCalculatedDates_dentalPlan().getMemberFinancialStartDate().replaceAll("-", ""):SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialStartDate().replaceAll("-", "");
+        String formattedFinStartDate = SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialStartDate().replaceAll("-", "");
 
         softAssert.assertEquals(ob834Entity.getHios_plan_id(), dentalPlanDbDataMap.get(name).getBaseId(), "Dental Hios id did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_name(), dentalPlanDbDataMap.get(name).getIssuerName(), "Dental Insurer Name did not match!");
@@ -229,7 +229,7 @@ public class Ob834DbValForMember {
         getMedicalPlanDbDataMap(name);
         String formatPlanStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getCoverageStartDate().replaceAll("-", "");
         String formatMedicalPlanEndDate = SharedData.getExpectedCalculatedDates_medicalPlan().getCoverageEndDate().replaceAll("-", "");
-        String formatedFinStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getMemberFinancialStartDate()!=null ? SharedData.getExpectedCalculatedDates_medicalPlan().getMemberFinancialStartDate().replaceAll("-", ""):SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialStartDate().replaceAll("-", "");
+        String formatedFinStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialStartDate().replaceAll("-", "");
 
         softAssert.assertEquals(ob834Entity.getHios_plan_id(), medicalPlanDbDataMap.get(name).getBaseId(), "Medical Hios id did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_name(), medicalPlanDbDataMap.get(name).getIssuerName(), "Medical Insurer Name did not match!");

@@ -250,7 +250,7 @@ Feature: Seed05 - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-2036 @pol_exch_passed
+  @SLER-2036 @pol_exch_passed @n1
   Scenario: RT-2274 ENR-EXCH: APPS - REMOVE MEMBER - DEATH OF DEPENDENT (LCE: Death)
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -320,6 +320,13 @@ Feature: Seed05 - Exchange
       | 001                   | 001                | AI                    | FINANCIAL CHANGE  |            |
 
      #Spouse
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+
     And I validate "medical" entities for "Spouse" from policy tables
     And I validate "dental" entities for "Spouse" from policy tables
     And I validate "medical" entities for "Spouse" from pre edi db tables
