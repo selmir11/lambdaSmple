@@ -70,6 +70,7 @@ public class PolicyTableDbValidations {
     private void setMedicalCancelData() {
         resetValues();
         medicalPolicyEntities = exchDbDataProvider.getDataFrmPolicyTables("1");
+        SharedData.setMedicalPolicyTablesEntities(null);
         List<PolicyTablesEntity> medCancelledPolEntities = new ArrayList<>();
         for(PolicyTablesEntity entity :medicalPolicyEntities){
             if(entity.getPolicy_status().equals("CANCELLED")) {
@@ -77,7 +78,7 @@ public class PolicyTableDbValidations {
             }
         }
         SharedData.setMedicalPolicyTablesEntities(medCancelledPolEntities);
-        for (PolicyTablesEntity policyTablesEntity : medicalPolicyEntities) {
+        for (PolicyTablesEntity policyTablesEntity : medCancelledPolEntities) {
             if (policyTablesEntity.getSubscriber_ind().equals("1")) {
                 for (MemberDetails member : basicActions.getAllMem()) {
                     if (policyTablesEntity.getFirst_name().equals(member.getFirstName())) {
