@@ -308,6 +308,7 @@ Feature: Seed05 - Exchange
 
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
+    And I reset the previous file names in shared data
 
     #Primary
     And I validate "medical" entities for "Primary" from policy tables
@@ -348,17 +349,20 @@ Feature: Seed05 - Exchange
 
     #Daughter
     Given I set the dynamic policy, coverage and financial dates for "medical" plan
-      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate       |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Current Date    | First Of Next Month | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Month |
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate | FinancialStartDate        | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate       |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Current Date    | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Month |
     Given I set the dynamic policy, coverage and financial dates for "dental" plan
-      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate       |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Current Date    | First Of Next Month | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Month |
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate | FinancialStartDate        | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate       |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Current Date    | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Month |
 
-    And I validate "medical" entities for "Daughter" from policy tables
-    And I validate "dental" entities for "Daughter" from policy tables
+    And I validate "medical-disenroll-submitted" entities for "Daughter" from policy tables
+    And I validate "dental-disenroll-submitted" entities for "Daughter" from policy tables
     And I validate "medical" entities for "Daughter" from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 024                   | 024                | AI                    | TERM              |            |
     And I validate "dental" entities for "Daughter" from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 024                   | 024                | AI                    | TERM              |            |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data

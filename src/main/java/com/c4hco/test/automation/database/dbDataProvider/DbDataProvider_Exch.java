@@ -317,6 +317,9 @@ public class DbDataProvider_Exch {
     public List<BookOfBusinessQEntity> getBookOfBusinessQ(String eventType){
         return bookOfBuisnessQDbHandler.getBookOfBusinessQDetails(exchDbQueries.getBookOfBusinessQ(eventType));
     }
+    public List<BookOfBusinessQEntity> getBoBQueryByApplicationId(String eventType){
+        return bookOfBuisnessQDbHandler.getBookOfBusinessQDetails(exchDbQueries.getBookOfBusinessByApplicationId(eventType));
+    }
 
     public List<String> getPolicyId(){
         return postgresHandler.getResultListFor("policy_id", exchDbQueries.policyId());
@@ -686,4 +689,14 @@ public class DbDataProvider_Exch {
 
     public String getEnrollmentPlanYear() {
         return postgresHandler.getResultFor("plan_year", exchDbQueries.getEnrollmentPeriodEndDate());}
+
+    public List<List<String>> getEnrollmentPlanLceDetails() {
+        List<List<String>> results = postgresHandler.getResultForMultipleDynamicColumns(exchDbQueries.getMultipleEnrollmentPeriodEndDate(), "enrollment_period_end_date", "qlce_present_ind", "plan_year");
+
+        System.out.println("Number of rows retrieved: " + results.size());
+        return results;
+    }
+
+    public String getEnrollmentPlanLceRowCount(){
+        return postgresHandler.getResultFor("count", exchDbQueries.getEnrollmentPeriodEndDateCount());}
 }
