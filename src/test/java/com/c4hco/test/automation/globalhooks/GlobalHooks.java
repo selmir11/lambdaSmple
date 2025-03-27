@@ -23,10 +23,10 @@ public class GlobalHooks {
     private WebDriver driver;
 
     @Before
-    public void beforeScenario(Scenario scenario) {
+    public void beforeScenario() {
         System.out.println("Before Scenario!");
         SharedData.reset();
-        driver = WebDriverManager.getDriver();  // Ensure driver is initialized
+        driver = WebDriverManager.getDriver();
     }
 
     @After
