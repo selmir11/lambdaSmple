@@ -399,7 +399,8 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//a[contains(text(),'Contáctenos')]")
     WebElement helpDrawerContactUsLinkSpanish;
 
-
+    @FindBy(xpath = "//pre[contains(., 'errorMessage')]")
+    WebElement txtMyDocsAccessDenied;
 
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
@@ -1795,6 +1796,22 @@ public class MyDocumentsPage {
     public void validateHelpDrawerOpenedSpanish() {
         basicActions.waitForElementToBePresentWithRetries(helpDrawerSubHeaderSpanish,20);
         Assert.assertTrue(basicActions.waitForElementToBePresent(helpDrawerSubHeaderSpanish,10)," Help drawer not opened");
+    }
+
+    public void navigateToUrl(String qaurl, String stageurl) {
+        if (SharedData.getEnv().equals("qa")) {
+            basicActions.getDriver().navigate().to("https://qa-aws." + qaurl);
+        }
+        else{
+            basicActions.getDriver().navigate().to("https://staging-aws." + stageurl);
+        }
+    }
+
+    public void verifyAccessDenied()
+    {
+        basicActions.waitForElementToBePresent(txtMyDocsAccessDenied, 50);
+        softAssert.assertTrue(txtMyDocsAccessDenied.getText().contains("Access is denied"));
+        softAssert.assertAll();
     }
 
 }
