@@ -812,7 +812,6 @@ public class BasicActions {
                     break;
                 case "Today":
                     date = getTodayDate();
-                    date = changeDateFormat(date, "MM/dd/yyyy", "yyyy-MM-dd");
                     break;
                 case "Current Date":
                     date = changeDateFormat(getTodayDate(), "MM/dd/yyyy", "yyyy-MM-dd");
