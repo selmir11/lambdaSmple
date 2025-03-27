@@ -630,8 +630,28 @@ public class DbQueries_Exch {
     }
 
     public String getEnrollmentPeriodEndDate() {
-        String query =  "SELECT * from " + dbName + ".es_enrollment_period_end_date\n" +
+        String query = "SELECT * from " + dbName + ".es_enrollment_period_end_date\n" +
                 "where application_id = '" + applicationId + "'";
+        System.out.println("Executing Query: " + query);
+        return query;
+    }
+
+    public String getMultipleEnrollmentPeriodEndDate() {
+        String query = "SELECT c.enrollment_period_end_date AS enrollment_period_end_date, c.qlce_present_ind AS qlce_present_ind, c.plan_year AS plan_year\n" +
+                "From " + dbName + ".es_household a\n" +
+                "Join " + dbName + ".es_application b on a.household_id = b.household_id\n" +
+                "Join " + dbName + ".es_enrollment_period_end_date c on c.application_id = b.application_id\n" +
+                "where account_id = '" + acctId + "'";
+        System.out.println("Executing Query: " + query);
+        return query;
+    }
+
+    public String getEnrollmentPeriodEndDateCount() {
+        String query = "Select count(enrollment_period_end_date)\n" +
+                "From " + dbName + ".es_household a\n" +
+                "Join " + dbName + ".es_application b on a.household_id = b.household_id\n" +
+                "Join " + dbName + ".es_enrollment_period_end_date c on c.application_id = b.application_id\n" +
+                "where account_id = '" + acctId + "'";
         System.out.println("Executing Query: " + query);
         return query;
     }
