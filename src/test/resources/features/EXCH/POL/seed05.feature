@@ -349,10 +349,10 @@ Feature: Seed05 - Exchange
     #Daughter
     Given I set the dynamic policy, coverage and financial dates for "medical" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate       |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Today           | First Of Next Month | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Month |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Current Date    | First Of Next Month | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Month |
     Given I set the dynamic policy, coverage and financial dates for "dental" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate       |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Today           | First Of Next Month | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Month |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Current Date    | First Of Next Month | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Month |
 
     And I validate "medical" entities for "Daughter" from policy tables
     And I validate "dental" entities for "Daughter" from policy tables
