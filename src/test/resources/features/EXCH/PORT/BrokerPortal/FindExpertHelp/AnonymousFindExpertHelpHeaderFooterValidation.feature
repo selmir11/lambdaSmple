@@ -1,4 +1,4 @@
-@FindACertifiedBroker @port
+@FindExpertHelp @port
 Feature: Anonymous Find Expert Help page header and footer validation
 
   @SLER-2146
