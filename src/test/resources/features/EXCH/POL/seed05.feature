@@ -308,6 +308,7 @@ Feature: Seed05 - Exchange
 
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
+    And I reset the previous file names in shared data
 
     #Primary
     And I validate "medical" entities for "Primary" from policy tables
@@ -362,3 +363,6 @@ Feature: Seed05 - Exchange
     And I validate "dental" entities for "Daughter" from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 024                   | 024                | AI                    | TERM              |            |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
