@@ -317,6 +317,9 @@ public class DbDataProvider_Exch {
     public List<BookOfBusinessQEntity> getBookOfBusinessQ(String eventType){
         return bookOfBuisnessQDbHandler.getBookOfBusinessQDetails(exchDbQueries.getBookOfBusinessQ(eventType));
     }
+    public List<BookOfBusinessQEntity> getBoBQueryByApplicationId(String eventType){
+        return bookOfBuisnessQDbHandler.getBookOfBusinessQDetails(exchDbQueries.getBookOfBusinessByApplicationId(eventType));
+    }
 
     public List<String> getPolicyId(){
         return postgresHandler.getResultListFor("policy_id", exchDbQueries.policyId());

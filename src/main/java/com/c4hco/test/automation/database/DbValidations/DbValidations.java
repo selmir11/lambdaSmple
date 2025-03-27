@@ -146,6 +146,34 @@ public class DbValidations {
 
     }
 
+    public void validateBobByApplicationId(String eventType) {
+        getCurrentdate();
+        List<BookOfBusinessQEntity> bookOfBusinessQListByAppId = exchDbDataProvider.getBoBQueryByApplicationId(eventType);
+        List<String> policyIdListFromBookOfBusinessDb = new ArrayList<>();
+        List<String> applicationIdListFromBob = new ArrayList<>();
+        
+        applicationIdListFromPolicyAh = exchDbDataProvider.getApplicationId();
+        policyIdFromPolicyDB = exchDbDataProvider.getPolicyId();
+
+        for (BookOfBusinessQEntity bookOfBusinessQEntity : bookOfBusinessQListByAppId) {
+            softAssert.assertEquals(bookOfBusinessQEntity.getExchange(), "c4hco_direct_exchange", "Bob exchange mismatch");
+            softAssert.assertEquals(bookOfBusinessQEntity.getRouting_key(), "book_of_business_q", "Bob routing key mismatch");
+            softAssert.assertEquals(bookOfBusinessQEntity.getPolicyplanyr(), SharedData.getPlanYear(), "Bob plan year mismatch");
+            softAssert.assertEquals(bookOfBusinessQEntity.getStatus(), "PROCESSED", "BOB Status mismatch");
+            softAssert.assertTrue(bookOfBusinessQEntity.getCreated_ts().contains(formattedDate), "Bob created date mismatch");
+            softAssert.assertEquals(bookOfBusinessQEntity.getEventtype(), eventType, "Bob, event type updated does not match " + eventType);
+            policyIdListFromBookOfBusinessDb.add(bookOfBusinessQEntity.getPolicyid());
+            applicationIdListFromBob.add(bookOfBusinessQEntity.getApplicationid());
+        }
+        softAssert.assertEquals(2, bookOfBusinessQListByAppId.size(), "No of records does not match for event type " + eventType);
+
+        Set<String> uniqueAppIds = new HashSet<>(applicationIdListFromBob);
+        softAssert.assertTrue(uniqueAppIds.contains(SharedData.getPrimaryMember().getApplication_id()), "application id mismatch");
+
+        softAssert.assertTrue(new HashSet<>(policyIdListFromBookOfBusinessDb).containsAll(policyIdFromPolicyDB), "Policy Id mismatch ");
+        softAssert.assertAll();
+    }
+
    public void validateBookOfBusinessQMedical(String coverageType, String eventType){
         switch(coverageType) {
             case "medical":
