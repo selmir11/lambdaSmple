@@ -130,9 +130,9 @@ public class MedicalPlanResultsPageSteps {
         medPlanResultsPage.verifyPremiumAmountIsNotZero();
     }
 
-    @And("I validate the current plan green banner {String} on the Medical Plan Results page")
-    public void validateCurrentPlanGreenBanner(String language) {medPlanResultsPage.validateMedicalGreenBannerTxt(language);
-    }
+    @And("I validate the current plan green banner {string} on the Medical Plan Results page")
+    public void validateCurrentPlanGreenBanner(String language) {medPlanResultsPage.validateMedicalGreenBannerTxt(language);}
+
 }
 
 
