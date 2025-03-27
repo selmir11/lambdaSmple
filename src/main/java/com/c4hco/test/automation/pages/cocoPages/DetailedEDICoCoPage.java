@@ -136,10 +136,7 @@ public class DetailedEDICoCoPage {
         } else {
             Collections.sort(sortedData, Collections.reverseOrder());
         }
-        if (columnData.equals(sortedData)) {
-        } else {
-            throw new AssertionError("Column " + columnIndex + " is not sorted correctly in " + (isAsc ? "ascending" : "descending") + " order.");
-        }
+        assert columnData.equals(sortedData) : "Column " + columnIndex + " is not sorted correctly in " + (isAsc ? "ascending" : "descending") + " order.";
     }
 
     private List<String> getColumnData(int columnIndex) {
