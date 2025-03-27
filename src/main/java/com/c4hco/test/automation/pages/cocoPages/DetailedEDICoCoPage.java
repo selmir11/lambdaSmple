@@ -79,32 +79,39 @@ public class DetailedEDICoCoPage {
 
         for (int i = 0; i < TableHeadersforEDI.size(); i++) {
             String actualHeader = TableHeadersforEDI.get(i).getText();
-            if (!actualHeader.equals(expectedHeaders[i])) {
-                System.out.println("Header mismatch: Expected " + expectedHeaders[i] + ", but got " + actualHeader);
+            softAssert.assertEquals(actualHeader, expectedHeaders[i],
+                    "Header mismatch at index " + i + ": Expected " + expectedHeaders[i] + ", but got " + actualHeader);
+            softAssert.assertAll();
             }
         }
-    }
+
 
     public void verifyEDIData() {
         basicActions.waitForElementListToBePresent(outboundData, 5000);
         if (SharedData.getEnv().equals("staging")) {
-            String[] expectedData = {"Cigna Healthcare", "834_CIGNA_C_2025032613264296_100003726_D_O", "9055878011", "2025-03-26T13:24:47.265969","","ADDITION", "2326005300", "1", "1", "1708298524", "SELF", "1708298524", "Y", "49375CO0060032", "2025-03-26", "2025-12-31", "2025-03-26", "No", "3","333.88", "0.00" , "333.88", "333.88", "0.00", "apindxzdcxiq", "apelizasmdy", "000000000", "19900303", "F", "MGC4Test+apindxzdcxiqapeliz@gmail.com", "3382901689", "3382901689", "1234 wadsworth boulevard","", "lakewood", "CO", "80229", "08001", "", "", "", "", "", "", "", "", "apelizasmdy apindxzdcxiq", "1708298524","", "", "","EDI_COMPLETE","2326005300", ""};
+            String[] expectedData = {"Cigna Healthcare", "834_CIGNA_C_2025032613264296_100003726_D_O", "9055878011", "2025-03-26T13:24:47.265969", "",
+                    "ADDITION", "2326005300", "1", "1", "1708298524", "SELF", "1708298524", "Y", "49375CO0060032", "2025-03-26",
+                    "2025-12-31", "2025-03-26", "No", "3", "333.88", "0.00", "333.88", "333.88", "0.00", "apindxzdcxiq", "apelizasmdy",
+                    "000000000", "19900303", "F", "MGC4Test+apindxzdcxiqapeliz@gmail.com", "3382901689", "3382901689", "1234 wadsworth boulevard", "",
+                    "lakewood", "CO", "80229", "08001", "", "", "", "", "", "", "", "", "apelizasmdy apindxzdcxiq", "1708298524", "", "", "", "EDI_COMPLETE", "2326005300", ""};
             for (int i = 0; i < outboundData.size(); i++) {
                 String actualHeader = outboundData.get(i).getText();
-                if (!actualHeader.equals(expectedData[i])) {
-                    System.out.println("Outbound Data mismatched: Expected " + expectedData[i] + ", but got " + actualHeader);
-                }
+                softAssert.assertEquals(actualHeader, expectedData[i], "Outbound Data mismatched at index " + i + ": Expected " + expectedData[i] + ", but got " + actualHeader);
             }
         } else {
-            String[] expectedData = {"Cigna Healthcare", "834_CIGNA_C_2025032615501168_100001128_D_O", "9059867099", "2025-03-26T15:49:43.990686","","ADDITION", "1701070186", "1","2","8790664720","SELF","8790664720","Y","49375CO0060032", "2025-03-26", "2025-12-31", "2025-03-26", "No", "3","362.03","0.00","711.22", "711.22","0.00","apindkcbqntg", "apelizawcpe", "000000000", "19830201", "M", "MGC4Test+apindkcbqntgapeliz@gmail.com", "3971871644", "3971871644", "1234 Road","", "Denver", "CO", "80205", "08031", "", "", "", "", "", "", "", "", "apelizawcpe apindkcbqntg", "8790664720","", "", "","EDI_COMPLETE","1701070186", ""};
+            String[] expectedData = {"Cigna Healthcare", "834_CIGNA_C_2025032615501168_100001128_D_O", "9059867099", "2025-03-26T15:49:43.990686", "",
+                    "ADDITION", "1701070186", "1", "2", "8790664720", "SELF", "8790664720", "Y", "49375CO0060032", "2025-03-26", "2025-12-31",
+                    "2025-03-26", "No", "3", "362.03", "0.00", "711.22", "711.22", "0.00", "apindkcbqntg", "apelizawcpe", "000000000", "19830201",
+                    "M", "MGC4Test+apindkcbqntgapeliz@gmail.com", "3971871644", "3971871644", "1234 Road", "", "Denver", "CO", "80205", "08031",
+                    "", "", "", "", "", "", "", "", "apelizawcpe apindkcbqntg", "8790664720", "", "", "", "EDI_COMPLETE", "1701070186", ""};
             for (int i = 0; i < outboundData.size(); i++) {
                 String actualHeader = outboundData.get(i).getText();
-                if (!actualHeader.equals(expectedData[i])) {
-                    System.out.println("Outbound Data mismatched: Expected " + expectedData[i] + ", but got " + actualHeader);
-                }
+                softAssert.assertEquals(actualHeader, expectedData[i], "Outbound Data mismatched at index " + i + ": Expected " + expectedData[i] + ", but got " + actualHeader);
             }
         }
+        softAssert.assertAll();
     }
+
 
     public void verifySort() {
         for (int i = 0; i < TableHeadersforEDI.size(); i++) {
