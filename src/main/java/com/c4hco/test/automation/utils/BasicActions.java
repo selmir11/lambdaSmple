@@ -747,6 +747,7 @@ public class BasicActions {
         return date.format(formatter);
     }
 
+
     public String getFutureDate(int daysToMove) {
         LocalDate date = LocalDate.now().plusDays(daysToMove);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
@@ -811,6 +812,9 @@ public class BasicActions {
                     break;
                 case "Today":
                     date = getTodayDate();
+                    break;
+                case "Current Date":
+                    date = changeDateFormat(getTodayDate(), "MM/dd/yyyy", "yyyy-MM-dd");
                     break;
                 case "First Day of Current Month":
                     date = firstDateOfCurrMonth();

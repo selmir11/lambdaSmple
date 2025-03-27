@@ -221,6 +221,9 @@ public class DbQueries_Exch {
     public String getBookOfBusinessQ(String eventType) {
         return "select status, message->> 'applicationId' as applicationId, message->> 'policyPlanYr' as policyPlanYr, message->> 'eventType' as eventType, message->> 'policyId' as policyId, created_ts, routing_key, exchange from " + dbName + ".rq_queue_messages " + " where application_id = 'book_of_business_q:policy-svc' " + " and message->>'householdAccountId' = '" + acctId + "' " + " and message->>'eventType' ='" + eventType + "' ORDER BY created_ts desc";
     }
+    public String getBookOfBusinessByApplicationId(String eventType) {
+        return "select status, message->> 'applicationId' as applicationId, message->> 'policyPlanYr' as policyPlanYr, message->> 'eventType' as eventType, message->> 'policyId' as policyId, created_ts, routing_key, exchange from " + dbName + ".rq_queue_messages " + " where application_id = 'book_of_business_q:policy-svc' " + " and message->>'householdAccountId' = '" + acctId + "' " + "and message->>'applicationId' ='"+ SharedData.getPrimaryMember().getApplication_id() +"' and message->>'eventType' ='" + eventType + "' ORDER BY created_ts desc";
+    }
 
     public String policyId() {
         return "select ep.policy_id, ep.coverage_type from " + dbName + ".en_policy_ah ep " +

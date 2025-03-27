@@ -87,6 +87,78 @@ public class OtherHealthCoveragePage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
+    @FindBy(xpath = "(//span[@class='ng-star-inserted'])[1]")
+    WebElement labelEmpSponHealthInsurance;
+
+    @FindBy(xpath = "//*[@class='dropdown-label form-label ng-star-inserted']")
+    WebElement label_whichJobIsOffering;
+
+    @FindBy(xpath = "//*[@id='ELIG-Ohc-Esi-employer']")
+    WebElement dropDownUnderWhichJobIs;
+
+    @FindBy(xpath = "//option[@class='ng-star-inserted']")
+    List<WebElement> dropDownAllOptions;
+
+    @FindBy(xpath = "//button[@id='Ohc-Esi-GoBack']")
+    WebElement goBackBtnEmpSpon;
+
+    @FindBy(xpath = "//*[@type='outline']")
+    WebElement goBackBtnEmpSponOutline;
+
+    @FindBy(xpath = "//button[@id='Ohc-Esi-SaveAndContinue']")
+    WebElement saveAndContBtnEmpSpon;
+
+    @FindBy(xpath = "(//span[@class='ng-star-inserted'])[2]")
+    WebElement labelDoesThisHealthInsurance;
+
+    @FindBy(xpath = "//button[@id='ELIG-Ohc-Esi-minStdVal-YesButton']")
+    WebElement btnYesDoesThisHealthInsurance;
+
+    @FindBy(xpath = "//button[@id='ELIG-Ohc-Esi-minStdVal-NoButton']")
+    WebElement btnNoDoesThisHealthInsurance;
+
+    @FindBy(xpath = "//button[@id='ELIG-Ohc-Esi-minStdVal-IDontKnowButton']")
+    WebElement btnIDontNoDoesThisHealthInsurance;
+
+    @FindBy(xpath = "(//label[@class='input-label form-label ng-star-inserted'])[1]")
+    WebElement labelHowMuchWouldYou;
+
+    @FindBy(xpath = "(//input[@type='text'])[1]")
+    WebElement txtBoxMonthlyAmount;
+
+    @FindBy(xpath = "(//span[@class='ng-star-inserted'])[3]")
+    WebElement labelAreYouCurrentlyEnrolled;
+
+    @FindBy(xpath = "//*[@id='ELIG-Ohc-Esi-currEnrl-YesButton']")
+    WebElement btnYesAreYouCurrentlyEnrolled;
+
+    @FindBy(xpath = "//*[@id='ELIG-Ohc-Esi-currEnrl-NoButton']")
+    WebElement btnNoAreYouCurrentlyEnrolled;
+
+    @FindBy(xpath = "(//span[@class='ng-star-inserted'])[5]")
+    WebElement labelWillThisHealthInsurance;
+
+    @FindBy(xpath ="//*[@id='ELIG-Ohc-Esi-covgEndsSoon-YesButton']")
+    WebElement btnYesWillThisHealthInsurance;
+
+    @FindBy(xpath ="//*[@id='ELIG-Ohc-Esi-covgEndsSoon-NoButton']")
+    WebElement btnNoWillThisHealthInsurance;
+
+    @FindBy(xpath = "//label[@For='ELIG-Ohc-Esi-empSponsCovgEndDate']")
+    WebElement labelWhatDayWillYour;
+
+    @FindBy(xpath = "//label[@For='ELIG-Ohc-Esi-empVoluntaryEnd']/span")
+    WebElement labelAreYouVoluntarily;
+
+    @FindBy(xpath = "//input[@type='date']")
+    WebElement txtBoxCalender;
+
+    @FindBy(xpath = "//button[@id='ELIG-Ohc-Esi-empVoluntaryEnd-YesButton']")
+    WebElement btnYesAreYouVoluntarily;
+
+    @FindBy(xpath = "//button[@id='ELIG-Ohc-Esi-empVoluntaryEnd-NoButton']")
+    WebElement btnNoAreYouVoluntarily;
+
 
     public void selectInsuranceOptionOnly(String insuranceOption){
         basicActions.waitForElementToDisappear(spinner, 10);
@@ -1566,7 +1638,267 @@ public class OtherHealthCoveragePage {
         softAssert.assertAll();
     }
 
-
-
-
+    public void validateFontColorSizeWhenNoJob(){
+        verifyColorSizeBorderForHeaderInESPage();
+        softAssert.assertEquals(label_whichJobIsOffering.getCssValue("font-size"), "16px", "Font size mismatch");
+        softAssert.assertEquals(label_whichJobIsOffering.getCssValue("font-weight"), "400","Font weight not matching");
+        softAssert.assertEquals(label_whichJobIsOffering.getCssValue("color"), "rgba(149, 147, 147, 1)", "Color mismatch");
+        softAssert.assertEquals(dropDownUnderWhichJobIs.getCssValue("background-color"), "rgba(252, 252, 252, 1)", "Back ground Color mismatch");
+        softAssert.assertEquals(dropDownUnderWhichJobIs.getCssValue("color"), "rgba(149, 147, 147, 1)", "Color mismatch");
+        softAssert.assertEquals(dropDownUnderWhichJobIs.getCssValue("border"), "2px solid rgb(149, 147, 147)","border mismatch");
+        verifyColorSizeFormatOfGoBackBtnInESPage();
+        softAssert.assertAll();
+    }
+    private void verifyColorSizeFormatOfGoBackBtnInESPage(){
+        softAssert.assertEquals(goBackBtnEmpSpon.getCssValue("font-size"), "20px", "Font size mismatch");
+        softAssert.assertEquals(goBackBtnEmpSpon.getCssValue("font-weight"), "700","Font weight not matching");
+        softAssert.assertEquals(goBackBtnEmpSpon.getCssValue("color"), "rgba(26, 112, 179, 1)", "Color mismatch");
+        softAssert.assertEquals(goBackBtnEmpSpon.getCssValue("background-color"), "rgba(252, 252, 252, 1)", "Back ground Color mismatch");
+        softAssert.assertEquals(goBackBtnEmpSpon.getCssValue("border-top-left-radius"), "4px", "Border radios mismatch");
+        softAssert.assertEquals(goBackBtnEmpSpon.getCssValue("border-top-style"), "solid", "Border style mismatch");
+        softAssert.assertEquals(goBackBtnEmpSpon.getCssValue("border-top-width"), "2px", "Border width mismatch");
+        softAssert.assertEquals(goBackBtnEmpSponOutline.getCssValue("color"), "rgba(77, 77, 79, 1)", "Color mismatch");
+        softAssert.assertEquals(goBackBtnEmpSpon.getCssValue("padding-bottom"), "12px", "Padding bottom mismatch");
+        softAssert.assertEquals(goBackBtnEmpSpon.getCssValue("padding-right"), "20px", "Padding right mismatch");
+        softAssert.assertAll();
+    }
+    private void verifyColorSizeBorderForHeaderInESPage(){
+        basicActions.wait(1000);
+        softAssert.assertEquals(existingHealthInsuranceHeader.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch");
+        softAssert.assertEquals(existingHealthInsuranceHeader.getCssValue("font-size"), "36px", "Font size mismatch");
+        softAssert.assertEquals(existingHealthInsuranceHeader.getCssValue("font-weight"), "700","Font weight not matching");
+        softAssert.assertEquals(existingHealthInsuranceHeader.getCssValue("color"), "rgba(43, 49, 60, 1)", "Color mismatch");
+        softAssert.assertEquals(labelEmpSponHealthInsurance.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch");
+        softAssert.assertEquals(labelEmpSponHealthInsurance.getCssValue("font-size"), "28px", "Font size mismatch");
+        softAssert.assertEquals(labelEmpSponHealthInsurance.getCssValue("font-weight"), "700","Font weight not matching");
+        softAssert.assertEquals(labelEmpSponHealthInsurance.getCssValue("color"), "rgba(43, 49, 60, 1)", "Color mismatch");
+        softAssert.assertEquals(helpLink.getCssValue("font-size"), "18px", "Font size mismatch");
+        softAssert.assertEquals(helpLink.getCssValue("font-weight"), "700","Font weight not matching");
+        softAssert.assertEquals(helpLink.getCssValue("text-decoration-line"), "underline","Text decoration Line not matching");
+        softAssert.assertAll();
+    }
+    public void validatePageTextESPage(List<String> pageTexts){
+        String signature=SharedData.getPrimaryMember().getSignature();
+        softAssert.assertEquals(existingHealthInsuranceHeader.getText(),pageTexts.get(0)+" "+signature,"Member name not matching");
+        softAssert.assertEquals(labelEmpSponHealthInsurance.getText(),pageTexts.get(1),"Employer-sponsored text not matching");
+        softAssert.assertEquals(helpLink.getText(),pageTexts.get(2),"Help Link text not matching");
+        softAssert.assertEquals(label_whichJobIsOffering.getText(),pageTexts.get(3),"Which job offer text not matching");
+        softAssert.assertEquals(dropDownAllOptions.get(0).getText().trim(),pageTexts.get(4),"No Jobs Found text not matching");
+        softAssert.assertTrue((dropDownAllOptions.get(0).getAttribute("value").contains("0")),"List item is not zero");
+        softAssert.assertEquals(goBackBtnEmpSpon.getText().trim(),pageTexts.get(5),"Go back text not matching");
+        softAssert.assertAll();
+    }
+    public void clickOnGoBackBtnESPage(){
+        basicActions.waitForElementToBePresent(goBackBtnEmpSpon,10);
+        goBackBtnEmpSpon.click();
+    }
+    public void validateFontColorSizeTextWhenOneJobAdded() {
+        verifyColorSizeBorderForHeaderInESPage();
+        softAssert.assertEquals(label_whichJobIsOffering.getCssValue("font-size"), "16px", "Font size mismatch when no jobs found");
+        softAssert.assertEquals(label_whichJobIsOffering.getCssValue("font-weight"), "400", "Font weight not matching when no jobs found");
+        softAssert.assertEquals(label_whichJobIsOffering.getCssValue("color"), "rgba(43, 49, 60, 1)", "Color mismatching");
+        softAssert.assertEquals(dropDownUnderWhichJobIs.getCssValue("background-color"), "rgba(255, 255, 255, 1)", "Back ground Color mismatching");
+        softAssert.assertEquals(dropDownUnderWhichJobIs.getCssValue("color"), "rgba(77, 77, 79, 1)", "Color mismatch when no jobs found");
+        softAssert.assertEquals(dropDownUnderWhichJobIs.getCssValue("border"), "1px solid rgb(149, 147, 147)", "border mismatch when no jobs found");
+        verifyColorSizeFormatOfGoBackBtnInESPage();
+        //When one job added
+        softAssert.assertEquals(dropDownAllOptions.get(0).getText().trim(), "Select an employer", "Select an employer text not matching");
+        softAssert.assertTrue((dropDownAllOptions.get(1).getAttribute("value").contains("1")), "List item is not zero");
+        softAssert.assertEquals(dropDownUnderWhichJobIs.getCssValue("background-color"), "rgba(255, 255, 255, 1)", "Back ground Color mismatch");
+        softAssert.assertEquals(dropDownUnderWhichJobIs.getCssValue("color"), "rgba(77, 77, 79, 1)", "Color mismatch");
+        softAssert.assertEquals(dropDownUnderWhichJobIs.getCssValue("border"), "1px solid rgb(149, 147, 147)", "border mismatch");
+        softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("background-color"), "rgba(26, 112, 179, 1)", "Back ground Color mismatch");
+        softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch");
+        softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("font-size"), "20px", "Font size mismatch");
+        softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("border-top-left-radius"), "4px", "Border radios mismatch");
+        softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("padding-bottom"), "12px", "Padding bottom not matching");
+        softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("padding-right"), "20px", "Pading right not matching");
+        softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("color"), "rgba(252, 252, 252, 1)", "Color mismatch");
+        softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("border"), "2px solid rgb(26, 112, 179)", "border mismatch");
+        softAssert.assertEquals(saveAndContBtnEmpSpon.getText().trim(), "Save and continue", "Save And Continue text mismatch");
+        softAssert.assertAll();
+    }
+    public void selectFirstOptInWhichJobIsOfferingDropdown(){
+        String text=dropDownAllOptions.get(1).getText();
+        basicActions.selectValueFromDropdown(dropDownUnderWhichJobIs,dropDownAllOptions,text);
+    }
+    public void validateColorFontSizeWhenOptionIsSelected(){
+        verifyColorSizeBorderForHeaderInESPage();
+        verifyColorSizeWhenOneOptionSelected();
+        softAssert.assertEquals(dropDownUnderWhichJobIs.getCssValue("border"), "1px solid rgb(134, 183, 254)", "dropDownUnderWhichJobIs-border mismatch");
+        softAssert.assertFalse(btnYesAreYouCurrentlyEnrolled.getAttribute("class").contains("selected"),"Yes is selected");
+        softAssert.assertEquals(btnYesAreYouCurrentlyEnrolled.getCssValue("background-color"), "rgba(255, 255, 255, 1)", "btnYesAreYouCurrentlyEnrolled-Back ground Color mismatch");
+        softAssert.assertEquals(btnYesAreYouCurrentlyEnrolled.getCssValue("color"), "rgba(77, 77, 79, 1)", "btnYesAreYouCurrentlyEnrolled-Color mismatch");
+        softAssert.assertEquals(btnYesAreYouCurrentlyEnrolled.getCssValue("border"), "1px solid rgb(149, 147, 147)", "btnYesAreYouCurrentlyEnrolled-border mismatch");
+        verifyColorSizeFormatOfGoBackBtnInESPage();
+        verifyColorSizeFormatOfSaveContinueBtnInESPage();
+        softAssert.assertAll();
+    }
+    private void verifyColorSizeFormatOfSaveContinueBtnInESPage(){
+        softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("font-size"), "20px", "Font size mismatch");
+        softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("border-top-left-radius"), "4px", "Border radios mismatch");
+        softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("padding-bottom"), "12px", "Padding bottom not matching");
+        softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("padding-right"), "20px", "Pading right not matching");
+        softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("color"), "rgba(252, 252, 252, 1)", "Color mismatch");
+        softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("border"), "2px solid rgb(26, 112, 179)", "border mismatch");
+        softAssert.assertAll();
+    }
+    private void verifyColorSizeWhenOneOptionSelected(){
+        softAssert.assertEquals(dropDownUnderWhichJobIs.getCssValue("background-color"), "rgba(255, 255, 255, 1)", "Back ground Color mismatch");
+        softAssert.assertEquals(dropDownUnderWhichJobIs.getCssValue("color"), "rgba(77, 77, 79, 1)", "Color mismatch");
+        softAssert.assertEquals(dropDownUnderWhichJobIs.getCssValue("font-size"), "16px", "Font size mismatch");
+        softAssert.assertEquals(labelDoesThisHealthInsurance.getCssValue("color"), "rgba(43, 49, 60, 1)", "Does this-Color mismatch");
+        softAssert.assertEquals(labelDoesThisHealthInsurance.getCssValue("font-weight"), "400", "Does this-font weight mismatch");
+        softAssert.assertEquals(labelDoesThisHealthInsurance.getCssValue("font-size"), "16px", "Does this-Font size mismatch");
+        softAssert.assertFalse(btnYesDoesThisHealthInsurance.getAttribute("class").contains("selected"),"Yes button is selected");
+        softAssert.assertEquals(btnYesDoesThisHealthInsurance.getCssValue("background-color"), "rgba(255, 255, 255, 1)", "Does this-Yes btn-Back ground Color mismatch");
+        softAssert.assertEquals(btnYesDoesThisHealthInsurance.getCssValue("color"), "rgba(77, 77, 79, 1)", "Does this-Yes btn-Color mismatch");
+        softAssert.assertEquals(btnYesDoesThisHealthInsurance.getCssValue("font-size"), "16px", "Does this-Yes btn-Font size mismatch");
+        softAssert.assertEquals(btnYesDoesThisHealthInsurance.getCssValue("border"), "1px solid rgb(149, 147, 147)", "Does this-Yes btn-border mismatch");
+        softAssert.assertEquals(btnYesDoesThisHealthInsurance.getCssValue("border-top-left-radius"), "4px", "Does this-Yes btn-Border radios mismatch");
+        softAssert.assertFalse(btnNoDoesThisHealthInsurance.getAttribute("class").contains("selected"),"No button is selected");
+        softAssert.assertEquals(btnNoDoesThisHealthInsurance.getCssValue("background-color"), "rgba(255, 255, 255, 1)", "Does this-No btn-Back ground Color mismatch");
+        softAssert.assertEquals(btnNoDoesThisHealthInsurance.getCssValue("color"), "rgba(77, 77, 79, 1)", "Does this-No btn-Color mismatch");
+        softAssert.assertEquals(btnNoDoesThisHealthInsurance.getCssValue("font-size"), "16px", "Does this-No btn-Font size mismatch");
+        softAssert.assertEquals(btnNoDoesThisHealthInsurance.getCssValue("border"), "1px solid rgb(149, 147, 147)", "Does this-No btn-border mismatch");
+        softAssert.assertEquals(btnNoDoesThisHealthInsurance.getCssValue("border-top-left-radius"), "4px", "Does this-No btn-Border radios mismatch");
+        softAssert.assertFalse(btnIDontNoDoesThisHealthInsurance.getAttribute("class").contains("selected"),"I dont Know button is selected");
+        softAssert.assertEquals(btnIDontNoDoesThisHealthInsurance.getCssValue("background-color"), "rgba(255, 255, 255, 1)", "Does this-IDN btn-Back ground Color mismatch");
+        softAssert.assertEquals(btnIDontNoDoesThisHealthInsurance.getCssValue("color"), "rgba(77, 77, 79, 1)", "Does this-IDN btn-Color mismatch");
+        softAssert.assertEquals(btnIDontNoDoesThisHealthInsurance.getCssValue("font-size"), "16px", "Does this-IDN btn-Font size mismatch");
+        softAssert.assertEquals(btnIDontNoDoesThisHealthInsurance.getCssValue("border"), "1px solid rgb(149, 147, 147)", "Does this-IDN btn-border mismatch");
+        softAssert.assertEquals(btnIDontNoDoesThisHealthInsurance.getCssValue("border-top-left-radius"), "4px", "Does this-IDN btn-Border radios mismatch");
+        softAssert.assertEquals(labelHowMuchWouldYou.getCssValue("color"), "rgba(43, 49, 60, 1)", "How much would-Color mismatch");
+        softAssert.assertEquals(labelHowMuchWouldYou.getCssValue("font-weight"), "400", "How much would-font weight mismatch");
+        softAssert.assertEquals(labelHowMuchWouldYou.getCssValue("font-size"), "16px", "How much would-Font size mismatch");
+        softAssert.assertEquals(txtBoxMonthlyAmount.getCssValue("background-color"), "rgba(255, 255, 255, 1)", "Monthly Amount-Back ground Color mismatch");
+        softAssert.assertEquals(txtBoxMonthlyAmount.getCssValue("color"), "rgba(77, 77, 79, 1)", "Monthly Amount- btn-Color mismatch");
+        softAssert.assertEquals(txtBoxMonthlyAmount.getCssValue("font-size"), "16px", "Monthly Amount-Font size mismatch");
+        softAssert.assertEquals(txtBoxMonthlyAmount.getCssValue("border"), "1px solid rgb(149, 147, 147)", "Monthly Amount-border mismatch");
+        softAssert.assertEquals(labelAreYouCurrentlyEnrolled.getCssValue("color"), "rgba(43, 49, 60, 1)", "AreYouCurrentlyEnrolled-Color mismatch");
+        softAssert.assertEquals(labelAreYouCurrentlyEnrolled.getCssValue("font-weight"), "400", "AreYouCurrentlyEnrolled-font weight mismatch");
+        softAssert.assertEquals(labelAreYouCurrentlyEnrolled.getCssValue("font-size"), "16px", "AreYouCurrentlyEnrolled-Font size mismatch");
+        softAssert.assertEquals(btnYesAreYouCurrentlyEnrolled.getCssValue("font-size"), "16px", "btnYesAreYouCurrentlyEnrolled-Font size mismatch");
+        softAssert.assertEquals(btnYesAreYouCurrentlyEnrolled.getCssValue("border-top-left-radius"), "4px", "btnYesAreYouCurrentlyEnrolled-Border radios mismatch");
+        softAssert.assertFalse(btnNoAreYouCurrentlyEnrolled.getAttribute("class").contains("selected"),"No is selected");
+        softAssert.assertEquals(btnNoAreYouCurrentlyEnrolled.getCssValue("background-color"), "rgba(255, 255, 255, 1)", "btnNoAreYouCurrentlyEnrolled-Back ground Color mismatch");
+        softAssert.assertEquals(btnNoAreYouCurrentlyEnrolled.getCssValue("color"), "rgba(77, 77, 79, 1)", "btnNoAreYouCurrentlyEnrolled-Color mismatch");
+        softAssert.assertEquals(btnNoAreYouCurrentlyEnrolled.getCssValue("font-size"), "16px", "btnNoAreYouCurrentlyEnrolled-Font size mismatch");
+        softAssert.assertEquals(btnNoAreYouCurrentlyEnrolled.getCssValue("border"), "1px solid rgb(149, 147, 147)", "btnNoAreYouCurrentlyEnrolled-border mismatch");
+        softAssert.assertEquals(btnNoAreYouCurrentlyEnrolled.getCssValue("border-top-left-radius"), "4px", "btNoAreYouCurrentlyEnrolled-Border radios mismatch");
+        softAssert.assertAll();
+    }
+    public void clickOnAreYouCurrentlyEnrolledQstn(String btnName){
+        switch (btnName){
+            case "Yes":
+                basicActions.waitForElementToBePresent(btnYesAreYouCurrentlyEnrolled,10);
+                btnYesAreYouCurrentlyEnrolled.click();
+                break;
+            case "No":
+                basicActions.waitForElementToBePresent(btnNoAreYouCurrentlyEnrolled,10);
+                btnNoAreYouCurrentlyEnrolled.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + btnName);
+        }
+    }
+    public void validateColorFontSizeBorderWhenAreYouCurrentlyEnrolled(String btnName){
+        verifyColorSizeBorderForHeaderInESPage();
+        switch (btnName){
+            case "Yes":
+                verifyColorSizeWhenOneOptionSelected();
+                softAssert.assertTrue(btnYesAreYouCurrentlyEnrolled.getAttribute("class").contains("selected"), "Yes is not selected");
+                softAssert.assertEquals(btnYesAreYouCurrentlyEnrolled.getCssValue("background-color"), "rgba(112, 163, 0, 1)", "btnYesAreYouCurrentlyEnrolled-Back ground Color mismatch");
+                softAssert.assertEquals(btnYesAreYouCurrentlyEnrolled.getCssValue("color"), "rgba(255, 255, 255, 1)", "btnYesAreYouCurrentlyEnrolled-Color mismatch");
+                softAssert.assertEquals(btnYesAreYouCurrentlyEnrolled.getCssValue("border"), "1px solid rgb(112, 163, 0)", "btnYesAreYouCurrentlyEnrolled-border mismatch");
+                softAssert.assertFalse(btnYesWillThisHealthInsurance.getAttribute("class").contains("selected"), "Will This Health Btn_Yes is selected");
+                softAssert.assertEquals(btnYesWillThisHealthInsurance.getCssValue("background-color"), "rgba(255, 255, 255, 1)", "btnYesWillThisHealthInsurance-Back ground Color mismatch");
+                softAssert.assertEquals(btnYesWillThisHealthInsurance.getCssValue("color"), "rgba(77, 77, 79, 1)", "btnYesWillThisHealthInsurance-Color mismatch");
+                softAssert.assertEquals(btnYesWillThisHealthInsurance.getCssValue("font-size"), "16px", "btnYesWillThisHealthInsurance-Font size mismatch");
+                softAssert.assertEquals(btnYesWillThisHealthInsurance.getCssValue("border"), "1px solid rgb(149, 147, 147)", "btnYesWillThisHealthInsurance-border mismatch");
+                softAssert.assertEquals(btnYesWillThisHealthInsurance.getCssValue("border-top-left-radius"), "4px", "btnYesWillThisHealthInsurance-Border radios mismatch");
+                verifyColorFontSizeAreYouCurrentlyEnrolledYes();
+                verifyColorSizeFormatOfGoBackBtnInESPage();
+                verifyColorSizeFormatOfSaveContinueBtnInESPage();
+                softAssert.assertAll();
+                break;
+            case "No":
+                softAssert.assertTrue(btnNoAreYouCurrentlyEnrolled.getAttribute("class").contains("selected"), "No is not selected");
+                softAssert.assertEquals(btnNoAreYouCurrentlyEnrolled.getCssValue("background-color"), "rgba(112, 163, 0, 1)", "btnNoAreYouCurrentlyEnrolled-Back ground Color mismatch");
+                softAssert.assertEquals(btnNoAreYouCurrentlyEnrolled.getCssValue("color"), "rgba(255, 255, 255, 1)", "btnNoAreYouCurrentlyEnrolled-Color mismatch");
+                softAssert.assertEquals(btnNoAreYouCurrentlyEnrolled.getCssValue("border"), "1px solid rgb(112, 163, 0)", "btnNoAreYouCurrentlyEnrolled-border mismatch");
+                softAssert.assertFalse(btnYesAreYouCurrentlyEnrolled.getAttribute("class").contains("selected"), "Yes is selected");
+                softAssert.assertEquals(btnYesAreYouCurrentlyEnrolled.getCssValue("background-color"), "rgba(255, 255, 255, 1)", "btnYesAreYouCurrentlyEnrolled-Back ground Color mismatch");
+                softAssert.assertEquals(btnYesAreYouCurrentlyEnrolled.getCssValue("color"), "rgba(77, 77, 79, 1)", "btnYesAreYouCurrentlyEnrolled-Color mismatch");
+                softAssert.assertEquals(btnYesAreYouCurrentlyEnrolled.getCssValue("border"), "1px solid rgb(149, 147, 147)", "btnYesAreYouCurrentlyEnrolled-border mismatch");
+                verifyColorSizeFormatOfGoBackBtnInESPage();
+                verifyColorSizeFormatOfSaveContinueBtnInESPage();
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + btnName);
+        }
+    }
+    private void verifyColorFontSizeAreYouCurrentlyEnrolledYes(){
+        softAssert.assertEquals(labelWillThisHealthInsurance.getCssValue("color"), "rgba(43, 49, 60, 1)", "labelWillThisHealthInsurance-Color mismatch");
+        softAssert.assertEquals(labelWillThisHealthInsurance.getCssValue("font-weight"), "400", "labelWillThisHealthInsurance-font weight mismatch");
+        softAssert.assertEquals(labelWillThisHealthInsurance.getCssValue("font-size"), "16px", "labelWillThisHealthInsurance-Font size mismatch");
+        softAssert.assertFalse(btnNoWillThisHealthInsurance.getAttribute("class").contains("selected"), "Will This_No is selected");
+        softAssert.assertEquals(btnNoWillThisHealthInsurance.getCssValue("background-color"), "rgba(255, 255, 255, 1)", "btnNoWillThisHealthInsurance-Back ground Color mismatch");
+        softAssert.assertEquals(btnNoWillThisHealthInsurance.getCssValue("color"), "rgba(77, 77, 79, 1)", "btnNoWillThisHealthInsurance-Color mismatch");
+        softAssert.assertEquals(btnNoWillThisHealthInsurance.getCssValue("font-size"), "16px", "btnNoWillThisHealthInsurance-Font size mismatch");
+        softAssert.assertEquals(btnNoWillThisHealthInsurance.getCssValue("border"), "1px solid rgb(149, 147, 147)", "btnNoWillThisHealthInsurance-border mismatch");
+        softAssert.assertEquals(btnNoWillThisHealthInsurance.getCssValue("border-top-left-radius"), "4px", "btnNoWillThisHealthInsurance-Border radios mismatch");
+        softAssert.assertAll();
+    }
+    public void clickOnWillThisHealthInsuranceEndQuestion(String btnName){
+        switch (btnName){
+            case "Yes":
+                basicActions.waitForElementToBePresent(btnYesWillThisHealthInsurance,10);
+                btnYesWillThisHealthInsurance.click();
+                break;
+            case "No":
+                basicActions.waitForElementToBePresent(btnNoWillThisHealthInsurance,10);
+                btnNoWillThisHealthInsurance.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + btnName);
+        }
+    }
+    public void validateColorFontSizeBorderWhenWillThisHealthInsurance(){
+        verifyColorSizeBorderForHeaderInESPage();
+        verifyColorSizeWhenOneOptionSelected();
+        verifyColorFontSizeAreYouCurrentlyEnrolledYes();
+        softAssert.assertTrue(btnYesWillThisHealthInsurance.getAttribute("class").contains("selected"), "Will This Health Btn_Yes is not selected");
+        softAssert.assertEquals(btnYesWillThisHealthInsurance.getCssValue("background-color"), "rgba(112, 163, 0, 1)", "btnYesSelectedWillThisHealthInsurance-Back ground Color mismatch");
+        softAssert.assertEquals(btnYesWillThisHealthInsurance.getCssValue("color"), "rgba(255, 255, 255, 1)", "btnYesSelectedWillThisHealthInsurance-Color mismatch");
+        softAssert.assertEquals(btnYesWillThisHealthInsurance.getCssValue("font-size"), "16px", "btnYesWillThisHealthInsurance-Font size mismatch");
+        softAssert.assertEquals(btnYesWillThisHealthInsurance.getCssValue("border"), "1px solid rgb(112, 163, 0)", "btnYesSelectedWillThisHealthInsurance-border mismatch");
+        softAssert.assertEquals(btnYesWillThisHealthInsurance.getCssValue("border-top-left-radius"), "4px", "btnYesWillThisHealthInsurance-Border radios mismatch");
+        softAssert.assertEquals(labelWhatDayWillYour.getCssValue("color"), "rgba(43, 49, 60, 1)", "labelWhatDayWillYour-Color mismatch");
+        softAssert.assertEquals(labelWhatDayWillYour.getCssValue("font-weight"), "400", "labelWhatDayWillYour-font weight mismatch");
+        softAssert.assertEquals(labelWhatDayWillYour.getCssValue("font-size"), "16px", "labelWhatDayWillYour-Font size mismatch");
+        softAssert.assertEquals(labelAreYouVoluntarily.getCssValue("color"), "rgba(43, 49, 60, 1)", "labelAreYouVoluntarily-Color mismatch");
+        softAssert.assertEquals(labelAreYouVoluntarily.getCssValue("font-weight"), "400", "labelAreYouVoluntarily-font weight mismatch");
+        softAssert.assertEquals(labelAreYouVoluntarily.getCssValue("font-size"), "16px", "labelAreYouVoluntarily-Font size mismatch");
+        softAssert.assertEquals(txtBoxCalender.getCssValue("color"), "rgba(77, 77, 79, 1)", "txtBoxCalender-Color mismatch");
+        softAssert.assertEquals(txtBoxCalender.getCssValue("background-color"), "rgba(255, 255, 255, 1)", "txtBoxCalender-back ground color mismatch");
+        softAssert.assertEquals(txtBoxCalender.getCssValue("font-size"), "16px", "txtBoxCalender-Font size mismatch");
+        softAssert.assertEquals(txtBoxCalender.getCssValue("border"), "1px solid rgb(149, 147, 147)", "txtBoxCalender-border mismatch");
+        softAssert.assertFalse(btnYesAreYouVoluntarily.getAttribute("class").contains("selected"), "btnYesAreYouVoluntarily_Yes is selected");
+        softAssert.assertEquals(btnYesAreYouVoluntarily.getCssValue("background-color"), "rgba(255, 255, 255, 1)", "btnYesAreYouVoluntarily-Back ground Color mismatch");
+        softAssert.assertEquals(btnYesAreYouVoluntarily.getCssValue("color"), "rgba(77, 77, 79, 1)", "btnYesAreYouVoluntarily-Color mismatch");
+        softAssert.assertEquals(btnYesAreYouVoluntarily.getCssValue("font-size"), "16px", "btnYesAreYouVoluntarily-Font size mismatch");
+        softAssert.assertEquals(btnYesAreYouVoluntarily.getCssValue("border"), "1px solid rgb(149, 147, 147)", "btnYesAreYouVoluntarily-border mismatch");
+        softAssert.assertEquals(btnYesAreYouVoluntarily.getCssValue("border-top-left-radius"), "4px", "btnYesAreYouVoluntarily-Border radios mismatch");
+        softAssert.assertFalse(btnNoAreYouVoluntarily.getAttribute("class").contains("selected"), "btnNoAreYouVoluntarily_Yes is selected");
+        softAssert.assertEquals(btnNoAreYouVoluntarily.getCssValue("background-color"), "rgba(255, 255, 255, 1)", "btnNoAreYouVoluntarily-Back ground Color mismatch");
+        softAssert.assertEquals(btnNoAreYouVoluntarily.getCssValue("color"), "rgba(77, 77, 79, 1)", "btnNoAreYouVoluntarily-Color mismatch");
+        softAssert.assertEquals(btnNoAreYouVoluntarily.getCssValue("font-size"), "16px", "btnNoAreYouVoluntarily-Font size mismatch");
+        softAssert.assertEquals(btnNoAreYouVoluntarily.getCssValue("border"), "1px solid rgb(149, 147, 147)", "btnNoAreYouVoluntarily-border mismatch");
+        softAssert.assertEquals(btnNoAreYouVoluntarily.getCssValue("border-top-left-radius"), "4px", "btnNoAreYouVoluntarily-Border radios mismatch");
+        verifyColorSizeFormatOfGoBackBtnInESPage();
+        verifyColorSizeFormatOfSaveContinueBtnInESPage();
+        softAssert.assertAll();
+    }
 }
