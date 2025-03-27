@@ -8,7 +8,7 @@ Feature: UI Tests related to green banner check after initial enrollment
     And I validate I am on the "Login" page
 
 
-  @SLER-2396
+  @SLER-2396-WIP
   Scenario: SLER-2396 - one group green banner check - verify English green banner for individual who enrolled twice - includes Go Back navigation - 10k
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -254,7 +254,7 @@ Feature: UI Tests related to green banner check after initial enrollment
     Then I validate I am on the "Financial Help Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
-  @SLER-2398
+  @SLER-2398-WIP
   Scenario: SLER-2398 - one group green banner check - verify English green banner for individual who enrolled twice - includes Go Back navigation - 10k
     When I click create a new account on login page
     Then I click create my account from pre-screen page
