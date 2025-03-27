@@ -131,7 +131,7 @@ Feature: Seed03exception - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-1991 @pol_exch_passed @n1
+  @SLER-1991-WIP-R4V
   Scenario: RT-2307 ENR-EXCH: EDIT POLICY - COVERAGE & FINANCIAL START DATES EARLIER THAN POLICY START DATE
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
