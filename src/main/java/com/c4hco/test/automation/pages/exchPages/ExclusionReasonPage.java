@@ -61,6 +61,7 @@ public class ExclusionReasonPage {
             softAssert.assertTrue(basicActions.waitForElementToBePresent(txtTitleExclusionReport, 10));
             softAssert.assertEquals(txtTitleExclusionReport.getText(), "Exclusion Reason Report");
         }
+        softAssert.assertAll();
     }
 
     public void verifyExclusionReasonReportTableHeaders() {
@@ -78,20 +79,21 @@ public class ExclusionReasonPage {
     public void verifyExclusionReasonData() {
         basicActions.waitForElementListToBePresent(ExclusionReportData, 5000);
         if (SharedData.getEnv().equals("staging")) {
-            String[] expectedData = {"4006144055", "2022", "Multiple Active Enrollments"};
-            for (int i = 0; i < ExclusionReportData.size(); i++) {
-                String actualHeader = ExclusionReportData.get(i).getText();
-                softAssert.assertEquals(actualHeader, expectedData[i],
-                        "Exclusion Data mismatched at index " + i + ": Expected " + expectedData[i] + ", but got " + actualHeader);
-            }
-        } else {
             String[] expectedData = {"4007993032", "2022", "Multiple Active Enrollments"};
             for (int i = 0; i < ExclusionReportData.size(); i++) {
                 String actualHeader = ExclusionReportData.get(i).getText();
                 softAssert.assertEquals(actualHeader, expectedData[i],
                         "Exclusion Data mismatched at index " + i + ": Expected " + expectedData[i] + ", but got " + actualHeader);
             }
+        } else {
+            String[] expectedData = {"4006144055", "2022", "Multiple Active Enrollments"};
+            for (int i = 0; i < ExclusionReportData.size(); i++) {
+                String actualHeader = ExclusionReportData.get(i).getText();
+                softAssert.assertEquals(actualHeader, expectedData[i],
+                        "Exclusion Data mismatched at index " + i + ": Expected " + expectedData[i] + ", but got " + actualHeader);
+            }
         }
+        softAssert.assertAll();
     }
     public void verifySort() {
         for (int i = 0; i < TableHeadersforExclusionReason.size(); i++) {
@@ -116,10 +118,9 @@ public class ExclusionReasonPage {
         } else {
             Collections.sort(sortedData, Collections.reverseOrder());
         }
-        if (columnData.equals(sortedData)) {
-        } else {
-            throw new AssertionError("Column " + columnIndex + " is not sorted correctly in " + (isAsc ? "ascending" : "descending") + " order.");
-        }
+        softAssert.assertTrue(columnData.equals(sortedData),
+                "Column " + columnIndex + " is not sorted correctly in " + (isAsc ? "ascending" : "descending") + " order.");
+        softAssert.assertAll();
     }
     private List<String> getColumnData(int columnIndex) {
         List<String> columnData = new ArrayList<>();
