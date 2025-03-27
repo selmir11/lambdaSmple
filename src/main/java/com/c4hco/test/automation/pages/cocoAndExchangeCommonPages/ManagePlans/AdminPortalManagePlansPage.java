@@ -607,7 +607,7 @@ public class AdminPortalManagePlansPage {
             String inputDate = basicActions.getDateBasedOnRequirement(memberUpdates.get(matchingname));
             String updatedDate = basicActions.changeDateFormat(inputDate, "yyyy-MM-dd", "MM/dd/yyyy");
                  String coverageStartDateElement = "//div[@id='coverageStartDate_"+index+"']//input[1]";
-                 basicActions.waitForElementToBeClickable(coverageStartdate, 30);
+                 basicActions.waitForElementToBeClickableWithRetries(coverageStartdate, 30);
                  basicActions.updateElementWithRetries(coverageStartDateElement, updatedDate);
         }
     }
@@ -758,8 +758,7 @@ public class AdminPortalManagePlansPage {
                     map.put("key", parts[0].trim());
                     map.put("value", parts[1].trim() );
                     return map;
-                } )
-                .collect(Collectors.toList());
+                } ).collect(Collectors.toList());
         basicActions.scrollToElement(CurrentPlanInfo);
         basicActions.waitForElementListToBePresentWithRetries(PlanContainer,60);
         for (WebElement nameElement : PlanContainer){
@@ -769,12 +768,7 @@ public class AdminPortalManagePlansPage {
             String matchingname = memberUpdates.stream().map(m->m.get("key")).filter(memberFullName::startsWith).findFirst().orElse(null);
             Assert.assertNotNull(matchingname, "Member Name not found: " + memberFullName);
             String inputDate = memberUpdates.stream().map(m->m.get("value")).findFirst().orElse("");
-            String updatedDate = "";
-            if (inputDate.equalsIgnoreCase("Cancel")){
-                 String policyStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate();
-                 updatedDate = basicActions.changeDateFormat(policyStartDate, "yyyy-MM-dd", "MM/dd/yyyy");
-            } else {
-                updatedDate = basicActions.changeDateFormat(basicActions.getDateBasedOnRequirement(inputDate),"yyyy-MM-dd", "MM/dd/yyyy");}
+            String updatedDate = basicActions.changeDateFormat(basicActions.getDateBasedOnRequirement(inputDate),"yyyy-MM-dd", "MM/dd/yyyy");
             String coverageEndDateElement = "//div[@id='coverageEndDate_" +index+ "']//input[1]";
             basicActions.waitForElementToBeClickable(coverageEndDate, 30);
             basicActions.updateElementWithRetries(coverageEndDateElement, updatedDate);
@@ -799,12 +793,7 @@ public class AdminPortalManagePlansPage {
             String matchingname = memberUpdates.stream().map(m->m.get("key")).filter(memberFullName::startsWith).findFirst().orElse(null);
             Assert.assertNotNull(matchingname, "Member Name not found: " + memberFullName);
             String inputDate = memberUpdates.stream().map(m->m.get("value")).findFirst().orElse("");
-            String updatedDate = "";
-            if (inputDate.equalsIgnoreCase("Cancel")){
-                String policyStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate();
-                updatedDate = basicActions.changeDateFormat(policyStartDate, "yyyy-MM-dd", "MM/dd/yyyy");
-            } else {
-                updatedDate = basicActions.changeDateFormat(basicActions.getDateBasedOnRequirement(inputDate),"yyyy-MM-dd", "MM/dd/yyyy");}
+            String updatedDate =basicActions.changeDateFormat(basicActions.getDateBasedOnRequirement(inputDate),"yyyy-MM-dd", "MM/dd/yyyy");
             String financialEndDateElement = "//div[@id='financialEndDate_"+index+"']//input[1]";
             basicActions.waitForElementToBeClickable(financialEndDate, 30);
             basicActions.scrollToElement(financialEndDate);

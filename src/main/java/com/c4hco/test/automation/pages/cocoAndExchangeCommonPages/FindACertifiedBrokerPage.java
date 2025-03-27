@@ -634,12 +634,6 @@ public class FindACertifiedBrokerPage {
         }
     }
 
-    public void ClickContinueWithMyApplication() {
-        basicActions.waitForElementToBePresent(continueWithMyOwn,30);
-        basicActions.waitForElementToBeClickable(authorizeBrokerTermsCheckbox,30);
-        continueWithMyOwn.click();
-
-    }
 
     public void SearchAuthorizedBrokerGenerated() {
         basicActions.waitForElementToBePresent(searchContainer,60);

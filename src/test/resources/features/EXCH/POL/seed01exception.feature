@@ -86,7 +86,7 @@ Feature: Regression Tests that require Seed 1 w/exception
     Then I validate I am on the "My Policies" page
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
-    And I click on Sign Out in the Header for "NonElmo"
+    And I click on Sign Out in the Header for "Elmo"
 
     #DB Validation
     And I validate "medical" entities from policy tables
@@ -103,7 +103,7 @@ Feature: Regression Tests that require Seed 1 w/exception
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-1993 @pol_exch_passed
+  @SLER-1993-WIP-R4V
   Scenario: RT-2327 ENR-EXCH: EDIT POLICY - COVERAGE & FINANCIAL END DATES  (CANCEL)
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
@@ -119,16 +119,16 @@ Feature: Regression Tests that require Seed 1 w/exception
       | First Of Next Month |First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month |
     Then I click Make Changes Medical button
     And I update the Coverage End date of member on manage plan page
-      | Primary:Cancel |
+      | Primary:First Of Next Month |
     And I update the Financial End date of member on manage plan page
-      | Primary:Cancel |
+      | Primary:First Of Next Month |
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I click Make Changes Dental button
     And I update the Coverage End date of member on manage plan page
-      | Primary:Cancel |
+      | Primary:First Of Next Month |
     And I update the Financial End date of member on manage plan page
-      | Primary:Cancel |
+      | Primary:First Of Next Month |
     And I click Save Button Dental
     And I select the reason to confirm the changes
     Then logout from Admin Portal
