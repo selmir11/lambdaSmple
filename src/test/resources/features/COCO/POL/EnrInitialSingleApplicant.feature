@@ -1,4 +1,5 @@
 Feature: Initial Application Single Applicant(Silver Enhanced)
+
   @SLCR-297-WIP
   Scenario: COCO Initial Application - Single Applicant (Silver Enhanced)
 
