@@ -71,10 +71,7 @@ public class MyPoliciesCoCoPage {
     @FindBy(css = "span#SOL-CurrentPolicies-PolicySubmittedDate")
     WebElement lastUpdatedDate;
     @FindBy(id="SOL-CurrentPolicies-CancelCurrentMedical")
-    WebElement cancelMedicalPlanbtn;
-
-    @FindBy(id="Cancel 2024 Dental Plans Button")
-    WebElement cancelDentalPlanbtn;
+    WebElement cancelMedicalPlanbtnCoCo;
 
     @FindBy(id="SOL-CurrentPolicies-FuturePlans")
     WebElement FuturePlans;
@@ -154,9 +151,9 @@ public class MyPoliciesCoCoPage {
         CurrentPlans.click();
     }
 
-    public void cancelMedicalPlanbtn(){
-        basicActions.waitForElementToBePresent(cancelMedicalPlanbtn, 10);
-        cancelMedicalPlanbtn.click();
+    public void cancelMedicalPlanbtnCoCo(){
+        basicActions.waitForElementToBePresent(cancelMedicalPlanbtnCoCo, 10);
+        cancelMedicalPlanbtnCoCo.click();
     }
 
 }

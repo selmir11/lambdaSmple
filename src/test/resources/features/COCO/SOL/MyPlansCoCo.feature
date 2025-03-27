@@ -181,6 +181,7 @@ Feature: New payment portal - payment page related tests
     Then I verify text for disabled issuers on Payment Portal Page CoCo
     Then I click all done from payment portal page coco
     And I click on "My Plans" link on welcome page
+    Then I click on Future Plans CoCo
     Then I click on Cancel Medical Plans CoCo
     Then I cancel the active plan detail CoCo
     Then I click continue on Cancellation Request page CoCo
