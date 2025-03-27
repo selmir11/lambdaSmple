@@ -758,8 +758,7 @@ public class AdminPortalManagePlansPage {
                     map.put("key", parts[0].trim());
                     map.put("value", parts[1].trim() );
                     return map;
-                } )
-                .collect(Collectors.toList());
+                } ).collect(Collectors.toList());
         basicActions.scrollToElement(CurrentPlanInfo);
         basicActions.waitForElementListToBePresentWithRetries(PlanContainer,60);
         for (WebElement nameElement : PlanContainer){
