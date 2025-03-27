@@ -126,7 +126,7 @@ public class Ob834DbValForMember {
         getDentalPlanDbDataMap(name);
         String formatPlanStartDate = SharedData.getExpectedCalculatedDates_dentalPlan().getCoverageStartDate().replaceAll("-", "");
         String formatDentalPlanEndDate = SharedData.getExpectedCalculatedDates_dentalPlan().getCoverageEndDate().replaceAll("-", "");
-        String formatedFinStartDate = SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialStartDate().replaceAll("-", "");
+        String formattedFinStartDate = SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialStartDate().replaceAll("-", "");
 
         softAssert.assertEquals(ob834Entity.getHios_plan_id(), dentalPlanDbDataMap.get(name).getBaseId(), "Dental Hios id did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_name(), dentalPlanDbDataMap.get(name).getIssuerName(), "Dental Insurer Name did not match!");
@@ -134,7 +134,7 @@ public class Ob834DbValForMember {
 
         softAssert.assertEquals(ob834Entity.getBenefit_begin_date(), formatPlanStartDate, "Dental plan start date is not correct");
         softAssert.assertEquals(ob834Entity.getBenefit_end_date(), formatDentalPlanEndDate, "Dental plan end date is not correct");
-        softAssert.assertEquals(ob834Entity.getFinancial_effective_date(), formatedFinStartDate, "Dental Financial start date is not correct");
+        softAssert.assertEquals(ob834Entity.getFinancial_effective_date(), formattedFinStartDate, "Dental Financial start date is not correct");
 
         validateDetailsFromStep(ob834Entity, expectedValues.get(0));
         validateIndivDenPremAmt(ob834Entity);

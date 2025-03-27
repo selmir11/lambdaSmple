@@ -35,7 +35,7 @@ Feature:Updates/Inserts Information into BoB Table - Policy updates through Admi
     And I validate current Broker text exists
 
     And I verify the broker authorization in BoB DB is "Maggie Walker"
-    And I click Continue with my application
+    Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
