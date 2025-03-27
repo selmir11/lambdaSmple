@@ -440,10 +440,10 @@ Feature: Regression Tests that require Seed 1
      #Son
     Given I set the dynamic policy, coverage and financial dates for "medical" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate | MemFinancialEndDate      |
-      | First Day Of Current Year | Last Day Of Current Year | Today             | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
+      | First Day Of Current Year | Last Day Of Current Year | Current Date      | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
     Given I set the dynamic policy, coverage and financial dates for "dental" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate | MemFinancialEndDate      |
-      | First Day Of Current Year | Last Day Of Current Year | Today             | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
+      | First Day Of Current Year | Last Day Of Current Year | Current Date      | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
     And I validate "medical" entities for "Son" from policy tables
     And I validate "dental" entities for "Son" from policy tables
 
@@ -465,10 +465,10 @@ Feature: Regression Tests that require Seed 1
      #Son
     Given I set the dynamic policy, coverage and financial dates for "medical" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate | MemFinancialEndDate      |
-      | First Day Of Current Year | Last Day Of Current Year | Today             | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
+      | First Day Of Current Year | Last Day Of Current Year | Current Date      | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
     Given I set the dynamic policy, coverage and financial dates for "dental" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate | MemFinancialEndDate      |
-      | First Day Of Current Year | Last Day Of Current Year | Today             | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
+      | First Day Of Current Year | Last Day Of Current Year | Current Date      | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
     And I validate "medical" entities for "Son" from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason                               |
       | 021                   | 021                | EC                    |                   | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION |
