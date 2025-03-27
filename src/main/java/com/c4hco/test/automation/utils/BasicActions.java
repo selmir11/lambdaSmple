@@ -811,6 +811,7 @@ public class BasicActions {
                     break;
                 case "Today":
                     date = getTodayDate();
+                    date = changeDateFormat(date, "MM/dd/yyyy", "yyyy-MM-dd");
                     break;
                 case "First Day of Current Month":
                     date = firstDateOfCurrMonth();
