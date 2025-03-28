@@ -5,6 +5,7 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
 
@@ -687,12 +688,17 @@ public class BasicActions {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return firstDayOfNextMonth.format(formatter);
     }
-
-    public String firstDateOfNextMonthAfterSpecificDate(String dateStr){
-        DateTimeFormatter inputOutputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        LocalDate firstDayOfNextMonth = LocalDate.parse(dateStr, inputOutputFormatter).plusMonths(1).withDayOfMonth(1);
+    public String firstDateOfNextMonthAfterSpecificDate(String dateStr) {
+        DateTimeFormatter formatter;
+        if (dateStr.contains("-")) {
+            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        } else {
+            formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        }
+        LocalDate firstDayOfNextMonth = LocalDate.parse(dateStr, formatter).plusMonths(1).withDayOfMonth(1);
         return firstDayOfNextMonth.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
+
 
     public String firstDateOfLastMonth() {
         LocalDate today = LocalDate.now();
@@ -741,6 +747,7 @@ public class BasicActions {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         return date.format(formatter);
     }
+
 
     public String getFutureDate(int daysToMove) {
         LocalDate date = LocalDate.now().plusDays(daysToMove);
@@ -806,6 +813,9 @@ public class BasicActions {
                     break;
                 case "Today":
                     date = getTodayDate();
+                    break;
+                case "Current Date":
+                    date = changeDateFormat(getTodayDate(), "MM/dd/yyyy", "yyyy-MM-dd");
                     break;
                 case "First Day of Current Month":
                     date = firstDateOfCurrMonth();
@@ -1399,6 +1409,18 @@ public class BasicActions {
         String amountWithoutDollarSign = input.replace("$", "");
         // Remove commas
         return amountWithoutDollarSign.replaceAll(",", "");
+    }
+    public List<WebElement> selectAllOptionsFromDropDown(WebElement selectDrpDwnElement){
+        Select select=new Select(selectDrpDwnElement);
+        return select.getOptions();
+    }
+    public WebElement getFirstSelectedOptionFromDD(WebElement selectDrpDwnElement){
+        Select select=new Select(selectDrpDwnElement);
+        return select.getFirstSelectedOption();
+    }
+    public void mouseHoverOnElement(WebElement element){
+        Actions actions = new Actions(getDriver());
+        actions.moveToElement(element).perform();
     }
 }
 

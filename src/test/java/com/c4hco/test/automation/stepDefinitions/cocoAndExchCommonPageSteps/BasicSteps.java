@@ -561,6 +561,10 @@ public class BasicSteps {
             case "Program Manager dashboard":
                 pageUrl = "AdminPortal/programManager/";
                 break;
+            case "Exclusion Reason":
+                pageUrl = "/exclusions";
+                break;
+
             default:
                 throw new IllegalArgumentException("Undefined Page: " + page);
 

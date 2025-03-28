@@ -75,6 +75,9 @@ public class MyPoliciesPage {
     @FindBy(id="SOL-CurrentPolicies-CurrentPlans")
     WebElement CurrentPlans;
 
+    @FindBy(id="SOL-MyPolicies-ShowCancelledPlans")
+    WebElement CancelPlansSlider;
+
     String lastUpdated = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); // TO DO:: Move this to Shared Data?
 
     Set<String> allMemberNames = new HashSet<>();
@@ -100,12 +103,12 @@ public class MyPoliciesPage {
         for (MemberDetails member : basicActions.getAllDentalEligibleMemInfo()) {
 
             //WebElements
-            WebElement planStartDate = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[@id='SOL-CurrentPolicies-PolicyStartDateCoverage']"));
-            WebElement planEndDate = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[@id='SOL-CurrentPolicies-PolicyEndDateCoverage']"));
-            WebElement premiumAfterReduction = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//*[contains(@id,'AppliedSubsidy')] //span[1]"));
-            WebElement aptc = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//*[contains(@id,'AppliedSubsidy')] //span[2]"));
-            WebElement EAPID = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//*[@id='SOL-CurrentPolicies-PolicyNumberExch']"));
-            WebElement lastUpdatedOn = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//*[@id='SOL-CurrentPolicies-PolicySubmittedDate']"));
+            WebElement planStartDate = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//span[@id='SOL-CurrentPolicies-PolicyStartDateCoverage']"));
+            WebElement planEndDate = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//span[@id='SOL-CurrentPolicies-PolicyEndDateCoverage']"));
+            WebElement premiumAfterReduction = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//*[contains(@id,'AppliedSubsidy')] //span[1]"));
+            WebElement aptc = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//*[contains(@id,'AppliedSubsidy')] //span[2]"));
+            WebElement EAPID = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//*[@id='SOL-CurrentPolicies-PolicyNumberExch']"));
+            WebElement lastUpdatedOn = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//*[@id='SOL-CurrentPolicies-PolicySubmittedDate']"));
 
             //DateConversion
             String expecStartDate = basicActions.changeDateFormat(SharedData.getPrimaryMember().getDentalPlanStartDate(),"MM/dd/yyyy","MM/dd/yy");
@@ -131,12 +134,12 @@ public class MyPoliciesPage {
         for (MemberDetails member : basicActions.getAllMedicalEligibleMemInfo()) {
 
             //WebElements
-            WebElement planStartDate = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[@id='SOL-CurrentPolicies-PolicyStartDateCoverage']"));
-            WebElement planEndDate = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//span[@id='SOL-CurrentPolicies-PolicyEndDateCoverage']"));
-            WebElement premiumAfterReduction = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//*[contains(@id,'AppliedSubsidy')] //span[1]"));
-            WebElement aptc = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//*[contains(@id,'AppliedSubsidy')] //span[2]"));
-            WebElement EAPID = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//*[@id='SOL-CurrentPolicies-PolicyNumberExch']"));
-            WebElement lastUpdatedOn = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][.//span[contains(text(),'"+member.getFirstName()+"')]]//*[@id='SOL-CurrentPolicies-PolicySubmittedDate']"));
+            WebElement planStartDate = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//span[@id='SOL-CurrentPolicies-PolicyStartDateCoverage']"));
+            WebElement planEndDate = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//span[@id='SOL-CurrentPolicies-PolicyEndDateCoverage']"));
+            WebElement premiumAfterReduction = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//*[contains(@id,'AppliedSubsidy')] //span[1]"));
+            WebElement aptc = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//*[contains(@id,'AppliedSubsidy')] //span[2]"));
+            WebElement EAPID = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//*[@id='SOL-CurrentPolicies-PolicyNumberExch']"));
+            WebElement lastUpdatedOn = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//*[@id='SOL-CurrentPolicies-PolicySubmittedDate']"));
 
             //DateConversion
             String expecStartDate = basicActions.changeDateFormat(SharedData.getPrimaryMember().getMedicalPlanStartDate(),"MM/dd/yyyy","MM/dd/yy");
@@ -216,4 +219,5 @@ public class MyPoliciesPage {
          By locator = By.id("SOL-CurrentPolicies-CancelCurrent" + planType + "\")");
          softAssert.assertFalse(basicActions.elementExists(locator),"Element should be absent but was found.");
     }
+
 }

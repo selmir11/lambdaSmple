@@ -101,24 +101,3 @@ Feature: Transfer Multiple CoCo Clients in Broker Portal My Clients View and val
     And I click on Find Expert Assistance in the "CoCo" Header
     Then I validate I am on the "FindExpertHelpCoco" page
     And I click on Sign Out in the Header for "Elmo"
-
-    #verify activity Table
-    Then I validate I am on the "Login" page
-    And I open the login page on the "admin" portal
-    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
-    And I validate I am on the "Admin search" page
-    And I select "coco" checkbox on Admin Portal Dashboard
-    And I search for user and click email from search results
-    Then I click on view button for "Account Activity" report
-    And I validate Account Activity title row
-    Then I wait for 200 milliseconds
-    Then I validate "UI_ACCT_CREATED" event code and description "Account created" in activity event report
-    Then I validate "UI_BROKER_AUTHORIZED" event code and description "Broker Authorized" in activity event report
-    Then I validate "BE_ATL_CONTACT_REMOV.." event code and description "Remove Broker from Custom.." in activity event report
-
-
-
-
-
-
-

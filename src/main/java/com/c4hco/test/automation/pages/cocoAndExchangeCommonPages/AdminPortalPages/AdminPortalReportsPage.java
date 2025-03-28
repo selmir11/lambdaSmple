@@ -35,6 +35,9 @@ public class AdminPortalReportsPage {
     @FindBy(xpath = "//tbody[1]/tr[5]/td[3]/app-max-length-tooltip[1]/span[1]")
     WebElement columnEventCode;
 
+    @FindBy(xpath = "//table[@class='sort-table']//td")
+    List<WebElement> EventCodecolumns;
+
     @FindBy(css = ".sort-table-data-row")
     List<WebElement> tableRows;
 
@@ -53,6 +56,28 @@ public class AdminPortalReportsPage {
 
     @FindBy(xpath = "//*[@class='dashboardHeader2']")
     WebElement AccountIDHeader;
+
+
+    @FindBy(xpath = "//td[@class='column-header']/span")
+    List<WebElement> columnsLabel;
+
+    @FindBy(xpath = "//*[@class='column-sort-controls']")
+    List<WebElement> columnSortControls;
+
+    @FindBy(xpath = "//*[@class='dashboardHeader1']")
+    WebElement memberPrimary;
+
+    @FindBy(xpath = "//*[@class='dashboardHeader2']")
+    WebElement memberAcctId;
+
+    @FindBy(xpath = "//table[@class='sort-table']//td[3]")
+    List<WebElement> eventListColumn;
+
+    @FindBy(xpath = "//table[@class='sort-table']//td[6]")
+    List<WebElement> descriptionListColumn;
+
+
+
 
 
     public void validateTitleAccountActivity() {
@@ -369,6 +394,45 @@ public class AdminPortalReportsPage {
             softAssert.assertTrue(expectedTimeStamp.get(i).compareTo(expectedTimeStamp.get(i + 1)) >= 0,
                     "order incorrect at index " + i + ":" + expectedTimeStamp.get(i) + " should be after " + expectedTimeStamp.get(i + 1));
 
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateActivityTitle() {
+        basicActions.waitForElementToBePresentWithRetries(titleAccountActivity, 50);
+        softAssert.assertEquals(titleAccountActivity.getText(),"Account Activity", "Title not match");
+        softAssert.assertAll();
+    }
+
+    public void validateActivityReportColumnNames() {
+        basicActions.waitForElementToBePresentWithRetries(titleAccountActivity, 50);
+        softAssert.assertEquals(columnsLabel.get(0).getText(),"Person ID", "Title not match");
+        softAssert.assertTrue(columnSortControls.get(0).isDisplayed(),"Sort control not displayed");
+        softAssert.assertEquals(columnsLabel.get(1).getText(),"Event Code", "Title not match");
+        softAssert.assertTrue(columnSortControls.get(1).isDisplayed(),"Sort control not displayed");
+        softAssert.assertEquals(columnsLabel.get(2).getText(),"Time", "Title not match");
+        softAssert.assertTrue(columnSortControls.get(2).isDisplayed(),"Sort control not displayed");
+        softAssert.assertEquals(columnsLabel.get(3).getText(),"Username", "Title not match");
+        softAssert.assertTrue(columnSortControls.get(3).isDisplayed(),"Sort control not displayed");
+        softAssert.assertEquals(columnsLabel.get(4).getText(),"Description", "Title not match");
+        softAssert.assertTrue(columnSortControls.get(4).isDisplayed(),"Sort control not displayed");
+        softAssert.assertEquals(columnsLabel.get(5).getText(),"Detail Key", "Title not match");
+        softAssert.assertTrue(columnSortControls.get(5).isDisplayed(),"Sort control not displayed");
+        softAssert.assertEquals(columnsLabel.get(6).getText(),"Detail Value", "Title not match");
+        softAssert.assertTrue(columnSortControls.get(6).isDisplayed(),"Sort control not displayed");
+        softAssert.assertAll();
+    }
+
+    public void validateDescription(List<String> expectedDescription) {
+        basicActions.waitForElementListToBePresent(descriptionListColumn, 100);
+        List<String> actualDescList = descriptionListColumn.stream().map(WebElement :: getText).toList();
+
+        for (String description : expectedDescription) {
+           if(SharedData.getEnv().equals("qa") && description.equals("Contact Upsert")) {
+               description = "Customer record is transf..";
+           }
+           boolean isPresent = actualDescList.contains(description);
+           softAssert.assertTrue(isPresent, "Description not found " + description );
         }
         softAssert.assertAll();
     }
