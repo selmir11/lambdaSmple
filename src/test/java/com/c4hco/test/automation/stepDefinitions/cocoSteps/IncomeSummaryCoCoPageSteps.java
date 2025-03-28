@@ -83,4 +83,7 @@ public class IncomeSummaryCoCoPageSteps {
     public void iValidateThatTheTotalAnnualIncomeIsCorrectlyDeterminedByAddingTheEmploymentIncomeAndAdditionalIncomeThenSubtractingTheDeductionAmount(String EmploymentIncome, String AdditionalIncome, String DeductionAmt) {
         incomeSummaryCoCoPage.verifyIncomeAmountCalculations(EmploymentIncome, AdditionalIncome, DeductionAmt);
     }
+
+    @Then("I validate the total annual income label texts along with their properties on the CoCo Income Summary page")
+    public void iVerifyTotalAnnualIncomeLabelTextsAndItsProperties(DataTable dataTable){incomeSummaryCoCoPage.verifyTotalAnnualIncomeLabelTextsAndItsProperties(dataTable);}
 }

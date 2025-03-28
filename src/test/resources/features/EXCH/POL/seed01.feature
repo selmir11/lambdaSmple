@@ -334,7 +334,7 @@ Feature: Regression Tests that require Seed 1
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-1244-WIP_@R4V
+  @SLER-1244
   Scenario: RT-2074 ENR-EXCH: ADD DEPENDENT (LCE: Birth) - SAME CARRIER / SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -480,6 +480,7 @@ Feature: Regression Tests that require Seed 1
 
 
     And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue by applicationId with "POLICY_SUBMISSION" as event type
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
