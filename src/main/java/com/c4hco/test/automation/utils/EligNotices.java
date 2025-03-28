@@ -1730,37 +1730,41 @@ public class EligNotices {
                 "Ayuda Lengua Adicional");
     }
     public static String premiumTaxCredits(String docType, String language, String memberNumber, BasicActions basicActions) {
-        String englishTemplate = ", starting as early as "+getFirstOfNextMonth(language, basicActions)+" you are approved for:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String englishTemplate = ", starting as early as "+getFirstOfNextMonth(language, basicActions)+" you are approved for:";
         String englishTemplate2 = "Enroll in a plan by "+getLceCloseDate(language, docType, basicActions)+".\n";
-        String englishTemplate3 = ", you do not qualify for the following:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String englishTemplate3 = ", you do not qualify for the following:";
+        String englishTemplate4 = "Verification is\n"+"needed\n"+"We\u2019re missing some information!\n"+
+                "You are temporarily approved for 90 days, but we need more information\n"+
+                "from you to continue your coverage after the 90 days. Please see the\n"+
+                "\u201cMore information needed\u201D section below for what is needed and next\n"+"steps.\n";
         String spanishTemplate = ", a partir del "+getFirstOfNextMonth(language, basicActions)+" usted est\u00E1 aprobado para:"+SharedData.getPrimaryMember().getFullName()+"\n";
         String spanishTemplate2 = "Inscr\u00EDbase en un plan antes del "+getLceCloseDate(language, docType, basicActions)+".\n";
         String spanishTemplate3 = ", no califica para lo siguiente:"+SharedData.getPrimaryMember().getFullName()+"\n";
-        String atpc = "$178.11";
 
+        String primaryName = SharedData.getPrimaryMember().getFullName();
         List<MemberDetails> memberList = SharedData.getMembers();
         String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
 
         return switch (memberNumber) {
             case "1" -> switch (language) {
                 case "English" -> String.format(
-                        englishTemplate +
+                        englishTemplate +primaryName+"\n" +
                                 "Premium\n" +
                                 "Tax Credits\n" +
                                 "for "+basicActions.getCurrYear()+"\n" +
-                                "Your household qualifies to receive up to "+atpc+" a month to use towards\n" +
+                                "Your household qualifies to receive up to $178.11 a month to use towards\n" +
                                 "lowering the cost of your monthly health insurance premiums when you\n" +
                                 "enroll through Connect for Health Colorado. Based on your application,\n" +
-                                "this applies to "+SharedData.getPrimaryMember().getFullName()+"\n" +
+                                "this applies to "+primaryName+"\n" +
                                 englishTemplate2 +
-                                englishTemplate +
+                                englishTemplate +primaryName+"\n" +
                                 "Health\n" +
                                 "insurance\n" +
                                 "plan for "+basicActions.getCurrYear()+"\n" +
                                 "You can enroll in a health insurance plan for 2025 if you qualify for a Special Enrollment \n" +
                                 "Period or if it\u2019s Open Enrollment.\n" +
                                 englishTemplate2 +
-                                englishTemplate3 +
+                                englishTemplate3 +primaryName+"\n" +
                                 "Cost-Sharing\n" +
                                 "Reduction for\n" +
                                 basicActions.getCurrYear()+"\n"+
@@ -1799,11 +1803,69 @@ public class EligNotices {
             };
             case "2" -> switch (language) {
                 case "English" -> String.format(
-                        englishTemplate + englishTemplate2 + englishTemplate3
+                        englishTemplate +primaryName+"\n" +
+                                "Premium Tax\n" +
+                                "Credits for\n" +
+                                 basicActions.getCurrYear()+"\n" +
+                                "Your household qualifies to receive up to $712.11 a month to use towards\n" +
+                                "lowering the cost of your monthly health insurance premiums when you\n" +
+                                "enroll through Connect for Health Colorado. Based on your application,\n" +
+                                "this applies to "+primaryName+"\n" +
+                                englishTemplate2 +
+                                englishTemplate4 +
+                                englishTemplate +primaryName+"\n" +
+                                "Health\n" +
+                                "insurance\n" +
+                                "plan for "+basicActions.getCurrYear()+"\n" +
+                                "You can enroll in a health insurance plan for 2025 if you qualify for a Special Enrollment \n" +
+                                "Period or if it\u2019s Open Enrollment.\n" +
+                                englishTemplate2 +
+                                englishTemplate4 +
+                                englishTemplate3 +primaryName+"\n" +
+                                "Cost-Sharing\n" +
+                                "Reduction for\n" +
+                                basicActions.getCurrYear()+"\n"+
+                                "You do not qualify for Cost-Sharing Reduction because:\n" +
+                                "Your household's income is too high\n" +
+
+                                englishTemplate +member0Name+"\n" +
+                                "Premium\n" +
+                                "Tax Credits\n" +
+                                "for "+basicActions.getCurrYear()+"\n" +
+                                "Your household qualifies to receive up to $712.11 a month to use towards\n" +
+                                "lowering the cost of your monthly health insurance premiums when you\n" +
+                                "enroll through Connect for Health Colorado. Based on your application,\n" +
+                                "this applies to "+member0Name+"\n" +
+                                englishTemplate2 +
+                                englishTemplate +member0Name+"\n" +
+                                "Health\n" +
+                                "insurance\n" +
+                                "plan for "+basicActions.getCurrYear()+"\n" +
+                                "You can enroll in a health insurance plan for 2025 if you qualify for a Special Enrollment \n" +
+                                "Period or if it\u2019s Open Enrollment.\n" +
+                                englishTemplate2 +
+                                englishTemplate3 +member0Name+"\n" +
+                                "Cost-Sharing\n" +
+                                "Reduction for\n" +
+                                basicActions.getCurrYear()+"\n"+
+                                "You do not qualify for Cost-Sharing Reduction because:\n" +
+                                "Your household's income is too high\n"
+//                        moreInformationNeeded(docType, language, memberNumber, basicActions)
                 );
-                case "Spanish" -> String.format(
-                        spanishTemplate + spanishTemplate2 + spanishTemplate3
-                );
+//            case "2" -> switch (language) {
+//                case "English" -> String.format(
+//                        englishTemplate + englishTemplate2 + englishTemplate3
+//                );
+//                case "Spanish" -> String.format(
+//                        spanishTemplate + spanishTemplate2 + spanishTemplate3
+//                );
+//                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+//            };
+//            default -> throw new IllegalArgumentException("Invalid member number: " + memberNumber);
+//        };
+//                case "Spanish" -> String.format(
+//                        spanishTemplate + spanishTemplate2
+//                );
                 default -> throw new IllegalArgumentException("Invalid language option: " + language);
             };
             default -> throw new IllegalArgumentException("Invalid member number: " + memberNumber);
