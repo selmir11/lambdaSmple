@@ -894,6 +894,7 @@ public class DbValidations {
         softAssert.assertEquals(actualRetryStatus.trim(), expectedStatus);
         softAssert.assertAll();
     }
+
     public void validateReasonCode(String expectedReasonCode) {
         String reasonCode = exchDbDataProvider.getMemberReasonCodeByAccountId();
         softAssert.assertEquals(reasonCode, expectedReasonCode, "Reason code mismatch!");
@@ -1041,5 +1042,39 @@ public class DbValidations {
         softAssert.assertEquals(enrolmentPlanYear, basicActions.getDateBasedOnRequirement(year));
         softAssert.assertAll();
     }
+
+    public void validateEnrollmentPlanLce(List<Map<String, String>> expectedValues) {
+        basicActions.wait(5000);
+        List<List<String>> dbValuesList = exchDbDataProvider.getEnrollmentPlanLceDetails();
+        System.out.println("Query executed, returned values: " + dbValuesList);
+
+        if (dbValuesList.isEmpty()) {
+            throw new RuntimeException("No data returned from exchDbDataProvider for account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'");
+        }
+
+        for (int i = 0; i < expectedValues.size(); i++) {
+            if (i >= dbValuesList.size()) {
+                throw new RuntimeException("Mismatch: Expected more rows than returned by DB.");
+            }
+            List<String> dbRow = dbValuesList.get(i);
+            Map<String, String> expectedRow = expectedValues.get(i);
+            String enrollmentPeriodEndDateBasic = basicActions.getDateBasedOnRequirement(expectedRow.get("enrollment_period_end_date"));
+            String enrollmentPeriodEndDate = basicActions.changeDateFormat(enrollmentPeriodEndDateBasic, "MM/dd/yyyy", "yyyy-MM-dd");
+            String planYear = basicActions.getDateBasedOnRequirement(expectedRow.get("plan_year"));
+
+            softAssert.assertEquals(dbRow.get(0), enrollmentPeriodEndDate, "enrollment_period_end_date");
+            softAssert.assertEquals(dbRow.get(1), expectedRow.get("qlce_present_ind"), "qlce_present_ind");
+            softAssert.assertEquals(dbRow.get(2), planYear, "plan_year");
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateEnrollmentPlanLceRowCount(int expectedRowCount) {
+        basicActions.wait(5000);
+        int actualRowCount = Integer.parseInt(exchDbDataProvider.getEnrollmentPlanLceRowCount());
+        softAssert.assertEquals(actualRowCount, expectedRowCount, "Row count mismatch!");
+        softAssert.assertAll();
+    }
+
 }
 

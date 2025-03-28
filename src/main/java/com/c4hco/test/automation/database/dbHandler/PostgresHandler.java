@@ -188,6 +188,25 @@ public class PostgresHandler {
         return results;
     }
 
+    public List<List<String>> getResultForMultipleDynamicColumns(String query, String... columnNames) {
+        List<List<String>> results = new ArrayList<>();
+        try {
+            ResultSet rs = executor.executeQuery(query);
+            while (rs.next()) {  // ✅ Loop through all rows
+                List<String> row = new ArrayList<>();
+                for (String columnName : columnNames) {
+                    row.add(rs.getString(columnName)); // Fetch values dynamically
+                }
+                results.add(row);  // Store the row
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Assert.fail("Error with DB occurred: " + e.getMessage());
+        }
+        return results;
+    }
+
+
 }
 
 
