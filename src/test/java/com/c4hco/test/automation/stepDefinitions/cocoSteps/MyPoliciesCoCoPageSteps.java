@@ -33,4 +33,10 @@ public class MyPoliciesCoCoPageSteps {
     public void clickCurrentPlansCoCo(){myPoliciesCoCoPage.clickCurrentPlansCoCo();
     }
 
+    @Then("I click on Cancel Medical Plans CoCo")
+    public void cancelMedicalPlanbtnCoCo() {
+        myPoliciesCoCoPage.cancelMedicalPlanbtnCoCo();
+    }
+
+
 }

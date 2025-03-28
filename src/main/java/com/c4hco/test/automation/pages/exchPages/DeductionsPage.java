@@ -238,6 +238,24 @@ public class DeductionsPage {
     @FindBy(css = ".col .form-select option")
     List<WebElement> frequencyDropdownValues;
 
+    @FindBy(xpath = "//div[@class='body-text-1']")
+    List<WebElement> bodyTexts;
+
+    @FindBy(xpath = "//hr")
+    WebElement horizontalLine;
+
+    @FindBy(xpath = "//*[@class='checkbox-label ng-star-inserted']")
+    List<WebElement> labelAllDeductionOptions;
+
+    @FindBy(xpath = "//*[name()='svg' and @class='feather feather-dollar-sign']")
+    WebElement dollarSymbol;
+
+    @FindBy(xpath = "//lib-button")
+    List<WebElement> btnOutlineBackAndSave;
+
+    @FindBy(xpath = "//label[@class='checkbox-container checked']")
+    List<WebElement> checkBoxChecked;
+
     public void selectAddtlDeductionOption(String addtlDeductionOption, String Amount, String Frequency){
         switch(addtlDeductionOption){
             case "Alimony or spousal support paid out":
@@ -1183,5 +1201,131 @@ public class DeductionsPage {
     public void clickOnGoBackButton(){
         basicActions.waitForElementToBePresent(goBackButton,10);
         goBackButton.click();
+    }
+    public void verifyTextsHeaderAndOtherLabels(List<String> pageTexts){
+        basicActions.wait(1000);
+        String signature=SharedData.getPrimaryMember().getSignature();
+        softAssert.assertEquals(IncomeSummaryHeader.getText(),pageTexts.get(0)+" "+signature,"Income header text mismatch");
+        softAssert.assertEquals(DeductionSummaryHeader.getText(),pageTexts.get(1),"Deduction header text mismatch");
+        softAssert.assertEquals(bodyTexts.get(0).getText(),pageTexts.get(2),"Do you have any text mismatch");
+        softAssert.assertEquals(bodyTexts.get(1).getText(),pageTexts.get(3),"Select all that apply text mismatch");
+
+        softAssert.assertEquals(IncomeSummaryHeader.getCssValue("font-size"), "36px", "IncomeSummaryHeader-Font size mismatch");
+        softAssert.assertEquals(IncomeSummaryHeader.getCssValue("color"), "rgba(43, 49, 60, 1)", "IncomeSummaryHeader-Color mismatch");
+        softAssert.assertEquals(IncomeSummaryHeader.getCssValue("font-family"), "\"PT Sans\", sans-serif", "IncomeSummaryHeader-Font family mismatch");
+        softAssert.assertEquals(IncomeSummaryHeader.getCssValue("line-height"), "48px", "IncomeSummaryHeader-Line height mismatch");
+        softAssert.assertEquals(DeductionSummaryHeader.getCssValue("font-size"), "28px", "DeductionSummaryHeader-Font size mismatch");
+        softAssert.assertEquals(DeductionSummaryHeader.getCssValue("color"), "rgba(43, 49, 60, 1)", "DeductionSummaryHeader-Color mismatch");
+        softAssert.assertEquals(DeductionSummaryHeader.getCssValue("font-family"), "\"PT Sans\", sans-serif", "DeductionSummaryHeader-Font family mismatch");
+        softAssert.assertEquals(DeductionSummaryHeader.getCssValue("line-height"), "40px", "DeductionSummaryHeader-Line height mismatch");
+        softAssert.assertEquals(bodyTexts.get(0).getCssValue("font-size"), "16px", "Do You have-Font size mismatch");
+        softAssert.assertEquals(bodyTexts.get(0).getCssValue("color"), "rgba(43, 49, 60, 1)", "Do You have-Color mismatch");
+        softAssert.assertEquals(bodyTexts.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif", "Do You have-Font family mismatch");
+        softAssert.assertEquals(bodyTexts.get(0).getCssValue("line-height"), "28px", "Do You have-Line height mismatch");
+        softAssert.assertEquals(bodyTexts.get(1).getCssValue("font-size"), "16px", "Select all that apply-Font size mismatch");
+        softAssert.assertEquals(bodyTexts.get(1).getCssValue("color"), "rgba(43, 49, 60, 1)", "Select all that apply-Color mismatch");
+        softAssert.assertEquals(bodyTexts.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif", "Select all that apply-Font family mismatch");
+        softAssert.assertEquals(bodyTexts.get(1).getCssValue("line-height"), "28px", "Select all that apply-Line height mismatch");
+        softAssert.assertAll();
+    }
+    public void verifyDeductionOptionsOrderAndText(List<String> deductionOpts){
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(horizontalLine,10));
+        for (int i=0;i<deductionOpts.size();i++){
+            softAssert.assertEquals(labelAllDeductionOptions.get(i).getText().trim(),deductionOpts.get(i),"Deduction Option "+i+" text mismatch");
+            softAssert.assertFalse(addtlDeductionOptionsCheckbox.get(i).isSelected(),"Check box"+i+" is Selected");
+            softAssert.assertEquals(labelAllDeductionOptions.get(i).getCssValue("font-size"), "16px", "labelAllDeductionOptions"+i+"-Font size mismatch");
+            softAssert.assertEquals(labelAllDeductionOptions.get(i).getCssValue("color"), "rgba(43, 49, 60, 1)", "labelAllDeductionOptions"+i+"-Color mismatch");
+            softAssert.assertEquals(labelAllDeductionOptions.get(i).getCssValue("font-family"), "\"PT Sans\", sans-serif", "labelAllDeductionOptions"+i+"-Font family mismatch");
+            softAssert.assertEquals(labelAllDeductionOptions.get(i).getCssValue("line-height"), "28px", "labelAllDeductionOptions"+i+"-Line height mismatch");
+            softAssert.assertAll();
+        }
+        softAssert.assertEquals(goBackButton.getText().trim(),"Go back","Go back text mismatch");
+        softAssert.assertEquals(saveAndContinueBtn.getText().trim(),"Save and continue","Save and continue text mismatch");
+        softAssert.assertAll();
+    }
+    public void verifyDefaultPropertyOfTextBoxAndDropdown(List<String> dropdownOptions){
+        softAssert.assertTrue(txtAOSSAmount.isDisplayed(),"AOSS text box not visible");
+        softAssert.assertEquals(txtAOSSAmount.getAttribute("placeholder"),"amount","AOSS default text not visible");
+        softAssert.assertTrue(selectAOSSFrequency.isDisplayed(),"Drop Down not visible");
+        softAssert.assertEquals(basicActions.getFirstSelectedOptionFromDD(selectAOSSFrequency).getText().trim(),"Select Option","Select option not visible");
+        checkAllDropDownOptions(dropdownOptions);
+        softAssert.assertAll();
+    }
+    private void checkAllDropDownOptions(List<String> dropdownOptions){
+        for (int i=0;i<dropdownOptions.size();i++) {
+            softAssert.assertEquals(basicActions.selectAllOptionsFromDropDown(selectAOSSFrequency).get(0).getText().trim(), dropdownOptions.get(0), "Option text not equal");
+            softAssert.assertAll();
+        }
+    }
+    public void verifyAmountCanBeEntered(String amount,String freq){
+        softAssert.assertEquals(txtAOSSAmount.getAttribute("value"),amount,"Entered amount mismatch");
+        softAssert.assertTrue(dollarSymbol.isDisplayed(),"Dollar Symbol is not visible");
+        softAssert.assertEquals(basicActions.getFirstSelectedOptionFromDD(selectAOSSFrequency).getText().trim(),freq,"Entered freq mismatch");
+        softAssert.assertAll();
+    }
+    public void verifyOnlyNone_of_theseSelected(){
+        basicActions.waitForElementToBePresent(addtlDeductionOptionsCheckbox.get(10),10);
+        addtlDeductionOptionsCheckbox.get(10).click();
+        for (int i=0;i<addtlDeductionOptionsCheckbox.size()-1;i++){
+            softAssert.assertFalse(addtlDeductionOptionsCheckbox.get(i).isSelected(),"Other"+i+" is selected");
+            softAssert.assertAll();
+        }
+        softAssert.assertTrue(checkBoxChecked.size()==1,"NoneOfThese is not selected");
+        softAssert.assertAll();
+    }
+    public void verifyFontSizeColorOfBackAndContinue(String mouseOverOpt){
+        switch (mouseOverOpt){
+            case "Off":
+                verifyColorFontEtcWhenMouseHoverOff();
+                break;
+            case "On":
+                verifyColorFontEtcWhenMouseHoverOn();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + mouseOverOpt);
+        }
+    }
+    private void verifyColorFontEtcWhenMouseHoverOff(){
+        addtlDeductionOptionsCheckbox.get(10).click();
+        softAssert.assertEquals(goBackButton.getCssValue("background-color"), "rgba(252, 252, 252, 1)", "Go Back-back ground Color mismatching");
+        softAssert.assertEquals(goBackButton.getCssValue("border"), "2px solid rgb(26, 112, 179)", "Go Back-border mismatch");
+        softAssert.assertEquals(goBackButton.getCssValue("border-top-left-radius"), "4px", "Go Back-Border radios mismatch");
+        softAssert.assertEquals(goBackButton.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Go Back-Font family mismatch");
+        softAssert.assertEquals(goBackButton.getCssValue("font-size"), "20px", "Go Back-Font size mismatch");
+        softAssert.assertEquals(goBackButton.getCssValue("padding-bottom"), "12px", "Go Back-Padding bottom not matching");
+        softAssert.assertEquals(goBackButton.getCssValue("padding-right"), "20px", "Go Back-Padding right not matching");
+        softAssert.assertEquals(goBackButton.getCssValue("color"), "rgba(26, 112, 179, 1)", "Go Back-Color mismatch");
+        softAssert.assertEquals(btnOutlineBackAndSave.get(0).getCssValue("background-color"), "rgba(0, 0, 0, 0)", "Go Back Outline-back ground Color mismatching");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background-color"), "rgba(26, 112, 179, 1)", "saveAndContinueBtn-back ground Color mismatching");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("border"), "2px solid rgb(26, 112, 179)", "saveAndContinueBtn-border mismatch");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("border-top-left-radius"), "4px", "saveAndContinueBtn-Border radios mismatch");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif", "saveAndContinueBtn-Font family mismatch");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px", "saveAndContinueBtn-Font size mismatch");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("padding-bottom"), "12px", "saveAndContinueBtn-Padding bottom not matching");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("padding-right"), "20px", "saveAndContinueBtn-Padding right not matching");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)", "saveAndContinueBtn-Color mismatch");
+        softAssert.assertEquals(btnOutlineBackAndSave.get(1).getCssValue("background-color"), "rgba(0, 0, 0, 0)", "Save outline-back ground Color mismatching");
+        softAssert.assertAll();
+    }
+    private void verifyColorFontEtcWhenMouseHoverOn(){
+        basicActions.mouseHoverOnElement(goBackButton);
+        softAssert.assertEquals(goBackButton.getCssValue("background-color"), "rgba(226, 241, 248, 1)", "Go Back When Mouse Hover No-back ground Color mismatching");
+        softAssert.assertEquals(goBackButton.getCssValue("border"), "2px solid rgb(26, 112, 179)", "Go Back-border mismatch");
+        softAssert.assertEquals(goBackButton.getCssValue("border-top-left-radius"), "4px", "Go Back-Border radios mismatch");
+        softAssert.assertEquals(goBackButton.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Go Back-Font family mismatch");
+        softAssert.assertEquals(goBackButton.getCssValue("font-size"), "20px", "Go Back-Font size mismatch");
+        softAssert.assertEquals(goBackButton.getCssValue("padding-bottom"), "12px", "Go Back-Padding bottom not matching");
+        softAssert.assertEquals(goBackButton.getCssValue("padding-right"), "20px", "Go Back-Padding right not matching");
+        basicActions.scrollToElement(saveAndContinueBtn);
+        basicActions.mouseHoverOnElement(saveAndContinueBtn);
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background-color"), "rgba(22, 156, 216, 1)", "Save btn When Mouse Hover No-back ground Color mismatching");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("border"), "2px solid rgb(252, 252, 252)", "saveAndContinueBtn-border mismatch");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("border-top-left-radius"), "4px", "saveAndContinueBtn-Border radios mismatch");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif", "saveAndContinueBtn-Font family mismatch");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px", "saveAndContinueBtn-Font size mismatch");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("padding-bottom"), "12px", "saveAndContinueBtn-Padding bottom not matching");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("padding-right"), "20px", "saveAndContinueBtn-Padding right not matching");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)", "saveAndContinueBtn-Color mismatch");
+        softAssert.assertAll();
     }
 }

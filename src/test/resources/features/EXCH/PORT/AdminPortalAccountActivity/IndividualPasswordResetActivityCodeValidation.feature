@@ -1,7 +1,7 @@
 @port @APAccountActivity
 Feature: Exchange individual password reset account activity code validation via Admin Portal
 
-  @SLCR-2334
+  @SLER-2334
   Scenario: Exchange individual password reset account activity code validation via Admin Portal
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
