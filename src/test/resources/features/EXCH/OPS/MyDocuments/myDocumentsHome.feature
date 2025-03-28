@@ -1281,3 +1281,37 @@ Feature: My Document Home Page validations
     And I close button to close modal
     Then  I click on Sign Out in the Header for "Elmo"
 
+
+  @SLER-2399
+  Scenario:  OPS: MyDocs: Long file name, spinner, DB[RT-1985]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    Then I click create account on admin portal
+    And I enter general mandatory data for "exchange" account creation
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I click link my docs on accountOverview page
+    And I click on upload another document
+    Then I select "Income" from the document type dropdown
+    Then I select "Form 8962" from the document category type dropdown
+    When I select document "TestMyDocWithNameLongerThan25Characters.jpg" and upload
+    When I click on upload my document button
+    Then I wait for 2000 milliseconds
+    Then  I click on Sign Out in the Header for "Elmo"
+    Then I validate the document details with values
+      | 7708      |
+      | null      |
+      | Form 8962 |
+      | jpg       |
+
+
+
+
+
+
+

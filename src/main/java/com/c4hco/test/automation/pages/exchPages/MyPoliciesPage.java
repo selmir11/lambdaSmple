@@ -75,6 +75,9 @@ public class MyPoliciesPage {
     @FindBy(id="SOL-CurrentPolicies-CurrentPlans")
     WebElement CurrentPlans;
 
+    @FindBy(id="SOL-MyPolicies-ShowCancelledPlans")
+    WebElement CancelPlansSlider;
+
     String lastUpdated = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); // TO DO:: Move this to Shared Data?
 
     Set<String> allMemberNames = new HashSet<>();
@@ -216,4 +219,5 @@ public class MyPoliciesPage {
          By locator = By.id("SOL-CurrentPolicies-CancelCurrent" + planType + "\")");
          softAssert.assertFalse(basicActions.elementExists(locator),"Element should be absent but was found.");
     }
+
 }

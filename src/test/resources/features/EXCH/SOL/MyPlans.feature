@@ -277,6 +277,7 @@ Feature: My Plans Page test
     Then I click Okay on Thank you popup
     And I click on Sign Out in the Header for "Elmo"
 
+  
   @SLER-2387 @ClickGoBackOnMyPlansPage
   Scenario: SLER-2387 Navigate to My Plans page and select Go Back
     When I click create a new account on login page

@@ -403,6 +403,11 @@ public class DbSteps {
     @And("I validate the LCE data row count {int}")
     public void iValidateEnrollmentPlanLceRowCount(int expectedRowCount) {dbValidations.validateEnrollmentPlanLceRowCount(expectedRowCount);}
 
+
+    @Then("I validate the document details with values")
+    public void iValidateTheDocumentDetails(List<String> expectedValues) {
+        dbValidations.validateDocumentDetails(expectedValues);
+    }
 }
 
 
