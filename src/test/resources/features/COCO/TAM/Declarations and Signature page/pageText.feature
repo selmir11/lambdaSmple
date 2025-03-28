@@ -290,7 +290,6 @@ Feature: PageText-Declarations and Signature Page
     And I verify the error message "Electronic signature is required" when I click on continue button without entering the value in Electronic signature input box
     But I enter invalid signature name on the Declarations And Signature Page CoCo
     And I verify the error message "Signature must match name" when I click on continue button without entering the value in Electronic signature input box
-
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
     #2nd Scenario
@@ -328,10 +327,6 @@ Feature: PageText-Declarations and Signature Page
     And I check "None of these" life change event checkbox
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
-
     And I enter a valid signature
     Then I click Continue on the Declarations And Signature Page CoCo
-    And I wait for 500 milliseconds
-  Then I validate I am on the "Application Results CoCo" page
-
-    And I wait for 500 milliseconds
+    Then I validate I am on the "Application Results CoCo" page
