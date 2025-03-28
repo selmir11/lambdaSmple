@@ -9,9 +9,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
-import java.util.List;
-import java.util.Set;
-
 public class CancellationRequestPageCoCo {
 
 
@@ -86,24 +83,6 @@ public class CancellationRequestPageCoCo {
         okaybtnCoCo.click();
     }
 
-    public void cancellationPlanPoupMessage(List<String> data) throws InterruptedException {
-        basicActions.waitForElementToBePresent(popUpCancellationPageCoCo, 10);
-        String parentWindowHandle = basicActions.getDriver().getWindowHandle();
-        Set<String> allWindowHandles = basicActions.getDriver().getWindowHandles();
-        for (String handle : allWindowHandles) {
-            if (!handle.equals(parentWindowHandle)) {
-                basicActions.getDriver().switchTo().window(handle);
-                break;
-            }
 
-        }
-        softAssert.assertEquals(popUpheaderCoCo.getText(), data.get(0));
-        softAssert.assertEquals(popUpcontentinfoCoCo.getText(), data.get(1));
-        softAssert.assertTrue(popUpcontentinfoCoCo.getText().contains(data.get(1)));
-        softAssert.assertEquals(popUpOkbtnCoCo.getText(), data.get(2));
-        softAssert.assertAll();
-        popUpOkbtnCoCo.click();
-        basicActions.getDriver().switchTo().window(parentWindowHandle);
-        basicActions.switchToParentPage("Enrollment Portal");
-    }
+
 }
