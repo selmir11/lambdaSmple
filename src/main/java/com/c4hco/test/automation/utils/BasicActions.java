@@ -5,6 +5,7 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
 
@@ -1408,6 +1409,18 @@ public class BasicActions {
         String amountWithoutDollarSign = input.replace("$", "");
         // Remove commas
         return amountWithoutDollarSign.replaceAll(",", "");
+    }
+    public List<WebElement> selectAllOptionsFromDropDown(WebElement selectDrpDwnElement){
+        Select select=new Select(selectDrpDwnElement);
+        return select.getOptions();
+    }
+    public WebElement getFirstSelectedOptionFromDD(WebElement selectDrpDwnElement){
+        Select select=new Select(selectDrpDwnElement);
+        return select.getFirstSelectedOption();
+    }
+    public void mouseHoverOnElement(WebElement element){
+        Actions actions = new Actions(getDriver());
+        actions.moveToElement(element).perform();
     }
 }
 
