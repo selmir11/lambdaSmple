@@ -699,4 +699,10 @@ public class DbDataProvider_Exch {
 
     public String getEnrollmentPlanLceRowCount(){
         return postgresHandler.getResultFor("count", exchDbQueries.getEnrollmentPeriodEndDateCount());}
+
+    public String[] getMyDocumentdetails() {
+        return postgresHandler.getResultForFiveColumnValues("document_source_id", "document_author", "document_display_name", "file_extension", "received_date", exchDbQueries.getLatestForm8962DocumentQuery());
+    }
+
+
 }
