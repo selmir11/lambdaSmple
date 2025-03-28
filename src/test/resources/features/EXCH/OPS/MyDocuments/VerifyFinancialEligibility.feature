@@ -31,7 +31,7 @@ And I click on Search button in find certified broker page
 And I click more details from the first broker result container
 And I click Authorized broker
 And I validate current Broker text exists
-And I click Continue with my application
+    Then I click Continue on my own button from Manage who helps you page
 Then I select "Male" as sex option
 And I select "Yes" to Are You Applying
 And I click continue on Tell us about yourself page
