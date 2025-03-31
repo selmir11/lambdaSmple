@@ -689,4 +689,20 @@ public class DbDataProvider_Exch {
 
     public String getEnrollmentPlanYear() {
         return postgresHandler.getResultFor("plan_year", exchDbQueries.getEnrollmentPeriodEndDate());}
+
+    public List<List<String>> getEnrollmentPlanLceDetails() {
+        List<List<String>> results = postgresHandler.getResultForMultipleDynamicColumns(exchDbQueries.getMultipleEnrollmentPeriodEndDate(), "enrollment_period_end_date", "qlce_present_ind", "plan_year");
+
+        System.out.println("Number of rows retrieved: " + results.size());
+        return results;
+    }
+
+    public String getEnrollmentPlanLceRowCount(){
+        return postgresHandler.getResultFor("count", exchDbQueries.getEnrollmentPeriodEndDateCount());}
+
+    public String[] getMyDocumentdetails() {
+        return postgresHandler.getResultForFiveColumnValues("document_source_id", "document_author", "document_display_name", "file_extension", "received_date", exchDbQueries.getLatestForm8962DocumentQuery());
+    }
+
+
 }
