@@ -51,7 +51,7 @@ Feature: Seed05 - Exchange
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03051989", "Female" and applying "Yes"
-      | Primary:Spouse |
+      |Primary:Spouse|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -72,8 +72,8 @@ Feature: Seed05 - Exchange
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "04212013", "Female" and applying "Yes"
-      | Primary:Daughter |
-      | Spouse:Daughter  |
+        |Primary:Daughter|
+        |Spouse:Daughter|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -94,9 +94,9 @@ Feature: Seed05 - Exchange
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Son", "12222016", "Male" and applying "Yes"
-      | Primary:Son      |
-      | Spouse:Son       |
-      | Daughter:Brother |
+        |Primary:Son|
+        |Spouse:Son|
+        |Daughter:Brother|
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -250,7 +250,7 @@ Feature: Seed05 - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-2036 @pol_exch_passed
+  @SLER-2036-WIP-@R4V
   Scenario: RT-2274 ENR-EXCH: APPS - REMOVE MEMBER - DEATH OF DEPENDENT (LCE: Death)
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -337,32 +337,9 @@ Feature: Seed05 - Exchange
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 001                   | 001                | AI                    | NO CHANGE         |            |
 
-   #Son
-    And I validate "medical" entities for "Son" from policy tables
-    And I validate "dental" entities for "Son" from policy tables
-    And I validate "medical" entities for "Son" from pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 001                   | 001                | AI                    | NO CHANGE         |            |
-    And I validate "dental" entities for "Son" from pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 001                   | 001                | AI                    | NO CHANGE         |            |
+  @SLER-xxxx-WIP
+  Scenario: RT-2249 ENR-EXCH: DEMOGRAPHIC CHANGE (ADD'L MEMBER) - IDENTIFYING DETAILS - DOB (Without Financial Impact)
 
-    #Daughter
-    Given I set the dynamic policy, coverage and financial dates for "medical" plan
-      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate | FinancialStartDate        | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate       |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Current Date    | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Month |
-    Given I set the dynamic policy, coverage and financial dates for "dental" plan
-      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate | FinancialStartDate        | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate       |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Current Date    | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Month |
 
-    And I validate "medical-disenroll-submitted" entities for "Daughter" from policy tables
-    And I validate "dental-disenroll-submitted" entities for "Daughter" from policy tables
-    And I validate "medical" entities for "Daughter" from pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 024                   | 024                | AI                    | TERM              |            |
-    And I validate "dental" entities for "Daughter" from pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 024                   | 024                | AI                    | TERM              |            |
-    And I download the medical and dental files from sftp server with location "/outboundedi/"
-    And I validate the ob834 "medical" file data
-    And I validate the ob834 "dental" file data
+  @SLER-xxxx-WIP
+  Scenario: RT-2288 ENR-EXCH: APPS - REMOVE MEMBER - DEATH OF SPOUSE (LCE: Death) DIFFERENT PLAN(S)
