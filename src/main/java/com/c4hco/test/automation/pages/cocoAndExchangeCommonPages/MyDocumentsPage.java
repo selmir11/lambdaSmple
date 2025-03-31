@@ -20,6 +20,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
+
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -27,6 +29,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.time.Year;
 import java.util.*;
+
 
 
 
@@ -399,7 +402,8 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//a[contains(text(),'Contáctenos')]")
     WebElement helpDrawerContactUsLinkSpanish;
 
-
+    @FindBy(xpath = "//pre[contains(., 'errorMessage')]")
+    WebElement txtMyDocsAccessDenied;
 
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
@@ -1796,5 +1800,55 @@ public class MyDocumentsPage {
         basicActions.waitForElementToBePresentWithRetries(helpDrawerSubHeaderSpanish,20);
         Assert.assertTrue(basicActions.waitForElementToBePresent(helpDrawerSubHeaderSpanish,10)," Help drawer not opened");
     }
+
+    public void navigateToUrl(String qaurl, String stageurl) {
+        if (SharedData.getEnv().equals("qa")) {
+            basicActions.getDriver().navigate().to("https://qa-aws." + qaurl);
+        }
+        else{
+            basicActions.getDriver().navigate().to("https://staging-aws." + stageurl);
+        }
+    }
+
+    public void verifyAccessDenied()
+    {
+        basicActions.waitForElementToBePresent(txtMyDocsAccessDenied, 50);
+        softAssert.assertTrue(txtMyDocsAccessDenied.getText().contains("Access is denied"));
+        softAssert.assertAll();
+    }
+
+    public void  selectTypeofDocument(String documentToSelect) {
+        basicActions.waitForElementToBePresent(docTypeDrpDwn, 50);
+        docTypeDrpDwn.click();
+        for (WebElement element : categoryList) {
+            if (element.getText().trim().equalsIgnoreCase(documentToSelect)) {
+                element.click();
+                return;
+            }
+        }
+        throw new NoSuchElementException("Category '" + documentToSelect + "' not found in the dropdown.");
+    }
+
+
+
+    public void selectDocumenttypeCategory(String categoryToSelect) {
+        basicActions.waitForElementToBePresent(docCategoryDrpDwn, 20);
+        docCategoryDrpDwn.click();
+
+        for (WebElement element : categoryList) {
+            if (element.getText().trim().equalsIgnoreCase(categoryToSelect)) {
+                element.click();
+                return;
+            }
+        }
+
+        throw new NoSuchElementException("Category '" + categoryToSelect + "' not found in the dropdown.");
+    }
+
+
+
+
+
+
 
 }

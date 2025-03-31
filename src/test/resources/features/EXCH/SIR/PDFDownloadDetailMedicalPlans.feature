@@ -73,7 +73,6 @@ Feature: Medical Plan Detail page related tests
     And I select the first plan detail
 
     Then I validate I am on the "Medical Plan Detail" page
-
     And I validate the "<carrierDocs>" document upload links for the Medical Detail page
     Then I click on Sign Out in the Header for "Portal"
     Examples:

@@ -6,6 +6,8 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
+
 import java.io.IOException;
 import java.util.List;
 
@@ -450,5 +452,29 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iClickUploadMVRButtonForInSpanish(String mvrType, String language) {
         myDocumentsPage.clickUploadMvr(mvrType,language);
     }
+
+    @And("I verify I receive access denied message")
+    public void iVerifyIReceiveAccessDeniedMessage() {
+        myDocumentsPage.verifyAccessDenied();
+    }
+
+    @Then("I navigate to {string} url for qa and {string} for staging")
+    public void iNavigateToUrlForQaAndForStaging(String qaurl, String stageurl) {
+        myDocumentsPage.navigateToUrl(qaurl,stageurl);
+    }
+    @Then("I select {string} from the document type dropdown")
+    public void iSelectFromTheDocumentTypeDropdown(String documentToSelect) {
+        myDocumentsPage.selectTypeofDocument(documentToSelect);
+    }
+
+    @Then("I select {string} from the document category type dropdown")
+    public void iselectTypeofDocument(String categoryToSelect) {
+        myDocumentsPage.selectDocumenttypeCategory(categoryToSelect);
+    }
+
+
+
+
+
 }
 

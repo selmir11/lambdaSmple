@@ -28,6 +28,7 @@ public class PolicyTableDbValidations {
     List<MemberDetails> subscribers;
     String policyStatus;
     String policyMemCoverageStatus;
+    String policyDisenrollmentReason;
 
     public void groupRecordsValidations(String recordType) {
         SharedData.setRecType(recordType);
@@ -35,20 +36,30 @@ public class PolicyTableDbValidations {
                 case "medical":
                     policyStatus ="SUBMITTED";
                     policyMemCoverageStatus="SUBMITTED";
+                    policyDisenrollmentReason = null;
                     setMedicalData();
                     medicalRecordsValidations();
                     break;
                 case "dental":
                     policyStatus ="SUBMITTED";
                     policyMemCoverageStatus="SUBMITTED";
+                    policyDisenrollmentReason = null;
                     setDentalData();
                     dentalRecordsValidations();
                     break;
                 case "medical-cancelled":
                     policyStatus ="CANCELLED";
                     policyMemCoverageStatus ="DISENROLL_SUBMITTED";
+                    policyDisenrollmentReason = "NO_REASON";
                     setMedicalCancelData();
                     medicalRecordsValidations();
+                    break;
+                case "dental-cancelled":
+                    policyStatus ="CANCELLED";
+                    policyMemCoverageStatus ="DISENROLL_SUBMITTED";
+                    policyDisenrollmentReason = "NO_REASON";
+                    setDentalCancelData();
+                    dentalRecordsValidations();
                     break;
                 default:
                     Assert.fail("Record Type entered is not valid");
@@ -59,6 +70,7 @@ public class PolicyTableDbValidations {
     private void setMedicalCancelData() {
         resetValues();
         medicalPolicyEntities = exchDbDataProvider.getDataFrmPolicyTables("1");
+        SharedData.setMedicalPolicyTablesEntities(null);
         List<PolicyTablesEntity> medCancelledPolEntities = new ArrayList<>();
         for(PolicyTablesEntity entity :medicalPolicyEntities){
             if(entity.getPolicy_status().equals("CANCELLED")) {
@@ -66,7 +78,7 @@ public class PolicyTableDbValidations {
             }
         }
         SharedData.setMedicalPolicyTablesEntities(medCancelledPolEntities);
-        for (PolicyTablesEntity policyTablesEntity : medicalPolicyEntities) {
+        for (PolicyTablesEntity policyTablesEntity : medCancelledPolEntities) {
             if (policyTablesEntity.getSubscriber_ind().equals("1")) {
                 for (MemberDetails member : basicActions.getAllMem()) {
                     if (policyTablesEntity.getFirst_name().equals(member.getFirstName())) {
@@ -87,6 +99,38 @@ public class PolicyTableDbValidations {
         dbDataMapList = SharedData.getDbDataNew();
         medicalPlanDbDataMapList = SharedData.getMedicalPlanDbDataNew();
         setMedicalSubscriber();
+    }
+    private void setDentalCancelData() {
+        resetValues();
+        dentalPolicyEntities = exchDbDataProvider.getDataFrmPolicyTables("2");
+        List<PolicyTablesEntity> denCancelledPolEntities = new ArrayList<>();
+        for(PolicyTablesEntity entity :dentalPolicyEntities){
+            if(entity.getPolicy_status().equals("CANCELLED")) {
+                denCancelledPolEntities.add(entity);
+            }
+        }
+        SharedData.setDentalPolicyTablesEntities(denCancelledPolEntities);
+        for (PolicyTablesEntity policyTablesEntity : dentalPolicyEntities) {
+            if (policyTablesEntity.getSubscriber_ind().equals("1")) {
+                for (MemberDetails member : basicActions.getAllMem()) {
+                    if (policyTablesEntity.getFirst_name().equals(member.getFirstName())) {
+                        member.setIsSubscriber("Y");
+                        member.setRelation_to_subscriber("SELF");
+                        break;
+                    }
+                }
+            }
+        }
+
+        subscribers = basicActions.getAllSubscribers();
+        for (MemberDetails subscriber : subscribers) {
+            exchDbDataProvider.setDataFromDb_New(subscriber.getFirstName());
+            exchDbDataProvider.setDentalPlanDataFromDb_New(subscriber.getFirstName(),subscriber.getDentalPlan());
+        }
+        setExchPersonId();
+        dbDataMapList = SharedData.getDbDataNew();
+        dentalPlanDbDataMapList = SharedData.getDentalPlanDbDataNew();
+        setDentalSubscriber();
     }
     private void dentalRecordsValidations() {
             for (PolicyTablesEntity dentalEntity : dentalPolicyEntities) {
@@ -183,7 +227,7 @@ public class PolicyTableDbValidations {
             softAssert.assertEquals(policyTablesEntity.getCsr_level_epfh(), SharedData.getRecType()!=null && SharedData.getRecType().contains("medical")&& SharedData.getIsAiAn()? "03": dbDataMap.get(subscriber.getFirstName()).getCsrLevel(), "epfh CSR level does not match");
             softAssert.assertEquals(policyTablesEntity.getCsr_level_emcfh(),  SharedData.getRecType()!=null && SharedData.getRecType().contains("medical")&& SharedData.getIsAiAn()? "03": dbDataMap.get(subscriber.getFirstName()).getCsrLevel(), "emcfh CSR level does not match");
             softAssert.assertNull(policyTablesEntity.getResponsible_adult_ind(), "Responsible adult indicator is always null except when a minor only kid(s) applying");
-            softAssert.assertNull(policyTablesEntity.getDisenrollment_reason(), "Disenrollment reason mismatch");
+            softAssert.assertEquals(policyTablesEntity.getDisenrollment_reason(), policyDisenrollmentReason,"Disenrollment reason mismatch");
             softAssert.assertAll();
         }
 
@@ -206,7 +250,7 @@ public class PolicyTableDbValidations {
             softAssert.assertNull(policyTablesEntity.getCsr_level_epfh(), "epfh CSR level does not match");
             softAssert.assertEquals(policyTablesEntity.getCsr_level_emcfh(), dbData.getCsrLevel(), "emcfh CSR level does not match");
             softAssert.assertNull(policyTablesEntity.getResponsible_adult_ind(), "Responsible adult indicator is always null except when a minor only kid(s) applying");
-            softAssert.assertNull(policyTablesEntity.getDisenrollment_reason(), "Disenrollment reason mismatch");
+            softAssert.assertEquals(policyTablesEntity.getDisenrollment_reason(), policyDisenrollmentReason,"Disenrollment reason mismatch");
             softAssert.assertAll();
         }
 
@@ -257,7 +301,6 @@ public class PolicyTableDbValidations {
         private void medValidationsCommonForAllMembers(String name, PolicyTablesEntity policyTablesEntity) {
             getMedicalPlanDbDataMap(name);
             getDbDataMap(name);
-            System.out.println("Name:: "+policyTablesEntity.getFirst_name());
             String csrLevel = SharedData.getIsAiAn() ? "03" : dbDataMap.get(name).getCsrLevel();
             softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), medicalPlanDbDataMap.get(name).getBaseId() + "-" + csrLevel, "Medical Hios id does not match");
             softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate(), "Coverage type 1, Policy start date does not match");

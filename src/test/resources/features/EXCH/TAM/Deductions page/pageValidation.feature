@@ -298,3 +298,38 @@ Feature: Page Verification-Deductions Page
     And I click continue on the Employment Info Page
     Then I click None of these as additional income option and continue
     Then I validate I am on the "Deductions" page
+
+  @SLER-2390
+  Scenario: Verify the ability to see the page so that I can review and update the income information in English(RT-2585)
+    Then I verify color size format of the header and other page texts other than check boxes
+      | Income:                                                      |
+      | Deductions                                                   |
+      | Do you have any of the following expenses?                   |
+      | Select all that apply, and enter the amount of each expense. |
+    Then I verify all deduction options color size format text order and check boxes
+      | Alimony or spousal support paid out     |
+      | Domestic production activities          |
+      | Health Savings Account contribution     |
+      | Pre-tax retirement account contribution |
+      | School tuition and fees                 |
+      | Self-employment tax                     |
+      | Student loan interest                   |
+      | Self-employment health insurance        |
+      | Self-employment retirement plan         |
+      | Moving expenses                         |
+      | None of these                           |
+    Then I click "AOSS" as deduction option only
+    Then I validate default property of amount box and dropdown
+      | Select Option |
+      | Annually      |
+      | EveryTwoWeeks |
+      | Monthly       |
+      | TwiceAMonth   |
+      | Weekly        |
+    Then I click "AOSS" as deduction option only
+    And I select "Alimony" as deduction option with "200.00" amount at "Annually" frequency
+    Then I verify amount "200.00"  and frequency "Annually" is selected correctly
+    Then I verify when None_of_these selected,other checkboxes not selected
+    Then I verify font color size of the back and save button in deductions page when mouse_Hover is "Off"
+    Then I verify font color size of the back and save button in deductions page when mouse_Hover is "On"
+

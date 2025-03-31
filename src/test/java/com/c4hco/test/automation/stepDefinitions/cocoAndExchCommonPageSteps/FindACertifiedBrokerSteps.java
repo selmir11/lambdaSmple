@@ -206,10 +206,6 @@ public class FindACertifiedBrokerSteps {
         findACertifiedBrokerPage.clickChangeBrokerOption(changeBrokerOption);
     }
 
-    @Then("I click Continue with my application")
-    public void iClickContinueWithMyApplication() {
-        findACertifiedBrokerPage.ClickContinueWithMyApplication();
-    }
 
     @Then("I Search by licence number the authorized Broker generated")
     public void iSearchByLicenceNumberTheAuthorizedBrokerGenerated() {
