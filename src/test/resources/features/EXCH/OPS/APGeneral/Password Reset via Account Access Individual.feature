@@ -22,3 +22,4 @@ Feature: OPS: IndDash: Password Reset via Account Access
     Then I click on view button for "Account Activity" report
     And I validate Account Activity title row
     Then I verify "ID_PW_RESET_AP" and following events are displaying as "todays date within last 10 min timestamp" "C4test.aduser12.." "C4testaduser123.." "Password Reset via Admin .." "Response" "SUCCESS"
+    Then I verify "UI_PASSWORD_RESETLIN.." and following events are displaying as "todays date within last 10 min timestamp" "EO_LOGIN_PORTAL" "EO_LOGIN_PORTAL" "User initiated Password R.." "UI_PASSWORD_RES.." "Password Reset"
