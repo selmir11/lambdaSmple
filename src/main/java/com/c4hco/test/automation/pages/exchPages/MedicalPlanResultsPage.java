@@ -35,8 +35,7 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "PlanResults-SelectThisPlan_1")
     WebElement firstMedicalPlanName;
 
-    @FindBy(id = "MedicalPlanResults-Continue")
-//            (xpath = "//*[@id='MedicalPlanResults-Continue']")
+    @FindBy(xpath = "//*[@id='MedicalPlanResults-Continue']")
     public WebElement continueBtn;
 
     @FindBy(id = "PlanResults-ComparePlans")
