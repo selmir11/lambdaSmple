@@ -126,7 +126,7 @@ public class Ob834DbValForMember {
         getDentalPlanDbDataMap(name);
         String formatPlanStartDate = SharedData.getExpectedCalculatedDates_dentalPlan().getCoverageStartDate().replaceAll("-", "");
         String formatDentalPlanEndDate = SharedData.getExpectedCalculatedDates_dentalPlan().getCoverageEndDate().replaceAll("-", "");
-        String formatedFinStartDate = SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialStartDate().replaceAll("-", "");
+        String formattedFinStartDate = SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialStartDate().replaceAll("-", "");
 
         softAssert.assertEquals(ob834Entity.getHios_plan_id(), dentalPlanDbDataMap.get(name).getBaseId(), "Dental Hios id did not match!");
         softAssert.assertEquals(ob834Entity.getInsurer_name(), dentalPlanDbDataMap.get(name).getIssuerName(), "Dental Insurer Name did not match!");
@@ -134,7 +134,7 @@ public class Ob834DbValForMember {
 
         softAssert.assertEquals(ob834Entity.getBenefit_begin_date(), formatPlanStartDate, "Dental plan start date is not correct");
         softAssert.assertEquals(ob834Entity.getBenefit_end_date(), formatDentalPlanEndDate, "Dental plan end date is not correct");
-        softAssert.assertEquals(ob834Entity.getFinancial_effective_date(), formatedFinStartDate, "Dental Financial start date is not correct");
+        softAssert.assertEquals(ob834Entity.getFinancial_effective_date(), formattedFinStartDate, "Dental Financial start date is not correct");
 
         validateDetailsFromStep(ob834Entity, expectedValues.get(0));
         validateIndivDenPremAmt(ob834Entity);
@@ -402,6 +402,11 @@ public class Ob834DbValForMember {
         softAssert.assertEquals(getCodeForRelationship(member.getRelation_to_subscriber()), ob834Entity.getIndividual_rel_code(), "RelationshipCode did not match for "+member.getFirstName());
         softAssert.assertEquals(member.getSsn()!=null? member.getSsn(): "000000000", ob834Entity.getMember_ssn(), "ssn did not match for "+member.getFirstName());
         softAssert.assertEquals(getCodeForRace(member.getRace()), ob834Entity.getMember_race(), "Race did not match");
+
+        softAssert.assertEquals(member.getPhoneNumber(),ob834Entity.getResponsible_person_phone(),"Phone number not match for "+member.getFirstName());
+        softAssert.assertEquals(member.getAlternatePhNum(),ob834Entity.getResponsible_person_alt_phone(),"Alternate Phone number not match for "+member.getFirstName());
+        softAssert.assertEquals(member.getEmailId(),ob834Entity.getResponsible_person_email(),"Email not match for "+member.getFirstName());
+
         softAssert.assertAll("Personal Details for Member::"+member.getFirstName()+" did not match");
     }
     private void validateIncorrectEntities(Ob834DetailsEntity ob834Entity, MemberDetails member) {

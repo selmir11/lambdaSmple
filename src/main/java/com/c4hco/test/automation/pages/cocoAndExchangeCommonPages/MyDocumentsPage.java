@@ -20,6 +20,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
+
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -27,6 +29,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.time.Year;
 import java.util.*;
+
 
 
 
@@ -1813,5 +1816,39 @@ public class MyDocumentsPage {
         softAssert.assertTrue(txtMyDocsAccessDenied.getText().contains("Access is denied"));
         softAssert.assertAll();
     }
+
+    public void  selectTypeofDocument(String documentToSelect) {
+        basicActions.waitForElementToBePresent(docTypeDrpDwn, 50);
+        docTypeDrpDwn.click();
+        for (WebElement element : categoryList) {
+            if (element.getText().trim().equalsIgnoreCase(documentToSelect)) {
+                element.click();
+                return;
+            }
+        }
+        throw new NoSuchElementException("Category '" + documentToSelect + "' not found in the dropdown.");
+    }
+
+
+
+    public void selectDocumenttypeCategory(String categoryToSelect) {
+        basicActions.waitForElementToBePresent(docCategoryDrpDwn, 20);
+        docCategoryDrpDwn.click();
+
+        for (WebElement element : categoryList) {
+            if (element.getText().trim().equalsIgnoreCase(categoryToSelect)) {
+                element.click();
+                return;
+            }
+        }
+
+        throw new NoSuchElementException("Category '" + categoryToSelect + "' not found in the dropdown.");
+    }
+
+
+
+
+
+
 
 }

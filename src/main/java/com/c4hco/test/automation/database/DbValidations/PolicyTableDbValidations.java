@@ -102,14 +102,14 @@ public class PolicyTableDbValidations {
     }
     private void setDentalCancelData() {
         resetValues();
-        medicalPolicyEntities = exchDbDataProvider.getDataFrmPolicyTables("1");
+        dentalPolicyEntities = exchDbDataProvider.getDataFrmPolicyTables("2");
         List<PolicyTablesEntity> denCancelledPolEntities = new ArrayList<>();
         for(PolicyTablesEntity entity :dentalPolicyEntities){
             if(entity.getPolicy_status().equals("CANCELLED")) {
                 denCancelledPolEntities.add(entity);
             }
         }
-        SharedData.setMedicalPolicyTablesEntities(denCancelledPolEntities);
+        SharedData.setDentalPolicyTablesEntities(denCancelledPolEntities);
         for (PolicyTablesEntity policyTablesEntity : dentalPolicyEntities) {
             if (policyTablesEntity.getSubscriber_ind().equals("1")) {
                 for (MemberDetails member : basicActions.getAllMem()) {
@@ -125,7 +125,7 @@ public class PolicyTableDbValidations {
         subscribers = basicActions.getAllSubscribers();
         for (MemberDetails subscriber : subscribers) {
             exchDbDataProvider.setDataFromDb_New(subscriber.getFirstName());
-            exchDbDataProvider.setDentalPlanDataFromDb_New(subscriber.getFirstName(),subscriber.getMedicalPlan());
+            exchDbDataProvider.setDentalPlanDataFromDb_New(subscriber.getFirstName(),subscriber.getDentalPlan());
         }
         setExchPersonId();
         dbDataMapList = SharedData.getDbDataNew();
@@ -301,7 +301,6 @@ public class PolicyTableDbValidations {
         private void medValidationsCommonForAllMembers(String name, PolicyTablesEntity policyTablesEntity) {
             getMedicalPlanDbDataMap(name);
             getDbDataMap(name);
-            System.out.println("Name:: "+policyTablesEntity.getFirst_name());
             String csrLevel = SharedData.getIsAiAn() ? "03" : dbDataMap.get(name).getCsrLevel();
             softAssert.assertEquals(policyTablesEntity.getHios_plan_id(), medicalPlanDbDataMap.get(name).getBaseId() + "-" + csrLevel, "Medical Hios id does not match");
             softAssert.assertEquals(policyTablesEntity.getPolicy_start_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate(), "Coverage type 1, Policy start date does not match");

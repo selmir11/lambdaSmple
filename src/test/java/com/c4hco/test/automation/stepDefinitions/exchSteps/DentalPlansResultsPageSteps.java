@@ -131,5 +131,7 @@ public class DentalPlansResultsPageSteps {
     @Then("I validate Spanish sorting based on {string} on the Dental Plan Results page")
     public void evaluateSpanishSortingValues(String sortingTypeSelection) { dentalPlansResultsPage.evaluateSpanishSortingValues(sortingTypeSelection);}
 
-
+    @And("I validate the current plan green banner {string} text on the Dental Plan Results page")
+    public void validateGreenBannerTxt(String language) {dentalPlansResultsPage.validateGreenBannerText(language);
+    }
 }
