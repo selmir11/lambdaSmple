@@ -197,6 +197,25 @@ public class AdminPortalSearchSteps {
     public void iSearchForTitle(String title) {
         adminPortalSearchPage.validateSearchTitle(title);
     }
+    @Then("I click on Search button in CBMS Case ID Search page")
+    public void iClickOnSearchCBMSPage() {
+        adminPortalSearchPage.clickCBMSSearchButton();        }
+    @Then("I click on Reset button in CBMS Case ID Search page")
+    public void iClickOnResetCBMSPage() {
+        adminPortalSearchPage.clickCBMSResetButton();       }
+
+    @Then("I verify Title for CBMS page")
+    public void iVerifyTitleForCBMSPage() {
+        adminPortalSearchPage.verifyCBMSTitle();        }
+
+    @And("I validate CBMS ID search labels are displayed as expected")
+    public void iValidateCBMSIDSearchLabelsAreDisplayedAsExpected() {
+        adminPortalSearchPage.verifySearchLabels();     }
+
+    @And("I validate errors for required fields are displayed")
+    public void iValidateErrorsForAreDispalyed() {
+        adminPortalSearchPage.verifyRequiredFieldsErrors();
+    }
 }
 
 

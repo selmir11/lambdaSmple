@@ -68,7 +68,7 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "MedicalPlanResults-Okay")
     WebElement compareWarningOKbutton;
 
-    @FindBy(id = "PlanResults-InsuranceCompany")
+    @FindBy(css = "#PlanResults-InsuranceCompany")
     WebElement insuranceCompanyDropdown;
 
     @FindBy(id = "PlanResults-ResetFilters")
@@ -109,6 +109,8 @@ public class MedicalPlanResultsPage {
     @FindBy(xpath = "//div[@id='MPcollapse'] //span[contains(@class,'ngx-slider-floor')]")
     WebElement txtpremiumamnt;
 
+    @FindBy(id = "PlanResults-CurrentPlanLabel")
+    WebElement greenMedicalBannerText;
 
 
     public void selectfromProviderList(String Selecting) {
@@ -188,8 +190,8 @@ public class MedicalPlanResultsPage {
     }
 
     public void clickInsuranceCompanyDropdown() {
-        basicActions.waitForElementToDisappear( spinner,150 );
-        basicActions.waitForElementToBePresentWithRetries( insuranceCompanyDropdown,60 );
+        basicActions.waitForElementToDisappear( spinner,160 );
+        basicActions.waitForElementToBePresentWithRetries( insuranceCompanyDropdown,80 );
         insuranceCompanyDropdown.click();
 
     }
@@ -383,6 +385,34 @@ public class MedicalPlanResultsPage {
         softAssert.assertEquals(medicalPlansListcount, expectedCount, "The number of medical plans does not match the expected count");
         softAssert.assertAll();
 
+    }
+    public void validateMedicalGreenBannerTxt(String language){
+        basicActions.waitForElementToDisappear( spinner, 20 );
+        switch (language) {
+            case "English":
+                validateMedicalGreenBannerEnglishTxt();
+                break;
+            case "Spanish":
+                validateMedicalGreenBannerSpanishTxt();
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + language );
+
+        }
+    }
+
+    public void validateMedicalGreenBannerEnglishTxt(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresentWithRetries( greenMedicalBannerText,20);
+        softAssert.assertEquals(greenMedicalBannerText.getText(), "Current plan");
+        softAssert.assertAll();
+    }
+
+    public void validateMedicalGreenBannerSpanishTxt(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresentWithRetries( greenMedicalBannerText,20);
+        softAssert.assertEquals(greenMedicalBannerText.getText(), "Plan actual");
+        softAssert.assertAll();
     }
 
 

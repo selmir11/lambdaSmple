@@ -53,11 +53,14 @@ public class SharedData {
     @Getter @Setter private static Set<Map<String, DbData>> dbDataNew;
     @Getter @Setter private static List<Map<String, PlanDbData>> medicalPlanDbDataNew;
     @Getter @Setter private static List<Map<String, PlanDbData>> dentalPlanDbDataNew;
+    @Getter @Setter private static String carrierPdfFileName;
     @Getter @Setter private static String planYear;
     @Getter @Setter private static GroupDetails groupDetails;
     @Getter @Setter private static String dbName;
     @Getter @Setter private static String isOpenEnrollment;
     @Getter @Setter private static String ses;
+    @Getter @Setter private static String globalHooksAfter;
+    @Getter @Setter private static String screenshots;
     @Getter @Setter private static Map<String, String> memIdAndMedicalFileName;
     @Getter @Setter private static Map<String, String> memIdAndDentalFileName;
     @Getter @Setter private static Boolean hasBroker = false;
@@ -155,6 +158,7 @@ public class SharedData {
         EffectiveLCEDate = null;
         isAiAn = false;
         recType = null;
+        carrierPdfFileName = null;
     }
 
 }
