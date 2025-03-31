@@ -306,7 +306,7 @@ Feature: Page Verification-Deductions Page
       | Deductions                                                   |
       | Do you have any of the following expenses?                   |
       | Select all that apply, and enter the amount of each expense. |
-    Then I verify all deduction options color size format text order and check boxes
+    Then I verify all deduction options color size format text order and check boxes for "English"
       | Alimony or spousal support paid out     |
       | Domestic production activities          |
       | Health Savings Account contribution     |
@@ -319,7 +319,7 @@ Feature: Page Verification-Deductions Page
       | Moving expenses                         |
       | None of these                           |
     Then I click "AOSS" as deduction option only
-    Then I validate default property of amount box and dropdown
+    Then I validate default property of amount box and dropdown for "English"
       | Select Option |
       | Annually      |
       | EveryTwoWeeks |
@@ -329,6 +329,41 @@ Feature: Page Verification-Deductions Page
     Then I click "AOSS" as deduction option only
     And I select "Alimony" as deduction option with "200.00" amount at "Annually" frequency
     Then I verify amount "200.00"  and frequency "Annually" is selected correctly
+    Then I verify when None_of_these selected,other checkboxes not selected
+    Then I verify font color size of the back and save button in deductions page when mouse_Hover is "Off"
+    Then I verify font color size of the back and save button in deductions page when mouse_Hover is "On"
+
+  @SLER-2406
+  Scenario: Verify the ability to see the page so that I can review and update the income information in Spanish(RT-2585)
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I verify color size format of the header and other page texts other than check boxes
+      | Ingresos:                                                                   |
+      | Deducciones                                                                 |
+      | ¿Tiene alguno de los siguientes gastos?                                     |
+      | Seleccione todos los que correspondan, e ingrese la cantidad de cada gasto. |
+    Then I verify all deduction options color size format text order and check boxes for "Spanish"
+      | Pensión alimenticia o apoyo conyugal que paga     |
+      | Actividades de producción para el mercado interno |
+      | Aporte a cuenta de ahorros de salud               |
+      | Aporte a la cuenta de retiro antes de impuestos   |
+      | Colegiatura y cuotas escolares                    |
+      | Impuesto al trabajo independiente                 |
+      | Interés por préstamo de estudiante                |
+      | Seguro de salud de trabajador independiente       |
+      | Plan de retiro como trabajador independiente      |
+      | Gastos de mudanza                                 |
+      | Ninguna de las anteriores                         |
+    Then I click "AOSS" as deduction option only
+    Then I validate default property of amount box and dropdown for "Spanish"
+      | Seleccionar opción |
+      | Anualmente         |
+      | Cada dos semanas   |
+      | Mensualmente       |
+      | Dos veces por mes  |
+      | Semanalmente       |
+    Then I click "AOSS" as deduction option only
+    And I select "Alimony" as deduction option with "200.00" amount at "Anualmente" frequency
+    Then I verify amount "200.00"  and frequency "Anualmente" is selected correctly
     Then I verify when None_of_these selected,other checkboxes not selected
     Then I verify font color size of the back and save button in deductions page when mouse_Hover is "Off"
     Then I verify font color size of the back and save button in deductions page when mouse_Hover is "On"
