@@ -288,4 +288,34 @@ public class EmploymentInfoPageSteps {
     @Then("I validate Employment Income page for NoOption text design")
     public void iverifiEmploymentIncomeTextDesignNoOption()  { employmentInfoPage.verifiEmploymentIncomeTextDesignNoOption(); }
 
+    @Then("I verify the page text for secondary member on Employment Income page, which is in initial state")
+    public void iVerifyTextForSecondaryMemberOnInitialIncomePage(List<String> dataText) {
+        employmentInfoPage.verifyTextForSecondaryMemberOnInitialIncomePage(dataText);
+    }
+
+    @Then("I verify the page text for secondary member on Employment Income page after clicking yes to employment")
+    public void iVerifyTextOnIncomePageForSecondaryMemberAfterSelectingYesToEmployment(List<String> dataText) {
+        employmentInfoPage.verifyTextOnIncomePageForSecondaryMemberAfterSelectingYesToEmployment(dataText);
+    }
+
+    @Then("I verify the Yes button is selected for have a job or currently employed question")
+    public void iVerifyYesButtonIsSelectedForHaveAJobOrCurrentlyEmployedQuestion() {
+        employmentInfoPage.verifyYesButtonIsSelectedForHaveAJobOrCurrentlyEmployedQuestion();
+    }
+
+    @Then("I verify the page text for secondary member on Employment Income page after clicking yes to self employment question")
+    public void iVerifyPageTextForSecondaryMemberOnIncomePageAfterSelectingYesToSelfEmployment(List<String> dataText) {
+        employmentInfoPage.verifyPageTextForSecondaryMemberOnIncomePageAfterSelectingYesToSelfEmployment(dataText);
+    }
+
+    @Then("I verify the {string} button is selected for self-employment question")
+    public void iVerifyTheMentionedButtonIsSelectedForTheSelfEmploymentQuestion(String button) {
+        employmentInfoPage.verifyTheMentionedButtonIsSelectedForTheSelfEmploymentQuestion(button);
+    }
+
+    @Then("I verify the page text for secondary member on Employment Income page after clicking No to self employment question")
+    public void iVerifyPageTextForSecondaryMemberOnIncomePageAfterSelectingNoToSelfEmployment(List<String> dataText) {
+        employmentInfoPage.verifyPageTextForSecondaryMemberOnIncomePageAfterSelectingNoToSelfEmployment(dataText);
+    }
+
 }
