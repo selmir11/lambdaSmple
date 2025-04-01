@@ -408,9 +408,6 @@ public class MyDocumentsPage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
-    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
-    WebElement spinner;
-
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
         accountOverviewPage.clickHereLinks("My Documents");
