@@ -53,7 +53,7 @@ Feature: ELIG - VLP related scenarios
     Then I click on Sign Out in the Header for "Elmo"
     Then I Validate VLP response code as "HS000000" for request type "VLP_INITIAL_VERIFICATION"
 
-  @SLER-2107_WIP #currently still broken due to bug ELIG-7933
+  @SLER-2107
   Scenario: verify system functionality for VLP retry after HX009000 (general request failure) error
     When I click create a new account on login page
     Then I click create my account from pre-screen page
