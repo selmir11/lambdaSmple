@@ -1,6 +1,9 @@
 Feature: Seed08exception - Exchange
 
   Background: Seed 08 with exception For Exchange-  Husband+Wife+Son+DIL, Husband and Son Tax payer with same address
+    Given I set the test scenario details
+      | totalGroups | totalDentalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 2           | 2                 | 4            | 1                 | 1                | 2               |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -10,6 +13,12 @@ Feature: Seed08exception - Exchange
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
@@ -32,8 +41,8 @@ Feature: Seed08exception - Exchange
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
@@ -55,8 +64,8 @@ Feature: Seed08exception - Exchange
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -79,8 +88,8 @@ Feature: Seed08exception - Exchange
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -104,8 +113,8 @@ Feature: Seed08exception - Exchange
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    Then I validate I am on the "Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "InLaw"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -156,31 +165,31 @@ Feature: Seed08exception - Exchange
     Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
     Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "InLaw" as filing jointly with option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I click Save and Continue on Tax Status page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     Then I click continue on family overview page
     Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
@@ -193,6 +202,7 @@ Feature: Seed08exception - Exchange
     And I click continue on application results page
     And I wait for hold on content to disappear
     Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,Son,InLaw"
     Then I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -206,12 +216,10 @@ Feature: Seed08exception - Exchange
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
     Then I validate I am on the "Medical Plan Results" page
-    And I select "KP Select CO Bronze 8500/50" plan
-    Then I click continue on medical plan results page
-    And I select "KP Select CO Bronze 8500/50" plan
-    Then I click continue on medical plan results page
+    And I select or skip the medical plans for groups
+      | Group 1:KP Select CO Bronze 8500/50 |
+      | Group 2:KP Select CO Bronze 8500/50 |
     Then I validate I am on the "Grouping Members Dental" page
-    Then I validate that there are 2 default groups
     Then I click on dental edit enrollment groups link
     Then I validate I am on the "Edit Grouping Members Dental" page
     Then I create new group in edit dental grouping page and drag members to the new group
@@ -222,23 +230,46 @@ Feature: Seed08exception - Exchange
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
     Then I validate I am on the "Dental Plan Results" page
-    And I select "Delta Dental of Colorado Family Enhanced Plan" plan
-    Then I click continue on dental plan results page
-    And I select "Delta Dental of Colorado Family Enhanced Plan" plan
-    Then I click continue on dental plan results page
+    And I select or skip the dental plans for groups
+      |Group 1:Delta Dental of Colorado Family Value Plan|
+      |Group 2:Delta Dental of Colorado Family Value Plan|
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
 
     And I select the terms and agreements checkbox
     And I enter "taxHolder1" signature on the Financial Help Agreements page
     And I enter "taxHolder2" signature on the Financial Help Agreements page
     And I click continue on Financial Help Agreements page
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Terms of Use" agreement checkbox
-    And I select "Privacy Policy" agreement checkbox
-    And I select "Understand Law" agreement checkbox
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
     And I enter householder signature on the Enrollment Agreements page
-    And I click continue on Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
+
     Then I validate I am on the "Account Overview" page
-    And I click on Sign Out in the Header for "NonElmo"
+    And I Validate the correct enrolled plans are displayed on account overview page
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I set the member relationship to the subscriber
+      | Son: Self   |
+      | InLaw: WIFE |
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+
+      #DbVerification
+  And I verify the policy data quality check with Policy Ah keyset size 4
+  And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+
+  And I validate "medical" entities from pre edi db tables
+    | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+    | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT  |
+  And I validate "dental" entities from pre edi db tables
+    | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+    | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT  |
+  And I download the medical and dental files from sftp server with location "/outboundedi/"
+  And I validate the ob834 "medical" file data
+  And I validate the ob834 "dental" file data

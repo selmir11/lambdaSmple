@@ -1,6 +1,6 @@
 Feature: Seed02 with exception - Coco
 
-  Scenario: Seed 02 For Coco -  Husband+Wife with FA
+  Background: Seed 02 With Exception For Coco -  Husband+Wife with FA
 
     Given I set the test scenario details in coco
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
@@ -24,14 +24,14 @@ Feature: Seed02 with exception - Coco
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
-    Then I click Continue with my application
+    Then I click Continue on my own button from Manage who helps you page
     Then I click EditUpdate on Family Overview page for "Primary"
     Then I enter details on tell us about yourself page and continue with "11181993", "Male", and applying "Yes"
     And I enter my residential address "102 COCO DRIVE", "BOULDER", "CO", "80020", "BOULDER"
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -54,7 +54,7 @@ Feature: Seed02 with exception - Coco
     And I enter residential address details for additional member "102 COCO DRIVE", "BOULDER", "CO", "80020", "BOULDER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Spouse"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
@@ -94,6 +94,7 @@ Feature: Seed02 with exception - Coco
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
+    And I click on Sign Out in the Header for "Elmo"
 
   #UI Validation
     And I select year "2025" from My Current Plan container
@@ -104,7 +105,29 @@ Feature: Seed02 with exception - Coco
   # DB Validation
     And I validate "SUBMITTED" Medical entities from COCO policy tables
     And I validate Medical entities from COCO pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code |addl_maint_reason  | sep_reason      |
-      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
-    And I validate the coco ob834 medical file data that present in localPath or coco sftp server "/outboundedi/"
-    And I validate the coco ob834 medical file data
+     | maintenance_type_code | hd_maint_type_code | maintenance_reas_code |addl_maint_reason  | sep_reason      |
+     | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+   And I validate the coco ob834 medical file data that present in localPath or coco sftp server "/outboundedi/"
+   And I validate the coco ob834 medical file data
+
+  @SLCR-807-WIP
+  Scenario: CCRT-369 - ENR-COCO: EDIT POLICY - COVERAGE & FINANCIAL START DATES LATER THAN POLICY START DATE
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin dashboard" page
+    And I select "coco" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    Then I validate I am on the "Admin Portal individual dashboard" page
+    Then I click on "Manage Plans" user dashboard button
+    Then I click Make Changes Medical button
+    And I update the Coverage Start date of member on manage plan page
+      | Primary:First Of Next Month after PolicyStartDate |
+      | Spouse:First Of Next Month after PolicyStartDate |
+    Then I update the Financial Start date of member on manage plan page
+      | Primary:First Of Next Month after PolicyStartDate |
+      | Spouse:First Of Next Month after PolicyStartDate |
+    And I click Save Button Medical
+    And I select the reason to confirm the changes
+    Then I close current tab and switch back to previous tab
+    And logout from Admin Portal

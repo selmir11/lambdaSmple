@@ -20,7 +20,7 @@ Feature: Seed05 W Exception - COCO
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -47,7 +47,7 @@ Feature: Seed05 W Exception - COCO
     And I enter residential address details for additional member "105 Coco Drive", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Wife"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
@@ -72,7 +72,7 @@ Feature: Seed05 W Exception - COCO
     And I enter complete residential address details for additional member addressLine1 "101 Diff Drive",addressLine2 "Seed05",city "Denver",state "CO",zipcode "80205",county "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Son"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -101,7 +101,7 @@ Feature: Seed05 W Exception - COCO
     And I enter complete residential address details for additional member addressLine1 "101 Diff Drive",addressLine2 "Seed05",city "Denver",state "CO",zipcode "80205",county "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "DIL"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
@@ -161,7 +161,7 @@ Feature: Seed05 W Exception - COCO
     And I select "coco" checkbox on Admin Portal Dashboard
     And I search for user and click email from search results
     Then I click on "Manage Plans" user dashboard button
-    And I select "DIL" from the SelectPolicy Dropdown to update the dates
+    And I select "Primary" from the SelectPolicy Dropdown to update the dates
     Then I click Make Changes Medical button
     Then I update the coverage end date
       | 1:Cancel |

@@ -35,7 +35,7 @@ Feature: Navigation-Life Change Event Page
     And I select continue on the Family Overview page
     Then I validate I am on the "CoCo life change event" page
 
-  @SLCR-44 @PageNavigationLCEPage @TAMSmoke
+  @SLCR-44 @PageNavigationLCEPage @TAMSmokeCoCo
   Scenario: SLCR-44 Navigate to and from LCE page
     And I select Go Back on the LCE page
     And I select continue on the Family Overview page

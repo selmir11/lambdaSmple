@@ -56,11 +56,11 @@ Feature: Tests related to the Application Summary/Detail for HRA
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Single" tax filing option on the Tax Status Elmo page
+    Then I select the "Single" tax filing option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     And I click plus icon next to member on household page for "Primary"
     And I click View Details under member on household page for "Primary"
     And I verify Existing health insurance is "No" on the Application Summary page in "English"
@@ -95,14 +95,14 @@ Feature: Tests related to the Application Summary/Detail for HRA
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "HRA" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    Then I validate I am on the "Elmo HRA" page
-    Then I select Current Year year dropdown on the Elmo OHC HRA page
-    Then I enter "175.00" amount on the Elmo OHC HRA page
+    Then I click Save and Continue on Tax Status page
+    Then I select "HRA" as health coverage option
+    Then I click continue on the health coverage page
+    Then I validate I am on the "HRA" page
+    Then I select Current Year year dropdown on the OHC HRA page
+    Then I enter "175.00" amount on the OHC HRA page
     Then I select "QSEHRA" for HRA type
-    Then I click continue on the Elmo OHC HRA page
+    Then I click continue on the OHC HRA page
     And I click plus icon next to member on household page for "Primary"
     And I click View Details under member on household page for "Primary"
     And I verify Existing health insurance is "Health Reimbursement Arrangement" on the Application Summary page in "English"
@@ -172,9 +172,9 @@ Feature: Tests related to the Application Summary/Detail for HRA
     Then I click continue on the Deductions page
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     And I click plus icon next to member on household page for "Primary"
     And I click View Details under member on household page for "Primary"
     And I verify Existing health insurance is "No" on the Application Summary page in "English"

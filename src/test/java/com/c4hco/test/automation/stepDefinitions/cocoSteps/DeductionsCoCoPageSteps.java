@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 
 import com.c4hco.test.automation.pages.cocoPages.DeductionsCoCoPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
@@ -10,6 +11,9 @@ public class DeductionsCoCoPageSteps {
 
     @And("I select {string} as deductions option")
     public void iSelectDeductionOptionOnly(String deductionOption){deductionsCoCoPage.selectDeductionOptionOnly(deductionOption);}
+
+    @And("I select {string} as deduction option with {string} amount")
+    public void iSelectDeductionOptionOnly(String deductionOption, String Amount){deductionsCoCoPage.selectDeductionAmountOnly(deductionOption, Amount);}
 
     @And("I select {string} as deduction option with {string} amount at {string} frequency")
     public void selectDeduction(String deductionOption, String Amount, String Frequency) {
@@ -61,4 +65,14 @@ public class DeductionsCoCoPageSteps {
     @Then("I verify Deductions CoCo error format for {string}")
     public void iVerifyErrorFormat(String incomeType){deductionsCoCoPage.verifyErrorFormat(incomeType);}
 
+    @Then("I validate the error text with its properties and the error icon on the CoCo Deductions page")
+    public void iVerifyErrorMessageAndItsProperties(DataTable dataTable){deductionsCoCoPage.validateErrorMessageAndItsProperties(dataTable);}
+
+    @Then("I verify Deductions CoCo amount Minimum and Maximum for {string} in {string}")
+    public void iVerifyMinMax(String deductionsOption, String language){deductionsCoCoPage.verifyMinMax(deductionsOption, language);}
+
+    @And("I verify Error Icon present in the {string} Error Message")
+    public void iVerifyErrorIconPresentInTheErrorMessage(String errorLine) {
+        deductionsCoCoPage.verifyErrorIcon(errorLine);
+    }
 }

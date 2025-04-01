@@ -35,7 +35,7 @@ public class MyPoliciesCoCoPage {
     WebElement planStartDate;
     @FindBy(css = "span#SOL-CurrentPolicies-PolicyEndDateCoverage")
     WebElement planEndDate;
-    @FindBy(css = ".current-policy-container .header-3")
+    @FindBy(css = ".current-policy__container .header-3")
     List<WebElement> planNames; // Both medical and dental plan names for all members
 
     @FindBy(id = "viewPlanHistoryLink_0")
@@ -70,11 +70,8 @@ public class MyPoliciesCoCoPage {
     WebElement lastUpdatedOn;
     @FindBy(css = "span#SOL-CurrentPolicies-PolicySubmittedDate")
     WebElement lastUpdatedDate;
-    @FindBy(id="Cancel 2024 Medical PlansButton")
-    WebElement cancelMedicalPlanbtn;
-
-    @FindBy(id="Cancel 2024 Dental Plans Button")
-    WebElement cancelDentalPlanbtn;
+    @FindBy(id="SOL-CurrentPolicies-CancelCurrentMedical")
+    WebElement cancelMedicalPlanbtnCoCo;
 
     @FindBy(id="SOL-CurrentPolicies-FuturePlans")
     WebElement FuturePlans;
@@ -152,6 +149,11 @@ public class MyPoliciesCoCoPage {
     public void clickCurrentPlansCoCo(){
         basicActions.waitForElementToBePresent(CurrentPlans, 10);
         CurrentPlans.click();
+    }
+
+    public void cancelMedicalPlanbtnCoCo(){
+        basicActions.waitForElementToBePresent(cancelMedicalPlanbtnCoCo, 10);
+        cancelMedicalPlanbtnCoCo.click();
     }
 
 }

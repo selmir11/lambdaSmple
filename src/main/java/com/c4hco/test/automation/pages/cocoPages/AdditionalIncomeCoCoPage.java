@@ -3,6 +3,7 @@ package com.c4hco.test.automation.pages.cocoPages;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
+import java.util.Map;
 
 public class AdditionalIncomeCoCoPage {
     private BasicActions basicActions;
@@ -146,7 +148,7 @@ public class AdditionalIncomeCoCoPage {
     @FindBy(css = "#ELIG-AdditionalIncome-NoIncome-checkBoxButton-container > div.row.input-row > div > lib-checkbox-control > label > span")
     WebElement noneOfTheseText;
 
-    @FindBy(id = "ELIG-AdditionalIncome-NoIncome-checkBoxButton")
+    @FindBy(id = "#ELIG-AdditionalIncome-NoIncome-checkBoxButton")
     WebElement noneOfThese;
 
     @FindBy(css = "lib-error-msg > div")
@@ -158,7 +160,7 @@ public class AdditionalIncomeCoCoPage {
     @FindBy(css = "lib-dropdown .error-message")
     List<WebElement> additlIncomeFrequencyError;
 
-    @FindBy(css = ".additional-income-row label")
+    @FindBy(css = ".row.input-row > div > lib-checkbox-control > label")
     List<WebElement> additlIncomeBoxes;
 
     @FindBy(css = ".additional-income-row button")
@@ -178,6 +180,17 @@ public class AdditionalIncomeCoCoPage {
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
+
+    @FindBy(css = ".input-error-message lib-fi svg")
+    WebElement ErrorIcon;
+
+    @FindBy(css = ".error-message")
+    WebElement ErrorMessage;
+
+    @FindBy(css = ".body-text-1")
+    WebElement DidURcvFolIncome;
+
+
 
     public void clickSaveAndContinueButton() {
         basicActions.waitForElementToBePresentWithRetries(saveAndContinueButton, 60);
@@ -396,6 +409,10 @@ public class AdditionalIncomeCoCoPage {
 //////////////////////////////////////////////VALIDATION METHODS//////////////////////////////////////////////////
 public void verifyHeadersAdditionalIncomePage(String language){
     basicActions.wait(250);
+    basicActions.waitForElementToBePresentWithRetries(hdrAddInfoForYourself,120);
+    basicActions.waitForElementToBePresentWithRetries(hdr_AdditionalIncome,120);
+    basicActions.waitForElementToBeClickable(saveAndContinueButton, 90);
+    basicActions.waitForElementListToBePresent(addIncomeButton, 90);
     switch (language){
         case "English":
             verifyHeadersAdditionalIncomePageEnglish();
@@ -409,8 +426,6 @@ public void verifyHeadersAdditionalIncomePage(String language){
 }
 
     public void verifyHeadersAdditionalIncomePageEnglish(){
-        basicActions.waitForElementToBePresentWithRetries(hdrAddInfoForYourself,120);
-        basicActions.waitForElementToBePresentWithRetries(hdr_AdditionalIncome,120);
         softAssert.assertTrue(hdrAddInfoForYourself.getText().equalsIgnoreCase( "Income: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
         softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-size"), "36px");
         softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-weight"), "700");
@@ -423,10 +438,6 @@ public void verifyHeadersAdditionalIncomePage(String language){
     }
 
     public void verifyHeadersAdditionalIncomePageSpanish(){
-        basicActions.waitForElementToBeClickable(saveAndContinueButton, 90);
-        basicActions.waitForElementToBePresent(hdrAddInfoForYourself, 90);
-        basicActions.waitForElementToBePresent(hdr_AdditionalIncome, 90);
-        basicActions.waitForElementListToBePresent(addIncomeButton, 90);
         softAssert.assertTrue(hdrAddInfoForYourself.getText().equalsIgnoreCase("Ingresos: " + SharedData.getPrimaryMember().getFirstName() + " " + SharedData.getPrimaryMember().getLastName()));
         softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-size"), "36px");
         softAssert.assertEquals(hdrAddInfoForYourself.getCssValue("font-weight"), "700");
@@ -484,6 +495,10 @@ public void verifyHeadersAdditionalIncomePage(String language){
                 softAssert.assertEquals(additionalIncomeQuestion.getCssValue("line-height"), "28px");
                 softAssert.assertEquals(additionalIncomeQuestion.getCssValue("color"), "rgba(43, 49, 60, 1)");
                 softAssert.assertEquals(selectIncomeSentence.getText(), "Select all that apply, and enter the amount of income received.");
+                softAssert.assertEquals(selectIncomeSentence.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(selectIncomeSentence.getCssValue("font-size"), "16px");
+                softAssert.assertEquals(selectIncomeSentence.getCssValue("line-height"), "28px");
+                softAssert.assertEquals(selectIncomeSentence.getCssValue("color"), "rgba(43, 49, 60, 1)");
                 softAssert.assertEquals(alimonyText.getText(), "Alimony Received");
                 softAssert.assertEquals(capGainsText.getText(), "Capital Gains");
                 softAssert.assertEquals(rentalText.getText(), "Income from rental property");
@@ -520,6 +535,10 @@ public void verifyHeadersAdditionalIncomePage(String language){
                 softAssert.assertEquals(additionalIncomeQuestion.getCssValue("line-height"), "28px");
                 softAssert.assertEquals(additionalIncomeQuestion.getCssValue("color"), "rgba(43, 49, 60, 1)");
                 softAssert.assertEquals(selectIncomeSentence.getText(), "Seleccione todo lo que corresponda y registre la cantidad de ingreso que recibe.");
+                softAssert.assertEquals(selectIncomeSentence.getCssValue("font-weight"), "400");
+                softAssert.assertEquals(selectIncomeSentence.getCssValue("font-size"), "16px");
+                softAssert.assertEquals(selectIncomeSentence.getCssValue("line-height"), "28px");
+                softAssert.assertEquals(selectIncomeSentence.getCssValue("color"), "rgba(43, 49, 60, 1)");
                 softAssert.assertEquals(alimonyText.getText(), "Pensi\u00f3n alimenticia recibida");
                 softAssert.assertEquals(capGainsText.getText(), "Ganancias de capital");
                 softAssert.assertEquals(rentalText.getText(), "Ingresos por renta de propiedades");
@@ -598,15 +617,60 @@ public void verifyHeadersAdditionalIncomePage(String language){
         softAssert.assertAll();
     }
 
-    public void verifyOptionSelected_AdditionalIncome(String optionName){
-        switch (optionName){
+    public void verifyOptionSelected_AdditionalIncome(String optionName) {
+        basicActions.waitForElementToBePresentWithRetries(saveAndContinueButton, 60);
+        basicActions.waitForElementToBePresentWithRetries(hdrAddInfoForYourself, 60);
+        basicActions.waitForElementToBePresentWithRetries(hdr_AdditionalIncome, 60);
+        List<WebElement> checkboxes = getIncomeCheckboxes(optionName);
+        for (WebElement checkbox : checkboxes) {
+            basicActions.waitForElementToBePresent(checkbox, 30);
+            softAssert.assertTrue(checkbox.getAttribute("class").equals("checkbox-container checked"), "Checkbox for " + optionName + " is not selected");
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyOptionNotSelected_AdditionalIncome(String optionName) {
+        List<WebElement> checkboxes = getIncomeCheckboxes(optionName);
+        for (WebElement checkbox : checkboxes) {
+            basicActions.waitForElementToBePresent(checkbox, 30);
+            softAssert.assertTrue(checkbox.getAttribute("class").equals("checkbox-container"), "Checkbox for " + optionName + " should not be selected");
+        }
+        softAssert.assertAll();
+    }
+
+    private List<WebElement> getIncomeCheckboxes(String addtlIncomeOption) {
+        if ("All Income".equals(addtlIncomeOption)) {
+            return additlIncomeBoxes.subList(0, additlIncomeBoxes.size() - 1);
+        }
+        switch (addtlIncomeOption) {
+            case "Alimony Received":
+                return List.of(additlIncomeBoxes.get(0));
+            case "Capital Gains":
+                return List.of(additlIncomeBoxes.get(1));
+            case "Income from rental property":
+                return List.of(additlIncomeBoxes.get(2));
+            case "Pension":
+                return List.of(additlIncomeBoxes.get(3));
+            case "Private Retirement Income":
+                return List.of(additlIncomeBoxes.get(4));
+            case "Income from Social Security":
+                return List.of(additlIncomeBoxes.get(5));
+            case "Unemployment Insurance Benefit":
+                return List.of(additlIncomeBoxes.get(6));
+            case "Investment Income":
+                return List.of(additlIncomeBoxes.get(7));
+            case "Cash Support":
+                return List.of(additlIncomeBoxes.get(8));
+            case "Untaxed Foreign Income":
+                return List.of(additlIncomeBoxes.get(9));
+            case "Royalty Income":
+                return List.of(additlIncomeBoxes.get(10));
+            case "Taxable income from Tribal Sources":
+                return List.of(additlIncomeBoxes.get(11));
             case "None of these":
-                basicActions.waitForElementToBePresent(noneOfThese,30);
-                softAssert.assertFalse(noneOfThese.getAttribute("class").contains("not-selected"));
-                softAssert.assertAll();
-                break;
+                return List.of(additlIncomeBoxes.get(12));
             default:
-                throw new IllegalArgumentException("Invalid option: " +  optionName);
+                throw new IllegalArgumentException("Invalid option: " + addtlIncomeOption);
         }
     }
 
@@ -683,28 +747,12 @@ public void verifyHeadersAdditionalIncomePage(String language){
 
     public void verifyAddtlIncomeEnteredData(String addtlIncomeOption, String Amount, String Frequency){
 //        Frequency will have a number ex: "3: Monthly"
-        switch (addtlIncomeOption) {
-            case "Private Retirement income":
-                basicActions.waitForElementToBePresent(retirementAmount,20);
-                softAssert.assertEquals(retirementAmount.getAttribute("value"), Amount);
-                softAssert.assertEquals(retirementFrequency.getAttribute("value"), Frequency);
-                softAssert.assertAll();
-                break;
-            case "Pension":
-                basicActions.waitForElementToBePresent(pensionAmount,20);
-                softAssert.assertEquals(pensionAmount.getAttribute("value"), Amount);
-                softAssert.assertEquals(pensionFrequency.getAttribute("value"), Frequency);
-                softAssert.assertAll();
-                break;
-            case "Untaxed Foreign Income":
-                basicActions.waitForElementToBePresent(untaxedForeignAmount,20);
-                softAssert.assertEquals(untaxedForeignAmount.getAttribute("value"), Amount);
-                softAssert.assertEquals(untaxedForeignFrequency.getAttribute("value"), Frequency);
-                softAssert.assertAll();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + addtlIncomeOption);
-        }
+        WebElement inputAmount = getIncomeInputField(addtlIncomeOption);
+        WebElement inputFrequency = getIncomeFrequecy(addtlIncomeOption);
+        basicActions.waitForElementToBePresent(inputAmount,20);
+        softAssert.assertEquals(inputAmount.getAttribute("value"), Amount);
+        softAssert.assertEquals(inputFrequency.getAttribute("value"), Frequency);
+        softAssert.assertAll();
     }
 
     public void verifyAddtlIncomeOptionCheckboxCOCO(String state){
@@ -872,7 +920,116 @@ public void verifyHeadersAdditionalIncomePage(String language){
         softAssert.assertEquals(element.getCssValue("border"), "1px solid rgb(150, 0, 0)", element + " Border mismatch");
     }
 
+    public void validateErrorMessageAndItsProperties(DataTable dataTable){
+        basicActions.waitForElementToBePresent(ErrorIcon,10);
+        basicActions.waitForElementToBePresent(ErrorMessage,10);
 
+        List<Map<String,String>> data = dataTable.asMaps();
+        softAssert.assertTrue(ErrorIcon.isDisplayed(),"Error Icon is not visible in the page");
+        softAssert.assertTrue(ErrorMessage.isDisplayed(),"Error Message is not visible in the page");
+        softAssert.assertEquals(ErrorMessage.getText(), data.get(0).get("Text"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("font-size"), data.get(0).get("fontSize"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("font-family"), data.get(0).get("fontFamily"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("font-weight"), data.get(0).get("fontWeight"));
+        softAssert.assertEquals(ErrorMessage.getCssValue("color"), data.get(0).get("color"));
+        softAssert.assertAll();
+    }
 
+    public void verifyTheAmountAndNoErrorMessageDisplaying(String addtlIncomeOption, String amount){
+        WebElement inputAmount = getIncomeInputField(addtlIncomeOption);
+        basicActions.waitForElementToBePresent(inputAmount,10);
+        basicActions.waitForElementListToDisappear(addtlIncomeAmountError, 10);
+        basicActions.waitForElementListToDisappear(additlIncomeFrequencyError, 10);
+        softAssert.assertEquals(inputAmount.getAttribute("value"), amount);
+        softAssert.assertAll();
+    }
 
+    private WebElement getIncomeInputField(String addtlIncomeOption) {
+        switch (addtlIncomeOption) {
+            case "Alimony Received":
+                return alimonyAmount;
+            case "Capital Gains":
+                return capGainsAmount;
+            case "Income from rental property":
+                return rentalAmount;
+            case "Pension":
+                return pensionAmount;
+            case "Private Retirement Income":
+                return retirementAmount;
+            case "Income from Social Security":
+                return socialSecurityAmount;
+            case "Unemployment Insurance Benefit":
+                return unemploymentAmount;
+            case "Investment Income":
+                return investmentAmount;
+            case "Cash Support":
+                return cashSupportAmount;
+            case "Untaxed Foreign Income":
+                return untaxedForeignAmount;
+            case "Royalty Income":
+                return royaltyAmount;
+            case "Taxable income from Tribal Sources":
+                return taxableAmount;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + addtlIncomeOption);
+        }
+    }
+
+    private WebElement getIncomeFrequecy(String addtlIncomeOption) {
+        switch (addtlIncomeOption) {
+            case "Alimony Received":
+                return alimonyFrequency;
+            case "Capital Gains":
+                return capGainsFrequency;
+            case "Income from rental property":
+                return rentalFrequency;
+            case "Pension":
+                return pensionFrequency;
+            case "Private Retirement Income":
+                return retirementFrequency;
+            case "Income from Social Security":
+                return socialSecurityFrequency;
+            case "Unemployment Insurance Benefit":
+                return unemploymentFrequency;
+            case "Investment Income":
+                return investmentFrequency;
+            case "Cash Support":
+                return cashSupportFrequency;
+            case "Untaxed Foreign Income":
+                return untaxedForeignFrequency;
+            case "Royalty Income":
+                return royaltyFrequency;
+            case "Taxable income from Tribal Sources":
+                return taxableFrequency;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + addtlIncomeOption);
+        }
+    }
+
+    public void selectAdditionalIncomeOptionAndIncome(String addtlIncomeOption, String amount) {
+        basicActions.waitForElementToBeClickable(saveAndContinueButton, 10);
+        selectAddtlIncomeOptionOnly(addtlIncomeOption);
+        enterAmount(addtlIncomeOption, amount);
+    }
+
+    public void verifyMinMax(String addtlIncomeOption, String language){
+        WebElement inputAmount = getIncomeInputField(addtlIncomeOption);
+        String amountPlaceholder = language.equalsIgnoreCase("Spanish") ? "cantidad" : "amount";
+        basicActions.waitForElementToBePresent(inputAmount,10);
+        softAssert.assertEquals(inputAmount.getAttribute("min"), "0.01");
+        softAssert.assertEquals(inputAmount.getAttribute("max"), "999999999.99");
+        softAssert.assertEquals(inputAmount.getAttribute("placeholder"), amountPlaceholder);
+        softAssert.assertAll();
+    }
+
+    public void verifyPlaceholder(String addtlIncomeOption, String language){
+        WebElement inputAmount = getIncomeInputField(addtlIncomeOption);
+        WebElement inputFrequency = getIncomeFrequecy(addtlIncomeOption);
+        String amountPlaceholder = language.equalsIgnoreCase("Spanish") ? "cantidad" : "amount";
+        String frequencyPlaceholder = language.equalsIgnoreCase("Spanish") ? "Seleccionar opci\u00F3n\nAnualmente\nCada dos semanas\nMensualmente\nDos veces por mes\nSemanalmente" : "Select Option\nAnnually\nEvery 2 weeks\nMonthly\nTwice a month\nWeekly";
+        basicActions.waitForElementToBePresent(inputAmount,10);
+        softAssert.assertEquals(inputAmount.getAttribute("placeholder"), amountPlaceholder);
+        softAssert.assertEquals(inputFrequency.getText(), frequencyPlaceholder);
+        softAssert.assertAll();
+    }
 }

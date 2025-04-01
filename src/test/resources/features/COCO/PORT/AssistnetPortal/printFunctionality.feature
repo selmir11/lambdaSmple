@@ -4,10 +4,10 @@ Feature: print functionality on the Colorado Connect My Clients page
   Scenario: print functionality on My Clients page
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
-    When I login as Broker User "testing.soukaina+teststg@outlook.com" password "ALaska12!"
+    And I login as Broker User any environment "C4PortTesting+TransferSTG@outlook.com" password "ALaska12!" and "C4PortTesting+Transfer@outlook.com" password "ALaska12!"
     And  I validate I am on the "MFA" page
     Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "testing.soukaina@outlook.com" and "ALaska12!"
+    And I sign in to outlook with Valid Credentials "C4PortTesting@outlook.com" and "ALaska12!"
     Then I open the MFA notice
     And I get the MFA code
     And I delete the open notice

@@ -42,7 +42,7 @@ Feature: Page Text-Income Opt Out Page
 
     And I validate I am on the "Employment Income" page
 
-  @SLER-240 @PageTextEmploymentIncome @TAMSmoke
+  @SLER-240 @PageTextEmploymentIncome @TAMSmokeExch
   Scenario: SLER-240 I can see Employment Income's Header and footer - English
     Then I validate I am on the "Employment Income" page
     And I verify text on the "Exch" "Header" in "English"
@@ -526,9 +526,9 @@ Feature: Page Text-Income Opt Out Page
     And I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "No" for will file tax return question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "None of these" as ELMO health coverage option
-    And I click continue on the ELMO health coverage page
+    Then I click Save and Continue on Tax Status page
+    Then I select "None of these" as health coverage option
+    And I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I select "MoveToCO" QLCE on tell us about life changes page
@@ -605,6 +605,41 @@ Feature: Page Text-Income Opt Out Page
     Then I click on Add job or self-employment on the Employment Summary Page
     Then I validate that the employment status label is not present
     And I click on Sign Out in the Header for "Elmo"
+
+    @SLER-2349
+    Scenario: [RT-2608] As an Exchange account user on the Employment Income page, I see the structure of the page so that I can provide my basic income information
+      Then I Verify the page text on Employment Income page, which is in initial state
+        | Income:                                          |
+        | Employment Income                                |
+        | Do you have a job or are you currently employed? |
+        | Yes                                              |
+        | No                                               |
+        | Go back                                          |
+        | Save and continue                                |
+        | Help                                             |
+      Then I validate page Navigation works for Footer hyperlink text in "English"
+        | HyperLinkText  | ExpectedPageTitle | ContainsUrl                           |
+        | Privacy Policy | Privacy Policy    | connectforhealthco.com/privacy-policy |
+        | Terms          | Terms of Use      | connectforhealthco.com/terms-of-use   |
+        | Contact Us     | Contact Us        | connectforhealthco.com/contact-us     |
+        | FacebookIcon   | Facebook          | facebook.com                          |
+        | xIcon          | X                 | x.com                                 |
+        | YouTubeIcon    | YouTube           | youtube.com                           |
+        | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
+        | InstagramIcon  | instagram         | instagram.com                         |
+        | ThreadsIcon    | Threads           | threads.net                           |
+      Then I validate Employment Income page for text design
+      Then I select the option "Yes" to employment
+      Then I validate Employment Income page for YesOption text design
+      And I select the option "No" to self employment
+      Then I validate Employment Income page for NoOption text design
+      Then I click go back button on the Employment Info Page
+      And I click plus icon next to member on household page for "Primary"
+      And I click the edit income icon on household page for "Primary"
+      Then I select the option "Yes" to employment
+      Then I select the option "No" to employment
+      And I click on Sign Out in the Header for "Elmo"
+
 
 
 

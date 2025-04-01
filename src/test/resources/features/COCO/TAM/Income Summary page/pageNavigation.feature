@@ -41,7 +41,7 @@ Feature: Tests related to the Income Summary page
       And I click EditUpdate on Family Overview page for "Primary"
       Then I click Save and Continue only on the tell us about yourself page
       And I click continue on the Add info for yourself page
-      Then I validate I am on the "Elmo Race and Ethnicity" page
+      Then I validate I am on the "Race and Ethnicity" page
       And I click save and continue on the Race and Ethnicity page
       And I validate I am on the "Employment Income" page
       And I click continue on the Employment income page
@@ -74,7 +74,7 @@ Feature: Tests related to the Income Summary page
       Then I click EditUpdate on Family Overview page for "Primary"
       Then I click Save and Continue only on the tell us about yourself page
       And I click continue on the Add info for yourself page
-      Then I validate I am on the "Elmo Race and Ethnicity" page
+      Then I validate I am on the "Race and Ethnicity" page
       And I click save and continue on the Race and Ethnicity page
       And I validate I am on the "Employment Income" page
       And I click continue on the Employment income page
@@ -205,6 +205,57 @@ Feature: Tests related to the Income Summary page
     And I click on Contact Us in the "CoCo" Footer
     And I validate I am on the "Contact Us" page and close tab
     Then I validate I am on the "CoCo Income Summary" page
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+  @SLCR-881
+  Scenario: SLCR-881 ELIG-As CoCo account user, I need navigation functionality to exit and return to the correct page in the CoCo eligibility application.
+    And I verify the header for Primary Member on the CoCo Income Summary page in "English"
+    And I select go back on the income summary CoCo page
+    Then I validate I am on the "CoCo Deductions" page
+    And I verify the header for Primary Member on the CoCo Deductions page in "English"
+    And I select Back on the Deductions CoCo page
+    Then I validate I am on the "CoCo Additional Income" page
+    And I verify the header for Primary Member on the CoCo Additional Income page in "English"
+    And I select Go Back on the Additional Income CoCo page
+    Then I validate I am on the "CoCo Employment Income" page
+    And I verify the header for Primary Member on the CoCo Employment income page in "English"
+    And I click Go back on the Employment income page
+    Then I validate I am on the "Race and Ethnicity" page
+
+    And I click save and continue on the Race and Ethnicity page
+    Then I validate I am on the "CoCo Employment Income" page
+    And I verify the header for Primary Member on the CoCo Employment income page in "English"
+    And I click Go back on the Employment income page
+    Then I validate I am on the "Race and Ethnicity" page
+    And I click save and continue on the Race and Ethnicity page
+    Then I validate I am on the "CoCo Employment Income" page
+    And I verify the header for Primary Member on the CoCo Employment income page in "English"
+
+    And I click continue on the Employment income page
+    Then I validate I am on the "CoCo Additional Income" page
+    And I verify the header for Primary Member on the CoCo Additional Income page in "English"
+    And I select Go Back on the Additional Income CoCo page
+    Then I validate I am on the "CoCo Employment Income" page
+    And I verify the header for Primary Member on the CoCo Employment income page in "English"
+    And I click continue on the Employment income page
+    Then I validate I am on the "CoCo Additional Income" page
+    And I verify the header for Primary Member on the CoCo Additional Income page in "English"
+
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I verify the header for Primary Member on the CoCo Deductions page in "English"
+    And I select Back on the Deductions CoCo page
+    Then I validate I am on the "CoCo Additional Income" page
+    And I verify the header for Primary Member on the CoCo Additional Income page in "English"
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I verify the header for Primary Member on the CoCo Deductions page in "English"
+
+    And I select continue on the Deductions CoCo page
+    And I validate I am on the "CoCo Income Summary" page
+    And I verify the header for Primary Member on the CoCo Income Summary page in "English"
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

@@ -186,7 +186,7 @@ public class DocumentLookupPage {
         documentHandleSearch.click();
         basicActions.waitForElementToBePresent(documentHandle, 50);
         if (SharedData.getEnv().equals("qa"))
-            documentHandle.sendKeys("90159");
+            documentHandle.sendKeys("311091");
         else {
             documentHandle.sendKeys("55510");
         }

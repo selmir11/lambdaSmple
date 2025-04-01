@@ -88,6 +88,11 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
         basicActions.waitForElementToBeClickable(MemberDOB, 30);
         MemberDOB.sendKeys(dateOfBirth);
     }
+    public void updateMemberDOB(String dateOfBirth, String memPrefix) {
+        basicActions.waitForElementToBeClickable(MemberDOB, 30);
+        MemberDOB.clear();
+        MemberDOB.sendKeys(dateOfBirth);
+    }
 
     public void clickSaveandContinueButton() {
         basicActions.waitForElementToBeClickable(SaveandContinueButton, 30);
@@ -170,7 +175,7 @@ public class TellUsAboutAdditionalMembersOfYourHouseholdCoCoPage {
             memberDetailswithAge(Integer.parseInt(DOB.replaceAll("\\D", "")));
         }
 
-        List<MemberDetails> membersList = SharedData.getAllMembers();
+        List<MemberDetails> membersList = SharedData.getMembers();
 
         MemberDetails member = new MemberDetails();
         member.setFirstName(frstName);

@@ -1,6 +1,9 @@
 Feature: Seed06 - Exchange
 
   Background: Seed 06 For Exchange- Family of Four - FA
+    Given I set the test scenario details
+      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 1           | 4            | 1                 | 3                | 4               |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -10,6 +13,12 @@ Feature: Seed06 - Exchange
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
@@ -32,7 +41,7 @@ Feature: Seed06 - Exchange
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -42,7 +51,7 @@ Feature: Seed06 - Exchange
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03051989", "Female" and applying "Yes"
-      |Primary:Spouse|
+      | Primary:Spouse |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -53,7 +62,7 @@ Feature: Seed06 - Exchange
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -63,8 +72,8 @@ Feature: Seed06 - Exchange
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "04212013", "Female" and applying "Yes"
-      |Primary:Daughter|
-      |Spouse:Daughter|
+      | Primary:Daughter |
+      | Spouse:Daughter  |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -75,7 +84,7 @@ Feature: Seed06 - Exchange
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Daughter"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -85,9 +94,9 @@ Feature: Seed06 - Exchange
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Son", "12222016", "Male" and applying "Yes"
-      |Primary:Son|
-      |Spouse:Son|
-      |Daughter:Brother|
+      | Primary:Son      |
+      | Spouse:Son       |
+      | Daughter:Brother |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -98,7 +107,7 @@ Feature: Seed06 - Exchange
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -149,25 +158,25 @@ Feature: Seed06 - Exchange
     Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "Yes" for will claim dependents question
-    Then I select "Daughter" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I select "Son" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I select "Daughter" for who will be claimed as dependent question on the Tax Status page
+    Then I select "Son" for who will be claimed as dependent question on the Tax Status page
+    Then I click Save and Continue on Tax Status page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page
@@ -213,6 +222,8 @@ Feature: Seed06 - Exchange
     And I select "Delta Dental of Colorado Family Comprehensive Plan" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I select the terms and agreements checkbox
     And I enter householder signature on the Financial Help Agreements page
@@ -223,60 +234,119 @@ Feature: Seed06 - Exchange
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-    And I click on Sign Out in the Header for "NonElmo"
+    And I Validate the correct enrolled plans are displayed on account overview page
+   # And I click on Sign Out in the Header for "NonElmo"
+    #DB Validation
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+#    And I verify the policy data quality check with Policy Ah keyset size 2
+#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
 
-    @SLER-1834-WIP_@R4V
-    Scenario: RT-2306 ENR-EXCH: USER INITIATED DISENROLLMENT (TERM) - DENTAL - ALL MEMBERS - ADMIN OBO
-      Given I open the login page on the "admin" portal
-      And I validate I am on the "Login" page
-      When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
-      And I validate I am on the "Admin dashboard" page
-      And I search for user and click email from search results
-      And I click "On Behalf Of (OBO)" from application links dropdown
-      And I initiate incoming page
-      Then I validate I am on the "Account Overview" page
-      Then I click on ClickHere link for "My Plans"
-      Then I validate I am on the "My Policies" page
-      And I click on "Cancel Dental Plan" button
-      And I validate I am on the "Cancellation Request" page
-      Then I affirm and cancel the active plan
-      Then I click continue on Cancellation Request page
-      Then I click Okay on Thank you popup
-      And I click on Sign Out in the Header for "Elmo"
+  @SLER-1834-WIP_@R4V
+  Scenario: RT-2306 ENR-EXCH: USER INITIATED DISENROLLMENT (TERM) - DENTAL - ALL MEMBERS - ADMIN OBO
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin dashboard" page
+    And I search for user and click email from search results
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    And I initiate incoming page
+    Then I validate I am on the "Account Overview" page
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I click on "Cancel Dental Plan" button
+    And I validate I am on the "Cancellation Request" page
+    Then I affirm and cancel the active plan
+    Then I click continue on Cancellation Request page
+    Then I click Okay on Thank you popup
+    And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-2034-WIP-@R4V
-    Scenario: RT-2322 ENR-EXCH: APPS - CHANGE OF SUBSCRIBER
-      Given I open the login page on the "login" portal
-      And I validate I am on the "Login" page
-      And I enter valid credentials to login
-      Then I validate I am on the "Account Overview" page
-      Then I click on make changes button
-      Then I select "No" option on the Let us guide you page
-      And I click on save and continue button
-      Then I click on continue with  application button on Before you begin page
-      And I report "Other" and click continue
-      And I click Continue With Application button on Report Life Change Page
-      Then I validate I am on the "Find Expert Help" page
-      Then I click Continue on my own button from Manage who helps you page
-      Then I validate I am on the "Tell us about yourself" page
-      Then I select "No" to Are You Applying
-      Then I click continue on Tell us about yourself page
-      Then I validate I am on the "Add Address" page
-      Then I click continue on the Add Address page
-      And I click continue on the Race and Ethnicity page
-      Then I click continue on the Immigration Status page
-      Then I validate I am on the "Family Overview" page
-      Then I click continue on family overview page
-      Then I validate I am on the "Tell us about life changes" page
-      Then I select "NoneOfThese" QLCE on tell us about life changes page
-      Then I click on Save and Continue
-      Then I validate I am on the "EXCH Declarations and Signature" page
-      Then I Declare as Tax Household 1
-      And I click Continue on the Declarations And Signature Page
-      And I wait for hold on content to disappear
-      Then I validate I am on the "Application History" page
-      And I click on Sign Out in the Header for "NonElmo"
+  @SLER-2034-WIP-@R4V @n1
+  Scenario: RT-2322 ENR-EXCH: APPS - CHANGE OF SUBSCRIBER
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click on make changes button
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Other" and click continue
+    And I click Continue With Application button on Report Life Change Page
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I validate I am on the "Tell us about yourself" page
+    Then I select "No" to Are You Applying
+    Then I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    Then I click continue on the Immigration Status page
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+    Then I validate I am on the "Tell us about life changes" page
+    Then I select "NoneOfThese" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Good News" page
+    Then I click on "Continue" on good news page
+    Then I validate I am on the "Account Overview" page
+    Then I validate that financials are updated on account overview page
+    And I Validate the correct enrolled plans are displayed on account overview page
+#    Then I click on ClickHere link for "My Plans"
+#    Then I validate I am on the "My Policies" page
+#    And I validate "medical" details on my policies page
+#    And I validate "dental" details on my policies page
+#    And I click on Sign Out in the Header for "Elmo"
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+ #DB Validation
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+#    And I verify the policy data quality check with Policy Ah keyset size 2
+#    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
 
+
+  @SLER-2360-WIP
+  Scenario: RT-2305 - ENR-EXCH: USER INITIATED DISENROLLMENT (TERM) - DENTAL - ALL MEMBERS
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    And I validate I am on the "Account Overview" page
+    Then I click on ClickHere link for "My Plans"
+    And I validate I am on the "My Policies" page
+    And I click on "Cancel Dental Plan" button
+    And I validate I am on the "Cancellation Request" page
+    Then I affirm and cancel the active plan
+    Then I click continue on Cancellation Request page
+    Then I click Okay on Thank you popup
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "Account Overview" page
 
 
 

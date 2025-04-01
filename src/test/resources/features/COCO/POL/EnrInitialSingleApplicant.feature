@@ -1,7 +1,7 @@
 Feature: Initial Application Single Applicant(Silver Enhanced)
+
   @SLCR-297-WIP
   Scenario: COCO Initial Application - Single Applicant (Silver Enhanced)
-
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -23,7 +23,7 @@ Feature: Initial Application Single Applicant(Silver Enhanced)
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "White or European" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     And I select "Yes" employment option

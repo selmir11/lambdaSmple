@@ -37,7 +37,7 @@ Feature: PageText-Declarations and Signature Page
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
 
-  @SLCR-191 @PageTextD&SPage @TAMSmoke
+  @SLCR-191 @PageTextD&SPage @TAMSmokeCoCo
   Scenario: SLCR-191 I can see Declarations and Signature Page's Header and footer - English
     And I verify the header for Primary Member on the CoCo Declarations And Signature page in "English"
     And I verify text on the "CoCo" "Header" in "English"
@@ -266,3 +266,67 @@ Feature: PageText-Declarations and Signature Page
     And I verify the error message "Signature must match name" when I click on continue button without entering the value in Electronic signature input box
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLCR-861 @SLCR-862
+  Scenario Outline: <TestNumber> Verify verbiage consistency on Declarations and Signature page - <Language>
+    Then I change the language from header to "<Language>"
+    And I verify the header for Primary Member on the CoCo Declarations And Signature page in "<Language>"
+    Then I verify the text on CoCo Declarations and Signature page in "<Language>"
+
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+    Examples:
+      | TestNumber | Language |
+      | SLCR-861   | English  |
+      | SLCR-862   | Spanish  |
+    
+  @SLCR-895
+  Scenario: ELIG-As a CoCo user on the D&S page, I want the page validated so when I click on “Continue”,
+  the required signature is in the correct format and required signature is collected before I exit the page.
+    #1st Scenario
+    When I click Continue on the Declarations And Signature Page CoCo
+    And I verify Declarations And Signature CoCo error format
+    And I verify the error message "Electronic signature is required" when I click on continue button without entering the value in Electronic signature input box
+    But I enter invalid signature name on the Declarations And Signature Page CoCo
+    And I verify the error message "Signature must match name" when I click on continue button without entering the value in Electronic signature input box
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+    #2nd Scenario
+    Given I open the login page on the "login" portal
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "coco" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    And I apply for the current year in CoCo
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
+    And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for mailing address option
+    And I select "Yes" for live in Colorado option
+    And I click continue on the Add info for yourself page
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I click save and continue on the Race and Ethnicity page
+    And I select "Yes" employment option
+    And I enter "30,000.00" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "No" income changes option
+    And I click continue on the Employment income page
+    And I select None of these as additional income option
+    And I select continue on the Additional Income CoCO page
+    Then I validate I am on the "CoCo Deductions" page
+    And I select "None of these" as deductions option
+    And I select continue on the Deductions CoCo page
+    Then I select the projected income option "No" on Income Summary CoCo page
+    And I select continue on the income Summary CoCo page
+    And I select continue on the Family Overview page
+    And I check "None of these" life change event checkbox
+    And I select continue on the LCE page
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    Then I click Continue on the Declarations And Signature Page CoCo
+    Then I validate I am on the "Application Results CoCo" page

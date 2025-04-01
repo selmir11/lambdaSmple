@@ -38,12 +38,23 @@ public class FamilyOverviewSteps {
     @Then("I validate the action link properties on the CoCo Family Overview page")
     public void iValidateActionLinksFamilyOverview() {familyOverviewPage.validateActionLinksFamilyOverview();}
 
+    @Then("I verify no error gets displayed and continue button is enabled")
+    public void iVerifyNoErrorIsPresentAndContinueButtonIsEnabled() {familyOverviewPage.verifyNoErrorIsPresentAndContinueButtonIsEnabled();}
 
+    @Then("I verify we need more information text along with the red exclamation marks and edit update link")
+    public void iVerifyWeNeedMoreInfoTextAndOtherDetails() { familyOverviewPage.verifyWeNeedMoreInfoTextAndOtherDetails(); }
 
+    @Then("I verify the deduction Amount {string} on the CoCo Family Overview page")
+    public void iVerifyDeductionAmountInFamilyOverviewPage(String amount) {
+        familyOverviewPage.verifyDeductionAmount(amount);}
 
-
-
-
-
+    @And("I retrieve the memberId of primary member from url")
+    public void iRetrieveTheMemberIdOfMemberFromUrl() {
+        familyOverviewPage.retrievePrimaryMemberId();
+    }
+    @Then("I validate CoCo URL to reflect a Member ID of a CoCo member within or without the current household for {string} page")
+    public void iValidateCoCoURLToReflectAMemberIDOfACoCoMemberWithinTheCurrentHouseholdFor(String pageName) {
+        familyOverviewPage.validateCocoUrlToReflectMemberID(pageName);
+    }
 
 }

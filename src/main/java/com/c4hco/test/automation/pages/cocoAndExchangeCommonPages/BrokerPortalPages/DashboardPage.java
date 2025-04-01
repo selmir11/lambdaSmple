@@ -114,6 +114,8 @@ public class DashboardPage {
     @FindBy(id = "inviteCode-errorMsg")
     WebElement agencyInformationEnterInviteCodeError;
 
+    @FindBy(xpath = "//button[.='View Report']")
+    WebElement viewReportButton;
 
     private BasicActions basicActions;
     public DashboardPage(WebDriver webDriver){
@@ -345,5 +347,9 @@ public class DashboardPage {
         basicActions.waitForElementToBePresentWithRetries(agencyCompleteProfile, 10);
         softAssert.assertEquals(agencyCompleteProfile.getText(), "Complete your profile");
         softAssert.assertAll();
+    }
+    public void clickViewReports() {
+        basicActions.waitForElementToBePresent(viewReportButton, 20);
+        viewReportButton.click();
     }
 }

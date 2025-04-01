@@ -5,20 +5,19 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
 
 import java.io.File;
 import java.net.URI;
 import java.net.URL;
+import java.security.SecureRandom;
 import java.text.Collator;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.YearMonth;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
@@ -641,6 +640,9 @@ public class BasicActions {
         LocalDate today = LocalDate.now();
         return Integer.toString(today.getYear());
     }
+    public String getPastYear(int num) {
+        return Integer.toString(Year.now().getValue() - num);
+    }
 
     public String getStartDateOE() {// Today
         LocalDate date = LocalDate.of(Integer.parseInt(getCurrYear()), 11, 1);
@@ -657,6 +659,13 @@ public class BasicActions {
     public String getFutureYear() {
         LocalDate today = LocalDate.now();
         return Integer.toString(today.getYear() + 1);
+    }
+
+    public String getFirstOfJanNextYr() { // January 1st of next year
+        LocalDate today = LocalDate.now();
+        LocalDate date = LocalDate.of(today.getYear() + 1, 1, 1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return date.format(formatter);
     }
 
     public String getFirstOfJanCurrYr() { // January 1st of current year
@@ -679,6 +688,17 @@ public class BasicActions {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return firstDayOfNextMonth.format(formatter);
     }
+    public String firstDateOfNextMonthAfterSpecificDate(String dateStr) {
+        DateTimeFormatter formatter;
+        if (dateStr.contains("-")) {
+            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        } else {
+            formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        }
+        LocalDate firstDayOfNextMonth = LocalDate.parse(dateStr, formatter).plusMonths(1).withDayOfMonth(1);
+        return firstDayOfNextMonth.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
+
 
     public String firstDateOfLastMonth() {
         LocalDate today = LocalDate.now();
@@ -692,6 +712,13 @@ public class BasicActions {
         LocalDate firstDayOfCurrMonth = today.withDayOfMonth(1);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return firstDayOfCurrMonth.format(formatter);
+    }
+
+    public String lastDateOfCurrentMonth() {
+        LocalDate today = LocalDate.now();
+        LocalDate lastDayOfCurrentMonth = YearMonth.from(today).atEndOfMonth();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return lastDayOfCurrentMonth.format(formatter);
     }
 
     public String lastDateOfNextMonth() {
@@ -720,6 +747,7 @@ public class BasicActions {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         return date.format(formatter);
     }
+
 
     public String getFutureDate(int daysToMove) {
         LocalDate date = LocalDate.now().plusDays(daysToMove);
@@ -786,8 +814,30 @@ public class BasicActions {
                 case "Today":
                     date = getTodayDate();
                     break;
+                case "Current Date":
+                    date = changeDateFormat(getTodayDate(), "MM/dd/yyyy", "yyyy-MM-dd");
+                    break;
                 case "First Day of Current Month":
                     date = firstDateOfCurrMonth();
+                    break;
+                case "Current Year":
+                    date = getCurrYear();
+                    break;
+                case "Previous Year":
+                    date = getPastYear(1);
+                    break;
+                case "Previous Previous Year":
+                    date = getPastYear(2);
+                    break;
+                case "First Day Of Next Year":
+                    date = getFirstOfJanNextYr();
+                    break;
+                case "First Of Next Month after PolicyStartDate":
+                    String policyStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate();
+                    date = firstDateOfNextMonthAfterSpecificDate(policyStartDate);
+                    break;
+                case "Last Day Of Current Month":
+                    date = lastDateOfCurrentMonth();
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid option: " + dateRequirement);
@@ -1322,6 +1372,55 @@ public class BasicActions {
             currentSize = file.length();
         } while (previousSize != currentSize);
         return true;
+    }
+
+    public void changeMemberIdInUrlWithRandom() {
+        String currentUrl = driver.getCurrentUrl();
+        String randomMemberId = String.format("%08d", new Random().nextInt(100000000));
+        String newUrl = currentUrl.replaceAll("/\\d+$", "/" + randomMemberId);
+        driver.navigate().to(newUrl);
+    }
+    public boolean isMultipleSelection(WebElement dropdownElement) {
+        boolean status;
+        Select select=new Select(dropdownElement);
+        if (select.isMultiple()) {System.out.println("This select element allows multiple selections.");
+            status=true;
+        } else {
+            System.out.println("This select element allows single selection.");
+            status=false;
+        }
+        return status;
+    }
+    public String generateRandomStringWithAnyLength(int length) {
+        final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        final SecureRandom random = new SecureRandom();
+        StringBuilder result = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(CHARACTERS.length());
+            result.append(CHARACTERS.charAt(index));
+        }
+        return result.toString();
+    }
+    public void sendTextUsingJavaScript(WebElement element,String text) {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) getDriver();
+        jsExecutor.executeScript("arguments[0].value = arguments[1];", element, text);
+    }
+    public String removeCommaAndDollarSignFromAmount(String input){
+        String amountWithoutDollarSign = input.replace("$", "");
+        // Remove commas
+        return amountWithoutDollarSign.replaceAll(",", "");
+    }
+    public List<WebElement> selectAllOptionsFromDropDown(WebElement selectDrpDwnElement){
+        Select select=new Select(selectDrpDwnElement);
+        return select.getOptions();
+    }
+    public WebElement getFirstSelectedOptionFromDD(WebElement selectDrpDwnElement){
+        Select select=new Select(selectDrpDwnElement);
+        return select.getFirstSelectedOption();
+    }
+    public void mouseHoverOnElement(WebElement element){
+        Actions actions = new Actions(getDriver());
+        actions.moveToElement(element).perform();
     }
 }
 

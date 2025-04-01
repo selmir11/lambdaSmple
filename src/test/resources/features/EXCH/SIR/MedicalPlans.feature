@@ -1,4 +1,4 @@
-@SIR-EXCH9 @MedicalPlans
+@SIR-EXCH13 @MedicalPlans
   # contains SLER-73
   Feature: Tests related to medical plans
     @SLER-73
@@ -45,7 +45,7 @@
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
 
-      Then I validate I am on the "Elmo Race and Ethnicity" page
+      Then I validate I am on the "Race and Ethnicity" page
       And I select "Prefer not to answer" for race and ethnicity for "Primary"
       And I click continue on the Race and Ethnicity page
 
@@ -122,7 +122,7 @@
       And I select "No" for Incarceration option
       And I click continue on the Add Address page
 
-      Then I validate I am on the "Elmo Race and Ethnicity" page
+      Then I validate I am on the "Race and Ethnicity" page
       And I select "Prefer not to answer" for race and ethnicity for "Primary"
       And I click continue on the Race and Ethnicity page
 

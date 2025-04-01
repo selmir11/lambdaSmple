@@ -75,6 +75,9 @@ public class MyPoliciesPage {
     @FindBy(id="SOL-CurrentPolicies-CurrentPlans")
     WebElement CurrentPlans;
 
+    @FindBy(id="SOL-MyPolicies-ShowCancelledPlans")
+    WebElement CancelPlansSlider;
+
     String lastUpdated = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); // TO DO:: Move this to Shared Data?
 
     Set<String> allMemberNames = new HashSet<>();
@@ -100,12 +103,12 @@ public class MyPoliciesPage {
         for (MemberDetails member : basicActions.getAllDentalEligibleMemInfo()) {
 
             //WebElements
-            WebElement planStartDate = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getFirstName()+"')]/ancestor::div[contains(@class,'current-policy__container')]//span[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::*[contains(@class,'data-content')] //span[@id='SOL-CurrentPolicies-PolicyStartDateCoverage']"));
-            WebElement planEndDate = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getFirstName()+"')]/ancestor::div[contains(@class,'current-policy__container')]//span[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::*[contains(@class,'data-content')] //span[@id='SOL-CurrentPolicies-PolicyEndDateCoverage']"));
-            WebElement premiumAfterReduction = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getFirstName()+"')]/ancestor::div[contains(@class,'current-policy__container')]//span[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::*[contains(@class,'data-content')] //*[contains(@id,'AppliedSubsidy')] //span[1]"));
-            WebElement aptc = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getFirstName()+"')]/ancestor::div[contains(@class,'current-policy__container')]//span[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::*[contains(@class,'data-content')] //*[contains(@id,'AppliedSubsidy')] //span[2]"));
-            WebElement EAPID = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getFirstName()+"')]/ancestor::div[contains(@class,'current-policy__container')]//span[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::*[contains(@class,'data-content')] //*[@id='SOL-CurrentPolicies-PolicyNumberExch']"));
-            WebElement lastUpdatedOn = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getFirstName()+"')]/ancestor::div[contains(@class,'current-policy__container')]//span[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::*[contains(@class,'data-content')] //*[@id='SOL-CurrentPolicies-PolicySubmittedDate']"));
+            WebElement planStartDate = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//span[@id='SOL-CurrentPolicies-PolicyStartDateCoverage']"));
+            WebElement planEndDate = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//span[@id='SOL-CurrentPolicies-PolicyEndDateCoverage']"));
+            WebElement premiumAfterReduction = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//*[contains(@id,'AppliedSubsidy')] //span[1]"));
+            WebElement aptc = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//*[contains(@id,'AppliedSubsidy')] //span[2]"));
+            WebElement EAPID = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//*[@id='SOL-CurrentPolicies-PolicyNumberExch']"));
+            WebElement lastUpdatedOn = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getDentalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//*[@id='SOL-CurrentPolicies-PolicySubmittedDate']"));
 
             //DateConversion
             String expecStartDate = basicActions.changeDateFormat(SharedData.getPrimaryMember().getDentalPlanStartDate(),"MM/dd/yyyy","MM/dd/yy");
@@ -120,7 +123,7 @@ public class MyPoliciesPage {
 
             Map<String, String> denEapidDb = exchDbDataProvider.getDentalEap_id();
             member.setDentalEapid_db(denEapidDb.get(member.getDenGroupInd()));
-            softAssert.assertEquals(denEapidDb.get(member.getDenGroupInd()),EAPID.getText().replace("Exchange policy number: ",""), "Dental EAP_ID from My Policies page does not match EAP_ID plan summary page");
+            softAssert.assertEquals(denEapidDb.get(member.getDenGroupInd()),EAPID.getText().replace("Policy number: ",""), "Dental EAP_ID from My Policies page does not match EAP_ID plan summary page");
             softAssert.assertEquals(lastUpdatedOn.getText(),expecLastUpdatedDate, "Last Updated On mismatch for member: " + member.getFirstName());
             softAssert.assertAll();
         }
@@ -131,12 +134,12 @@ public class MyPoliciesPage {
         for (MemberDetails member : basicActions.getAllMedicalEligibleMemInfo()) {
 
             //WebElements
-            WebElement planStartDate = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getFirstName()+"')]/ancestor::div[contains(@class,'current-policy__container')]//span[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::*[contains(@class,'data-content')] //span[@id='SOL-CurrentPolicies-PolicyStartDateCoverage']"));
-            WebElement planEndDate = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getFirstName()+"')]/ancestor::div[contains(@class,'current-policy__container')]//span[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::*[contains(@class,'data-content')] //span[@id='SOL-CurrentPolicies-PolicyEndDateCoverage']"));
-            WebElement premiumAfterReduction = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getFirstName()+"')]/ancestor::div[contains(@class,'current-policy__container')]//span[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::*[contains(@class,'data-content')] //*[contains(@id,'AppliedSubsidy')] //span[1]"));
-            WebElement aptc = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getFirstName()+"')]/ancestor::div[contains(@class,'current-policy__container')]//span[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::*[contains(@class,'data-content')] //*[contains(@id,'AppliedSubsidy')] //span[2]"));
-            WebElement EAPID = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getFirstName()+"')]/ancestor::div[contains(@class,'current-policy__container')]//span[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::*[contains(@class,'data-content')] //*[@id='SOL-CurrentPolicies-PolicyNumberExch']"));
-            WebElement lastUpdatedOn = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getFirstName()+"')]/ancestor::div[contains(@class,'current-policy__container')]//span[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::*[contains(@class,'data-content')] //*[@id='SOL-CurrentPolicies-PolicySubmittedDate']"));
+            WebElement planStartDate = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//span[@id='SOL-CurrentPolicies-PolicyStartDateCoverage']"));
+            WebElement planEndDate = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//span[@id='SOL-CurrentPolicies-PolicyEndDateCoverage']"));
+            WebElement premiumAfterReduction = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//*[contains(@id,'AppliedSubsidy')] //span[1]"));
+            WebElement aptc = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//*[contains(@id,'AppliedSubsidy')] //span[2]"));
+            WebElement EAPID = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//*[@id='SOL-CurrentPolicies-PolicyNumberExch']"));
+            WebElement lastUpdatedOn = basicActions.getDriver().findElement(By.xpath("//*[contains(text(),'"+member.getMedicalPlan()+"')]/ancestor::div[4][//span[contains(text(),'"+member.getFirstName()+"')]]//*[@id='SOL-CurrentPolicies-PolicySubmittedDate']"));
 
             //DateConversion
             String expecStartDate = basicActions.changeDateFormat(SharedData.getPrimaryMember().getMedicalPlanStartDate(),"MM/dd/yyyy","MM/dd/yy");
@@ -161,7 +164,7 @@ public class MyPoliciesPage {
 
             Map<String, String> medEapidDb = exchDbDataProvider.getMedicalEap_id();
             member.setMedicalEapid_db(medEapidDb.get(member.getMedGroupInd()));
-            softAssert.assertEquals(medEapidDb.get(member.getMedGroupInd()),EAPID.getText().replaceAll("Exchange policy number: ", ""), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
+            softAssert.assertEquals(medEapidDb.get(member.getMedGroupInd()),EAPID.getText().replaceAll("Policy number: ", ""), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
             softAssert.assertEquals(lastUpdatedOn.getText(),expecLastUpdatedDate, "Last Updated On mismatch for member: " + member.getFirstName());
             softAssert.assertAll();
         }
@@ -216,4 +219,5 @@ public class MyPoliciesPage {
          By locator = By.id("SOL-CurrentPolicies-CancelCurrent" + planType + "\")");
          softAssert.assertFalse(basicActions.elementExists(locator),"Element should be absent but was found.");
     }
+
 }

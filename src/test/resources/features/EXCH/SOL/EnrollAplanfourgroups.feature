@@ -38,7 +38,7 @@ Feature: FA - 4groups - enroll in plan
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -52,7 +52,7 @@ Feature: FA - 4groups - enroll in plan
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I select "New" for Residential Address
-    Then I enter the new residential address details
+    And I enter the new residential address details for "Spouse"
       | addressLine1           | addressLine2 | city    | state | zipcode | county  | dob |
       | 456 Trail Ave          | Trail Ave    | Boulder | CO    | 80020   | BOULDER |09051959 |
     And I select "Yes" for CO Resident option
@@ -62,7 +62,7 @@ Feature: FA - 4groups - enroll in plan
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -76,9 +76,8 @@ Feature: FA - 4groups - enroll in plan
       |Spouse:Son |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
-    Then I validate I am on the "Add Address" page
     Then I select "New" for Residential Address
-    And I enter the new residential address details
+    And I enter the new residential address details for "SonOne"
       | addressLine1           | addressLine2 | city    | state | zipcode | county  | dob |
       | 900 Jailhouse Rock     | Unit 23      | Denver  | CO    | 80205   | DENVER  |06281996 |
     And I select "Yes" for CO Resident option
@@ -88,7 +87,7 @@ Feature: FA - 4groups - enroll in plan
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "SonOne"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -112,7 +111,7 @@ Feature: FA - 4groups - enroll in plan
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "SonTwo"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -139,7 +138,7 @@ Feature: FA - 4groups - enroll in plan
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Daughter"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -165,7 +164,7 @@ Feature: FA - 4groups - enroll in plan
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Nephew"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -192,7 +191,7 @@ Feature: FA - 4groups - enroll in plan
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Niece"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -270,43 +269,43 @@ Feature: FA - 4groups - enroll in plan
 
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "Yes" for will claim dependents question
-    Then I select "SonOne" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I select "SonTwo" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I select "Daughter" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I select "Nephew" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I select "Niece" for who will be claimed as dependent question on the Tax Status Elmo page
-    Then I click Save and Continue on Tax Status Elmo page
+    Then I select "SonOne" for who will be claimed as dependent question on the Tax Status page
+    Then I select "SonTwo" for who will be claimed as dependent question on the Tax Status page
+    Then I select "Daughter" for who will be claimed as dependent question on the Tax Status page
+    Then I select "Nephew" for who will be claimed as dependent question on the Tax Status page
+    Then I select "Niece" for who will be claimed as dependent question on the Tax Status page
+    Then I click Save and Continue on Tax Status page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "None of these" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
@@ -319,13 +318,13 @@ Feature: FA - 4groups - enroll in plan
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I click on "No Thanks" on good news page
-    Then I validate that my APTC value is "879.92/mo"
+    Then I validate that my APTC value is "889.53/mo"
 
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,SonOne,Daughter,Niece,Nephew"
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,SonOne,SonTwo,Daughter,Niece,Nephew"
     Then I click continue on start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page

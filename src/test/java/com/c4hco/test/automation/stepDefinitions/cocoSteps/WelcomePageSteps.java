@@ -68,6 +68,9 @@ public class WelcomePageSteps {
 
     @Then("I validate the action link properties on welcome page")
     public void iValidateActionLinks() {welcomePage.validateActionLinks();}
+
+    @Then("I validate the plan image for {string} on welcome page")
+    public void iValidateActionLinks(String carrier) {welcomePage.validatePlanImage(carrier);}
 }
 
 

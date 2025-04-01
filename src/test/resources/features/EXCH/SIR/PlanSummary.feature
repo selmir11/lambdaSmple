@@ -1,4 +1,4 @@
-@SIR-EXCH10 @medicalDentalPlanSummary
+@SIR-EXCH16 @medicalDentalPlanSummary
   # SLER-100, SLER-515
 Feature: Medical and Dental Plan Summary Verification test
 
@@ -133,7 +133,7 @@ Feature: Medical and Dental Plan Summary Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
@@ -159,7 +159,7 @@ Feature: Medical and Dental Plan Summary Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Mother"
     And I click continue on the Race and Ethnicity page
 
@@ -188,7 +188,7 @@ Feature: Medical and Dental Plan Summary Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "SonOne"
     And I click continue on the Race and Ethnicity page
 
@@ -216,7 +216,7 @@ Feature: Medical and Dental Plan Summary Verification test
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "SonTwo"
     And I click continue on the Race and Ethnicity page
 

@@ -13,6 +13,7 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.ManagePlans;
         import java.math.BigDecimal;
         import java.time.Year;
         import java.util.*;
+        import java.util.stream.Collectors;
 
 public class AdminPortalManagePlansPage {
 
@@ -405,6 +406,22 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//*[@id='form-edit-pan-member-info']/div/div[7]/div/div[2]")
     WebElement SESEHBError;
 
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='member-details-grid']//div[contains(@id,'firstName_')]")
+    List<WebElement> MedicalPlanMembersDetailsContainer;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='member-details-grid']//div[contains(@id,'firstName_')]")
+    List<WebElement> DentalPlanMembersDetailsContainer;
+    @FindBy(xpath = "//app-current-plan//div[@class='plan-member-info']")
+    WebElement CurrentPlanInfo;
+    @FindBy(xpath = "//*[@id='form-edit-pan-member-info']/div/div[7]/div/div[2]")
+    WebElement aptcEHBError;
+    List<WebElement> PlanContainer;
+    @FindBy(css = "#enrollments-container > div.no-plan-message.body-text-1")
+    WebElement noPlanMessage;
+    @FindBy(xpath = "//app-drop-down-select[@id='selectPolicy']//div[@class='drop-down-option drop-down-option-selected']")
+    WebElement planSelected;
+    @FindBy(xpath = "//*[@id='enrollment-info']/div/div[28]")
+    WebElement planId;
+
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
         softAssert.assertEquals(titleInBlueBar.getText(), "Admin Portal");
@@ -457,6 +474,8 @@ public class AdminPortalManagePlansPage {
         basicActions.waitForElementToBePresent(btnMakeChangeMed, 10);
         basicActions.waitForElementToBeClickable(btnMakeChangeMed, 10);
         btnMakeChangeMed.click();
+        basicActions.waitForElementToBePresentWithRetries(CurrentPlanInfo, 20);
+        PlanContainer = MedicalPlanMembersDetailsContainer;
     }
 
     public void clickResetChangesMedical() {
@@ -468,6 +487,8 @@ public class AdminPortalManagePlansPage {
         basicActions.waitForElementToBePresent(btnMakeChangeDental, 10);
         basicActions.waitForElementToBeClickable(btnMakeChangeDental, 10);
         btnMakeChangeDental.click();
+        basicActions.waitForElementToBePresentWithRetries(CurrentPlanInfo, 20);
+        PlanContainer=DentalPlanMembersDetailsContainer;
     }
 
     public void verifySaveDentalButtonDisplayed(String saveDental) {
@@ -569,6 +590,44 @@ public class AdminPortalManagePlansPage {
             String coverageStartDateValue = parts[1];
             String coverageStartDatemem = "//div[@id='coverageStartDate_" + memberNo + "']//input[1]";
             basicActions.updateElementWithRetries(coverageStartDatemem, coverageStartDateValue);
+        }
+    }
+    public void memberCoverageStrtDateNew(List<String> memberCoverageStrtDtList) {
+        Map<String ,String> memberUpdates = memberCoverageStrtDtList.stream()
+                .map(entry -> entry.split(":"))
+                .collect(Collectors.toMap(parts -> parts[0].trim(),parts -> parts[1].trim()));
+        basicActions.waitForElementListToBePresentWithRetries(PlanContainer,15);
+        basicActions.scrollToElement(CurrentPlanInfo);
+        for (WebElement nameElement : PlanContainer){
+            String memberFullName = nameElement.getText().trim();
+            String nameElementID = nameElement.getAttribute("id");
+            String index = nameElementID.replace("firstName_","");
+            String matchingname = memberUpdates.keySet().stream().filter(memberFullName::startsWith).findFirst().orElse(null);
+            Assert.assertNotNull(matchingname, "Member Name not found: " + memberFullName);
+            String inputDate = basicActions.getDateBasedOnRequirement(memberUpdates.get(matchingname));
+            String updatedDate = basicActions.changeDateFormat(inputDate, "yyyy-MM-dd", "MM/dd/yyyy");
+                 String coverageStartDateElement = "//div[@id='coverageStartDate_"+index+"']//input[1]";
+                 basicActions.waitForElementToBeClickableWithRetries(coverageStartdate, 30);
+                 basicActions.updateElementWithRetries(coverageStartDateElement, updatedDate);
+        }
+    }
+    public void memberFinancialStrtDateNew(List<String> memberFinancialStrtDtList) {
+        Map<String ,String> memberUpdates = memberFinancialStrtDtList.stream()
+                .map(entry -> entry.split(":"))
+                .collect(Collectors.toMap(parts -> parts[0].trim(),parts -> parts[1].trim()));
+        basicActions.waitForElementListToBePresentWithRetries(PlanContainer,15);
+        basicActions.scrollToElement(CurrentPlanInfo);
+        for (WebElement nameElement : PlanContainer){
+            String memberFullName = nameElement.getText().trim();
+            String nameElementID = nameElement.getAttribute("id");
+            String index = nameElementID.replace("firstName_","");
+            String matchingname = memberUpdates.keySet().stream().filter(memberFullName::startsWith).findFirst().orElse(null);
+            Assert.assertNotNull(matchingname, "Member Name not found: " + memberFullName);
+            String inputDate = basicActions.getDateBasedOnRequirement(memberUpdates.get(matchingname));
+            String updatedDate = basicActions.changeDateFormat(inputDate, "yyyy-MM-dd", "MM/dd/yyyy");
+                String financialStartDateElement = "//div[@id='financialStartDate_"+index+"']//input[1]";
+                basicActions.waitForElementToBeClickable(financialStartDate, 30);
+                basicActions.updateElementWithRetries(financialStartDateElement, updatedDate);
         }
     }
     public void memberFinancialStrtDate(List<String> memberFinancialStrtDtList) {
@@ -689,6 +748,56 @@ public class AdminPortalManagePlansPage {
 
             WebElement financialEndDateMem = basicActions.getDriver().findElement(By.xpath("//div[@id='financialEndDate_" + memberNo + "']//input[1]"));
             financialEndDateMem.sendKeys(financialEndDateValue);
+        }
+    }
+    public void updateTheCoverageEndDateNew(List<String> memberCoverageEndDtList) {
+        List<Map<String ,String>> memberUpdates = memberCoverageEndDtList.stream()
+                .map(entry -> entry.split(":"))
+                .map(parts -> {
+                    Map<String ,String> map = new HashMap<>();
+                    map.put("key", parts[0].trim());
+                    map.put("value", parts[1].trim() );
+                    return map;
+                } ).collect(Collectors.toList());
+        basicActions.scrollToElement(CurrentPlanInfo);
+        basicActions.waitForElementListToBePresentWithRetries(PlanContainer,60);
+        for (WebElement nameElement : PlanContainer){
+            String memberFullName = nameElement.getText().trim();
+            String nameElementID = nameElement.getAttribute("id");
+            String index = nameElementID.replace("firstName_","");
+            String matchingname = memberUpdates.stream().map(m->m.get("key")).filter(memberFullName::startsWith).findFirst().orElse(null);
+            Assert.assertNotNull(matchingname, "Member Name not found: " + memberFullName);
+            String inputDate = memberUpdates.stream().map(m->m.get("value")).findFirst().orElse("");
+            String updatedDate = basicActions.changeDateFormat(basicActions.getDateBasedOnRequirement(inputDate),"yyyy-MM-dd", "MM/dd/yyyy");
+            String coverageEndDateElement = "//div[@id='coverageEndDate_" +index+ "']//input[1]";
+            basicActions.waitForElementToBeClickable(coverageEndDate, 30);
+            basicActions.updateElementWithRetries(coverageEndDateElement, updatedDate);
+        }
+    }
+    public void updateTheFinancialEndDateNew(List<String> memberFinancialEndDtList) {
+        List<Map<String ,String>> memberUpdates = memberFinancialEndDtList.stream()
+                .map(entry -> entry.split(":"))
+                .map(parts -> {
+                    Map<String ,String> map = new HashMap<>();
+                    map.put("key", parts[0].trim());
+                    map.put("value", parts[1].trim() );
+                    return map;
+                } )
+                .collect(Collectors.toList());
+        basicActions.waitForElementListToBePresentWithRetries(PlanContainer,45);
+        basicActions.scrollToElement(CurrentPlanInfo);
+        for (WebElement nameElement : PlanContainer){
+            String memberFullName = nameElement.getText().trim();
+            String nameElementID = nameElement.getAttribute("id");
+            String index = nameElementID.replace("firstName_","");
+            String matchingname = memberUpdates.stream().map(m->m.get("key")).filter(memberFullName::startsWith).findFirst().orElse(null);
+            Assert.assertNotNull(matchingname, "Member Name not found: " + memberFullName);
+            String inputDate = memberUpdates.stream().map(m->m.get("value")).findFirst().orElse("");
+            String updatedDate =basicActions.changeDateFormat(basicActions.getDateBasedOnRequirement(inputDate),"yyyy-MM-dd", "MM/dd/yyyy");
+            String financialEndDateElement = "//div[@id='financialEndDate_"+index+"']//input[1]";
+            basicActions.waitForElementToBeClickable(financialEndDate, 30);
+            basicActions.scrollToElement(financialEndDate);
+            basicActions.updateElementWithRetries(financialEndDateElement, updatedDate);
         }
     }
 
@@ -837,7 +946,7 @@ public void selectThePlanYearOnManagePlan(String planYear) {
             String aptcvalue = parts[1];
             WebElement APTCMem = basicActions.getDriver().findElement(By.xpath("//div[@id='planAPTC_" + memberNo + "']//input[@type='text']"));
             APTCMem.click();
-            APTCMem.clear();
+            for (int i = 0; i < 6; i++) { APTCMem.sendKeys(Keys.BACK_SPACE); }
             APTCMem.sendKeys(aptcvalue);
             if(SharedData.getPrimaryMember()!= null){
             SharedData.getPrimaryMember().setMedicalAptcAmt(aptcvalue);
@@ -1395,6 +1504,25 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         if (value1 + value2 > value3) {
             Assert.assertTrue(SESEHBError.isDisplayed(), "Error message should be displayed when condition is met.");
         }
+    }
+    public void validateTheExpectedEHBErrorMessageIsDisplayed(String expectedErrorMessage){
+        softAssert.assertEquals(aptcEHBError.getText(), expectedErrorMessage, "APTC entered exceeds EHB amount");
+        softAssert.assertAll();
+    }
+    public void validateNoPlanMessageIsDisplayed(String expectedMessage){
+        basicActions.waitForElementToBePresent(noPlanMessage, 30);
+        softAssert.assertEquals(noPlanMessage.getText(), expectedMessage, "Select a plan year to view policies");
+        softAssert.assertAll();
+    }
+    public void verifyPlanIDDataMatchesDataInDropDownForSelectedPlan(String planSTG, String planOptionDropDownSTG, String planQA, String planOptionDropDownQA){
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(planId.getText(), planSTG);
+            softAssert.assertEquals(planSelected.getText(), planOptionDropDownSTG);
+        } else {
+            softAssert.assertEquals(planId.getText(), planQA);
+            softAssert.assertEquals(planSelected.getText(), planOptionDropDownQA);
+        }
+        softAssert.assertAll();
     }
 }
 

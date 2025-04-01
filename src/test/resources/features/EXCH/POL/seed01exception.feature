@@ -12,6 +12,12 @@ Feature: Regression Tests that require Seed 1 w/exception
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -35,7 +41,7 @@ Feature: Regression Tests that require Seed 1 w/exception
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -78,35 +84,26 @@ Feature: Regression Tests that require Seed 1 w/exception
     And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
-    And Validate medical plan details from my policies page with start date "First Of Next Month"
-    And Validate dental plan details from my policies page with start date "First Of Next Month"
-    And I click View Plan History link from medical plan card
-    And I validate medical plan details from plan history
-    And I click on to Back to Current Plan Details button
-    And I click View Plan History link from dental plan card
-    And I validate dental plan details from plan history
-    And I click on Sign Out in the Header for "NonElmo"
-     #    Validations are WIP
-    And I validate the member details from policy tables with coverage start date "First Of Next Month" and end date "Last Day Of Current Year"
-    And I validate member details from ob834_details table
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click on Sign Out in the Header for "Elmo"
+
+    #DB Validation
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+    And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
       | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
-    And I download the files from sftp server with location "/outboundedi/"
-    And I validate the ob834 files should not be empty
-    And I validate the ob834 files should have the values
-      | LX | N1 75              | REF       | REFDEN    |
-      | 1  | PRE AMT 1          | 291.02    | 21.00     |
-      | 2  | APTC AMT           | 0.00      | 0.00      |
-      | 3  | CSR AMT            | 0.00      | 0.00      |
-      | 4  | RATING AREA        | 3         | 3         |
-      | 5  | SOURCE EXCHANGE ID | COHBE     | COHBE     |
-      | 6  | TOT RES AMT        | 291.02    | 21.00     |
-      | 7  | PRE AMT TOT        | 291.02    | 21.00     |
-      | 8  | SEP REASON         | NEW_CO_RESIDENT | NEW_CO_RESIDENT |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
 
-  @SLER-1993-WIP-@R4V
+  @SLER-1993-WIP-R4V
   Scenario: RT-2327 ENR-EXCH: EDIT POLICY - COVERAGE & FINANCIAL END DATES  (CANCEL)
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
@@ -114,18 +111,39 @@ Feature: Regression Tests that require Seed 1 w/exception
     And I validate I am on the "Admin dashboard" page
     And I search for user and click email from search results
     Then I click on manage plan button on admin portal Individual dashboard
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate     | PolicyEndDate      | CoverageStartDate   | CoverageEndDate     | FinancialStartDate  | FinancialEndDate    |
+      | First Of Next Month |First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate     | PolicyEndDate      | CoverageStartDate   | CoverageEndDate     | FinancialStartDate  | FinancialEndDate    |
+      | First Of Next Month |First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month |
     Then I click Make Changes Medical button
-    Then I update the coverage end date
-      | 1:Cancel |
-    And I update the financial end date
-      | 1:Cancel |
+    And I update the Coverage End date of member on manage plan page
+      | Primary:First Of Next Month |
+    And I update the Financial End date of member on manage plan page
+      | Primary:First Of Next Month |
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I click Make Changes Dental button
-    Then I update the coverage end date
-      | 1:Cancel |
-    And I update the financial end date
-      | 1:Cancel|
+    And I update the Coverage End date of member on manage plan page
+      | Primary:First Of Next Month |
+    And I update the Financial End date of member on manage plan page
+      | Primary:First Of Next Month |
     And I click Save Button Dental
     And I select the reason to confirm the changes
     Then logout from Admin Portal
+        #DB Validation
+    And I validate "medical-cancelled" entities from policy tables
+    And I validate "dental-cancelled" entities from policy tables
+
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason|
+      | 024                   | 024                | AI                    |   CANCEL          |           |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason|
+      | 024                   | 024                | AI                    |   CANCEL          |           |
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data

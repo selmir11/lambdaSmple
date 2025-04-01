@@ -26,6 +26,9 @@ public class EmploymentSummaryPage {
     @FindBy(css = ".header-2")
     WebElement hdr_Employment;
 
+    @FindBy(css = ".header-3")
+    List<WebElement> jobOrSelfEmploymentHeaders;
+
     @FindBy(id = "EmploymentSummary-SaveAndContinue")
     WebElement btnContinue;
 
@@ -149,6 +152,18 @@ public class EmploymentSummaryPage {
     @FindBy(css=".fas.fa-spinner.fa-spin")
     WebElement spinner;
 
+    @FindBy(xpath = "//app-employment-summary//div[contains(@class,'bold')]")
+    List<WebElement> employmentSummaryBoldTexts;
+
+    @FindBy(id = "EmploymentSummary-GoBack")
+    WebElement btnGoBack;
+
+
+
+    public void clickOnBackButton() {
+        basicActions.waitForElementToBePresent(btnGoBack,20);
+        btnGoBack.click();
+    }
 
     public void clickContinue(){
         basicActions.wait(500);
@@ -535,6 +550,126 @@ public class EmploymentSummaryPage {
         softAssert.assertEquals(helpDrawerBodySubParagraphs.get(29).getText(), "Ingresos que proyecta\nEl ingreso anual proyectado que ingrese se utilizar\u00E1 para calcular la cantidad de ayuda financiera a la que califique (en lugar de la cantidad que calculamos de las fuentes de ingresos combinadas que report\u00F3). Tambi\u00E9n revisaremos los detalles de su ingreso mensual actual que proporcione para evaluar si es potencialmente elegible para Health First Colorado (Programa Medicaid de Colorado). Recuerde que si el ingreso que report\u00F3 en su declaraci\u00F3n del impuesto federal sobre los ingresos difiere de la informaci\u00F3n que report\u00F3 en esta solicitud, es posible que tenga que devolver parte o toda la ayuda financiera que reciba. El Servicio de Rentas Internas (IRS) hace la determinaci\u00F3n final sobre elegibilidad para Cr\u00E9ditos fiscales para la prima.");
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
+    }
+
+    public void validateTextEmploymentSummaryPage(String language) {
+        basicActions.waitForElementToBePresent(hdr_Income, 15);
+        switch (language) {
+            case "English":
+                validateEnglishTextEmploymentSummaryPage();
+                break;
+            case "Spanish":
+                validateSpanishTextEmploymentSummaryPage();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+    }
+
+    public void validateEnglishTextEmploymentSummaryPage() {
+        basicActions.waitForElementToBePresent(hdr_Income, 30);
+
+        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Income: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertTrue(hdr_Employment.getText().contains("Employment"), "Header text mismatch!");
+        softAssert.assertEquals(jobOrSelfEmploymentHeaders.get(0).getText(), "Job or Self-Employment Income");
+        softAssert.assertEquals(jobOrSelfEmploymentHeaders.get(1).getText(), "Total Job or Employment Income");
+
+        softAssert.assertEquals(employmentSummaryBoldTexts.get(0).getText(), "Company Name");
+        softAssert.assertEquals(employmentSummaryBoldTexts.get(1).getText(), "Self-employed");
+        softAssert.assertEquals(employmentSummaryBoldTexts.get(2).getText(), "Job Income");
+        softAssert.assertEquals(employmentSummaryBoldTexts.get(3).getText(), "Frequency");
+        softAssert.assertEquals(employmentSummaryBoldTexts.get(4).getText(), "Annual Total");
+
+        softAssert.assertEquals(btnContinue.getText(), "Continue");
+        softAssert.assertEquals(lnkEditIncome.getText(), "Edit/Update");
+        softAssert.assertEquals(lnkRemoveJob.get(0).getText(), "Remove this job");
+        softAssert.assertEquals(btnAddJob.getText(), "+ Add job or self-employment");
+        softAssert.assertEquals(btnGoBack.getText(), "Go back");
+
+        softAssert.assertAll();
+    }
+
+    public void validateSpanishTextEmploymentSummaryPage() {
+        basicActions.waitForElementToBePresent(hdr_Income, 15);
+
+        softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Ingresos: " + SharedData.getPrimaryMember().getFullName()));
+        softAssert.assertEquals(hdr_Employment.getText(), "Ingresos por empleo");
+        softAssert.assertEquals(jobOrSelfEmploymentHeaders.get(0).getText(), "Ingreso por empleo o por trabajo independiente");
+        softAssert.assertEquals(jobOrSelfEmploymentHeaders.get(1).getText(), "Ingreso total por empleo o por trabajo independiente");
+
+        softAssert.assertEquals(employmentSummaryBoldTexts.get(0).getText(), "Nombre de la compa\u00F1\u00EDa");
+        softAssert.assertEquals(employmentSummaryBoldTexts.get(1).getText(), "Trabajadores por cuenta propia");
+        softAssert.assertEquals(employmentSummaryBoldTexts.get(2).getText(), "Ingresos laborales");
+        softAssert.assertEquals(employmentSummaryBoldTexts.get(3).getText(), "Frecuencia");
+        softAssert.assertEquals(employmentSummaryBoldTexts.get(4).getText(), "Total anual");
+
+        softAssert.assertEquals(btnContinue.getText(), "Continuar");
+        softAssert.assertEquals(lnkEditIncome.getText(), "Editar/Actualizar");
+        softAssert.assertEquals(lnkRemoveJob.get(0).getText(), "Eliminar este trabajo");
+        softAssert.assertEquals(btnAddJob.getText(), "+ Agregar un empleo o trabajo independiente");
+        softAssert.assertEquals(btnGoBack.getText(), "Volver");
+
+        softAssert.assertAll();
+    }
+
+    public void validateBoldTextEmploymentSummaryPage() {
+        basicActions.waitForElementToBePresent(hdr_Income, 15);
+
+        // Validating Income Header
+        softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px", "Font size mismatch for Income");
+        softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700", "Font weight mismatch for Income");
+        softAssert.assertEquals(hdr_Income.getCssValue("line-height"), "48px", "Line height mismatch for Income");
+        softAssert.assertEquals(hdr_Income.getCssValue("color"), "rgba(43, 49, 60, 1)", "Color mismatch for Income");
+
+        // Validating Employment Header
+        softAssert.assertEquals(hdr_Employment.getText(), "Employment", "Text mismatch for Employment");
+        softAssert.assertEquals(hdr_Employment.getCssValue("font-size"), "28px", "Font size mismatch for Employment");
+        softAssert.assertEquals(hdr_Employment.getCssValue("font-weight"), "700", "Font weight mismatch for Employment");
+        softAssert.assertEquals(hdr_Employment.getCssValue("line-height"), "40px", "Line height mismatch for Employment");
+        softAssert.assertEquals(hdr_Employment.getCssValue("color"), "rgba(43, 49, 60, 1)", "Color mismatch for Employment");
+
+        // Validating Job or Self-Employment Header
+        softAssert.assertEquals(jobOrSelfEmploymentHeaders.get(0).getText(), "Job or Self-Employment Income", "Text mismatch for Job or Self-Employment Income");
+        softAssert.assertEquals(jobOrSelfEmploymentHeaders.get(0).getCssValue("font-size"), "19px", "Font size mismatch");
+        softAssert.assertEquals(jobOrSelfEmploymentHeaders.get(0).getCssValue("font-weight"), "700", "Font weight mismatch");
+        softAssert.assertEquals(jobOrSelfEmploymentHeaders.get(0).getCssValue("line-height"), "28px", "Line height mismatch");
+        softAssert.assertEquals(jobOrSelfEmploymentHeaders.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)", "Color mismatch");
+
+        // Validating Edit/Update Link
+        softAssert.assertEquals(lnkEditIncome.getText(), "Edit/Update", "Text mismatch for Edit/Update");
+        softAssert.assertEquals(lnkEditIncome.getCssValue("font-size"), "14px", "Font size mismatch");
+        softAssert.assertEquals(lnkEditIncome.getCssValue("font-weight"), "400", "Font weight mismatch");
+        softAssert.assertEquals(lnkEditIncome.getCssValue("line-height"), "24px", "Line height mismatch");
+        softAssert.assertEquals(lnkEditIncome.getCssValue("color"), "rgba(26, 112, 179, 1)", "Color mismatch");
+
+        // Validating Buttons
+        softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px", "Font size mismatch for Income");
+        softAssert.assertEquals(hdr_Income.getCssValue("font-weight"), "700", "Font weight mismatch for Income");
+        softAssert.assertEquals(hdr_Income.getCssValue("line-height"), "48px", "Line height mismatch for Income");
+        softAssert.assertEquals(hdr_Income.getCssValue("color"), "rgba(43, 49, 60, 1)", "Color mismatch for Income");
+
+        // Go Back Button
+        softAssert.assertEquals(btnGoBack.getText(), "Go back", "Button text mismatch");
+        softAssert.assertEquals(btnGoBack.getCssValue("background-color"), "rgba(252, 252, 252, 1)", "Button background mismatch for Go back");
+        softAssert.assertEquals(btnGoBack.getCssValue("border"), "2px solid rgb(26, 112, 179)", "Button border mismatch for Go back");
+        softAssert.assertEquals(btnGoBack.getCssValue("border-radius"), "4px", "Button border-radius mismatch for Go back");
+        softAssert.assertEquals(btnGoBack.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch for Go back");
+        softAssert.assertEquals(btnGoBack.getCssValue("font-size"), "20px", "Font size mismatch for Go back");
+        softAssert.assertEquals(btnGoBack.getCssValue("color"), "rgba(26, 112, 179, 1)", "Text color mismatch for Go back");
+
+        // Continue Button
+        softAssert.assertEquals(btnContinue.getText(), "Continue", "Button text mismatch for Continue");
+        softAssert.assertEquals(btnContinue.getCssValue("background-color"), "rgba(26, 112, 179, 1)", "Button background mismatch for Continue");
+        softAssert.assertEquals(btnContinue.getCssValue("border"), "2px solid rgb(26, 112, 179)", "Button border mismatch for Continue");
+        softAssert.assertEquals(btnContinue.getCssValue("border-radius"), "4px", "Button border-radius mismatch for Continue");
+        softAssert.assertEquals(btnContinue.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch for Continue");
+        softAssert.assertEquals(btnContinue.getCssValue("font-size"), "20px", "Font size mismatch for Continue");
+        softAssert.assertEquals(btnContinue.getCssValue("color"), "rgba(252, 252, 252, 1)", "Text color mismatch for Continue");
+        softAssert.assertAll();
+    }
+    public void clickOnGoBack(){
+        basicActions.waitForElementToBePresent(btnGoBack,10);
+        btnGoBack.click();
     }
 
 }

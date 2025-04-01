@@ -11,6 +11,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.*;
@@ -82,6 +84,9 @@ public class WelcomePage {
     @FindBy(css = ".plan-inner-container > div > div")
     List<WebElement> policyMedicalDetails;
 
+    @FindBy(css = ".plan-inner-container.body-text-1 img")
+    WebElement policyMedicalPlanLogo;
+
     @FindBy(css = ".premium-container > span")
     List<WebElement> policyMonthlyDetails;
 
@@ -130,8 +135,14 @@ public class WelcomePage {
     public void selectPlanyear(String planYear) {
         basicActions.waitForElementToBeClickable(planYearSelectorDp, 10);
         basicActions.scrollToElement(planYearSelectorDp);
-        planYearSelectorDp.click();
-        basicActions.selectValueFromDropdown(planYearSelectorDp, planYearSelectorOptions, planYear);
+        selectValueFromDropdown(planYearSelectorDp, planYear);
+    }
+    public void selectValueFromDropdown(WebElement dropdownElement,String PlanYear) {
+        String SelectYear = basicActions.getDateBasedOnRequirement(PlanYear);
+        dropdownElement.click();
+        System.out.println("Selecting plan year " + SelectYear);
+        Select dropdown = new Select(dropdownElement);
+        dropdown.selectByVisibleText(SelectYear);
     }
 
     public void clickTakeQuiz() {
@@ -447,7 +458,7 @@ public class WelcomePage {
         basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
         basicActions.waitForElementToBePresent(planYearText, 20);
         basicActions.waitForElementToBePresent(medicalMemberNames, 10);
-        List<String> memberNamesList = basicActions.getAllMemNames();
+        List<String> memberNamesList = basicActions.getAllMemCompleteNames();
         List<String> memberNamesListWelcomePage = new ArrayList<>(Arrays.asList(medicalMemberNames.getText().split(", ")));
         Collections.sort(memberNamesList);
         Collections.sort(memberNamesListWelcomePage);
@@ -575,6 +586,25 @@ public class WelcomePage {
         actions.moveToElement(actionLinks.get(1)).perform();
         basicActions.wait(300);
         softAssert.assertEquals(actionLinks.get(1).getCssValue("color"),"rgba(22, 156, 216, 1)");
+        softAssert.assertAll();
+    }
+
+    public void validatePlanImage(String carrier) {
+        Map<String, String> carrierLogos = Map.of(
+                "Anthem", "https://c4hco-all-email-image-host.s3.amazonaws.com/carriers/logos/2025/76680_co.png",
+                "Cigna Healthcare", "https://c4hco-all-email-image-host.s3.amazonaws.com/carriers/logos/2025/49375_co.png",
+                "Denver Health", "https://c4hco-all-email-image-host.s3.amazonaws.com/carriers/logos/2025/66699_co.png",
+                "Kaiser Permanente", "https://c4hco-all-email-image-host.s3.amazonaws.com/carriers/logos/2025/21032_co.png",
+                "Rocky Mountain Health Plans / UHC", "https://c4hco-all-email-image-host.s3.amazonaws.com/carriers/logos/2025/97879_co.png",
+                "Select Health", "https://c4hco-all-email-image-host.s3.amazonaws.com/carriers/logos/2025/55584_co.png"
+        );
+        if (!carrierLogos.containsKey(carrier)) {
+            throw new IllegalArgumentException("Invalid carrier name: " + carrier);
+        }
+        String expectedImageUrl = carrierLogos.get(carrier);
+        basicActions.waitForElementToBePresent(containerMainHeaderText, 60);
+        basicActions.waitForElementToBePresent(policyMedicalPlanLogo, 60);
+        softAssert.assertEquals(policyMedicalPlanLogo.getAttribute("src"), expectedImageUrl);
         softAssert.assertAll();
     }
 }

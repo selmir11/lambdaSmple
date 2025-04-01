@@ -4,6 +4,7 @@ import com.c4hco.test.automation.pages.exchPages.DeductionsPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 import java.util.List;
 
@@ -19,6 +20,9 @@ public class DeductionsPageSteps {
 
     @Then("I click continue on the Deductions page")
     public void clickContinue(){deductionsPage.clickContinue();}
+
+    @Then("I click go back button on the Deductions page")
+    public void clickGoBack(){deductionsPage.clickGoBack();}
 
     @And("I select {string} icon on the Deductions Page")
     public void iSelectHelpIcon(String labelIcon){deductionsPage.clickHelpIcon(labelIcon);}
@@ -81,4 +85,42 @@ public class DeductionsPageSteps {
         deductionsPage.verifyAllDeductioncheckboxErrors(language);
     }
 
+    @When("I click on Go Back button in deductions page")
+    public void iClickOnGoBackButtonInDeductionsPage() {
+        deductionsPage.clickOnGoBackButton();
+    }
+
+    @Then("I verify color size format of the header and other page texts other than check boxes")
+    public void iVerifyTheHeaderAndOtherPageTextsOtherThanCheckBoxes(List<String> pageTexts) {
+        deductionsPage.verifyTextsHeaderAndOtherLabels(pageTexts);
+    }
+
+    @Then("I verify all deduction options color size format text order and check boxes for {string}")
+    public void iVerifyAllDeductionOptionsColorSizeFormatTextOrderAndCheckBoxesFor(String languageOpt, List<String> deductionOptions) {
+        deductionsPage.verifyDeductionOptionsOrderAndText(languageOpt, deductionOptions);
+    }
+
+    @Then("I validate default property of amount box and dropdown")
+    public void iValidateDefaultPropertyOfAmountBoxAndDropdown(List<String> dropdownOptions) {
+
+    }
+    @Then("I validate default property of amount box and dropdown for {string}")
+    public void iValidateDefaultPropertyOfAmountBoxAndDropdownFor(String languageOpt,List<String> dropdownOptions) {
+        deductionsPage.verifyDefaultPropertyOfTextBoxAndDropdown(languageOpt,dropdownOptions);
+    }
+
+    @Then("I verify amount {string}  and frequency {string} is selected correctly")
+    public void iVerifyAmountAndFrequencyIsSelectedCorrectly(String amount, String freq) {
+        deductionsPage.verifyAmountCanBeEntered(amount,freq);
+    }
+
+    @Then("I verify when None_of_these selected,other checkboxes not selected")
+    public void iVerifyWhenNone_of_theseSelectedOtherCheckboxesNotSelected() {
+        deductionsPage.verifyOnlyNone_of_theseSelected();
+    }
+
+    @Then("I verify font color size of the back and save button in deductions page when mouse_Hover is {string}")
+    public void iVerifyFontColorSizeOfTheBackAndSaveButtonInDeductionsPageWhenMouse_overIs(String mouseOverOpt) {
+        deductionsPage.verifyFontSizeColorOfBackAndContinue(mouseOverOpt);
+    }
 }

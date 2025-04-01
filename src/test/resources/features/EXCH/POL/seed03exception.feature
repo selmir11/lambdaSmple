@@ -1,6 +1,9 @@
 Feature: Seed03exception - Exchange
 
   Background: Seed 03 With Exception For Exchange- Husband + Wife Both Smokers with Broker - NFA
+    Given I set the test scenario details
+      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 1           | 2            | 1                 | 1                | 2               |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -9,6 +12,12 @@ Feature: Seed03exception - Exchange
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     And I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -38,7 +47,7 @@ Feature: Seed03exception - Exchange
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -49,7 +58,7 @@ Feature: Seed03exception - Exchange
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
     Then I enter details on tell us about additional members of your household exch page and continue with "Spouse", "03021995", "Female" and applying "Yes"
-      |Primary:Spouse|
+      | Primary:Spouse |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -60,7 +69,7 @@ Feature: Seed03exception - Exchange
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -96,6 +105,8 @@ Feature: Seed03exception - Exchange
     And I select "EssentialSmile Colorado - Total Care" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
@@ -103,9 +114,24 @@ Feature: Seed03exception - Exchange
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
+    And I Validate the correct enrolled plans are displayed on account overview page
     And I click on Sign Out in the Header for "NonElmo"
 
-  @SLER-1991-WIP_@R4V
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+    And I verify the policy data quality check with Policy Ah keyset size 2
+   # And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
+
+  @SLER-1991-WIP-R4V
   Scenario: RT-2307 ENR-EXCH: EDIT POLICY - COVERAGE & FINANCIAL START DATES EARLIER THAN POLICY START DATE
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
@@ -114,21 +140,81 @@ Feature: Seed03exception - Exchange
     And I search for user and click email from search results
     Then I click on manage plan button on admin portal Individual dashboard
     Then I click Make Changes Medical button
-    And I update the Coverage Start date of member
-      | 1:01012025|
-      | 2:01012025 |
-    And I update the Financial Start date of member
-      | 1:01012025 |
-      | 2:01012025 |
+    And I update the Coverage Start date of member on manage plan page
+      | Primary:First Day Of Current Year |
+      | Spouse:First Day Of Current Year  |
+    And I update the Financial Start date of member on manage plan page
+      | Primary:First Day Of Current Year |
+      | Spouse:First Day Of Current Year  |
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I click Make Changes Dental button
-    And I update the Coverage Start date of member
-      | 1:01012025|
-      | 2:01012025 |
-    And I update the Financial Start date of member
-      | 1:01012025 |
-      | 2:01012025 |
+    And I update the Coverage Start date of member on manage plan page
+      | Primary:First Day Of Current Year |
+      | Spouse:First Day Of Current Year  |
+    And I update the Financial Start date of member on manage plan page
+      | Primary:First Day Of Current Year |
+      | Spouse:First Day Of Current Year  |
     And I click Save Button Dental
     And I select the reason to confirm the changes
     Then logout from Admin Portal
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate     | PolicyEndDate      | CoverageStartDate   | CoverageEndDate     | FinancialStartDate  | FinancialEndDate    |
+      | First Of Next Month |First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate     | PolicyEndDate      | CoverageStartDate   | CoverageEndDate     | FinancialStartDate  | FinancialEndDate    |
+      | First Of Next Month |First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month |
+    And I validate "medical-cancelled" entities from policy tables
+    And I validate "dental-cancelled" entities from policy tables
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason|
+      | 024                   | 024                | AI                    |   CANCEL          |           |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason|
+      | 024                   | 024                | AI                    |   CANCEL          |           |
+    And I verify the policy data quality check with Policy Ah keyset size 2
+  #  And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
+
+  @SLER-2361-WIP
+  Scenario: RT-2304 - ENR-EXCH: USER INITIATED DISENROLLMENT (CANCEL) - MEDICAL  ALL MEMBERS (BROKER OBO)
+    Given I open the login page on the "broker" portal
+    And I validate I am on the "Login" page
+    And I login as Broker User any environment "Amethyst.Broker@invalid.com" password "ALaska13!" and "Amethyst.Broker@invalid.com" password "ALaska13!"
+    And I validate I am on the "Broker Portal Your Clients" page
+    Then I validate the Your Clients page title
+    And I search for clients
+    And I click on first client search result
+    And I click "manage" the client
+    Then I validate I am on the "Account Overview" page
+    Then I click on ClickHere link for "My Plans"
+    And I validate I am on the "My Policies" page
+    And I click on "Cancel Medical Plan" button
+    And I validate I am on the "Cancellation Request" page
+    Then I affirm and cancel the active plan
+    Then I click continue on Cancellation Request page
+    Then I click Okay on Thank you popup
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "Account Overview" page
+    And I click on Sign Out in the Header for "NonElmo"

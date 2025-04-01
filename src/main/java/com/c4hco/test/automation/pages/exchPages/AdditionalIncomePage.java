@@ -2,6 +2,7 @@ package com.c4hco.test.automation.pages.exchPages;
 
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 import com.c4hco.test.automation.Dto.SharedData;
 
 import java.util.List;
+import java.util.Map;
 
 
 public class AdditionalIncomePage {
@@ -62,6 +64,9 @@ public class AdditionalIncomePage {
     @FindBy(css = ".body-text-1")
     List <WebElement> txtAdditionalIncomeText;
 
+    @FindBy(id = "ELIG-AdditionalIncome-ALMR-amountInput")
+    WebElement txtAlimonyReceivedAmount;
+
     @FindBy(id = "ELIG-AdditionalIncome-CAPG-amountInput")
     WebElement txtCapitalGainsAmount;
 
@@ -70,6 +75,9 @@ public class AdditionalIncomePage {
 
     @FindBy(id = "ELIG-AdditionalIncome-PENS-amountInput")
     WebElement txtPrivateRetirementIncomeAmount;
+
+    @FindBy(id = "ELIG-AdditionalIncome-ALMR-frequencySelect")
+    WebElement selectALMRFrequency;
 
     @FindBy(id = "ELIG-AdditionalIncome-CAPG-frequencySelect")
     WebElement selectCAPGFrequency;
@@ -146,6 +154,81 @@ public class AdditionalIncomePage {
     @FindBy(css = ".drawer-footer h3 a")
     WebElement helpDrawerContactUsLink;
 
+    @FindBy(css = ".error-message")
+    List<WebElement> ActiveErrorMessage;
+
+    @FindBy(css = ".error-icon .error-icon")
+    List<WebElement> ActiveErrorIcon;
+
+    @FindBy(xpath = "//input[@type='text']")
+    WebElement ActiveInputTextField;
+
+    @FindBy(id = "ELIG-AdditionalIncome-PENS-amountInput")
+    WebElement txtPensionIncomeAmount;
+
+    @FindBy(id = "ELIG-AdditionalIncome-RETR-amountInput")
+    WebElement txtPrivateRetrIncomeAmount;
+
+    @FindBy(id = "ELIG-AdditionalIncome-RETR-frequencySelect")
+    WebElement selectRETRFrequency;
+
+    @FindBy(id = "ELIG-AdditionalIncome-TTWI-amountInput")
+    WebElement txtSocialSecurityIncome;
+
+    @FindBy(id = "ELIG-AdditionalIncome-TTWI-frequencySelect")
+    WebElement selectTTWIFrequency;
+
+    @FindBy(id = "ELIG-AdditionalIncome-UNEP-amountInput")
+    WebElement txtUnemploymentInsuranceBenefitIncome;
+
+    @FindBy(id = "ELIG-AdditionalIncome-UNEP-frequencySelect")
+    WebElement selectUNEPFrequency;
+
+    @FindBy(id = "ELIG-AdditionalIncome-INVI-amountInput")
+    WebElement txtInvestmentIncome;
+
+    @FindBy(id = "ELIG-AdditionalIncome-INVI-frequencySelect")
+    WebElement selectINVIFrequency;
+
+    @FindBy(id = "ELIG-AdditionalIncome-CASP-amountInput")
+    WebElement txtCashSupportIncome;
+
+    @FindBy(id = "ELIG-AdditionalIncome-CASP-frequencySelect")
+    WebElement selectCASPFrequency;
+
+    @FindBy(id = "ELIG-AdditionalIncome-UTFI-amountInput")
+    WebElement txtUntaxedForeignIncome;
+
+    @FindBy(id = "ELIG-AdditionalIncome-UTFI-frequencySelect")
+    WebElement selectUTFIFrequency;
+
+    @FindBy(id = "ELIG-AdditionalIncome-RLTI-amountInput")
+    WebElement txtRoyaltyIncomeAmount;
+
+    @FindBy(id = "ELIG-AdditionalIncome-RLTI-frequencySelect")
+    WebElement selectRLTIFrequency;
+
+    @FindBy(id = "ELIG-AdditionalIncome-TRBI-amountInput")
+    WebElement txtTaxableIncomeFromTribalSourcesAmount;
+
+    @FindBy(id = "ELIG-AdditionalIncome-TRBI-frequencySelect")
+    WebElement selectTRBIFrequency;
+
+    @FindBy(xpath = "//hr")
+    WebElement horizontalLine;
+
+    @FindBy(css = "#ELIG-AdditionalIncome-ALMR-amountInput")
+    WebElement txtBoxAlimonyReceivedAmount;
+
+    @FindBy(xpath = "//*[name()='svg' and @class='feather feather-dollar-sign']")
+    WebElement dollarSymbol;
+
+    @FindBy(xpath = "//label[@class='checkbox-container checked']")
+    List<WebElement> checkBoxChecked;
+
+    @FindBy(xpath = "//lib-button")
+    List<WebElement> btnOutlineBackAndSave;
+
     private BasicActions basicActions;
     public BasicActions getDriver(){
         return BasicActions.getInstance();
@@ -160,6 +243,78 @@ public class AdditionalIncomePage {
         basicActions.waitForElementToBeClickable(saveAndContinueBtn, 10);
 
         switch (addtlIncomeOption) {
+            case "Alimony Received":
+                addtlIncomeOptionsCheckbox.get(0).click();
+                basicActions.waitForElementToBeClickable(txtAlimonyReceivedAmount, 10);
+                txtAlimonyReceivedAmount.sendKeys(Amount);
+
+                Select dropdown1 = new Select(selectALMRFrequency);
+                dropdown1.selectByVisibleText(" " + Frequency + " ");
+                break;
+            case "Private Retirement Income":
+                addtlIncomeOptionsCheckbox.get(4).click();
+                basicActions.waitForElementToBeClickable(txtPrivateRetrIncomeAmount, 10);
+                txtPrivateRetrIncomeAmount.sendKeys(Amount);
+
+                Select dropdown51 = new Select(selectRETRFrequency);
+                dropdown51.selectByVisibleText(" " + Frequency + " ");
+                break;
+            case "Income from Social Security":
+                addtlIncomeOptionsCheckbox.get(5).click();
+                basicActions.waitForElementToBeClickable(txtSocialSecurityIncome, 10);
+                txtSocialSecurityIncome.sendKeys(Amount);
+
+                Select dropdown6 = new Select(selectTTWIFrequency);
+                dropdown6.selectByVisibleText(" " + Frequency + " ");
+                break;
+            case "Unemployment insurance benefit":
+                addtlIncomeOptionsCheckbox.get(6).click();
+                basicActions.waitForElementToBeClickable(txtUnemploymentInsuranceBenefitIncome, 10);
+                txtUnemploymentInsuranceBenefitIncome.sendKeys(Amount);
+
+                Select dropdown7 = new Select(selectUNEPFrequency);
+                dropdown7.selectByVisibleText(" " + Frequency + " ");
+                break;
+            case "Investment Income":
+                addtlIncomeOptionsCheckbox.get(7).click();
+                basicActions.waitForElementToBeClickable(txtInvestmentIncome, 10);
+                txtInvestmentIncome.sendKeys(Amount);
+
+                Select dropdown8 = new Select(selectINVIFrequency);
+                dropdown8.selectByVisibleText(" " + Frequency + " ");
+                break;
+            case "Cash Support":
+                addtlIncomeOptionsCheckbox.get(8).click();
+                basicActions.waitForElementToBeClickable(txtCashSupportIncome, 10);
+                txtCashSupportIncome.sendKeys(Amount);
+
+                Select dropdown9 = new Select(selectCASPFrequency);
+                dropdown9.selectByVisibleText(" " + Frequency + " ");
+                break;
+            case "Untaxed foreign income":
+                addtlIncomeOptionsCheckbox.get(9).click();
+                basicActions.waitForElementToBeClickable(txtUntaxedForeignIncome, 10);
+                txtUntaxedForeignIncome.sendKeys(Amount);
+
+                Select dropdown10 = new Select(selectUTFIFrequency);
+                dropdown10.selectByVisibleText(" " + Frequency + " ");
+                break;
+            case "Royalty income":
+                addtlIncomeOptionsCheckbox.get(10).click();
+                basicActions.waitForElementToBeClickable(txtRoyaltyIncomeAmount, 10);
+                txtRoyaltyIncomeAmount.sendKeys(Amount);
+
+                Select dropdown11 = new Select(selectRLTIFrequency);
+                dropdown11.selectByVisibleText(" " + Frequency + " ");
+                break;
+            case "Taxable income from Tribal Sources":
+                addtlIncomeOptionsCheckbox.get(11).click();
+                basicActions.waitForElementToBeClickable(txtTaxableIncomeFromTribalSourcesAmount, 10);
+                txtTaxableIncomeFromTribalSourcesAmount.sendKeys(Amount);
+
+                Select dropdown12 = new Select(selectTRBIFrequency);
+                dropdown12.selectByVisibleText(" " + Frequency + " ");
+                break;
             case "Capital Gains":
                 addtlIncomeOptionsCheckbox.get(1).click();
                 basicActions.waitForElementToBeClickable(txtCapitalGainsAmount, 10);
@@ -175,6 +330,14 @@ public class AdditionalIncomePage {
 
                 Select dropdown3 = new Select(selectIFRPFrequency);
                 dropdown3.selectByVisibleText(" " + Frequency + " ");
+                break;
+            case "Pension":
+                addtlIncomeOptionsCheckbox.get(3).click();
+                basicActions.waitForElementToBeClickable(txtPensionIncomeAmount, 10);
+                txtPrivateRetirementIncomeAmount.sendKeys(Amount);
+
+                Select dropdown4 = new Select(selectPENSFrequency);
+                dropdown4.selectByVisibleText(" " + Frequency + " ");
                 break;
             case "Private Retirement income":
                 addtlIncomeOptionsCheckbox.get(4).click();
@@ -639,6 +802,12 @@ public class AdditionalIncomePage {
                 basicActions.waitForElementToBePresent(txtPrivateRetirementIncomeAmount,20);
                 softAssert.assertEquals(txtPrivateRetirementIncomeAmount.getAttribute("value"), Amount);
                 softAssert.assertEquals(selectPENSFrequency.getAttribute("value"), Frequency);
+                softAssert.assertAll();
+                break;
+            case "Taxable income from Tribal Sources":
+                basicActions.waitForElementToBePresent(txtTaxableIncomeFromTribalSourcesAmount,20);
+                softAssert.assertEquals(txtTaxableIncomeFromTribalSourcesAmount.getAttribute("value"), Amount);
+                softAssert.assertEquals(selectTRBIFrequency.getAttribute("value"), Frequency);
                 softAssert.assertAll();
                 break;
             default:
@@ -1221,4 +1390,170 @@ public class AdditionalIncomePage {
         backBtn.click();
     }
 
+    public void validateErrorMessageAndItsProperties(DataTable dataTable) {
+        basicActions.waitForElementListToBePresent(ActiveErrorIcon, 10);
+        basicActions.waitForElementListToBePresent(ActiveErrorMessage, 10);
+
+        List<Map<String, String>> data = dataTable.asMaps();
+        for (int i = 0; i < data.size(); i++) {
+            softAssert.assertTrue(ActiveErrorIcon.get(i).isDisplayed(), "Error Icon for error '" + data.get(i).get("Text") + "' is not visible in the page");
+            softAssert.assertTrue(ActiveErrorMessage.get(i).isDisplayed(), "Error Message for error '" + data.get(i).get("Text") + "' is not visible in the page");
+            softAssert.assertEquals(ActiveErrorMessage.get(i).getText(), data.get(i).get("Text"),"Expected and Actual Error message is not matching");
+            softAssert.assertEquals(ActiveErrorMessage.get(i).getCssValue("font-size"), data.get(i).get("fontSize"),"Expected and Actual Font size for the error '" + data.get(i).get("Text") +"' is not matching.");
+            softAssert.assertEquals(ActiveErrorMessage.get(i).getCssValue("font-family"), data.get(i).get("fontFamily"),"Expected and Actual Font family for the error '" + data.get(i).get("Text") +"' is not matching.");
+            softAssert.assertEquals(ActiveErrorMessage.get(i).getCssValue("font-weight"), data.get(i).get("fontWeight"),"Expected and Actual Font weight for the error '" + data.get(i).get("Text") +"' is not matching.");
+            softAssert.assertEquals(ActiveErrorMessage.get(i).getCssValue("color"), data.get(i).get("color"),"Expected and Actual Font color for the error '" + data.get(i).get("Text") +"' is not matching.");
+            softAssert.assertAll();
+        }
+    }
+
+    public void verifyActiveErrorMessage(String expectedErrorMessage){
+        basicActions.waitForElementListToBePresent(ActiveErrorMessage,30);
+        softAssert.assertEquals(ActiveErrorMessage.get(0).getText(), expectedErrorMessage,"Actual and Expected Error message is not matching");
+        softAssert.assertAll();
+    }
+
+    public void enterAndVerifyTheAmount(String enteredValue,String expectedValue){
+        basicActions.waitForElementToBePresent(ActiveInputTextField,30);
+        ActiveInputTextField.clear();
+        ActiveInputTextField.sendKeys(enteredValue);
+        basicActions.wait(20);
+        softAssert.assertEquals(ActiveInputTextField.getAttribute("value"), expectedValue,"Actual and Expected Amount is not matching");
+        softAssert.assertAll();
+    }
+    public void verifyHeaderAndOtherTextsColorEtc(List<String> pageTexts){
+        basicActions.wait(1000);
+        String signature=SharedData.getPrimaryMember().getSignature();
+        softAssert.assertEquals(hdr_Income.getText(),pageTexts.get(0)+" "+signature,"Income header text mismatch");
+        softAssert.assertEquals(hdr_AdditionalIncome.getText(),pageTexts.get(1),"Add income sources text mismatch");
+        softAssert.assertEquals(txtAdditionalIncomeText.get(0).getText(),pageTexts.get(2),"Did you receive text mismatch");
+        softAssert.assertEquals(txtAdditionalIncomeText.get(1).getText(),pageTexts.get(3),"Select all that apply text mismatch");
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(horizontalLine,10));
+
+        softAssert.assertEquals(hdr_Income.getCssValue("font-size"), "36px", "IncomeSummaryHeader-Font size mismatch");
+        softAssert.assertEquals(hdr_Income.getCssValue("color"), "rgba(43, 49, 60, 1)", "IncomeSummaryHeader-Color mismatch");
+        softAssert.assertEquals(hdr_Income.getCssValue("font-family"), "\"PT Sans\", sans-serif", "IncomeSummaryHeader-Font family mismatch");
+        softAssert.assertEquals(hdr_Income.getCssValue("line-height"), "48px", "IncomeSummaryHeader-Line height mismatch");
+        softAssert.assertEquals(hdr_AdditionalIncome.getCssValue("font-size"), "28px", "DeductionSummaryHeader-Font size mismatch");
+        softAssert.assertEquals(hdr_AdditionalIncome.getCssValue("color"), "rgba(43, 49, 60, 1)", "DeductionSummaryHeader-Color mismatch");
+        softAssert.assertEquals(hdr_AdditionalIncome.getCssValue("font-family"), "\"PT Sans\", sans-serif", "DeductionSummaryHeader-Font family mismatch");
+        softAssert.assertEquals(hdr_AdditionalIncome.getCssValue("line-height"), "40px", "DeductionSummaryHeader-Line height mismatch");
+        softAssert.assertEquals(txtAdditionalIncomeText.get(0).getCssValue("font-size"), "16px", "Do You have-Font size mismatch");
+        softAssert.assertEquals(txtAdditionalIncomeText.get(0).getCssValue("color"), "rgba(43, 49, 60, 1)", "Do You have-Color mismatch");
+        softAssert.assertEquals(txtAdditionalIncomeText.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif", "Do You have-Font family mismatch");
+        softAssert.assertEquals(txtAdditionalIncomeText.get(0).getCssValue("line-height"), "28px", "Do You have-Line height mismatch");
+        softAssert.assertEquals(txtAdditionalIncomeText.get(1).getCssValue("font-size"), "16px", "Select all that apply-Font size mismatch");
+        softAssert.assertEquals(txtAdditionalIncomeText.get(1).getCssValue("color"), "rgba(43, 49, 60, 1)", "Select all that apply-Color mismatch");
+        softAssert.assertEquals(txtAdditionalIncomeText.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif", "Select all that apply-Font family mismatch");
+        softAssert.assertEquals(txtAdditionalIncomeText.get(1).getCssValue("line-height"), "28px", "Select all that apply-Line height mismatch");
+        softAssert.assertAll();
+    }
+    public void verifyViewOrderTextColorFormatOfAddIncomeOptions(List<String> addIncomeOpts){
+        for (int i=0;i<addIncomeOpts.size();i++){
+            softAssert.assertEquals(addtlIncomeOptionsName.get(i).getText().trim(), addIncomeOpts.get(i), "Income Options"+i+"-text mismatch");
+            softAssert.assertFalse(addtlIncomeOptionsCheckbox.get(i).isSelected(),"Check box"+i+" is Selected");
+            softAssert.assertEquals(addtlIncomeOptionsName.get(i).getCssValue("font-size"), "16px", "labelAllDeductionOptions"+i+"-Font size mismatch");
+            softAssert.assertEquals(addtlIncomeOptionsName.get(i).getCssValue("color"), "rgba(43, 49, 60, 1)", "labelAllDeductionOptions"+i+"-Color mismatch");
+            softAssert.assertEquals(addtlIncomeOptionsName.get(i).getCssValue("font-family"), "\"PT Sans\", sans-serif", "labelAllDeductionOptions"+i+"-Font family mismatch");
+            softAssert.assertEquals(addtlIncomeOptionsName.get(i).getCssValue("line-height"), "28px", "labelAllDeductionOptions"+i+"-Line height mismatch");
+            softAssert.assertAll();
+        }
+    }
+    public void verifyTextsOfBackAndSaveBtn(String btnBack,String btnSave){
+        softAssert.assertEquals(backBtn.getText().trim(), btnBack, "Back Button-text mismatch");
+        softAssert.assertEquals(saveAndContinueBtn.getText().trim(), btnSave, "Save Button-text mismatch");
+        softAssert.assertAll();
+    }
+    public void clickOnAlimonyReceivedCheckBox(){
+        basicActions.waitForElementToBePresent(addtlIncomeOptionsCheckbox.get(0),10);
+        addtlIncomeOptionsCheckbox.get(0).click();
+    }
+
+    public void verifyDefaultPropertyOfTextBoxAndDropdown(List<String> dropDownOpts) {
+        softAssert.assertTrue(txtBoxAlimonyReceivedAmount.isDisplayed(), "AR text box not visible");
+        softAssert.assertTrue(selectALMRFrequency.isDisplayed(), "Drop Down not visible");
+        softAssert.assertEquals(txtBoxAlimonyReceivedAmount.getAttribute("placeholder"), "amount", "AOSS default text not visible");
+        softAssert.assertEquals(basicActions.getFirstSelectedOptionFromDD(selectALMRFrequency).getText().trim(), "Select Option", "Select Option not visible");
+        checkAllDropDownOptions(dropDownOpts);
+        softAssert.assertAll();
+    }
+
+    private void checkAllDropDownOptions(List<String> dropdownOptions){
+        for (int i=0;i<dropdownOptions.size();i++) {
+            softAssert.assertEquals(basicActions.selectAllOptionsFromDropDown(selectALMRFrequency).get(i).getText().trim(), dropdownOptions.get(i), "DD Option text not matching");
+            softAssert.assertAll();
+        }
+    }
+    public void verifyEnteredAmountAndFreq(String amount,String freq){
+        softAssert.assertEquals(txtBoxAlimonyReceivedAmount.getAttribute("value"),amount,"Entered amount mismatch");
+        softAssert.assertTrue(dollarSymbol.isDisplayed(),"Dollar Symbol is not visible");
+        softAssert.assertEquals(basicActions.getFirstSelectedOptionFromDD(selectALMRFrequency).getText().trim(),freq,"Entered freq mismatch");
+        softAssert.assertAll();
+    }
+    public void verifyNone_Of_TheseOnlySelected(){
+        basicActions.waitForElementToBePresent(addtlIncomeOptionsCheckbox.get(12),10);
+        addtlIncomeOptionsCheckbox.get(12).click();
+        for (int i=0;i<addtlIncomeOptionsCheckbox.size()-1;i++){
+            softAssert.assertFalse(addtlIncomeOptionsCheckbox.get(i).isSelected(),"Other"+i+" is selected");
+            softAssert.assertAll();
+        }
+        softAssert.assertTrue(checkBoxChecked.size()==1,"NoneOfThese is not selected");
+        softAssert.assertAll();
+    }
+    public void verifyFontColorBorderOfBackAndSaveBtn(String mouseOverOpt){
+        switch (mouseOverOpt){
+            case "Off":
+                validateColorFontEtcWhenMouseHoverOff();
+                break;
+            case "On":
+                validateColorFontEtcWhenMouseHoverOn();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + mouseOverOpt);
+        }
+    }
+
+    private void validateColorFontEtcWhenMouseHoverOff(){
+        addtlIncomeOptionsCheckbox.get(12).click();
+        softAssert.assertEquals(backBtn.getCssValue("background-color"), "rgba(252, 252, 252, 1)", "Go Back-back ground Color mismatching");
+        softAssert.assertEquals(backBtn.getCssValue("border"), "2px solid rgb(26, 112, 179)", "Go Back-border mismatch");
+        softAssert.assertEquals(backBtn.getCssValue("border-top-left-radius"), "4px", "Go Back-Border radios mismatch");
+        softAssert.assertEquals(backBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Go Back-Font family mismatch");
+        softAssert.assertEquals(backBtn.getCssValue("font-size"), "20px", "Go Back-Font size mismatch");
+        softAssert.assertEquals(backBtn.getCssValue("padding-bottom"), "12px", "Go Back-Padding bottom not matching");
+        softAssert.assertEquals(backBtn.getCssValue("padding-right"), "20px", "Go Back-Padding right not matching");
+        softAssert.assertEquals(backBtn.getCssValue("color"), "rgba(26, 112, 179, 1)", "Go Back-Color mismatch");
+        softAssert.assertEquals(btnOutlineBackAndSave.get(0).getCssValue("background-color"), "rgba(0, 0, 0, 0)", "Go Back Outline-back ground Color mismatching");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background-color"), "rgba(26, 112, 179, 1)", "saveAndContinueBtn-back ground Color mismatching");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("border"), "2px solid rgb(26, 112, 179)", "saveAndContinueBtn-border mismatch");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("border-top-left-radius"), "4px", "saveAndContinueBtn-Border radios mismatch");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif", "saveAndContinueBtn-Font family mismatch");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px", "saveAndContinueBtn-Font size mismatch");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("padding-bottom"), "12px", "saveAndContinueBtn-Padding bottom not matching");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("padding-right"), "20px", "saveAndContinueBtn-Padding right not matching");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)", "saveAndContinueBtn-Color mismatch");
+        softAssert.assertEquals(btnOutlineBackAndSave.get(1).getCssValue("background-color"), "rgba(0, 0, 0, 0)", "Save outline-back ground Color mismatching");
+        softAssert.assertAll();
+    }
+    private void validateColorFontEtcWhenMouseHoverOn(){
+        basicActions.mouseHoverOnElement(backBtn);
+        softAssert.assertEquals(backBtn.getCssValue("background-color"), "rgba(226, 241, 248, 1)", "Go Back When Mouse Hover No-back ground Color mismatching");
+        softAssert.assertEquals(backBtn.getCssValue("border"), "2px solid rgb(26, 112, 179)", "Go Back-border mismatch");
+        softAssert.assertEquals(backBtn.getCssValue("border-top-left-radius"), "4px", "Go Back-Border radios mismatch");
+        softAssert.assertEquals(backBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Go Back-Font family mismatch");
+        softAssert.assertEquals(backBtn.getCssValue("font-size"), "20px", "Go Back-Font size mismatch");
+        softAssert.assertEquals(backBtn.getCssValue("padding-bottom"), "12px", "Go Back-Padding bottom not matching");
+        softAssert.assertEquals(backBtn.getCssValue("padding-right"), "20px", "Go Back-Padding right not matching");
+        basicActions.scrollToElement(saveAndContinueBtn);
+        basicActions.mouseHoverOnElement(saveAndContinueBtn);
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("background-color"), "rgba(22, 156, 216, 1)", "Save btn When Mouse Hover No-back ground Color mismatching");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("border"), "2px solid rgb(252, 252, 252)", "saveAndContinueBtn-border mismatch");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("border-top-left-radius"), "4px", "saveAndContinueBtn-Border radios mismatch");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-family"), "\"PT Sans\", sans-serif", "saveAndContinueBtn-Font family mismatch");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("font-size"), "20px", "saveAndContinueBtn-Font size mismatch");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("padding-bottom"), "12px", "saveAndContinueBtn-Padding bottom not matching");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("padding-right"), "20px", "saveAndContinueBtn-Padding right not matching");
+        softAssert.assertEquals(saveAndContinueBtn.getCssValue("color"), "rgba(252, 252, 252, 1)", "saveAndContinueBtn-Color mismatch");
+        softAssert.assertAll();
+    }
 }

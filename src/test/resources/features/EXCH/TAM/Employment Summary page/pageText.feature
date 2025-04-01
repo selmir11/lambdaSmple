@@ -194,7 +194,7 @@ Feature: Page Text-Income Opt Out Page
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
 
-  @SLER-244 @PageTextEmploymentSummary @TAMSmoke
+  @SLER-244 @PageTextEmploymentSummary @TAMSmokeExch
   Scenario: SLER-244 I can see Employment Summary's Header and footer - Spanish
     And I validate I am on the "Employment Summary" page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
@@ -366,6 +366,191 @@ Feature: Page Text-Income Opt Out Page
 
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
+
+  @SLER-2327
+  Scenario: RT-2594[ELIG-As an Exchange User on Employment Summary page, I want the ability to see the page in English or Spanish so that I can review and update the income information]
+    And I validate I am on the "Employment Summary" page
+    Then I validate Employment Summary text in "English"
+    And I validate I am on the "Employment Summary" page
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I validate Employment Summary text in "Spanish"
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+
+  @SLER-2333
+  Scenario: RT-2587[ As a Exch user on the Employment Summary page, I want to see the structure of the page so that I can review and update basic employment information
+    And I validate I am on the "Employment Summary" page
+    Then I validate Employment Summary text in "English"
+    And I validate I am on the "Employment Summary" page
+    Then I validate Employment Summary bold text in Employment Summary Page
+    Then I validate page Navigation works for Footer hyperlink text in "English"
+      | HyperLinkText  | ExpectedPageTitle | ContainsUrl                           |
+      | Privacy Policy | Privacy Policy    | connectforhealthco.com/privacy-policy |
+      | Terms          | Terms of Use      | connectforhealthco.com/terms-of-use   |
+      | Contact Us     | Contact Us        | connectforhealthco.com/contact-us     |
+      | FacebookIcon   | Facebook          | facebook.com                          |
+      | xIcon          | X                 | x.com                                 |
+      | YouTubeIcon    | YouTube           | youtube.com                           |
+      | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
+      | InstagramIcon  | instagram         | instagram.com                         |
+      | ThreadsIcon    | Threads           | threads.net                           |
+    And I click on Sign Out in the Header for "Elmo"
+
+
+  @SLER-2372
+  Scenario: RT-2580 [Automate navigation on the ELMO Employment Summary Income Page in EXCH]
+    And I validate I am on the "Employment Summary" page
+    Then I click on Back button on the Employment Summary Page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    And I validate I am on the "Employment Summary" page
+    Then I click continue on the Employment Summary Page
+    Then I validate I am on the "Additional income" page
+    Then I click on the Back button on the Additionalincomepage
+    And I validate I am on the "Employment Summary" page
+    Then I click Edit on Income Summary row 1
+    And I validate I am on the "Employment Income" page
+    And I click continue on the Employment Info Page
+    And I validate I am on the "Employment Summary" page
+    Then I click on Add job or self-employment on the Employment Summary Page
+    And I validate I am on the "Employment Income" page
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "4500000" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    And I validate I am on the "Employment Summary" page
+
+    Then I validate page Navigation works for Footer hyperlink text in "English"
+      | HyperLinkText  | ExpectedPageTitle | ContainsUrl                           |
+      | Privacy Policy | Privacy Policy    | connectforhealthco.com/privacy-policy |
+      | Terms          | Terms of Use      | connectforhealthco.com/terms-of-use   |
+      | Contact Us     | Contact Us        | connectforhealthco.com/contact-us     |
+      | FacebookIcon   | Facebook          | facebook.com                          |
+      | xIcon          | X                 | x.com                                 |
+      | YouTubeIcon    | YouTube           | youtube.com                           |
+      | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
+      | InstagramIcon  | instagram         | instagram.com                         |
+      | ThreadsIcon    | Threads           | threads.net                           |
+
+    And I click on the Colorado Connect or C4 Logo in the "Elmo" Header
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    Then I validate I am on the "Income Summary" page
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    And I validate I am on the "Employment Summary" page
+
+    And I click on Find a Plan in the "Elmo" Header
+    Then I validate I am on the "Application History" page
+    And I click on Apply for Coverage in the "NonElmo" Header
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    And I validate I am on the "Employment Summary" page
+
+    And I click on My Account in the "Elmo" Header
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    And I validate I am on the "Employment Summary" page
+
+    And I click on Learn More in the Header
+    And I validate I am on the "Faqs" page and close tab
+    Then I validate I am on the "Income Summary" page
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Find Expert Assistance in the "Exch" Header
+    Then I validate I am on the "Find Expert Help" page
+    And I click on Apply for Coverage in the "ExpertHelp" Header
+
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    And I validate I am on the "Employment Summary" page
+
+    And I click on Get Assistance in the "Exch" Header
+    And I click on Contact Us in the Header
+    And I validate I am on the "Customer Service" page and close tab
+
+    And I click on the Username in the "Exch" Header
+    Then I validate I am on the "My Profile" page
+
+    And I click on the Colorado Connect or C4 Logo in the "Elmo" Header
+    Then I validate I am on the "Account Overview" page
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I click Continue on my own button from Manage who helps you page
+    And I click continue on Tell us about yourself page
+    And I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    And I click continue on the Citizenship page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    And I validate I am on the "Employment Summary" page
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    And I click on Sign Out in the Header for "Elmo"
+
+
+
+
+
+
     
     
     

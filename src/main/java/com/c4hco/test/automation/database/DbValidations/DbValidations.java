@@ -145,6 +145,35 @@ public class DbValidations {
         softAssert.assertAll();
 
     }
+
+    public void validateBobByApplicationId(String eventType) {
+        getCurrentdate();
+        List<BookOfBusinessQEntity> bookOfBusinessQListByAppId = exchDbDataProvider.getBoBQueryByApplicationId(eventType);
+        List<String> policyIdListFromBookOfBusinessDb = new ArrayList<>();
+        List<String> applicationIdListFromBob = new ArrayList<>();
+        
+        applicationIdListFromPolicyAh = exchDbDataProvider.getApplicationId();
+        policyIdFromPolicyDB = exchDbDataProvider.getPolicyId();
+
+        for (BookOfBusinessQEntity bookOfBusinessQEntity : bookOfBusinessQListByAppId) {
+            softAssert.assertEquals(bookOfBusinessQEntity.getExchange(), "c4hco_direct_exchange", "Bob exchange mismatch");
+            softAssert.assertEquals(bookOfBusinessQEntity.getRouting_key(), "book_of_business_q", "Bob routing key mismatch");
+            softAssert.assertEquals(bookOfBusinessQEntity.getPolicyplanyr(), SharedData.getPlanYear(), "Bob plan year mismatch");
+            softAssert.assertEquals(bookOfBusinessQEntity.getStatus(), "PROCESSED", "BOB Status mismatch");
+            softAssert.assertTrue(bookOfBusinessQEntity.getCreated_ts().contains(formattedDate), "Bob created date mismatch");
+            softAssert.assertEquals(bookOfBusinessQEntity.getEventtype(), eventType, "Bob, event type updated does not match " + eventType);
+            policyIdListFromBookOfBusinessDb.add(bookOfBusinessQEntity.getPolicyid());
+            applicationIdListFromBob.add(bookOfBusinessQEntity.getApplicationid());
+        }
+        softAssert.assertEquals(2, bookOfBusinessQListByAppId.size(), "No of records does not match for event type " + eventType);
+
+        Set<String> uniqueAppIds = new HashSet<>(applicationIdListFromBob);
+        softAssert.assertTrue(uniqueAppIds.contains(SharedData.getPrimaryMember().getApplication_id()), "application id mismatch");
+
+        softAssert.assertTrue(new HashSet<>(policyIdListFromBookOfBusinessDb).containsAll(policyIdFromPolicyDB), "Policy Id mismatch ");
+        softAssert.assertAll();
+    }
+
    public void validateBookOfBusinessQMedical(String coverageType, String eventType){
         switch(coverageType) {
             case "medical":
@@ -852,19 +881,20 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
-    public void validateVLPResponseCode(String expectedResponseCode) {
-        String actualResponseCode = exchDbDataProvider.getVLPResponseCode();
+    public void validateVLPResponseCode(String expectedResponseCode, String requestType) {
+        String actualResponseCode = exchDbDataProvider.getVLPResponseCode(requestType);
         softAssert.assertEquals(actualResponseCode.trim(), expectedResponseCode);
         softAssert.assertAll();
     }
 
-    public void validateVLPRetryTypeandStatus(String expectedRetryType, String expectedStatus) {
-        String actualRetryType = exchDbDataProvider.getVLPRetryType();
-        String actualRetryStatus = exchDbDataProvider.getVLPRetryStatus();
+    public void validateFDSHRetryTypeandStatus(String expectedRetryType, String expectedStatus) {
+        String actualRetryType = exchDbDataProvider.getFDSHRetryType();
+        String actualRetryStatus = exchDbDataProvider.getFDSHRetryStatus();
         softAssert.assertEquals(actualRetryType.trim(), expectedRetryType);
         softAssert.assertEquals(actualRetryStatus.trim(), expectedStatus);
         softAssert.assertAll();
     }
+
     public void validateReasonCode(String expectedReasonCode) {
         String reasonCode = exchDbDataProvider.getMemberReasonCodeByAccountId();
         softAssert.assertEquals(reasonCode, expectedReasonCode, "Reason code mismatch!");
@@ -952,5 +982,122 @@ public class DbValidations {
         int actualVLPCallsMade = Integer.parseInt(exchDbDataProvider.getVlpRequestCount());
         Assert.assertEquals(actualVLPCallsMade, expectedVLPCallsMade, "VLP Calls made mismatch!");
     }
+
+    public void verifyPrimaryEligibilityType(String reasonCode) {
+        String eligibilityType = exchDbDataProvider.getEligibilityType();
+        softAssert.assertEquals(eligibilityType, reasonCode, "Amount does not match! Expected to contain: " + reasonCode + " Found: " + eligibilityType);
+        softAssert.assertAll();
+    }
+
+    public void verifyDeterminationEffectiveDate(String qlceType, String dateType){
+        String dbValues[] = exchDbDataProvider.getDeterminationEffectiveDate();
+        softAssert.assertEquals(dbValues[0], qlceType, "QLCE Type was " + dbValues[0] + " instead of " + qlceType);
+        softAssert.assertEquals(dbValues[1], basicActions.getDateBasedOnRequirement(dateType) + " 00:00:00", "QLCE Type was " + dbValues[1] + " instead of " + basicActions.getDateBasedOnRequirement(dateType) + " 00:00:00");
+        softAssert.assertAll();
+    }
+
+    public void validateOutcomeInd(String outcome) {
+        String outcomeIndDb = exchDbDataProvider.getOutcomeInd();
+        softAssert.assertEquals(outcomeIndDb, outcome);
+        softAssert.assertAll();
+    }
+
+    public void validateRemovedEffectiveDate() {
+        String removedEffectiveDate = exchDbDataProvider.getRemovedEffectiveDate();
+        softAssert.assertEquals(removedEffectiveDate, basicActions.getDateBasedOnRequirement("First Day Of Next Year") + " 00:00:00");
+        softAssert.assertAll();
+    }
+
+    public void validateApplyingForCoverageIndDB(String FName, String applying){
+        List<MemberDetails> memberList=basicActions.getAllMem();
+        for(MemberDetails actualMember : memberList) {
+            if(actualMember.getFirstName().contains(FName)) {
+                String FirstName = actualMember.getFirstName();
+                List<String> dbValues = exchDbDataProvider.getInfoForTellAboutAdditionalInformation(FirstName);
+                softAssert.assertEquals(dbValues.get(5), applying);
+                softAssert.assertAll();
+                break;
+            }
+        }
+    }
+
+    public void validateLceMovedToAh(String FName) {
+        String dbValues[] = exchDbDataProvider.getEsMemberLceAh(basicActions.getMemberId(FName)).toArray(new String[0]);
+        softAssert.assertEquals(dbValues[0], dbValues[1], "First set");
+        softAssert.assertEquals(dbValues[2], dbValues[3], "Second set");
+        softAssert.assertEquals(dbValues[4], dbValues[5] + " 00:00:00", "Third set");
+        softAssert.assertEquals(dbValues[6], dbValues[7] + " 00:00:00", "Forth set");
+        softAssert.assertAll();
+    }
+
+    public void validateDeductionRowCount(int expectedRowCount) {
+        basicActions.wait(7000);
+        int actualRowCount = Integer.parseInt(exchDbDataProvider.getDeductionRowCount());
+        softAssert.assertEquals(actualRowCount, expectedRowCount, "Row count mismatch!");
+        softAssert.assertAll();
+    }
+
+    public void validateEnrollmentPlanYear(String year) {
+        String enrolmentPlanYear = exchDbDataProvider.getEnrollmentPlanYear();
+        softAssert.assertEquals(enrolmentPlanYear, basicActions.getDateBasedOnRequirement(year));
+        softAssert.assertAll();
+    }
+
+    public void validateEnrollmentPlanLce(List<Map<String, String>> expectedValues) {
+        basicActions.wait(5000);
+        List<List<String>> dbValuesList = exchDbDataProvider.getEnrollmentPlanLceDetails();
+        System.out.println("Query executed, returned values: " + dbValuesList);
+
+        if (dbValuesList.isEmpty()) {
+            throw new RuntimeException("No data returned from exchDbDataProvider for account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'");
+        }
+
+        for (int i = 0; i < expectedValues.size(); i++) {
+            if (i >= dbValuesList.size()) {
+                throw new RuntimeException("Mismatch: Expected more rows than returned by DB.");
+            }
+            List<String> dbRow = dbValuesList.get(i);
+            Map<String, String> expectedRow = expectedValues.get(i);
+            String enrollmentPeriodEndDateBasic = basicActions.getDateBasedOnRequirement(expectedRow.get("enrollment_period_end_date"));
+            String enrollmentPeriodEndDate = basicActions.changeDateFormat(enrollmentPeriodEndDateBasic, "MM/dd/yyyy", "yyyy-MM-dd");
+            String planYear = basicActions.getDateBasedOnRequirement(expectedRow.get("plan_year"));
+
+            softAssert.assertEquals(dbRow.get(0), enrollmentPeriodEndDate, "enrollment_period_end_date");
+            softAssert.assertEquals(dbRow.get(1), expectedRow.get("qlce_present_ind"), "qlce_present_ind");
+            softAssert.assertEquals(dbRow.get(2), planYear, "plan_year");
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateEnrollmentPlanLceRowCount(int expectedRowCount) {
+        basicActions.wait(5000);
+        int actualRowCount = Integer.parseInt(exchDbDataProvider.getEnrollmentPlanLceRowCount());
+        softAssert.assertEquals(actualRowCount, expectedRowCount, "Row count mismatch!");
+        softAssert.assertAll();
+    }
+
+
+
+    public void validateDocumentDetails(List<String> expectedValues) {
+        SoftAssert softAssert = new SoftAssert();
+        String[] documentDetails = exchDbDataProvider.getMyDocumentdetails();
+
+        softAssert.assertEquals(documentDetails[0], expectedValues.get(0), "Mismatch in Source ID");
+        softAssert.assertEquals("null".equals(expectedValues.get(1)) ? null : expectedValues.get(1), documentDetails[1], "Mismatch in Document Author");
+        softAssert.assertEquals(documentDetails[2], expectedValues.get(2), "Mismatch in Display Name");
+        softAssert.assertEquals(documentDetails[3], expectedValues.get(3), "Mismatch in File Extension");
+        softAssert.assertEquals(documentDetails[4] != null ? documentDetails[4].split(" ")[0] : null, LocalDate.now().toString(), "DB date mismatch");
+
+        softAssert.assertAll();
+    }
+
+
+
+
+
+
+
+
+
 }
 

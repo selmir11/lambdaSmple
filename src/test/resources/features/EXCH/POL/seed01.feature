@@ -41,7 +41,7 @@ Feature: Regression Tests that require Seed 1
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -98,12 +98,6 @@ Feature: Regression Tests that require Seed 1
     And I enter householder signature on the Enrollment Agreements page
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
-    Given I set the dynamic policy, coverage and financial dates for "medical" plan
-      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
-    Given I set the dynamic policy, coverage and financial dates for "dental" plan
-      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
-      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
 
@@ -116,14 +110,15 @@ Feature: Regression Tests that require Seed 1
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
-    And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
@@ -175,7 +170,6 @@ Feature: Regression Tests that require Seed 1
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-
   @SLER-296-WIP
   Scenario: RT-2248 ENR-EXCH: DEMOGRAPHIC CHANGE (SUBSCRIBER) - IDENTIFYING DETAILS - DOB
     Given I open the login page on the "login" portal
@@ -193,6 +187,7 @@ Feature: Regression Tests that require Seed 1
     Then I update DOB to new DOB of "11/08/1986"
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     Then I validate I am on the "Family Overview" page
     Then I verify the family overview table is present
@@ -204,18 +199,19 @@ Feature: Regression Tests that require Seed 1
     Then I Declare as Tax Household 1
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
     And I click on Sign Out in the Header for "NonElmo"
 
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
     And I validate member details from ob834_details table
-      | maintenance_type_code | hd_maint_type_code  | maintenance_reas_code| incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
-      |          021          | 021                 | 25                   | 70                       | 34                          | DEMOGRAPHIC CHANGE |
-      |          021          | 021                 | 25                   |                          |                             |                    |
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | incorrect_entity_id_code | incorrect_id_code_qualifier | addl_maint_reason  |
+      | 021                   | 021                | 25                    | 70                       | 34                          | DEMOGRAPHIC CHANGE |
+      | 021                   | 021                | 25                    |                          |                             |                    |
     And I validate the ob834 files should have the values
 
-  @SLER-2030-WIP-@R4V
+  @SLER-2030 @pol_exch_passed
   Scenario: RT-2133 ENR-EXCH: ADD DEPENDENT (LCE: Marriage) - SAME CARRIER / SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -230,7 +226,7 @@ Feature: Regression Tests that require Seed 1
     Then I click Continue on my own button from Manage who helps you page
     Then I click continue on Tell us about yourself page
     Then I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I click continue on the Citizenship page
@@ -249,7 +245,7 @@ Feature: Regression Tests that require Seed 1
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Spouse"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -267,6 +263,7 @@ Feature: Regression Tests that require Seed 1
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
+    And I verify the data from book of business queue by applicationId with "POLICY_UPDATE" as event type
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
@@ -283,6 +280,8 @@ Feature: Regression Tests that require Seed 1
     And I select "Delta Dental of Colorado Family Basic Plan" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox
@@ -291,9 +290,51 @@ Feature: Regression Tests that require Seed 1
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-    And I click on Sign Out in the Header for "NonElmo"
+    Then I validate that financials are updated on account overview page
+    And I Validate the correct enrolled plans are displayed on account overview page
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-1244-WIP_@R4V
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+
+    And I validate "medical" entities for "Primary" from policy tables
+    And I validate "dental" entities for "Primary" from policy tables
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue by applicationId with "POLICY_SUBMISSION" as event type
+    And I validate "medical" entities for "Primary" from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 001                   | 001                | AI                    | FINANCIAL CHANGE  |            |
+    And I validate "dental" entities for "Primary" from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 001                   | 001                | AI                    | FINANCIAL CHANGE  |            |
+
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
+    And I validate "medical" entities for "Spouse" from policy tables
+    And I validate "dental" entities for "Spouse" from policy tables
+    And I validate "medical" entities for "Spouse" from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason                              |
+      | 021                   | 021                | EC                    |                   | MARRIAGE_CIVILUNION_OR_DOMESTIC_PARTNER |
+    And I validate "dental" entities for "Spouse" from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason                              |
+      | 021                   | 021                | EC                    |                   | MARRIAGE_CIVILUNION_OR_DOMESTIC_PARTNER |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
+
+  @SLER-1244
   Scenario: RT-2074 ENR-EXCH: ADD DEPENDENT (LCE: Birth) - SAME CARRIER / SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -309,7 +350,7 @@ Feature: Regression Tests that require Seed 1
     Then I click continue on Tell us about yourself page
     Then I validate I am on the "Add Address" page
     Then I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I click continue on the Immigration Status page
@@ -336,7 +377,7 @@ Feature: Regression Tests that require Seed 1
     And I select "No" to the recently denied medicaid question
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Son"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
@@ -387,17 +428,59 @@ Feature: Regression Tests that require Seed 1
     And I validate "dental" details on my policies page
     And I click on Sign Out in the Header for "Elmo"
 
-    And I validate "medical" entities from policy tables
-    And I validate "dental" entities from policy tables
+     #Primary
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    And I validate "medical" entities for "Primary" from policy tables
+    And I validate "dental" entities for "Primary" from policy tables
 
-    And I validate "medical" entities from pre edi db tables
+     #Son
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | Current Date      | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | Current Date      | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
+    And I validate "medical" entities for "Son" from policy tables
+    And I validate "dental" entities for "Son" from policy tables
+
+     #Primary
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate     | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+    And I validate "medical" entities for "Primary" from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 001                   | 001                | AI                    |                   | ADMIN_LCE  |
-    And I validate "dental" entities from pre edi db tables
+      | 001                   | 001                | AI                    | FINANCIAL CHANGE  |            |
+    And I validate "dental" entities for "Primary" from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+      | 001                   | 001                | AI                    | FINANCIAL CHANGE  |            |
+
+
+     #Son
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | Current Date      | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate | MemFinancialEndDate      |
+      | First Day Of Current Year | Last Day Of Current Year | Current Date      | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
+    And I validate "medical" entities for "Son" from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason                               |
+      | 021                   | 021                | EC                    |                   | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION |
+    And I validate "dental" entities for "Son" from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason                               |
+      | 021                   | 021                | EC                    |                   | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION |
+
+
+
     And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I verify the data from book of business queue by applicationId with "POLICY_SUBMISSION" as event type
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
@@ -405,42 +488,7 @@ Feature: Regression Tests that require Seed 1
     And I upload all the "medical" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
     And I upload all the "dental" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
 
-  # Ib999 DB Validation
-    And I validate "medical" entities from ib999_details db table
-    And I validate "dental" entities from ib999_details db table
-
-    And I download the "medical" ib999 files from sftp server with location "/archive/INBOUND999/"
-    And I download the "dental" ib999 files from sftp server with location "/archive/INBOUND999/"
-
-    And I validate the ib999 "medical" file data
-    And I validate the ib999 "dental" file data
-
-    #Ib834
-    And I validate ib834 "medical" details in database for groups
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
-      | 021                   | 021                | 28                    | CONFIRM           |
-    And I validate ib834 "dental" details in database for groups
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
-      | 021                   | 021                | 28                    | CONFIRM           |
-
-    And I download the "medical" ib834 file from sftp server location "/archive/inboundedi/"
-    And I download the "dental" ib834 file from sftp server location "/archive/inboundedi/"
-
-    And I validate the ib834 "medical" files data
-    And I validate the ib834 "dental" files data
-
-    # Ob999
-    And I validate "medical" entities from ob999_details db table
-    And I validate "dental" entities from ob999_details db table
-
-    And I download the "medical" ob999 file from sftp server with location "/outbound999/"
-    And I download the "dental" ob999 file from sftp server with location "/outbound999/"
-
-    And I validate the ob999 "medical" file data
-    And I validate the ob999 "dental" file data
-
-
-  @SLER-1992-WIP_@R4V
+  @SLER-1992 @pol_exch_passed
   Scenario: RT-2052 ENR-EXCH: APPS - CSR LEVEL CHANGE (LCE: Gained AI/AN Tribal Status) SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -458,7 +506,7 @@ Feature: Regression Tests that require Seed 1
     Then I select 'Yes' for Federally Recognized Tribe option
     Then I add the tribe details state as "Colorado" and tribe name as "Ute Mountain Tribe of the Ute Mountain Reservation"
     Then I click continue on the Add Address page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     Then I click continue on the Immigration Status page
@@ -473,5 +521,33 @@ Feature: Regression Tests that require Seed 1
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
-    Then I validate I am on the "Application Results" page
-    And I click on Sign Out in the Header for "NonElmo"
+    Then I click on the Colorado Connect or C4 Logo in the "NonElmo" Header
+    Then I validate I am on the "Account Overview" page
+    Then I validate that financials are updated on account overview page
+    And I Validate the correct enrolled plans are displayed on account overview page
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click on Sign Out in the Header for "Elmo"
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
+
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+    And I reset the previous file names in shared data
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason                      | sep_reason |
+      | 001                   | 001                | AI                    | FINANCIAL CHANGE or CSR VARIANT CHANGE |            |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data

@@ -43,7 +43,7 @@ Feature: Header and Footer validation on Coco application pages
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
     And I click on Terms Of Use in the "Individual Portal" Footer
@@ -90,7 +90,7 @@ Feature: Header and Footer validation on Coco application pages
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
     And I click on Terms Of Use in the "Individual Portal" Footer
@@ -188,7 +188,7 @@ Feature: Header and Footer validation on Coco application pages
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
     And I click on Terms Of Use in the "Individual Portal" Footer
@@ -239,7 +239,7 @@ Feature: Header and Footer validation on Coco application pages
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click on Privacy Policy in the "Individual Portal" Footer
     And I validate I am on the "Privacy Policy" page and close tab
     And I click on Terms Of Use in the "Individual Portal" Footer
@@ -395,7 +395,7 @@ Feature: Header and Footer validation on Coco application pages
     And I click continue on the Add info for yourself page
 
     #Ethnicity and Race
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I verify text on the "CoCo" "Header" in "English"
     And I click on the Username in the "CoCo" Header
     Then I validate I am on the "My Profile" page
@@ -407,7 +407,7 @@ Feature: Header and Footer validation on Coco application pages
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
@@ -417,7 +417,7 @@ Feature: Header and Footer validation on Coco application pages
     Then I validate I am on the "CoCo Additional information for yourself" page
     And I click continue on the Add info for yourself page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application Results CoCo" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -428,7 +428,7 @@ Feature: Header and Footer validation on Coco application pages
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click on My Account in the "Elmo" Header
     Then I validate I am on the "My Profile" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -653,7 +653,7 @@ Feature: Header and Footer validation on Coco application pages
     And I click continue on the Add info for yourself page
 
     #Ethnicity and Race
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I verify text on the "CoCo" "Header" in "Spanish"
     And I click on the Username in the "CoCo" Header
     Then I validate I am on the "My Profile" page
@@ -665,7 +665,7 @@ Feature: Header and Footer validation on Coco application pages
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
@@ -675,7 +675,7 @@ Feature: Header and Footer validation on Coco application pages
     Then I validate I am on the "CoCo Additional information for yourself" page
     And I click continue on the Add info for yourself page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click on Find a Plan in the "Elmo" Header
     Then I validate I am on the "Application Results CoCo" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -686,7 +686,7 @@ Feature: Header and Footer validation on Coco application pages
     Then I click Save and Continue only on the tell us about yourself page
     And I click continue on the Add info for yourself page
 
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click on My Account in the "Elmo" Header
     Then I validate I am on the "My Profile" page
     And I click on Apply for Coverage in the "Elmo" Header
@@ -841,7 +841,7 @@ Feature: Header and Footer validation on Coco application pages
     And I enter my mailing address "4321 Road", "Colorado Springs", "CO", "80916", "EL PASO"
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Not listed" for race and ethnicity option for "Primary"
     Then I verify text on the Ethnicity And Race page in "Spanish"
     And I select "Not listed" for race and ethnicity option for "Primary"
@@ -870,7 +870,7 @@ Feature: Header and Footer validation on Coco application pages
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Daughter"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option

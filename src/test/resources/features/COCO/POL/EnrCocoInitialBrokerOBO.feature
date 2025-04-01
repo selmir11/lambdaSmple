@@ -48,7 +48,7 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Black or African American" for race and ethnicity option for "Primary"
     And I click continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -71,7 +71,7 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     And I enter residential address details for additional member "102 COCO DRIVE", "BOULDER", "CO", "80020", "BOULDER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Black or African American" for race and ethnicity option for "Spouse"
     And I click continue on the Race and Ethnicity page
     And I select "No" employment option

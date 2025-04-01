@@ -84,13 +84,13 @@ Feature: Secondary User-OHC ESI Elmo Page
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
-    Then I select the "Married filing jointly" tax filing option on the Tax Status Elmo page
-    Then I select "Spouse" as filing jointly with option on the Tax Status Elmo page
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "No" for will claim dependents question
-    Then I click Save and Continue on Tax Status Elmo page
-    Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "ESI" page
+    Then I click Save and Continue on Tax Status page
+    Then I select "job" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc ESI" page
 
   @SLER-536 @SecondaryUserOhcEsiElmo
   Scenario: SLER-536 I can see ESI's dynamic data for Primary and Secondary user - English
@@ -110,10 +110,10 @@ Feature: Secondary User-OHC ESI Elmo Page
     Then I click "No" for offer family plans question
     Then I click continue on the ESI page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "ESI" page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "job" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc ESI" page
     And I verify the "No Job Section Secondary" ESI page data in "English"
     Then I select the "0" employer for "Secondary" member on the ESI page
     And I verify the "Job Section Secondary" ESI page data in "English"
@@ -150,10 +150,10 @@ Feature: Secondary User-OHC ESI Elmo Page
     Then I click "No" for offer family plans question
     Then I click continue on the ESI page
 
-    And I validate I am on the "Elmo Other Health Coverage" page
-    Then I select "job" as ELMO health coverage option
-    Then I click continue on the ELMO health coverage page
-    And I validate I am on the "ESI" page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "job" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Ohc ESI" page
     And I verify the "No Job Section Secondary" ESI page data in "Spanish"
     Then I select the "0" employer for "Secondary" member on the ESI page
     And I verify the "Job Section Secondary" ESI page data in "Spanish"

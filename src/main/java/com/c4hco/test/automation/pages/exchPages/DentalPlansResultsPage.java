@@ -149,6 +149,11 @@ public class DentalPlansResultsPage {
     @FindBy(id = "DentalPlanResults-InsuranceCompany_3")
     WebElement verifySolstice;
 
+
+    @FindBy(id = "PlanResults-CurrentPlanLabel")
+    WebElement greenDentalBannerText;
+
+
     public void clickResetButton() {
         basicActions.waitForElementToDisappear( spinner, 50 );
         basicActions.waitForElementToBePresentWithRetries( resetButton, 20 );
@@ -191,7 +196,6 @@ public class DentalPlansResultsPage {
     public void clickContinueOnDentalResultsPage() {
         basicActions.waitForElementToDisappear( spinner, 60 );
         basicActions.waitForElementToBePresentWithRetries( continueBtnOnDentalPlanResults, 30 );
-        basicActions.scrollToElement(continueBtnOnDentalPlanResults);
         continueBtnOnDentalPlanResults.click();
     }
 
@@ -389,7 +393,8 @@ public class DentalPlansResultsPage {
     }
 
     public void validateDentalPlanCount(String plansCount) {
-        basicActions.waitForElementToBePresent( dentalPlanCount, 30 );
+        basicActions.waitForElementToDisappear( spinner, 120 );
+        basicActions.waitForElementToBePresentWithRetries( dentalPlanCount, 60 );
         Assert.assertEquals( dentalPlanCount.getText(), plansCount + " of " + plansCount + " Dental Plans", "Dental plans count did not match" );
     }
 
@@ -629,4 +634,32 @@ public class DentalPlansResultsPage {
             }
         }
     }
+
+    public void validateGreenBannerText(String language) {
+        basicActions.waitForElementToDisappear( spinner, 30 );
+        switch (language) {
+            case "English":
+                validateDentalGreenBannerTxt();
+                break;
+            case "Spanish":
+                validateDentalGreenBannerSPTxt();
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + language );
+
+        }
+    }
+    public void validateDentalGreenBannerTxt(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresentWithRetries( greenDentalBannerText,20);
+        softAssert.assertEquals(greenDentalBannerText.getText(), "Current plan");
+        softAssert.assertAll();
+    }
+    public void validateDentalGreenBannerSPTxt(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresentWithRetries( greenDentalBannerText,20);
+        softAssert.assertEquals(greenDentalBannerText.getText(), "Plan actual");
+        softAssert.assertAll();
+    }
+
 }

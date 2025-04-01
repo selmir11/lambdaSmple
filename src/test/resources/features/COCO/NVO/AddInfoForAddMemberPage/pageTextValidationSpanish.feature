@@ -20,7 +20,7 @@ Feature: Page text, navigation, validation - Additional information for addition
     And I select "Yes" for mailing address option
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
@@ -52,7 +52,7 @@ Feature: Page text, navigation, validation - Additional information for addition
     And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
-    Then I validate I am on the "Elmo Race and Ethnicity" page
+    Then I validate I am on the "Race and Ethnicity" page
     And I click Go Back on the Race and Ethnicity page
     Then I validate I am on the "CoCo Additional info for additional member" page
     Then I click Go Back on the Additional information for additional member page

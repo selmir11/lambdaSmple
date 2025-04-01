@@ -315,12 +315,27 @@ public class TellUsAboutAdditionalMemberPage {
             // Handle the exception as needed
         }
     }
-    public void updateMemSSN(String updatedSSN) {
+    public void updateMemSSN(String memprefix, String updatedSSN) {
+        List<MemberDetails> members = SharedData.getMembers();
         basicActions.waitForElementToBePresent(txtSSN, 20);
+        for(MemberDetails member: members){
+            if(member.getFirstName().contains(memprefix)){
+                String oldSSN = member.getSsn();
+                System.out.println("Old SSN:: "+oldSSN);
+                member.setSsn(updatedSSN);
+                member.setHasIncorrectEntities(true);
+                member.setIncorrectEntityTypeQualifier("1");
+                member.setIncorrectEntityIdCode("70");
+                member.setIncorrectIdCodeQualifier("34");
+                member.setIncorrect_first_name(member.getFirstName());
+                member.setIncorrect_last_name(member.getLastName());
+                member.setIncorrectIdCode(oldSSN);
+                System.out.println("SSN updated successfully for :: "+ member.getFirstName());
+            }
+        }
         txtSSN.clear();
         txtSSN.sendKeys(updatedSSN);
         txtSSN.sendKeys(Keys.TAB);
-        System.out.println("SSN updated successfully");
     }
 
     public void additionalMemberDetailsSameAsPrimary(String memberCondition,List<String> relations) {
@@ -388,9 +403,22 @@ public class TellUsAboutAdditionalMemberPage {
         String formattedDate = basicActions.changeDateFormat(resolvedDate, "yyyy-MM-dd", "MM/dd/yyyy");
         expectedDueDate.sendKeys(formattedDate);
     }
+    public void updateMemberFullName() {
+        basicActions.waitForElementToBePresent(txtfirstName, 50);
+        txtfirstName.clear();
+        String newFirstName = "UPDfirst" + basicActions.getUniqueString(5);
+        txtfirstName.sendKeys(newFirstName);
+        System.out.println("First Name updated to "+newFirstName);
 
+        txtmiddleName.clear();
+        String newMiddleName = "UPDmiddle"+basicActions.getUniqueString(5);
+        txtmiddleName.sendKeys(newMiddleName);
+        System.out.println("Middle Name updated to "+newMiddleName);
 
+        txtlastName.clear();
+        String newLastName = "UPDlast"+basicActions.getUniqueString(5);
+        txtlastName.sendKeys(newLastName);
+        System.out.println("Last Name updated to "+newLastName);
+       }
 
-
-
-}
+    }
