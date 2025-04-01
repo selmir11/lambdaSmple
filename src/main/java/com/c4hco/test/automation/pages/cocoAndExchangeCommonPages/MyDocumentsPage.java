@@ -348,6 +348,9 @@ public class MyDocumentsPage {
     List<WebElement> SelectionRequiredErrorSvgSymbol;
 
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
         accountOverviewPage.clickHereLinks("My Documents");
@@ -355,6 +358,7 @@ public class MyDocumentsPage {
 
     public void downloadDocument(String docType) {
         // docType example "Application Results", EN-002-04
+        basicActions.waitForElementToDisappear(spinner,30);
         basicActions.waitForElementToBePresent(expandDownloadEnrolmentDocument, 20);
         basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 20);
         basicActions.scrollToElement(expandDownloadEnrolmentDocument);
