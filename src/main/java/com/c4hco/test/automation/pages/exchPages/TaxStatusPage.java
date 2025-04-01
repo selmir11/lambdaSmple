@@ -380,7 +380,7 @@ public class TaxStatusPage {
         basicActions.waitForElementListToBePresentWithRetries(filingJointlyWithRadio, 50);
         boolean optionSelected = false;
         for (int i = 0; i < filingJointlyWithRadio.size(); i++) {
-            int adjustedIndex = i + 2;
+            int adjustedIndex = i + 1;
             if (adjustedIndex >= filingJointlyWithRadioTxt.size()) {
                 throw new IndexOutOfBoundsException("Adjusted index " + adjustedIndex + " out of bounds for filingJointlyWithRadioTxt size " + filingJointlyWithRadioTxt.size());
             }
