@@ -22,7 +22,7 @@ Feature: Page Validation Database - Race And Ethnicity page
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Race and Ethnicity" page
-    And I select Not listed for race and ethnicity option and enter "Mixed Race" in the text box
+    And I select Not listed for race and ethnicity option and enter "Mixed Race" in the text box for "Primary"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
@@ -47,7 +47,7 @@ Feature: Page Validation Database - Race And Ethnicity page
     And I select "Not listed" for race and ethnicity option for "Primary"
     And I select "Indigenous or Native American" for race and ethnicity option for "Primary"
     And I select "Native Hawaiian or Pacific Islander" for race and ethnicity option for "Primary"
-    And I select Not listed for race and ethnicity option and enter "Multiracial" in the text box
+    And I select Not listed for race and ethnicity option and enter "Multiracial" in the text box for "Primary"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
     And I wait for 5000 milliseconds
