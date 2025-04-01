@@ -213,6 +213,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
 
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
+    And I click on Future Plans
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
 
