@@ -393,7 +393,8 @@ public class DentalPlansResultsPage {
     }
 
     public void validateDentalPlanCount(String plansCount) {
-        basicActions.waitForElementToBePresent( dentalPlanCount, 30 );
+        basicActions.waitForElementToDisappear( spinner, 120 );
+        basicActions.waitForElementToBePresentWithRetries( dentalPlanCount, 60 );
         Assert.assertEquals( dentalPlanCount.getText(), plansCount + " of " + plansCount + " Dental Plans", "Dental plans count did not match" );
     }
 
