@@ -119,7 +119,7 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//a[normalize-space()='Cargar otro documento']")
     WebElement btnCargarotrodocumento;
 
-    @FindBy(css = ".modal-title")
+    @FindBy(css = "div.modal-header-container")
     WebElement txtCargarUnDocumento;
 
     @FindBy(xpath = "//span[normalize-space()='Díganos m\u00E1s sobre este documento']")
@@ -1059,17 +1059,16 @@ public class MyDocumentsPage {
         basicActions.waitForElementToBePresentWithRetries(expandArrow_forFirstDoc, 10);
         basicActions.clickElementWithRetries(expandArrow_forFirstDoc, 10);
     }
-    public void verifyFileExistAndNotEmpty() {
-        basicActions.waitForElementToBeClickable(btn_download, 10);
-        btn_download.click();
-        String fileName=basicActions.waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(),40);
-        if (SharedData.getEnv().equals("qa")) {
-            Assert.assertEquals(fileName, "Peace Corps-6103120466-11-Aug-2021.docx","File name is not matched");
-        } else {
-            Assert.assertEquals(fileName, "Peace Corps-1801096812-11-Aug-2021.docx","File name is not matched");
-        }
-    }
 
+        public void verifyFileExistAndNotEmpty(String fileNamePrefix) {
+            basicActions.waitForElementToBeClickable(btn_download, 10);
+            btn_download.click();
+            String downloadedFileName = basicActions.waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(), 40);
+            Assert.assertTrue(downloadedFileName.contains(fileNamePrefix), "Downloaded file name does not contain the expected prefix");
+            File downloadedFile = new File(SharedData.getLocalPathToDownloadFile() + "/" + downloadedFileName);
+            Assert.assertTrue(downloadedFile.exists(), "Downloaded file does not exist");
+            Assert.assertTrue(downloadedFile.length() > 0, "Downloaded file is empty");
+        }
 
     public void ValidateDocumentCategoryinAscendingOrder(String OtherText,String language,List<String> category) {
         basicActions.waitForElementToBePresent(docTypeDrpDwn, 20);
