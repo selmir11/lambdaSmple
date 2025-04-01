@@ -322,9 +322,9 @@ Feature: Page Verification-Deductions Page
     Then I validate default property of amount box and dropdown for "English"
       | Select Option |
       | Annually      |
-      | EveryTwoWeeks |
+      | Every 2 weeks |
       | Monthly       |
-      | TwiceAMonth   |
+      | Twice a month |
       | Weekly        |
     Then I click "AOSS" as deduction option only
     And I select "Alimony" as deduction option with "200.00" amount at "Annually" frequency

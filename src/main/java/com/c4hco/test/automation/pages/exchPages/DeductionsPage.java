@@ -1277,7 +1277,7 @@ public class DeductionsPage {
     }
     private void checkAllDropDownOptions(List<String> dropdownOptions){
         for (int i=0;i<dropdownOptions.size();i++) {
-            softAssert.assertEquals(basicActions.selectAllOptionsFromDropDown(selectAOSSFrequency).get(0).getText().trim(), dropdownOptions.get(0), "Option text not equal");
+            softAssert.assertEquals(basicActions.selectAllOptionsFromDropDown(selectAOSSFrequency).get(i).getText().trim(), dropdownOptions.get(i), "Option text not equal");
             softAssert.assertAll();
         }
     }

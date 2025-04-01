@@ -42,7 +42,7 @@ public class MedicalPlanResultsPage {
     WebElement clickCompare;
 
     @FindBy (id = "MedicalPlanResults-SaveAndExit")
-    WebElement btnSaveExist;
+    WebElement btnSaveExit;
 
     @FindBy (id = "MedicalPlanResults-GoBack")
     WebElement btnGoBack;
@@ -120,8 +120,8 @@ public class MedicalPlanResultsPage {
     }
 
     public void SelectFirstMedicalPlan() {
-        basicActions.waitForElementToDisappear( spinner,15 );
-        basicActions.waitForElementToBePresent(selectFirstPlan, 30);
+        basicActions.waitForElementToBePresentWithRetries( spinner,120);
+        basicActions.waitForElementToBePresentWithRetries(selectFirstPlan, 50);
         selectFirstPlan.click();
     }
 
