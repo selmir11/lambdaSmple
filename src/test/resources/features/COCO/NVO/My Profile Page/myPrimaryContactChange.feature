@@ -66,7 +66,7 @@ Feature:  My Profile Page Coco
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
-
+    And I wait for 3000 milliseconds
     And I click on the Username in the "CoCo" Header
     Then I validate I am on the "My Profile" page
     And I click change primary contact on my profile page CoCo
