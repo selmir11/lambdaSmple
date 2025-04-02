@@ -85,7 +85,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify the help drawer "Full:English" text on Tax Status page
     Then I click on Contact Us link in Help Drawer on the Tax Status page
     And I validate I am on the "We Can Help" page and close tab
-    Then I click on the "Side" help link on Tax Status page
+    Then I click on the "Close" help link on Tax Status page
 
     Then I click on the "Claimed as Dependent" help link on Tax Status page
     And I verify the help drawer "Claim:English" text on Tax Status page
@@ -122,7 +122,7 @@ Feature: Page Validation-Tax Status Elmo Page
     And I verify the help drawer "Full:Spanish" text on Tax Status page
     Then I click on Contact Us link in Help Drawer on the Tax Status page
     And I validate I am on the "We Can Help" page and close tab
-    Then I click on the "Side" help link on Tax Status page
+    Then I click on the "Close" help link on Tax Status page
 
     Then I click on the "Claimed as Dependent" help link on Tax Status page
     And I verify the help drawer "Claim:Spanish" text on Tax Status page

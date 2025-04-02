@@ -241,7 +241,7 @@ Feature: Seed03 - Exchange
     Then I click continue on the Immigration Status page
     Then I validate I am on the "Family Overview" page
     And I click plus icon next to member on household page for "Spouse"
-    Then I click on Remove this Member
+    Then I click on Remove this Member for "Spouse"
     Then I click on "OK" in the Remove Member frame
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page

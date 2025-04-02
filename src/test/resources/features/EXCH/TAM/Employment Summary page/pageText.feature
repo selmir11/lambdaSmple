@@ -368,7 +368,7 @@ Feature: Page Text-Income Opt Out Page
     Then I validate I am on the "Login" page
 
   @SLER-2327
-  Scenario: RT-2594[ELIG-As an Exchange User on Employment Summary page, I want the ability to see the page in English or Spanish so that I can review and update the income information]
+  Scenario: SLER-2327 ELIG-As an Exchange User on Employment Summary page, I want the ability to see the page in English or Spanish so that I can review and update the income information]
     And I validate I am on the "Employment Summary" page
     Then I validate Employment Summary text in "English"
     And I validate I am on the "Employment Summary" page
@@ -398,7 +398,7 @@ Feature: Page Text-Income Opt Out Page
 
 
   @SLER-2372
-  Scenario: RT-2580 [Automate navigation on the ELMO Employment Summary Income Page in EXCH]
+  Scenario: SLER-2372 [Automate navigation on the ELMO Employment Summary Income Page in EXCH]
     And I validate I am on the "Employment Summary" page
     Then I click on Back button on the Employment Summary Page
     And I click plus icon next to member on household page for "Primary"
