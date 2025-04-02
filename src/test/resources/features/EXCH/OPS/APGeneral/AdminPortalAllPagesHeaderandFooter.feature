@@ -862,3 +862,5 @@ Feature: Verify Header, Footer on all pages in admin portal user
     And I click on Contact Us in the "Admin Portal" Footer
     And I validate I am on the "Contact Us" page and close tab
     Then I verify Copy Rights text in the Header or in the Footer
+    Then I close current tab and switch back to previous tab
+    Then I logout from Admin Portal
