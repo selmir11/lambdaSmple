@@ -42,7 +42,7 @@ public class MedicalPlanResultsPage {
     WebElement clickCompare;
 
     @FindBy (id = "MedicalPlanResults-SaveAndExit")
-    WebElement btnSaveExist;
+    WebElement btnSaveExit;
 
     @FindBy (id = "MedicalPlanResults-GoBack")
     WebElement btnGoBack;
@@ -109,6 +109,8 @@ public class MedicalPlanResultsPage {
     @FindBy(xpath = "//div[@id='MPcollapse'] //span[contains(@class,'ngx-slider-floor')]")
     WebElement txtpremiumamnt;
 
+    @FindBy(id = "PlanResults-CurrentPlanLabel")
+    WebElement greenMedicalBannerText;
 
 
     public void selectfromProviderList(String Selecting) {
@@ -118,14 +120,15 @@ public class MedicalPlanResultsPage {
     }
 
     public void SelectFirstMedicalPlan() {
-        basicActions.waitForElementToDisappear( spinner,15 );
-        basicActions.waitForElementToBePresent(selectFirstPlan, 30);
+        basicActions.waitForElementToBePresentWithRetries( spinner,120);
+        basicActions.waitForElementToBePresentWithRetries(selectFirstPlan, 50);
         selectFirstPlan.click();
     }
 
     public void clickContinue() {
         basicActions.waitForElementToDisappear( spinner,40 );
         basicActions.waitForElementToBePresent(continueBtn,30);
+        basicActions.scrollToElement(continueBtn);
         continueBtn.click();
     }
 
@@ -383,6 +386,34 @@ public class MedicalPlanResultsPage {
         softAssert.assertEquals(medicalPlansListcount, expectedCount, "The number of medical plans does not match the expected count");
         softAssert.assertAll();
 
+    }
+    public void validateMedicalGreenBannerTxt(String language){
+        basicActions.waitForElementToDisappear( spinner, 20 );
+        switch (language) {
+            case "English":
+                validateMedicalGreenBannerEnglishTxt();
+                break;
+            case "Spanish":
+                validateMedicalGreenBannerSpanishTxt();
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + language );
+
+        }
+    }
+
+    public void validateMedicalGreenBannerEnglishTxt(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresentWithRetries( greenMedicalBannerText,20);
+        softAssert.assertEquals(greenMedicalBannerText.getText(), "Current plan");
+        softAssert.assertAll();
+    }
+
+    public void validateMedicalGreenBannerSpanishTxt(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresentWithRetries( greenMedicalBannerText,20);
+        softAssert.assertEquals(greenMedicalBannerText.getText(), "Plan actual");
+        softAssert.assertAll();
     }
 
 

@@ -1,7 +1,7 @@
 Feature: Initial Application Single Applicant(Silver Enhanced)
+
   @SLCR-297-WIP
   Scenario: COCO Initial Application - Single Applicant (Silver Enhanced)
-
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page

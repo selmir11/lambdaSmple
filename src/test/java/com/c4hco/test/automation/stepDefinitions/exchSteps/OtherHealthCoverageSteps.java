@@ -5,6 +5,9 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+import java.util.List;
 
 public class OtherHealthCoverageSteps {
     OtherHealthCoveragePage otherHealthCoveragePage = new OtherHealthCoveragePage(WebDriverManager.getDriver());
@@ -79,4 +82,53 @@ public class OtherHealthCoverageSteps {
         otherHealthCoveragePage.verifyInsuranceOptions(insuranceOptionsTable);
     }
 
+    @Then("I validate font colour format of the text in employee sponsored page")
+    public void iValidateFontColourFormatOfTheTextInEmployeeSponsoredPage() {
+        otherHealthCoveragePage.validateFontColorSizeWhenNoJob();
+    }
+
+    @Then("I validate below texts in employee sponsored page")
+    public void iValidateTheBelowTextsInEmployeeSponsoredPage(List<String> pageTexts) {
+        otherHealthCoveragePage.validatePageTextESPage(pageTexts);
+    }
+
+    @When("I click on go back button in employee sponsored page")
+    public void iClickOnGoBackButtonInEmployeeSponsoredPage() {
+        otherHealthCoveragePage.clickOnGoBackBtnESPage();
+    }
+
+    @Then("I validate font colour format of the text when one job added")
+    public void iValidateFontColourFormatOfTheTextWhenOneJobAdded() {
+        otherHealthCoveragePage.validateFontColorSizeTextWhenOneJobAdded();
+    }
+
+    @When("I select the first option in which_job_is_offering dropdown")
+    public void iSelectTheFirstOptionInWhichJobIsOfferingDropdown() {
+        otherHealthCoveragePage.selectFirstOptInWhichJobIsOfferingDropdown();
+    }
+
+    @Then("I validate font colour etc when option is selected")
+    public void iValidateFontColourEtcWhenOptionIsSelected() {
+        otherHealthCoveragePage.validateColorFontSizeWhenOptionIsSelected();
+    }
+
+    @When("I click {string} in Are you currently enrolled question")
+    public void iClickInAreYouCurrentlyEnrolledQuestion(String btnName) {
+        otherHealthCoveragePage.clickOnAreYouCurrentlyEnrolledQstn(btnName);
+    }
+
+    @Then("I validate color border font when Are-you-currently-enrolled is {string}")
+    public void iValidateColorBorderFontWhenAreYouCurrentlyEnrolledIs(String btnName) {
+        otherHealthCoveragePage.validateColorFontSizeBorderWhenAreYouCurrentlyEnrolled(btnName);
+    }
+
+    @When("I select {string} in Will this health insurance end question")
+    public void iSelectInWillThisHealthInsuranceEndQuestion(String btnName) {
+        otherHealthCoveragePage.clickOnWillThisHealthInsuranceEndQuestion(btnName);
+    }
+
+    @Then("I validate when Will_this_health_insurance is Yes")
+    public void iValidateWhenWill_this_health_insuranceIs() {
+        otherHealthCoveragePage.validateColorFontSizeBorderWhenWillThisHealthInsurance();
+    }
 }

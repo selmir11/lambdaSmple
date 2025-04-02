@@ -87,7 +87,7 @@ Feature: Transfer a single CoCo client from one agency to another
     And I click on Find Expert Assistance in the "CoCo" Header
 
     Then I validate I am on the "FindExpertHelpCoco" page
-    Then I verify Find Expert Help header Text in "English"
+    Then I verify Manage who helps you header text in "English"
 
     And I validate current Broker text exists
     And I validate my broker details in the current broker table are "TransferRemoveAg Two", "TransferRemove Two", "512365497", "80205", "303-153-8975", "BROKER", "Active"

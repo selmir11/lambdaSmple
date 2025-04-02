@@ -263,6 +263,7 @@ Feature: Regression Tests that require Seed 1
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
+    And I verify the data from book of business queue by applicationId with "POLICY_UPDATE" as event type
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
@@ -307,7 +308,7 @@ Feature: Regression Tests that require Seed 1
     And I validate "medical" entities for "Primary" from policy tables
     And I validate "dental" entities for "Primary" from policy tables
     And I verify the policy data quality check with Policy Ah keyset size 2
-    # And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
+    And I verify the data from book of business queue by applicationId with "POLICY_SUBMISSION" as event type
     And I validate "medical" entities for "Primary" from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 001                   | 001                | AI                    | FINANCIAL CHANGE  |            |
@@ -333,7 +334,7 @@ Feature: Regression Tests that require Seed 1
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-1244-WIP_@R4V
+  @SLER-1244
   Scenario: RT-2074 ENR-EXCH: ADD DEPENDENT (LCE: Birth) - SAME CARRIER / SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -440,10 +441,10 @@ Feature: Regression Tests that require Seed 1
      #Son
     Given I set the dynamic policy, coverage and financial dates for "medical" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate | MemFinancialEndDate      |
-      | First Day Of Current Year | Last Day Of Current Year | Today             | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
+      | First Day Of Current Year | Last Day Of Current Year | Current Date      | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
     Given I set the dynamic policy, coverage and financial dates for "dental" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate | MemFinancialEndDate      |
-      | First Day Of Current Year | Last Day Of Current Year | Today             | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
+      | First Day Of Current Year | Last Day Of Current Year | Current Date      | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
     And I validate "medical" entities for "Son" from policy tables
     And I validate "dental" entities for "Son" from policy tables
 
@@ -465,10 +466,10 @@ Feature: Regression Tests that require Seed 1
      #Son
     Given I set the dynamic policy, coverage and financial dates for "medical" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate | MemFinancialEndDate      |
-      | First Day Of Current Year | Last Day Of Current Year | Today             | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
+      | First Day Of Current Year | Last Day Of Current Year | Current Date      | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
     Given I set the dynamic policy, coverage and financial dates for "dental" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate | MemFinancialEndDate      |
-      | First Day Of Current Year | Last Day Of Current Year | Today             | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
+      | First Day Of Current Year | Last Day Of Current Year | Current Date      | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
     And I validate "medical" entities for "Son" from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason                               |
       | 021                   | 021                | EC                    |                   | BIRTH_ADOPTION_OR_PLACEMENT_FOR_ADOPTION |
@@ -479,7 +480,7 @@ Feature: Regression Tests that require Seed 1
 
 
     And I verify the policy data quality check with Policy Ah keyset size 2
-    And I verify the data from book of business queue table with "POLICY_UPDATE" as event type
+    And I verify the data from book of business queue by applicationId with "POLICY_SUBMISSION" as event type
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data

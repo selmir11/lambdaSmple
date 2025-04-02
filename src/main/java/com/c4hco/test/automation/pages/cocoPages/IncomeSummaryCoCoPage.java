@@ -99,6 +99,9 @@ public class IncomeSummaryCoCoPage {
     @FindBy(xpath = "//div[@class='body-text-1 income-details-row margin-top-sm ng-star-inserted']//following-sibling::div")
     WebElement additionaIncomeAmt;
 
+    @FindBy(xpath = "//div[@class='total-income-width']//div//*")
+    List<WebElement> totalAnnualIncomeSectionText;
+
     public void clickprojectedIncomeNo() {
         basicActions.waitForElementToDisappear(spinner, 20);
         basicActions.waitForElementToBeClickableWithRetries(projectedIncomeNo, 15);
@@ -643,5 +646,19 @@ public class IncomeSummaryCoCoPage {
         softAssert.assertEquals(formattedCalculatedAmountFrmWeb, formattedCalculatedAmount, "Expected Amount Does not Match");
         System.out.println("Expected Income From Web = " + formattedCalculatedAmountFrmWeb + "\nExpected Income Calculated = " + formattedCalculatedAmount);
         softAssert.assertAll();
+    }
+
+    public void verifyTotalAnnualIncomeLabelTextsAndItsProperties(DataTable dataTable) {
+        basicActions.waitForElementListToBePresent(totalAnnualIncomeSectionText, 10);
+
+        List<Map<String, String>> data = dataTable.asMaps();
+        for (int i = 0; i < data.size(); i++) {
+            softAssert.assertEquals(totalAnnualIncomeSectionText.get(i).getText(), data.get(i).get("Text"),"Expected and Actual Error message is not matching");
+            softAssert.assertEquals(totalAnnualIncomeSectionText.get(i).getCssValue("font-size"), data.get(i).get("fontSize"),"Expected and Actual Font size for the error '" + data.get(i).get("Text") +"' is not matching.");
+            softAssert.assertEquals(totalAnnualIncomeSectionText.get(i).getCssValue("font-family"), data.get(i).get("fontFamily"),"Expected and Actual Font family for the error '" + data.get(i).get("Text") +"' is not matching.");
+            softAssert.assertEquals(totalAnnualIncomeSectionText.get(i).getCssValue("font-weight"), data.get(i).get("fontWeight"),"Expected and Actual Font weight for the error '" + data.get(i).get("Text") +"' is not matching.");
+            softAssert.assertEquals(totalAnnualIncomeSectionText.get(i).getCssValue("color"), data.get(i).get("color"),"Expected and Actual Font color for the error '" + data.get(i).get("Text") +"' is not matching.");
+            softAssert.assertAll();
+        }
     }
 }
