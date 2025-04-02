@@ -628,11 +628,11 @@ public class DbDataProvider_Exch {
     }
 
     public String getFDSHRetryType() {
-        return postgresHandler.getResultFor("response_code", exchDbQueries.getFDSHRetryType());
+        return postgresHandler.getResultFor("service_type", exchDbQueries.getFDSHRetryType());
     }
 
     public String getFDSHRetryStatus() {
-        return postgresHandler.getResultFor("response_code", exchDbQueries.getFDSHRetryStatus());
+        return postgresHandler.getResultFor("status", exchDbQueries.getFDSHRetryStatus());
     }
 
     public List<String> getSubscribers(String memId) {
@@ -699,4 +699,10 @@ public class DbDataProvider_Exch {
 
     public String getEnrollmentPlanLceRowCount(){
         return postgresHandler.getResultFor("count", exchDbQueries.getEnrollmentPeriodEndDateCount());}
+
+    public String[] getMyDocumentdetails() {
+        return postgresHandler.getResultForFiveColumnValues("document_source_id", "document_author", "document_display_name", "file_extension", "received_date", exchDbQueries.getLatestForm8962DocumentQuery());
+    }
+
+
 }

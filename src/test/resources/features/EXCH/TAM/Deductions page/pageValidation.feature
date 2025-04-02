@@ -306,7 +306,7 @@ Feature: Page Verification-Deductions Page
       | Deductions                                                   |
       | Do you have any of the following expenses?                   |
       | Select all that apply, and enter the amount of each expense. |
-    Then I verify all deduction options color size format text order and check boxes
+    Then I verify all deduction options color size format text order and check boxes for "English"
       | Alimony or spousal support paid out     |
       | Domestic production activities          |
       | Health Savings Account contribution     |
@@ -319,12 +319,12 @@ Feature: Page Verification-Deductions Page
       | Moving expenses                         |
       | None of these                           |
     Then I click "AOSS" as deduction option only
-    Then I validate default property of amount box and dropdown
+    Then I validate default property of amount box and dropdown for "English"
       | Select Option |
       | Annually      |
-      | EveryTwoWeeks |
+      | Every 2 weeks |
       | Monthly       |
-      | TwiceAMonth   |
+      | Twice a month |
       | Weekly        |
     Then I click "AOSS" as deduction option only
     And I select "Alimony" as deduction option with "200.00" amount at "Annually" frequency
@@ -333,3 +333,85 @@ Feature: Page Verification-Deductions Page
     Then I verify font color size of the back and save button in deductions page when mouse_Hover is "Off"
     Then I verify font color size of the back and save button in deductions page when mouse_Hover is "On"
 
+  @SLER-2406
+  Scenario: Verify the ability to see the page so that I can review and update the income information in Spanish(RT-2585)
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I verify color size format of the header and other page texts other than check boxes
+      | Ingresos:                                                                   |
+      | Deducciones                                                                 |
+      | ¿Tiene alguno de los siguientes gastos?                                     |
+      | Seleccione todos los que correspondan, e ingrese la cantidad de cada gasto. |
+    Then I verify all deduction options color size format text order and check boxes for "Spanish"
+      | Pensión alimenticia o apoyo conyugal que paga     |
+      | Actividades de producción para el mercado interno |
+      | Aporte a cuenta de ahorros de salud               |
+      | Aporte a la cuenta de retiro antes de impuestos   |
+      | Colegiatura y cuotas escolares                    |
+      | Impuesto al trabajo independiente                 |
+      | Interés por préstamo de estudiante                |
+      | Seguro de salud de trabajador independiente       |
+      | Plan de retiro como trabajador independiente      |
+      | Gastos de mudanza                                 |
+      | Ninguna de las anteriores                         |
+    Then I click "AOSS" as deduction option only
+    Then I validate default property of amount box and dropdown for "Spanish"
+      | Seleccionar opción |
+      | Anualmente         |
+      | Cada dos semanas   |
+      | Mensualmente       |
+      | Dos veces por mes  |
+      | Semanalmente       |
+    Then I click "AOSS" as deduction option only
+    And I select "Alimony" as deduction option with "200.00" amount at "Anualmente" frequency
+    Then I verify amount "200.00"  and frequency "Anualmente" is selected correctly
+    Then I verify when None_of_these selected,other checkboxes not selected
+    Then I verify font color size of the back and save button in deductions page when mouse_Hover is "Off"
+    Then I verify font color size of the back and save button in deductions page when mouse_Hover is "On"
+
+  @SLER-2412
+  Scenario:  As an Exch user, I want to see the ELMO Deductions page so that I can enter my deduction information [RT-2602]
+    When I click on Sign Out in the Header for "Elmo"
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "exchange" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I apply for the current year
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Birth" and click continue
+    Then I select "member" from the who are you question
+    And I am a member with City "Denver" in State "CO" with dob "10011980" in county "DENVER" with zipcode "80205"
+    Then I answer all Id proofing questions and click continue
+    And I click continue button on Congratulations page
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
+    And I click continue on Tell us about yourself page
+    Then I enter generic mailing address details
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    Then I click continue on family overview page
+    And I Apply for financial help
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I validate I am on the "Income Summary" page
+    And  I click on Go Back on income summary page
+    Then I validate I am on the "Deductions" page

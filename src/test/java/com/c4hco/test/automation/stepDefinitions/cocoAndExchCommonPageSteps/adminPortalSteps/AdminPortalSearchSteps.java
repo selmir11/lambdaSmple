@@ -6,6 +6,8 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import java.util.List;
+import java.util.Map;
 
 public class AdminPortalSearchSteps {
 
@@ -163,7 +165,7 @@ public class AdminPortalSearchSteps {
     public void iEnterTheFollowingDataForQAOrSTG(DataTable dataTable) {
         adminPortalSearchPage.entersearchdata(dataTable);
     }
-    
+
     @Then("I verify account created successfully message displays")
     public void iVerifyAccountCreatedSuccessfullyMessageDisplays() {
             adminPortalSearchPage.accountCreatedMessage();
@@ -216,7 +218,15 @@ public class AdminPortalSearchSteps {
     public void iValidateErrorsForAreDispalyed() {
         adminPortalSearchPage.verifyRequiredFieldsErrors();
     }
+
+    @Then("I click {string} arrow on admin portal")
+    public void iClickDropDownArrow(String arrow) {
+        adminPortalSearchPage.clickDropDownArrow(arrow);
+    }
+
+    @Then("I validate {string} and style properties")
+    public void iValidateAndStyleProperties(String headerName, List<Map<String, String>> styles) {
+        adminPortalSearchPage.verifyHeaderDisplayAndStyles(headerName);
+        adminPortalSearchPage.verifyElementStyles(headerName, styles);
+    }
 }
-
-
-

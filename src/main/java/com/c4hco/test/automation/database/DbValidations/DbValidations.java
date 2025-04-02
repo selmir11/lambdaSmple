@@ -1076,5 +1076,28 @@ public class DbValidations {
         softAssert.assertAll();
     }
 
+
+
+    public void validateDocumentDetails(List<String> expectedValues) {
+        SoftAssert softAssert = new SoftAssert();
+        String[] documentDetails = exchDbDataProvider.getMyDocumentdetails();
+
+        softAssert.assertEquals(documentDetails[0], expectedValues.get(0), "Mismatch in Source ID");
+        softAssert.assertEquals("null".equals(expectedValues.get(1)) ? null : expectedValues.get(1), documentDetails[1], "Mismatch in Document Author");
+        softAssert.assertEquals(documentDetails[2], expectedValues.get(2), "Mismatch in Display Name");
+        softAssert.assertEquals(documentDetails[3], expectedValues.get(3), "Mismatch in File Extension");
+        softAssert.assertEquals(documentDetails[4] != null ? documentDetails[4].split(" ")[0] : null, LocalDate.now().toString(), "DB date mismatch");
+
+        softAssert.assertAll();
+    }
+
+
+
+
+
+
+
+
+
 }
 

@@ -146,6 +146,7 @@ public class HouseholdPage {
 
     public void iVerifyFamilyOverviewTablePresent() {
         // TO DO:: Sometimes, rarely we see 2 tables here. Make sure the code doesn't break when we get 2 tables displayed
+        basicActions.waitForElementToBePresent(familyOverviewTable, 30);
         softAssert.assertTrue(familyOverviewTable.isDisplayed());
         softAssert.assertAll();
     }

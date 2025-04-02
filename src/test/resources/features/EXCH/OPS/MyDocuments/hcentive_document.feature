@@ -16,4 +16,4 @@ Feature: OPS MyDocs Download hCentive document
     Then I click link my docs on accountOverview page
     When I select All and Documents from drop down below Past Documents and Letters
     When I click on expand arrow for 1st document
-    Then I verify file downloaded and it is not empty
+    Then I verify file downloaded is "Peace Corps" and it is not empty

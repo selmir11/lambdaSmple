@@ -939,4 +939,15 @@ public class DbQueries_Exch {
         System.out.println("Executing Query: " + query);
         return query;
     }
+
+    public String getLatestForm8962DocumentQuery() {
+        String query = "SELECT * \n" +
+                "FROM " + dbName + ".ds_item \n" +
+                "WHERE account_id = '" + acctId + "' \n" +
+                "AND document_display_name = 'Form 8962' \n" +
+                "ORDER BY item_date DESC \n" +
+                "LIMIT 1";
+        return query;
+    }
+
 }
