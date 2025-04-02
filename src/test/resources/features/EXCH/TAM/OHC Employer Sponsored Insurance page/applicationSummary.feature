@@ -1043,7 +1043,7 @@ Feature: Tests related to the Application Summary/Detail for ESI
     And I click continue on the Race and Ethnicity page
     Then I click continue on the Citizenship page
     And I click plus icon next to member on household page for "Spouse"
-    Then I click on Remove this Member
+    Then I click on Remove this Member for "Spouse"
     Then I click on "OK" in the Remove Member frame
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"

@@ -74,7 +74,7 @@ Feature: Page text, navigation, validation - Race And Ethnicity in Spanish
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Race and Ethnicity" page
-    And I select Not listed for race and ethnicity option and enter "Mixed race" in the text box
+    And I select Not listed for race and ethnicity option and enter "Mixed race" in the text box for "Spouse"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
     And  I click Go back on the Employment income page

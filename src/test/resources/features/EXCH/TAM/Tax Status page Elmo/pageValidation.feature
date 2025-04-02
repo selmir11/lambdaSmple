@@ -513,7 +513,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click Go back on Tax Status page
     Then I click Go back on Tax Status page
     And I click plus icon next to member on household page for "Anna"
-    Then I click on Remove this Member
+    Then I click on Remove this Member for "Anna"
     Then I click on "OK" in the Remove Member frame
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"

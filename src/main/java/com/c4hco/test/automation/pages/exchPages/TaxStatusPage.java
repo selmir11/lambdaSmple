@@ -59,13 +59,13 @@ public class TaxStatusPage {
     @FindBy(id = "ELIG-taxStatus-claimedAsDependent-yesButton")
     WebElement claimedAsDependentYes;
 
-    @FindBy(xpath = "//*[@id='ELIG-taxStatus-claimedAsDependent-container']//label[2]")
+    @FindBy(xpath = "//*[@id='ELIG-taxStatus-claimedAsDependent-container']//lib-option-radio-buttons//label[1]")
     WebElement claimedAsDependentYesTxt;
 
     @FindBy(id = "ELIG-taxStatus-claimedAsDependent-noButton")
     WebElement claimedAsDependentNo;
 
-    @FindBy(xpath = "//*[@id='ELIG-taxStatus-claimedAsDependent-container']//label[3]")
+    @FindBy(xpath = "//*[@id='ELIG-taxStatus-claimedAsDependent-container']//lib-option-radio-buttons//label[2]")
     WebElement claimedAsDependentNoTxt;
 
     @FindBy(css = "#ELIG-taxStatus-willFile-container span")
@@ -77,13 +77,13 @@ public class TaxStatusPage {
     @FindBy(id = "ELIG-taxStatus-willFile-yesButton")
     WebElement willFileTaxReturnYes;
 
-    @FindBy(xpath = "//*[@id='ELIG-taxStatus-willFile-container']//label[2]")
+    @FindBy(xpath = "//*[@id='ELIG-taxStatus-willFile-container']//lib-option-radio-buttons//label[1]")
     WebElement willFileTaxReturnYesTxt;
 
     @FindBy(id = "ELIG-taxStatus-willFile-noButton")
     WebElement willFileTaxReturnNo;
 
-    @FindBy(xpath = "//*[@id='ELIG-taxStatus-willFile-container']//label[3]")
+    @FindBy(xpath = "//*[@id='ELIG-taxStatus-willFile-container']//lib-option-radio-buttons//label[2]")
     WebElement willFileTaxReturnNoTxt;
 
     @FindBy(css = "#ELIG-taxStatus-taxFilingStatus-container label")
@@ -116,13 +116,13 @@ public class TaxStatusPage {
     @FindBy(id = "ELIG-taxStatus-willClaimDependents-yesButton")
     WebElement willClaimDependentsYes;
 
-    @FindBy(xpath = "//*[@id='ELIG-taxStatus-willClaimDependents-container']//label[2]")
+    @FindBy(xpath = "//*[@id='ELIG-taxStatus-willClaimDependents-container']//lib-option-radio-buttons//label[1]")
     WebElement willClaimDependentsYesTxt;
 
     @FindBy(id = "ELIG-taxStatus-willClaimDependents-noButton")
     WebElement willClaimDependentsNo;
 
-    @FindBy(xpath = "//*[@id='ELIG-taxStatus-willClaimDependents-container']//label[3]")
+    @FindBy(xpath = "//*[@id='ELIG-taxStatus-willClaimDependents-container']//lib-option-radio-buttons//label[2]")
     WebElement willClaimDependentsNoTxt;
     
     @FindBy(css = "app-member-multi-select > div > div > span")
@@ -287,25 +287,28 @@ public class TaxStatusPage {
     @FindBy(id = "ELIG-taxStatus-nav-SaveAndContinue")
     WebElement saveAndContinueBtn;
 
-    @FindBy(css = ".drawer-controls lib-button")
+    @FindBy(css = "#Help\\.Button")
     WebElement sideHelpBtn;
 
-    @FindBy(css = ".drawer-heading div")
+    @FindBy(css = ".desktop-help .header-close-link")
+    WebElement closeHelpBtn;
+
+    @FindBy(css = ".desktop-help .c4-text-body-200")
     WebElement helpHdr;
 
-    @FindBy(css = ".drawer-heading h3")
+    @FindBy(css = ".desktop-help .title.c4-type-header-sm")
     WebElement helpSubHdr;
 
-    @FindBy(css = ".drawer-text-content strong")
+    @FindBy(css = ".help-main-content strong")
     List<WebElement> helpContentHdr;
 
-    @FindBy(css = ".drawer-text-content p")
+    @FindBy(css = ".help-main-content p")
     List<WebElement> helpContentTxt;
 
-    @FindBy(css = ".drawer-footer > h3")
+    @FindBy(css = ".help-footer")
     WebElement helpFooterTxt;
 
-    @FindBy(css = ".drawer-footer > h3 a")
+    @FindBy(css = ".help-footer a")
     WebElement helpFooterLnk;
 
     @FindBy(css=".fas.fa-spinner.fa-spin")
@@ -511,6 +514,10 @@ public class TaxStatusPage {
             case "Side":
                 basicActions.waitForElementToBePresent(sideHelpBtn,10);
                 sideHelpBtn.click();
+                break;
+            case "Close":
+                basicActions.waitForElementToBePresent(closeHelpBtn,10);
+                closeHelpBtn.click();
                 break;
             case "Claimed as Dependent":
                 basicActions.waitForElementToBePresent(claimedAsDependentHlpIcon,10);
@@ -947,9 +954,8 @@ public class TaxStatusPage {
     public void verifyOnlyMemPrefixSelected(String memPrefix) {
         boolean isMemPrefixSelected = false;
         for (int i = 0; i < whoClaimedAsDependentsRadio.size(); i++) {
-            int adjustedIndex = i + 1;
             WebElement radioButton = whoClaimedAsDependentsRadio.get(i);
-            String radioText = whoClaimedAsDependentsRadioTxt.get(adjustedIndex).getText().trim();
+            String radioText = whoClaimedAsDependentsRadioTxt.get(i).getText().trim();
             boolean isChecked = radioButton.isSelected();
             if (memPrefix != null && !memPrefix.isEmpty() && radioText.startsWith(memPrefix.trim())) {
                 softAssert.assertTrue(isChecked, "Radio button with " + memPrefix + " is not selected.");
@@ -1043,14 +1049,13 @@ public class TaxStatusPage {
         softAssert.assertEquals(whoClaimedAsDependentsErrorTxt.getCssValue("color"), "rgba(150, 0, 0, 1)","Error Text is not as expected");
         softAssert.assertEquals(whoClaimedAsDependentsErrorTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif","Error Text is not as expected");
         for (int i = 0; i < filteredMemNames.size(); i++) {
-            int adjustedIndex = i + 1;
-            softAssert.assertEquals(whoClaimedAsDependentsRadioTxt.get(adjustedIndex).getText(), filteredMemNames.get(i), "Mismatch at radio index: " + (i + 1));
-            softAssert.assertEquals(whoClaimedAsDependentsRadioTxt.get(adjustedIndex).getCssValue("font-weight"), "700", "Mismatch at radio index: " + (i + 1));
-            softAssert.assertEquals(whoClaimedAsDependentsRadioTxt.get(adjustedIndex).getCssValue("font-size"), "16px", "Mismatch at radio index: " + (i + 1));
-            softAssert.assertEquals(whoClaimedAsDependentsRadioTxt.get(adjustedIndex).getCssValue("color"), "rgba(150, 0, 0, 1)", "Mismatch at radio index: " + (i + 1));
-            softAssert.assertEquals(whoClaimedAsDependentsRadioTxt.get(adjustedIndex).getCssValue("font-family"), "\"PT Sans\", sans-serif", "Mismatch at radio index: " + (i + 1));
+            softAssert.assertEquals(whoClaimedAsDependentsRadioTxt.get(i).getText(), filteredMemNames.get(i), "Mismatch at radio index: " + (i + 1));
+            softAssert.assertEquals(whoClaimedAsDependentsRadioTxt.get(i).getCssValue("font-weight"), "700", "Mismatch at radio index: " + (i + 1));
+            softAssert.assertEquals(whoClaimedAsDependentsRadioTxt.get(i).getCssValue("font-size"), "16px", "Mismatch at radio index: " + (i + 1));
+            softAssert.assertEquals(whoClaimedAsDependentsRadioTxt.get(i).getCssValue("color"), "rgba(150, 0, 0, 1)", "Mismatch at radio index: " + (i + 1));
+            softAssert.assertEquals(whoClaimedAsDependentsRadioTxt.get(i).getCssValue("font-family"), "\"PT Sans\", sans-serif", "Mismatch at radio index: " + (i + 1));
         }
-        int someoneElseIndex = filteredMemNames.size() + 1;
+        int someoneElseIndex = filteredMemNames.size();
         if (someoneElseIndex < whoClaimedAsDependentsRadioTxt.size()) {
             softAssert.assertEquals(whoClaimedAsDependentsRadioTxt.get(someoneElseIndex).getText(), someoneElseText, "'Someone else' option text does not match.");
             softAssert.assertEquals(whoClaimedAsDependentsRadioTxt.get(someoneElseIndex).getCssValue("font-weight"), "700", "'Someone else' option mismatch");
@@ -1425,14 +1430,14 @@ public class TaxStatusPage {
         softAssert.assertEquals(filingJointlyWithErrorTxt.getCssValue("color"), "rgba(150, 0, 0, 1)","Error Text is not as expected");
         softAssert.assertEquals(filingJointlyWithErrorTxt.getCssValue("font-family"), "\"PT Sans\", sans-serif","Error Text is not as expected");
         for (int i = 0; i < filteredMemNames.size(); i++) {
-            int adjustedIndex = i + 2;
+            int adjustedIndex = i + 1;
             softAssert.assertEquals(filingJointlyWithRadioTxt.get(adjustedIndex).getText(), filteredMemNames.get(i), "Mismatch at radio index: " + (i + 1));
             softAssert.assertEquals(filingJointlyWithRadioTxt.get(adjustedIndex).getCssValue("font-weight"), "700", "Mismatch at radio index: " + (i + 1));
             softAssert.assertEquals(filingJointlyWithRadioTxt.get(adjustedIndex).getCssValue("font-size"), "16px", "Mismatch at radio index: " + (i + 1));
             softAssert.assertEquals(filingJointlyWithRadioTxt.get(adjustedIndex).getCssValue("color"), "rgba(150, 0, 0, 1)", "Mismatch at radio index: " + (i + 1));
             softAssert.assertEquals(filingJointlyWithRadioTxt.get(adjustedIndex).getCssValue("font-family"), "\"PT Sans\", sans-serif", "Mismatch at radio index: " + (i + 1));
         }
-        int someoneElseIndex = filteredMemNames.size() + 2;
+        int someoneElseIndex = filteredMemNames.size() + 1;
         if (someoneElseIndex < filingJointlyWithRadioTxt.size()) {
             softAssert.assertEquals(filingJointlyWithRadioTxt.get(someoneElseIndex).getText(), someoneElseText, "'Someone else' option text does not match.");
             softAssert.assertEquals(filingJointlyWithRadioTxt.get(someoneElseIndex).getCssValue("font-weight"), "700", "'Someone else' option mismatch");
@@ -1452,7 +1457,6 @@ public class TaxStatusPage {
 
         if (actualMemNames.size() > 1) {
             actualMemNames.remove(0); // Remove first occurrence of "Who will you be filing jointly with?"
-            actualMemNames.remove(0); // Remove second occurrence
         }
         softAssert.assertEquals(actualMemNames.size(), expectedMembersList.size() + 1, "The actual number of radio button options does not match the expected count.");
         for (String expectedName : expectedMembersList) {
@@ -2090,7 +2094,7 @@ public class TaxStatusPage {
         softAssert.assertEquals(helpContentTxt.get(1).getText(), "Dependents are children or any others this person is responsible for taking care of financially.");
         softAssert.assertEquals(helpContentHdr.get(2).getText(), "Exceptional Circumstances");
         softAssert.assertEquals(helpContentTxt.get(2).getText(), "If you have been a victim of domestic violence, are still married to the perpetrator, and unable to file a joint tax return, please select 'Married Filing Separately' as your tax filing status and check the 'Exceptional circumstances' box.");
-        softAssert.assertEquals(helpFooterTxt.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpFooterTxt.getText(), "Need more help?\nContact us");
         softAssert.assertEquals(helpFooterLnk.getText(), "Contact us");
         softAssert.assertAll();
     }
@@ -2105,7 +2109,7 @@ public class TaxStatusPage {
         softAssert.assertEquals(helpContentTxt.get(1).getText(), "Los dependientes son hijos u otros individuos que la persona tenga a su cargo en cuesti\u00F3n financiera.");
         softAssert.assertEquals(helpContentHdr.get(2).getText(), "Circunstancias excepcionales");
         softAssert.assertEquals(helpContentTxt.get(2).getText(), "Si ha sido v\u00EDctima de violencia dom\u00E9stica, sigue casado con la persona que ejerce violencia y no puede presentar una declaraci\u00F3n conjunta de impuestos, seleccione \"Married Filing Separately\" (Casado que declara por separado) como su estatus de declaraci\u00F3n de impuestos y marque la casilla \"Exceptional circumstances\" (Circunstancias excepcionales).");
-        softAssert.assertEquals(helpFooterTxt.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        softAssert.assertEquals(helpFooterTxt.getText(), "\u00BFNecesitas m\u00E1s ayuda?\nCont\u00E1ctenos");
         softAssert.assertEquals(helpFooterLnk.getText(), "Cont\u00E1ctenos");
         softAssert.assertAll();
     }
@@ -2116,7 +2120,7 @@ public class TaxStatusPage {
         softAssert.assertEquals(helpSubHdr.getText(), "Tax Status");
         softAssert.assertEquals(helpContentHdr.get(0).getText(), "Dependents");
         softAssert.assertEquals(helpContentTxt.get(0).getText(), "Dependents are children or any others this person is responsible for taking care of financially.");
-        softAssert.assertEquals(helpFooterTxt.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpFooterTxt.getText(), "Need more help?\nContact us");
         softAssert.assertEquals(helpFooterLnk.getText(), "Contact us");
         softAssert.assertAll();
     }
@@ -2127,7 +2131,7 @@ public class TaxStatusPage {
         softAssert.assertEquals(helpSubHdr.getText(), "Situaci\u00F3n fiscal");
         softAssert.assertEquals(helpContentHdr.get(0).getText(), "Dependientes");
         softAssert.assertEquals(helpContentTxt.get(0).getText(), "Los dependientes son hijos u otros individuos que la persona tenga a su cargo en cuesti\u00F3n financiera.");
-        softAssert.assertEquals(helpFooterTxt.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        softAssert.assertEquals(helpFooterTxt.getText(), "\u00BFNecesitas m\u00E1s ayuda?\nCont\u00E1ctenos");
         softAssert.assertEquals(helpFooterLnk.getText(), "Cont\u00E1ctenos");
         softAssert.assertAll();
     }
@@ -2138,7 +2142,7 @@ public class TaxStatusPage {
         softAssert.assertEquals(helpSubHdr.getText(), "Tax Status");
         softAssert.assertEquals(helpContentHdr.get(0).getText(), "Exceptional Circumstances");
         softAssert.assertEquals(helpContentTxt.get(0).getText(), "If you have been a victim of domestic violence, are still married to the perpetrator, and unable to file a joint tax return, please select 'Married Filing Separately' as your tax filing status and check the 'Exceptional circumstances' box.");
-        softAssert.assertEquals(helpFooterTxt.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpFooterTxt.getText(), "Need more help?\nContact us");
         softAssert.assertEquals(helpFooterLnk.getText(), "Contact us");
         softAssert.assertAll();
     }
@@ -2149,7 +2153,7 @@ public class TaxStatusPage {
         softAssert.assertEquals(helpSubHdr.getText(), "Situaci\u00F3n fiscal");
         softAssert.assertEquals(helpContentHdr.get(0).getText(), "Circunstancias excepcionales");
         softAssert.assertEquals(helpContentTxt.get(0).getText(), "Si ha sido v\u00EDctima de violencia dom\u00E9stica, sigue casado con la persona que ejerce violencia y no puede presentar una declaraci\u00F3n conjunta de impuestos, seleccione \"Married Filing Separately\" (Casado que declara por separado) como su estatus de declaraci\u00F3n de impuestos y marque la casilla \"Exceptional circumstances\" (Circunstancias excepcionales).");
-        softAssert.assertEquals(helpFooterTxt.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        softAssert.assertEquals(helpFooterTxt.getText(), "\u00BFNecesitas m\u00E1s ayuda?\nCont\u00E1ctenos");
         softAssert.assertEquals(helpFooterLnk.getText(), "Cont\u00E1ctenos");
         softAssert.assertAll();
     }

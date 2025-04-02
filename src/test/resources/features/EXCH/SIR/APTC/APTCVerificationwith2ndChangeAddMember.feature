@@ -233,11 +233,9 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the first medical plan
     And I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
-    And I select first dental plan
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
@@ -377,9 +375,8 @@ Feature: UI Tests related to APTC after second enrollment change
       And I click submit enrollment on Enrollment Agreements page
 
       Then I validate I am on the "Pay now" page
-
       Then I click all done from payment portal page
-      # end of initial enrollment
+       # end initial enrollment and go back to make changes
 
       Then I validate I am on the "Account Overview" page
       Then I click on make changes button

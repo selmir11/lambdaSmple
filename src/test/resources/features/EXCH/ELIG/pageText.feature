@@ -369,16 +369,16 @@ Feature: Verify all English and Spanish Text on ELIG pages
       | You can also check this box if your household's annual Modified Adjusted Gross Income is at or below 150% of the federal poverty level: |
       | https://www.healthcare.gov/glossary/federal-poverty-level-fpl/ |
       | Please use the list below to see the income limits by household size: |
-      | 1 person: $21,870 |
-      | 2 people: $29,580 |
-      | 3 people: $37,290 |
-      | 4 people: $45,000 |
-      | 5 people: $52,710 |
-      | 6 people: $60,240 |
-      | 7 people: $68,130 |
-      | 8 people: $75,840 |
-      | 9 people: $83,550 |
-      | 10 people: $91,260 |
+      | 1 person: $22,590 |
+      | 2 people: $30,660 |
+      | 3 people: $38,730 |
+      | 4 people: $46,800 |
+      | 5 people: $54,870 |
+      | 6 people: $62,940 |
+      | 7 people: $71,010 |
+      | 8 people: $79,080 |
+      | 9 people: $87,150 |
+      | 10 people: $95,220 |
       | Need more help? |
       | Contact us |
 
@@ -410,16 +410,16 @@ Feature: Verify all English and Spanish Text on ELIG pages
       | Marque esta casilla si el Ingreso bruto ajustado modificado anual de la familia es igual o inferior al 150% del nivel federal de pobreza: |
       | https://www.cuidadodesalud.gov/es/glossary/federal-poverty-level-fpl/ |
       | Vea la lista a continuación con los límites de ingresos por tamaño familiar: |
-      | 1 persona: $21,870 |
-      | 2 personas: $29,580 |
-      | 3 personas: $37,290 |
-      | 4 personas: $45,000 |
-      | 5 personas: $52,710 |
-      | 6 personas: $60,240 |
-      | 7 personas: $68,130 |
-      | 8 personas: $75,840 |
-      | 9 personas: $83,550 |
-      | 10 personas: $91,260 |
+      | 1 persona: $22,590 |
+      | 2 personas: $30,660 |
+      | 3 personas: $38,730 |
+      | 4 personas: $46,800 |
+      | 5 personas: $54,870 |
+      | 6 personas: $62,940 |
+      | 7 personas: $71,010 |
+      | 8 personas: $79,080 |
+      | 9 personas: $87,150 |
+      | 10 personas: $95,220 |
       | ¿Necesitas más ayuda? |
       | Contáctenos |
 
@@ -497,16 +497,16 @@ Feature: Verify all English and Spanish Text on ELIG pages
       | You can also check this box if your household's annual Modified Adjusted Gross Income is at or below 150% of the federal poverty level: |
       | https://www.healthcare.gov/glossary/federal-poverty-level-fpl/ |
       | Please use the list below to see the income limits by household size: |
-      | 1 person: $21,870 |
-      | 2 people: $29,580 |
-      | 3 people: $37,290 |
-      | 4 people: $45,000 |
-      | 5 people: $52,710 |
-      | 6 people: $60,240 |
-      | 7 people: $68,130 |
-      | 8 people: $75,840 |
-      | 9 people: $83,550 |
-      | 10 people: $91,260 |
+      | 1 person: $22,590 |
+      | 2 people: $30,660 |
+      | 3 people: $38,730 |
+      | 4 people: $46,800 |
+      | 5 people: $54,870 |
+      | 6 people: $62,940 |
+      | 7 people: $71,010 |
+      | 8 people: $79,080 |
+      | 9 people: $87,150 |
+      | 10 people: $95,220 |
       | Need more help? |
       | Contact us |
 
@@ -586,16 +586,16 @@ Feature: Verify all English and Spanish Text on ELIG pages
       | Marque esta casilla si el Ingreso bruto ajustado modificado anual de la familia es igual o inferior al 150% del nivel federal de pobreza: |
       | https://www.cuidadodesalud.gov/es/glossary/federal-poverty-level-fpl/ |
       | Vea la lista a continuación con los límites de ingresos por tamaño familiar: |
-      | 1 persona: $21,870 |
-      | 2 personas: $29,580 |
-      | 3 personas: $37,290 |
-      | 4 personas: $45,000 |
-      | 5 personas: $52,710 |
-      | 6 personas: $60,240 |
-      | 7 personas: $68,130 |
-      | 8 personas: $75,840 |
-      | 9 personas: $83,550 |
-      | 10 personas: $91,260 |
+      | 1 persona: $22,590 |
+      | 2 personas: $30,660 |
+      | 3 personas: $38,730 |
+      | 4 personas: $46,800 |
+      | 5 personas: $54,870 |
+      | 6 personas: $62,940 |
+      | 7 personas: $71,010 |
+      | 8 personas: $79,080 |
+      | 9 personas: $87,150 |
+      | 10 personas: $95,220 |
       | ¿Necesitas más ayuda? |
       | Contáctenos |
 
@@ -625,16 +625,16 @@ Feature: Verify all English and Spanish Text on ELIG pages
       | You can also check this box if your household's annual Modified Adjusted Gross Income is at or below 150% of the federal poverty level: |
       | https://www.healthcare.gov/glossary/federal-poverty-level-fpl/ |
       | Please use the list below to see the income limits by household size: |
-      | 1 person: $21,870 |
-      | 2 people: $29,580 |
-      | 3 people: $37,290 |
-      | 4 people: $45,000 |
-      | 5 people: $52,710 |
-      | 6 people: $60,240 |
-      | 7 people: $68,130 |
-      | 8 people: $75,840 |
-      | 9 people: $83,550 |
-      | 10 people: $91,260 |
+      | 1 person: $22,590 |
+      | 2 people: $30,660 |
+      | 3 people: $38,730 |
+      | 4 people: $46,800 |
+      | 5 people: $54,870 |
+      | 6 people: $62,940 |
+      | 7 people: $71,010 |
+      | 8 people: $79,080 |
+      | 9 people: $87,150 |
+      | 10 people: $95,220 |
       | Need more help? |
       | Contact us |
 
@@ -666,16 +666,16 @@ Feature: Verify all English and Spanish Text on ELIG pages
       | Marque esta casilla si el Ingreso bruto ajustado modificado anual de la familia es igual o inferior al 150% del nivel federal de pobreza: |
       | https://www.cuidadodesalud.gov/es/glossary/federal-poverty-level-fpl/ |
       | Vea la lista a continuación con los límites de ingresos por tamaño familiar: |
-      | 1 persona: $21,870 |
-      | 2 personas: $29,580 |
-      | 3 personas: $37,290 |
-      | 4 personas: $45,000 |
-      | 5 personas: $52,710 |
-      | 6 personas: $60,240 |
-      | 7 personas: $68,130 |
-      | 8 personas: $75,840 |
-      | 9 personas: $83,550 |
-      | 10 personas: $91,260 |
+      | 1 persona: $22,590 |
+      | 2 personas: $30,660 |
+      | 3 personas: $38,730 |
+      | 4 personas: $46,800 |
+      | 5 personas: $54,870 |
+      | 6 personas: $62,940 |
+      | 7 personas: $71,010 |
+      | 8 personas: $79,080 |
+      | 9 personas: $87,150 |
+      | 10 personas: $95,220 |
       | ¿Necesitas más ayuda? |
       | Contáctenos |
 
@@ -753,16 +753,16 @@ Feature: Verify all English and Spanish Text on ELIG pages
       | You can also check this box if your household's annual Modified Adjusted Gross Income is at or below 150% of the federal poverty level: |
       | https://www.healthcare.gov/glossary/federal-poverty-level-fpl/ |
       | Please use the list below to see the income limits by household size: |
-      | 1 person: $21,870 |
-      | 2 people: $29,580 |
-      | 3 people: $37,290 |
-      | 4 people: $45,000 |
-      | 5 people: $52,710 |
-      | 6 people: $60,240 |
-      | 7 people: $68,130 |
-      | 8 people: $75,840 |
-      | 9 people: $83,550 |
-      | 10 people: $91,260 |
+      | 1 person: $22,590 |
+      | 2 people: $30,660 |
+      | 3 people: $38,730 |
+      | 4 people: $46,800 |
+      | 5 people: $54,870 |
+      | 6 people: $62,940 |
+      | 7 people: $71,010 |
+      | 8 people: $79,080 |
+      | 9 people: $87,150 |
+      | 10 people: $95,220 |
       | Need more help? |
       | Contact us |
 
@@ -841,16 +841,16 @@ Feature: Verify all English and Spanish Text on ELIG pages
       | Marque esta casilla si el Ingreso bruto ajustado modificado anual de la familia es igual o inferior al 150% del nivel federal de pobreza: |
       | https://www.cuidadodesalud.gov/es/glossary/federal-poverty-level-fpl/ |
       | Vea la lista a continuación con los límites de ingresos por tamaño familiar: |
-      | 1 persona: $21,870 |
-      | 2 personas: $29,580 |
-      | 3 personas: $37,290 |
-      | 4 personas: $45,000 |
-      | 5 personas: $52,710 |
-      | 6 personas: $60,240 |
-      | 7 personas: $68,130 |
-      | 8 personas: $75,840 |
-      | 9 personas: $83,550 |
-      | 10 personas: $91,260 |
+      | 1 persona: $22,590 |
+      | 2 personas: $30,660 |
+      | 3 personas: $38,730 |
+      | 4 personas: $46,800 |
+      | 5 personas: $54,870 |
+      | 6 personas: $62,940 |
+      | 7 personas: $71,010 |
+      | 8 personas: $79,080 |
+      | 9 personas: $87,150 |
+      | 10 personas: $95,220 |
       | ¿Necesitas más ayuda? |
       | Contáctenos |
 
