@@ -370,6 +370,7 @@ Feature: Page Verification-Deductions Page
 
   @SLER-2412
   Scenario:  As an Exch user, I want to see the ELMO Deductions page so that I can enter my deduction information [RT-2602]
+    When I click on Sign Out in the Header for "Elmo"
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
