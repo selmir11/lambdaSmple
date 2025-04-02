@@ -2,8 +2,7 @@
   #contains SLER-747, SLER-1003,
 Feature: Tests related to dental plans
 
-@SLER-747 @dentalPlanAdultNamesAndCount @failingInQA-ReportingABug
-# 2nd and 3rd plans are flipped in QA. Defect with the order.
+@SLER-747 @dentalPlanAdultNamesAndCount
 Scenario: SLER-747 - Validate dental plans count - single adult
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -82,6 +81,7 @@ Scenario: SLER-747 - Validate dental plans count - single adult
     Then I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
+    Then I select first dental plan
     Then I validate the dental plans count to be "9"
     And I click on Sign Out in the Header for "Elmo"
 
@@ -185,10 +185,10 @@ Scenario: SLER-747 - Validate dental plans count - single adult
     Then I click continue on start shopping page
 
     And I validate I am on the "Medical Plan Results" page
-    And I select the first medical plan
     Then I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
+    Then I select first dental plan
     Then I validate the dental plans count to be "12"
     And I click on Sign Out in the Header for "Elmo"
 
