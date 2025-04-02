@@ -828,7 +828,7 @@ Feature: Page Verification-Additional Income Page
       | None of these                      |
     Then I verify page text of Go_Back as "Go back" and Save_And_Continue as "Save and continue" in AI page
     When I click on Alimony Received check box
-    Then I verify default property of amount box and dropdown in AI page
+    Then I verify default property of amount box and dropdown in AI page for "English"
       | Select Option |
       | Annually      |
       | Every 2 weeks |
@@ -838,6 +838,44 @@ Feature: Page Verification-Additional Income Page
     When I click on Alimony Received check box
     Then I click "Alimony Received" as additional income option with "400.00" amount at "Annually" frequency
     Then I verify amount "400.00" and frequency "Annually" is selected in AI page
+    Then I verify when None_of_these selected Other checkboxes not selected in AI page
+    Then I verify font color size of back and save button in AI page when mouse_Hover is "Off"
+    Then I verify font color size of back and save button in AI page when mouse_Hover is "On"
+
+  @SLER-2411
+  Scenario: As an Exch user, want to see the Additional income sources page so that I can enter my additional income information in Spanish[RT-2610]
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I verify color font border of the header and other page texts other than check boxes for AI page
+      | Ingresos:                                                                        |
+      | Otras fuentes de ingreso                                                         |
+      | ¿Recibió alguno de los ingresos siguientes?                                      |
+      | Seleccione todo lo que corresponda y registre la cantidad de ingreso que recibe. |
+    Then I verify all add income options color size format text and view order
+      | Pensión alimenticia recibida                    |
+      | Ganancias de capital                            |
+      | Ingresos por renta de propiedades               |
+      | Pensión                                         |
+      | Ingresos privados por retiro                    |
+      | Ingresos por el Seguro Social                   |
+      | Beneficio del seguro de desempleo               |
+      | Ingresos derivados de inversiones               |
+      | Apoyo en efectivo                               |
+      | Ingresos obtenidos en el extranjero no gravados |
+      | Ingresos por regalías                           |
+      | Ingresos gravables de origen tribal             |
+      | Ninguna de las anteriores                       |
+    Then I verify page text of Go_Back as "Volver" and Save_And_Continue as "Guardar y continuar" in AI page
+    When I click on Alimony Received check box
+    Then I verify default property of amount box and dropdown in AI page for "Spanish"
+      | Seleccionar opción |
+      | Anualmente         |
+      | Cada dos semanas   |
+      | Mensualmente       |
+      | Dos veces por mes  |
+      | Semanalmente       |
+    When I click on Alimony Received check box
+    Then I click "Alimony Received" as additional income option with "300.00" amount at "Anualmente" frequency
+    Then I verify amount "300.00" and frequency "Anualmente" is selected in AI page
     Then I verify when None_of_these selected Other checkboxes not selected in AI page
     Then I verify font color size of back and save button in AI page when mouse_Hover is "Off"
     Then I verify font color size of back and save button in AI page when mouse_Hover is "On"

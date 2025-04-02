@@ -112,9 +112,9 @@ public class AdditionalIncomePageSteps {
         additionalIncomePage.verifyTextsOfBackAndSaveBtn(btnBack,btnSave);
     }
 
-    @Then("I verify default property of amount box and dropdown in AI page")
-    public void iVerifyDefaultPropertyOfAmountBoxAndDropdownInAIPage(List<String> dropdownOptions) {
-        additionalIncomePage.verifyDefaultPropertyOfTextBoxAndDropdown(dropdownOptions);
+    @Then("I verify default property of amount box and dropdown in AI page for {string}")
+    public void iVerifyDefaultPropertyOfAmountBoxAndDropdownInAIPageFor(String languageOpt,List<String> dropdownOptions) {
+        additionalIncomePage.verifyDefaultPropertyOfTextBoxAndDropdown(languageOpt,dropdownOptions);
     }
 
     @Then("I verify amount {string} and frequency {string} is selected in AI page")
