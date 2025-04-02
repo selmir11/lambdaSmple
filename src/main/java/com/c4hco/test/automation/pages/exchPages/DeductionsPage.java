@@ -1266,7 +1266,7 @@ public class DeductionsPage {
                 break;
             case "Spanish":
                 softAssert.assertEquals(txtAOSSAmount.getAttribute("placeholder"),"cantidad","AOSS default text not visible");
-                softAssert.assertEquals(basicActions.getFirstSelectedOptionFromDD(selectAOSSFrequency).getText().trim(),"Seleccionar opción","Seleccionar opción not visible");
+                softAssert.assertEquals(basicActions.getFirstSelectedOptionFromDD(selectAOSSFrequency).getText().trim(),"Seleccionar opci\u00F3n","Seleccionar opci\u00F3n not visible");
                 softAssert.assertAll();
                 break;
             default:

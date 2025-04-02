@@ -322,6 +322,7 @@ public class HeaderAndFooterPage {
     }
 
     public void clickLearnMoreLink() {
+        basicActions.waitForElementToDisappear(spinner,20);
         basicActions.waitForElementToBeClickableWithRetries(learnMoreLink, 60);
         learnMoreLink.click();
     }

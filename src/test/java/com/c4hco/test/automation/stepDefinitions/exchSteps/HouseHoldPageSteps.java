@@ -32,8 +32,8 @@ public class HouseHoldPageSteps {
     @Then("I click edit basic information icon on household page for {string}")
     public void iclickBasicInformationIcon(String namePrefix) {houseHoldPage.clickBasicInfoMemberButton(namePrefix);}
 
-    @Then("I click on Remove this Member")
-    public void iClickRemoveMember() {houseHoldPage.clickRemoveMember();}
+    @Then("I click on Remove this Member for {string}")
+    public void iClickRemoveMember(String namePrefix) {houseHoldPage.clickRemoveMember(namePrefix);}
 
     @Then("I click on {string} in the Remove Member frame")
     public void iClickOptionOnRemoveWindow(String option) {houseHoldPage.clickOptionOnRemoveWindow(option);}

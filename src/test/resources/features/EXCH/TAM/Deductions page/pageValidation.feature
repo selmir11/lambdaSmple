@@ -334,7 +334,7 @@ Feature: Page Verification-Deductions Page
     Then I verify font color size of the back and save button in deductions page when mouse_Hover is "On"
 
   @SLER-2406
-  Scenario: Verify the ability to see the page so that I can review and update the income information in Spanish(RT-2585)
+  Scenario: SLER-2406 Verify the ability to see the page so that I can review and update the income information in Spanish(RT-2585)
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I verify color size format of the header and other page texts other than check boxes
       | Ingresos:                                                                   |
