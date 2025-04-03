@@ -35,7 +35,7 @@ public class PaymentPortalPage {
     @FindBy(id = "userPassword")
     WebElement password;
 
-    @FindBy(id = "password-button")
+    @FindBy(id = "SOL-PayNow-Confirm-Password")
     WebElement continueButton;
 
     @FindBy(css = "#SOL-PayNow-PayLaterLink-Medical-0")
