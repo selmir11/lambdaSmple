@@ -359,12 +359,10 @@ Feature: Seed03 - Exchange
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
     Then I validate I am on the "Medical Plan Results" page
-    Then I select "Select Health Value Bronze $6900 Medical Deductible" medical plan
     Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
     And I validate I am on the "Dental Plan Results" page
-    And I select "EssentialSmile Colorado - Total Care" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I set "Medical" Plans premium amount
