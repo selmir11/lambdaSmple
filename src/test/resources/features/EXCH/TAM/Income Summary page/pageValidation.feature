@@ -61,7 +61,7 @@ Feature: Page Validation-Income Summary Page
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I click the save and continue button on the Income Summary Detail page
     And I verify the active error message as "Seleccione una de las siguientes opciones"
-    Then I select the projected income option as "Sí"
+    Then I select the projected income option as "Yes"
     Then I verify no error is displayed on the Income Summary page
     Then I click the save and continue button on the Income Summary Detail page
     And I verify the active error message as "Esta cantidad es obligatoria"
@@ -314,7 +314,7 @@ Feature: Page Validation-Income Summary Page
     Then I validate font colour height and format of text in income summary page
 
   @SLER-2358
-  Scenario: As an Exchange user, I want to see the total annual income and projected income so that it will be used in determining eligibility[RT-2603]
+  Scenario: SLER-2358 As an Exchange user, I want to see the total annual income and projected income so that it will be used in determining eligibility[RT-2603]
     Then I verify projected income question has not been answered
     Then I verify font colour text of Total annual income
     When I click on "edit_income_button" in income summary page

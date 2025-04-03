@@ -1452,10 +1452,10 @@ public class AdditionalIncomePage {
         for (int i=0;i<addIncomeOpts.size();i++){
             softAssert.assertEquals(addtlIncomeOptionsName.get(i).getText().trim(), addIncomeOpts.get(i), "Income Options"+i+"-text mismatch");
             softAssert.assertFalse(addtlIncomeOptionsCheckbox.get(i).isSelected(),"Check box"+i+" is Selected");
-            softAssert.assertEquals(addtlIncomeOptionsName.get(i).getCssValue("font-size"), "16px", "labelAllDeductionOptions"+i+"-Font size mismatch");
-            softAssert.assertEquals(addtlIncomeOptionsName.get(i).getCssValue("color"), "rgba(43, 49, 60, 1)", "labelAllDeductionOptions"+i+"-Color mismatch");
-            softAssert.assertEquals(addtlIncomeOptionsName.get(i).getCssValue("font-family"), "\"PT Sans\", sans-serif", "labelAllDeductionOptions"+i+"-Font family mismatch");
-            softAssert.assertEquals(addtlIncomeOptionsName.get(i).getCssValue("line-height"), "28px", "labelAllDeductionOptions"+i+"-Line height mismatch");
+            softAssert.assertEquals(addtlIncomeOptionsName.get(i).getCssValue("font-size"), "16px", "addtlIncomeOptionsName"+i+"-Font size mismatch");
+            softAssert.assertEquals(addtlIncomeOptionsName.get(i).getCssValue("color"), "rgba(43, 49, 60, 1)", "addtlIncomeOptionsName"+i+"-Color mismatch");
+            softAssert.assertEquals(addtlIncomeOptionsName.get(i).getCssValue("font-family"), "\"PT Sans\", sans-serif", "addtlIncomeOptionsName"+i+"-Font family mismatch");
+            softAssert.assertEquals(addtlIncomeOptionsName.get(i).getCssValue("line-height"), "28px", "addtlIncomeOptionsName"+i+"-Line height mismatch");
             softAssert.assertAll();
         }
     }
@@ -1469,11 +1469,23 @@ public class AdditionalIncomePage {
         addtlIncomeOptionsCheckbox.get(0).click();
     }
 
-    public void verifyDefaultPropertyOfTextBoxAndDropdown(List<String> dropDownOpts) {
+    public void verifyDefaultPropertyOfTextBoxAndDropdown(String languageOpt,List<String> dropDownOpts) {
         softAssert.assertTrue(txtBoxAlimonyReceivedAmount.isDisplayed(), "AR text box not visible");
         softAssert.assertTrue(selectALMRFrequency.isDisplayed(), "Drop Down not visible");
-        softAssert.assertEquals(txtBoxAlimonyReceivedAmount.getAttribute("placeholder"), "amount", "AOSS default text not visible");
-        softAssert.assertEquals(basicActions.getFirstSelectedOptionFromDD(selectALMRFrequency).getText().trim(), "Select Option", "Select Option not visible");
+        switch (languageOpt){
+            case "English":
+                softAssert.assertEquals(txtBoxAlimonyReceivedAmount.getAttribute("placeholder"), "amount", "Amount default text not visible");
+                softAssert.assertEquals(basicActions.getFirstSelectedOptionFromDD(selectALMRFrequency).getText().trim(), "Select Option", "Select Option not visible");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(txtBoxAlimonyReceivedAmount.getAttribute("placeholder"),"cantidad","cantidad default text not visible");
+                softAssert.assertEquals(basicActions.getFirstSelectedOptionFromDD(selectALMRFrequency).getText().trim(),"Seleccionar opción","Seleccionar opción not visible");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + languageOpt);
+        }
         checkAllDropDownOptions(dropDownOpts);
         softAssert.assertAll();
     }

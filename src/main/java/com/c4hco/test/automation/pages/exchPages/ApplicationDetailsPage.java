@@ -101,6 +101,7 @@ public class ApplicationDetailsPage {
         String faimlyLowestCostAmount = ohcData.get(0).get("Lowest-Cost Monthly Family Premium Amount");
         String faimlyLowestCostHighlight = ohcData.get(0).get("Lowest-Cost Family Highlight");
 
+        softAssert = new SoftAssert();
         softAssert.assertEquals(ohcDetails.get(0).getText(), coverageType);
         softAssert.assertEquals(ohcDetails.get(0).getCssValue("background"),highlightedColor(coverageTypeHighlight),coverageType+" highlight");
         softAssert.assertEquals(ohcDetails.get(1).getText(), "Job "+ SharedData.getPrimaryMember().getEmployerName());

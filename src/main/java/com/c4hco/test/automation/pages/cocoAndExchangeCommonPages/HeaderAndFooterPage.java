@@ -322,6 +322,7 @@ public class HeaderAndFooterPage {
     }
 
     public void clickLearnMoreLink() {
+        basicActions.waitForElementToDisappear(spinner,20);
         basicActions.waitForElementToBeClickableWithRetries(learnMoreLink, 60);
         learnMoreLink.click();
     }
@@ -1315,4 +1316,9 @@ public class HeaderAndFooterPage {
     }
 
 
+    public void verifyCopyRightsText() {
+        String MyCurrentYear = String.valueOf(Year.now().getValue());
+        basicActions.waitForElementToBePresent(APcopyRightText,20);
+        softAssert.assertEquals(APcopyRightText.getText(), "\u00a9 "+MyCurrentYear+" Connect for Health Colorado. All Rights Reserved.");
+    }
 }

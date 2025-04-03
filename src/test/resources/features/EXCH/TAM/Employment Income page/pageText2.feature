@@ -154,3 +154,84 @@ Feature: Page Text-Income Page
       | Is this income part of seasonal, commission, or tip based employment?            |
       | Yes                                                                              |
       | No                                                                               |
+
+  @SLER-2410 @PageTextEmploymentIncome
+  Scenario: SLER-2410 ELIG-Page Text-Additional Member Employment Income -Spanish Validations(RT-2720)
+    And I change the language from Elmo header to "Spanish" if it isn't already in that language
+    Then I verify the page text for secondary member on Employment Income page, which is in initial state
+      | Ingresos:                               |
+      | Ingresos por empleo                     |
+      | ¿Tiene un trabajo o empleo actualmente? |
+      | Sí                                      |
+      | No                                      |
+      | Volver                                  |
+      | Guardar y continuar                     |
+      | Ayuda                                   |
+    Then I select the option "Yes" to employment
+    Then I verify the page text for secondary member on Employment Income page after clicking yes to employment
+      | Ingresos:                               |
+      | Ingresos por empleo                     |
+      | ¿Tiene un trabajo o empleo actualmente? |
+      | Sí                                      |
+      | No                                      |
+      | Volver                                  |
+      | Guardar y continuar                     |
+      | Ayuda                                   |
+      | ¿Este trabajo es por cuenta propia?     |
+      | Sí                                      |
+      | No                                      |
+    Then I verify the Yes button is selected for have a job or currently employed question
+    And I select the option "Yes" to self employment
+    Then I verify the page text for secondary member on Employment Income page after clicking yes to self employment question
+      | Ingresos:                                                                                                  |
+      | Ingresos por empleo                                                                                        |
+      | ¿Tiene un trabajo o empleo actualmente?                                                                    |
+      | Sí                                                                                                         |
+      | No                                                                                                         |
+      | Volver                                                                                                     |
+      | Guardar y continuar                                                                                        |
+      | Ayuda                                                                                                      |
+      | ¿Este trabajo es por cuenta propia?                                                                        |
+      | Sí                                                                                                         |
+      | No                                                                                                         |
+      | Nombre de la empresa (El nombre de la empresa o del trabajo puede ser informal. Son solo para referencia.) |
+      | ¿Cuál es su ingreso neto actual de esta empresa o trabajo?                                                 |
+      | Ingresar ganancias una vez que se pagan los gastos.                                                        |
+      | cantidad                                                                                                   |
+      | Seleccionar opción                                                                                         |
+      | ¿Espera que ese ingreso se mantenga igual o que baje el próximo año?                                       |
+      | Sí                                                                                                         |
+      | No                                                                                                         |
+    Then I verify the Yes button is selected for have a job or currently employed question
+    And I verify the "Yes" button is selected for self-employment question
+    And I validate the Net Income Frequency Dropdown Menu in "Spanish"
+    And I select the option "No" to self employment
+    Then I verify the page text for secondary member on Employment Income page after clicking No to self employment question
+      | Ingresos:                                                                                                  |
+      | Ingresos por empleo                                                                                        |
+      | ¿Tiene un trabajo o empleo actualmente?                                                                    |
+      | Sí                                                                                                         |
+      | No                                                                                                         |
+      | Volver                                                                                                     |
+      | Guardar y continuar                                                                                        |
+      | Ayuda                                                                                                      |
+      | ¿Este trabajo es por cuenta propia?                                                                        |
+      | Sí                                                                                                         |
+      | No                                                                                                         |
+      | Nombre de la empresa (El nombre de la empresa o del trabajo puede ser informal. Son solo para referencia.) |
+      | cantidad                                                                                                   |
+      | Seleccionar opción                                                                                         |
+      | ¿Espera que ese ingreso se mantenga igual o que baje el próximo año?                                       |
+      | Sí                                                                                                         |
+      | No                                                                                                         |
+      | Domicilio 1                                                                                                |
+      | Domicilio 2                                                                                                |
+      | Ciudad                                                                                                     |
+      | Estado                                                                                                     |
+      | Seleccionar opción                                                                                         |
+      | Código postal                                                                                              |
+      | ¿Cuál es su ingreso bruto actual de esta empresa o trabajo?                                                |
+      | Incluir la comisión o las propinas ganadas.                                                                |
+      | ¿Este ingreso es parte de un trabajo temporal, por comisiones o por propinas?                              |
+      | Sí                                                                                                         |
+      | No                                                                                                         |
