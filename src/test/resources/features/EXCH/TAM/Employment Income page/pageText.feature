@@ -607,7 +607,7 @@ Feature: Page Text-Income Opt Out Page
     And I click on Sign Out in the Header for "Elmo"
 
     @SLER-2349
-    Scenario: [RT-2608] As an Exchange account user on the Employment Income page, I see the structure of the page so that I can provide my basic income information
+    Scenario: SLER-2349 As an Exchange account user on the Employment Income page, I see the structure of the page so that I can provide my basic income information
       Then I Verify the page text on Employment Income page, which is in initial state
         | Income:                                          |
         | Employment Income                                |

@@ -65,7 +65,7 @@ public class HouseholdPage {
     @FindBy(css = ".memberBasicRow .linkButton[name=\'hhSelectMember\']")
     List<WebElement> basicMemberList;
 
-    @FindBy(xpath = "//tr[4]//input[@name='hhDeleteMember']")
+    @FindBy(xpath = "//input[@name='hhDeleteMember']")
     WebElement removeMemberLnk;
     @FindBy(xpath = "//td[normalize-space()='Not Applicable']")
     WebElement nfaInfo;
@@ -146,6 +146,7 @@ public class HouseholdPage {
 
     public void iVerifyFamilyOverviewTablePresent() {
         // TO DO:: Sometimes, rarely we see 2 tables here. Make sure the code doesn't break when we get 2 tables displayed
+        basicActions.waitForElementToBePresent(familyOverviewTable, 30);
         softAssert.assertTrue(familyOverviewTable.isDisplayed());
         softAssert.assertAll();
     }
@@ -190,10 +191,12 @@ public class HouseholdPage {
         }
     }
 
-    public void clickRemoveMember() {
-        basicActions.waitForElementToBePresent(removeMemberLnk, 20);
+    public void clickRemoveMember(String namePrefix) {
+        basicActions.waitForElementToBePresentWithRetries(removeMemberLnk, 60);
         basicActions.scrollToElement(removeMemberLnk);
-        removeMemberLnk.click();
+        String removeMemberXpath = String.format("//*[contains(@value,'"+namePrefix+"')]//following::input[@name='hhDeleteMember']");
+        WebElement removeButton = basicActions.getDriver().findElement(By.xpath(removeMemberXpath));
+        removeButton.click();
     }
 
     public void clickOptionOnRemoveWindow(String option) {

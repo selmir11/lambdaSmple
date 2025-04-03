@@ -374,6 +374,25 @@ public class AdminPortalManagePlansSteps {
     public void iVerifyPlanIDDataMatchesDataInDropDownForSelectedPlan(String planSTG, String planOptionDropDownSTG, String planQA, String planOptionDropDownQA) {
         adminPortalManagePlansPage.verifyPlanIDDataMatchesDataInDropDownForSelectedPlan(planSTG, planOptionDropDownSTG, planQA, planOptionDropDownQA );
     }
+
+    @Then("I update the Termination Reason value")
+    public void iUpdateTheTerminationReasonValue(List<String> memberTerminationReasonList) {
+        adminPortalManagePlansPage.updateTernimationvalue(memberTerminationReasonList);
+    }
+    @Then("I verify field {string} is editable for {int} member on manage plan")
+    public void iVerifyIsEditableField(String fieldName, int memberTerminationReasonList) {
+        adminPortalManagePlansPage.verifyFieldIsEditable(fieldName, memberTerminationReasonList);
+    }
+
+    @And("I verify label on Information Component")
+    public void iVerifyLabelOnInformationComponentFor(List<String > labelName) {
+        adminPortalManagePlansPage.verifyLabelName(labelName);
+    }
+
+    @Then("I verify dental plan not available on manage plan")
+    public void iVerifyDentalPlanNotAvailableOnManagePlan() {
+        adminPortalManagePlansPage.verifyDentalPlanNotPresent();
+    }
 }
 
 

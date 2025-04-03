@@ -272,12 +272,10 @@ Feature: Regression Tests that require Seed 1
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
     Then I validate I am on the "Medical Plan Results" page
-    Then I select "Elevate Health Plans Colorado Option Bronze" medical plan
     Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
     And I validate I am on the "Dental Plan Results" page
-    And I select "Delta Dental of Colorado Family Basic Plan" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I set "Medical" Plans premium amount
@@ -403,12 +401,10 @@ Feature: Regression Tests that require Seed 1
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
     Then I validate I am on the "Medical Plan Results" page
-    Then I select "Elevate Health Plans Colorado Option Bronze" medical plan
     Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
     And I validate I am on the "Dental Plan Results" page
-    And I select "Delta Dental of Colorado Family Basic Plan" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I set "Medical" Plans premium amount

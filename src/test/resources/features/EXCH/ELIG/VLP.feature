@@ -1,3 +1,4 @@
+@VLP
 Feature: ELIG - VLP related scenarios
 
   Background:

@@ -229,7 +229,6 @@ public class IncomeSummaryPage {
         basicActions.waitForElementToBePresentWithRetries(projectedIncomeNo,10);
         switch(projectedIncomeOption){
             case "Yes":
-            case "Sí":
                 basicActions.waitForElementToBePresentWithRetries(hdr_Income,30);
                 basicActions.waitForElementToBePresentWithRetries(hdr_IncomeSummary,30);
                 basicActions.waitForElementToBeClickableWithRetries(projectedIncomeYes, 30);
