@@ -838,8 +838,8 @@ public class AdditionalIncomePage {
     }
 
     public void validateHelpVerbiage(String helpText, String language) {
-        basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 30);
-        basicActions.waitForElementToBePresent(helpDrawerHeaderAddtionalIncome, 30);
+        basicActions.waitForElementToBePresentWithRetries(helpDrawerHeaderHelp, 30);
+        basicActions.waitForElementToBePresentWithRetries(helpDrawerHeaderAddtionalIncome, 30);
         switch (helpText){
             case "Full":switch (language) {
                 case "English":

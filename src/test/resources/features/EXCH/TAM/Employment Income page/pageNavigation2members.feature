@@ -1,3 +1,4 @@
+@TamExch
 Feature: Page Navigation for two members
 @SLER-2271
 Scenario: SLER-2271 Navigation from Employment Income details page back to the calling Exch application page (Go Back Button is Enabled)
