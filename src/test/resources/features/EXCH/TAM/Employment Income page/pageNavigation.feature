@@ -421,7 +421,7 @@ Feature: Page Text-Employment Income Page
     Then I validate I am on the "Employment Income" page
 
   @SLER-2354
-  Scenario: Navigation on the ELMO Employment Details Income Page in EXCH [RT-2579]
+  Scenario: SLER-2354 Navigation on the ELMO Employment Details Income Page in EXCH
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     And I enter employment details with "1276000" income at "Annually" frequency
@@ -434,7 +434,7 @@ Feature: Page Text-Employment Income Page
     Then I validate I am on the "Employment Income" page
 
     @SLER-2413
-    Scenario: ELIG-Page Navigation-Additional Member Employment Income [RT-2719]
+    Scenario: SLER-2413 ELIG-Page Navigation-Additional Member Employment Income
       And I click on Sign Out in the Header for "Elmo"
       And I validate I am on the "Login" page
       When I click create a new account on login page

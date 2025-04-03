@@ -1480,7 +1480,7 @@ public class AdditionalIncomePage {
                 break;
             case "Spanish":
                 softAssert.assertEquals(txtBoxAlimonyReceivedAmount.getAttribute("placeholder"),"cantidad","cantidad default text not visible");
-                softAssert.assertEquals(basicActions.getFirstSelectedOptionFromDD(selectALMRFrequency).getText().trim(),"Seleccionar opción","Seleccionar opción not visible");
+                softAssert.assertEquals(basicActions.getFirstSelectedOptionFromDD(selectALMRFrequency).getText().trim(),"Seleccionar opci\u00F3n","Seleccionar opci\u00F3n not visible");
                 softAssert.assertAll();
                 break;
             default:
