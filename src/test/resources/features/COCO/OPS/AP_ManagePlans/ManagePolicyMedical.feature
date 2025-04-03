@@ -75,3 +75,68 @@ Scenario:COCO Editable Fields on manage plan [CCRT-239]
   Then I close current tab and switch back to previous tab
   Then I logout from Admin Portal
 
+  @SLCR-905
+  Scenario:COCO Manage Plan - verify label on Informational Component container for med [CCRT-237]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I select "coco" checkbox on Admin Portal Dashboard
+    Then I enter an accountId in any Env "7767131003" "2302008865" to search user
+    And I click on Search button in AP dashboard page
+    And I click acct first row from Search Results table in admin portal
+    Then I click on "Manage Plans" user dashboard button
+    And I validate I am on the "Manage Plans" page
+    And I select the "2023" plan year on manage plan
+    And I verify label on Information Component
+    | Latest Application Date: |
+    | Financial Start Date:    |
+    | EHB Premium:             |
+    | Financial End Date:      |
+    | CSR Amount:              |
+    | Plan Premium:            |
+    | Latest LCE and Date:     |
+    | Plan SES:                |
+    | Rating Area:             |
+    | Premium after Subsidy:   |
+    | Service Area:            |
+    | Plan AV:                 |
+    | HIOS ID:                 |
+    | Policy ID:               |
+    And I check for Previous Medical container message display
+    Then I verify dental plan not available on manage plan
+
+  @SLCR-906
+  Scenario:COCO Manage Plan - verify label on Informational Component container for med only [CCRT-235]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I select "coco" checkbox on Admin Portal Dashboard
+    Then I enter an accountId in any Env "4007384519" "5890916640" to search user
+    And I click on Search button in AP dashboard page
+    And I click acct first row from Search Results table in admin portal
+    Then I click on "Manage Plans" user dashboard button
+    And I validate I am on the "Manage Plans" page
+    And I select the "2024" plan year on manage plan
+    And I verify label on Information Component
+      | Latest Application Date: |
+      | Financial Start Date:    |
+      | EHB Premium:             |
+      | Financial End Date:      |
+      | CSR Amount:              |
+      | Plan Premium:            |
+      | Latest LCE and Date:     |
+      | Plan SES:                |
+      | Rating Area:             |
+      | Premium after Subsidy:   |
+      | Service Area:            |
+      | Plan AV:                 |
+      | HIOS ID:                 |
+      | Policy ID:               |
+    And I check for Previous Medical container message display
+
+
+

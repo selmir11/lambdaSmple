@@ -384,7 +384,15 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.verifyFieldIsEditable(fieldName, memberTerminationReasonList);
     }
 
+    @And("I verify label on Information Component")
+    public void iVerifyLabelOnInformationComponentFor(List<String > labelName) {
+        adminPortalManagePlansPage.verifyLabelName(labelName);
+    }
 
+    @Then("I verify dental plan not available on manage plan")
+    public void iVerifyDentalPlanNotAvailableOnManagePlan() {
+        adminPortalManagePlansPage.verifyDentalPlanNotPresent();
+    }
 }
 
 

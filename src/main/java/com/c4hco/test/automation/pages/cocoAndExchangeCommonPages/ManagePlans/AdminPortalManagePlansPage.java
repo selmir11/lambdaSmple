@@ -422,6 +422,12 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//*[@id='enrollment-info']/div/div[28]")
     WebElement planId;
 
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']")
+    WebElement dentalContainer;
+
+    @FindBy(id = "individualDashboardCocoTitle")
+    WebElement CocoTitle;
+
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
         softAssert.assertEquals(titleInBlueBar.getText(), "Admin Portal");
@@ -1537,6 +1543,7 @@ public void selectThePlanYearOnManagePlan(String planYear) {
     }
 
     public void verifyFieldIsEditable(String fieldName,int memberList) {
+        basicActions.wait(30);
        for( int i=1 ; i <= memberList ; i++) {
             WebElement actualField = null;
             switch(fieldName) {
@@ -1568,6 +1575,24 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         }
     }
 
+    public void verifyLabelName(List<String> expectedlabelName) {
+        basicActions.waitForElementToBePresent(medicalPlanName,20);
+        softAssert.assertTrue(medicalPlanName.isDisplayed() ,"Plan label not display");
+        softAssert.assertTrue(medCoverageData.getText().contains("Policy Coverage:"),"Coverage label not match");
+        List<String> actualLabel = containerTextValidation.stream().map(WebElement::getText)
+                                                                    .collect(Collectors.toList());
+        softAssert.assertEquals(actualLabel,expectedlabelName.subList(0,13),"label not match for");
+        softAssert.assertEquals(medPolicyIdUI.getText(),expectedlabelName.get(13),"label not match for");
+        softAssert.assertAll();
+    }
+
+    public void verifyDentalPlanNotPresent() {
+        Assert.assertTrue(basicActions.waitForElementToDisappear(btnDentalChecked,10), "Dental button should not be present");
+        Assert.assertTrue(basicActions.waitForElementToDisappear(dentalContainer, 10), "Dental container should not be present");
+    }
+
 }
+
+
 
 
