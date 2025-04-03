@@ -241,7 +241,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-322
-  Scenario: SLER-322 - ELIG - APTCRules - 40 year old
+  Scenario: SLER-322 - ELIG - APTCRules - 40 year old - incom
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation

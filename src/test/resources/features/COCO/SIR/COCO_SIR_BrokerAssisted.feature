@@ -1,12 +1,12 @@
-@SIR-COCO1
-#contains SLCR-189, SLCR-193, SLCR-194
-Feature: Broker Assisted - End to End Test
+@COCOSIR @SIR-COCO1
+#contains SLCR-908, SLCR-909, SLCR-910
+Feature: Broker Assisted - End to End Test  - Closed Enrollment
 #Failing-general progression issues in Admin area - not a clean line of functions to test out the SIR pages
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-  @SLCR-189
-  Scenario: SLCR-189 - This will create Individual adult with Broker assistance
+  @SLCR-910
+  Scenario: SLCR-910 - This will create Individual adult with Broker assistance for COCO closed enrollment
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -96,7 +96,7 @@ Feature: Broker Assisted - End to End Test
     Then I click continue on coco start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
+    And I select "Cigna Connect Colorado Option Bronze" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "planSummaryMedicalDental" page
@@ -113,8 +113,8 @@ Feature: Broker Assisted - End to End Test
     And I click on broker userName and logout
 
 
-  @SLCR-193
-  Scenario: SLCR-193 - This will create 2 couples with Broker assistance
+  @SLCR-909
+  Scenario: SLCR-909 - This will create 2 couples/ 2 different plans with Broker assistance for COCO closed enrollment
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -311,11 +311,11 @@ Feature: Broker Assisted - End to End Test
     Then I click continue on grouping Members Medical coco page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
+    And I select "Cigna Connect Colorado Option Bronze" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
+    And I select "Elevate Health Plans Colorado Option Bronze" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "planSummaryMedicalDental" page
@@ -335,8 +335,8 @@ Feature: Broker Assisted - End to End Test
     And I validate I am on the "Agency Dashboard" page
     And I click on broker userName and logout
 
-  @SLCR-194
-  Scenario: SLCR-194 - This will create couple with children with Broker assistance
+  @SLCR-908
+  Scenario: SLCR-908 - This will create couple with children with Broker assistance for COCO closed enrollment
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -536,15 +536,15 @@ Feature: Broker Assisted - End to End Test
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select "RMHP Colorado Doctors Plan Colorado Option Silver" coco medical plan
+    And I select "Cigna Connect Colorado Option Bronze" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
+    And I select "Elevate Health Plans Colorado Option Bronze" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select "Cigna Connect Colorado Option Silver Off Exchange" coco medical plan
+    And I select "KP Colorado Option Bronze" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "planSummaryMedicalDental" page
