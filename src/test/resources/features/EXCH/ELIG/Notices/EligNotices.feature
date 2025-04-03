@@ -222,7 +222,7 @@ Feature: Elig101-01 - Elig Notices
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    And I enter employment details with "5500000" income at "Annually" frequency
+    And I enter employment details with "3000000" income at "Annually" frequency
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -230,8 +230,13 @@ Feature: Elig101-01 - Elig Notices
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
-    Then I select the option "No" to employment
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter employment details with "2500000" income at "Annually" frequency
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
     And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
     Then I click None of these as additional income option and continue
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue

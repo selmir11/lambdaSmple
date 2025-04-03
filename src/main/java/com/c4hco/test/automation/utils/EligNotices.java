@@ -1829,14 +1829,15 @@ public class EligNotices {
                                 "Your household's income is too high\n" +
 
                                 englishTemplate +member0Name+"\n" +
-                                "Premium\n" +
-                                "Tax Credits\n" +
-                                "for "+basicActions.getCurrYear()+"\n" +
+                                "Premium Tax\n" +
+                                "Credits for\n" +
+                                basicActions.getCurrYear()+"\n" +
                                 "Your household qualifies to receive up to $712.11 a month to use towards\n" +
                                 "lowering the cost of your monthly health insurance premiums when you\n" +
                                 "enroll through Connect for Health Colorado. Based on your application,\n" +
                                 "this applies to "+member0Name+"\n" +
                                 englishTemplate2 +
+                                englishTemplate4 +
                                 englishTemplate +member0Name+"\n" +
                                 "Health\n" +
                                 "insurance\n" +
@@ -1844,13 +1845,14 @@ public class EligNotices {
                                 "You can enroll in a health insurance plan for 2025 if you qualify for a Special Enrollment \n" +
                                 "Period or if it\u2019s Open Enrollment.\n" +
                                 englishTemplate2 +
+                                englishTemplate4 +
                                 englishTemplate3 +member0Name+"\n" +
                                 "Cost-Sharing\n" +
                                 "Reduction for\n" +
                                 basicActions.getCurrYear()+"\n"+
                                 "You do not qualify for Cost-Sharing Reduction because:\n" +
-                                "Your household's income is too high\n"
-//                        moreInformationNeeded(docType, language, memberNumber, basicActions)
+                                "Your household's income is too high\n" +
+                        moreInformationNeededForPremiumTaxCredit(docType, language, memberNumber, basicActions)
                 );
 //            case "2" -> switch (language) {
 //                case "English" -> String.format(
@@ -1871,5 +1873,73 @@ public class EligNotices {
             default -> throw new IllegalArgumentException("Invalid member number: " + memberNumber);
         };
 
+    }
+    public static String moreInformationNeededForPremiumTaxCredit(String docType, String language, String memberNumber, BasicActions basicActions) {
+
+        switch (memberNumber) {
+            case "1" -> {
+                switch (language) {
+                    case "English" -> {
+                        return String.format("");
+                    }
+                    case "Spanish" -> {
+                        return String.format("");
+                    }
+                    default -> throw new IllegalArgumentException("Unexpected value: " + language);
+                }
+            }
+            case "2" -> {
+                switch (language) {
+                    case "English" -> {
+                        return String.format("More information needed\n" +
+                                "1.\n"+
+                                "2.\n"+
+                                "We were unable to verify some of the information you provided and need you to log into your account to verify some\n" +
+                                "details.\n" +
+                                infoNeededForPremiumTaxCredit(docType, language, memberNumber, basicActions) +
+                                "\u002A If you don\u2019t provide the missing information by this due date, you could lose your health insurance plan or the financial\n" +
+                                "help you\u2019re getting to pay for your health insurance plan.\n" +
+                                "Proof of Financial Help Eligibility\n" +
+                                "We were unable to verify some of the information on your last Connect for Health Colorado application. As soon as\n" +
+                                "possible, please  to your account to verify this information. See Next Steps below.log in\n" +
+                                "Next Steps:\n" +
+                                "Log in to your Connect for Health Colorado account." +
+                                "to your Connect for Health Colorado account\n" +
+                                "Depending on the information we need to verify, you may have the option to do this by answering some\n");
+                    }
+                    case "Spanish" -> {
+                        return String.format("");
+                    }
+                    default -> throw new IllegalArgumentException("Unexpected value: " + language);
+                }
+            }
+            default -> throw new IllegalArgumentException("Unexpected value: " + memberNumber);
+        }
+    }
+    public static String infoNeededForPremiumTaxCredit(String docType, String language, String memberNumber, BasicActions basicActions) {
+
+        List<MemberDetails> memberList = SharedData.getMembers();
+        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
+
+        return switch (memberNumber) {
+            case "1" -> switch (language) {
+                case "English" -> String.format("");
+                case "Spanish" -> String.format("");
+                default -> throw new IllegalArgumentException("Unexpected value: " + language);
+            };
+            case "2" -> switch (language) {
+                case "English" -> String.format("Who needs to provide\n" +
+                                "information?\n" +
+                                "What information is needed? When is the information due?\n" +
+                                SharedData.getPrimaryMember().getFullName() +
+                                " Proof of financial help eligibility July 1, 2025\n" +
+                                member0Name +
+                                " Proof of financial help eligibility July 1, 2025\n");
+
+                case "Spanish" -> String.format("");
+                default -> throw new IllegalArgumentException("Unexpected value: " + language);
+            };
+            default -> throw new IllegalArgumentException("Unexpected value: " + memberNumber);
+        };
     }
     }
