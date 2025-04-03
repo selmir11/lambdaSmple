@@ -149,7 +149,7 @@ Feature: Page Text-Income Opt Out Page
     Then I validate I am on the "Login" page
 
   @SLER-2341
-  Scenario: ELIG-Employment Income-Page Validation (not self-employment)(RT-1200)
+  Scenario: SLER-2341 ELIG-Employment Income-Page Validation (not self-employment)
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     And I click continue on the Employment Info Page

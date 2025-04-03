@@ -189,7 +189,7 @@ Feature: Page Verification-Additional Income Page
     Then I validate I am on the "Login" page
 
   @SLER-2352
-  Scenario: [RT-2581] Automate navigation on the ELMO Additional Income Sources Page in EXCH
+  Scenario: SLER-2352 Automate navigation on the ELMO Additional Income Sources Page in EXCH
     Then I validate I am on the "Additional income" page
     Then I click on the Back button on the Additionalincomepage
     Then I validate I am on the "Income Summary" page

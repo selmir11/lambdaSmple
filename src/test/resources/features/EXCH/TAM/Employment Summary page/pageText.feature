@@ -378,7 +378,7 @@ Feature: Page Text-Income Opt Out Page
     Then I validate I am on the "Login" page
 
   @SLER-2333
-  Scenario: RT-2587[ As a Exch user on the Employment Summary page, I want to see the structure of the page so that I can review and update basic employment information
+  Scenario: SLER-2333 As a Exch user on the Employment Summary page, I want to see the structure of the page so that I can review and update basic employment information
     And I validate I am on the "Employment Summary" page
     Then I validate Employment Summary text in "English"
     And I validate I am on the "Employment Summary" page

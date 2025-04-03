@@ -1,7 +1,7 @@
 
 Feature: Secondary User-Other Health Coverage Elmo Page
 @SLER-2337
-Scenario: [RT-2615]  CLONE - ELIG-As a Exchange user on the ESI page, I want to save and get the "No option to enroll" option for other members so that I can see this answer on the ESI page
+Scenario: SLER-2337 ELIG-As a Exchange user on the ESI page, I want to save and get the "No option to enroll" option for other members so that I can see this answer on the ESI page
 Given I open the login page on the "login" portal
 And I validate I am on the "Login" page
 When I click create a new account on login page
