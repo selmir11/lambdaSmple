@@ -90,19 +90,19 @@ Feature: Regression Tests that require Seed 1 w/exception
     And I click on Sign Out in the Header for "Elmo"
 
     #DB Validation
-#    And I validate "medical" entities from policy tables
-#    And I validate "dental" entities from policy tables
-#    And I validate "medical" entities from pre edi db tables
-#      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
-#      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
-#    And I validate "dental" entities from pre edi db tables
-#      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
-#      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
-#    And I verify the policy data quality check with Policy Ah keyset size 2
-#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
-#    And I download the medical and dental files from sftp server with location "/outboundedi/"
-#    And I validate the ob834 "medical" file data
-#    And I validate the ob834 "dental" file data
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
 
   @SLER-1993-WIP-R4V
   Scenario: RT-2327 ENR-EXCH: EDIT POLICY - COVERAGE & FINANCIAL END DATES  (CANCEL)
