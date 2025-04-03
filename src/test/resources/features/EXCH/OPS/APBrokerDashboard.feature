@@ -36,6 +36,24 @@ Feature: Broker Dashboard- Verify Broker Data
     Then I validate I am on the "Admin search" page
     Then I logout from Admin Portal
 
+  @SLER-2419
+  Scenario: OPS: BrDash: Edit Email Address[RT-2567]
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Admin Login" page
+    And I refresh the page
+    Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin Portal search" page
+    And I select "Broker" checkbox on Admin Portal Dashboard
+    Then I enter an "accountID" in any env "1309040327" "1309007409" to search user
+    Then I click on Search button in AP dashboard page
+    And I click acct first row from Search Results table in admin portal
+    And I validate I am on the "AP Broker dashboard" page
+    Then I click "Edit Profile" on Account Summary container AP Broker dashboard page
+
+    And I enter new email email address "C4PortTesting" in the Summary container
+    Then I validate address field should be editable and buttons should have correct styles
+
+
 
 
 
