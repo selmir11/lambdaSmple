@@ -422,6 +422,12 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//*[@id='enrollment-info']/div/div[28]")
     WebElement planId;
 
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']")
+    WebElement dentalContainer;
+
+    @FindBy(id = "individualDashboardCocoTitle")
+    WebElement CocoTitle;
+
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
         softAssert.assertEquals(titleInBlueBar.getText(), "Admin Portal");
@@ -1524,6 +1530,69 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         }
         softAssert.assertAll();
     }
+
+    public void updateTernimationvalue(List<String> memberCount) {
+        List<WebElement> terminate = basicActions.getDriver().findElements(By.xpath("//*[@class='member-details-grid-item dropdown']"));
+        for (int i=0; i<memberCount.size();i++) {
+            String[] parts = memberCount.get(i).split(":");
+            String terminateReason = parts[1];
+            terminate.get(i).click();
+            List<WebElement> terminateOption = basicActions.getDriver().findElements(By.xpath("//*[@class='member-details-grid-item dropdown']//div[@class='drop-down-option']"));
+            terminateOption.stream().filter(e -> e.getText().equalsIgnoreCase(terminateReason)).forEach(WebElement::click);
+        }
+    }
+
+    public void verifyFieldIsEditable(String fieldName,int memberList) {
+        basicActions.wait(30);
+       for( int i=1 ; i <= memberList ; i++) {
+            WebElement actualField = null;
+            switch(fieldName) {
+                case "APTC","SES":
+                     actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='planAPTC_" + i + "']//input"));
+                    break;
+                case "premium":
+                    actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='premium_" + i + "']//input"));
+                    break;
+                case "financial end date":
+                    actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='financialEndDate_" + i + "']//input"));
+                    break;
+                case "financial start date":
+                    actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='financialStartDate_" + i + "']//input"));
+                    break;
+                case "coverage start date":
+                    actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageStartDate_" + i + "']//input"));
+                    break;
+                case "coverage end date":
+                    actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageEndDate_" + i + "']//input"));
+                    break;
+                case "termination reason":
+                    String terminate ="//*[@class='member-details-grid-item dropdown']";
+                    String terminateXpath = terminate + "[" + i + "]" ;
+                    actualField = basicActions.getDriver().findElement(By.xpath(terminateXpath));
+                    break;
+            }
+            Assert.assertTrue(actualField != null && actualField.isEnabled() ,"  Field not editable " + fieldName );
+        }
+    }
+
+    public void verifyLabelName(List<String> expectedlabelName) {
+        basicActions.waitForElementToBePresent(medicalPlanName,20);
+        softAssert.assertTrue(medicalPlanName.isDisplayed() ,"Plan label not display");
+        softAssert.assertTrue(medCoverageData.getText().contains("Policy Coverage:"),"Coverage label not match");
+        List<String> actualLabel = containerTextValidation.stream().map(WebElement::getText)
+                                                                    .collect(Collectors.toList());
+        softAssert.assertEquals(actualLabel,expectedlabelName.subList(0,13),"label not match for");
+        softAssert.assertEquals(medPolicyIdUI.getText(),expectedlabelName.get(13),"label not match for");
+        softAssert.assertAll();
+    }
+
+    public void verifyDentalPlanNotPresent() {
+        Assert.assertTrue(basicActions.waitForElementToDisappear(btnDentalChecked,10), "Dental button should not be present");
+        Assert.assertTrue(basicActions.waitForElementToDisappear(dentalContainer, 10), "Dental container should not be present");
+    }
+
 }
+
+
 
 
