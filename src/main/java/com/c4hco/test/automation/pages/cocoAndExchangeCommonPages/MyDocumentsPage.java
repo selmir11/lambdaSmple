@@ -1848,6 +1848,27 @@ public class MyDocumentsPage {
         throw new NoSuchElementException("Category '" + categoryToSelect + "' not found in the dropdown.");
     }
 
+    public void clickOnDropdownAndVerifyTheMentionedDocumentCategories(List<String> categories) {
+        basicActions.waitForElementToBePresent(docTypeDrpDwn, 30);
+        docTypeDrpDwn.click();
+        boolean match = false;
+        for (int i = 0; i < categories.size(); i++) {
+            for (int j = 0; j < categoryList.size(); j++) {
+                match = categories.get(i).equalsIgnoreCase(categoryList.get(j).getText());
+                if (match) {
+                    System.out.println("The category " + categories.get(i) + " is present in the document type dropdown.");
+                    break;
+                }
+            }
+            if (!match) {
+                softAssert.assertTrue(match, "The category " + categories.get(i) + " is not present in the document type dropdown.");
+                softAssert.assertAll();
+            }
+        }
+
+
+    }
+
 
 
 
