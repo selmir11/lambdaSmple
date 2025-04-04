@@ -1529,7 +1529,8 @@ Feature: UI Tests related to APTC after second enrollment change
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
-      # End of initial enrollment
+
+     # End of initial enrollment
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
@@ -1787,8 +1788,8 @@ Feature: UI Tests related to APTC after second enrollment change
       | Granby | CO    | 01011990 | Grand  | 80446   | 1500000 | $0.00 | 7500000 | $1237.47/mo   | -$1,237.47        | 01012011   |
 
 
-  @SLER-802 @SLER-803 @SLER-809
-    Scenario Outline: ELIG - APTCRules - SLER-802, SLER-803 SLER-809
+  @SLER-802 @SLER-803 @SLER-806 @SLER-809
+    Scenario Outline: ELIG - APTCRules - SLER-802, SLER-803 @SLER-806, SLER-809
     # Add a spouse with income in 2nd enrollment - different zip code locations
       When I click create a new account on login page
       Then I click create my account from pre-screen page
@@ -2095,8 +2096,8 @@ Feature: UI Tests related to APTC after second enrollment change
        |NewTown  |CO         |01011958   |WELD       |80634     |  $6997000     |   $0.00              |   $1073.83/mo             |  -$1,073.83          |
        |NewTown  |CO         |01011958   |PHILLIPS   |80731     |  $4300000     |   $0.00              |   $1676.82/mo             |  -$1,395.11          |
 
-  @SLER-805 @SLER-806 @SLER-808
-  Scenario Outline: ELIG - APTCRules - SLER-805, SLER-806, SLER-808
+  @SLER-805 @SLER-808
+  Scenario Outline: ELIG - APTCRules - SLER-805, SLER-808
     # Add a spouse with income in 2nd enrollment - different zip code locations
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -2340,7 +2341,6 @@ Feature: UI Tests related to APTC after second enrollment change
     Then I validate I am on the "Income Summary" page
     Then I select the projected income option "No" and continue
 
-
     Then I validate I am on the "Tax status" page
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
@@ -2399,7 +2399,7 @@ Feature: UI Tests related to APTC after second enrollment change
     Examples:
       |City     |State      |DOB        |County     |Zipcode   | incomeChange | firstplanSummaryAPTC | finalapplicationResultAPTC | finalplanSummaryAPTC |
       |NewTown  |CO         |01011958   |PARK       |80449     |  $6000000     |   $0.00              |   $1170.91/mo             |  -$1,158.37          |
-      |NewTown  |CO         |01011958   |PROWERS    |81052     |  $5000000     |   $0.00              |   $1628.10/mo             |  -$1,628.10          |
+      |NewTown  |CO         |01011958   |PROWERS    |81052     |  $5000000     |   $0.00              |   $1628.10/mo             |  -$1,399.66          |
 
 
 

@@ -2669,5 +2669,3 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Pay now" page
     And I click on Sign Out in the Header for "Portal"
 
-
-

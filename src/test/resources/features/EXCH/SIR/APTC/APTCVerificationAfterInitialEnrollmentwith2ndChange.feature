@@ -1948,7 +1948,9 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the first medical plan
+    And I select the Insurance Company dropdown
+    And I select "Anthem" to filter for desired plan provider
+    And I select "Anthem Colorado Option Bronze Pathway Std" medical plan
     And I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
@@ -2402,11 +2404,13 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the first medical plan
+    And I select the Insurance Company dropdown
+    And I select "Anthem" to filter for desired plan provider
+    And I select "Anthem Colorado Option Bronze Pathway Std" medical plan
     And I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
-    And I select first dental plan
+    Then I select first dental plan
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
@@ -2629,7 +2633,9 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the first medical plan
+    And I select the Insurance Company dropdown
+    And I select "Anthem" to filter for desired plan provider
+    And I select "Anthem Colorado Option Bronze Pathway Std" medical plan
     And I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
