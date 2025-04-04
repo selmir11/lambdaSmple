@@ -27,6 +27,7 @@ public class ChatWidgetPage {
 
 
     public void validateChatWidgetIsPresent()  {
+        basicActions.waitForElementToBePresent(ChatWidgetIframe,20);
         basicActions.getDriver().switchTo().frame(ChatWidgetIframe);
         basicActions.waitForElementToBePresent(ChatWidgetTitle,20);
         basicActions.waitForElementToBePresent(ChatWidgetSubtitle,20);

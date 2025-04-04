@@ -1,6 +1,6 @@
 Feature: Regression Tests that require Seed 1 w/exception
 
-  Background: Seed 01 w/exception For Exchange- Single Applicant NFA
+  Scenario: : Seed 01 w/exception For Exchange- Single Applicant NFA
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
       | 1           | 1            | 1                 | 0                | 1               |
@@ -84,6 +84,7 @@ Feature: Regression Tests that require Seed 1 w/exception
     And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
+    And I click on Future Plans
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
     And I click on Sign Out in the Header for "Elmo"
