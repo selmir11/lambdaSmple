@@ -393,6 +393,24 @@ public class AdminPortalManagePlansSteps {
     public void iVerifyDentalPlanNotAvailableOnManagePlan() {
         adminPortalManagePlansPage.verifyDentalPlanNotPresent();
     }
+
+    @Then("I validate style properties on manage plan")
+    public void iValidateStylePropertiesOnManagePlan() {
+        adminPortalManagePlansPage.validateStyleProperties();
+    }
+
+    @Then("I validate the {string} member details table column header and Style on manage plan")
+    public void iValidateMemberColumnHeaderAndStyle(String planType, List<String> columnNames) {
+        adminPortalManagePlansPage.validateMemberDetailsColumnNamesAndStyle(planType,columnNames);
+    }
+    @Then("I validate the {string} coverage details table column header and Style on manage plan")
+    public void iValidateCoverageColumnHeaderAndStyle(String planType, List<String> columnNames) {
+        adminPortalManagePlansPage.validateCoverageDetailsColumnNamesAndStyle(planType,columnNames);
+    }
+    @Then("I validate the {string} financial details table column header and Style on manage plan")
+    public void iValidateFinancialColumnHeaderAndStyle(String planType, List<String> columnNames) {
+        adminPortalManagePlansPage.validateFinancialDetailsColumnNamesAndStyle(planType,columnNames);
+    }
 }
 
 

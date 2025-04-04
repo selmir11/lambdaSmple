@@ -427,6 +427,12 @@ public class AdminPortalManagePlansPage {
 
     @FindBy(id = "individualDashboardCocoTitle")
     WebElement CocoTitle;
+    @FindBy(xpath = "//*[@class='current-plan-container']")
+    WebElement currentplancontainer;
+    @FindBy(xpath = "//*[@class='select-policy-label body-text-1']")
+    WebElement selectPolicyLabel;
+    @FindBy(xpath = "//div[@class='coverage-details-grid']/div")
+    List<WebElement> medCoverageColumnHeader;
 
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
@@ -1591,6 +1597,168 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         Assert.assertTrue(basicActions.waitForElementToDisappear(dentalContainer, 10), "Dental container should not be present");
     }
 
+
+    public void validateStyleProperties() {
+        validateInformationContainerStyle();
+        validateColoradoConnectStyle();
+        validateAdminPortalStyle();
+        validatePlanYearsStyle();
+        validateManagePlansStyle();
+        validateSelectPlansStyle();
+        validateMedicalCheckboxStyle();
+        validateCurrentContainerStyle();
+        validateCurrentMedicalPlanStyle();
+        validateSelectAPolicyStyle();
+    }
+
+    public void validateMemberDetailsColumnNamesAndStyle(String planType, List<String> expectedMedMemberDetails ) {
+        List<String> actualMedCoverageDetails= new ArrayList<>();
+        List<WebElement> selectedTableHeader = null;
+        int i=0;
+        selectedTableHeader = switch (planType.toLowerCase()) {
+            case "medical" -> medicalMemberDetailsTableHeader;
+            case "dental" -> dentalMemberDetailsTableHeader;
+            default -> throw new IllegalArgumentException("Invalid plan type: " + planType);
+        };
+
+        for (WebElement each : selectedTableHeader) {
+            actualMedCoverageDetails.add(each.getText());
+            Assert.assertEquals(selectedTableHeader.get(i).getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for "+currentMedicalDentalPlan.get(0).getText());
+            Assert.assertEquals(selectedTableHeader.get(i).getCssValue("font"), "700 16px / 24px \"PT Sans\"","font not match for "+currentMedicalDentalPlan.get(0).getText());
+            Assert.assertEquals(selectedTableHeader.get(i).getCssValue("font-weight"), "700","font not match for "+currentMedicalDentalPlan.get(0).getText());
+            if(i==5){
+                break;
+            }
+            i++;
+        }
+        Assert.assertEquals(actualMedCoverageDetails,expectedMedMemberDetails, "Member Table Label not match  ");
+        // softAssert.assertAll();
+    }
+
+    public void validateFinancialDetailsColumnNamesAndStyle(String planType, List<String> expectedMedMemberDetails ) {
+        List<String> actualMedCoverageDetails= new ArrayList<>();
+        List<WebElement> selectedTableHeader = null;
+        int i=0;
+        selectedTableHeader = switch (planType) {
+            case "medical" -> coverageFinancialTableTableHeader;
+            case "Dental" -> dencoverageFinancialTableTableHeader;
+            default -> throw new IllegalArgumentException("Invalid plan type: " + planType);
+        };
+
+        for (WebElement each : selectedTableHeader) {
+            actualMedCoverageDetails.add(each.getText());
+            Assert.assertEquals(selectedTableHeader.get(i).getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for "+currentMedicalDentalPlan.get(0).getText());
+            Assert.assertEquals(selectedTableHeader.get(i).getCssValue("font"), "700 16px / 24px \"PT Sans\"","font not match for "+currentMedicalDentalPlan.get(0).getText());
+            Assert.assertEquals(selectedTableHeader.get(i).getCssValue("font-weight"), "700","font not match for "+currentMedicalDentalPlan.get(0).getText());
+            if(i==4){
+                break;
+            }
+            i++;
+        }
+        Assert.assertEquals(actualMedCoverageDetails,expectedMedMemberDetails, "Member Table Label not match  ");
+        // softAssert.assertAll();
+    }
+
+    public void validateCoverageDetailsColumnNamesAndStyle(String planType, List<String> expectedMedMemberDetails ) {
+        List<String> actualMedCoverageDetails= new ArrayList<>();
+        List<WebElement> selectedTableHeader = null;
+        int i=0;
+        selectedTableHeader = switch (planType) {
+            case "medical" -> medCoverageColumnHeader;
+            case "Dental" -> dencoverageDetailsTableTableHeader;
+            default -> throw new IllegalArgumentException("Invalid plan type: " + planType);
+        };
+
+        for (WebElement each : selectedTableHeader) {
+            actualMedCoverageDetails.add(each.getText());
+            Assert.assertEquals(selectedTableHeader.get(i).getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for "+currentMedicalDentalPlan.get(0).getText());
+            Assert.assertEquals(selectedTableHeader.get(i).getCssValue("font"), "700 16px / 24px \"PT Sans\"","font not match for "+currentMedicalDentalPlan.get(0).getText());
+            Assert.assertEquals(selectedTableHeader.get(i).getCssValue("font-weight"), "700","font not match for "+currentMedicalDentalPlan.get(0).getText());
+            if(i==5){
+                break;
+            }
+            i++;
+        }
+        Assert.assertEquals(actualMedCoverageDetails,expectedMedMemberDetails, "Member Table Label not match  ");
+        // softAssert.assertAll();
+    }
+
+    private void validateSelectAPolicyStyle() {
+        softAssert.assertEquals(selectPolicyLabel.getText(),"Select a policy:", "Header Text not match for " +selectPolicyLabel.getText());
+        softAssert.assertEquals(selectPolicyLabel.getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for "+selectPolicyLabel.getText());
+        softAssert.assertEquals(selectPolicyLabel.getCssValue("font"), "16px / 24px \"PT Sans\"","font not match for "+selectPolicyLabel.getText());
+        softAssert.assertEquals(selectPolicyLabel.getCssValue("font-weight"), "400","font not match for "+selectPolicyLabel.getText());
+        softAssert.assertAll();
+    }
+
+    private void validateCurrentMedicalPlanStyle() {
+        softAssert.assertEquals(currentMedicalDentalPlan.get(0).getText(),"Current Medical Plan:", "Header Text not match for " +currentMedicalDentalPlan.get(0).getText());
+        softAssert.assertEquals(currentMedicalDentalPlan.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for "+currentMedicalDentalPlan.get(0).getText());
+        softAssert.assertEquals(currentMedicalDentalPlan.get(0).getCssValue("font"), "700 28px / 24px \"PT Sans\"","font not match for "+currentMedicalDentalPlan.get(0).getText());
+        softAssert.assertAll();
+    }
+
+    private void validateCurrentContainerStyle() {
+        softAssert.assertEquals(currentplancontainer.getCssValue("background-color"),"rgba(226, 241, 248, 1)", "Header Text not match for  Current medical plan");
+        softAssert.assertEquals(currentplancontainer.getCssValue("border-top-color"), "rgba(26, 112, 179, 1)","Top border color not match for Current medical plan container " );
+        softAssert.assertEquals(currentplancontainer.getCssValue("border-bottom-color"), "rgba(26, 112, 179, 1)","bottom border color not match for Current medical plan container " );
+        softAssert.assertEquals(currentplancontainer.getCssValue("border-left-color"), "rgba(26, 112, 179, 1)","Left border color not match for Current medical plan container " );
+        softAssert.assertEquals(currentplancontainer.getCssValue("border-right-color"), "rgba(26, 112, 179, 1)","Right border color not match for Current medical plan container " );
+        softAssert.assertAll();
+    }
+
+    private void validateMedicalCheckboxStyle() {
+        softAssert.assertEquals(chkMedical.getText(),"Medical", "Header Text not match for " +chkMedical.getText());
+        softAssert.assertEquals(chkMedical.getCssValue("color"), "rgba(255, 255, 255, 1)","Text color not match for  "+chkMedical.getText());
+        softAssert.assertEquals(chkMedical.getCssValue("font"), "700 16px / 24px \"PT Sans\", sans-serif","font not match for  "+chkMedical.getText());
+        softAssert.assertAll();
+    }
+
+    private void validateSelectPlansStyle() {
+        softAssert.assertEquals(txtSelectPlanType.getText(),"Select plan type:", "Header Text not match for "+txtSelectPlanType.getText());
+        softAssert.assertEquals(txtSelectPlanType.getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for " +txtSelectPlanType.getText());
+        softAssert.assertEquals(txtSelectPlanType.getCssValue("font"), "16px / 24px \"PT Sans\", sans-serif","font not match for "+txtSelectPlanType.getText());
+        softAssert.assertEquals(txtSelectPlanType.getCssValue("font-weight"), "400","style size not match for "+txtSelectPlanType.getText());
+        softAssert.assertAll();
+    }
+
+    private void validateManagePlansStyle() {
+        softAssert.assertEquals(txtTitleManagePlans.getText(),"Manage Plans", "Header Text not match for " +txtTitleManagePlans.getText());
+        softAssert.assertEquals(txtTitleManagePlans.getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for  "+txtTitleManagePlans.getText());
+        softAssert.assertEquals(txtTitleManagePlans.getCssValue("font"), "700 28px / 24px \"PT Sans\"","font not match for "+txtTitleManagePlans.getText());
+        softAssert.assertAll();
+    }
+
+    private void validatePlanYearsStyle() {
+        softAssert.assertEquals(txtSelectPlanYear.getText(), "Select a plan year:", "Text not match for "+ txtSelectPlanYear.getText());
+        softAssert.assertEquals(planYearLabel.getText(), "Year:"," Text not match for "+ planYearLabel.getText());
+        softAssert.assertEquals(dpdCurrentYearMP.getText(),"2023", "Header Text not match for " +dpdCurrentYearMP.getText());
+        softAssert.assertEquals(dpdCurrentYearMP.getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for " +dpdCurrentYearMP.getText());
+        softAssert.assertEquals(dpdCurrentYearMP.getCssValue("font"), "16px / 24px \"PT Sans\", sans-serif","font not match for "+dpdCurrentYearMP.getText());
+        softAssert.assertEquals(dpdCurrentYearMP.getCssValue("font-weight"), "400","style size not match for "+dpdCurrentYearMP.getText());
+        softAssert.assertAll();
+    }
+
+    private void validateAdminPortalStyle() {
+        softAssert.assertEquals(titleInBlueBar.getText(), "Admin Portal", "Header Text not match for " + titleInBlueBar.getText());
+        softAssert.assertEquals(titleInBlueBar.getCssValue("color"), "rgba(255, 255, 255, 1)", "Text color not match for " + titleInBlueBar.getText());
+        softAssert.assertEquals(titleInBlueBar.getCssValue("font"), "700 18px \"PT Sans\", sans-serif", "Text color not match for  " + titleInBlueBar.getText());
+        softAssert.assertAll();
+    }
+
+    private void validateColoradoConnectStyle() {
+        softAssert.assertEquals(CocoTitle.getText(),"Colorado Connect", "Header Text not match for " +CocoTitle.getText());
+        softAssert.assertEquals(CocoTitle.getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for  " +CocoTitle.getText());
+        softAssert.assertEquals(CocoTitle.getCssValue("font"), "36px / 43.2px \"PT Sans\"","Text color not match for  " +CocoTitle.getText());
+        softAssert.assertEquals(CocoTitle.getCssValue("font-weight"), "400","style size not match for  " +CocoTitle.getText());
+        softAssert.assertAll();
+    }
+
+    private void validateInformationContainerStyle() {
+        softAssert.assertEquals(mPlansContainer.getCssValue("background-color"), "rgba(255, 255, 255, 1)","Background not match for Container" );
+        softAssert.assertEquals(mPlansContainer.getCssValue("border-top-color"), "rgba(149, 192, 60, 1)","Top border color not match for container " );
+        softAssert.assertAll();
+    }
 }
 
 
