@@ -75,3 +75,23 @@ Feature: Page Validation-Welcome Page
       |SLCR-891  | Rocky Mountain Health Plans / UHC   |
       |SLCR-892  | Select Health                       |
 
+    @SLCR-898
+    Scenario: ELIG-Page Validation-Welcome Page
+      Given I open the login page on the "login" portal
+      Then I validate I am on the "Login" page
+      When I click create a new account on login page
+      Then I validate I am on the "Prescreen" page
+      Then I click create my account from pre-screen page
+      And I enter general mandatory data for "coco" account creation
+      Then I validate I am on the "Login" page
+      And  I enter valid credentials to login
+      Then I click continue signing in on the CAC Screener page
+      Then I validate I am on the "CoCo Welcome" page
+      And I apply for the current year in CoCo
+      Then I validate I am on the "Find Expert Help" page
+      Then I click the back button from Find Expert Help page
+      Then I validate I am on the "CoCo Welcome" page
+      And I click on "My Profile" link on welcome page
+      Then I validate I am on the "My Profile" page
+      Then I click on Go back to Welcome page Button on My Profile CoCo
+      Then I validate I am on the "CoCo Welcome" page
