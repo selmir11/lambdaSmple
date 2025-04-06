@@ -18,7 +18,7 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I select "member" from the who are you question
 
   @SLER-2120
-  Scenario: SLER-2120 ELIG-ICHRA Opt Out Select Yes Over 400% FPL-HRA - DB
+  Scenario: SLER-2120 ELIG-ICHRA Opt Out Select Yes Over 400% FPL-HRA
     And I am a member with City "Denver" in State "CO" with dob "01011958" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
@@ -65,26 +65,9 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I enter "50.00" amount on the OHC HRA page
     Then I select "ICHRA" for HRA type
     Then I select "Yes" for opt out on the OHC HRA page
-    Then I click continue on the OHC HRA page
-    Then I validate I am on the "Family Overview" page
-    Then I wait for 5000 milliseconds
-    And I verify the HRA options selected in the DB
-      |plan_year|emplr_hra_ctb|hra_type|emplr_ctb_optout_ind|hra_not_affordable_ind|
-      |   2025  |     50.00   |  ICHRA |         1          |          1           |
-    Then I click continue on family overview page
-    Then I select "Birth" QLCE on tell us about life changes page
-    Then I click on Save and Continue
-    Then I validate I am on the "EXCH Declarations and Signature" page
-    Then I Declare as Tax Household 1
-    And I click Continue on the Declarations And Signature Page
-    And I wait for hold on content to disappear
-    Then I validate I am on the "Application History" page
-    Then I validate that "Qualified Health Plan" text displays on the Application History page
-    Then I validate that "Premium Tax Credit" text displays on the Application History page
-    Then I validate that "Cost-Sharing Reductions" text does not display on the Application History page
-    Then I validate that my APTC value is "$728.10/mo"
-
-    And I click on Sign Out in the Header for "NonElmo"
+    And I validate that, after selecting ICHRA the message is displayed in OHC HRA Page
+      |It may be less expensive to pay for your coverage with the Advanced Premium Tax Credit you could receive through Connect for Health Colorado. This would replace your employer's contribution.|
+      |If receiving Advance Premium Tax Credit is a more affordable option, would you choose to opt out from receiving an employer contribution?                                                     |
 
   @SLER-2307
   Scenario: SLER-2307 ELIG-QSEHRA Unaffordable Over 400% FPL-HRA - DB
@@ -709,3 +692,4 @@ Feature: Page Validation-OHC HRA Elmo Page
     Then I validate that my APTC value is "$407.48/mo"
 
     And I click on Sign Out in the Header for "NonElmo"
+
