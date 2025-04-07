@@ -1787,18 +1787,6 @@ public class AdminPortalManagePlansPage {
         }
     }
 
-    public void validateStyleProperties() {
-        validateInformationContainerStyle();
-        validateColoradoConnectStyle();
-        validateAdminPortalStyle();
-        validatePlanYearsStyle();
-        validateManagePlansStyle();
-        validateSelectPlansStyle();
-        validateMedicalCheckboxStyle();
-        validateCurrentContainerStyle();
-        validateCurrentMedicalPlanStyle();
-        validateSelectAPolicyStyle();
-    }
 
     public void validateMemberDetailsColumnNamesAndStyle(String planType, List<String> expectedMedMemberDetails ) {
         List<String> actualMedCoverageDetails= new ArrayList<>();
@@ -1871,7 +1859,19 @@ public class AdminPortalManagePlansPage {
         softAssert.assertEquals(actualMedCoverageDetails,expectedMedMemberDetails, "Member Table Label not match  ");
         softAssert.assertAll();
     }
-
+    
+    public void validateStyleProperties() {
+        validateInformationContainerStyle();
+        validateColoradoConnectStyle();
+        validateAdminPortalStyle();
+        validatePlanYearsStyle();
+        validateManagePlansStyle();
+        validateSelectPlansStyle();
+        validateMedicalCheckboxStyle();
+        validateCurrentContainerStyle();
+        validateCurrentMedicalPlanStyle();
+        validateSelectAPolicyStyle();
+    }
     private void validateSelectAPolicyStyle() {
         softAssert.assertEquals(selectPolicyLabel.getText(),"Select a policy:", "Header Text not match for " +selectPolicyLabel.getText());
         softAssert.assertEquals(selectPolicyLabel.getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for "+selectPolicyLabel.getText());
