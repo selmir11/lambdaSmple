@@ -1655,16 +1655,14 @@ public void selectThePlanYearOnManagePlan(String planYear) {
     public void clickOnSelectPlanType(String btnName) {
         switch (btnName) {
             case "Medical":
-                if (!basicActions.waitForElementToBePresent(medPlanTypeAlreadyChecked,5)) {
-                    basicActions.waitForElementToBePresent(medPlanTypeUnChecked, 10);
+                if (basicActions.waitForElementToBePresent(medPlanTypeUnChecked, 5)) {
                     medPlanTypeUnChecked.click();
                 } else {
                     Assert.fail("Medical check box already checked");
                 }
                 break;
             case "Dental":
-                if (!basicActions.waitForElementToBePresent(denPlanTypeAlreadyChecked,5)) {
-                    basicActions.waitForElementToBePresent(denPlanTypeUnChecked, 10);
+                if (basicActions.waitForElementToBePresent(denPlanTypeUnChecked, 5)) {
                     denPlanTypeUnChecked.click();
                 } else {
                     Assert.fail("Dental check box already checked");
