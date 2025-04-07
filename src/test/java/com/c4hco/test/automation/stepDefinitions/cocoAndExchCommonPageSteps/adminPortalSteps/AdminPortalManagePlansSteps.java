@@ -6,6 +6,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 import java.util.List;
+import java.util.Map;
 
 public class AdminPortalManagePlansSteps {
 
@@ -379,6 +380,7 @@ public class AdminPortalManagePlansSteps {
     public void iUpdateTheTerminationReasonValue(List<String> memberTerminationReasonList) {
         adminPortalManagePlansPage.updateTernimationvalue(memberTerminationReasonList);
     }
+
     @Then("I verify field {string} is editable for {int} member on manage plan")
     public void iVerifyIsEditableField(String fieldName, int memberTerminationReasonList) {
         adminPortalManagePlansPage.verifyFieldIsEditable(fieldName, memberTerminationReasonList);
@@ -414,3 +416,7 @@ public class AdminPortalManagePlansSteps {
 }
 
 
+
+    @Then("I verify current plan data for {string} on Manage Plans page")
+    public void iVerifyCurrentPolicyDetails(String planType, List<Map<String, String>> expectedValues) {adminPortalManagePlansPage.verifyCurrentPolicyDetails(planType, expectedValues);}
+}
