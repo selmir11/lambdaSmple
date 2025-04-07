@@ -5,6 +5,8 @@ import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 
@@ -1854,20 +1856,6 @@ public class EligNotices {
                                 "Your household's income is too high\n" +
                         moreInformationNeededForPremiumTaxCredit(docType, language, memberNumber, basicActions)
                 );
-//            case "2" -> switch (language) {
-//                case "English" -> String.format(
-//                        englishTemplate + englishTemplate2 + englishTemplate3
-//                );
-//                case "Spanish" -> String.format(
-//                        spanishTemplate + spanishTemplate2 + spanishTemplate3
-//                );
-//                default -> throw new IllegalArgumentException("Invalid language option: " + language);
-//            };
-//            default -> throw new IllegalArgumentException("Invalid member number: " + memberNumber);
-//        };
-//                case "Spanish" -> String.format(
-//                        spanishTemplate + spanishTemplate2
-//                );
                 default -> throw new IllegalArgumentException("Invalid language option: " + language);
             };
             default -> throw new IllegalArgumentException("Invalid member number: " + memberNumber);
@@ -1877,17 +1865,6 @@ public class EligNotices {
     public static String moreInformationNeededForPremiumTaxCredit(String docType, String language, String memberNumber, BasicActions basicActions) {
 
         switch (memberNumber) {
-            case "1" -> {
-                switch (language) {
-                    case "English" -> {
-                        return String.format("");
-                    }
-                    case "Spanish" -> {
-                        return String.format("");
-                    }
-                    default -> throw new IllegalArgumentException("Unexpected value: " + language);
-                }
-            }
             case "2" -> {
                 switch (language) {
                     case "English" -> {
@@ -1903,9 +1880,41 @@ public class EligNotices {
                                 "We were unable to verify some of the information on your last Connect for Health Colorado application. As soon as\n" +
                                 "possible, please  to your account to verify this information. See Next Steps below.log in\n" +
                                 "Next Steps:\n" +
-                                "Log in to your Connect for Health Colorado account." +
-                                "to your Connect for Health Colorado account\n" +
-                                "Depending on the information we need to verify, you may have the option to do this by answering some\n");
+                                "Log in to your Connect for Health Colorado account.\n" +
+                                "Depending on the information we need to verify, you may have the option to do this by answering some\n" +
+                                "questions in your account. Click \"Verify My Information.\" \n" +
+                                "If you\u2019ve already done that, you may need to submit documents instead. To learn more about how to submit\n" +
+                                "documents, and which documents are appropriate, please visit: https://connectforhealthco.com/find-answers/after-you-\n" +
+                                ".buy/submit-documents/\n" +
+                                "Potential reasons we were unable to verify your eligibility for financial help:\n" +
+                                "We were unable to confirm that you filed your taxes last year.\n" +
+                                "If you receive advance payments of the premium tax credit, you must file Form 8962 with\n" +
+                                "your federal income taxes. By following these steps, the IRS can make sure that you got\n" +
+                                "the right amount of tax credit applied to your monthly premium \u2013 not too little and not too\n" +
+                                "much. Visit  for more information.irs.gov\n" +
+                                "We were unable to confirm the information you provided about your household\u2019s income.\n" +
+                                "You or the person who completed your application selected not to allow us to compare your application \n" +
+                                "information with our data sources.\n" +
+                                "If you would like to allow us to compare your application information with our data sources in the future, \n" +
+                                "you can update your application by clicking on the \u201CMake Changes\u201D button.\n" +
+                                "How to get more information about this notice\n" +
+                                "For more information please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-\n" +
+                                "695-5935) Monday - Friday 8:00a.m. - 6:00p.m.\n" +
+                                "Free help is also available with certified enrollment Brokers and Assisters. To connect with a local Broker or Assister, \n" +
+                                "visit .https://connectforhealthco.com/we-can-help/\n" +
+                                "To learn more about how to submit documents, and which documents are appropriate, please visit \n" +
+                                ".https://connectforhealthco.com/find-answers/after-you-buy/submit-documents/\n");
+                    }
+                    case "Spanish" -> {
+                        return String.format("");
+                    }
+                    default -> throw new IllegalArgumentException("Unexpected value: " + language);
+                }
+            }
+            case "3" -> {
+                switch (language) {
+                    case "English" -> {
+                        return String.format("");
                     }
                     case "Spanish" -> {
                         return String.format("");
@@ -1917,6 +1926,8 @@ public class EligNotices {
         }
     }
     public static String infoNeededForPremiumTaxCredit(String docType, String language, String memberNumber, BasicActions basicActions) {
+        String futureDate = basicActions.getFutureDate(90);
+        String informationDueDate = basicActions.changeDateFormat(futureDate, "MM/dd/yyyy", "MMMM d, yyyy", Locale.ENGLISH);
 
         List<MemberDetails> memberList = SharedData.getMembers();
         String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
@@ -1932,9 +1943,9 @@ public class EligNotices {
                                 "information?\n" +
                                 "What information is needed? When is the information due?\n" +
                                 SharedData.getPrimaryMember().getFullName() +
-                                " Proof of financial help eligibility July 1, 2025\n" +
+                                " Proof of financial help eligibility "+informationDueDate+"\n" +
                                 member0Name +
-                                " Proof of financial help eligibility July 1, 2025\n");
+                                " Proof of financial help eligibility "+informationDueDate+"\n");
 
                 case "Spanish" -> String.format("");
                 default -> throw new IllegalArgumentException("Unexpected value: " + language);
