@@ -1053,7 +1053,7 @@ public class AdminPortalIndividualDashboardPage {
         else {
             softAssert.assertEquals(selectedMemberDataTxt.get(1).getText(), SharedData.getPrimaryMember().getEmailId() , "Username not match");
         }
-
+        softAssert.assertAll();
     }
 
     private void verifyFullName() {
