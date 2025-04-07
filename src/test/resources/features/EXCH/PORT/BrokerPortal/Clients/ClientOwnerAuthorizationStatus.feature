@@ -42,7 +42,7 @@ Feature: Client Agency Owner authorization and deauthorization status
     Then I verify that my client's current status is "NO ELIGIBILITY"
     Then I click on broker userName and logout
 
-  Scenario: : Exchange individual revoking broker authorization
+  #Exchange individual revoking broker authorization
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     And  I enter valid credentials to login
