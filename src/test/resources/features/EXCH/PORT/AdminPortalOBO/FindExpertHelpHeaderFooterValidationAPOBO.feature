@@ -1,4 +1,4 @@
-@FindExpertHelp @port
+@AdminPortalOBO @port
 Feature: Find expert help page header and footer validation via Admin Portal OBO
 
   @SLER-2134

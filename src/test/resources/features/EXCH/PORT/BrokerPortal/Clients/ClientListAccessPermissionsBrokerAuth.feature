@@ -23,7 +23,7 @@ Feature: Agency client list access permissions following broker authorization
     And I validate my broker details in the current broker table are "Preston Saunders", "Bright Sky Agency", "88564585", "80205", "303-898-6427", "BROKER", "Active"
     And I click on Sign Out in the Header for "Elmo"
 
-  Scenario: : Agency owner verifying access to the client list
+  #Agency owner verifying access to the client list
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
     And I login as Broker User any environment "C4PortTesting+MWalkerSTG@outlook.com" password "ALaska12!" and "C4PortTesting+MaggieWalker@outlook.com" password "ALaska12!"
@@ -44,7 +44,7 @@ Feature: Agency client list access permissions following broker authorization
     Then I verify that my client's current status is "NO ELIGIBILITY"
     Then I click on broker userName and logout
 
-  Scenario: : Broker verifying access to the client list
+  #Broker verifying access to the client list
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
     And I login as Broker User any environment "C4PortTesting+PrestonSaunders@outlook.com" password "ALaska12!" and "C4PortTesting+PSaundersQA@outlook.com" password "ALaska12!"
@@ -65,7 +65,7 @@ Feature: Agency client list access permissions following broker authorization
     Then I verify that my client's current status is "NO ELIGIBILITY"
     Then I click on broker userName and logout
 
-  Scenario: : Admin staff verifying access to the client list
+  #Admin staff verifying access to the client list
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
     And I login as Broker User any environment "C4PortTesting+MPhillipsSTG@outlook.com" password "ALaska12!" and "C4PortTesting+MPhillips@outlook.com" password "ALaska12!"
