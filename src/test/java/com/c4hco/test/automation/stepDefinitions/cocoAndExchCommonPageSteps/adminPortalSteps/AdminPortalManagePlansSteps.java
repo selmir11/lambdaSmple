@@ -6,6 +6,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 import java.util.List;
+import java.util.Map;
 
 public class AdminPortalManagePlansSteps {
 
@@ -374,6 +375,27 @@ public class AdminPortalManagePlansSteps {
     public void iVerifyPlanIDDataMatchesDataInDropDownForSelectedPlan(String planSTG, String planOptionDropDownSTG, String planQA, String planOptionDropDownQA) {
         adminPortalManagePlansPage.verifyPlanIDDataMatchesDataInDropDownForSelectedPlan(planSTG, planOptionDropDownSTG, planQA, planOptionDropDownQA );
     }
+
+    @Then("I update the Termination Reason value")
+    public void iUpdateTheTerminationReasonValue(List<String> memberTerminationReasonList) {
+        adminPortalManagePlansPage.updateTernimationvalue(memberTerminationReasonList);
+    }
+
+    @Then("I verify field {string} is editable for {int} member on manage plan")
+    public void iVerifyIsEditableField(String fieldName, int memberTerminationReasonList) {
+        adminPortalManagePlansPage.verifyFieldIsEditable(fieldName, memberTerminationReasonList);
+    }
+
+    @And("I verify label on Information Component")
+    public void iVerifyLabelOnInformationComponentFor(List<String > labelName) {
+        adminPortalManagePlansPage.verifyLabelName(labelName);
+    }
+
+    @Then("I verify dental plan not available on manage plan")
+    public void iVerifyDentalPlanNotAvailableOnManagePlan() {
+        adminPortalManagePlansPage.verifyDentalPlanNotPresent();
+    }
+
+    @Then("I verify current plan data for {string} on Manage Plans page")
+    public void iVerifyCurrentPolicyDetails(String planType, List<Map<String, String>> expectedValues) {adminPortalManagePlansPage.verifyCurrentPolicyDetails(planType, expectedValues);}
 }
-
-

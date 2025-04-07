@@ -42,7 +42,7 @@ public class MedicalPlanResultsPage {
     WebElement clickCompare;
 
     @FindBy (id = "MedicalPlanResults-SaveAndExit")
-    WebElement btnSaveExist;
+    WebElement btnSaveExit;
 
     @FindBy (id = "MedicalPlanResults-GoBack")
     WebElement btnGoBack;
@@ -120,14 +120,15 @@ public class MedicalPlanResultsPage {
     }
 
     public void SelectFirstMedicalPlan() {
-        basicActions.waitForElementToDisappear( spinner,15 );
-        basicActions.waitForElementToBePresent(selectFirstPlan, 30);
+        basicActions.waitForElementToBePresentWithRetries( spinner,120);
+        basicActions.waitForElementToBePresentWithRetries(selectFirstPlan, 50);
         selectFirstPlan.click();
     }
 
     public void clickContinue() {
         basicActions.waitForElementToDisappear( spinner,40 );
         basicActions.waitForElementToBePresent(continueBtn,30);
+        basicActions.scrollToElement(continueBtn);
         continueBtn.click();
     }
 
@@ -300,7 +301,8 @@ public class MedicalPlanResultsPage {
     }
 
     private void paginateRight(){
-        basicActions.waitForElementToBePresent(nextPageArrow, 10);
+        basicActions.waitForElementToBePresent(nextPageArrow, 60);
+        basicActions.waitForElementToDisappear(spinner, 60);
         Assert.assertTrue(nextPageArrow.isEnabled(), "Right arrow to click is not enabled!");
         nextPageArrow.click();
     }

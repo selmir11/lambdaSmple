@@ -241,7 +241,7 @@ Feature: Seed03 - Exchange
     Then I click continue on the Immigration Status page
     Then I validate I am on the "Family Overview" page
     And I click plus icon next to member on household page for "Spouse"
-    Then I click on Remove this Member
+    Then I click on Remove this Member for "Spouse"
     Then I click on "OK" in the Remove Member frame
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page
@@ -359,12 +359,10 @@ Feature: Seed03 - Exchange
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
     Then I validate I am on the "Medical Plan Results" page
-    Then I select "Select Health Value Bronze $6900 Medical Deductible" medical plan
     Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
     And I validate I am on the "Dental Plan Results" page
-    And I select "EssentialSmile Colorado - Total Care" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I set "Medical" Plans premium amount
@@ -575,26 +573,5 @@ Feature: Seed03 - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-2361-WIP
-  Scenario: RT-2304 - ENR-EXCH: USER INITIATED DISENROLLMENT (CANCEL) - MEDICAL  ALL MEMBERS (BROKER OBO)
-    Given I open the login page on the "broker" portal
-    And I validate I am on the "Login" page
-    And I login as Broker User any environment "Amethyst.Broker@invalid.com" password "ALaska13!" and "Amethyst.Broker@invalid.com" password "ALaska13!"
-    And I validate I am on the "Broker Portal Your Clients" page
-    Then I validate the Your Clients page title
-    And I search for clients
-    And I click on first client search result
-    And I click "manage" the client
-    Then I validate I am on the "Account Overview" page
-    Then I click on ClickHere link for "My Plans"
-    And I validate I am on the "My Policies" page
-    And I click on "Cancel Medical Plan" button
-    And I validate I am on the "Cancellation Request" page
-    Then I affirm and cancel the active plan
-    Then I click continue on Cancellation Request page
-    Then I click Okay on Thank you popup
-    And I click on Apply for Coverage in the "Elmo" Header
-    Then I validate I am on the "Account Overview" page
-    And I click on Sign Out in the Header for "NonElmo"
 
 

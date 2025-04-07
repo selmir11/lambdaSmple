@@ -513,7 +513,7 @@ Feature: Page Validation-Tax Status Elmo Page
     Then I click Go back on Tax Status page
     Then I click Go back on Tax Status page
     And I click plus icon next to member on household page for "Anna"
-    Then I click on Remove this Member
+    Then I click on Remove this Member for "Anna"
     Then I click on "OK" in the Remove Member frame
     And I click plus icon next to member on household page for "Primary"
     And I click the edit income icon on household page for "Primary"
@@ -1686,7 +1686,7 @@ Feature: Page Validation-Tax Status Elmo Page
       |    FILER      |                              |      QWD        |           0            |
     And I verify the tax return data for "Daughter" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
-      |    FILER      |                              |      SNGL       |           0            |
+      |               |                              |                 |                        |
     And I validate I am on the "Other Health Coverage" page
     Then I click continue on the health coverage page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"

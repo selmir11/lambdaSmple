@@ -186,6 +186,16 @@ public class AdminPortalSearchPage {
     @FindBy(css = ".btn-second-action-button.reset-button")
     WebElement cbmsResetButton;
 
+    @FindBy(id = "header-user-dropdown")
+    WebElement userDropdownColor;
+
+    @FindBy(id = "toolbar-app-dropdown")
+    WebElement applicationLinkColor;
+
+    @FindBy(id = "header-user")
+    WebElement userName;
+
+
 
 
     public void searchForUser() {
@@ -219,6 +229,9 @@ public class AdminPortalSearchPage {
 
         String accId = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
         MemberDetails subscriber = SharedData.getPrimaryMember();
+        if (subscriber == null) {
+            subscriber = new MemberDetails();
+        }
         subscriber.setAccount_id(new BigDecimal(accId));
         SharedData.setPrimaryMember(subscriber);
     }
@@ -456,6 +469,8 @@ public class AdminPortalSearchPage {
     public void clickAccountLinkFirstRowFromSearchResults() {
         basicActions.waitForElementToBePresent(searchAcctResults, 10);
         searchAcctResults.click();
+        basicActions.wait(500);
+        setAccountId();
     }
 
     public void validateAppLinksIsNotDisplay(String option) {
@@ -812,6 +827,86 @@ public class AdminPortalSearchPage {
     public void clickCBMSResetButton() {
         basicActions.waitForElementToBePresent(cbmsResetButton,30);
         cbmsResetButton.click();        }
+
+    public void clickDropDownArrow(String dropdownarrow) {
+        switch (dropdownarrow) {
+            case "userDropdown":
+                basicActions.waitForElementToBePresent(dropdownArrow, 50);
+                basicActions.click(dropdownArrow);
+                break;
+            case "applicationDropDown":
+                basicActions.waitForElementToBePresent(appLinksDropDown, 50);
+                basicActions.click(appLinksDropDown);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid header option : " + dropdownarrow);
+        }
+    }
+
+    public void verifyHeaderDisplayAndStyles(String headerName) {
+        switch (headerName) {
+            case "Logo":
+                ConnectForHealthLogoDisplay();
+                navigateConnectForHealthPage();
+                break;
+            case "UserDropdown":
+                userNameDisplay();
+                PersonSymbolDisplay();
+                UserDropDownDisplay();
+                break;
+            case "applicationDropDown":
+                clickDropDownArrow(headerName);
+                break;
+            case "Admin Portal", "FirstName Display":
+                getElementfor(headerName);
+                break;
+
+            default:
+                throw new IllegalArgumentException("Invalid header option : " + headerName);
+        }
+    }
+
+    public void verifyElementStyles(String elementName, List<Map<String, String>> styles) {
+        WebElement element = getElementfor(elementName);
+        for (Map<String, String> style : styles) {
+            String property = style.get("property");
+            String expectedValue = style.get("value");
+            String actualValue;
+            if (property.equalsIgnoreCase("text")) {
+                actualValue = element.getText();
+                if (actualValue.isEmpty()) {
+                    actualValue = element.getAttribute("title").trim();
+                }
+            } else {
+                actualValue = element.getCssValue(property);
+            }
+
+            softAssert.assertEquals(actualValue, expectedValue, property + " not match for " + elementName);
+        }
+        softAssert.assertAll();
+    }
+
+    public WebElement getElementfor(String elementName) {
+        switch (elementName) {
+            case "Logo":
+                basicActions.waitForElementToBePresent(connectForHealthLogo, 50);
+                return connectForHealthLogo;
+            case "Admin Portal":
+                basicActions.waitForElementToBePresent(txtAdminPortal, 50);
+                return txtAdminPortal;
+            case "FirstName Display":
+                basicActions.waitForElementToBePresent(userName, 50);
+                return userName;
+            case "UserDropdown":
+                basicActions.waitForElementToBePresent(userDropdownColor, 50);
+                return userDropdownColor;
+            case "applicationDropDown":
+                basicActions.waitForElementToBePresent(applicationLinkColor, 50);
+                return applicationLinkColor;
+            default:
+                throw new IllegalArgumentException("Invalid option : " + elementName);
+        }
+    }
 }
 
 

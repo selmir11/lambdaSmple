@@ -115,8 +115,14 @@ Feature: Seed03exception - Exchange
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
-    And I click on Sign Out in the Header for "NonElmo"
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I click on Future Plans
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click on Sign Out in the Header for "Elmo"
 
+    #DB Validation
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
     And I verify the policy data quality check with Policy Ah keyset size 2
@@ -196,3 +202,25 @@ Feature: Seed03exception - Exchange
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
+
+  @SLER-2361-WIP
+  Scenario: RT-2304 - ENR-EXCH: USER INITIATED DISENROLLMENT (CANCEL) - MEDICAL  ALL MEMBERS (BROKER OBO)
+    Given I open the login page on the "broker" portal
+    And I validate I am on the "Login" page
+    And I login as Broker User any environment "Amethyst.Broker@invalid.com" password "ALaska13!" and "Amethyst.Broker@invalid.com" password "ALaska13!"
+    And I validate I am on the "Broker Portal Your Clients" page
+    Then I validate the Your Clients page title
+    And I search for clients
+    And I click on first client search result
+    And I click "manage" the client
+    Then I validate I am on the "Account Overview" page
+    Then I click on ClickHere link for "My Plans"
+    And I validate I am on the "My Policies" page
+    And I click on "Cancel Medical Plan" button
+    And I validate I am on the "Cancellation Request" page
+    Then I affirm and cancel the active plan
+    Then I click continue on Cancellation Request page
+    Then I click Okay on Thank you popup
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "Account Overview" page
+    And I click on Sign Out in the Header for "NonElmo"

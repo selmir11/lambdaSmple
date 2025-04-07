@@ -42,7 +42,7 @@ Feature: Page Validation-OHC-Employer Sponsored Insurance page
     And I validate I am on the "Employment Income" page
 
   @SLER-2376
-  Scenario: ELIG-As an Exchange individual, I see the structure of the page so that I can see my employer sponsored insurance (ESI) information[RT-2617]
+  Scenario: SLER-2376 ELIG-As an Exchange individual, I see the structure of the page so that I can see my employer sponsored insurance (ESI) information[RT-2617]
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
     Then I click None of these as additional income option and continue
