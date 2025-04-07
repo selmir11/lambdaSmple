@@ -398,4 +398,19 @@ public class AdminPortalManagePlansSteps {
 
     @Then("I verify current plan data for {string} on Manage Plans page")
     public void iVerifyCurrentPolicyDetails(String planType, List<Map<String, String>> expectedValues) {adminPortalManagePlansPage.verifyCurrentPolicyDetails(planType, expectedValues);}
+
+    @Then("I verify plan name and policy coverage dates are visible")
+    public void iVerifyPlanNameAndPolicyCoverageDatesAreVisible() {
+        adminPortalManagePlansPage.verifyPlanNameAndPolicyCoverageDisplayed();
+    }
+
+    @Then("I verify page texts of all labels of {string} plan")
+    public void iVerifyPageTextsOfAllLabelsOfPlan(String opt,List<String> pageTexts) {
+        adminPortalManagePlansPage.verifyAllPageTextsMedicalAndDentalPlan(opt,pageTexts);
+    }
+
+    @Then("I checked {string} from plan type")
+    public void iCheckedFromPlanType(String btnName) {
+        adminPortalManagePlansPage.clickOnSelectPlanType(btnName);
+    }
 }
