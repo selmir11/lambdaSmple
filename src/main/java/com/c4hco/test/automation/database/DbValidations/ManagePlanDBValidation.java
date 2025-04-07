@@ -606,7 +606,7 @@ public class ManagePlanDBValidation {
         softAssert.assertAll();
     }
 
-    public void validateCurrentMedicalPlanSummaryDB(String planType, Integer memberNum) throws Exception {
+    public void validateCurrentPlanSummaryDB(String planType, Integer memberNum) throws Exception {
         List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansPlanSummary(planType);
         System.out.println("Query executed, returned values: " + dbValuesList);
 

@@ -69,8 +69,8 @@ public class DBManagePlanSteps {
     }
 
     @Then("I validate current {string} plan summary in DB for {int} on AP Manage Plans")
-    public void iValidateCurrentMedicalPlanSummaryDB(String planType, Integer memberNum) throws Exception {
+    public void iValidateCurrentPlanSummaryDB(String planType, Integer memberNum) throws Exception {
         actions.wait(5000);
-        managePlanDBValidation.validateCurrentMedicalPlanSummaryDB(planType, memberNum);
+        managePlanDBValidation.validateCurrentPlanSummaryDB(planType, memberNum);
     }
 }
