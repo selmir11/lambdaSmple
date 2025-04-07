@@ -1043,7 +1043,8 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertEquals(selectedMemberDataTxt.get(2).getText(),formatedPhoneNumber, "Phone Number not match");
     }
 
-    private void verifyUserName() {
+    public void verifyUserName() {
+        basicActions.waitForElementListToBePresent(selectedMemberLabelTxt,30);
         softAssert.assertEquals(selectedMemberLabelTxt.get(1).getText(), "Username:", "Username Label not match");
         softAssert.assertTrue(selectedMemberDataTxt.get(1).isDisplayed());
         if(SharedData.getPrimaryMember().getIncorrectEmail() != null){
