@@ -12,18 +12,18 @@ public class DBManagePlanSteps {
     BasicActions actions = BasicActions.getInstance();
     ManagePlanDBValidation managePlanDBValidation= new ManagePlanDBValidation(WebDriverManager.getDriver());
     @Then("I validate current Medical plan Data for the year {string} DB")
-    public void iValidateCurrentPlanDataForTheYearDB(String year) {
-        managePlanDBValidation.validateCurrentPlanDataDB(year);
+    public void iValidateCurrentMedicalPlanDataForTheYearDB(String year) {
+        managePlanDBValidation.validateCurrentMedicalPlanDataDB(year);
     }
 
     @Then("I validate current medical member details table DB")
-    public void iValidateCurrentMemberDetailsTableDB() {
-        managePlanDBValidation.validateCurrentMemberDetailsTableDB();
+    public void iValidateCurrentMedicalMemberDetailsTableDB() {
+        managePlanDBValidation.validateCurrentMedicalMemberDetailsTableDB();
     }
 
     @Then("I validate current medical coverage details table DB")
-    public void iValidateCurrentCoverageDetailsTableDB() {
-        managePlanDBValidation.validateCurrentCoverageDetailsTableDB();
+    public void iValidateCurrentMedicalCoverageDetailsTableDB() {
+        managePlanDBValidation.validateCurrentMedicalCoverageDetailsTableDB();
     }
 
 

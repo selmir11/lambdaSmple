@@ -45,7 +45,7 @@ public class ManagePlanDBValidation {
         dentalPolicyEntities = SharedData.getDentalPolicyTablesEntities();
     }
 
-    public void validateCurrentPlanDataDB(String year) {
+    public void validateCurrentMedicalPlanDataDB(String year) {
         setData();
         SharedData.getManagePlanDentalMedicalPlan().setPlanType("1");
         softAssert.assertEquals(exchDbDataProvider.getPlanMarketingName(year),SharedData.getManagePlanDentalMedicalPlan().getPlanMarketingName());
@@ -142,7 +142,7 @@ public class ManagePlanDBValidation {
         softAssert.assertAll();
     }
 
-    public void validateCurrentMemberDetailsTableDB() {
+    public void validateCurrentMedicalMemberDetailsTableDB() {
         String personIdDB = medicalPolicyEntities.get(0).getExch_person_id();
         softAssert.assertEquals(personIdDB, SharedData.getManagePlanDentalMedicalPlan().getMedPersonID());
 
@@ -381,7 +381,7 @@ public class ManagePlanDBValidation {
         softAssert.assertAll();
     }
 
-    public void validateCurrentCoverageDetailsTableDB(String planType, Integer memberNum) {
+    public void validateCurrentMedicalCoverageDetailsTableDB(String planType, Integer memberNum) {
         List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansCoverageDetails(planType);
         System.out.println("Query executed, returned values: " + dbValuesList);
 
