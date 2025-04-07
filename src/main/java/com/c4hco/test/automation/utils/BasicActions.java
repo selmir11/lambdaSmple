@@ -19,6 +19,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.TemporalAccessor;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 import java.util.*;
@@ -769,6 +771,30 @@ public class BasicActions {
         return date.format(outputFormatter);
     }
 
+    public String changeDateTimeFormat(String dateString, String inputFormat, String outputFormat) {
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(outputFormat);
+        List<String> possibleInputFormats = new ArrayList<>();
+        possibleInputFormats.add(inputFormat);
+        if (inputFormat.equals("yyyy-MM-dd HH:mm:ss.SSSSSS")) {
+            possibleInputFormats.add("yyyy-MM-dd HH:mm:ss");
+        }
+        for (String format : possibleInputFormats) {
+            try {
+                DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(format);
+                TemporalAccessor parsedDate;
+                if (format.contains("HH") || dateString.length() > 10) {
+                    parsedDate = LocalDateTime.parse(dateString, inputFormatter);
+                    return outputFormatter.format(((LocalDateTime) parsedDate).toLocalDate());
+                } else {
+                    parsedDate = LocalDate.parse(dateString, inputFormatter);
+                    return outputFormatter.format((LocalDate) parsedDate);
+                }
+            } catch (DateTimeParseException ignored) {
+            }
+        }
+        throw new DateTimeParseException("Unable to parse date: " + dateString, dateString, 0);
+    }
+
     public String changeDateFormat(String dateString, String inputFormat, String outputFormat, Locale locale) {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(inputFormat, locale);
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(outputFormat, locale);
@@ -1421,6 +1447,16 @@ public class BasicActions {
     public void mouseHoverOnElement(WebElement element){
         Actions actions = new Actions(getDriver());
         actions.moveToElement(element).perform();
+    }
+
+    public boolean isElementNotDisplayed(WebElement element) {
+        try {
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(15));
+            wait.until(ExpectedConditions.invisibilityOf(element));
+            return true;
+        } catch (NoSuchElementException e) {
+            return true;
+        }
     }
 }
 

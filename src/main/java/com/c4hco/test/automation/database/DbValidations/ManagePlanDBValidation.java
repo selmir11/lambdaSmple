@@ -9,10 +9,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
+
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.math.RoundingMode;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class ManagePlanDBValidation {
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
@@ -597,6 +605,132 @@ public class ManagePlanDBValidation {
         }
         softAssert.assertAll();
     }
+
+    public void validateCurrentMedicalPlanSummaryDB(String planType, Integer memberNum) throws Exception {
+        List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansPlanSummary(planType);
+        System.out.println("Query executed, returned values: " + dbValuesList);
+
+        if (dbValuesList.isEmpty()) {
+            throw new RuntimeException("No data returned for account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'");
+        }
+        List<String> firstRow = dbValuesList.get(0);
+        String dbPolicyStartDateValue = basicActions.changeDateFormat(firstRow.get(1), "yyyy-MM-dd", "MM/dd/yyyy");
+        String dbPolicyEndDateValue = basicActions.changeDateFormat(firstRow.get(4), "yyyy-MM-dd", "MM/dd/yyyy");
+        String dbLatestApplicationDateValue = basicActions.changeDateTimeFormat(firstRow.get(5), "yyyy-MM-dd HH:mm:ss.SSSSSS", "MM/dd/yyyy");
+        String dbFinancialStartDateValue = basicActions.changeDateFormat(firstRow.get(6), "yyyy-MM-dd", "MM/dd/yyyy");
+        BigDecimal ehbPercent = new BigDecimal(dbValuesList.get(0).get(7));
+        BigDecimal totalPremium = BigDecimal.ZERO;
+        BigDecimal totalCsrAmount = BigDecimal.ZERO;
+        BigDecimal totalAptcAmount = BigDecimal.ZERO;
+        for (int i = 0; i < memberNum; i++) {
+            List<String> row = dbValuesList.get(i);
+            BigDecimal premium = new BigDecimal(row.get(8));
+            totalPremium = totalPremium.add(premium);
+            BigDecimal csrAmount = new BigDecimal(row.get(10));
+            totalCsrAmount = totalCsrAmount.add(csrAmount);
+            BigDecimal aptcAmount = new BigDecimal(row.get(13));
+            totalAptcAmount = totalAptcAmount.add(aptcAmount);
+        }
+        BigDecimal dbEhbPremiumValue = ehbPercent.multiply(totalPremium);
+        dbEhbPremiumValue = dbEhbPremiumValue.setScale(2, RoundingMode.HALF_UP);
+        String dbEhbPremiumValueStr = "$" + dbEhbPremiumValue;
+        totalCsrAmount = totalCsrAmount.setScale(2, RoundingMode.HALF_UP);
+        String dbCsrAmountStr = "$" + totalCsrAmount;
+        String dbPremiumStr = "$" + totalPremium;
+        String dbFinancialEndDateValue = basicActions.changeDateFormat(firstRow.get(9), "yyyy-MM-dd", "MM/dd/yyyy");
+        String dbLceDateValue = basicActions.changeDateTimeFormat(firstRow.get(12), "yyyy-MM-dd HH:mm:ss", "MM/dd/yyyy");
+        String dbAptcStr = "$" + totalAptcAmount;
+        BigDecimal dbPremiumAfterSubsidy = totalPremium.subtract(totalAptcAmount);
+        String dbPremiumAfterSubsidyStr = "$" + dbPremiumAfterSubsidy;
+        String dbPlanAvValue = "";
+        if (firstRow.get(16) != null && !firstRow.get(16).trim().isEmpty()) {
+            BigDecimal av = new BigDecimal(firstRow.get(16).trim());
+            if (av.compareTo(BigDecimal.ZERO) == 0) {
+                dbPlanAvValue = planType.equalsIgnoreCase("Dental") ? "0.00%" : "";
+            } else {
+                dbPlanAvValue = av.multiply(BigDecimal.valueOf(100)).setScale(2, RoundingMode.HALF_UP) + "%";
+            }
+        }
+        String reduction = "";
+        if (SharedData.getDbName().toLowerCase().contains("exch")) {
+            reduction = "APTC";
+        } else if (SharedData.getDbName().toLowerCase().contains("coco")) {
+            reduction = "SES";
+        }
+
+        WebElement currentPolicyTxt = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//app-current-plan/div/div[1]/p"));
+        WebElement currentPolicyData = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//app-current-plan/div/div[1]/div"));
+        WebElement planName = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//*[@id=\"enrollment-info\"]/div/div[1]"));
+        WebElement policyCoverageDates = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Policy Coverage')]"));
+        WebElement latestApplicationDateTxt = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Latest Application Date')]"));
+        WebElement latestApplicationDateData = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Latest Application Date')]//following::div[1]"));
+        WebElement financialStartDateTxt = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Financial Start Date')]"));
+        WebElement financialStartDateData = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Financial Start Date')]//following::div[1]"));
+        WebElement ehbPremiumTxt = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'EHB Premium')]"));
+        WebElement ehbPremiumData = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'EHB Premium')]//following::div[1]"));
+        WebElement financialEndDateTxt = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Financial End Date')]"));
+        WebElement financialEndDateData = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Financial End Date')]//following::div[1]"));
+        WebElement csrAmountTxt = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'CSR Amount')]"));
+        WebElement csrAmountData = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'CSR Amount')]//following::div[1]"));
+        WebElement planPremiumTxt = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Plan Premium')]"));
+        WebElement planPremiumData = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Plan Premium')]//following::div[1]"));
+        WebElement latestLceandDateTxt = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Latest LCE and Date')]"));
+        WebElement latestLceandDateData = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Latest LCE and Date')]//following::div[1]"));
+        WebElement planReductionTxt = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Plan "+reduction+"')]"));
+        WebElement planReductionData = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Plan "+reduction+"')]//following::div[1]"));
+        WebElement ratingAreaTxt = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Rating Area')]"));
+        WebElement ratingAreaData = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Rating Area')]//following::div[1]"));
+        WebElement premiumAfterSubsidyTxt = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Premium after Subsidy')]"));
+        WebElement premiumAfterSubsidyData = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Premium after Subsidy')]//following::div[1]"));
+        WebElement serviceAreaTxt = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Service Area')]"));
+        WebElement serviceAreaData = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Service Area')]//following::div[1]"));
+        WebElement planAvTxt = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Plan AV')]"));
+        WebElement planAvData = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Plan AV')]//following::div[1]"));
+        WebElement policyIdTxt = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Policy ID')]"));
+        WebElement policyIdData = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'Policy ID')]//following::div[1]"));
+        WebElement hiosIdTxt = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'HIOS ID')]"));
+        WebElement hiosIdData = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[contains(text(), 'HIOS ID')]//following::div[1]"));
+
+        softAssert.assertEquals("Current "+planType+" Plan:", currentPolicyTxt.getText(), "Mismatch in currentPolicyTxt");
+        softAssert.assertEquals("Select a policy:\n"+firstRow.get(0)+" - "+dbPolicyStartDateValue+" - "+firstRow.get(2), currentPolicyData.getText(), "Mismatch in currentPolicyData");
+        softAssert.assertEquals(firstRow.get(3), planName.getText(), "Mismatch in planName");
+        softAssert.assertEquals("Policy Coverage: "+dbPolicyStartDateValue+" to "+dbPolicyEndDateValue, policyCoverageDates.getText(), "Mismatch in policyCoverageDates");
+        softAssert.assertEquals("Latest Application Date:", latestApplicationDateTxt.getText(), "Mismatch in latestApplicationDateTxt");
+        softAssert.assertEquals(dbLatestApplicationDateValue, latestApplicationDateData.getText(), "Mismatch in latestApplicationDateData");
+        softAssert.assertEquals("Financial Start Date:", financialStartDateTxt.getText(), "Mismatch in financialStartDateTxt");
+        softAssert.assertEquals(dbFinancialStartDateValue, financialStartDateData.getText(), "Mismatch in financialStartDateData");
+        softAssert.assertEquals("EHB Premium:", ehbPremiumTxt.getText(), "Mismatch in ehbPremiumTxt");
+        softAssert.assertEquals(dbEhbPremiumValueStr, ehbPremiumData.getText(), "Mismatch in ehbPremiumData");
+        softAssert.assertEquals("Financial End Date:", financialEndDateTxt.getText(), "Mismatch in financialEndDateTxt");
+        softAssert.assertEquals(dbFinancialEndDateValue, financialEndDateData.getText(), "Mismatch in financialEndDateData");
+        softAssert.assertEquals("CSR Amount:", csrAmountTxt.getText(), "Mismatch in csrAmountTxt");
+        softAssert.assertEquals(dbCsrAmountStr, csrAmountData.getText(), "Mismatch in csrAmountData");
+        softAssert.assertEquals("Plan Premium:", planPremiumTxt.getText(), "Mismatch in planPremiumTxt");
+        softAssert.assertEquals(dbPremiumStr, planPremiumData.getText(), "Mismatch in planPremiumData");
+        softAssert.assertEquals("Latest LCE and Date:", latestLceandDateTxt.getText(), "Mismatch in latestLceandDateTxt");
+        softAssert.assertEquals(firstRow.get(11).toLowerCase().replace("_", " ")+" "+dbLceDateValue, latestLceandDateData.getText().toLowerCase(), "Mismatch in latestLceandDateData");
+        softAssert.assertEquals("Plan "+reduction+":", planReductionTxt.getText(), "Mismatch in planReductionTxt");
+        softAssert.assertEquals(dbAptcStr, planReductionData.getText(), "Mismatch in planReductionData");
+        softAssert.assertEquals("Rating Area:", ratingAreaTxt.getText(), "Mismatch in ratingAreaTxt");
+        softAssert.assertEquals(firstRow.get(14).replace("Rating Area ", ""), ratingAreaData.getText(), "Mismatch in ratingAreaData");
+        softAssert.assertEquals("Premium after Subsidy:", premiumAfterSubsidyTxt.getText(), "Mismatch in premiumAfterSubsidyTxt");
+        softAssert.assertEquals(dbPremiumAfterSubsidyStr, premiumAfterSubsidyData.getText(), "Mismatch in premiumAfterSubsidyData");
+        softAssert.assertEquals("Service Area:", serviceAreaTxt.getText(), "Mismatch in serviceAreaTxt");
+        softAssert.assertEquals(firstRow.get(15), serviceAreaData.getText(), "Mismatch in serviceAreaData");
+        softAssert.assertEquals("Plan AV:", planAvTxt.getText(), "Mismatch in planAvTxt");
+        softAssert.assertEquals(dbPlanAvValue, planAvData.getText(), "Mismatch in planAvData");
+        softAssert.assertEquals("Policy ID:", policyIdTxt.getText(), "Mismatch in policyIdTxt");
+        softAssert.assertEquals(firstRow.get(0), policyIdData.getText(), "Mismatch in policyIdData");
+        policyIdTxt.click();
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Clipboard clipboard = toolkit.getSystemClipboard();
+        String clipboardText = (String) clipboard.getData(DataFlavor.stringFlavor);
+        softAssert.assertEquals(clipboardText, firstRow.get(0), "Clipboard data mismatch");
+        softAssert.assertEquals("HIOS ID:", hiosIdTxt.getText(), "Mismatch in hiosIdTxt");
+        softAssert.assertEquals(firstRow.get(17), hiosIdData.getText(), "Mismatch in hiosIdData");
+        softAssert.assertAll();
+    }
+
 
 
 

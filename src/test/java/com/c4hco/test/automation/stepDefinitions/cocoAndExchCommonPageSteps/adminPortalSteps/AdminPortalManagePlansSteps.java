@@ -22,6 +22,9 @@ public class AdminPortalManagePlansSteps {
     public void iContainerTitleLabels() {
         adminPortalManagePlansPage.containerTitleLabels();      }
 
+    @And("I validate title and labels on Manage page for year {string}")
+    public void iContainerTitleLabels(String year) {adminPortalManagePlansPage.containerTitleLabelsYear(year);}
+
     @Then("I check default year displays")
     public void iCheckDefaultCurrentYear() {
         adminPortalManagePlansPage.checkDefaultCurrentYear();       }
@@ -398,4 +401,13 @@ public class AdminPortalManagePlansSteps {
 
     @Then("I verify current plan data for {string} on Manage Plans page")
     public void iVerifyCurrentPolicyDetails(String planType, List<Map<String, String>> expectedValues) {adminPortalManagePlansPage.verifyCurrentPolicyDetails(planType, expectedValues);}
+
+    @Then("I click {string} plan type on Manage Plans page")
+    public void iClickPlanType(String planType) {adminPortalManagePlansPage.clickPlanType(planType);}
+
+    @Then("I verify {string} plan type is not showing on Manage Plans page")
+    public void iVerifyPlanTypeNotShow(String planType) {adminPortalManagePlansPage.verifyPlanTypeNotShow(planType);}
+
+    @Then("I verify {string} plan type is showing on Manage Plans page")
+    public void iVerifyPlanTypeShow(String planType) {adminPortalManagePlansPage.verifyPlanTypeShow(planType);}
 }
