@@ -413,10 +413,6 @@ public class AdminPortalManagePlansSteps {
     public void iValidateFinancialColumnHeaderAndStyle(String planType, List<String> columnNames) {
         adminPortalManagePlansPage.validateFinancialDetailsColumnNamesAndStyle(planType,columnNames);
     }
-}
-
-
-
     @Then("I verify current plan data for {string} on Manage Plans page")
     public void iVerifyCurrentPolicyDetails(String planType, List<Map<String, String>> expectedValues) {adminPortalManagePlansPage.verifyCurrentPolicyDetails(planType, expectedValues);}
 }

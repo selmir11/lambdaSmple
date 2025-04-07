@@ -1764,6 +1764,29 @@ public class AdminPortalManagePlansPage {
         softAssert.assertAll();
     }
 
+    public void verifyMemberCoverageStrtDate(String memberNo, String coverageStartDateValue, String planType) {
+        String coverageStartDate = parseDate(coverageStartDateValue);
+
+        WebElement coverageStartDateMem = getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container plan-container-fill']//div[@id='coverageStartDate_" + memberNo + "']"));
+        softAssert.assertEquals(coverageStartDateMem.getText(), coverageStartDate);
+    }
+
+    public void veryifyMemberFinancialStrtDate(String memberNo, String financialStartDateValue, String planType) {
+        String financialStartDates = parseDate(financialStartDateValue);
+
+        WebElement financialStartDateMem = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container plan-container-fill']//div[@id='financialStartDate_" + memberNo + "']"));
+        softAssert.assertEquals(financialStartDateMem.getText(), financialStartDates);
+    }
+
+    private String parseDate(String dateValue) {
+        if (Character.isLetter(dateValue.charAt(0))) {
+            String dateBase = basicActions.getDateBasedOnRequirement(dateValue);
+            return basicActions.changeDateFormat(dateBase, "yyyy-MM-dd", "MM/dd/yyyy");
+        } else {
+            return dateValue;
+        }
+    }
+
     public void validateStyleProperties() {
         validateInformationContainerStyle();
         validateColoradoConnectStyle();
@@ -1789,16 +1812,16 @@ public class AdminPortalManagePlansPage {
 
         for (WebElement each : selectedTableHeader) {
             actualMedCoverageDetails.add(each.getText());
-            Assert.assertEquals(selectedTableHeader.get(i).getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for "+currentMedicalDentalPlan.get(0).getText());
-            Assert.assertEquals(selectedTableHeader.get(i).getCssValue("font"), "700 16px / 24px \"PT Sans\"","font not match for "+currentMedicalDentalPlan.get(0).getText());
-            Assert.assertEquals(selectedTableHeader.get(i).getCssValue("font-weight"), "700","font not match for "+currentMedicalDentalPlan.get(0).getText());
+            softAssert.assertEquals(selectedTableHeader.get(i).getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for "+currentMedicalDentalPlan.get(0).getText());
+            softAssert.assertEquals(selectedTableHeader.get(i).getCssValue("font"), "700 16px / 24px \"PT Sans\"","font not match for "+currentMedicalDentalPlan.get(0).getText());
+            softAssert.assertEquals(selectedTableHeader.get(i).getCssValue("font-weight"), "700","font not match for "+currentMedicalDentalPlan.get(0).getText());
             if(i==5){
                 break;
             }
             i++;
         }
-        Assert.assertEquals(actualMedCoverageDetails,expectedMedMemberDetails, "Member Table Label not match  ");
-        // softAssert.assertAll();
+        softAssert.assertEquals(actualMedCoverageDetails,expectedMedMemberDetails, "Member Table Label not match  ");
+        softAssert.assertAll();
     }
 
     public void validateFinancialDetailsColumnNamesAndStyle(String planType, List<String> expectedMedMemberDetails ) {
@@ -1813,16 +1836,16 @@ public class AdminPortalManagePlansPage {
 
         for (WebElement each : selectedTableHeader) {
             actualMedCoverageDetails.add(each.getText());
-            Assert.assertEquals(selectedTableHeader.get(i).getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for "+currentMedicalDentalPlan.get(0).getText());
-            Assert.assertEquals(selectedTableHeader.get(i).getCssValue("font"), "700 16px / 24px \"PT Sans\"","font not match for "+currentMedicalDentalPlan.get(0).getText());
-            Assert.assertEquals(selectedTableHeader.get(i).getCssValue("font-weight"), "700","font not match for "+currentMedicalDentalPlan.get(0).getText());
+            softAssert.assertEquals(selectedTableHeader.get(i).getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for "+currentMedicalDentalPlan.get(0).getText());
+            softAssert.assertEquals(selectedTableHeader.get(i).getCssValue("font"), "700 16px / 24px \"PT Sans\"","font not match for "+currentMedicalDentalPlan.get(0).getText());
+            softAssert.assertEquals(selectedTableHeader.get(i).getCssValue("font-weight"), "700","font not match for "+currentMedicalDentalPlan.get(0).getText());
             if(i==4){
                 break;
             }
             i++;
         }
-        Assert.assertEquals(actualMedCoverageDetails,expectedMedMemberDetails, "Member Table Label not match  ");
-        // softAssert.assertAll();
+        softAssert.assertEquals(actualMedCoverageDetails,expectedMedMemberDetails, "Member Table Label not match  ");
+        softAssert.assertAll();
     }
 
     public void validateCoverageDetailsColumnNamesAndStyle(String planType, List<String> expectedMedMemberDetails ) {
@@ -1837,16 +1860,16 @@ public class AdminPortalManagePlansPage {
 
         for (WebElement each : selectedTableHeader) {
             actualMedCoverageDetails.add(each.getText());
-            Assert.assertEquals(selectedTableHeader.get(i).getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for "+currentMedicalDentalPlan.get(0).getText());
-            Assert.assertEquals(selectedTableHeader.get(i).getCssValue("font"), "700 16px / 24px \"PT Sans\"","font not match for "+currentMedicalDentalPlan.get(0).getText());
-            Assert.assertEquals(selectedTableHeader.get(i).getCssValue("font-weight"), "700","font not match for "+currentMedicalDentalPlan.get(0).getText());
+            softAssert.assertEquals(selectedTableHeader.get(i).getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for "+currentMedicalDentalPlan.get(0).getText());
+            softAssert.assertEquals(selectedTableHeader.get(i).getCssValue("font"), "700 16px / 24px \"PT Sans\"","font not match for "+currentMedicalDentalPlan.get(0).getText());
+            softAssert.assertEquals(selectedTableHeader.get(i).getCssValue("font-weight"), "700","font not match for "+currentMedicalDentalPlan.get(0).getText());
             if(i==5){
                 break;
             }
             i++;
         }
-        Assert.assertEquals(actualMedCoverageDetails,expectedMedMemberDetails, "Member Table Label not match  ");
-        // softAssert.assertAll();
+        softAssert.assertEquals(actualMedCoverageDetails,expectedMedMemberDetails, "Member Table Label not match  ");
+        softAssert.assertAll();
     }
 
     private void validateSelectAPolicyStyle() {
@@ -1925,30 +1948,5 @@ public class AdminPortalManagePlansPage {
         softAssert.assertEquals(mPlansContainer.getCssValue("border-top-color"), "rgba(149, 192, 60, 1)","Top border color not match for container " );
         softAssert.assertAll();
     }
-}
-
-    public void verifyMemberCoverageStrtDate(String memberNo, String coverageStartDateValue, String planType) {
-        String coverageStartDate = parseDate(coverageStartDateValue);
-
-        WebElement coverageStartDateMem = getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container plan-container-fill']//div[@id='coverageStartDate_" + memberNo + "']"));
-        softAssert.assertEquals(coverageStartDateMem.getText(), coverageStartDate);
-    }
-
-    public void veryifyMemberFinancialStrtDate(String memberNo, String financialStartDateValue, String planType) {
-        String financialStartDates = parseDate(financialStartDateValue);
-
-        WebElement financialStartDateMem = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container plan-container-fill']//div[@id='financialStartDate_" + memberNo + "']"));
-        softAssert.assertEquals(financialStartDateMem.getText(), financialStartDates);
-    }
-
-    private String parseDate(String dateValue) {
-        if (Character.isLetter(dateValue.charAt(0))) {
-            String dateBase = basicActions.getDateBasedOnRequirement(dateValue);
-            return basicActions.changeDateFormat(dateBase, "yyyy-MM-dd", "MM/dd/yyyy");
-        } else {
-            return dateValue;
-        }
-    }
-
 
 }
