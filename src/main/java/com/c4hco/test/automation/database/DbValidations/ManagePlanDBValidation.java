@@ -2,17 +2,30 @@ package com.c4hco.test.automation.database.DbValidations;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.PolicyTablesEntity;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
+import com.c4hco.test.automation.database.dbDataProvider.MpDbDataProvider;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ManagePlanDBValidation {
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
+    MpDbDataProvider mpDbDataProvider = new MpDbDataProvider();
     List<PolicyTablesEntity> medicalPolicyEntities = new ArrayList<>();
     List<PolicyTablesEntity> dentalPolicyEntities = new ArrayList<>();
     SoftAssert softAssert = new SoftAssert();
     BasicActions basicActions = new BasicActions();
+
+    public ManagePlanDBValidation(WebDriver webDriver) {
+        basicActions = new BasicActions(webDriver);
+        PageFactory.initElements(basicActions.getDriver(), this);
+    }
 
 
     private void setData() {
@@ -321,4 +334,270 @@ public class ManagePlanDBValidation {
         softAssert.assertEquals("$"+denplanAptcAmtDB,SharedData.getManagePlanDentalMedicalPlan().getDenPlanAptcAmtFnTable());
         softAssert.assertAll();
     }
+
+    public void validateCurrentMedicalMembersDetailsTableDB(String planType, Integer memberNum) {
+        List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansMemberDetails(planType);
+        System.out.println("Query executed, returned values: " + dbValuesList);
+
+        if (dbValuesList.isEmpty()) {
+            throw new RuntimeException("No data returned for account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'");
+        }
+        Set<String> processedFirstNames = new HashSet<>();
+        int uiRowIndex = 1;
+        for (int i = 0; i < dbValuesList.size(); i++) {
+            if (uiRowIndex > memberNum) {
+                break;
+            }
+            List<String> dbRow = dbValuesList.get(i);
+            String firstName = dbRow.get(1);
+            if (processedFirstNames.contains(firstName)) {
+                continue;
+            }
+            processedFirstNames.add(firstName);
+            String dbTobaccoValue = dbRow.get(1).equals("1") ? "Yes" : "No";
+            String dbDobValue = basicActions.changeDateFormat(dbRow.get(3), "yyyy-MM-dd", "MM/dd/yyyy");
+
+            WebElement personID = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[@id='referenceId_" + uiRowIndex + "']"));
+            WebElement fistName = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[@id='firstName_" + uiRowIndex + "']"));
+            WebElement dob = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[@id='dateOfBirth_" + uiRowIndex + "']"));
+            WebElement relationship = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[@id='relationshipToSubscriber_" + uiRowIndex + "']"));
+            WebElement tobacco = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[@id='tobacco_" + uiRowIndex + "']"));
+
+            softAssert.assertEquals(dbRow.get(0), personID.getText(), "Mismatch in exch_person_id for row " + uiRowIndex);
+            softAssert.assertEquals(dbRow.get(1)+" "+dbRow.get(2), fistName.getText(), "Mismatch in first_name last_name for row " + uiRowIndex);
+            softAssert.assertEquals(dbDobValue, dob.getText(), "Mismatch in birth_date for row " + uiRowIndex);
+            softAssert.assertEquals(dbRow.get(4).toLowerCase(), relationship.getText().toLowerCase(), "Mismatch in relation_to_subscriber for row " + uiRowIndex);
+            softAssert.assertEquals(dbTobaccoValue, tobacco.getText(), "Mismatch in prior_6_months_tobacco_use_ind for row " + uiRowIndex);
+            uiRowIndex++;
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateCurrentMedicalCoverageDetailsTableDB(String planType, Integer memberNum) {
+        List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansCoverageDetails(planType);
+        System.out.println("Query executed, returned values: " + dbValuesList);
+
+        if (dbValuesList.isEmpty()) {
+            throw new RuntimeException("No data returned for account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'");
+        }
+        Set<String> processedFirstNames = new HashSet<>();
+        int uiRowIndex = 1;
+        for (int i = 0; i < dbValuesList.size(); i++) {
+            if (uiRowIndex > memberNum) {
+                break;
+            }
+            List<String> dbRow = dbValuesList.get(i);
+            String firstName = dbRow.get(5);
+            if (processedFirstNames.contains(firstName)) {
+                continue;
+            }
+            processedFirstNames.add(firstName);
+            String dbStartDateValue = basicActions.changeDateFormat(dbRow.get(0), "yyyy-MM-dd", "MM/dd/yyyy");
+            String dbEndDateValue = basicActions.changeDateFormat(dbRow.get(1), "yyyy-MM-dd", "MM/dd/yyyy");
+            String dbEffectuatedValue = dbRow.get(3).equals("1") ? "Yes" : "No";
+            String dbTermReasonValue = dbRow.get(4) == null ? "" : dbRow.get(4).toString().trim();
+
+            WebElement coverageStartDate = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[@id='coverageStartDate_" + uiRowIndex + "']"));
+            WebElement coverageEndDate = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[@id='coverageEndDate_" + uiRowIndex + "']"));
+            WebElement status = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[@id='status_" + uiRowIndex + "']"));
+            WebElement effectuated = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[@id='effectuated_" + uiRowIndex + "']"));
+            WebElement terminationReason = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[@id='terminationReason_" + uiRowIndex + "']"));
+
+            softAssert.assertEquals(dbStartDateValue, coverageStartDate.getText(), "Mismatch in coverage_start_date for row " + uiRowIndex);
+            softAssert.assertEquals(dbEndDateValue, coverageEndDate.getText(), "Mismatch in coverage_end_date for row " + uiRowIndex);
+            softAssert.assertEquals(dbRow.get(2).toLowerCase(), status.getText().toLowerCase(), "Mismatch in policy_member_coverage_status for row " + uiRowIndex);
+            softAssert.assertEquals(dbEffectuatedValue, effectuated.getText(), "Mismatch in effectuated_ind for row " + uiRowIndex);
+            softAssert.assertEquals(dbTermReasonValue, terminationReason.getText(), "Mismatch in disenrollment_reason for row " + uiRowIndex);
+            uiRowIndex++;
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateCurrentMedicalFinancialDetailsTableDB(String planType, Integer memberNum) {
+        List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansFinancialDetails(planType);
+        System.out.println("Query executed, returned values: " + dbValuesList);
+
+        if (dbValuesList.isEmpty()) {
+            throw new RuntimeException("No data returned for account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'");
+        }
+        Set<String> processedFirstNames = new HashSet<>();
+        int uiRowIndex = 1;
+        for (int i = 0; i < dbValuesList.size(); i++) {
+            if (uiRowIndex > memberNum) {
+                break;
+            }
+            List<String> dbRow = dbValuesList.get(i);
+            String firstName = dbRow.get(4);
+            if (processedFirstNames.contains(firstName)) {
+                continue;
+            }
+            processedFirstNames.add(firstName);
+            String dbStartDateValue = basicActions.changeDateFormat(dbRow.get(0), "yyyy-MM-dd", "MM/dd/yyyy");
+            String dbEndDateValue = basicActions.changeDateFormat(dbRow.get(1), "yyyy-MM-dd", "MM/dd/yyyy");
+
+            WebElement financialStartDate = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[@id='financialStartDate_" + uiRowIndex + "']"));
+            WebElement financialEndDate = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[@id='financialEndDate_" + uiRowIndex + "']"));
+            WebElement premium = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[@id='premium_" + uiRowIndex + "']"));
+            String reduction = "";
+            if (SharedData.getDbName().toLowerCase().contains("exch")) {
+                reduction = "APTC";
+            } else if (SharedData.getDbName().toLowerCase().contains("coco")) {
+                reduction = "SES";
+            }
+            WebElement taxCredit = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[@id='plan"+reduction+"_" + uiRowIndex + "']"));
+
+            softAssert.assertEquals(dbStartDateValue, financialStartDate.getText(), "Mismatch in member_financial_start_date for row " + uiRowIndex);
+            softAssert.assertEquals(dbEndDateValue, financialEndDate.getText(), "Mismatch in member_financial_end_date for row " + uiRowIndex);
+            softAssert.assertEquals("$"+dbRow.get(2), premium.getText(), "Mismatch in plan_premium_amt for row " + uiRowIndex);
+            softAssert.assertEquals("$"+dbRow.get(3), taxCredit.getText(), "Mismatch in premium_reduction_amt for row " + uiRowIndex);
+            uiRowIndex++;
+        }
+        softAssert.assertAll();
+    }
+
+    public void validatePreviousMedicalMembersDetailsTableDB(String planType, Integer memberNum) {
+        List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansMemberDetails(planType);
+        System.out.println("Query executed, returned values: " + dbValuesList);
+
+        if (dbValuesList.isEmpty()) {
+            throw new RuntimeException("No data returned for account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'");
+        }
+        Set<String> processedFirstNamesPrevious = new HashSet<>();
+        int uiRowIndex = 1;
+        for (int i = 0; i < dbValuesList.size(); i++) {
+            if (uiRowIndex > memberNum) {
+                break;
+            }
+            List<String> dbRow = dbValuesList.get(i);
+            String firstName = dbRow.get(1);
+            String coverageEndDateValue = dbRow.get(5);
+            boolean hasSecondRow = (i + 1) < dbValuesList.size() && dbValuesList.get(i + 1).get(1).equals(firstName);
+            if (coverageEndDateValue.contains("12-31") && hasSecondRow) {
+                System.out.println("Skipping first row for " + firstName + " due to coverage_end_date containing 12-31.");
+                dbRow = dbValuesList.get(i + 1);
+                i++;
+            }
+            if (processedFirstNamesPrevious.contains(firstName)) {
+                continue;
+            }
+            processedFirstNamesPrevious.add(firstName);
+            String dbTobaccoValue = dbRow.get(1).equals("1") ? "Yes" : "No";
+            String dbDobValue = basicActions.changeDateFormat(dbRow.get(3), "yyyy-MM-dd", "MM/dd/yyyy");
+
+            WebElement personID = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//div[@id='referenceId_" + uiRowIndex + "']"));
+            WebElement fistName = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//div[@id='firstName_" + uiRowIndex + "']"));
+            WebElement dob = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//div[@id='dateOfBirth_" + uiRowIndex + "']"));
+            WebElement relationship = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//div[@id='relationshipToSubscriber_" + uiRowIndex + "']"));
+            WebElement tobacco = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//div[@id='tobacco_" + uiRowIndex + "']"));
+
+            softAssert.assertEquals(dbRow.get(0), personID.getText(), "Mismatch in exch_person_id for row " + uiRowIndex);
+            softAssert.assertEquals(dbRow.get(1) + " " + dbRow.get(2), fistName.getText(), "Mismatch in first_name last_name for row " + uiRowIndex);
+            softAssert.assertEquals(dbDobValue, dob.getText(), "Mismatch in birth_date for row " + uiRowIndex);
+            softAssert.assertEquals(dbRow.get(4).toLowerCase(), relationship.getText().toLowerCase(), "Mismatch in relation_to_subscriber for row " + uiRowIndex);
+            softAssert.assertEquals(dbTobaccoValue, tobacco.getText(), "Mismatch in prior_6_months_tobacco_use_ind for row " + uiRowIndex);
+
+            uiRowIndex++;
+        }
+
+        softAssert.assertAll();
+    }
+
+    public void validatePreviousMedicalCoverageDetailsTableDB(String planType, Integer memberNum) {
+        List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansCoverageDetails(planType);
+        System.out.println("Query executed, returned values: " + dbValuesList);
+
+        if (dbValuesList.isEmpty()) {
+            throw new RuntimeException("No data returned for account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'");
+        }
+        Set<String> processedFirstNamesPrevious = new HashSet<>();
+        int uiRowIndex = 1;
+        for (int i = 0; i < dbValuesList.size(); i++) {
+            if (uiRowIndex > memberNum) {
+                break;
+            }
+            List<String> dbRow = dbValuesList.get(i);
+            String firstName = dbRow.get(5);
+            String coverageEndDateValue = dbRow.get(1);
+            boolean hasSecondRow = (i + 1) < dbValuesList.size() && dbValuesList.get(i + 1).get(5).equals(firstName);
+            if (coverageEndDateValue.contains("12-31") && hasSecondRow) {
+                System.out.println("Skipping first row for " + firstName + " due to coverage_end_date containing 12-31.");
+                dbRow = dbValuesList.get(i + 1);
+                i++;
+            }
+            if (processedFirstNamesPrevious.contains(firstName)) {
+                continue;
+            }
+            processedFirstNamesPrevious.add(firstName);
+            String dbStartDateValue = basicActions.changeDateFormat(dbRow.get(0), "yyyy-MM-dd", "MM/dd/yyyy");
+            String dbEndDateValue = basicActions.changeDateFormat(dbRow.get(1), "yyyy-MM-dd", "MM/dd/yyyy");
+            String dbEffectuatedValue = dbRow.get(3).equals("1") ? "Yes" : "No";
+            String dbTermReasonValue = dbRow.get(4) == null ? "" : dbRow.get(4).toString().trim();
+
+            WebElement coverageStartDate = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container']//div[@id='coverageStartDate_" + uiRowIndex + "']"));
+            WebElement coverageEndDate = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container']//div[@id='coverageEndDate_" + uiRowIndex + "']"));
+            WebElement status = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container']//div[@id='status_" + uiRowIndex + "']"));
+            WebElement effectuated = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container']//div[@id='effectuated_" + uiRowIndex + "']"));
+            WebElement terminationReason = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container']//div[@id='terminationReason_" + uiRowIndex + "']"));
+
+            softAssert.assertEquals(dbStartDateValue, coverageStartDate.getText(), "Mismatch in coverage_start_date for row " + uiRowIndex);
+            softAssert.assertEquals(dbEndDateValue, coverageEndDate.getText(), "Mismatch in coverage_end_date for row " + uiRowIndex);
+            softAssert.assertEquals(dbRow.get(2).toLowerCase(), status.getText().toLowerCase(), "Mismatch in policy_member_coverage_status for row " + uiRowIndex);
+            softAssert.assertEquals(dbEffectuatedValue, effectuated.getText(), "Mismatch in effectuated_ind for row " + uiRowIndex);
+            softAssert.assertEquals(dbTermReasonValue, terminationReason.getText(), "Mismatch in disenrollment_reason for row " + uiRowIndex);
+            uiRowIndex++;
+        }
+        softAssert.assertAll();
+    }
+
+    public void validatePreviousMedicalFinancialDetailsTableDB(String planType, Integer memberNum) {
+        List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansFinancialDetails(planType);
+        System.out.println("Query executed, returned values: " + dbValuesList);
+
+        if (dbValuesList.isEmpty()) {
+            throw new RuntimeException("No data returned for account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'");
+        }
+        Set<String> processedFirstNamesPrevious = new HashSet<>();
+        int uiRowIndex = 1;
+        for (int i = 0; i < dbValuesList.size(); i++) {
+            if (uiRowIndex > memberNum) {
+                break;
+            }
+            List<String> dbRow = dbValuesList.get(i);
+            String firstName = dbRow.get(4);
+            String coverageEndDateValue = dbRow.get(5);
+            boolean hasSecondRow = (i + 1) < dbValuesList.size() && dbValuesList.get(i + 1).get(4).equals(firstName);
+            if (coverageEndDateValue.contains("12-31") && hasSecondRow) {
+                System.out.println("Skipping first row for " + firstName + " due to coverage_end_date containing 12-31.");
+                dbRow = dbValuesList.get(i + 1);
+                i++;
+            }
+            if (processedFirstNamesPrevious.contains(firstName)) {
+                continue;
+            }
+            processedFirstNamesPrevious.add(firstName);
+            String dbStartDateValue = basicActions.changeDateFormat(dbRow.get(0), "yyyy-MM-dd", "MM/dd/yyyy");
+            String dbEndDateValue = basicActions.changeDateFormat(dbRow.get(1), "yyyy-MM-dd", "MM/dd/yyyy");
+
+            WebElement financialStartDate = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container']//div[@id='financialStartDate_" + uiRowIndex + "']"));
+            WebElement financialEndDate = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container']//div[@id='financialEndDate_" + uiRowIndex + "']"));
+            WebElement premium = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container']//div[@id='premium_" + uiRowIndex + "']"));
+            String reduction = "";
+            if (SharedData.getDbName().toLowerCase().contains("exch")) {
+                reduction = "APTC";
+            } else if (SharedData.getDbName().toLowerCase().contains("coco")) {
+                reduction = "SES";
+            }
+            WebElement taxCredit = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container']//div[@id='plan"+reduction+"_" + uiRowIndex + "']"));
+
+            softAssert.assertEquals(dbStartDateValue, financialStartDate.getText(), "Mismatch in member_financial_start_date for row " + uiRowIndex);
+            softAssert.assertEquals(dbEndDateValue, financialEndDate.getText(), "Mismatch in member_financial_end_date for row " + uiRowIndex);
+            softAssert.assertEquals("$"+dbRow.get(2), premium.getText(), "Mismatch in plan_premium_amt for row " + uiRowIndex);
+            softAssert.assertEquals("$"+dbRow.get(3), taxCredit.getText(), "Mismatch in premium_reduction_amt for row " + uiRowIndex);
+            uiRowIndex++;
+        }
+        softAssert.assertAll();
+    }
+
+
+
 }

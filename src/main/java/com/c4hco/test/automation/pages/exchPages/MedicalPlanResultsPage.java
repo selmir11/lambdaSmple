@@ -301,7 +301,8 @@ public class MedicalPlanResultsPage {
     }
 
     private void paginateRight(){
-        basicActions.waitForElementToBePresent(nextPageArrow, 10);
+        basicActions.waitForElementToBePresent(nextPageArrow, 60);
+        basicActions.waitForElementToDisappear(spinner, 60);
         Assert.assertTrue(nextPageArrow.isEnabled(), "Right arrow to click is not enabled!");
         nextPageArrow.click();
     }
