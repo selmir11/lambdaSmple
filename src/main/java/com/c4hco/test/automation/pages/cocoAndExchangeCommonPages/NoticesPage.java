@@ -5,6 +5,7 @@ import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.Constants;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
@@ -22,7 +23,9 @@ public class NoticesPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(css = "#i0116")
+    @FindAll({
+      @FindBy (css = "#i0116"),
+      @FindBy (xpath = "//input[@id='usernameEntry']")})
     WebElement email;
     @FindBy(xpath = "//div[contains(@class,'layout section-master__layout section-master--layout-cols-2')]//span[@class='btn__text'][normalize-space()='Sign in']")
     WebElement loginMail;
@@ -30,7 +33,9 @@ public class NoticesPage {
     WebElement passwordEmail;
     @FindBy(xpath = "//button[@type='submit']")
     WebElement nextButton;
-    @FindBy(id = "declineButton")
+    @FindAll({
+            @FindBy(id = "declineButton"),
+            @FindBy(xpath = "//*[@id='view']/div/div[5]/button[2]")})
     WebElement btnStayNo;
     @FindBy(xpath = "//div[2]/div[2]/div[2]//span[contains(text(), 'One-time verification')]")
     WebElement noticeOkta;
@@ -237,7 +242,7 @@ public class NoticesPage {
     public void signOutEmail() {
         basicActions.waitForElementToBePresent(outlookLogOutIcon, 10);
         outlookLogOutIcon.click();
-        basicActions.waitForElementPresence(outlookLogOut, 20);
+        basicActions.waitForElementToBePresentWithRetries(outlookLogOut, 20);
         try {
             basicActions.wait(2000);
             WebElement element = basicActions.getDriver().findElement(By.id("mectrl_body_signOut"));
