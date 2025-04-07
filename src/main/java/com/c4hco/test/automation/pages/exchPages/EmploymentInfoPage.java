@@ -50,19 +50,19 @@ public class EmploymentInfoPage {
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-employerNameInput")
     WebElement txtCompanyName;
 
-    @FindBy(id = "ELIG-employerAddress-addressLine1Input")
+    @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-employerAddress-addressLine1Input")
     WebElement txtAddressOne;
 
-    @FindBy(id = "ELIG-employerAddress-addressLine2Input")
+    @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-employerAddress-addressLine2Input")
     WebElement txtAddressTwo;
 
-    @FindBy(id = "ELIG-employerAddress-cityInput")
+    @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-employerAddress-cityInput")
     WebElement txtCity;
 
-    @FindBy(id = "ELIG-employerAddress-stateSelect")
+    @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-employerAddress-selectState")
     WebElement selectState;
 
-    @FindBy(id = "ELIG-employerAddress-zipCodeInput")
+    @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-employerAddress-zipCodeInput")
     WebElement txtZip;
 
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-amountInput")
