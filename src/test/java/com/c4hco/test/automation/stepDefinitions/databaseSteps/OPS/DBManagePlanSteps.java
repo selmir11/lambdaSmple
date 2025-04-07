@@ -12,18 +12,18 @@ public class DBManagePlanSteps {
     BasicActions actions = BasicActions.getInstance();
     ManagePlanDBValidation managePlanDBValidation= new ManagePlanDBValidation(WebDriverManager.getDriver());
     @Then("I validate current Medical plan Data for the year {string} DB")
-    public void iValidateCurrentMedicalPlanDataForTheYearDB(String year) {
-        managePlanDBValidation.validateCurrentMedicalPlanDataDB(year);
+    public void iValidateCurrentPlanDataForTheYearDB(String year) {
+        managePlanDBValidation.validateCurrentPlanDataDB(year);
     }
 
     @Then("I validate current medical member details table DB")
-    public void iValidateCurrentMedicalMemberDetailsTableDB() {
-        managePlanDBValidation.validateCurrentMedicalMemberDetailsTableDB();
+    public void iValidateCurrentMemberDetailsTableDB() {
+        managePlanDBValidation.validateCurrentMemberDetailsTableDB();
     }
 
     @Then("I validate current medical coverage details table DB")
-    public void iValidateCurrentMedicalCoverageDetailsTableDB() {
-        managePlanDBValidation.validateCurrentMedicalCoverageDetailsTableDB();
+    public void iValidateCurrentCoverageDetailsTableDB() {
+        managePlanDBValidation.validateCurrentCoverageDetailsTableDB();
     }
 
 
@@ -53,19 +53,19 @@ public class DBManagePlanSteps {
     }
 
     @Then("I validate current {string} all details table in DB for {int} on AP Manage Plans")
-    public void iValidateCurrentMedicalAllDetailsTableDB(String planType, Integer memberNum) {
+    public void iValidateCurrentAllDetailsTableDB(String planType, Integer memberNum) {
         actions.wait(5000);
-        managePlanDBValidation.validateCurrentMedicalMembersDetailsTableDB(planType, memberNum);
-        managePlanDBValidation.validateCurrentMedicalCoverageDetailsTableDB(planType, memberNum);
-        managePlanDBValidation.validateCurrentMedicalFinancialDetailsTableDB(planType, memberNum);
+        managePlanDBValidation.validateCurrentMembersDetailsTableDB(planType, memberNum);
+        managePlanDBValidation.validateCurrentCoverageDetailsTableDB(planType, memberNum);
+        managePlanDBValidation.validateCurrentFinancialDetailsTableDB(planType, memberNum);
     }
 
     @Then("I validate previous {string} all details table in DB for {int} on AP Manage Plans")
-    public void iValidatePreviousMedicalAllDetailsTableDB(String planType, Integer memberNum) {
+    public void iValidatePreviousAllDetailsTableDB(String planType, Integer memberNum) {
         actions.wait(5000);
-        managePlanDBValidation.validatePreviousMedicalMembersDetailsTableDB(planType, memberNum);
-        managePlanDBValidation.validatePreviousMedicalCoverageDetailsTableDB(planType, memberNum);
-        managePlanDBValidation.validatePreviousMedicalFinancialDetailsTableDB(planType, memberNum);
+        managePlanDBValidation.validatePreviousMembersDetailsTableDB(planType, memberNum);
+        managePlanDBValidation.validatePreviousCoverageDetailsTableDB(planType, memberNum);
+        managePlanDBValidation.validatePreviousFinancialDetailsTableDB(planType, memberNum);
     }
 
     @Then("I validate current {string} plan summary in DB for {int} on AP Manage Plans")

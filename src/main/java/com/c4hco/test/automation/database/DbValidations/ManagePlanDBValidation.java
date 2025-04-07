@@ -45,7 +45,7 @@ public class ManagePlanDBValidation {
         dentalPolicyEntities = SharedData.getDentalPolicyTablesEntities();
     }
 
-    public void validateCurrentMedicalPlanDataDB(String year) {
+    public void validateCurrentPlanDataDB(String year) {
         setData();
         SharedData.getManagePlanDentalMedicalPlan().setPlanType("1");
         softAssert.assertEquals(exchDbDataProvider.getPlanMarketingName(year),SharedData.getManagePlanDentalMedicalPlan().getPlanMarketingName());
@@ -112,7 +112,7 @@ public class ManagePlanDBValidation {
     }
 
 
-    public void validateCurrentMedicalCoverageDetailsTableDB() {
+    public void validateCurrentCoverageDetailsTableDB() {
         String coverageStartDB = medicalPolicyEntities.get(0).getCoverage_start_date();
         String coverageEndDB = medicalPolicyEntities.get(0).getCoverage_end_date();
         coverageStartDB = basicActions.changeDateFormat(coverageStartDB,"yyyy-MM-dd","MM/dd/yyyy");
@@ -142,7 +142,7 @@ public class ManagePlanDBValidation {
         softAssert.assertAll();
     }
 
-    public void validateCurrentMedicalMemberDetailsTableDB() {
+    public void validateCurrentMemberDetailsTableDB() {
         String personIdDB = medicalPolicyEntities.get(0).getExch_person_id();
         softAssert.assertEquals(personIdDB, SharedData.getManagePlanDentalMedicalPlan().getMedPersonID());
 
@@ -343,7 +343,7 @@ public class ManagePlanDBValidation {
         softAssert.assertAll();
     }
 
-    public void validateCurrentMedicalMembersDetailsTableDB(String planType, Integer memberNum) {
+    public void validateCurrentMembersDetailsTableDB(String planType, Integer memberNum) {
         List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansMemberDetails(planType);
         System.out.println("Query executed, returned values: " + dbValuesList);
 
@@ -381,7 +381,7 @@ public class ManagePlanDBValidation {
         softAssert.assertAll();
     }
 
-    public void validateCurrentMedicalCoverageDetailsTableDB(String planType, Integer memberNum) {
+    public void validateCurrentCoverageDetailsTableDB(String planType, Integer memberNum) {
         List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansCoverageDetails(planType);
         System.out.println("Query executed, returned values: " + dbValuesList);
 
@@ -421,7 +421,7 @@ public class ManagePlanDBValidation {
         softAssert.assertAll();
     }
 
-    public void validateCurrentMedicalFinancialDetailsTableDB(String planType, Integer memberNum) {
+    public void validateCurrentFinancialDetailsTableDB(String planType, Integer memberNum) {
         List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansFinancialDetails(planType);
         System.out.println("Query executed, returned values: " + dbValuesList);
 
@@ -463,7 +463,7 @@ public class ManagePlanDBValidation {
         softAssert.assertAll();
     }
 
-    public void validatePreviousMedicalMembersDetailsTableDB(String planType, Integer memberNum) {
+    public void validatePreviousMembersDetailsTableDB(String planType, Integer memberNum) {
         List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansMemberDetails(planType);
         System.out.println("Query executed, returned values: " + dbValuesList);
 
@@ -510,7 +510,7 @@ public class ManagePlanDBValidation {
         softAssert.assertAll();
     }
 
-    public void validatePreviousMedicalCoverageDetailsTableDB(String planType, Integer memberNum) {
+    public void validatePreviousCoverageDetailsTableDB(String planType, Integer memberNum) {
         List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansCoverageDetails(planType);
         System.out.println("Query executed, returned values: " + dbValuesList);
 
@@ -557,7 +557,7 @@ public class ManagePlanDBValidation {
         softAssert.assertAll();
     }
 
-    public void validatePreviousMedicalFinancialDetailsTableDB(String planType, Integer memberNum) {
+    public void validatePreviousFinancialDetailsTableDB(String planType, Integer memberNum) {
         List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansFinancialDetails(planType);
         System.out.println("Query executed, returned values: " + dbValuesList);
 
