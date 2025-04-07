@@ -1,4 +1,4 @@
-@FindExpertHelp @port
+@AdminPortalOBO @port
 Feature: Continue on my own button functionality via Admin Portal
 
   @SLER-1769
