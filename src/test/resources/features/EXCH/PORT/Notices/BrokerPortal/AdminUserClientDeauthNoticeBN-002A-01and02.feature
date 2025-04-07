@@ -43,7 +43,7 @@ Feature: Admin portal user triggering the broker notice for client deauthorizati
 
     Then I verify Manage who helps you header text in "English"
     And I validate current Broker text exists
-    Then I Remove my current Broker
+    Then I click remove my current Broker
     And I "Ok" my decision to remove my current broker
     And I validate no broker is authorized
 

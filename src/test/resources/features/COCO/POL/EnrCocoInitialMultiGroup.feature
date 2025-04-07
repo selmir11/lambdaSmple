@@ -73,7 +73,7 @@ Feature: Coco Initial Application Multi group
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Race and Ethnicity" page
-    And I select Not listed for race and ethnicity option and enter "Kitsune" in the text box
+    And I select Not listed for race and ethnicity option and enter "Kitsune" in the text box for "Son"
     And I click save and continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "20,000.00" income amount
@@ -102,7 +102,7 @@ Feature: Coco Initial Application Multi group
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Race and Ethnicity" page
-    And I select Not listed for race and ethnicity option and enter "Kitsune" in the text box
+    And I select Not listed for race and ethnicity option and enter "Kitsune" in the text box for "DIL"
     And I click save and continue on the Race and Ethnicity page
     And I select "No" employment option
     And I click continue on the Employment income page

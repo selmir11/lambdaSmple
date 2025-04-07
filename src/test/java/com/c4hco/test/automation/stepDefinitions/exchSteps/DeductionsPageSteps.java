@@ -92,17 +92,21 @@ public class DeductionsPageSteps {
 
     @Then("I verify color size format of the header and other page texts other than check boxes")
     public void iVerifyTheHeaderAndOtherPageTextsOtherThanCheckBoxes(List<String> pageTexts) {
-            deductionsPage.verifyTextsHeaderAndOtherLabels(pageTexts);
+        deductionsPage.verifyTextsHeaderAndOtherLabels(pageTexts);
     }
 
-    @Then("I verify all deduction options color size format text order and check boxes")
-    public void iVerifyAllDeductionOptionsTextOrderAndCheckBoxes(List<String> deductionOptions) {
-        deductionsPage.verifyDeductionOptionsOrderAndText(deductionOptions);
+    @Then("I verify all deduction options color size format text order and check boxes for {string}")
+    public void iVerifyAllDeductionOptionsColorSizeFormatTextOrderAndCheckBoxesFor(String languageOpt, List<String> deductionOptions) {
+        deductionsPage.verifyDeductionOptionsOrderAndText(languageOpt, deductionOptions);
     }
 
     @Then("I validate default property of amount box and dropdown")
     public void iValidateDefaultPropertyOfAmountBoxAndDropdown(List<String> dropdownOptions) {
-        deductionsPage.verifyDefaultPropertyOfTextBoxAndDropdown(dropdownOptions);
+
+    }
+    @Then("I validate default property of amount box and dropdown for {string}")
+    public void iValidateDefaultPropertyOfAmountBoxAndDropdownFor(String languageOpt,List<String> dropdownOptions) {
+        deductionsPage.verifyDefaultPropertyOfTextBoxAndDropdown(languageOpt,dropdownOptions);
     }
 
     @Then("I verify amount {string}  and frequency {string} is selected correctly")

@@ -1,4 +1,4 @@
-@FindACertifiedBroker @port
+@AdminPortalOBO @port
 Feature: Find a broker page header and footer validation via Admin Portal OBO
 
   @SLER-2148

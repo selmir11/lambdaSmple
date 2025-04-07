@@ -5,6 +5,9 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+import java.util.List;
 
 public class AdditionalIncomePageSteps {
     AdditionalIncomePage additionalIncomePage = new AdditionalIncomePage(WebDriverManager.getDriver());
@@ -31,6 +34,11 @@ public class AdditionalIncomePageSteps {
 
     @Then("I click on {string} link in Help Drawer on the Additional Income page")
     public void iClickHelpDrawerContactUs(String lnkName){additionalIncomePage.clickHelpContactUsNavigation(lnkName);}
+
+    @When("I click on Alimony Received check box")
+    public void iClickOnAlimonyReceivedCheckBox() {
+        additionalIncomePage.clickOnAlimonyReceivedCheckBox();
+    }
 
 
 
@@ -89,4 +97,38 @@ public class AdditionalIncomePageSteps {
     }
 
 
+    @Then("I verify color font border of the header and other page texts other than check boxes for AI page")
+    public void iVerifyColorFontBorderOfTheHeaderAndOtherPageTextsOtherThanCheckBoxesForAIPage(List<String> pageTexts) {
+        additionalIncomePage.verifyHeaderAndOtherTextsColorEtc(pageTexts);
+    }
+
+    @Then("I verify all add income options color size format text and view order")
+    public void iVerifyAllAddIncomeOptionsColorSizeFormatTextAndViewOrder(List<String> addIncomeOpts) {
+        additionalIncomePage.verifyViewOrderTextColorFormatOfAddIncomeOptions(addIncomeOpts);
+    }
+
+    @Then("I verify page text of Go_Back as {string} and Save_And_Continue as {string} in AI page")
+    public void iVerifyPageTextOfGo_BackAsAndSave_And_ContinueAsInAIPage(String btnBack, String btnSave) {
+        additionalIncomePage.verifyTextsOfBackAndSaveBtn(btnBack,btnSave);
+    }
+
+    @Then("I verify default property of amount box and dropdown in AI page for {string}")
+    public void iVerifyDefaultPropertyOfAmountBoxAndDropdownInAIPageFor(String languageOpt,List<String> dropdownOptions) {
+        additionalIncomePage.verifyDefaultPropertyOfTextBoxAndDropdown(languageOpt,dropdownOptions);
+    }
+
+    @Then("I verify amount {string} and frequency {string} is selected in AI page")
+    public void iVerifyAmountAndFrequencyIsSelectedInAIPage(String amount, String freq) {
+        additionalIncomePage.verifyEnteredAmountAndFreq(amount,freq);
+    }
+
+    @Then("I verify when None_of_these selected Other checkboxes not selected in AI page")
+    public void iVerifyWhenNone_of_theseSelectedOtherCheckboxesNotSelectedInAIPage() {
+        additionalIncomePage.verifyNone_Of_TheseOnlySelected();
+    }
+
+    @Then("I verify font color size of back and save button in AI page when mouse_Hover is {string}")
+    public void iVerifyFontColorSizeOfBackAndSaveButtonInAIPageWhenMouse_HoverIs(String mouseOverOpt) {
+        additionalIncomePage.verifyFontColorBorderOfBackAndSaveBtn(mouseOverOpt);
+    }
 }

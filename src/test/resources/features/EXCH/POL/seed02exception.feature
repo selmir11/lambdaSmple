@@ -110,11 +110,12 @@ Feature: Seed02 w/exception - Exchange
     And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
-
+    And I click on Future Plans
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
-    And I click View Plan History link from "medical" plan card
+    And I click on Sign Out in the Header for "Elmo"
 
+    #DB Validation
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 

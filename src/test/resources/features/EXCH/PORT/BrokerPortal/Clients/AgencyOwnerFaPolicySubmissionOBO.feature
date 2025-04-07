@@ -28,7 +28,7 @@ Feature: Broker Portal OBO - Submit FA Application and enroll in a plan
     And I validate current Broker text exists
     And I click on Sign Out in the Header for "Elmo"
 
-  Scenario: : Agency owner working OBO to submit an NFA application and enroll in a plan
+  #Agency owner working OBO to submit an NFA application and enroll in a plan
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
     When I login as Broker User "Amethyst.Broker@invalid.com" password "ALaska13!"

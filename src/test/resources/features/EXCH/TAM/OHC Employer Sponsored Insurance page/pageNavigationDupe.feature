@@ -1,7 +1,8 @@
+@TAM @TamExch
 Feature: OHI (Other health insurance) and other associated existing health insurance pages
   @SLER-2285
 #    we have intermittent failure while running the script
-  Scenario: Navigation to the modernized ESI (Employee Sponsored Insurance) page
+  Scenario: SLER-2285 Navigation to the modernized ESI (Employee Sponsored Insurance) page
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -152,17 +153,15 @@ Feature: OHI (Other health insurance) and other associated existing health insur
     Then I click continue on the health coverage page
     Then I validate I am on the "Other Health Coverage" page
     And I click on Privacy Policy in the "Individual Portal" Footer
-    And I switch to the tab number 1
+    And I validate I am on the "Privacy Policy" page and close tab
     Then I validate I am on the "Other Health Coverage" page
     And I click on Terms Of Use in the "Individual Portal" Footer
-    And I switch to the tab number 2
-    And I close current tab and switch back to previous tab
+    And I validate I am on the "Terms Of Use" page and close tab
     Then I click continue on the ESI page
     Then I validate I am on the "Other Health Coverage" page
 
     And I click on Contact Us in the "Exch" Footer
-    And I switch to the tab number 1
-    And I close current tab and switch back to previous tab
+    And I validate I am on the "Contact Us" page and close tab
     And I click on the Colorado Connect or C4 Logo in the "Elmo" Header
 
     Then I apply for the current year
@@ -258,8 +257,7 @@ Feature: OHI (Other health insurance) and other associated existing health insur
     Then I click continue on the health coverage page
 
     And I click on Learn More in the Header
-    And I switch to the tab number 1
-    And I close current tab and switch back to previous tab
+    And I validate I am on the "Faqs" page and close tab
     Then I validate I am on the "Other Health Coverage" page
 
     And I click on Get Assistance in the "Exch" Header
@@ -286,13 +284,13 @@ Feature: OHI (Other health insurance) and other associated existing health insur
     Then I validate I am on the "Other Health Coverage" page
     Then I click continue on the health coverage page
 
+    And I verify the header for Primary Member on the ESI page in "English"
     And I click on Get Assistance in the "Exch" Header
     And I click on Contact Us in the Header
-    And I switch to the tab number 1
-    And I close current tab and switch back to previous tab
+    And I validate I am on the "Contact Us" page and close tab
     Then I validate I am on the "Other Health Coverage" page
 
-    And I click on the Username in the "Elmo" Header
+    And I click on the Username in the "CoCo" Header
     And I click on Apply for Coverage in the "Elmo" Header
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page

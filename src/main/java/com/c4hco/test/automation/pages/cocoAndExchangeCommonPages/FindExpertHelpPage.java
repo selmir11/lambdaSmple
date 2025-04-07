@@ -502,6 +502,11 @@ public class FindExpertHelpPage {
         continueOnMyOwnButton.click();
     }
 
+    public void removeBrokerButton(){
+        basicActions.waitForElementToBePresent(removeCurrentBroker,20);
+        removeCurrentBroker.click();
+    }
+
     public void clickRemoveBrokerButton(){
         basicActions.waitForElementToBePresent(removeCurrentBroker,20);
         removeCurrentBroker.click();

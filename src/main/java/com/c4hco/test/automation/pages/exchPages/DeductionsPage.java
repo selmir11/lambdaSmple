@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
@@ -1228,8 +1229,8 @@ public class DeductionsPage {
         softAssert.assertEquals(bodyTexts.get(1).getCssValue("line-height"), "28px", "Select all that apply-Line height mismatch");
         softAssert.assertAll();
     }
-    public void verifyDeductionOptionsOrderAndText(List<String> deductionOpts){
-        softAssert.assertTrue(basicActions.waitForElementToBePresent(horizontalLine,10));
+    public void verifyDeductionOptionsOrderAndText(String languageOpt,List<String> deductionOpts){
+        Assert.assertTrue(basicActions.waitForElementToBePresent(horizontalLine,10));
         for (int i=0;i<deductionOpts.size();i++){
             softAssert.assertEquals(labelAllDeductionOptions.get(i).getText().trim(),deductionOpts.get(i),"Deduction Option "+i+" text mismatch");
             softAssert.assertFalse(addtlDeductionOptionsCheckbox.get(i).isSelected(),"Check box"+i+" is Selected");
@@ -1239,21 +1240,44 @@ public class DeductionsPage {
             softAssert.assertEquals(labelAllDeductionOptions.get(i).getCssValue("line-height"), "28px", "labelAllDeductionOptions"+i+"-Line height mismatch");
             softAssert.assertAll();
         }
-        softAssert.assertEquals(goBackButton.getText().trim(),"Go back","Go back text mismatch");
-        softAssert.assertEquals(saveAndContinueBtn.getText().trim(),"Save and continue","Save and continue text mismatch");
-        softAssert.assertAll();
+        switch (languageOpt){
+            case "English":
+                softAssert.assertEquals(goBackButton.getText().trim(),"Go back","Go back text mismatch");
+                softAssert.assertEquals(saveAndContinueBtn.getText().trim(),"Save and continue","Save and continue text mismatch");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(goBackButton.getText().trim(),"Volver","Go back spanish text mismatch");
+                softAssert.assertEquals(saveAndContinueBtn.getText().trim(),"Guardar y continuar","Guardar y continuar text mismatch");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + languageOpt);
+        }
     }
-    public void verifyDefaultPropertyOfTextBoxAndDropdown(List<String> dropdownOptions){
+    public void verifyDefaultPropertyOfTextBoxAndDropdown(String languageOpt,List<String> dropdownOptions){
         softAssert.assertTrue(txtAOSSAmount.isDisplayed(),"AOSS text box not visible");
-        softAssert.assertEquals(txtAOSSAmount.getAttribute("placeholder"),"amount","AOSS default text not visible");
         softAssert.assertTrue(selectAOSSFrequency.isDisplayed(),"Drop Down not visible");
-        softAssert.assertEquals(basicActions.getFirstSelectedOptionFromDD(selectAOSSFrequency).getText().trim(),"Select Option","Select option not visible");
+        switch (languageOpt){
+            case "English":
+                softAssert.assertEquals(txtAOSSAmount.getAttribute("placeholder"),"amount","AOSS default text not visible");
+                softAssert.assertEquals(basicActions.getFirstSelectedOptionFromDD(selectAOSSFrequency).getText().trim(),"Select Option","Select Option not visible");
+                softAssert.assertAll();
+                break;
+            case "Spanish":
+                softAssert.assertEquals(txtAOSSAmount.getAttribute("placeholder"),"cantidad","AOSS default text not visible");
+                softAssert.assertEquals(basicActions.getFirstSelectedOptionFromDD(selectAOSSFrequency).getText().trim(),"Seleccionar opci\u00F3n","Seleccionar opci\u00F3n not visible");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + languageOpt);
+        }
         checkAllDropDownOptions(dropdownOptions);
         softAssert.assertAll();
     }
     private void checkAllDropDownOptions(List<String> dropdownOptions){
         for (int i=0;i<dropdownOptions.size();i++) {
-            softAssert.assertEquals(basicActions.selectAllOptionsFromDropDown(selectAOSSFrequency).get(0).getText().trim(), dropdownOptions.get(0), "Option text not equal");
+            softAssert.assertEquals(basicActions.selectAllOptionsFromDropDown(selectAOSSFrequency).get(i).getText().trim(), dropdownOptions.get(i), "Option text not equal");
             softAssert.assertAll();
         }
     }

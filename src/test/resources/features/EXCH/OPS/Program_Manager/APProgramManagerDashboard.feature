@@ -34,10 +34,11 @@ Feature: Program Manager Dashboard- Verify program manager data
     And I validate I am on the "Admin search" page
     Then I click acct first row from Search Results table in admin portal
     And I validate I am on the "Program Manager" page
+    And I wait for 2000 milliseconds
     And I validate individual dashboard container titles: "Profile Summary" "Contract Information" "Account Activity Report" "Client Information" "Organization Information" are displayed
     And I verify Program Manager contract status
     And I verify Program Manager Account Activity Container
     Then I validate Client Information title row "First Name" "Last Name" "Email" "Phone Number"
-    And I validate "Client Information" first row - first client data "PrimaryMemb.. MukitstyTes.. AutomationU.. 700-320-930.." or "Testa Individual Testa1@indi.. 432-453-245.."
-    And I validate "Client Information" second row - first client data "cmrycupse cmmjgcaasc cmmjgcaascC.. 382-048-183.." or "cmhxtldhz cmcqpqjjhn cmcqpqjjhnC.. 340-668-906.."
+    And I validate "Client Information" first row - first client data "Second IndividualS.. secondIndST.. 303-159-753.." or "Testa Individual Testa1@indi.. 432-453-245.."
+    And I validate "Client Information" second row - first client data "cmhnoogwp cmyunagryk cmyunagrykC.. 360-819-427.." or "cmhxtldhz cmcqpqjjhn cmcqpqjjhnC.. 340-668-906.."
     Then I logout from Admin Portal

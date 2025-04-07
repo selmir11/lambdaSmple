@@ -276,7 +276,7 @@ Feature: Page Navigation-Tax Status Elmo Page
       #step4 - remove a family member and navigate back to ELMO Tax Status page
     And I validate I am on the "Family Overview" page
     And I click plus icon next to member on household page for "Spouse"
-    Then I click on Remove this Member
+    Then I click on Remove this Member for "Spouse"
     Then I click on "OK" in the Remove Member frame
     And I click plus icon next to member on household page for "Primary"
     And I click View Details under member on household page for "Primary"

@@ -899,8 +899,8 @@ Feature: Page Text-Other Health Coverage Page
       | Seguro de salud patrocinado por el empleador |
 
   @SLER-2325
-  Scenario: As an ELMO Exchange user on the ESI page with family members,
-  I want to see standard errors on the page so that the errors are in accordance with the new standard for error UI handling[RT-2706]
+  Scenario: SLER-2325 As an ELMO Exchange user on the ESI page with family members,
+  I want to see standard errors on the page so that the errors are in accordance with the new standard for error UI handling
     And I verify the header for Primary Member on the ESI page in "English"
     And I click continue on the ESI page
     And I verify "Which Job" error in "English" on the ESI page
