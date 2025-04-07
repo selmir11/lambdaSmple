@@ -1303,6 +1303,7 @@ public class HeaderAndFooterPage {
             basicActions.wait(200);
             actionKey.keyDown(Keys.CONTROL).click(hyperlink).keyUp(Keys.CONTROL).build().perform();
             basicActions.switchtoactiveTab();
+            basicActions.wait(250);
             basicActions.waitForElementToDisappear(spinner, 400);
             String actualTitle = basicActions.getDriver().getTitle();
             String currentUrl = basicActions.getDriver().getCurrentUrl();

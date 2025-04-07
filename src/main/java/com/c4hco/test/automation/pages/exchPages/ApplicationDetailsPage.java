@@ -73,6 +73,7 @@ public class ApplicationDetailsPage {
     // ############################## VALIDATION METHODS #########################
     // Add only validation methods below this line
     public void verifyOhcHeaderColor(String highlight){
+        basicActions.wait(50);
         basicActions.waitForElementToBePresent(hdrOtherHealthCoverage,20);
         softAssert.assertEquals(hdrOtherHealthCoverage.getText(), "Other Health Coverage");
         softAssert.assertEquals(hdrOtherHealthCoverage.getCssValue("background"),highlightedColor(highlight));

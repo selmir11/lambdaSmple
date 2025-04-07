@@ -71,7 +71,7 @@ Feature: Page Validation-Income Summary Page
     Then I validate I am on the "Login" page
 
   @SLER-2353
-  Scenario: RT-2583 [ Automate navigation on the ELMO Income Summary Page in EXCH]
+  Scenario: SLER-2353 Automate navigation on the ELMO Income Summary Page in EXCH
     And I validate I am on the "Employment Summary" page
     Then I click on Go Back on income summary page
     Then I validate I am on the "Deductions" page
@@ -243,7 +243,7 @@ Feature: Page Validation-Income Summary Page
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-2348
-  Scenario: As an Exchange user,I want to see my Income and Deductions so that I can review my financial information[RT-2607]
+  Scenario: SLER-2348 As an Exchange user,I want to see my Income and Deductions so that I can review my financial information
     Then I verify page Header text in income summary page
     Then I validate font colour height and format of text in income summary page
     And I click on Go Back on income summary page

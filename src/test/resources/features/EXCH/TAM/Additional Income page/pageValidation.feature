@@ -189,7 +189,7 @@ Feature: Page Verification-Additional Income Page
     Then I validate I am on the "Login" page
 
   @SLER-2352
-  Scenario: [RT-2581] Automate navigation on the ELMO Additional Income Sources Page in EXCH
+  Scenario: SLER-2352 Automate navigation on the ELMO Additional Income Sources Page in EXCH
     Then I validate I am on the "Additional income" page
     Then I click on the Back button on the Additionalincomepage
     Then I validate I am on the "Income Summary" page
@@ -806,7 +806,7 @@ Feature: Page Verification-Additional Income Page
     Then I validate I am on the "Login" page
 
   @SLER-2409
-  Scenario: As an Exch user, want to see the Additional income sources page so that I can enter my additional income information in English[RT-2610]
+  Scenario: SLER-2409 As an Exch user, want to see the Additional income sources page so that I can enter my additional income information in English[RT-2610]
     Then I verify color font border of the header and other page texts other than check boxes for AI page
       | Income:                                                         |
       | Additional income sources                                       |
@@ -843,7 +843,7 @@ Feature: Page Verification-Additional Income Page
     Then I verify font color size of back and save button in AI page when mouse_Hover is "On"
 
   @SLER-2411
-  Scenario: As an Exch user, want to see the Additional income sources page so that I can enter my additional income information in Spanish[RT-2610]
+  Scenario: SLER-2411 As an Exch user, want to see the Additional income sources page so that I can enter my additional income information in Spanish[RT-2610]
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I verify color font border of the header and other page texts other than check boxes for AI page
       | Ingresos:                                                                        |

@@ -229,6 +229,9 @@ public class AdminPortalSearchPage {
 
         String accId = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
         MemberDetails subscriber = SharedData.getPrimaryMember();
+        if (subscriber == null) {
+            subscriber = new MemberDetails();
+        }
         subscriber.setAccount_id(new BigDecimal(accId));
         SharedData.setPrimaryMember(subscriber);
     }
@@ -466,6 +469,8 @@ public class AdminPortalSearchPage {
     public void clickAccountLinkFirstRowFromSearchResults() {
         basicActions.waitForElementToBePresent(searchAcctResults, 10);
         searchAcctResults.click();
+        basicActions.wait(500);
+        setAccountId();
     }
 
     public void validateAppLinksIsNotDisplay(String option) {
