@@ -1851,17 +1851,12 @@ public class MyDocumentsPage {
     public void clickOnDropdownAndVerifyTheMentionedDocumentCategories(List<String> categories) {
         basicActions.waitForElementToBePresent(docTypeDrpDwn, 30);
         docTypeDrpDwn.click();
-        boolean match = false;
+        List<String> listOfCategories = new ArrayList<>();
+        for (int j = 0; j < categoryList.size(); j++) {
+            listOfCategories.add(categoryList.get(j).getText());
+        }
         for (int i = 0; i < categories.size(); i++) {
-            for (int j = 0; j < categoryList.size(); j++) {
-                match = categories.get(i).equalsIgnoreCase(categoryList.get(j).getText());
-                if (match) {
-                    System.out.println("The category " + categories.get(i) + " is present in the document type dropdown.");
-                    break;
-                }
-            }
-            if (!match) {
-                softAssert.assertTrue(match, "The category " + categories.get(i) + " is not present in the document type dropdown.");
+                softAssert.assertTrue(listOfCategories.contains(categories.get(i)),"The category " + categories.get(i) + " is not present in the document type dropdown.");
                 softAssert.assertAll();
             }
         }
@@ -1875,4 +1870,4 @@ public class MyDocumentsPage {
 
 
 
-}
+
