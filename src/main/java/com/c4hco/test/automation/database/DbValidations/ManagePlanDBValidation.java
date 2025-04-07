@@ -112,7 +112,7 @@ public class ManagePlanDBValidation {
     }
 
 
-    public void validateCurrentCoverageDetailsTableDB() {
+    public void validateCurrentMedicalCoverageDetailsTableDB() {
         String coverageStartDB = medicalPolicyEntities.get(0).getCoverage_start_date();
         String coverageEndDB = medicalPolicyEntities.get(0).getCoverage_end_date();
         coverageStartDB = basicActions.changeDateFormat(coverageStartDB,"yyyy-MM-dd","MM/dd/yyyy");
@@ -381,7 +381,7 @@ public class ManagePlanDBValidation {
         softAssert.assertAll();
     }
 
-    public void validateCurrentMedicalCoverageDetailsTableDB(String planType, Integer memberNum) {
+    public void validateCurrentCoverageDetailsTableDB(String planType, Integer memberNum) {
         List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansCoverageDetails(planType);
         System.out.println("Query executed, returned values: " + dbValuesList);
 
