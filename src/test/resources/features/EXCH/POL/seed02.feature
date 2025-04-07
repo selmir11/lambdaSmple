@@ -227,6 +227,7 @@ Feature: Seed02 - Exchange
     And I click on the Colorado Connect or C4 Logo in the "NonElmo" Header
     Then I validate I am on the "My Account Overview" page
     And I validate that financials are updated on account overview page
+    And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
     And I validate "medical" details on my policies page
