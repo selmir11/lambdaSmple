@@ -23,7 +23,7 @@ Feature: Verify a former broker no longer has access to the agency's client list
     And I validate my broker details in the current broker table are "Noah Trujillo", "Arrow Head Agency", "983624175862", "80205", "719-405-4901", "BROKER", "Active"
     And I click on Sign Out in the Header for "Elmo"
 
-  Scenario: Creating a new broker account to invite to an agency
+  #Creating a new broker account to invite to an agency
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -58,7 +58,7 @@ Feature: Verify a former broker no longer has access to the agency's client list
 
     Then I click on broker userName and logout
 
-  Scenario: Agency Owner sends an invite to a new broker
+  #Agency Owner sends an invite to a new broker
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
     And I login as Broker User any environment "NoahTrujilloAgencySTG@agency.com" password "ALaska15!" and "NoahTrujilloAgency@agency.com" password "ALaska14!"
@@ -83,7 +83,7 @@ Feature: Verify a former broker no longer has access to the agency's client list
 
     Then I click on broker userName and logout
 
-  Scenario: Broker accepts the invite to a new agency
+  #Broker accepts the invite to a new agency
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
     And I log into my "Broker" account
