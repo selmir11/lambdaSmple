@@ -35,6 +35,9 @@ public class CRMMVRPage {
 
     @FindBy(xpath = "//*[contains(@id, 'c4hco_verificationtype')]//input")
     WebElement MVRVerificationTypeInput;
+    
+    @FindBy(xpath = "//*[@id='fluent-default-layer-host']/div[1]/div/div/div/div[3]/div/div/div/div[2]/button/span/i")
+    WebElement popupCopilot;
 
     public void checkMVRStatus(String status){
         basicActions.waitForElementToBePresent(MVRLabel, 30);
@@ -73,6 +76,10 @@ public class CRMMVRPage {
         softAssert.assertEquals(MVRNameInput.getAttribute("title"),memFullName+" - "+mvrType);
         softAssert.assertEquals(MVRVerificationTypeInput.getAttribute("defaultValue"),mvrType);
         softAssert.assertAll();
+    }
+    public void closePopup(){
+        basicActions.waitForElementToBePresent(popupCopilot, 30);
+        popupCopilot.click();
     }
 
 }
