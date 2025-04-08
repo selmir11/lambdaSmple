@@ -396,4 +396,24 @@ public class AdminPortalBrokerDashboardPage {
             }
         buttonSave.click();
     }
+
+    public void validateFontstyleEmailFieldAndButtons() {
+        emailUsername.click();
+        basicActions.wait(1000);
+        String computedBorderColor = emailUsername.getCssValue("border-color");
+        softAssert.assertEquals(computedBorderColor, "rgb(0, 0, 0)", "Border color mismatch for email input field");
+        basicActions.mouseHoverOnElement(buttonCancel);
+        basicActions.wait(500);
+        String cancelButtonColor = buttonCancel.getCssValue("background-color");
+        softAssert.assertEquals(cancelButtonColor, "rgba(227, 246, 255, 1)", "Cancel button color mismatch");
+        basicActions.mouseHoverOnElement(buttonSave);
+        basicActions.wait(500);
+        String computedTextColor = buttonSave.getCssValue("color");
+        softAssert.assertEquals(computedTextColor, "rgba(255, 255, 255, 1)", "Save button text color mismatch");
+
+        softAssert.assertAll();
+    }
+
+
+
 }
