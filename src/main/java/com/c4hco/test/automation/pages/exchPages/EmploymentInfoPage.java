@@ -50,20 +50,35 @@ public class EmploymentInfoPage {
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-employerNameInput")
     WebElement txtCompanyName;
 
-    @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-employerAddress-addressLine1Input")
+    @FindBy(css = "#ELIG-Exch-EmploymentIncomeJob-employerAddress-addressLine1Input")
     WebElement txtAddressOne;
 
-    @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-employerAddress-addressLine2Input")
+    @FindBy(id = "ELIG-employerAddress-addressLine1Input") //this element and all others can be removed once TAM-5360 is in Staging
+    WebElement txtAddressOneStg;
+
+    @FindBy(css = "#ELIG-Exch-EmploymentIncomeJob-employerAddress-addressLine2Input")
     WebElement txtAddressTwo;
 
-    @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-employerAddress-cityInput")
+    @FindBy(id = "ELIG-employerAddress-addressLine2Input") //this element and all others can be removed once TAM-5360 is in Staging
+    WebElement txtAddressTwoStg;
+
+    @FindBy(css = "#ELIG-Exch-EmploymentIncomeJob-employerAddress-cityInput")
     WebElement txtCity;
 
-    @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-employerAddress-selectState")
+    @FindBy(id = "ELIG-employerAddress-cityInput") //this element and all others can be removed once TAM-5360 is in Staging
+    WebElement txtCityStg;
+
+    @FindBy(css = "#ELIG-Exch-EmploymentIncomeJob-employerAddress-selectState")
     WebElement selectState;
 
-    @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-employerAddress-zipCodeInput")
+    @FindBy(id = "ELIG-employerAddress-stateSelect") //this element and all others can be removed once TAM-5360 is in Staging
+    WebElement selectStateStg;
+
+    @FindBy(css = "#ELIG-Exch-EmploymentIncomeJob-employerAddress-zipCodeInput")
     WebElement txtZip;
+
+    @FindBy(id = "ELIG-employerAddress-zipCodeInput") //this element and all others can be removed once TAM-5360 is in Staging
+    WebElement txtZipStg;
 
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-amountInput")
     WebElement txtIncomeAmount;
@@ -288,19 +303,30 @@ public class EmploymentInfoPage {
         SharedData.setCompanyname(employerNames);
         txtCompanyName.sendKeys(companyName);
 
-        txtAddressOne.sendKeys("123 Test Address");
-        txtAddressTwo.sendKeys("Test Suite 321");
-        txtCity.sendKeys("Denver");
+        if (SharedData.getEnv().equals("qa")) {//this if statement can be removed once TAM-5360 is in Staging leaving the non-stg elements
+            txtAddressOne.sendKeys("123 Test Address");
+            txtAddressTwo.sendKeys("Test Suite 321");
+            txtCity.sendKeys("Denver");
 
-        Select dropdown = new Select(selectState);
-        dropdown.selectByVisibleText(" CO ");
+            Select dropdown = new Select(selectState);
+            dropdown.selectByVisibleText(" CO ");
 
-        txtZip.sendKeys("80205");
+            txtZip.sendKeys("80205");
+        } else {
+            txtAddressOneStg.sendKeys("123 Test Address");
+            txtAddressTwoStg.sendKeys("Test Suite 321");
+            txtCityStg.sendKeys("Denver");
+
+            Select dropdown = new Select(selectStateStg);
+            dropdown.selectByVisibleText(" CO ");
+
+            txtZipStg.sendKeys("80205");
+        }
         txtIncomeAmount.clear();
         txtIncomeAmount.sendKeys(Salary);
         SharedData.setFinancialIncome(Salary);
 
-        dropdown = new Select(selectIncomeFreq);
+        Select dropdown = new Select(selectIncomeFreq);
         dropdown.selectByVisibleText(" " + Frequency + " ");
     }
 
@@ -365,16 +391,26 @@ public class EmploymentInfoPage {
         }
         txtCompanyName.sendKeys(companyName);
 
-        txtAddressOne.sendKeys(addressline1);
-        txtCity.sendKeys(city);
+        if (SharedData.getEnv().equals("qa")) {//this if statement can be removed once TAM-5360 is in Staging leaving the non-stg elements
+            txtAddressOne.sendKeys(addressline1);
+            txtCity.sendKeys(city);
 
-        Select dropdown = new Select(selectState);
-        dropdown.selectByVisibleText(state);
+            Select dropdown = new Select(selectState);
+            dropdown.selectByVisibleText(state);
 
-        txtZip.sendKeys(zipcode);
+            txtZip.sendKeys(zipcode);
+        } else {
+            txtAddressOneStg.sendKeys(addressline1);
+            txtCityStg.sendKeys(city);
+
+            Select dropdown = new Select(selectStateStg);
+            dropdown.selectByVisibleText(state);
+
+            txtZipStg.sendKeys(zipcode);
+        }
         txtIncomeAmount.sendKeys(Salary);
 
-        dropdown = new Select(selectIncomeFreq);
+        Select dropdown = new Select(selectIncomeFreq);
         dropdown.selectByVisibleText(" " + Frequency + " ");
 
     }
