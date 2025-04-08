@@ -399,6 +399,23 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.verifyDentalPlanNotPresent();
     }
 
+    @Then("I validate style properties on manage plan")
+    public void iValidateStylePropertiesOnManagePlan() {
+        adminPortalManagePlansPage.validateStyleProperties();
+    }
+
+    @Then("I validate the {string} member details table column header and Style on manage plan")
+    public void iValidateMemberColumnHeaderAndStyle(String planType, List<String> columnNames) {
+        adminPortalManagePlansPage.validateMemberDetailsColumnNamesAndStyle(planType,columnNames);
+    }
+    @Then("I validate the {string} coverage details table column header and Style on manage plan")
+    public void iValidateCoverageColumnHeaderAndStyle(String planType, List<String> columnNames) {
+        adminPortalManagePlansPage.validateCoverageDetailsColumnNamesAndStyle(planType,columnNames);
+    }
+    @Then("I validate the {string} financial details table column header and Style on manage plan")
+    public void iValidateFinancialColumnHeaderAndStyle(String planType, List<String> columnNames) {
+        adminPortalManagePlansPage.validateFinancialDetailsColumnNamesAndStyle(planType,columnNames);
+    }
     @Then("I verify current plan data for {string} on Manage Plans page")
     public void iVerifyCurrentPolicyDetails(String planType, List<Map<String, String>> expectedValues) {adminPortalManagePlansPage.verifyCurrentPolicyDetails(planType, expectedValues);}
 
@@ -410,4 +427,55 @@ public class AdminPortalManagePlansSteps {
 
     @Then("I verify {string} plan type is showing on Manage Plans page")
     public void iVerifyPlanTypeShow(String planType) {adminPortalManagePlansPage.verifyPlanTypeShow(planType);}
+
+    @Then("I verify plan name and policy coverage dates are visible")
+    public void iVerifyPlanNameAndPolicyCoverageDatesAreVisible() {
+        adminPortalManagePlansPage.verifyPlanNameAndPolicyCoverageDisplayed();
+    }
+
+    @Then("I verify page texts of all labels of {string} plan")
+    public void iVerifyPageTextsOfAllLabelsOfPlan(String opt,List<String> pageTexts) {
+        adminPortalManagePlansPage.verifyAllPageTextsMedicalAndDentalPlan(opt,pageTexts);
+    }
+
+    @Then("I checked {string} from plan type")
+    public void iCheckedFromPlanType(String btnName) {
+        adminPortalManagePlansPage.clickOnSelectPlanType(btnName);
+    }
+
+    @Then("I verify admin portal header text in manage plans page")
+    public void iVerifyAdminPortalHeaderTextInManagePlansPage(List<String> pageTexts) {
+        adminPortalManagePlansPage.verifyHeaderText(pageTexts);
+    }
+
+    @Then("I verify page texts of select_a_plan_year dropdown")
+    public void iVerifyPageTextsOfSelect_a_plan_yearDropdown(List<String> pageTexts) {
+        adminPortalManagePlansPage.verifyTextSelectPlanYearDD(pageTexts);
+    }
+
+    @Then("I verify font color etc of web element of empty container")
+    public void iVerifyFontColorEtcOfWebElementOfContainer() {
+        adminPortalManagePlansPage.verifyFontColorEtcOfContainerElements();
+    }
+
+    @Then("I verify color font size of medical plan container")
+    public void iVerifyColorFontSizeOfMedicalPlanContainer() {
+        adminPortalManagePlansPage.verifyFontColorEtcOfMedicalPlanContainer();
+    }
+
+    @Then("I verify previous_Financial_Periods - Medical text labels")
+    public void iVerifyPrevious_Financial_PeriodsMedicalTextLabels(List<String> pageTexts) {
+        adminPortalManagePlansPage.verifyPrevious_Financial_PeriodsMedicalTexts(pageTexts);
+    }
+
+    @Then("I verify green bar between two financial periods")
+    public void iVerifyGreenBarBetweenTwoFinancialPeriods() {
+        adminPortalManagePlansPage.verifyGreenBarBetweenTwoFinancialPeriods();
+    }
+
+    @Then("I verify expand and collapse all financial periods within the Previous Financial Period")
+    public void iVerifyExpandAndCollapseAllFinancialPeriodsWithinThePreviousFinancialPeriod() {
+        adminPortalManagePlansPage.verifyExpandAndCollapsesWithinThePFP();
+    }
+
 }
