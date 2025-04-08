@@ -501,6 +501,9 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//button[@id='Manage Plans-Show Financial Period']")
     List<WebElement> labelShowFinancialPeriod;
 
+    @FindBy(id = "enrollments-container")
+    WebElement mPlansContainer;
+
 
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
