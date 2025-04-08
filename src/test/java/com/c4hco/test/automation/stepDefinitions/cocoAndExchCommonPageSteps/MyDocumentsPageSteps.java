@@ -475,5 +475,10 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iVerifyFileDownloadedIsAndItIsNotEmpty(String fileNamePrefix) {
         myDocumentsPage.verifyFileExistAndNotEmpty(fileNamePrefix);
     }
+
+    @Then("I click on what type of document is this dropdown and verify the following categories")
+    public void iClickOnDropdownAndVerifyTheMentionedDocumentCategories(List<String> categories) {
+        myDocumentsPage.clickOnDropdownAndVerifyTheMentionedDocumentCategories(categories);
+    }
 }
 
