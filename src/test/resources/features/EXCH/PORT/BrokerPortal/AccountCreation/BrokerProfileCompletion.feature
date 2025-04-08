@@ -23,6 +23,7 @@ Feature: Verify broker new account profile completion
     Then I validate the dashboard displays my "Broker" name
     And I validate that the broker certification is not displayed
     And I verify the Broker Dashboard button is displayed
+    And I verify the broker Complete Profile button is displayed
 
     And I click Complete Profile
     Then I validate the Your Information page title
@@ -43,6 +44,7 @@ Feature: Verify broker new account profile completion
     Then I click Go to my Dashboard
 
     And I verify the Broker Dashboard button is displayed
+    And I verify the broker profile Edit button is displayed
     Then I validate the dashboard displays my "Broker" name
     Then I validate the current broker certification status is "NOT APPROVED"
 
