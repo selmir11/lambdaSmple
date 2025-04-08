@@ -123,4 +123,8 @@ public class AdminPortalBrokerDashboardSteps {
         adminPortalBrokerDashboardPage.changeTheCertificationStatusTo(certificationStatus);
     }
 
+    @Then("I validate address field should be editable and buttons should have correct styles")
+    public void ivalidateFontstyleEmailFieldAndButtons() {
+        adminPortalBrokerDashboardPage.validateFontstyleEmailFieldAndButtons();
+    }
 }
