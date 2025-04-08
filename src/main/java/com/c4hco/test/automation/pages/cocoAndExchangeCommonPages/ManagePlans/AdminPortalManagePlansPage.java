@@ -33,8 +33,8 @@ public class AdminPortalManagePlansPage {
     SoftAssert softAssert = new SoftAssert();
     ManagePlanDentalMedicalPlan managePlanDentalMedicalPlan = new ManagePlanDentalMedicalPlan();
 
-    @FindBy(id = "enrollments-container")
-    WebElement mPlansContainer;
+    @FindBy(xpath = "//div[@id='enrollments-container']")
+    WebElement managePlansContainer;
     @FindBy(xpath = "//a[@routerlink='search']")
     WebElement lnkSearch;
     @FindBy(css = ".manage-plans-title.header-2")
@@ -452,6 +452,49 @@ public class AdminPortalManagePlansPage {
 
     @FindBy(xpath = "//input[@id='Manage Plans-Select Plan Type Dental Unselcted']/following-sibling::label")
     WebElement denPlanTypeUnChecked;
+
+    @FindBy(xpath = "(//h2[@class='dashboardHeader1'])[2]")
+    WebElement labelHeader1;
+
+    @FindBy(xpath = "//h3[@class='dashboardHeader2']")
+    WebElement labelHeader2;
+
+    @FindBy(xpath = "//div[@class='drop-down-option drop-down-option-selected']")
+    WebElement txtAlreadySelectedYearOption;
+
+    @FindBy(xpath = "//div[@class='drop-down-secondary-options']/div")
+    List<WebElement> txtSecondaryYearOption;
+
+    @FindBy(xpath = "//p[@class='select-policy-label body-text-1']")
+    WebElement label_SelectAPolicy;
+
+    @FindBy(xpath = "//div[@class='current-plan-container']")
+    WebElement currentPlanContainer;
+
+    @FindBy(xpath = "//div[@class='header-container header-2']/preceding::div[@class='member-details-grid-item body-text-1 bold-text']")
+    List<WebElement> containerTableCols1;
+
+    @FindBy(xpath = "//div[@class='header-container header-2']/preceding::div[@class='body-text-1 member-details-grid-item bold-text']")
+    List<WebElement> containerTableCols2;
+
+    @FindBy(xpath = "//div[@class='header-container header-2']/following::*[@class='two-column-twentyfive-row-container header-3']")
+    WebElement labelPlanNamePFPM;
+
+    @FindBy(xpath = "//div[@class='header-container header-2']/following::*[@class='two-column-twentyfive-row-container body-text-2']")
+    WebElement labelPolicyCoveragePFPM;
+
+    @FindBy(xpath = "//div[@class='header-container header-2']/following::div[@class='label-container body-text-2']")
+    List<WebElement> allLabelsPFPM;
+
+    @FindBy(xpath = "//*[@class='previous-plan-details-header-container']")
+    List<WebElement> greenBar_financialPeriod;
+
+    @FindBy(xpath = "//div[@class='previous-plan-detail-chevron-container']")
+    List<WebElement> chevronPreviousPlanDetail;
+
+    @FindBy(xpath = "//button[@id='Manage Plans-Show Financial Period']")
+    List<WebElement> labelShowFinancialPeriod;
+
 
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
@@ -1855,5 +1898,89 @@ public class AdminPortalManagePlansPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + btnName);
         }
+    }
+
+    public void verifyHeaderText(List<String> pageTexts) {
+        basicActions.wait(800);
+        softAssert.assertTrue(labelHeader1.getText().contains(pageTexts.get(0)), "Header 1 not visible");
+        softAssert.assertTrue(labelHeader2.getText().contains(pageTexts.get(1)), "Header 2 not visible");
+        softAssert.assertAll();
+    }
+
+    public void verifyTextSelectPlanYearDD(List<String> pageTexts) {
+        basicActions.waitForElementToBePresent(txtAlreadySelectedYearOption, 8);
+        txtAlreadySelectedYearOption.click();
+        softAssert.assertEquals(txtAlreadySelectedYearOption.getText().trim(), pageTexts.get(0), "Already selected option text mismatch");
+        for (int i = 0; i < pageTexts.size() - 1; i++) {
+            softAssert.assertEquals(txtSecondaryYearOption.get(i).getText().trim(), pageTexts.get(i + 1), "Secondary Option" + i + " not matching");
+        }
+        softAssert.assertAll();
+        txtAlreadySelectedYearOption.click();
+    }
+    public void verifyFontColorEtcOfContainerElements(){
+        softAssert.assertEquals(managePlansContainer.getCssValue("background-color"), "rgba(255, 255, 255, 1)", "Container-back ground Color mismatching");
+        softAssert.assertEquals(managePlansContainer.getCssValue("border-top-color"), "rgba(149, 192, 60, 1)", "Container-border top Color mismatching");
+        softAssert.assertEquals(txtTitleManagePlans.getCssValue("font-family"), "\"PT Sans\"", "txtTitleManagePlans-Font family mismatch");
+        softAssert.assertEquals(txtTitleManagePlans.getCssValue("font-size"), "28px", "txtTitleManagePlans-Font size mismatch");
+        softAssert.assertEquals(txtTitleManagePlans.getCssValue("color"), "rgba(77, 77, 79, 1)", "txtTitleManagePlans-Color mismatch");
+        softAssert.assertEquals(medPlanTypeUnChecked.getCssValue("font-family"), "\"PT Sans\"", "medPlanTypeUnChecked-Font family mismatch");
+        softAssert.assertEquals(medPlanTypeUnChecked.getCssValue("font-size"), "16px", "medPlanTypeUnChecked-Font size mismatch");
+        softAssert.assertEquals(medPlanTypeUnChecked.getCssValue("color"), "rgba(77, 77, 79, 1)", "medPlanTypeUnChecked-Color mismatch");
+        softAssert.assertAll();
+    }
+    public void verifyFontColorEtcOfMedicalPlanContainer(){
+        softAssert.assertEquals(currentMedicalDentalPlan.get(0).getCssValue("font-family"), "\"PT Sans\"", "currentMedicalDentalPlan-Font family mismatch");
+        softAssert.assertEquals(currentMedicalDentalPlan.get(0).getCssValue("font-size"), "28px", "currentMedicalDentalPlan-Font size mismatch");
+        softAssert.assertEquals(currentMedicalDentalPlan.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)", "currentMedicalDentalPlan-Color mismatch");
+        softAssert.assertEquals(label_SelectAPolicy.getCssValue("font-family"), "\"PT Sans\"", "label_SelectAPolicy-Font family mismatch");
+        softAssert.assertEquals(label_SelectAPolicy.getCssValue("font-size"), "16px", "label_SelectAPolicy-Font size mismatch");
+        softAssert.assertEquals(label_SelectAPolicy.getCssValue("color"), "rgba(77, 77, 79, 1)", "label_SelectAPolicy-Color mismatch");
+        softAssert.assertEquals(currentPlanContainer.getCssValue("background-color"), "rgba(226, 241, 248, 1)", "currentPlanContainer-back ground Color mismatching");
+        softAssert.assertEquals(currentPlanContainer.getCssValue("border"), "1px solid rgb(26, 112, 179)", "currentPlanContainer-border mismatch");
+        verifyColorFontFamilyOfTableContainer();
+        softAssert.assertAll();
+
+    }
+    private void verifyColorFontFamilyOfTableContainer(){
+        for (int i=0;i<containerTableCols1.size();i++){
+            if (i == 5) {
+                continue;
+            }
+            softAssert.assertEquals(containerTableCols1.get(i).getCssValue("font-family"), "\"PT Sans\"", "containerTableCols1 "+i+"-Font family mismatch");
+            softAssert.assertEquals(containerTableCols1.get(i).getCssValue("font-size"), "16px", "containerTableCols1 "+i+"-Font size mismatch");
+            softAssert.assertEquals(containerTableCols1.get(i).getCssValue("color"), "rgba(77, 77, 79, 1)", "containerTableCols1 "+i+"-Color mismatch");
+        }
+        for (int i=1;i<containerTableCols2.size();i++){
+            softAssert.assertEquals(containerTableCols2.get(i).getCssValue("font-family"), "\"PT Sans\"", "containerTableCols2 "+i+"-Font family mismatch");
+            softAssert.assertEquals(containerTableCols2.get(i).getCssValue("font-size"), "16px", "containerTableCols2 "+i+"-Font size mismatch");
+            softAssert.assertEquals(containerTableCols2.get(i).getCssValue("color"), "rgba(77, 77, 79, 1)", "containerTableCols2 "+i+"-Color mismatch");
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyPrevious_Financial_PeriodsMedicalTexts(List<String> pageTexts) {
+        basicActions.scrollToElement(labelPlanNamePFPM);
+        softAssert.assertTrue(labelPlanNamePFPM.isDisplayed(),"labelPlanNamePFPM is not displayed");
+        softAssert.assertTrue(labelPolicyCoveragePFPM.isDisplayed(),"labelPolicyCoveragePFPM is not displayed");
+        for (int i = 0; i < pageTexts.size(); i++) {
+            softAssert.assertEquals(allLabelsPFPM.get(i).getText().trim(), pageTexts.get(i), "allLabelsPFPMContainer " + i + " text mismatch");
+        }
+        softAssert.assertAll();
+    }
+    public void verifyGreenBarBetweenTwoFinancialPeriods(){
+        softAssert.assertTrue(greenBar_financialPeriod.get(0).isDisplayed(),"greenBar_financialPeriod is not displayed");
+        softAssert.assertTrue(greenBar_financialPeriod.size()>1,"greenBar_financialPeriod is not greater than 1");
+        softAssert.assertEquals(greenBar_financialPeriod.get(0).getCssValue("background-color"), "rgba(230, 243, 216, 1)", "greenBar_financialPeriod-back ground Color mismatching");
+        softAssert.assertAll();
+    }
+    public void verifyExpandAndCollapsesWithinThePFP(){
+        int allShowFinancialPeriodInfoLabel=labelShowFinancialPeriod.size();
+        softAssert.assertTrue(allShowFinancialPeriodInfoLabel>0,"All financial periods not expanded");
+        for (WebElement element : chevronPreviousPlanDetail) {
+            element.click();
+            allShowFinancialPeriodInfoLabel = allShowFinancialPeriodInfoLabel - 1;
+        }
+        softAssert.assertEquals(allShowFinancialPeriodInfoLabel,0,"All financial periods not collapsed");
+        softAssert.assertAll();
     }
 }
