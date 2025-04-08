@@ -1888,36 +1888,31 @@ public class AdminPortalManagePlansPage {
     public void clickOnSelectPlanType(String btnName) {
         switch (btnName) {
             case "Medical":
-                if (basicActions.waitForElementToBePresent(medPlanTypeUnChecked, 5)) {
-                    medPlanTypeUnChecked.click();
-                } else {
-                    Assert.fail("Medical check box already checked");
-                }
+                Assert.assertTrue(basicActions.waitForElementToBePresent(medPlanTypeUnChecked, 5), "Medical check box already checked");
+                medPlanTypeUnChecked.click();
                 break;
             case "Dental":
-                if (basicActions.waitForElementToBePresent(denPlanTypeUnChecked, 5)) {
-                    denPlanTypeUnChecked.click();
-                } else {
-                    Assert.fail("Dental check box already checked");
-                }
+                Assert.assertTrue(basicActions.waitForElementToBePresent(denPlanTypeUnChecked, 5), "Dental check box already checked");
+                denPlanTypeUnChecked.click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + btnName);
         }
     }
 
-    public void verifyHeaderText(List<String> pageTexts){
+    public void verifyHeaderText(List<String> pageTexts) {
         basicActions.wait(800);
-        softAssert.assertTrue(labelHeader1.getText().contains(pageTexts.get(0)),"Header 1 not visible");
-        softAssert.assertTrue(labelHeader2.getText().contains(pageTexts.get(1)),"Header 2 not visible");
+        softAssert.assertTrue(labelHeader1.getText().contains(pageTexts.get(0)), "Header 1 not visible");
+        softAssert.assertTrue(labelHeader2.getText().contains(pageTexts.get(1)), "Header 2 not visible");
         softAssert.assertAll();
     }
-    public void verifyTextSelectPlanYearDD(List<String> pageTexts){
-        basicActions.waitForElementToBePresent(txtAlreadySelectedYearOption,8);
+
+    public void verifyTextSelectPlanYearDD(List<String> pageTexts) {
+        basicActions.waitForElementToBePresent(txtAlreadySelectedYearOption, 8);
         txtAlreadySelectedYearOption.click();
-        softAssert.assertEquals(txtAlreadySelectedYearOption.getText().trim(),pageTexts.get(0),"Already selected option text mismatch");
-        for (int i=0;i<pageTexts.size()-1;i++){
-            softAssert.assertEquals(txtSecondaryYearOption.get(i).getText().trim(),pageTexts.get(i+1),"Secondary Option"+i+" not matching");
+        softAssert.assertEquals(txtAlreadySelectedYearOption.getText().trim(), pageTexts.get(0), "Already selected option text mismatch");
+        for (int i = 0; i < pageTexts.size() - 1; i++) {
+            softAssert.assertEquals(txtSecondaryYearOption.get(i).getText().trim(), pageTexts.get(i + 1), "Secondary Option" + i + " not matching");
         }
         softAssert.assertAll();
         txtAlreadySelectedYearOption.click();
