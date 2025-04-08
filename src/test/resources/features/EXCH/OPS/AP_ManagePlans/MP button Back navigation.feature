@@ -94,3 +94,6 @@ Feature: Manage Plans: Button Go Back navigation
     Then I click Go Back button on Simplified View
     And I validate I am on the "Admin Portal individual dashboard" page
     And I logout from Admin Portal
+
+
+
