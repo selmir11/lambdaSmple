@@ -480,5 +480,9 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iClickOnDropdownAndVerifyTheMentionedDocumentCategories(List<String> categories) {
         myDocumentsPage.clickOnDropdownAndVerifyTheMentionedDocumentCategories(categories);
     }
+    @And("I verify message You don't need to upload any documents at this time displays")
+    public void iVerifyNoDocumentsNeeded() {
+        myDocumentsPage.verifyNoDocumentsNeeded();
+    }
 }
 

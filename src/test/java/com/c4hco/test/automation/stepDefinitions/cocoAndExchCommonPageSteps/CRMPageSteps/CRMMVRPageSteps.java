@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.CRM
 
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.CRMPages.CRMMVRPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 public class CRMMVRPageSteps {
@@ -16,4 +17,6 @@ public class CRMMVRPageSteps {
 
     @Then("I check the {string} MVR data for {string}")
     public void iCheckMVRData(String mvrType, String memPrefix){crmMVRPage.checkMVRData(mvrType, memPrefix);}
+    @And("I click on popup Work smarter with AI to close it")
+    public void iClosePopup(){crmMVRPage.closePopup();}
 }

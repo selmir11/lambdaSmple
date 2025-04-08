@@ -41,7 +41,7 @@ public class CRMDVRPage {
 
     @FindBy(xpath = "//*[contains(@aria-label, 'Time of Date Created')]")
     WebElement DVRTimeCreated;
-    @FindBy(xpath = "//*[contains(@aria-label, 'Deactivate')]")
+    @FindBy(xpath = "//span[contains(@class,'pa')][normalize-space()='Deactivate']")
     WebElement btnDeactivate;
     @FindBy(css = "#id-e2da2808-5912-4b2b-a68b-5f4552c0ff74-6")
     WebElement btnDeactivateConfirmation;
@@ -120,7 +120,7 @@ public class CRMDVRPage {
         softAssert.assertAll();
     }
     public void clickDeactivateButtonInCRM(){
-        basicActions.waitForElementToBePresentWithRetries(btnDeactivate, 60);
+        basicActions.waitForElementToBePresentWithRetries(btnDeactivate, 90);
         btnDeactivate.click();
         basicActions.wait(2000);
         basicActions.waitForElementToBePresentWithRetries(btnDeactivateConfirmation, 60);

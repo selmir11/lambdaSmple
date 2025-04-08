@@ -1,7 +1,7 @@
 @OPS @MD365
-Feature: OPS: Create individual account and verify that can be found in MD365
+Feature: OPS:  OBO flow ID Proofing with MD365 check and back to OBO
   @SLER-2346
-  Scenario:SLER-2346 IndDash: OBO flow ID Proofing with MD365 check and back to OBO
+  Scenario:SLER-2346 OBO flow ID Proofing with MD365 check and back to OBO
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
