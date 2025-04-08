@@ -430,4 +430,39 @@ public class AdminPortalManagePlansSteps {
     public void iCheckedFromPlanType(String btnName) {
         adminPortalManagePlansPage.clickOnSelectPlanType(btnName);
     }
+
+    @Then("I verify admin portal header text in manage plans page")
+    public void iVerifyAdminPortalHeaderTextInManagePlansPage(List<String> pageTexts) {
+        adminPortalManagePlansPage.verifyHeaderText(pageTexts);
+    }
+
+    @Then("I verify page texts of select_a_plan_year dropdown")
+    public void iVerifyPageTextsOfSelect_a_plan_yearDropdown(List<String> pageTexts) {
+        adminPortalManagePlansPage.verifyTextSelectPlanYearDD(pageTexts);
+    }
+
+    @Then("I verify font color etc of web element of empty container")
+    public void iVerifyFontColorEtcOfWebElementOfContainer() {
+        adminPortalManagePlansPage.verifyFontColorEtcOfContainerElements();
+    }
+
+    @Then("I verify color font size of medical plan container")
+    public void iVerifyColorFontSizeOfMedicalPlanContainer() {
+        adminPortalManagePlansPage.verifyFontColorEtcOfMedicalPlanContainer();
+    }
+
+    @Then("I verify previous_Financial_Periods - Medical text labels")
+    public void iVerifyPrevious_Financial_PeriodsMedicalTextLabels(List<String> pageTexts) {
+        adminPortalManagePlansPage.verifyPrevious_Financial_PeriodsMedicalTexts(pageTexts);
+    }
+
+    @Then("I verify green bar between two financial periods")
+    public void iVerifyGreenBarBetweenTwoFinancialPeriods() {
+        adminPortalManagePlansPage.verifyGreenBarBetweenTwoFinancialPeriods();
+    }
+
+    @Then("I verify expand and collapse all financial periods within the Previous Financial Period")
+    public void iVerifyExpandAndCollapseAllFinancialPeriodsWithinThePreviousFinancialPeriod() {
+        adminPortalManagePlansPage.verifyExpandAndCollapsesWithinThePFP();
+    }
 }
