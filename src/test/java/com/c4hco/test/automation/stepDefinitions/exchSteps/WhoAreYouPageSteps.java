@@ -23,5 +23,8 @@ public class WhoAreYouPageSteps {
     public void iClickOnBackButton(){
         whoAreYouPage.clickBackButton();
     }
+    @And("I am a member with NO SSN but my data for City {string} in State {string} with dob {string} in county {string} with zipcode {string}")
+    public void enterNoSsnMemberDetails(String ssn, String City, String State, String dateOfBirth, String county, String zipcode) {whoAreYouPage.specificMemberSsnDetails(ssn, City, State, zipcode, county, dateOfBirth);}
+
 
 }

@@ -1,4 +1,4 @@
-@APTC @APTC-SIR2 @APTC-SIR-Single
+@APTC,@APTCSIR, @APTC-SIR2
   # Tests include SLER-131, SLER-319, SLER-320, SLER-321, SLER-322, SLER-323, SLER-324, SLER- 375, SLER-689, SLER-690, SLER-691, SLER-692
 Feature: UI Tests related to APTC after second enrollment change
 
@@ -241,7 +241,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-322
-  Scenario: SLER-322 - ELIG - APTCRules - 40 year old
+  Scenario: SLER-322 - ELIG - APTCRules - 40 year old - incom
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1948,7 +1948,9 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the first medical plan
+    And I select the Insurance Company dropdown
+    And I select "Anthem" to filter for desired plan provider
+    And I select "Anthem Colorado Option Bronze Pathway Std" medical plan
     And I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
@@ -2402,11 +2404,13 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the first medical plan
+    And I select the Insurance Company dropdown
+    And I select "Anthem" to filter for desired plan provider
+    And I select "Anthem Colorado Option Bronze Pathway Std" medical plan
     And I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
-    And I select first dental plan
+    Then I select first dental plan
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
@@ -2629,7 +2633,9 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the first medical plan
+    And I select the Insurance Company dropdown
+    And I select "Anthem" to filter for desired plan provider
+    And I select "Anthem Colorado Option Bronze Pathway Std" medical plan
     And I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
