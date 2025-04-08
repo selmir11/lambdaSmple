@@ -607,6 +607,13 @@ public class WelcomePage {
         softAssert.assertEquals(policyMedicalPlanLogo.getAttribute("src"), expectedImageUrl);
         softAssert.assertAll();
     }
+
+    public void verifyWelcomeTextOnCoco() {
+        basicActions.waitForElementToBePresent(welcomeToConnectText, 20);
+        softAssert.assertEquals(welcomeToConnectText.getText(), "Welcome to Colorado Connect!");
+        softAssert.assertEquals(containerMainHeaderText.getText(), "Apply for health insurance");
+        softAssert.assertAll();
+    }
 }
 
 
