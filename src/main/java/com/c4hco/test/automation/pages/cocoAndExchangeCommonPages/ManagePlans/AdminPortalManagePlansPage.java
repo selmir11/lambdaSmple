@@ -432,6 +432,27 @@ public class AdminPortalManagePlansPage {
     @FindBy(id = "individualDashboardCocoTitle")
     WebElement CocoTitle;
 
+    @FindBy(xpath = "//div[@class='two-column-twentyfive-row-container header-3']")
+    List<WebElement> labelPlanNameForMedAndDen;
+
+    @FindBy(xpath = "//div[@class='two-column-twentyfive-row-container body-text-2']")
+    List<WebElement> labelCoverageForMedAndDen;
+
+    @FindBy(xpath = "//div[@class='label-container-copy-icon body-text-2']")
+    List<WebElement> labelPolicyIdForMedAndDen;
+
+    @FindBy(xpath = "//input[@id='Manage Plans-Select Plan Type Medical']//following-sibling::label")
+    WebElement medPlanTypeAlreadyChecked;
+
+    @FindBy(xpath = "//input[@id='Manage Plans-Select Plan Type Dental']//following::label")
+    WebElement denPlanTypeAlreadyChecked;
+
+    @FindBy(xpath = "//input[@id='Manage Plans-Select Plan Type Medical Unselected']/following-sibling::label")
+    WebElement medPlanTypeUnChecked;
+
+    @FindBy(xpath = "//input[@id='Manage Plans-Select Plan Type Dental Unselcted']/following-sibling::label")
+    WebElement denPlanTypeUnChecked;
+
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
         softAssert.assertEquals(titleInBlueBar.getText(), "Admin Portal");
@@ -1024,17 +1045,21 @@ public class AdminPortalManagePlansPage {
     }
 
     public void uncheckedFromPlanType(String planType) {
-        basicActions.waitForElementToBePresent(btnDentalChecked, 20);
-        basicActions.scrollToElement(btnDentalChecked);
         switch (planType) {
             case "Dental":
-                btnDentalChecked.click();
-                softAssert.assertEquals(currentMedicalDentalPlan.size(), 1);
+                basicActions.waitForElementToBePresent(denPlanTypeAlreadyChecked, 10);
+                basicActions.scrollToElement(denPlanTypeAlreadyChecked);
+                denPlanTypeAlreadyChecked.click();
+                Assert.assertFalse(basicActions.waitForElementToBePresent(denPlanTypeAlreadyChecked, 5));
                 break;
             case "Medical":
-                btnMedicalChecked.click();
-                softAssert.assertEquals(currentMedicalDentalPlan.size(), 1);
+                basicActions.waitForElementToBePresent(medPlanTypeAlreadyChecked, 10);
+                basicActions.scrollToElement(medPlanTypeAlreadyChecked);
+                medPlanTypeAlreadyChecked.click();
+                Assert.assertFalse(basicActions.waitForElementToBePresent(medPlanTypeAlreadyChecked, 5));
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + planType);
         }
     }
 
@@ -1781,5 +1806,54 @@ public class AdminPortalManagePlansPage {
         }
     }
 
+    public void verifyPlanNameAndPolicyCoverageDisplayed() {
+        basicActions.wait(600);
+        softAssert.assertTrue(labelPlanNameForMedAndDen.get(0).isDisplayed(), "Plan name not visible for medical");
+        softAssert.assertTrue(labelCoverageForMedAndDen.get(0).getText().contains("Policy Coverage:"), "Policy coverage not visible for medical");
+        softAssert.assertTrue(labelPlanNameForMedAndDen.get(1).isDisplayed(), "Plan name not visible for dental");
+        softAssert.assertTrue(labelCoverageForMedAndDen.get(1).getText().contains("Policy Coverage:"), "Policy coverage not visible for dental");
+        softAssert.assertAll();
+    }
 
+    public void verifyAllPageTextsMedicalAndDentalPlan(String opt, List<String> pageTexts) {
+        switch (opt) {
+            case "medical_and_dental":
+                verifyLabelContainerMedicalOrDental(pageTexts);
+                for (int i = 0; i < pageTexts.size() - 1; i++) {
+                    softAssert.assertEquals(containerTextValidation.get(i + 13).getText().trim(), pageTexts.get(i), "Container Label " + i + " text not matching");
+                }
+                softAssert.assertEquals(labelPolicyIdForMedAndDen.get(1).getText().trim(), pageTexts.get(pageTexts.size() - 1),"Policy ID not visible");
+                softAssert.assertAll();
+                break;
+            case "only_medical","only_dental":
+                verifyLabelContainerMedicalOrDental(pageTexts);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + opt);
+        }
+    }
+
+    private void verifyLabelContainerMedicalOrDental(List<String> pageTexts) {
+        basicActions.wait(1000);
+        for (int i = 0; i < pageTexts.size() - 1; i++) {
+            softAssert.assertEquals(containerTextValidation.get(i).getText().trim(), pageTexts.get(i), "Container Label " + i + " text not matching");
+        }
+        softAssert.assertEquals(labelPolicyIdForMedAndDen.get(0).getText().trim(), pageTexts.get(13),"Policy ID not visible");
+        softAssert.assertAll();
+    }
+
+    public void clickOnSelectPlanType(String btnName) {
+        switch (btnName) {
+            case "Medical":
+                Assert.assertTrue(basicActions.waitForElementToBePresent(medPlanTypeUnChecked, 5), "Medical check box already checked");
+                medPlanTypeUnChecked.click();
+                break;
+            case "Dental":
+                Assert.assertTrue(basicActions.waitForElementToBePresent(denPlanTypeUnChecked, 5), "Dental check box already checked");
+                denPlanTypeUnChecked.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + btnName);
+        }
+    }
 }
