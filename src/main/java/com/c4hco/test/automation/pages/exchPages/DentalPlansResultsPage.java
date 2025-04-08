@@ -194,8 +194,9 @@ public class DentalPlansResultsPage {
     }
 
     public void clickContinueOnDentalResultsPage() {
-        basicActions.waitForElementToDisappear( spinner, 60 );
-        basicActions.waitForElementToBePresentWithRetries( continueBtnOnDentalPlanResults, 30 );
+        basicActions.waitForElementToDisappear( spinner, 160 );
+        basicActions.waitForElementToBePresentWithRetries( continueBtnOnDentalPlanResults, 80 );
+        basicActions.scrollToElement( continueBtnOnDentalPlanResults );
         continueBtnOnDentalPlanResults.click();
     }
 
@@ -380,6 +381,7 @@ public class DentalPlansResultsPage {
     }
 
     private void clickPlanButton(int index) {
+        basicActions.waitForElementToDisappear(spinner, 60);
         String planID = "PlanResults-SelectThisPlan_" + index;
         WebElement ePlanID = basicActions.getDriver().findElement( By.id( planID ) );
         basicActions.waitForElementToBeClickable( ePlanID, 30 );

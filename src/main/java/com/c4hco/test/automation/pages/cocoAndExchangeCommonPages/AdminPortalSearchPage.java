@@ -229,6 +229,9 @@ public class AdminPortalSearchPage {
 
         String accId = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
         MemberDetails subscriber = SharedData.getPrimaryMember();
+        if (subscriber == null) {
+            subscriber = new MemberDetails();
+        }
         subscriber.setAccount_id(new BigDecimal(accId));
         SharedData.setPrimaryMember(subscriber);
     }
@@ -376,6 +379,7 @@ public class AdminPortalSearchPage {
     }
 
     public void enterUserData(String userdata, String type) {
+        basicActions.waitForElementToBePresentWithRetries(searchUser, 10);
         switch (userdata) {
             case "accountID":
                 searchInputList.get(0).sendKeys(type);
@@ -428,6 +432,7 @@ public class AdminPortalSearchPage {
     }
 
     public void enterUserDataAnyENV(String userdata, String QAType, String STGType) {
+        basicActions.waitForElementToBePresentWithRetries(searchUser, 10);
         if (SharedData.getEnv().equals("qa")) {
             enterUserData(userdata, QAType);
         } else {
@@ -466,6 +471,8 @@ public class AdminPortalSearchPage {
     public void clickAccountLinkFirstRowFromSearchResults() {
         basicActions.waitForElementToBePresent(searchAcctResults, 10);
         searchAcctResults.click();
+        basicActions.wait(500);
+        setAccountId();
     }
 
     public void validateAppLinksIsNotDisplay(String option) {

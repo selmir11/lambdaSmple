@@ -47,6 +47,15 @@ public class DetailedEDIPage {
     @FindBy(xpath = "(//tr[@class='sort-table-data-row'])")
     List<WebElement> tablerows;
 
+    @FindBy(css = "div.drop-down-option")
+    List<WebElement> years;
+
+    @FindBy(css = ".drop-down-option.drop-down-option-selected")
+    WebElement planyearDropdown;
+
+    @FindBy(css = ".btn-primary-action-button.search-btn")
+    WebElement searchButton;
+
     public void verifyEDIHeaders() {
         if (SharedData.getEnv().equals("qa")) {
             softAssert.assertTrue(basicActions.waitForElementToBePresent(txtDetailedEdiReportPrimary, 10));
@@ -87,7 +96,7 @@ public class DetailedEDIPage {
                 }
             }
         } else {
-            String[] expectedData = {"ANTHEMHIX", "834_ANTHEMHIX_I_2022121611343460_100000657_D_O", "6702500086", "2022-12-16 11:33:13.091", "CANCEL", "024", "7086096000", "1", "1", "2365022371", "18", "2365022371", "N", "76680CO022002701", "20230101", "20230101", "", "N", "3", "304.20", "", "", "", "", "Ralph", "WreckIt", "428762876", "19861128", "M", "tspellnoticetesting+wreckitralph@gmail.com", "7195551212", "7195551212", "101 Wreck It Drive", "", "Denver", "CO", "80205", "08031", "PO BOX 1454", "", "Denver", "CO", "80205", "", "", "", "WreckIt Ralph", "428762876", "", "", "", "", "", "", "", "", "", "", "100000657", "Y", "834_BRIGHTHEALTH_I_2022092012520162_100091279_D_I", "", "", "EDI_COMPLETE"};
+            String[] expectedData = {"Delta Dental of Colorado", "834_DELTADENTAL_I_2022092011562480_100001899_D_O", "6702500086", "2022-09-20T11:55:49.170", "ADD", "ADDITION", "8868600000", "1", "1", "2365022371", "SELF", "2365022371", "Y", "28052CO0020006", "2023-01-01", "2023-12-31", "2023-01-01", "No", "3", "13.25", "0.00", "13.25", "13.25", "0.00", "Ralph", "WreckIt", "428762876", "11/28/1986", "M", "tspellnoticetesting+wreckitralph@gmail.com", "7195551212", "7195551212", "101 Wreck It Drive", "", "Denver", "CO", "80205", "08031", "PO BOX 1454", "", "Denver", "CO", "80205", "", "", "", "WreckIt Ralph", "428762876", "", "", "", "EDI_COMPLETE", "8868600000"};
             for (int i = 0; i < outboundData.size(); i++) {
                 String actualHeader = outboundData.get(i).getText();
                 if (!actualHeader.equals(expectedData[i])) {
@@ -134,5 +143,15 @@ public class DetailedEDIPage {
         columnData.removeIf(String::isEmpty);
         return columnData;
     }
-}
+
+    public void selectPlanYear(String year){
+            basicActions.selectValueFromDropdown(planyearDropdown, years, year);
+        }
+
+        public void clickSearchButton(){
+          basicActions.waitForElementToBeClickable(searchButton, 30);
+          searchButton.click();
+        }
+    }
+
 

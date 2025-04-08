@@ -26,3 +26,39 @@ Feature: AP Create account - Application Links, Admin Portal user creation
     Then I validate "AP Account Creation" application link not display
     And I logout from Admin Portal
 
+  @SLCR-911
+  Scenario:Admin Portal - OPS: CoCo: IndDash: Create account[CCRT-230]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Admin Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin Portal search" page
+    And I select "coco" checkbox on Admin Portal Dashboard
+    Then I click create account on admin portal
+    And I enter general mandatory data for "coco" account creation
+    Then I verify account created successfully message displays
+    And I select "coco" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    Then I validate user name on Selected Member data on the far left side
+    And I logout from Admin Portal
+
+  @SLCR-912
+  Scenario: Verify coco account created and able to access by OBO [CCRT-228]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Admin Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin Portal search" page
+    And I select "coco" checkbox on Admin Portal Dashboard
+    Then I click create account on admin portal
+    And I enter general mandatory data for "coco" account creation
+    Then I verify account created successfully message displays
+    And I select "coco" checkbox on Admin Portal Dashboard
+    And I search for user and click email from search results
+    Then I validate user name on Selected Member data on the far left side
+    And I click "On Behalf Of (OBO)" from application links dropdown
+    Then I switch to the tab number 1
+    Then I validate welcome page title for coco
+    Then I close current tab and switch back to previous tab
+    And I logout from Admin Portal
+

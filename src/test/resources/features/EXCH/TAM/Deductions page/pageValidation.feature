@@ -256,7 +256,7 @@ Feature: Page Verification-Deductions Page
     And I click on Sign Out in the Header for "Elmo"
 
   @SLER-2371
-  Scenario: navigation on the ELMO Deductions Page in EXCH [RT-2582]
+  Scenario: SLER-2371 Verify navigation on the ELMO Deductions Page in EXCH
     When I click on Sign Out in the Header for "Elmo"
     Then I open the login page on the "login" portal
     And I validate I am on the "Login" page
@@ -300,7 +300,7 @@ Feature: Page Verification-Deductions Page
     Then I validate I am on the "Deductions" page
 
   @SLER-2390
-  Scenario: Verify the ability to see the page so that I can review and update the income information in English(RT-2585)
+  Scenario: SLER-2390 Verify the ability to see the page so that I can review and update the income information in English
     Then I verify color size format of the header and other page texts other than check boxes
       | Income:                                                      |
       | Deductions                                                   |
@@ -334,7 +334,7 @@ Feature: Page Verification-Deductions Page
     Then I verify font color size of the back and save button in deductions page when mouse_Hover is "On"
 
   @SLER-2406
-  Scenario: Verify the ability to see the page so that I can review and update the income information in Spanish(RT-2585)
+  Scenario: SLER-2406 Verify the ability to see the page so that I can review and update the income information in Spanish(RT-2585)
     And I change the language from Elmo header to "Spanish" if it isn't already in that language
     Then I verify color size format of the header and other page texts other than check boxes
       | Ingresos:                                                                   |

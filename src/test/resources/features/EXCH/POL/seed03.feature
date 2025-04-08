@@ -241,7 +241,7 @@ Feature: Seed03 - Exchange
     Then I click continue on the Immigration Status page
     Then I validate I am on the "Family Overview" page
     And I click plus icon next to member on household page for "Spouse"
-    Then I click on Remove this Member
+    Then I click on Remove this Member for "Spouse"
     Then I click on "OK" in the Remove Member frame
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page
@@ -359,12 +359,10 @@ Feature: Seed03 - Exchange
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical page
     Then I validate I am on the "Medical Plan Results" page
-    Then I select "Select Health Value Bronze $6900 Medical Deductible" medical plan
     Then I click continue on medical plan results page
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
     And I validate I am on the "Dental Plan Results" page
-    And I select "EssentialSmile Colorado - Total Care" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I set "Medical" Plans premium amount

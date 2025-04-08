@@ -84,7 +84,7 @@ public class OtherHealthCoveragePage {
     @FindBy(css = ".drawer-footer *")
     List<WebElement> helpDrawerFooter;
 
-    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    @FindBy(css = ".loader-overlay")
     WebElement spinner;
 
     @FindBy(xpath = "(//span[@class='ng-star-inserted'])[1]")
@@ -1693,6 +1693,7 @@ public class OtherHealthCoveragePage {
         goBackBtnEmpSpon.click();
     }
     public void validateFontColorSizeTextWhenOneJobAdded() {
+        softAssert = new SoftAssert();
         verifyColorSizeBorderForHeaderInESPage();
         softAssert.assertEquals(label_whichJobIsOffering.getCssValue("font-size"), "16px", "Font size mismatch when no jobs found");
         softAssert.assertEquals(label_whichJobIsOffering.getCssValue("font-weight"), "400", "Font weight not matching when no jobs found");

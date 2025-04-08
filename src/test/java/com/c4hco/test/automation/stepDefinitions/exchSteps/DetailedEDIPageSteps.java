@@ -26,4 +26,14 @@ public class DetailedEDIPageSteps {
     public void iValidateSortingIsWorkingAsExpectedForAllColumns() {
         detailedEDIPage.verifySort();
     }
+
+    @Then("I select plan year for {string}")
+    public void iSelectPlanYearFor(String year) {
+        detailedEDIPage.selectPlanYear(year);
+    }
+
+    @Then("I click on search button on EDI report page")
+    public void iClickOnSearchButtonOnEDIReportPage() {
+        detailedEDIPage.clickSearchButton();
+    }
 }

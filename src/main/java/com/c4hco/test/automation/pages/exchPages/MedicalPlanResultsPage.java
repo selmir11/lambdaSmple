@@ -29,7 +29,7 @@ public class MedicalPlanResultsPage {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    @FindBy(id = "PlanResults-SelectThisPlan_1")
+    @FindBy(xpath = "//*[@id='PlanResults-SelectThisPlan_1']")
     WebElement selectFirstPlan;
 
     @FindBy(id = "PlanResults-SelectThisPlan_1")
@@ -114,28 +114,28 @@ public class MedicalPlanResultsPage {
 
 
     public void selectfromProviderList(String Selecting) {
-        basicActions.waitForElementToDisappear( spinner,15 );
+        basicActions.waitForElementToDisappear( spinner,60 );
         String providerPath = "//label[text()='" + Selecting + "']";
         basicActions.getDriver().findElement(By.xpath(providerPath)).click();
     }
 
     public void SelectFirstMedicalPlan() {
-        basicActions.waitForElementToBePresentWithRetries( spinner,120);
+        basicActions.waitForElementToDisappear( spinner,120);
         basicActions.waitForElementToBePresentWithRetries(selectFirstPlan, 50);
         selectFirstPlan.click();
     }
 
     public void clickContinue() {
-        basicActions.waitForElementToDisappear( spinner,40 );
-        basicActions.waitForElementToBePresent(continueBtn,30);
-        basicActions.scrollToElement(continueBtn);
+        basicActions.waitForElementToDisappear( spinner,160 );
+        basicActions.waitForElementToBePresentWithRetries(continueBtn,60);
+        basicActions.scrollToElement( continueBtn );
         continueBtn.click();
     }
 
     public void clickGoBack(){
-        basicActions.waitForAngular(20 );
+        basicActions.waitForAngular(120 );
         basicActions.waitForElementToDisappear( spinner,20 );
-        basicActions.waitForElementToBePresent( btnGoBack,30 );
+        basicActions.waitForElementToBePresentWithRetries( btnGoBack,30 );
         basicActions.scrollToElement( btnGoBack );
         btnGoBack.click();
     }
@@ -193,6 +193,7 @@ public class MedicalPlanResultsPage {
     public void clickInsuranceCompanyDropdown() {
         basicActions.waitForElementToDisappear( spinner,160 );
         basicActions.waitForElementToBePresentWithRetries( insuranceCompanyDropdown,80 );
+        basicActions.scrollToElement( insuranceCompanyDropdown );
         insuranceCompanyDropdown.click();
 
     }
@@ -301,7 +302,8 @@ public class MedicalPlanResultsPage {
     }
 
     private void paginateRight(){
-        basicActions.waitForElementToBePresent(nextPageArrow, 10);
+        basicActions.waitForElementToBePresent(nextPageArrow, 60);
+        basicActions.waitForElementToDisappear(spinner, 60);
         Assert.assertTrue(nextPageArrow.isEnabled(), "Right arrow to click is not enabled!");
         nextPageArrow.click();
     }

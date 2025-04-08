@@ -3,8 +3,10 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.ManagePlans;
         import com.c4hco.test.automation.Dto.MemberDetails;
         import com.c4hco.test.automation.Dto.SharedData;
         import com.c4hco.test.automation.utils.BasicActions;
+        import com.c4hco.test.automation.utils.WebDriverManager;
         import io.cucumber.datatable.DataTable;
         import org.openqa.selenium.*;
+        import org.openqa.selenium.interactions.Actions;
         import org.openqa.selenium.support.FindBy;
         import org.openqa.selenium.support.PageFactory;
         import org.testng.Assert;
@@ -14,6 +16,8 @@ package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.ManagePlans;
         import java.time.Year;
         import java.util.*;
         import java.util.stream.Collectors;
+
+        import static com.c4hco.test.automation.utils.WebDriverManager.getDriver;
 
 public class AdminPortalManagePlansPage {
 
@@ -29,8 +33,8 @@ public class AdminPortalManagePlansPage {
     SoftAssert softAssert = new SoftAssert();
     ManagePlanDentalMedicalPlan managePlanDentalMedicalPlan = new ManagePlanDentalMedicalPlan();
 
-    @FindBy(id = "enrollments-container")
-    WebElement mPlansContainer;
+    @FindBy(xpath = "//div[@id='enrollments-container']")
+    WebElement managePlansContainer;
     @FindBy(xpath = "//a[@routerlink='search']")
     WebElement lnkSearch;
     @FindBy(css = ".manage-plans-title.header-2")
@@ -95,15 +99,15 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//div[@id='financialEndDate_1']//input[1]")
     WebElement financialEndDate;
 
-    @FindBy(css="#premium_1 > input")
+    @FindBy(css = "#premium_1 > input")
     WebElement premiumAmount;
 
-    @FindBy(css="#planAPTC_1 > input")
+    @FindBy(css = "#planAPTC_1 > input")
     WebElement aptcAmount;
 
-    @FindBy(id= "financialEndDate_1")
+    @FindBy(id = "financialEndDate_1")
     WebElement financialEndDateText;
-  
+
     @FindBy(xpath = "//div[@id='financialEndDate_2']//input[1]")
     WebElement financialEndDateSecondMember;
 
@@ -226,57 +230,57 @@ public class AdminPortalManagePlansPage {
     WebElement denpolicyId;
 
 
-    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='HIOS ID:']//following::div[1]")
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='HIOS ID:']//following::div[1]")
     WebElement medHiosId;
-    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='HIOS ID:']//following::div[1]")
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='HIOS ID:']//following::div[1]")
     WebElement denHiosId;
-    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='EHB Premium:']//following::div[1]")
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='EHB Premium:']//following::div[1]")
     WebElement medEHBPremium;
-    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='EHB Premium:']//following::div[1]")
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='EHB Premium:']//following::div[1]")
     WebElement denEHBPremium;
-    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Latest LCE and Date:']//following::div[1]")
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Latest LCE and Date:']//following::div[1]")
     WebElement medLCEEventDateType;
-    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Latest LCE and Date:']//following::div[1]")
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[normalize-space()='Latest LCE and Date:']//following::div[1]")
     WebElement denLCEEventDateType;
-    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//div[@class='member-details-grid']/div")
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='member-details-grid']/div")
     List<WebElement> medicalMemberDetailsTableHeader;
-    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//div[@class='member-details-grid']/div")
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='member-details-grid']/div")
     List<WebElement> dentalMemberDetailsTableHeader;
-    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//div[@class='body-text-1 member-details-grid-item bold-text']")
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='body-text-1 member-details-grid-item bold-text']")
     List<WebElement> coverageDetailsTableTableHeader;
-    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//div[@class='body-text-1 member-details-grid-item bold-text']")
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='body-text-1 member-details-grid-item bold-text']")
     List<WebElement> dencoverageDetailsTableTableHeader;
-    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//div[@class='financial-details-grid']/div")
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='financial-details-grid']/div")
     List<WebElement> coverageFinancialTableTableHeader;
-    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//div[@class='financial-details-grid']/div")
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='financial-details-grid']/div")
     List<WebElement> dencoverageFinancialTableTableHeader;
-    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='referenceId_1']")
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='referenceId_1']")
     WebElement PersonID;
-    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='referenceId_1']")
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='referenceId_1']")
     WebElement denPersonID;
-    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='firstName_1']")
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='firstName_1']")
     WebElement Name;
-    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='firstName_1']")
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='firstName_1']")
     WebElement denName;
-    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='dateOfBirth_1']")
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='dateOfBirth_1']")
     WebElement DateOfBirth;
-    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='dateOfBirth_1']")
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='dateOfBirth_1']")
     WebElement denDateOfBirth;
-    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='relationshipToSubscriber_1']")
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='relationshipToSubscriber_1']")
     WebElement relationshipToSubscriber_1;
-    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='relationshipToSubscriber_1']")
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='relationshipToSubscriber_1']")
     WebElement denrelationshipToSubscriber_1;
-    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='tobacco_1']")
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='tobacco_1']")
     WebElement tobacco;
-    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='tobacco_1']")
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='tobacco_1']")
     WebElement dentobacco;
-    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='coverageStartDate_1']")
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='coverageStartDate_1']")
     WebElement coverageStartDateCoTable;
-    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='coverageStartDate_1']")
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='coverageStartDate_1']")
     WebElement dencoverageStartDateCoTable;
-    @FindBy(xpath ="//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='coverageEndDate_1']")
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='coverageEndDate_1']")
     WebElement coverageEndDateCoTable;
-    @FindBy(xpath ="//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='coverageEndDate_1']")
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//app-current-plan//div[@id='coverageEndDate_1']")
     WebElement dencoverageEndDateCoTable;
     @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='effectuated_1']")
     WebElement medEffectuated;
@@ -422,6 +426,85 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//*[@id='enrollment-info']/div/div[28]")
     WebElement planId;
 
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']")
+    WebElement dentalContainer;
+
+    @FindBy(id = "individualDashboardCocoTitle")
+    WebElement CocoTitle;
+    @FindBy(xpath = "//*[@class='current-plan-container']")
+    WebElement currentplancontainer;
+    @FindBy(xpath = "//*[@class='select-policy-label body-text-1']")
+    WebElement selectPolicyLabel;
+    @FindBy(xpath = "//div[@class='coverage-details-grid']/div")
+    List<WebElement> medCoverageColumnHeader;
+
+    @FindBy(xpath = "//div[@class='two-column-twentyfive-row-container header-3']")
+    List<WebElement> labelPlanNameForMedAndDen;
+
+    @FindBy(xpath = "//div[@class='two-column-twentyfive-row-container body-text-2']")
+    List<WebElement> labelCoverageForMedAndDen;
+
+    @FindBy(xpath = "//div[@class='label-container-copy-icon body-text-2']")
+    List<WebElement> labelPolicyIdForMedAndDen;
+
+    @FindBy(xpath = "//input[@id='Manage Plans-Select Plan Type Medical']//following-sibling::label")
+    WebElement medPlanTypeAlreadyChecked;
+
+    @FindBy(xpath = "//input[@id='Manage Plans-Select Plan Type Dental']//following::label")
+    WebElement denPlanTypeAlreadyChecked;
+
+    @FindBy(xpath = "//input[@id='Manage Plans-Select Plan Type Medical Unselected']/following-sibling::label")
+    WebElement medPlanTypeUnChecked;
+
+    @FindBy(xpath = "//input[@id='Manage Plans-Select Plan Type Dental Unselcted']/following-sibling::label")
+    WebElement denPlanTypeUnChecked;
+
+    @FindBy(xpath = "(//h2[@class='dashboardHeader1'])[2]")
+    WebElement labelHeader1;
+
+    @FindBy(xpath = "//h3[@class='dashboardHeader2']")
+    WebElement labelHeader2;
+
+    @FindBy(xpath = "//div[@class='drop-down-option drop-down-option-selected']")
+    WebElement txtAlreadySelectedYearOption;
+
+    @FindBy(xpath = "//div[@class='drop-down-secondary-options']/div")
+    List<WebElement> txtSecondaryYearOption;
+
+    @FindBy(xpath = "//p[@class='select-policy-label body-text-1']")
+    WebElement label_SelectAPolicy;
+
+    @FindBy(xpath = "//div[@class='current-plan-container']")
+    WebElement currentPlanContainer;
+
+    @FindBy(xpath = "//div[@class='header-container header-2']/preceding::div[@class='member-details-grid-item body-text-1 bold-text']")
+    List<WebElement> containerTableCols1;
+
+    @FindBy(xpath = "//div[@class='header-container header-2']/preceding::div[@class='body-text-1 member-details-grid-item bold-text']")
+    List<WebElement> containerTableCols2;
+
+    @FindBy(xpath = "//div[@class='header-container header-2']/following::*[@class='two-column-twentyfive-row-container header-3']")
+    WebElement labelPlanNamePFPM;
+
+    @FindBy(xpath = "//div[@class='header-container header-2']/following::*[@class='two-column-twentyfive-row-container body-text-2']")
+    WebElement labelPolicyCoveragePFPM;
+
+    @FindBy(xpath = "//div[@class='header-container header-2']/following::div[@class='label-container body-text-2']")
+    List<WebElement> allLabelsPFPM;
+
+    @FindBy(xpath = "//*[@class='previous-plan-details-header-container']")
+    List<WebElement> greenBar_financialPeriod;
+
+    @FindBy(xpath = "//div[@class='previous-plan-detail-chevron-container']")
+    List<WebElement> chevronPreviousPlanDetail;
+
+    @FindBy(xpath = "//button[@id='Manage Plans-Show Financial Period']")
+    List<WebElement> labelShowFinancialPeriod;
+
+    @FindBy(id = "enrollments-container")
+    WebElement mPlansContainer;
+
+
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
         softAssert.assertEquals(titleInBlueBar.getText(), "Admin Portal");
@@ -474,7 +557,8 @@ public class AdminPortalManagePlansPage {
         basicActions.waitForElementToBePresent(btnMakeChangeMed, 10);
         basicActions.waitForElementToBeClickable(btnMakeChangeMed, 10);
         btnMakeChangeMed.click();
-        basicActions.waitForElementToBePresentWithRetries(CurrentPlanInfo, 20);
+        basicActions.waitForElementToBePresentWithRetries(CurrentPlanInfo, 60);
+        basicActions.waitForElementToBePresentWithRetries(btnMedSave, 60);
         PlanContainer = MedicalPlanMembersDetailsContainer;
     }
 
@@ -487,8 +571,9 @@ public class AdminPortalManagePlansPage {
         basicActions.waitForElementToBePresent(btnMakeChangeDental, 10);
         basicActions.waitForElementToBeClickable(btnMakeChangeDental, 10);
         btnMakeChangeDental.click();
-        basicActions.waitForElementToBePresentWithRetries(CurrentPlanInfo, 20);
-        PlanContainer=DentalPlanMembersDetailsContainer;
+        basicActions.waitForElementToBePresentWithRetries(CurrentPlanInfo, 60);
+        basicActions.waitForElementToBePresentWithRetries(btnDentalSave, 60);
+        PlanContainer = DentalPlanMembersDetailsContainer;
     }
 
     public void verifySaveDentalButtonDisplayed(String saveDental) {
@@ -503,7 +588,7 @@ public class AdminPortalManagePlansPage {
         btnDentalReset.click();
     }
 
-    public void validateChangeButtonsNotDisplay(){
+    public void validateChangeButtonsNotDisplay() {
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 10);
         Assert.assertFalse(basicActions.isElementDisplayed(btnMedSave, 3));
         softAssert.assertAll();
@@ -540,16 +625,18 @@ public class AdminPortalManagePlansPage {
 
     public void checkPreviousFinancialDental() {
         basicActions.waitForElementToBePresent(previousFinancialDental, 20);
-        softAssert.assertAll();     }
-  
-    public void checkPreviousFinancialMedicalMessage(){
-        basicActions.waitForElementToBePresent(previousFinancialMed,20);
+        softAssert.assertAll();
+    }
+
+    public void checkPreviousFinancialMedicalMessage() {
+        basicActions.waitForElementToBePresent(previousFinancialMed, 20);
         softAssert.assertEquals(previousFinancialMed.getText(), "Previous Financial Periods - Medical");
         softAssert.assertEquals(previousFinancialNoMed.getText(), "No Past Financial Periods - Medical");
-        softAssert.assertAll();     }
-  
-    public void checkPreviousFinancialDentalMessage(){
-        basicActions.waitForElementToBePresent(previousFinancialDental,20);
+        softAssert.assertAll();
+    }
+
+    public void checkPreviousFinancialDentalMessage() {
+        basicActions.waitForElementToBePresent(previousFinancialDental, 20);
         softAssert.assertEquals(previousFinancialDental.getText(), "Previous Financial Periods - Dental");
         softAssert.assertEquals(previousFinancialNoDental.getText(), "No Past Financial Periods - Dental");
         softAssert.assertAll();
@@ -588,53 +675,75 @@ public class AdminPortalManagePlansPage {
             String[] parts = memberCoverageStrtDate.split(":");
             String memberNo = parts[0];
             String coverageStartDateValue = parts[1];
-            String coverageStartDatemem = "//div[@id='coverageStartDate_" + memberNo + "']//input[1]";
-            basicActions.updateElementWithRetries(coverageStartDatemem, coverageStartDateValue);
+            String coverageStartDate;
+            if (Character.isLetter(coverageStartDateValue.charAt(0))) {
+                String coverageStartDateBase = basicActions.getDateBasedOnRequirement(coverageStartDateValue);
+                coverageStartDate = basicActions.changeDateFormat(coverageStartDateBase, "yyyy-MM-dd", "MMddyyyy");
+            } else {
+                coverageStartDate = coverageStartDateValue;
+            }
+
+            basicActions.waitForElementToBePresentWithRetries(coverageStartdate, 60);
+            basicActions.waitForElementToBeClickableWithRetries(coverageStartdate, 60);
+            basicActions.scrollToElement(coverageStartdate);
+            basicActions.wait(500);
+            String coverageStartDateMem = "//div[@id='coverageStartDate_" + memberNo + "']//input[1]";
+            basicActions.updateElementWithRetries(coverageStartDateMem, coverageStartDate);
         }
     }
+
     public void memberCoverageStrtDateNew(List<String> memberCoverageStrtDtList) {
-        Map<String ,String> memberUpdates = memberCoverageStrtDtList.stream()
+        Map<String, String> memberUpdates = memberCoverageStrtDtList.stream()
                 .map(entry -> entry.split(":"))
-                .collect(Collectors.toMap(parts -> parts[0].trim(),parts -> parts[1].trim()));
-        basicActions.waitForElementListToBePresentWithRetries(PlanContainer,15);
+                .collect(Collectors.toMap(parts -> parts[0].trim(), parts -> parts[1].trim()));
+        basicActions.waitForElementListToBePresentWithRetries(PlanContainer, 15);
         basicActions.scrollToElement(CurrentPlanInfo);
-        for (WebElement nameElement : PlanContainer){
+        for (WebElement nameElement : PlanContainer) {
             String memberFullName = nameElement.getText().trim();
             String nameElementID = nameElement.getAttribute("id");
-            String index = nameElementID.replace("firstName_","");
+            String index = nameElementID.replace("firstName_", "");
             String matchingname = memberUpdates.keySet().stream().filter(memberFullName::startsWith).findFirst().orElse(null);
             Assert.assertNotNull(matchingname, "Member Name not found: " + memberFullName);
             String inputDate = basicActions.getDateBasedOnRequirement(memberUpdates.get(matchingname));
             String updatedDate = basicActions.changeDateFormat(inputDate, "yyyy-MM-dd", "MM/dd/yyyy");
-                 String coverageStartDateElement = "//div[@id='coverageStartDate_"+index+"']//input[1]";
-                 basicActions.waitForElementToBeClickableWithRetries(coverageStartdate, 30);
-                 basicActions.updateElementWithRetries(coverageStartDateElement, updatedDate);
+            String coverageStartDateElement = "//div[@id='coverageStartDate_" + index + "']//input[1]";
+            basicActions.waitForElementToBeClickableWithRetries(coverageStartdate, 30);
+            basicActions.updateElementWithRetries(coverageStartDateElement, updatedDate);
         }
     }
+
     public void memberFinancialStrtDateNew(List<String> memberFinancialStrtDtList) {
-        Map<String ,String> memberUpdates = memberFinancialStrtDtList.stream()
+        Map<String, String> memberUpdates = memberFinancialStrtDtList.stream()
                 .map(entry -> entry.split(":"))
-                .collect(Collectors.toMap(parts -> parts[0].trim(),parts -> parts[1].trim()));
-        basicActions.waitForElementListToBePresentWithRetries(PlanContainer,15);
+                .collect(Collectors.toMap(parts -> parts[0].trim(), parts -> parts[1].trim()));
+        basicActions.waitForElementListToBePresentWithRetries(PlanContainer, 15);
         basicActions.scrollToElement(CurrentPlanInfo);
-        for (WebElement nameElement : PlanContainer){
+        for (WebElement nameElement : PlanContainer) {
             String memberFullName = nameElement.getText().trim();
             String nameElementID = nameElement.getAttribute("id");
-            String index = nameElementID.replace("firstName_","");
+            String index = nameElementID.replace("firstName_", "");
             String matchingname = memberUpdates.keySet().stream().filter(memberFullName::startsWith).findFirst().orElse(null);
             Assert.assertNotNull(matchingname, "Member Name not found: " + memberFullName);
             String inputDate = basicActions.getDateBasedOnRequirement(memberUpdates.get(matchingname));
             String updatedDate = basicActions.changeDateFormat(inputDate, "yyyy-MM-dd", "MM/dd/yyyy");
-                String financialStartDateElement = "//div[@id='financialStartDate_"+index+"']//input[1]";
-                basicActions.waitForElementToBeClickable(financialStartDate, 30);
-                basicActions.updateElementWithRetries(financialStartDateElement, updatedDate);
+            String financialStartDateElement = "//div[@id='financialStartDate_" + index + "']//input[1]";
+            basicActions.waitForElementToBeClickable(financialStartDate, 30);
+            basicActions.updateElementWithRetries(financialStartDateElement, updatedDate);
         }
     }
+
     public void memberFinancialStrtDate(List<String> memberFinancialStrtDtList) {
         for (String memberFinancialStrtDate : memberFinancialStrtDtList) {
             String[] parts = memberFinancialStrtDate.split(":");
             String memberNo = parts[0];
             String financialStartDateValue = parts[1];
+            String financialStartDates;
+            if (Character.isLetter(financialStartDateValue.charAt(0))) {
+                String financialStartDateBase = basicActions.getDateBasedOnRequirement(financialStartDateValue);
+                financialStartDates = basicActions.changeDateFormat(financialStartDateBase, "yyyy-MM-dd", "MMddyyyy");
+            } else {
+                financialStartDates = financialStartDateValue;
+            }
 
             basicActions.scrollToElement(financialStartDate);
             basicActions.waitForElementToBePresent(financialStartDate, 30);
@@ -643,7 +752,7 @@ public class AdminPortalManagePlansPage {
             WebElement financialStartDateMem = basicActions.getDriver().findElement(By.xpath("//div[@id='financialStartDate_" + memberNo + "']//input[1]"));
             financialStartDateMem.click();
             financialStartDateMem.clear();
-            financialStartDateMem.sendKeys(financialStartDateValue);
+            financialStartDateMem.sendKeys(financialStartDates);
 
         }
     }
@@ -660,6 +769,7 @@ public class AdminPortalManagePlansPage {
         confirmChangesButton.click();
         softAssert.assertTrue(basicActions.waitForElementToBePresent(chkMedical, 20));
         softAssert.assertAll();
+        basicActions.wait(250);
     }
 
     public void verifyLabelsDataMedical() {
@@ -703,7 +813,7 @@ public class AdminPortalManagePlansPage {
     }
 
     public void updateTheCoverageEndDate(List<String> memberCoverageEndDTList) {
-        basicActions.waitForElementToBePresent(coverageStartdate,60);
+        basicActions.waitForElementToBePresent(coverageStartdate, 60);
         for (String memberCoverageEndDate : memberCoverageEndDTList) {
             String[] parts = memberCoverageEndDate.split(":");
             String memberNo = parts[0];
@@ -750,66 +860,68 @@ public class AdminPortalManagePlansPage {
             financialEndDateMem.sendKeys(financialEndDateValue);
         }
     }
+
     public void updateTheCoverageEndDateNew(List<String> memberCoverageEndDtList) {
-        List<Map<String ,String>> memberUpdates = memberCoverageEndDtList.stream()
+        List<Map<String, String>> memberUpdates = memberCoverageEndDtList.stream()
                 .map(entry -> entry.split(":"))
                 .map(parts -> {
-                    Map<String ,String> map = new HashMap<>();
+                    Map<String, String> map = new HashMap<>();
                     map.put("key", parts[0].trim());
-                    map.put("value", parts[1].trim() );
+                    map.put("value", parts[1].trim());
                     return map;
-                } ).collect(Collectors.toList());
+                }).collect(Collectors.toList());
         basicActions.scrollToElement(CurrentPlanInfo);
-        basicActions.waitForElementListToBePresentWithRetries(PlanContainer,60);
-        for (WebElement nameElement : PlanContainer){
+        basicActions.waitForElementListToBePresentWithRetries(PlanContainer, 60);
+        for (WebElement nameElement : PlanContainer) {
             String memberFullName = nameElement.getText().trim();
             String nameElementID = nameElement.getAttribute("id");
-            String index = nameElementID.replace("firstName_","");
-            String matchingname = memberUpdates.stream().map(m->m.get("key")).filter(memberFullName::startsWith).findFirst().orElse(null);
+            String index = nameElementID.replace("firstName_", "");
+            String matchingname = memberUpdates.stream().map(m -> m.get("key")).filter(memberFullName::startsWith).findFirst().orElse(null);
             Assert.assertNotNull(matchingname, "Member Name not found: " + memberFullName);
-            String inputDate = memberUpdates.stream().map(m->m.get("value")).findFirst().orElse("");
-            String updatedDate = basicActions.changeDateFormat(basicActions.getDateBasedOnRequirement(inputDate),"yyyy-MM-dd", "MM/dd/yyyy");
-            String coverageEndDateElement = "//div[@id='coverageEndDate_" +index+ "']//input[1]";
+            String inputDate = memberUpdates.stream().map(m -> m.get("value")).findFirst().orElse("");
+            String updatedDate = basicActions.changeDateFormat(basicActions.getDateBasedOnRequirement(inputDate), "yyyy-MM-dd", "MM/dd/yyyy");
+            String coverageEndDateElement = "//div[@id='coverageEndDate_" + index + "']//input[1]";
             basicActions.waitForElementToBeClickable(coverageEndDate, 30);
             basicActions.updateElementWithRetries(coverageEndDateElement, updatedDate);
         }
     }
+
     public void updateTheFinancialEndDateNew(List<String> memberFinancialEndDtList) {
-        List<Map<String ,String>> memberUpdates = memberFinancialEndDtList.stream()
+        List<Map<String, String>> memberUpdates = memberFinancialEndDtList.stream()
                 .map(entry -> entry.split(":"))
                 .map(parts -> {
-                    Map<String ,String> map = new HashMap<>();
+                    Map<String, String> map = new HashMap<>();
                     map.put("key", parts[0].trim());
-                    map.put("value", parts[1].trim() );
+                    map.put("value", parts[1].trim());
                     return map;
-                } )
+                })
                 .collect(Collectors.toList());
-        basicActions.waitForElementListToBePresentWithRetries(PlanContainer,45);
+        basicActions.waitForElementListToBePresentWithRetries(PlanContainer, 45);
         basicActions.scrollToElement(CurrentPlanInfo);
-        for (WebElement nameElement : PlanContainer){
+        for (WebElement nameElement : PlanContainer) {
             String memberFullName = nameElement.getText().trim();
             String nameElementID = nameElement.getAttribute("id");
-            String index = nameElementID.replace("firstName_","");
-            String matchingname = memberUpdates.stream().map(m->m.get("key")).filter(memberFullName::startsWith).findFirst().orElse(null);
+            String index = nameElementID.replace("firstName_", "");
+            String matchingname = memberUpdates.stream().map(m -> m.get("key")).filter(memberFullName::startsWith).findFirst().orElse(null);
             Assert.assertNotNull(matchingname, "Member Name not found: " + memberFullName);
-            String inputDate = memberUpdates.stream().map(m->m.get("value")).findFirst().orElse("");
-            String updatedDate =basicActions.changeDateFormat(basicActions.getDateBasedOnRequirement(inputDate),"yyyy-MM-dd", "MM/dd/yyyy");
-            String financialEndDateElement = "//div[@id='financialEndDate_"+index+"']//input[1]";
+            String inputDate = memberUpdates.stream().map(m -> m.get("value")).findFirst().orElse("");
+            String updatedDate = basicActions.changeDateFormat(basicActions.getDateBasedOnRequirement(inputDate), "yyyy-MM-dd", "MM/dd/yyyy");
+            String financialEndDateElement = "//div[@id='financialEndDate_" + index + "']//input[1]";
             basicActions.waitForElementToBeClickable(financialEndDate, 30);
             basicActions.scrollToElement(financialEndDate);
             basicActions.updateElementWithRetries(financialEndDateElement, updatedDate);
         }
     }
 
-public void selectThePlanYearOnManagePlan(String planYear) {
-    basicActions.waitForElementToBePresent(dpdCurrentYearMP, 50);
-    dpdCurrentYearMP.click();
+    public void selectThePlanYearOnManagePlan(String planYear) {
+        basicActions.waitForElementToBePresent(dpdCurrentYearMP, 50);
+        dpdCurrentYearMP.click();
 
-    String xpath = String.format("//app-drop-down-select[1]//div[2]//*[contains(text(),'"+planYear+"')]");
-    WebElement planYearBtn = basicActions.getDriver().findElement(By.xpath(xpath));
-    planYearBtn.click();
-    basicActions.switchtoactiveTab();
-}
+        String xpath = String.format("//app-drop-down-select[1]//div[2]//*[contains(text(),'" + planYear + "')]");
+        WebElement planYearBtn = basicActions.getDriver().findElement(By.xpath(xpath));
+        planYearBtn.click();
+        basicActions.switchtoactiveTab();
+    }
 
     MemberDetails memberDetails = new MemberDetails();
 
@@ -821,7 +933,7 @@ public void selectThePlanYearOnManagePlan(String planYear) {
             primaryMemberId = stgAccountId;
         }
         BigDecimal bigDecimal = new BigDecimal(primaryMemberId);
-        basicActions.waitForElementToBePresentWithRetries(currentDentalPlanName,20);
+        basicActions.waitForElementToBePresentWithRetries(currentDentalPlanName, 20);
 
         memberDetails.setAccount_id(bigDecimal);
         SharedData.setPrimaryMember(memberDetails);
@@ -847,7 +959,6 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         softAssert.assertAll();
     }
 
-
     public void selectTheMedPolicyPlan(int policyNumber, String planType) {
         basicActions.waitForElementToBePresent(selectPolicyDropdownOptions, 20);
 
@@ -865,28 +976,112 @@ public void selectThePlanYearOnManagePlan(String planYear) {
     }
 
     public void selectPlansMedActivePolicy() {
-        basicActions.waitForElementToBePresent(selectPolicyDropdownOptions, 50);
+        basicActions.wait(1000);
+        basicActions.waitForElementToBePresentWithRetries(selectPolicyDropdownOptions, 60);
+        basicActions.waitForElementToBePresentWithRetries(currentMedicalPlanName, 60);
+        basicActions.scrollToElement(selectPolicyDropdownOptions);
+
         selectPolicyDropdownOptions.click();
-        for (WebElement each : medicalpolicyDropdownOptions) {
-            each.click();
-            if (medPolicyStatus.getText().equals("Submitted")) {
-                break;
+        basicActions.waitForElementListToBePresent(medicalpolicyDropdownOptions, 60);
+        basicActions.wait(50);
+
+        for (int i = 0; i < medicalpolicyDropdownOptions.size(); i++) {
+            try {
+                medicalpolicyDropdownOptions = basicActions.getDriver().findElements(By.xpath("//div[@class='medical-plan-container plan-container-fill']//div[@class='drop-down-secondary-options']//span"));
+                if (medicalpolicyDropdownOptions.isEmpty()) {
+                    reopenMedicalDropdown();
+                    continue;
+                }
+
+                medicalpolicyDropdownOptions.get(i).click();
+                basicActions.wait(500);
+                basicActions.waitForElementToBePresent(medPolicyStatus, 5);
+
+                String status = medPolicyStatus.getText();
+                System.out.println("Policy " + i + " is " + status + " for Medical");
+                if (status.equals("Submitted")) {
+                    break;
+                }
+                reopenMedicalDropdown();
+            } catch (Exception e) {
+                reopenMedicalDropdown();
             }
-            selectPolicyDropdownOptions.click();
         }
     }
 
+    private void reopenMedicalDropdown() {
+        int retryCount = 0;
+        while (retryCount < 3) {
+            try {
+                basicActions.waitForElementToBePresentWithRetries(selectPolicyDropdownOptions, 60);
+                selectPolicyDropdownOptions.click();
+                basicActions.wait(50);
+
+                medicalpolicyDropdownOptions = basicActions.getDriver().findElements(By.xpath("//div[@class='medical-plan-container plan-container-fill']//div[@class='drop-down-secondary-options']//span"));
+                if (!medicalpolicyDropdownOptions.isEmpty()) {
+                    return;
+                }
+            } catch (Exception e) {
+            }
+            retryCount++;
+        }
+        throw new RuntimeException("Failed to reopen Medical dropdown after 3 attempts.");
+    }
 
     public void selectPlansDenActivePolicy() {
-        basicActions.waitForElementToBePresent(selectDentalPolicyDropdownOptions, 50);
+        basicActions.wait(1000);
+        basicActions.waitForElementToBePresentWithRetries(selectDentalPolicyDropdownOptions, 60);
+        basicActions.waitForElementToBePresentWithRetries(currentDentalPlanName, 60);
+        basicActions.scrollToElement(selectDentalPolicyDropdownOptions);
+
         selectDentalPolicyDropdownOptions.click();
-        for (WebElement each : dentalpolicyDropdownOptions) {
-            each.click();
-            if (denPolicyStatus.getText().equals("Submitted")) {
-                break;
+        basicActions.waitForElementListToBePresent(dentalpolicyDropdownOptions, 60);
+        basicActions.wait(50);
+
+        for (int i = 0; i < dentalpolicyDropdownOptions.size(); i++) {
+            try {
+                dentalpolicyDropdownOptions = basicActions.getDriver().findElements(By.xpath("//div[@class='dental-plan-container plan-container-fill']//div[@class='drop-down-secondary-options']//span"));
+
+                if (dentalpolicyDropdownOptions.isEmpty()) {
+                    reopenDentalDropdown();
+                    continue;
+                }
+
+                dentalpolicyDropdownOptions.get(i).click();
+                basicActions.wait(500);
+                basicActions.waitForElementToBePresent(denPolicyStatus, 5);
+
+                String status = denPolicyStatus.getText();
+                System.out.println("Policy " + i + " is " + status + " for Dental");
+
+                if (status.equals("Submitted")) {
+                    break;
+                }
+                reopenDentalDropdown();
+            } catch (Exception e) {
+                reopenDentalDropdown();
             }
-            selectDentalPolicyDropdownOptions.click();
         }
+    }
+
+    private void reopenDentalDropdown() {
+        int retryCount = 0;
+        while (retryCount < 3) {
+            try {
+                basicActions.waitForElementToBePresentWithRetries(selectDentalPolicyDropdownOptions, 60);
+                selectDentalPolicyDropdownOptions.click();
+                basicActions.wait(50);
+
+                dentalpolicyDropdownOptions = basicActions.getDriver().findElements(By.xpath("//div[@class='dental-plan-container plan-container-fill']//div[@class='drop-down-secondary-options']//span"));
+
+                if (!dentalpolicyDropdownOptions.isEmpty()) {
+                    return;
+                }
+            } catch (Exception e) {
+            }
+            retryCount++;
+        }
+        throw new RuntimeException("Failed to reopen Dental dropdown after 3 attempts.");
     }
 
     public void updateTheSecondMedicalPoliciyForTheYearUI() {
@@ -902,17 +1097,21 @@ public void selectThePlanYearOnManagePlan(String planYear) {
     }
 
     public void uncheckedFromPlanType(String planType) {
-        basicActions.waitForElementToBePresent(btnDentalChecked, 20);
-        basicActions.scrollToElement(btnDentalChecked);
         switch (planType) {
             case "Dental":
-                btnDentalChecked.click();
-                softAssert.assertEquals(currentMedicalDentalPlan.size(), 1);
+                basicActions.waitForElementToBePresent(denPlanTypeAlreadyChecked, 10);
+                basicActions.scrollToElement(denPlanTypeAlreadyChecked);
+                denPlanTypeAlreadyChecked.click();
+                Assert.assertFalse(basicActions.waitForElementToBePresent(denPlanTypeAlreadyChecked, 5));
                 break;
             case "Medical":
-                btnMedicalChecked.click();
-                softAssert.assertEquals(currentMedicalDentalPlan.size(), 1);
+                basicActions.waitForElementToBePresent(medPlanTypeAlreadyChecked, 10);
+                basicActions.scrollToElement(medPlanTypeAlreadyChecked);
+                medPlanTypeAlreadyChecked.click();
+                Assert.assertFalse(basicActions.waitForElementToBePresent(medPlanTypeAlreadyChecked, 5));
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + planType);
         }
     }
 
@@ -922,7 +1121,7 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         softAssert.assertAll();
     }
 
-    public void validateFinancialStartDateErrors(){
+    public void validateFinancialStartDateErrors() {
         basicActions.waitForElementToBePresent(ValidationError, 100);
         softAssert.assertEquals(ValidationError.getText(), "The financial start date must be entered within the selected plan year and can not be after the financial end date.");
         softAssert.assertAll();
@@ -933,8 +1132,9 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         softAssert.assertEquals(ValidationError.getText(), "The coverage end date must be entered within the selected plan year and can not be prior to the coverage start date.");
         softAssert.assertAll();
     }
-    public void validateFinancialEndDateErrors(){
-    basicActions.waitForElementToBePresent(ValidationError, 100);
+
+    public void validateFinancialEndDateErrors() {
+        basicActions.waitForElementToBePresent(ValidationError, 100);
         softAssert.assertEquals(ValidationError.getText(), "The financial end date must be entered within the selected plan year and can not be prior to the financial start date.");
         softAssert.assertAll();
     }
@@ -946,12 +1146,15 @@ public void selectThePlanYearOnManagePlan(String planYear) {
             String aptcvalue = parts[1];
             WebElement APTCMem = basicActions.getDriver().findElement(By.xpath("//div[@id='planAPTC_" + memberNo + "']//input[@type='text']"));
             APTCMem.click();
-            for (int i = 0; i < 6; i++) { APTCMem.sendKeys(Keys.BACK_SPACE); }
+            for (int i = 0; i < 6; i++) {
+                APTCMem.sendKeys(Keys.BACK_SPACE);
+            }
             APTCMem.sendKeys(aptcvalue);
-            if(SharedData.getPrimaryMember()!= null){
-            SharedData.getPrimaryMember().setMedicalAptcAmt(aptcvalue);
-            String totalMedPremiumAfterReduction =  String.format("%.2f",Float.parseFloat(SharedData.getPrimaryMember().getMedicalPremiumAmt()) - Float.parseFloat(SharedData.getPrimaryMember().getMedicalAptcAmt()));
-            SharedData.getPrimaryMember().setTotalMedAmtAfterReduction(totalMedPremiumAfterReduction);}
+            if (SharedData.getPrimaryMember() != null) {
+                SharedData.getPrimaryMember().setMedicalAptcAmt(aptcvalue);
+                String totalMedPremiumAfterReduction = String.format("%.2f", Float.parseFloat(SharedData.getPrimaryMember().getMedicalPremiumAmt()) - Float.parseFloat(SharedData.getPrimaryMember().getMedicalAptcAmt()));
+                SharedData.getPrimaryMember().setTotalMedAmtAfterReduction(totalMedPremiumAfterReduction);
+            }
         }
     }
 
@@ -964,8 +1167,9 @@ public void selectThePlanYearOnManagePlan(String planYear) {
             premiumMem.click();
             premiumMem.clear();
             premiumMem.sendKeys(newPremiumAmt);
-            if(SharedData.getPrimaryMember()!=null){
-            SharedData.getPrimaryMember().setMedicalPremiumAmt(newPremiumAmt);}
+            if (SharedData.getPrimaryMember() != null) {
+                SharedData.getPrimaryMember().setMedicalPremiumAmt(newPremiumAmt);
+            }
         }
     }
 
@@ -1018,24 +1222,25 @@ public void selectThePlanYearOnManagePlan(String planYear) {
             System.out.println("Condition not met, no error expected.");
         }
     }
+
     public void clickSearchInAdminPortalBlueHeader() {
         basicActions.waitForElementToBePresent(searchInHeader, 10);
         searchInHeader.click();
         basicActions.switchtoactiveTab();
     }
 
-    public void validatePremiumErrors(){
+    public void validatePremiumErrors() {
         basicActions.waitForElementToBePresent(PremiumInvalidError, 50);
         softAssert.assertTrue(PremiumInvalidError.isDisplayed());
     }
 
 
-    public void clickDentalButton(){
+    public void clickDentalButton() {
         basicActions.waitForElementToBePresent(selectDental, 50);
         selectDental.click();
     }
 
-    public void clickMedicalButton(){
+    public void clickMedicalButton() {
         basicActions.waitForElementToBePresent(selectMedical, 50);
         selectMedical.click();
     }
@@ -1044,7 +1249,7 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
         SharedData.getManagePlanDentalMedicalPlan().setPlanType("1");
         //set marketing Medical Plan
-        basicActions.clickElementWithRetries(currentMedicalPlanName,50);
+        basicActions.clickElementWithRetries(currentMedicalPlanName, 50);
         String currentMedPlan = currentMedicalPlanName.getText();
         managePlanDentalMedicalPlan.setPlanMarketingName(currentMedPlan);
         //set Medical Policy Coverage
@@ -1052,15 +1257,15 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         managePlanDentalMedicalPlan.setPolicyCoverageDate(MedPolicyCoverage);
 
         String pnlMedLatestAppDate = medLatestAppDateUI.getText();
-        pnlMedLatestAppDate =basicActions.changeDateFormat(pnlMedLatestAppDate,"MM/dd/yyyy","yyyy-MM-dd");
+        pnlMedLatestAppDate = basicActions.changeDateFormat(pnlMedLatestAppDate, "MM/dd/yyyy", "yyyy-MM-dd");
         managePlanDentalMedicalPlan.setMedLatestAppDate(pnlMedLatestAppDate);
 
-        String MedFinancialStrDate= pnlMedFinancialStartDate.getText();
-        MedFinancialStrDate = basicActions.changeDateFormat(MedFinancialStrDate,"MM/dd/yyyy","yyyy-MM-dd");
+        String MedFinancialStrDate = pnlMedFinancialStartDate.getText();
+        MedFinancialStrDate = basicActions.changeDateFormat(MedFinancialStrDate, "MM/dd/yyyy", "yyyy-MM-dd");
         managePlanDentalMedicalPlan.setMedFinancialStartDate(MedFinancialStrDate);
 
-        String MedFinancialEndDate= pnlMedFinancialEndDate.getText();
-        MedFinancialEndDate = basicActions.changeDateFormat(MedFinancialEndDate,"MM/dd/yyyy","yyyy-MM-dd");
+        String MedFinancialEndDate = pnlMedFinancialEndDate.getText();
+        MedFinancialEndDate = basicActions.changeDateFormat(MedFinancialEndDate, "MM/dd/yyyy", "yyyy-MM-dd");
         managePlanDentalMedicalPlan.setMedFinancialEndDate(MedFinancialEndDate);
 
         String getTotalCsrAmt = medCsrAmount.getText();
@@ -1089,9 +1294,9 @@ public void selectThePlanYearOnManagePlan(String planYear) {
     }
 
     public void validateTheMemberDetailsTableTitleColumns(String planType) {
-        int i = 0 ;
-        List<String> expectedMedMemberDetails= Arrays.asList("No." , "Person ID" ,"Name" ,"Date of Birth" ,"Relationship" ,"Tobacco");
-        List<String> actualMedMemberDetails= new ArrayList<>();
+        int i = 0;
+        List<String> expectedMedMemberDetails = Arrays.asList("No.", "Person ID", "Name", "Date of Birth", "Relationship", "Tobacco");
+        List<String> actualMedMemberDetails = new ArrayList<>();
         List<WebElement> selectedTableHeader = null;
 
         switch (planType) {
@@ -1102,11 +1307,12 @@ public void selectThePlanYearOnManagePlan(String planYear) {
                 selectedTableHeader = dentalMemberDetailsTableHeader;
                 break;
             default:
-                throw new IllegalArgumentException("Invalid plan type: " + planType);}
+                throw new IllegalArgumentException("Invalid plan type: " + planType);
+        }
 
         for (WebElement each : selectedTableHeader) {
             actualMedMemberDetails.add(each.getText());
-            if(i==5){
+            if (i == 5) {
                 break;
             }
             i++;
@@ -1116,8 +1322,8 @@ public void selectThePlanYearOnManagePlan(String planYear) {
     }
 
     public void validateTheCoverageDetailsTableTitleColumns(String planType) {
-        List<String> expectedMedMemberDetails= Arrays.asList("No.","Coverage Start","Coverage End" ,"Status","Effectuated" ,"Termination Reason");
-        List<String> actualMedCoverageDetails= new ArrayList<>();
+        List<String> expectedMedMemberDetails = Arrays.asList("No.", "Coverage Start", "Coverage End", "Status", "Effectuated", "Termination Reason");
+        List<String> actualMedCoverageDetails = new ArrayList<>();
         List<WebElement> selectedTableHeader = null;
 
         switch (planType) {
@@ -1128,7 +1334,8 @@ public void selectThePlanYearOnManagePlan(String planYear) {
                 selectedTableHeader = dencoverageDetailsTableTableHeader;
                 break;
             default:
-                throw new IllegalArgumentException("Invalid plan type: " + planType);}
+                throw new IllegalArgumentException("Invalid plan type: " + planType);
+        }
 
         for (WebElement each : selectedTableHeader) {
             actualMedCoverageDetails.add(each.getText());
@@ -1149,8 +1356,8 @@ public void selectThePlanYearOnManagePlan(String planYear) {
     }
 
     public void validateTheFinancialDetailsTableTitleColumns(String planType) {
-        List<String> expectedMedMemberDetails= Arrays.asList("No.", "Financial Start","Financial End","Premium","APTC");
-        List<String> actualMedCoverageDetails= new ArrayList<>();
+        List<String> expectedMedMemberDetails = Arrays.asList("No.", "Financial Start", "Financial End", "Premium", "APTC");
+        List<String> actualMedCoverageDetails = new ArrayList<>();
         List<WebElement> selectedTableHeader = null;
 
         switch (planType) {
@@ -1161,12 +1368,13 @@ public void selectThePlanYearOnManagePlan(String planYear) {
                 selectedTableHeader = dencoverageFinancialTableTableHeader;
                 break;
             default:
-                throw new IllegalArgumentException("Invalid plan type: " + planType);}
+                throw new IllegalArgumentException("Invalid plan type: " + planType);
+        }
 
-        int i=0;
+        int i = 0;
         for (WebElement each : selectedTableHeader) {
             actualMedCoverageDetails.add(each.getText());
-            if(i==4){
+            if (i == 4) {
                 break;
             }
             i++;
@@ -1175,13 +1383,14 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         softAssert.assertAll();
     }
 
-    public void updateTheMedicalFinancialDetailsTableForTheUI(){
+    public void updateTheMedicalFinancialDetailsTableForTheUI() {
         managePlanDentalMedicalPlan.setMedFinancialStartFnTable(medFinancialStartDateFNTable.getText());
         managePlanDentalMedicalPlan.setMedFinancialEndFnTable(medFinancialEndDateFNTable.getText());
         managePlanDentalMedicalPlan.setMedPlanPremiumAmtFnTable(medPlanPremiumAmtFnTable.getText());
         managePlanDentalMedicalPlan.setMedPlanAptcAmtFnTable(medAPTCAmtFnTable.getText());
 
-        SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);}
+        SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
+    }
 
     public void updateTheMedicalMemberDetailsTableForTheUI() {
         managePlanDentalMedicalPlan.setMedPersonID(PersonID.getText());
@@ -1203,15 +1412,15 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         managePlanDentalMedicalPlan.setDenPolicyCoverageDate(DenPolicyCoverage);
 
         String pnlDENLatestAppDate = denLatestAppDateUI.getText();
-        pnlDENLatestAppDate =basicActions.changeDateFormat(pnlDENLatestAppDate,"MM/dd/yyyy","yyyy-MM-dd");
+        pnlDENLatestAppDate = basicActions.changeDateFormat(pnlDENLatestAppDate, "MM/dd/yyyy", "yyyy-MM-dd");
         managePlanDentalMedicalPlan.setDenLatestAppDate(pnlDENLatestAppDate);
 
-        String denFinancialStrDate= pnlDenFinancialStartDate.getText();
-        denFinancialStrDate = basicActions.changeDateFormat(denFinancialStrDate,"MM/dd/yyyy","yyyy-MM-dd");
+        String denFinancialStrDate = pnlDenFinancialStartDate.getText();
+        denFinancialStrDate = basicActions.changeDateFormat(denFinancialStrDate, "MM/dd/yyyy", "yyyy-MM-dd");
         managePlanDentalMedicalPlan.setDenFinancialStartDate(denFinancialStrDate);
 
-        String denFinancialEndDate= pnlDenFinancialEndDate.getText();
-        denFinancialEndDate = basicActions.changeDateFormat(denFinancialEndDate,"MM/dd/yyyy","yyyy-MM-dd");
+        String denFinancialEndDate = pnlDenFinancialEndDate.getText();
+        denFinancialEndDate = basicActions.changeDateFormat(denFinancialEndDate, "MM/dd/yyyy", "yyyy-MM-dd");
         managePlanDentalMedicalPlan.setDenFinancialEndDate(denFinancialEndDate);
 
         String getDenTotalCsrAmt = denCsrAmount.getText();
@@ -1265,8 +1474,9 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         managePlanDentalMedicalPlan.setDenPlanPremiumAmtFnTable(denPlanPremiumAmtFnTable.getText());
         managePlanDentalMedicalPlan.setDenPlanAptcAmtFnTable(denAPTCAmtFnTable.getText());
 
-       SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
+        SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
     }
+
     public void simplifiedContainerTitleLabels(String simplifyPlanMedical, String simplifyPlanDental) {
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 30);
         softAssert.assertEquals(txtTitleManagePlans.getText(), "Manage Plans");
@@ -1279,9 +1489,11 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         softAssert.assertEquals(simplifyDental.getText(), "Dental Plan:");
         softAssert.assertAll();
     }
-    public void clickCheckedToSeeOnlyMedicalPlanData(String planType){
+
+    public void clickCheckedToSeeOnlyMedicalPlanData(String planType) {
         basicActions.click(chkDental);
     }
+
     public void verifyLabelsSimplifiedMedical() {
         basicActions.waitForElementToBePresent(currentMedicalPlanName, 5000);
         softAssert.assertEquals(currentMedicalPlanName.getText(), "Friday Bronze Rx Copay");
@@ -1301,6 +1513,7 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         softAssert.assertEquals(medHiosIdUI.getText(), "HIOS ID:");
         softAssert.assertAll();
     }
+
     public void validateSimplifyViewMedicalData(String planNameSTG, String policyCoverageSTG, String latestApplicationDateSTG, String planNameQA, String policyCoverageQA, String latestApplicationDateQA) {
         basicActions.switchtoactiveTab();
         basicActions.waitForElementToBePresent(medPlanNameData, 5000);
@@ -1313,8 +1526,10 @@ public void selectThePlanYearOnManagePlan(String planYear) {
             softAssert.assertEquals(medPlanNameData.getText(), planNameQA);
             softAssert.assertEquals(medCoverageData.getText(), policyCoverageQA);
             softAssert.assertEquals(medLatestApplicationDateData.getText(), latestApplicationDateQA);
-            softAssert.assertAll(); }
+            softAssert.assertAll();
+        }
     }
+
     public void validateDataForHIOSID(String hiosIdSTG, String hiosIdQA) {
         if (SharedData.getEnv().equals("staging")) {
             softAssert.assertEquals(medHiosId.getText(), hiosIdSTG);
@@ -1323,7 +1538,8 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         }
         softAssert.assertAll();
     }
-    public void iValidateMemberTableDataRowOne(String rowNumberSTG, String personIdDataSTG, String nameSTG, String birthSTG, String relationSTG, String tobaccoSTG, String rowNumberQA, String personIdDataQA, String nameQA, String birthQA, String relationQA, String tobaccoQA){
+
+    public void iValidateMemberTableDataRowOne(String rowNumberSTG, String personIdDataSTG, String nameSTG, String birthSTG, String relationSTG, String tobaccoSTG, String rowNumberQA, String personIdDataQA, String nameQA, String birthQA, String relationQA, String tobaccoQA) {
         if (SharedData.getEnv().equals("staging")) {
             basicActions.switchtoactiveTab();
             softAssert.assertEquals(rowNumberData.getText(), rowNumberSTG);
@@ -1342,7 +1558,8 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         }
         softAssert.assertAll();
     }
-    public void iValidateMemberTableDataRowTwo(String rowNumberTwoSTG, String personIdDataTwoSTG, String nameTwoSTG, String birthTwoSTG, String relationTwoSTG, String tobaccoTwoSTG, String rowNumberTwoQA, String personIdDataTwoQA, String nameTwoQA, String birthTwoQA, String relationTwoQA, String tobaccoTwoQA){
+
+    public void iValidateMemberTableDataRowTwo(String rowNumberTwoSTG, String personIdDataTwoSTG, String nameTwoSTG, String birthTwoSTG, String relationTwoSTG, String tobaccoTwoSTG, String rowNumberTwoQA, String personIdDataTwoQA, String nameTwoQA, String birthTwoQA, String relationTwoQA, String tobaccoTwoQA) {
         if (SharedData.getEnv().equals("staging")) {
             softAssert.assertEquals(rowNumberDataTwo.getText(), rowNumberTwoSTG);
             softAssert.assertEquals(personIdDataTwo.getText(), personIdDataTwoSTG);
@@ -1360,7 +1577,8 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         }
         softAssert.assertAll();
     }
-    public void iValidateCoverageTableDataRowOne(String type, String rowSTG, String coverageStartSTG, String coverageEndSTG, String statusSTG, String effectuatedSTG, String reasonSTG, String rowQA, String coverageStartQA, String coverageEndQA, String statusQA, String effectuatedQA, String reasonQA){
+
+    public void iValidateCoverageTableDataRowOne(String type, String rowSTG, String coverageStartSTG, String coverageEndSTG, String statusSTG, String effectuatedSTG, String reasonSTG, String rowQA, String coverageStartQA, String coverageEndQA, String statusQA, String effectuatedQA, String reasonQA) {
         if (SharedData.getEnv().equals("staging")) {
             softAssert.assertEquals(rowNumberData.getText(), rowSTG);
             softAssert.assertEquals(coverageStartDateCoTable.getText(), coverageStartSTG);
@@ -1378,7 +1596,8 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         }
         softAssert.assertAll();
     }
-    public void validateCoverageTableDataRowTwo(String type, String rowTwoSTG, String coverageStartRowTwoSTG, String coverageEndRowTwoSTG, String statusRowTwoSTG, String effectuatedRowTwoSTG, String reasonRowTwoSTG, String rowTwoQA, String coverageStartRowTwoQA, String coverageEndRowTwoQA, String statusRowTwoQA, String effectuatedRowTwoQA, String reasonRowTwoQA){
+
+    public void validateCoverageTableDataRowTwo(String type, String rowTwoSTG, String coverageStartRowTwoSTG, String coverageEndRowTwoSTG, String statusRowTwoSTG, String effectuatedRowTwoSTG, String reasonRowTwoSTG, String rowTwoQA, String coverageStartRowTwoQA, String coverageEndRowTwoQA, String statusRowTwoQA, String effectuatedRowTwoQA, String reasonRowTwoQA) {
         if (SharedData.getEnv().equals("staging")) {
             softAssert.assertEquals(rowTwoData.getText(), rowTwoSTG);
             softAssert.assertEquals(coverageStartDateCoTable.getText(), coverageStartRowTwoSTG);
@@ -1396,7 +1615,8 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         }
         softAssert.assertAll();
     }
-    public void iValidateFinancialTableDataRowOne(String type, String rowSTG, String financialStartSTG, String financialEndSTG, String premiumSTG, String APTCSTG, String rowQA, String financialStartQA, String financialEndQA, String premiumQA, String APTCQA){
+
+    public void iValidateFinancialTableDataRowOne(String type, String rowSTG, String financialStartSTG, String financialEndSTG, String premiumSTG, String APTCSTG, String rowQA, String financialStartQA, String financialEndQA, String premiumQA, String APTCQA) {
         if (SharedData.getEnv().equals("staging")) {
             softAssert.assertEquals(rowNumberData.getText(), rowSTG);
             softAssert.assertEquals(medFinancialStartDateFNTable.getText(), financialStartSTG);
@@ -1412,7 +1632,8 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         }
         softAssert.assertAll();
     }
-    public void validateFinancialTableDataRowTwo(String type, String rowTwoSTG, String financialStartRowTwoSTG, String financialEndRowTwoSTG, String premiumRowTwoSTG, String APTCRowTwoSTG, String rowTwoQA, String financialStartRowTwoQA, String financialEndRowTwoQA, String premiumRowTwoQA, String APTCRowTwoQA){
+
+    public void validateFinancialTableDataRowTwo(String type, String rowTwoSTG, String financialStartRowTwoSTG, String financialEndRowTwoSTG, String premiumRowTwoSTG, String APTCRowTwoSTG, String rowTwoQA, String financialStartRowTwoQA, String financialEndRowTwoQA, String premiumRowTwoQA, String APTCRowTwoQA) {
         if (SharedData.getEnv().equals("staging")) {
             softAssert.assertEquals(rowTwoData.getText(), rowTwoSTG);
             softAssert.assertEquals(financialStartDateRowTwo.getText(), financialStartRowTwoSTG);
@@ -1428,6 +1649,7 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         }
         softAssert.assertAll();
     }
+
     public void validateGoBackButton() {
         basicActions.waitForElementToBePresent(btnGoBack, 30);
         basicActions.scrollToElement(btnGoBack);
@@ -1435,6 +1657,7 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         softAssert.assertTrue(btnGoBack.isDisplayed());
         softAssert.assertAll();
     }
+
     public void clickGoBackButton() {
         basicActions.waitForElementToBePresent(btnGoBack, 30);
         basicActions.scrollToElement(btnGoBack);
@@ -1442,6 +1665,7 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         basicActions.closeBrowserTab();
         basicActions.switchToParentPage("C4HCO Admin Portal");
     }
+
     public void clickGoBackButtonOnSimplifiedView() {
         basicActions.waitForElementToBePresent(btnGoBack, 30);
         basicActions.scrollToElement(btnGoBack);
@@ -1449,12 +1673,14 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         basicActions.closeBrowserTab();
         basicActions.switchToParentPage("C4HCO Admin Portal");
     }
-    public void uncheckMedicalPlanCoCo(){
-    basicActions.waitForElementToBePresent(btnMedicalChecked, 20);
-    basicActions.scrollToElement(btnMedicalChecked);
-    btnMedicalChecked.click();
-    softAssert.assertEquals(currentMedicalDentalPlan.size(), 1);
-    softAssert.assertAll(); }
+
+    public void uncheckMedicalPlanCoCo() {
+        basicActions.waitForElementToBePresent(btnMedicalChecked, 20);
+        basicActions.scrollToElement(btnMedicalChecked);
+        btnMedicalChecked.click();
+        softAssert.assertEquals(currentMedicalDentalPlan.size(), 1);
+        softAssert.assertAll();
+    }
 
     public void verifyLabelsSimplifiedMedicalCoCo() {
         basicActions.waitForElementToBePresent(currentMedicalPlanName, 5000);
@@ -1473,10 +1699,13 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         softAssert.assertEquals(medPlanAVUI.getText(), "Plan AV:");
         softAssert.assertEquals(medPolicyIdUI.getText(), "Policy ID:");
         softAssert.assertEquals(medHiosIdUI.getText(), "HIOS ID:");
-        softAssert.assertAll(); }
-    public void validateMakeChangesMedicalButtonNotDisplay(){
+        softAssert.assertAll();
+    }
+
+    public void validateMakeChangesMedicalButtonNotDisplay() {
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 10);
-        Assert.assertFalse(basicActions.isElementDisplayed(btnMakeChangeMed, 3));   }
+        Assert.assertFalse(basicActions.isElementDisplayed(btnMakeChangeMed, 3));
+    }
 
     public void validateErrorMessagesCoCo(DataTable table) {
         List<Map<String, String>> memberData = table.asMaps();
@@ -1497,6 +1726,7 @@ public void selectThePlanYearOnManagePlan(String planYear) {
             softAssert.assertAll();
         }
     }
+
     public void validateEHBErrorsCoCo() {
         double value1 = Double.parseDouble(sesmember2.getAttribute("value").replaceAll("[^0-9.]", ""));
         double value2 = Double.parseDouble(sesmember1.getAttribute("value").replaceAll("[^0-9.]", ""));
@@ -1505,16 +1735,19 @@ public void selectThePlanYearOnManagePlan(String planYear) {
             Assert.assertTrue(SESEHBError.isDisplayed(), "Error message should be displayed when condition is met.");
         }
     }
-    public void validateTheExpectedEHBErrorMessageIsDisplayed(String expectedErrorMessage){
+
+    public void validateTheExpectedEHBErrorMessageIsDisplayed(String expectedErrorMessage) {
         softAssert.assertEquals(aptcEHBError.getText(), expectedErrorMessage, "APTC entered exceeds EHB amount");
         softAssert.assertAll();
     }
-    public void validateNoPlanMessageIsDisplayed(String expectedMessage){
+
+    public void validateNoPlanMessageIsDisplayed(String expectedMessage) {
         basicActions.waitForElementToBePresent(noPlanMessage, 30);
         softAssert.assertEquals(noPlanMessage.getText(), expectedMessage, "Select a plan year to view policies");
         softAssert.assertAll();
     }
-    public void verifyPlanIDDataMatchesDataInDropDownForSelectedPlan(String planSTG, String planOptionDropDownSTG, String planQA, String planOptionDropDownQA){
+
+    public void verifyPlanIDDataMatchesDataInDropDownForSelectedPlan(String planSTG, String planOptionDropDownSTG, String planQA, String planOptionDropDownQA) {
         if (SharedData.getEnv().equals("staging")) {
             softAssert.assertEquals(planId.getText(), planSTG);
             softAssert.assertEquals(planSelected.getText(), planOptionDropDownSTG);
@@ -1524,6 +1757,400 @@ public void selectThePlanYearOnManagePlan(String planYear) {
         }
         softAssert.assertAll();
     }
+
+    public void updateTernimationvalue(List<String> memberCount) {
+        List<WebElement> terminate = basicActions.getDriver().findElements(By.xpath("//*[@class='member-details-grid-item dropdown']"));
+        for (int i = 0; i < memberCount.size(); i++) {
+            String[] parts = memberCount.get(i).split(":");
+            String terminateReason = parts[1];
+            terminate.get(i).click();
+            List<WebElement> terminateOption = basicActions.getDriver().findElements(By.xpath("//*[@class='member-details-grid-item dropdown']//div[@class='drop-down-option']"));
+            terminateOption.stream().filter(e -> e.getText().equalsIgnoreCase(terminateReason)).forEach(WebElement::click);
+        }
+    }
+
+    public void verifyFieldIsEditable(String fieldName, int memberList) {
+        basicActions.wait(30);
+        for (int i = 1; i <= memberList; i++) {
+            WebElement actualField = null;
+            switch (fieldName) {
+                case "APTC", "SES":
+                    actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='planAPTC_" + i + "']//input"));
+                    break;
+                case "premium":
+                    actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='premium_" + i + "']//input"));
+                    break;
+                case "financial end date":
+                    actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='financialEndDate_" + i + "']//input"));
+                    break;
+                case "financial start date":
+                    actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='financialStartDate_" + i + "']//input"));
+                    break;
+                case "coverage start date":
+                    actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageStartDate_" + i + "']//input"));
+                    break;
+                case "coverage end date":
+                    actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageEndDate_" + i + "']//input"));
+                    break;
+                case "termination reason":
+                    String terminate = "//*[@class='member-details-grid-item dropdown']";
+                    String terminateXpath = terminate + "[" + i + "]";
+                    actualField = basicActions.getDriver().findElement(By.xpath(terminateXpath));
+                    break;
+            }
+            Assert.assertTrue(actualField != null && actualField.isEnabled(), "  Field not editable " + fieldName);
+        }
+    }
+
+    public void verifyLabelName(List<String> expectedlabelName) {
+        basicActions.waitForElementToBePresent(medicalPlanName, 20);
+        softAssert.assertTrue(medicalPlanName.isDisplayed(), "Plan label not display");
+        softAssert.assertTrue(medCoverageData.getText().contains("Policy Coverage:"), "Coverage label not match");
+        List<String> actualLabel = containerTextValidation.stream().map(WebElement::getText)
+                .collect(Collectors.toList());
+        softAssert.assertEquals(actualLabel, expectedlabelName.subList(0, 13), "label not match for");
+        softAssert.assertEquals(medPolicyIdUI.getText(), expectedlabelName.get(13), "label not match for");
+        softAssert.assertAll();
+    }
+
+    public void verifyDentalPlanNotPresent() {
+        Assert.assertTrue(basicActions.waitForElementToDisappear(btnDentalChecked, 10), "Dental button should not be present");
+        Assert.assertTrue(basicActions.waitForElementToDisappear(dentalContainer, 10), "Dental container should not be present");
+    }
+
+    public void verifyCurrentPolicyDetails(String planType, List<Map<String, String>> expectedValues) {
+        for (int i = 0; i < expectedValues.size(); i++) {
+            Map<String, String> row = expectedValues.get(i);
+            String memberNo = row.get("no");
+
+            if (row.containsKey("coverageStart")) {
+                String coverageStartDateValue = row.get("coverageStart");
+                verifyMemberCoverageStrtDate(memberNo, coverageStartDateValue, planType);
+            }
+            if (row.containsKey("financialStart")) {
+                String financialStartDateValue = row.get("financialStart");
+                veryifyMemberFinancialStrtDate(memberNo, financialStartDateValue, planType);
+            }
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyMemberCoverageStrtDate(String memberNo, String coverageStartDateValue, String planType) {
+        String coverageStartDate = parseDate(coverageStartDateValue);
+
+        WebElement coverageStartDateMem = getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container plan-container-fill']//div[@id='coverageStartDate_" + memberNo + "']"));
+        softAssert.assertEquals(coverageStartDateMem.getText(), coverageStartDate);
+    }
+
+    public void veryifyMemberFinancialStrtDate(String memberNo, String financialStartDateValue, String planType) {
+        String financialStartDates = parseDate(financialStartDateValue);
+
+        WebElement financialStartDateMem = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container plan-container-fill']//div[@id='financialStartDate_" + memberNo + "']"));
+        softAssert.assertEquals(financialStartDateMem.getText(), financialStartDates);
+    }
+
+    private String parseDate(String dateValue) {
+        if (Character.isLetter(dateValue.charAt(0))) {
+            String dateBase = basicActions.getDateBasedOnRequirement(dateValue);
+            return basicActions.changeDateFormat(dateBase, "yyyy-MM-dd", "MM/dd/yyyy");
+        } else {
+            return dateValue;
+        }
+    }
+
+    public void verifyPlanNameAndPolicyCoverageDisplayed() {
+        basicActions.wait(600);
+        softAssert.assertTrue(labelPlanNameForMedAndDen.get(0).isDisplayed(), "Plan name not visible for medical");
+        softAssert.assertTrue(labelCoverageForMedAndDen.get(0).getText().contains("Policy Coverage:"), "Policy coverage not visible for medical");
+        softAssert.assertTrue(labelPlanNameForMedAndDen.get(1).isDisplayed(), "Plan name not visible for dental");
+        softAssert.assertTrue(labelCoverageForMedAndDen.get(1).getText().contains("Policy Coverage:"), "Policy coverage not visible for dental");
+        softAssert.assertAll();
+    }
+
+    public void verifyAllPageTextsMedicalAndDentalPlan(String opt, List<String> pageTexts) {
+        switch (opt) {
+            case "medical_and_dental":
+                verifyLabelContainerMedicalOrDental(pageTexts);
+                for (int i = 0; i < pageTexts.size() - 1; i++) {
+                    softAssert.assertEquals(containerTextValidation.get(i + 13).getText().trim(), pageTexts.get(i), "Container Label " + i + " text not matching");
+                }
+                softAssert.assertEquals(labelPolicyIdForMedAndDen.get(1).getText().trim(), pageTexts.get(pageTexts.size() - 1),"Policy ID not visible");
+                softAssert.assertAll();
+                break;
+            case "only_medical","only_dental":
+                verifyLabelContainerMedicalOrDental(pageTexts);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + opt);
+        }
+    }
+
+    public void validateMemberDetailsColumnNamesAndStyle(String planType, List<String> expectedMedMemberDetails ) {
+        List<String> actualMedCoverageDetails= new ArrayList<>();
+        List<WebElement> selectedTableHeader = null;
+        int i=0;
+        selectedTableHeader = switch (planType.toLowerCase()) {
+            case "medical" -> medicalMemberDetailsTableHeader;
+            case "dental" -> dentalMemberDetailsTableHeader;
+            default -> throw new IllegalArgumentException("Invalid plan type: " + planType);
+        };
+
+        for (WebElement each : selectedTableHeader) {
+            actualMedCoverageDetails.add(each.getText());
+            softAssert.assertEquals(selectedTableHeader.get(i).getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for "+currentMedicalDentalPlan.get(0).getText());
+            softAssert.assertEquals(selectedTableHeader.get(i).getCssValue("font"), "700 16px / 24px \"PT Sans\"","font not match for "+currentMedicalDentalPlan.get(0).getText());
+            softAssert.assertEquals(selectedTableHeader.get(i).getCssValue("font-weight"), "700","font not match for "+currentMedicalDentalPlan.get(0).getText());
+            if(i==5){
+                break;
+            }
+            i++;
+        }
+        softAssert.assertEquals(actualMedCoverageDetails,expectedMedMemberDetails, "Member Table Label not match  ");
+        softAssert.assertAll();
+    }
+
+    public void validateFinancialDetailsColumnNamesAndStyle(String planType, List<String> expectedMedMemberDetails ) {
+        List<String> actualMedCoverageDetails= new ArrayList<>();
+        List<WebElement> selectedTableHeader = null;
+        int i=0;
+        selectedTableHeader = switch (planType) {
+            case "medical" -> coverageFinancialTableTableHeader;
+            case "Dental" -> dencoverageFinancialTableTableHeader;
+            default -> throw new IllegalArgumentException("Invalid plan type: " + planType);
+        };
+
+        for (WebElement each : selectedTableHeader) {
+            actualMedCoverageDetails.add(each.getText());
+            softAssert.assertEquals(selectedTableHeader.get(i).getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for "+currentMedicalDentalPlan.get(0).getText());
+            softAssert.assertEquals(selectedTableHeader.get(i).getCssValue("font"), "700 16px / 24px \"PT Sans\"","font not match for "+currentMedicalDentalPlan.get(0).getText());
+            softAssert.assertEquals(selectedTableHeader.get(i).getCssValue("font-weight"), "700","font not match for "+currentMedicalDentalPlan.get(0).getText());
+            if(i==4){
+                break;
+            }
+            i++;
+        }
+        softAssert.assertEquals(actualMedCoverageDetails,expectedMedMemberDetails, "Member Table Label not match  ");
+        softAssert.assertAll();
+    }
+
+    public void validateCoverageDetailsColumnNamesAndStyle(String planType, List<String> expectedMedMemberDetails ) {
+        List<String> actualMedCoverageDetails= new ArrayList<>();
+        List<WebElement> selectedTableHeader = null;
+        int i=0;
+        selectedTableHeader = switch (planType) {
+            case "medical" -> medCoverageColumnHeader;
+            case "Dental" -> dencoverageDetailsTableTableHeader;
+            default -> throw new IllegalArgumentException("Invalid plan type: " + planType);
+        };
+
+        for (WebElement each : selectedTableHeader) {
+            actualMedCoverageDetails.add(each.getText());
+            softAssert.assertEquals(selectedTableHeader.get(i).getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for "+currentMedicalDentalPlan.get(0).getText());
+            softAssert.assertEquals(selectedTableHeader.get(i).getCssValue("font"), "700 16px / 24px \"PT Sans\"","font not match for "+currentMedicalDentalPlan.get(0).getText());
+            softAssert.assertEquals(selectedTableHeader.get(i).getCssValue("font-weight"), "700","font not match for "+currentMedicalDentalPlan.get(0).getText());
+            if(i==5){
+                break;
+            }
+            i++;
+        }
+        softAssert.assertEquals(actualMedCoverageDetails,expectedMedMemberDetails, "Member Table Label not match  ");
+        softAssert.assertAll();
+    }
+
+    public void validateStyleProperties() {
+        validateInformationContainerStyle();
+        validateColoradoConnectStyle();
+        validateAdminPortalStyle();
+        validatePlanYearsStyle();
+        validateManagePlansStyle();
+        validateSelectPlansStyle();
+        validateMedicalCheckboxStyle();
+        validateCurrentContainerStyle();
+        validateCurrentMedicalPlanStyle();
+        validateSelectAPolicyStyle();
+    }
+    private void validateSelectAPolicyStyle() {
+        softAssert.assertEquals(selectPolicyLabel.getText(),"Select a policy:", "Header Text not match for " +selectPolicyLabel.getText());
+        softAssert.assertEquals(selectPolicyLabel.getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for "+selectPolicyLabel.getText());
+        softAssert.assertEquals(selectPolicyLabel.getCssValue("font"), "16px / 24px \"PT Sans\"","font not match for "+selectPolicyLabel.getText());
+        softAssert.assertEquals(selectPolicyLabel.getCssValue("font-weight"), "400","font not match for "+selectPolicyLabel.getText());
+        softAssert.assertAll();
+    }
+
+    private void validateCurrentMedicalPlanStyle() {
+        softAssert.assertEquals(currentMedicalDentalPlan.get(0).getText(),"Current Medical Plan:", "Header Text not match for " +currentMedicalDentalPlan.get(0).getText());
+        softAssert.assertEquals(currentMedicalDentalPlan.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for "+currentMedicalDentalPlan.get(0).getText());
+        softAssert.assertEquals(currentMedicalDentalPlan.get(0).getCssValue("font"), "700 28px / 24px \"PT Sans\"","font not match for "+currentMedicalDentalPlan.get(0).getText());
+        softAssert.assertAll();
+    }
+
+    private void validateCurrentContainerStyle() {
+        softAssert.assertEquals(currentplancontainer.getCssValue("background-color"),"rgba(226, 241, 248, 1)", "Header Text not match for  Current medical plan");
+        softAssert.assertEquals(currentplancontainer.getCssValue("border-top-color"), "rgba(26, 112, 179, 1)","Top border color not match for Current medical plan container " );
+        softAssert.assertEquals(currentplancontainer.getCssValue("border-bottom-color"), "rgba(26, 112, 179, 1)","bottom border color not match for Current medical plan container " );
+        softAssert.assertEquals(currentplancontainer.getCssValue("border-left-color"), "rgba(26, 112, 179, 1)","Left border color not match for Current medical plan container " );
+        softAssert.assertEquals(currentplancontainer.getCssValue("border-right-color"), "rgba(26, 112, 179, 1)","Right border color not match for Current medical plan container " );
+        softAssert.assertAll();
+    }
+
+    private void validateMedicalCheckboxStyle() {
+        softAssert.assertEquals(chkMedical.getText(),"Medical", "Header Text not match for " +chkMedical.getText());
+        softAssert.assertEquals(chkMedical.getCssValue("color"), "rgba(255, 255, 255, 1)","Text color not match for  "+chkMedical.getText());
+        softAssert.assertEquals(chkMedical.getCssValue("font"), "700 16px / 24px \"PT Sans\", sans-serif","font not match for  "+chkMedical.getText());
+        softAssert.assertAll();
+    }
+
+    private void validateSelectPlansStyle() {
+        softAssert.assertEquals(txtSelectPlanType.getText(),"Select plan type:", "Header Text not match for "+txtSelectPlanType.getText());
+        softAssert.assertEquals(txtSelectPlanType.getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for " +txtSelectPlanType.getText());
+        softAssert.assertEquals(txtSelectPlanType.getCssValue("font"), "16px / 24px \"PT Sans\", sans-serif","font not match for "+txtSelectPlanType.getText());
+        softAssert.assertEquals(txtSelectPlanType.getCssValue("font-weight"), "400","style size not match for "+txtSelectPlanType.getText());
+        softAssert.assertAll();
+    }
+
+    private void validateManagePlansStyle() {
+        softAssert.assertEquals(txtTitleManagePlans.getText(),"Manage Plans", "Header Text not match for " +txtTitleManagePlans.getText());
+        softAssert.assertEquals(txtTitleManagePlans.getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for  "+txtTitleManagePlans.getText());
+        softAssert.assertEquals(txtTitleManagePlans.getCssValue("font"), "700 28px / 24px \"PT Sans\"","font not match for "+txtTitleManagePlans.getText());
+        softAssert.assertAll();
+    }
+
+    private void validatePlanYearsStyle() {
+        softAssert.assertEquals(txtSelectPlanYear.getText(), "Select a plan year:", "Text not match for "+ txtSelectPlanYear.getText());
+        softAssert.assertEquals(planYearLabel.getText(), "Year:"," Text not match for "+ planYearLabel.getText());
+        softAssert.assertEquals(dpdCurrentYearMP.getText(),"2023", "Header Text not match for " +dpdCurrentYearMP.getText());
+        softAssert.assertEquals(dpdCurrentYearMP.getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for " +dpdCurrentYearMP.getText());
+        softAssert.assertEquals(dpdCurrentYearMP.getCssValue("font"), "16px / 24px \"PT Sans\", sans-serif","font not match for "+dpdCurrentYearMP.getText());
+        softAssert.assertEquals(dpdCurrentYearMP.getCssValue("font-weight"), "400","style size not match for "+dpdCurrentYearMP.getText());
+        softAssert.assertAll();
+    }
+
+    private void validateAdminPortalStyle() {
+        softAssert.assertEquals(titleInBlueBar.getText(), "Admin Portal", "Header Text not match for " + titleInBlueBar.getText());
+        softAssert.assertEquals(titleInBlueBar.getCssValue("color"), "rgba(255, 255, 255, 1)", "Text color not match for " + titleInBlueBar.getText());
+        softAssert.assertEquals(titleInBlueBar.getCssValue("font"), "700 18px \"PT Sans\", sans-serif", "Text color not match for  " + titleInBlueBar.getText());
+        softAssert.assertAll();
+    }
+
+    private void validateColoradoConnectStyle() {
+        softAssert.assertEquals(CocoTitle.getText(),"Colorado Connect", "Header Text not match for " +CocoTitle.getText());
+        softAssert.assertEquals(CocoTitle.getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for  " +CocoTitle.getText());
+        softAssert.assertEquals(CocoTitle.getCssValue("font"), "36px / 43.2px \"PT Sans\"","Text color not match for  " +CocoTitle.getText());
+        softAssert.assertEquals(CocoTitle.getCssValue("font-weight"), "400","style size not match for  " +CocoTitle.getText());
+        softAssert.assertAll();
+    }
+
+    private void validateInformationContainerStyle() {
+        softAssert.assertEquals(mPlansContainer.getCssValue("background-color"), "rgba(255, 255, 255, 1)","Background not match for Container" );
+        softAssert.assertEquals(mPlansContainer.getCssValue("border-top-color"), "rgba(149, 192, 60, 1)","Top border color not match for container " );
+        softAssert.assertAll();
+    }
+
+    private void verifyLabelContainerMedicalOrDental(List<String> pageTexts) {
+        basicActions.wait(1000);
+        for (int i = 0; i < pageTexts.size() - 1; i++) {
+            softAssert.assertEquals(containerTextValidation.get(i).getText().trim(), pageTexts.get(i), "Container Label " + i + " text not matching");
+        }
+        softAssert.assertEquals(labelPolicyIdForMedAndDen.get(0).getText().trim(), pageTexts.get(13),"Policy ID not visible");
+        softAssert.assertAll();
+    }
+
+    public void clickOnSelectPlanType(String btnName) {
+        switch (btnName) {
+            case "Medical":
+                Assert.assertTrue(basicActions.waitForElementToBePresent(medPlanTypeUnChecked, 5), "Medical check box already checked");
+                medPlanTypeUnChecked.click();
+                break;
+            case "Dental":
+                Assert.assertTrue(basicActions.waitForElementToBePresent(denPlanTypeUnChecked, 5), "Dental check box already checked");
+                denPlanTypeUnChecked.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + btnName);
+        }
+    }
+
+    public void verifyHeaderText(List<String> pageTexts) {
+        basicActions.wait(800);
+        softAssert.assertTrue(labelHeader1.getText().contains(pageTexts.get(0)), "Header 1 not visible");
+        softAssert.assertTrue(labelHeader2.getText().contains(pageTexts.get(1)), "Header 2 not visible");
+        softAssert.assertAll();
+    }
+
+    public void verifyTextSelectPlanYearDD(List<String> pageTexts) {
+        basicActions.waitForElementToBePresent(txtAlreadySelectedYearOption, 8);
+        txtAlreadySelectedYearOption.click();
+        softAssert.assertEquals(txtAlreadySelectedYearOption.getText().trim(), pageTexts.get(0), "Already selected option text mismatch");
+        for (int i = 0; i < pageTexts.size() - 1; i++) {
+            softAssert.assertEquals(txtSecondaryYearOption.get(i).getText().trim(), pageTexts.get(i + 1), "Secondary Option" + i + " not matching");
+        }
+        softAssert.assertAll();
+        txtAlreadySelectedYearOption.click();
+    }
+    public void verifyFontColorEtcOfContainerElements(){
+        softAssert.assertEquals(managePlansContainer.getCssValue("background-color"), "rgba(255, 255, 255, 1)", "Container-back ground Color mismatching");
+        softAssert.assertEquals(managePlansContainer.getCssValue("border-top-color"), "rgba(149, 192, 60, 1)", "Container-border top Color mismatching");
+        softAssert.assertEquals(txtTitleManagePlans.getCssValue("font-family"), "\"PT Sans\"", "txtTitleManagePlans-Font family mismatch");
+        softAssert.assertEquals(txtTitleManagePlans.getCssValue("font-size"), "28px", "txtTitleManagePlans-Font size mismatch");
+        softAssert.assertEquals(txtTitleManagePlans.getCssValue("color"), "rgba(77, 77, 79, 1)", "txtTitleManagePlans-Color mismatch");
+        softAssert.assertEquals(medPlanTypeUnChecked.getCssValue("font-family"), "\"PT Sans\"", "medPlanTypeUnChecked-Font family mismatch");
+        softAssert.assertEquals(medPlanTypeUnChecked.getCssValue("font-size"), "16px", "medPlanTypeUnChecked-Font size mismatch");
+        softAssert.assertEquals(medPlanTypeUnChecked.getCssValue("color"), "rgba(77, 77, 79, 1)", "medPlanTypeUnChecked-Color mismatch");
+        softAssert.assertAll();
+    }
+    public void verifyFontColorEtcOfMedicalPlanContainer(){
+        softAssert.assertEquals(currentMedicalDentalPlan.get(0).getCssValue("font-family"), "\"PT Sans\"", "currentMedicalDentalPlan-Font family mismatch");
+        softAssert.assertEquals(currentMedicalDentalPlan.get(0).getCssValue("font-size"), "28px", "currentMedicalDentalPlan-Font size mismatch");
+        softAssert.assertEquals(currentMedicalDentalPlan.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)", "currentMedicalDentalPlan-Color mismatch");
+        softAssert.assertEquals(label_SelectAPolicy.getCssValue("font-family"), "\"PT Sans\"", "label_SelectAPolicy-Font family mismatch");
+        softAssert.assertEquals(label_SelectAPolicy.getCssValue("font-size"), "16px", "label_SelectAPolicy-Font size mismatch");
+        softAssert.assertEquals(label_SelectAPolicy.getCssValue("color"), "rgba(77, 77, 79, 1)", "label_SelectAPolicy-Color mismatch");
+        softAssert.assertEquals(currentPlanContainer.getCssValue("background-color"), "rgba(226, 241, 248, 1)", "currentPlanContainer-back ground Color mismatching");
+        softAssert.assertEquals(currentPlanContainer.getCssValue("border"), "1px solid rgb(26, 112, 179)", "currentPlanContainer-border mismatch");
+        verifyColorFontFamilyOfTableContainer();
+        softAssert.assertAll();
+
+    }
+    private void verifyColorFontFamilyOfTableContainer(){
+        for (int i=0;i<containerTableCols1.size();i++){
+            if (i == 5) {
+                continue;
+            }
+            softAssert.assertEquals(containerTableCols1.get(i).getCssValue("font-family"), "\"PT Sans\"", "containerTableCols1 "+i+"-Font family mismatch");
+            softAssert.assertEquals(containerTableCols1.get(i).getCssValue("font-size"), "16px", "containerTableCols1 "+i+"-Font size mismatch");
+            softAssert.assertEquals(containerTableCols1.get(i).getCssValue("color"), "rgba(77, 77, 79, 1)", "containerTableCols1 "+i+"-Color mismatch");
+        }
+        for (int i=1;i<containerTableCols2.size();i++){
+            softAssert.assertEquals(containerTableCols2.get(i).getCssValue("font-family"), "\"PT Sans\"", "containerTableCols2 "+i+"-Font family mismatch");
+            softAssert.assertEquals(containerTableCols2.get(i).getCssValue("font-size"), "16px", "containerTableCols2 "+i+"-Font size mismatch");
+            softAssert.assertEquals(containerTableCols2.get(i).getCssValue("color"), "rgba(77, 77, 79, 1)", "containerTableCols2 "+i+"-Color mismatch");
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyPrevious_Financial_PeriodsMedicalTexts(List<String> pageTexts) {
+        basicActions.scrollToElement(labelPlanNamePFPM);
+        softAssert.assertTrue(labelPlanNamePFPM.isDisplayed(),"labelPlanNamePFPM is not displayed");
+        softAssert.assertTrue(labelPolicyCoveragePFPM.isDisplayed(),"labelPolicyCoveragePFPM is not displayed");
+        for (int i = 0; i < pageTexts.size(); i++) {
+            softAssert.assertEquals(allLabelsPFPM.get(i).getText().trim(), pageTexts.get(i), "allLabelsPFPMContainer " + i + " text mismatch");
+        }
+        softAssert.assertAll();
+    }
+    public void verifyGreenBarBetweenTwoFinancialPeriods(){
+        softAssert.assertTrue(greenBar_financialPeriod.get(0).isDisplayed(),"greenBar_financialPeriod is not displayed");
+        softAssert.assertTrue(greenBar_financialPeriod.size()>1,"greenBar_financialPeriod is not greater than 1");
+        softAssert.assertEquals(greenBar_financialPeriod.get(0).getCssValue("background-color"), "rgba(230, 243, 216, 1)", "greenBar_financialPeriod-back ground Color mismatching");
+        softAssert.assertAll();
+    }
+    public void verifyExpandAndCollapsesWithinThePFP(){
+        int allShowFinancialPeriodInfoLabel=labelShowFinancialPeriod.size();
+        softAssert.assertTrue(allShowFinancialPeriodInfoLabel>0,"All financial periods not expanded");
+        for (WebElement element : chevronPreviousPlanDetail) {
+            element.click();
+            allShowFinancialPeriodInfoLabel = allShowFinancialPeriodInfoLabel - 1;
+        }
+        softAssert.assertEquals(allShowFinancialPeriodInfoLabel,0,"All financial periods not collapsed");
+        softAssert.assertAll();
+    }
 }
-
-

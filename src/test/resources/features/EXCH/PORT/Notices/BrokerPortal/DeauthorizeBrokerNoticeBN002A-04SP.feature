@@ -20,7 +20,7 @@ Feature:verify deauthorize broker notice Spanish BN-002-04
     And I click more details from the first broker result container
     And I click Authorized broker
     And I validate current Broker text exists
-    Then I Remove my current Broker
+    Then I click remove my current Broker
     And I "Ok" my decision to remove my current broker
     Then I verify Find Expert Help header Text in "English"
     And I validate the Previous Broker Assister text

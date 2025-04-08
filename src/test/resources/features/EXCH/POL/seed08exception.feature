@@ -252,15 +252,17 @@ Feature: Seed08exception - Exchange
     And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
+    And I click on Future Plans
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
+    And I click on Sign Out in the Header for "Elmo"
+
+    #DB Validation
     And I set the member relationship to the subscriber
       | Son: Self   |
       | InLaw: WIFE |
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
-
-      #DbVerification
   And I verify the policy data quality check with Policy Ah keyset size 4
   And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
 

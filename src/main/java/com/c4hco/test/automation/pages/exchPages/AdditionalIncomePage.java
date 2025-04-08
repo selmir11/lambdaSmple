@@ -838,8 +838,8 @@ public class AdditionalIncomePage {
     }
 
     public void validateHelpVerbiage(String helpText, String language) {
-        basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 30);
-        basicActions.waitForElementToBePresent(helpDrawerHeaderAddtionalIncome, 30);
+        basicActions.waitForElementToBePresentWithRetries(helpDrawerHeaderHelp, 30);
+        basicActions.waitForElementToBePresentWithRetries(helpDrawerHeaderAddtionalIncome, 30);
         switch (helpText){
             case "Full":switch (language) {
                 case "English":
@@ -1480,7 +1480,7 @@ public class AdditionalIncomePage {
                 break;
             case "Spanish":
                 softAssert.assertEquals(txtBoxAlimonyReceivedAmount.getAttribute("placeholder"),"cantidad","cantidad default text not visible");
-                softAssert.assertEquals(basicActions.getFirstSelectedOptionFromDD(selectALMRFrequency).getText().trim(),"Seleccionar opción","Seleccionar opción not visible");
+                softAssert.assertEquals(basicActions.getFirstSelectedOptionFromDD(selectALMRFrequency).getText().trim(),"Seleccionar opci\u00F3n","Seleccionar opci\u00F3n not visible");
                 softAssert.assertAll();
                 break;
             default:

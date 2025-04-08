@@ -13,6 +13,8 @@ Feature: EDI Detailed Outbound Transactions : Verify all data
     Then I select the first record from the search results
     Then I click on view button for "Detailed EDI" report
     Then I validate I am on the "Detailed EDI" page
+    Then I select plan year for "2023"
+    Then I click on search button on EDI report page
     And I verify Detailed EDI headers data
     And I verify Detailed Outbound Transactions table header order
     And I verify Outbound Transactions data
