@@ -379,6 +379,7 @@ public class AdminPortalSearchPage {
     }
 
     public void enterUserData(String userdata, String type) {
+        basicActions.waitForElementToBePresentWithRetries(searchUser, 10);
         switch (userdata) {
             case "accountID":
                 searchInputList.get(0).sendKeys(type);
@@ -431,6 +432,7 @@ public class AdminPortalSearchPage {
     }
 
     public void enterUserDataAnyENV(String userdata, String QAType, String STGType) {
+        basicActions.waitForElementToBePresentWithRetries(searchUser, 10);
         if (SharedData.getEnv().equals("qa")) {
             enterUserData(userdata, QAType);
         } else {
