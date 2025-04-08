@@ -1845,18 +1845,12 @@ public class AdminPortalManagePlansPage {
     public void clickOnSelectPlanType(String btnName) {
         switch (btnName) {
             case "Medical":
-                if (basicActions.waitForElementToBePresent(medPlanTypeUnChecked, 5)) {
-                    medPlanTypeUnChecked.click();
-                } else {
-                    Assert.fail("Medical check box already checked");
-                }
+                Assert.assertTrue(basicActions.waitForElementToBePresent(medPlanTypeUnChecked, 5), "Medical check box already checked");
+                medPlanTypeUnChecked.click();
                 break;
             case "Dental":
-                if (basicActions.waitForElementToBePresent(denPlanTypeUnChecked, 5)) {
-                    denPlanTypeUnChecked.click();
-                } else {
-                    Assert.fail("Dental check box already checked");
-                }
+                Assert.assertTrue(basicActions.waitForElementToBePresent(denPlanTypeUnChecked, 5), "Dental check box already checked");
+                denPlanTypeUnChecked.click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + btnName);
