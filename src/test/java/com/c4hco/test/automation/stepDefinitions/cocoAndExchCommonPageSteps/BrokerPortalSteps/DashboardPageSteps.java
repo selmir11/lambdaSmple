@@ -18,6 +18,26 @@ public class DashboardPageSteps {
         dashboardPage.clickBrokerDashboard();
     }
 
+    @And("I verify the broker Complete Profile button is displayed")
+    public void iVerifyBrokerCompleteProfile(){
+        dashboardPage.verifyBrokerCompleteProfile();
+    }
+
+    @And("I verify the agency Complete Profile button is displayed")
+    public void iVerifyAgencyCompleteProfile(){
+        dashboardPage.verifyAgencyCompleteProfile();
+    }
+
+    @And("I verify the broker profile Edit button is displayed")
+    public void iVerifyBrokerProfileEditButton(){
+        dashboardPage.verifyBrokerProfileEditButton();
+    }
+
+    @And("I verify the agency profile Edit button is displayed")
+    public void iVerifyAgencyProfileEditButton(){
+        dashboardPage.verifyAgencyProfileEditButton();
+    }
+
     @Then("I verify the Broker Dashboard button is displayed")
     public void iVerifyBrokerDashboard(){
         dashboardPage.verifyBrokerDashboard();
