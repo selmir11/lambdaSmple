@@ -1,4 +1,4 @@
-@APTC,@APTC-SIR4, @APTC-SIR-Single
+@APTC,@APTCSIR,@APTC-SIR3,
 
   # SLER-1005, SLER-1006, SLER-1036,
 Feature: UI Tests related to APTC after initial enrollment
