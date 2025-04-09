@@ -282,7 +282,7 @@ Feature: PageText-Declarations and Signature Page
       | SLCR-862   | Spanish  |
     
   @SLCR-895
-  Scenario: ELIG-As a CoCo user on the D&S page, I want the page validated so when I click on “Continue”,
+  Scenario: SLCR-895 ELIG-As a CoCo user on the D&S page, I want the page validated so when I click on “Continue”,
   the required signature is in the correct format and required signature is collected before I exit the page.
     #1st Scenario
     When I click Continue on the Declarations And Signature Page CoCo

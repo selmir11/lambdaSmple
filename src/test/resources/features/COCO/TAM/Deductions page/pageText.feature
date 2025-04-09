@@ -330,7 +330,7 @@ Feature: Tests related to the Deductions page
     Then I validate I am on the "Login" page
 
   @SLCR-894
-  Scenario:ELIG-As a user on the Deductions page,
+  Scenario: SLCR-894 ELIG-As a user on the Deductions page,
   I want the fields validated so my information is formatted correctly
   to meet the standards required for my application [CCRT-255]
     And I verify the header for Primary Member on the CoCo Deductions page in "English"
