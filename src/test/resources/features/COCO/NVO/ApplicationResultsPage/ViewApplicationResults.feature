@@ -156,6 +156,7 @@ Feature: Coco user on the Application results page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
+    And I wait for 10000 milliseconds
     And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "Primary"
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
@@ -221,6 +222,7 @@ Feature: Coco user on the Application results page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
+    And I wait for 10000 milliseconds
     And I verify the application result details in DB as "OFF_EXCHANGE_NOT_ELIGIBLE" for "getFromSharedData"
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
