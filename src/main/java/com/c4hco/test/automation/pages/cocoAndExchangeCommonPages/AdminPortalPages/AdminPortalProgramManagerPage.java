@@ -1,19 +1,24 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.AdminPortalPages;
 
 import com.c4hco.test.automation.Dto.AssisterDetails;
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class AdminPortalProgramManagerPage {
     private BasicActions basicActions;
     static SoftAssert softAssert = new SoftAssert();
+    MemberDetails memberDetails = new MemberDetails();
+    AssisterDetails assisterDetails = new AssisterDetails();
 
     public AdminPortalProgramManagerPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -58,6 +63,10 @@ public class AdminPortalProgramManagerPage {
     WebElement orgDroupDetails;
     @FindBy(xpath = "//p[@id='name']")
     WebElement orgName;
+    @FindBy(xpath = "//td[@class='error-message']")
+    WebElement emptyErrorMsg;
+    @FindBy(xpath = "//td[@id='program-manager-email']")
+    WebElement emailText;
 
 
     public void clickTheOnTheAPProgramManagerDashboard(String option) {
@@ -85,6 +94,14 @@ public class AdminPortalProgramManagerPage {
                 break;
         }
     }
+
+    public void validateTheButtonSaveAndCancelAreDisplayed() {
+        basicActions.waitForElementListToBePresentWithRetries( profileSaveOptions,30);
+        softAssert.assertEquals(profileSaveOptions.get(0).getText(),"Cancel");
+        softAssert.assertEquals(profileSaveOptions.get(1).getText(),"Save");
+        softAssert.assertAll();
+    }
+
 
     public void updateTheEmailAdresseOutlookComOfTheProgramManager(String emailBase) {
         basicActions.waitForElementToBePresentWithRetries(assistnetEmailInput,30);
@@ -143,4 +160,38 @@ public class AdminPortalProgramManagerPage {
 
         softAssert.assertAll();
     }
+
+
+    public void validateTheErrorMessageForEmptyEmailIsDisplayed() {
+        basicActions.waitForElementToBePresentWithRetries(profileSaveOptions.get(0),30);
+        basicActions.wait(500);
+        assistnetEmailInput.sendKeys(Keys.CONTROL + "a");
+        assistnetEmailInput.sendKeys(Keys.DELETE);
+        assistnetEmailInput.sendKeys(Keys.ENTER);
+        profileSaveOptions.get(1).click();
+
+
+        basicActions.waitForElementToBePresentWithRetries(emptyErrorMsg,30);
+        softAssert.assertEquals(emptyErrorMsg.getText(),"A valid Email is required.");
+        softAssert.assertAll();
+        basicActions.waitForElementToBePresent(profileSaveOptions.get(0),30);
+        profileSaveOptions.get(0).click();
+    }
+
+    public void setEmailValueForPM(String STGAccount, String QAAccount) {
+        String primaryMemberId;
+        if (SharedData.getEnv().contains("qa")) {
+            primaryMemberId = QAAccount;
+        } else {
+            primaryMemberId = STGAccount;
+        }
+        BigDecimal bigDecimal = new BigDecimal(primaryMemberId);
+
+        memberDetails.setAccount_id(bigDecimal);
+        SharedData.setPrimaryMember(memberDetails);
+        assisterDetails.setEmail(emailText.getText());
+        SharedData.setAssisterDetails(assisterDetails);
+    }
+
+
 }
