@@ -57,6 +57,7 @@ Feature: Page Text-Additional information for yourself page
     And I select "No" for live in Colorado option
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Race and Ethnicity" page
+    And I wait for 3000 milliseconds
     Then I validate complete residential address details for "Primary" member in DB addressLine1 "12345 testRoad",addressLine2 "12345 testarea",city "Denver",state "CO",zipcode "80205",county "DENVER"
     Then I validate mailing address details for "Primary" member in DB addressLine1 "P. O. Box 145411",city "DenverCity",state "CO",zipcode "80205",county "DENVER"
     Then I validate state details for "Primary" member in DB 0

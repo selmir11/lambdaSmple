@@ -48,6 +48,7 @@ Feature: Admin staff account creation
     And I validate I am on the "Agency Dashboard" page
     Then I validate the dashboard displays my "Admin Staff" name
     And I verify the Agency Dashboard button is displayed
+    And I verify the agency Complete Profile button is displayed
     And I click Agency Complete Profile
 
     Then I validate the Your Information page title
@@ -59,6 +60,7 @@ Feature: Admin staff account creation
     Then I click Submit on the Broker Portal Terms page
     Then I click Go to my Dashboard
     And I verify the Agency Dashboard button is displayed
+    And I verify the agency profile Edit button is displayed
 
     And I verify the Agency Information displays "Arrow Head Agency", "ArrowHeadAgency@agency.com" and "720-789-6532"
     And I click on broker userName and logout

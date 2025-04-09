@@ -25,7 +25,7 @@ Feature: CoCo broker deauthorization notice BN-002A-02 sent to the broker
     And I validate my broker details in the current broker table are "Maggie Walker", "Bright Sky Agency", "8895237", "80205", "303-898-6426", "BROKER", "Active"
     And I save the broker's details
 
-    Then I Remove my current Broker
+    Then I click remove my current Broker
     And I "Ok" my decision to remove my current broker
 
     Then I open outlook Tab

@@ -494,7 +494,7 @@ Feature: Page Text-Income Summary Page
 
 
   @SLER-2329
-  Scenario:ELIG-Income Summary-Page Validation[RT-1208]
+  Scenario: SLER-2329 ELIG-Income Summary-Page Validation
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "20000.00" at frequency "Annually"
@@ -511,7 +511,7 @@ Feature: Page Text-Income Summary Page
     And I verify the error message on income summary page
 
   @SLER-2330
-  Scenario:LIG-Income Summary-Page Validation Spanish[RT-1208]
+  Scenario: SLER-2330 ELIG-Income Summary-Page Validation Spanish
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     Then I enter company details with addressline1 as "123 Test Address" and city as "Denver" and state as "CO" and zipcode as "80205" and income "20000.00" at frequency "Annually"
