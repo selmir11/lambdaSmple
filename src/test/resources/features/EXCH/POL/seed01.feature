@@ -263,7 +263,6 @@ Feature: Regression Tests that require Seed 1
     And I wait for hold on content to disappear
     Then I validate I am on the "Application History" page
     Then I click on view results and shop
-    And I verify the data from book of business queue by applicationId with "POLICY_UPDATE" as event type
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
     Then I validate I am on the "Start Shopping" page
@@ -306,6 +305,7 @@ Feature: Regression Tests that require Seed 1
     And I validate "medical" entities for "Primary" from policy tables
     And I validate "dental" entities for "Primary" from policy tables
     And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue by applicationId with "POLICY_UPDATE" as event type
     And I verify the data from book of business queue by applicationId with "POLICY_SUBMISSION" as event type
     And I validate "medical" entities for "Primary" from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
