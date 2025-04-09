@@ -19,7 +19,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalAccessor;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
@@ -771,23 +773,24 @@ public class BasicActions {
         return date.format(outputFormatter);
     }
 
-    public String changeDateTimeFormat(String dateString, String inputFormat, String outputFormat) {
+    public String changeDateTimeFormat(String dateString, String outputFormat) {
+        List<DateTimeFormatter> inputFormatters = List.of(
+                new DateTimeFormatterBuilder()
+                        .appendPattern("yyyy-MM-dd HH:mm:ss")
+                        .optionalStart().appendFraction(ChronoField.NANO_OF_SECOND, 1, 9, true).optionalEnd()
+                        .toFormatter(),
+                DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        );
+
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(outputFormat);
-        List<String> possibleInputFormats = new ArrayList<>();
-        possibleInputFormats.add(inputFormat);
-        if (inputFormat.equals("yyyy-MM-dd HH:mm:ss.SSSSSS")) {
-            possibleInputFormats.add("yyyy-MM-dd HH:mm:ss");
-        }
-        for (String format : possibleInputFormats) {
+
+        for (DateTimeFormatter formatter : inputFormatters) {
             try {
-                DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(format);
-                TemporalAccessor parsedDate;
-                if (format.contains("HH") || dateString.length() > 10) {
-                    parsedDate = LocalDateTime.parse(dateString, inputFormatter);
-                    return outputFormatter.format(((LocalDateTime) parsedDate).toLocalDate());
+                TemporalAccessor parsed = formatter.parse(dateString);
+                if (parsed.isSupported(ChronoField.HOUR_OF_DAY)) {
+                    return outputFormatter.format(LocalDateTime.from(parsed).toLocalDate());
                 } else {
-                    parsedDate = LocalDate.parse(dateString, inputFormatter);
-                    return outputFormatter.format((LocalDate) parsedDate);
+                    return outputFormatter.format(LocalDate.from(parsed));
                 }
             } catch (DateTimeParseException ignored) {
             }
