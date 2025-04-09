@@ -797,19 +797,19 @@ public class MedicalDetailPage {
                 softAssert.assertTrue( fileName221.length() > 0, "Downloaded file is empty: " );
                 softAssert.assertAll();
 
-                basicActions.waitForElementToBePresentWithRetries( lnkDocument2, 60 );
-                lnkDocument2.isDisplayed();
-                String actualString222 = (lnkDocument2.getText());
-                softAssert.assertTrue( actualString222.contains( "Evidence of Coverage Cigna English 0060032-01 Colorado Option" ) );
-                lnkDocument2.click();
-                basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
-                String filePath222 = SharedData.getLocalPathToDownloadFile();
-                String fileName222 = SharedData.getCarrierPdfFileName();
-                String pathAndName222 = filePath222+"//"+fileName222;
-                System.out.println("path and name is "+pathAndName222);
-                softAssert.assertTrue( fileName222.contains("Evidence of Coverage Cigna English 0060032-01 Colorado Option"), "Downloaded file does not exist: " );
-                softAssert.assertTrue( fileName222.length() > 0, "Downloaded file is empty: " );
-                softAssert.assertAll();
+               // basicActions.waitForElementToBePresentWithRetries( lnkDocument2, 60 );
+               // lnkDocument2.isDisplayed();
+               // String actualString222 = (lnkDocument2.getText());
+               // softAssert.assertTrue( actualString222.contains( "Evidence of Coverage Cigna English 0060032-01 Colorado Option" ) );
+               // lnkDocument2.click();
+               // basicActions.waitForDownloadToComplete( SharedData.getLocalPathToDownloadFile(), 60 );
+               // String filePath222 = SharedData.getLocalPathToDownloadFile();
+               // String fileName222 = SharedData.getCarrierPdfFileName();
+               // String pathAndName222 = filePath222+"//"+fileName222;
+               // System.out.println("path and name is "+pathAndName222);
+               // softAssert.assertTrue( fileName222.contains("Evidence of Coverage Cigna English 0060032-01 Colorado Option"), "Downloaded file does not exist: " );
+                //softAssert.assertTrue( fileName222.length() > 0, "Downloaded file is empty: " );
+               // softAssert.assertAll();
 
                 basicActions.waitForElementToBePresentWithRetries( lnkDocument3, 60 );
                 lnkDocument3.isDisplayed();

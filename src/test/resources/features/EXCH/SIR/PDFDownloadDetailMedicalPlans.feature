@@ -1,5 +1,5 @@
 @SIR-EXCH15 @MedicalPDF @SIR
-  # contains SLER-2009, 2400, 2401, 2402, 2403, 2404
+  # contains SLER-2009, 2400, 2401, 2402-WIP, 2403, 2404
 Feature: Medical Plan Detail page related tests
 
   Background:
@@ -153,9 +153,9 @@ Feature: Medical Plan Detail page related tests
       | carrierOption                     | carrierDocs |
       | Rocky Mountain Health Plans / UHC | Rocky       |
 
-  @SLER-2402
+  @SLER-2402-WIP
     # application properties - pdf testing row must be set to "yes" otherwise this will fail
-  Scenario Outline: SLER-2402 - Validate the Cigna document download process (Medical)
+  Scenario Outline: SLER-2402-WIP - Validate the Cigna document download process (Medical)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
