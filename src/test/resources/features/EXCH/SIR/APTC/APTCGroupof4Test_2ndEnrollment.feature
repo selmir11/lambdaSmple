@@ -1,14 +1,16 @@
 @APTC,@APTC-SIR1
-  #  SLER-WIP1, SLER-WIP2
-Feature: UI Tests related to APTC after second enrollment change - Group of 4
+  #  SLER-2431, SLER-2432
+
+
+Feature: UI Tests related to APTC after second enrollment change - Group tests
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-GroupOf4-WIP-PASS
-    #review  - grouping failed
-  Scenario: SLER-GroupOf4-WIP - GroupOf4 - APTCRules - group of 4  - 60K to 80K
+  @SLER-2431-WIP
+    # 1 family group of 4  thru re-enrollment - income increase from 60k to 80k
+  Scenario: SLER-2431-WIP - APTCRules - Family GroupOf4 - re-enrollment - income change from 60K to 80K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -259,13 +261,11 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Grouping Members Medical" page
     Then I click on edit enrollment groups link
 
+    #default groups are 2 due to eligibility rules
     Then I validate I am on the "Edit Grouping Members Medical" page
-    Then I click on create new group button on edit enrollment groups page
-    Then I drag and drop "Primary,Spouse,DaughterOne,DaughterTwo" to make new group
-
-    Then I validate I am on the "Edit Grouping Members Medical" page
+    Then I create new group in edit medical grouping page and drag members to the new group
+      | Primary,Spouse,DaughterOne,DaughterTwo:Group1 |
     Then I click save button to save the groups
-    And I validated message on success enrollment grouping pop-up
     Then I click on continue button on success pop-up
 
     Then I validate I am on the "Grouping Members Medical" page
@@ -274,6 +274,15 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan
     And I click continue on medical plan results page
+
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click on dental edit enrollment groups link
+
+    Then I validate I am on the "Edit Grouping Members Dental" page
+    Then I create new group in edit dental grouping page and drag members to the new group
+      | Primary,Spouse,DaughterOne,DaughterTwo:Group1 |
+    Then I click save button to save the groups
+    Then I click on continue button on success pop-up
 
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
@@ -422,7 +431,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click on Sign Out in the Header for "Portal"
 
 
-  @Group6ReEnroll-WIP-PASS
+  @SLER-2432-WIP
     #review grouping failure
  Scenario: SLER-Group6ReEnroll-WIP - APTCRules - group of 6 - 4 under 21 with 2 adult
     When I click create a new account on login page
@@ -793,6 +802,8 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
+
+    #intial enrollment complete - go back and edit enrollment
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button
