@@ -504,6 +504,23 @@ public class AdminPortalManagePlansPage {
     @FindBy(id = "enrollments-container")
     WebElement mPlansContainer;
 
+    @FindBy(xpath = "//*[@class='previous-plan-container']")
+    WebElement previousFinancialContainer;
+
+    @FindBy(xpath = "//div[@class='header-container header-2']")
+    WebElement previousMedicalContainer;
+
+    @FindBy(xpath = "//div[@class='previous-plan-details-header header-3']")
+    List<WebElement> greenBarHeader;
+
+    @FindBy(xpath = "//*[@class='previous-plan-details']//*[@class='label-container body-text-2']")
+    List<WebElement> previousFinancialLabel;
+
+    @FindBy(xpath = "//*[@class='previous-plan-details']//*[@class='label-container-copy-icon body-text-2']")
+    WebElement previousFinancialPolicyLabel;
+
+
+
 
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
@@ -2151,6 +2168,58 @@ public class AdminPortalManagePlansPage {
             allShowFinancialPeriodInfoLabel = allShowFinancialPeriodInfoLabel - 1;
         }
         softAssert.assertEquals(allShowFinancialPeriodInfoLabel,0,"All financial periods not collapsed");
+        softAssert.assertAll();
+    }
+
+    public void validatePreviousFinancialStyleProperties() {
+        validateInformationContainerStyle();
+        validateColoradoConnectStyle();
+        validateAdminPortalStyle();
+        validatePlanYearsStyle();
+        validateManagePlansStyle();
+        validateSelectPlansStyle();
+        validateMedicalCheckboxStyle();
+        validatePreviousFinancialContainerStyle();
+        validatePreviousFinancialHeaderStyle();
+    }
+
+    private void validatePreviousFinancialHeaderStyle() {
+        softAssert.assertEquals(previousMedicalContainer.getText(),"Previous Financial Periods - Medical", "Header Text not match for " +previousMedicalContainer.getText());
+        softAssert.assertEquals(previousMedicalContainer.getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for "+previousMedicalContainer.getText());
+        softAssert.assertEquals(previousMedicalContainer.getCssValue("font"), "700 28px / 24px \"PT Sans\"","font not match for "+previousMedicalContainer.getText());
+        softAssert.assertAll();
+    }
+
+    private void validatePreviousFinancialContainerStyle() {
+        softAssert.assertEquals(previousFinancialContainer.getCssValue("background-color"),"rgba(226, 241, 248, 1)", "Header Text not match for financial year");
+        softAssert.assertEquals(previousFinancialContainer.getCssValue("border-top-color"), "rgba(26, 112, 179, 1)","Top border color not match for financial container " );
+        softAssert.assertEquals(previousFinancialContainer.getCssValue("border-bottom-color"), "rgba(26, 112, 179, 1)","bottom border color not match for financial container " );
+        softAssert.assertEquals(previousFinancialContainer.getCssValue("border-left-color"), "rgba(26, 112, 179, 1)","Left border color not match for financial container " );
+        softAssert.assertEquals(previousFinancialContainer.getCssValue("border-right-color"), "rgba(26, 112, 179, 1)","Right border color not match for financial container " );
+        softAssert.assertAll();
+    }
+    public void verifyGreenBarForMoreFinancialPeriods(){
+        String expectedText = "Financial Period \\d{2}/\\d{2}/\\d{4} - \\d{2}/\\d{2}/\\d{4}";
+        for (int i = 0; i<greenBar_financialPeriod.size() ; i++) {
+            softAssert.assertTrue(greenBar_financialPeriod.get(i).isDisplayed(),"greenBar_financialPeriod is not displayed");
+            softAssert.assertEquals(greenBar_financialPeriod.get(0).getCssValue("background-color"), "rgba(230, 243, 216, 1)", "greenBar_financialPeriod-back ground Color mismatching");
+            softAssert.assertTrue(greenBarHeader.get(i).getText().matches(expectedText),"Header Text not match for " +greenBarHeader.get(i).getText());
+            softAssert.assertEquals(greenBarHeader.get(i).getCssValue("color"), "rgba(77, 77, 79, 1)","Text color not match for green bar header");
+            softAssert.assertEquals(greenBarHeader.get(i).getCssValue("font"), "700 19px / 24px \"PT Sans\"","font not match for green bar header");
+        }
+        softAssert.assertAll();
+    }
+    public void verifyPreviousFinanicalLabel(List<String> expectedlabelName) {
+        basicActions.waitForElementToBePresent(medicalPlanName, 20);
+        softAssert.assertTrue(labelPlanNamePFPM.isDisplayed(),"labelPlanNamePFPM is not displayed");
+        softAssert.assertTrue(labelPolicyCoveragePFPM.isDisplayed(),"labelPolicyCoveragePFPM is not displayed");
+        softAssert.assertTrue(labelPolicyCoveragePFPM.getText().contains("Policy Coverage:"), "Coverage label not match");
+        List<String> actualLabelList = previousFinancialLabel.stream().map(WebElement::getText)
+                .toList();
+        List<String> actualLabel = actualLabelList.subList(0,actualLabelList.size()-1);
+
+        softAssert.assertEquals(actualLabel, expectedlabelName.subList(0, 11), "label not match for");
+        softAssert.assertEquals(previousFinancialPolicyLabel.getText(), expectedlabelName.get(11), "label not match for");
         softAssert.assertAll();
     }
 }
