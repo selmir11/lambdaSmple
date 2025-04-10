@@ -295,6 +295,11 @@ Feature: UI Tests related to APTC after second enrollment change - Group tests
     And I validate the APTC Credit on the Summary page is "-$947.71"
     And I click continue on plan summary page
 
+    Then I validate I am on the "Financial Help Agreements" page
+    And I select the terms and agreements checkbox
+    And I enter householder signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
+
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
@@ -319,11 +324,10 @@ Feature: UI Tests related to APTC after second enrollment change - Group tests
     Then I validate I am on the "Report a life change" page
     And I report "MovedToColorado" and click continue
 
-
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
-    Then I select "Male" as sex option
-    And I select "Yes" to Are You Applying
+
+    Then I validate I am on the "Tell us about yourself" page
     And I click continue on Tell us about yourself page
 
     Then I validate I am on the "Add Address" page
@@ -335,7 +339,8 @@ Feature: UI Tests related to APTC after second enrollment change - Group tests
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+
+    Then I validate I am on the "Race and Ethnicity" page
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -416,8 +421,16 @@ Feature: UI Tests related to APTC after second enrollment change - Group tests
     And I select the first medical plan
     And I click continue on medical plan results page
 
+    Then I validate I am on the "Medical Plan Results" page
+    And I select the first medical plan
+    And I click continue on medical plan results page
+
     Then I validate I am on the "Grouping Members Dental" page
     And I click continue on grouping Members Dental page
+
+    Then I validate I am on the "Dental Plan Results" page
+    And I select first dental plan
+    And I click continue on dental plan results page
 
     Then I validate I am on the "Dental Plan Results" page
     And I select first dental plan

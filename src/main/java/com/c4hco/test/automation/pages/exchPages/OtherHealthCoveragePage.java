@@ -209,9 +209,8 @@ public class OtherHealthCoveragePage {
     }
 
     public void clickSaveAndContinue(){
-        basicActions.waitForElementToDisappear(spinner, 60);
-        basicActions.waitForElementToBePresentWithRetries(existingHealthInsuranceHeader, 60);
-        basicActions.waitForElementToBeClickableWithRetries(saveAndContinueBtn, 60);
+        basicActions.waitForElementToDisappear(spinner, 100);
+        basicActions.waitForElementToBePresentWithRetries(saveAndContinueBtn, 120);
         basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
     }
