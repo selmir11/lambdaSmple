@@ -173,3 +173,79 @@ Feature: Manage Plans: Buttons (positive and negative testing)
       | HIOS ID:               |
     Then I verify green bar between two financial periods
     Then I verify expand and collapse all financial periods within the Previous Financial Period
+
+  @SLER-2433 @OPSRegression
+  Scenario: OPS MP Simplified View Informational Components[RT-2529]
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    Then I enter an "accountID" in any env "2110007768" "5830106510" to search user
+    Then I click on Search button in AP dashboard page
+    Then I select the first record from the search results
+    Then I click on manage plan button on admin portal Individual dashboard
+    And I validate I am on the "Manage Plans" page
+    And I select the "2022" plan year on manage plan
+    Then I unchecked "Dental" from plan type
+    Then I verify page texts of all labels of "only_medical" plan
+      | Latest Application Date: |
+      | Financial Start Date:    |
+      | EHB Premium:             |
+      | Financial End Date:      |
+      | CSR Amount:              |
+      | Plan Premium:            |
+      | Latest LCE and Date:     |
+      | Plan APTC:               |
+      | Rating Area:             |
+      | Premium after Subsidy:   |
+      | Service Area:            |
+      | Plan AV:                 |
+      | HIOS ID:                 |
+      | Policy ID:               |
+    Then I unchecked "Medical" from plan type
+    Then I checked "Dental" from plan type
+    Then I verify page texts of all labels of "only_dental" plan
+      | Latest Application Date: |
+      | Financial Start Date:    |
+      | EHB Premium:             |
+      | Financial End Date:      |
+      | CSR Amount:              |
+      | Plan Premium:            |
+      | Latest LCE and Date:     |
+      | Plan APTC:               |
+      | Rating Area:             |
+      | Premium after Subsidy:   |
+      | Service Area:            |
+      | Plan AV:                 |
+      | HIOS ID:                 |
+      | Policy ID:               |
+    Then I logout from Admin Portal
+    Then I close child window
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I select "coco" checkbox on Admin Portal Dashboard
+    Then I enter an accountId in any Env " 4007331033" "6203260386" to search user
+    And I click on Search button in AP dashboard page
+    Then I select the first record from the search results
+    Then I click on manage plan button on admin portal Individual dashboard
+    And I validate I am on the "Manage Plans" page
+    And I select the "2023" plan year on manage plan
+    Then I verify page texts of all labels of "only_medical" plan
+      | Latest Application Date: |
+      | Financial Start Date:    |
+      | EHB Premium:             |
+      | Financial End Date:      |
+      | CSR Amount:              |
+      | Plan Premium:            |
+      | Latest LCE and Date:     |
+      | Plan SES:                |
+      | Rating Area:             |
+      | Premium after Subsidy:   |
+      | Service Area:            |
+      | Plan AV:                 |
+      | HIOS ID:                 |
+      | Policy ID:               |
+    Then I check for Previous Medical container message display
