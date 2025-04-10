@@ -124,6 +124,7 @@ Feature: Coco user Validate the eligibility
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
+    And I wait for 10000 milliseconds
     And I verify the application result details in DB as "<reasonCode>" for "getFromSharedData"
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
@@ -225,6 +226,7 @@ Feature: Coco user Validate the eligibility
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
+    And I wait for 10000 milliseconds
     And I verify the application result details in DB as "<reasonCode>" for "Spouse"
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

@@ -136,6 +136,11 @@ public class FindExpertHelpSteps {
                 findExpertHelpPage.clickRemoveBrokerButton();
         }
 
+        @Then("I click remove my current Broker")
+        public void iClickRemoveMyCurrentBroker(){
+                findExpertHelpPage.removeBrokerButton();
+        }
+
         @And("I {string} my decision to remove my current broker")
         public void iClickRemoveBrokerPopUp(String removalOption){
                 findExpertHelpPage.clickRemoveBrokerPopUp(removalOption);

@@ -134,6 +134,30 @@ public class DashboardPage {
         brokerDashboard.click();
     }
 
+    public void verifyBrokerCompleteProfile(){
+        basicActions.waitForElementToBePresent(completeProfile,10);
+        softAssert.assertEquals(completeProfile.getText(),"Complete Profile");
+        softAssert.assertAll();
+    }
+
+    public void verifyAgencyCompleteProfile(){
+        basicActions.waitForElementToBePresent(agencyCompleteProfile,10);
+        softAssert.assertEquals(agencyCompleteProfile.getText(),"Complete your profile");
+        softAssert.assertAll();
+    }
+
+    public void verifyBrokerProfileEditButton(){
+        basicActions.waitForElementToBePresent(completeProfile,10);
+        softAssert.assertEquals(completeProfile.getText(),"Edit");
+        softAssert.assertAll();
+    }
+
+    public void verifyAgencyProfileEditButton(){
+        basicActions.waitForElementToBePresent(agencyCompleteProfile,10);
+        softAssert.assertEquals(agencyCompleteProfile.getText(),"Edit");
+        softAssert.assertAll();
+    }
+
     public void verifyBrokerDashboard(){
         basicActions.waitForElementToBePresent(brokerDashboard,10);
         softAssert.assertEquals(brokerDashboard.getText(),"Broker Dashboard");
