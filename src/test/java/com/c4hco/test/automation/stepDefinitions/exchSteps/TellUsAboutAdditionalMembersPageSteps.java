@@ -45,6 +45,9 @@ public class TellUsAboutAdditionalMembersPageSteps {
     @And("I update member applying for coverage to {string}")
     public void isMemberApplyingForInsurance(String Applying){tellUsAboutAdditionalMemberPage.isMemberApplyingForInsurance(Applying);
     }
+    @And("I update the date of birth for {string} to {string}")
+    public void updateMemberDOB(String memPrefix, String newDOB){tellUsAboutAdditionalMemberPage.updateMemberDOB(memPrefix, newDOB);
+    }
     @And("I update the member first, middle, and last name")
     public void updateMemberFullName(){tellUsAboutAdditionalMemberPage.updateMemberFullName();
     }
@@ -53,7 +56,12 @@ public class TellUsAboutAdditionalMembersPageSteps {
     public void selectTotalBabiesAndSetDueDate(int totalBabies, String expectedDate) {
         tellUsAboutAdditionalMemberPage.selectTotalBabiesAndSetDueDate(totalBabies, expectedDate);
     }
+    @And("I update the members gender to {string}")
+    public void selectSex(String Sex) {tellUsAboutAdditionalMemberPage.selectSex(Sex);
+    }
 
-
-
+    @And("I update the members relation to Primary to {string}")
+    public void selectNewRelationship(String Relation) {
+        tellUsAboutAdditionalMemberPage.selectNewRelationship(Relation);
+    }
 }
