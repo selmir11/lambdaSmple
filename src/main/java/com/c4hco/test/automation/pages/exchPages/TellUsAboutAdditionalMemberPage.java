@@ -146,6 +146,19 @@ public class TellUsAboutAdditionalMemberPage {
                 throw new IllegalArgumentException("Invalid option: " + Sex);
         }
     }
+
+    public void updateMemberGender(String memPrefix, String Gender){
+        switch (Gender) {
+            case "Female":
+                rdobtngenderFemale.click();
+                break;
+            case "Male":
+                rdobtngenderMale.click();
+                break;
+        }
+    }
+
+
     public void selectIsPersonPregnant(String pregnant) {
         switch (pregnant) {
             case "Yes":
@@ -165,6 +178,12 @@ public class TellUsAboutAdditionalMemberPage {
         dropdown.selectByVisibleText(Relation);
         List<MemberDetails> memberList = SharedData.getMembers();
         memberList.get(memberList.size() - 1).setRelation_to_subscriber(Relation);
+    }
+    public void updateRelationship(String memPrefix, String Relation){
+        basicActions.waitForElementToBePresent(selectRelationship, 15);
+        basicActions.waitForElementToBeClickable(selectRelationship, 15);
+        Select dropdown = new Select(selectRelationship);
+        dropdown.selectByVisibleText(Relation);
     }
 
     public void setSelectRelationship1(String Relation) {
@@ -420,5 +439,9 @@ public class TellUsAboutAdditionalMemberPage {
         txtlastName.sendKeys(newLastName);
         System.out.println("Last Name updated to "+newLastName);
        }
-
+    public void updateMemberDOB(String memPrefix, String newDOB){
+        basicActions.waitForElementToBeClickable(txtdateOfBirth,50);
+        txtdateOfBirth.clear();
+        txtdateOfBirth.sendKeys(newDOB);
     }
+}

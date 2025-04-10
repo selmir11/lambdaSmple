@@ -151,5 +151,9 @@ Feature: Seed09 - Exchange
     Then I validate I am on the "Account Overview" page
     And I click on Sign Out in the Header for "NonElmo"
 
+  @SLER-2436-WIP
+  Scenario: RT-2262 ENR-EXCH: DEMOGRAPHIC CHANGE - CHANGE RESPONSIBLE PERSON (FNAME, LNAME, SSN, MAILING ADDRESS)
+
+
 
 
