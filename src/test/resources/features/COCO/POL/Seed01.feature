@@ -225,8 +225,7 @@ Feature: Regression Tests that require COCO Seed 1
     Then I click continue on coco start shopping page
     Then I click continue on grouping Members Medical coco page
     Then I validate I am on the "Medical Plan Results" page
-    And I select or skip the medical plans for groups on medical plan page
-      | Group 1:Cigna Connect Colorado Option Bronze |
+    And I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
     And I set medical premium amount
     And I click continue on coco plan summary page
