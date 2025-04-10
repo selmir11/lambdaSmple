@@ -1,8 +1,10 @@
 Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
   @SLCR-298 #WIP
   Scenario: CCRT-49 COCO Initial Application HUSBAND + WIFE (Colorado Option) (BROKER OBO)
-
-    Given I open the login page on the "login" portal
+   Given I set the test scenario details in coco
+     | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+     | 1           | 2            | 1                 | 1                | 2               |
+   Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -139,5 +141,8 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
 #    And I sign out of Outlook
 #    And I switch to the tab number 0
 
+   And I validate "SUBMITTED" policy table entities for groups in COCO
+   And I verify the policy data quality check with Policy Ah keyset size 1
+   
 
 
