@@ -361,7 +361,6 @@ public class OhcMedicarePage {
     }
 
     public void verifyCheckboxes(String boxA, String boxB){
-        basicActions.wait(500);
         basicActions.waitForElementListToBePresent(medicareCheckboxDetails,20);
         switch (boxA){
             case "is":
