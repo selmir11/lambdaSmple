@@ -407,6 +407,8 @@ public class MyDocumentsPage {
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
+    @FindBy(css = "#documentsUploadMessage > p")
+    WebElement messageNoDocumentsNeeded;
 
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
@@ -1860,6 +1862,11 @@ public class MyDocumentsPage {
                 softAssert.assertAll();
             }
         }
+    public void verifyNoDocumentsNeeded() {
+        basicActions.waitForElementToBePresent(myDocumentsSubTitle,30);
+        softAssert.assertTrue(messageNoDocumentsNeeded.isDisplayed(), "You don't need to upload any documents at this time");
+        softAssert.assertAll();
+    }
 
 
     }
