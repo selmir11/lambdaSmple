@@ -4,7 +4,7 @@ Feature: My Profile Page Coco
     Given I open the login page on the "login" portal
 
   @SLCR-641 @NVOCoCoRegression
-  Scenario: Timeout Session popup on my profile page
+  Scenario: Scenario 1 Timeout Session popup on my profile page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -23,9 +23,8 @@ Feature: My Profile Page Coco
     And I change the language from header to "English"
     Then I validate I am on the "Login" page
 
-    ####Timeout Session Popup Admin Portal ####
-
-  Scenario: Timeout Session popup on Admin Portal OBO
+  @SLCR-641 @NVOCoCoRegression
+  Scenario: Scenario 2 Timeout Session popup on Admin Portal OBO
     And I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

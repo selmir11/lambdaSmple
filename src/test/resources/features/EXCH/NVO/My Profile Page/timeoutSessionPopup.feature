@@ -4,7 +4,7 @@ Feature: My Profile Page Exch
     Given I open the login page on the "login" portal
 
   @SLER-997  @NVOExchRegression
-  Scenario: Timeout Session popup on my profile page
+  Scenario: Scenario 1 Timeout Session popup on my profile page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -22,10 +22,8 @@ Feature: My Profile Page Exch
     And I change the language from header to "English"
     Then I validate I am on the "Login" page
 
-    ####Timeout session Admin Portal OBO
-
-  Scenario: Timeout Session popup on OBO
-
+  @SLER-997  @NVOExchRegression
+  Scenario: Scenario 2 Timeout Session popup on OBO
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
