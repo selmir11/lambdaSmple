@@ -10,6 +10,9 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     Then I validate I am on the "Login" page
     And I enter valid credentials to login
     Then I click continue signing in on the CAC Screener page
+    Given I set the dynamic policy, coverage and financial dates in coco
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year |
     Then I validate I am on the "CoCo Welcome" page
     And I apply for the current year in CoCo
     Then I validate I am on the "Find Expert Help" page
@@ -23,7 +26,7 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
 
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
-    And I login as Broker User any environment "enrintialtest@outlook.com" password "ALaska12!" and "enrintialtest@outlook.com" password "ALaska12!"
+    And I login as Broker User any environment "enrintialtest@outlook.com" password "ALaska12!" and "enrintialtest+007@outlook.com" password "ALaska12!"
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "enrintialtest@outlook.com" and "ALaska12!"
     Then I open the MFA notice
@@ -33,6 +36,7 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     Then I enter the MFA code and click Verify
 
     And I validate I am on the "Broker Portal Your Clients" page
+    Then I validate the Your Clients page title
     And I click on "colorado Connect" tab
     And I search for clients
     And I click on first client search result
@@ -102,6 +106,7 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     And I select or skip the medical plans for groups on medical plan page
       | Group 1:Select Health Value Colorado Option Bronze |
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I set medical premium amount
     And I click continue on coco plan summary page
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox CoCo
@@ -109,5 +114,30 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select submit enrollment button on the Enrollment Agreements CoCo page
     Then I click all done from payment portal page coco
+    Then I click on broker userName and logout
+
+    Given I open the login page on the "login" portal
+    Then I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
+    And I click on "My Plans" link on welcome page
+    Then I click on Future Plans CoCo
+    Then I validate enrolled medical plans on future plans tab in COCO
+    And I click on Apply for Coverage in the "Elmo" Header
+    Then I validate I am on the "CoCo Welcome" page
+    And I click on "My Documents and Letters" link on welcome page
+#    And I click on download "EN-002-04" document
+#    Then I validate "EN-002-04 English" notice content
+#    And I click on Sign Out in the Header for "Elmo"
+#
+#    Then I open outlook Tab
+#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+#    Then I open the notice "(EN-002-04)" in "English"
+#    And I verify the notice Text for "EN-002-04" in "English" for "Coco"
+#    Then I delete the open notice
+#    And I sign out of Outlook
+#    And I switch to the tab number 0
+
 
 

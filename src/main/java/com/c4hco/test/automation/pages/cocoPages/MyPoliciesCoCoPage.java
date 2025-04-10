@@ -37,7 +37,8 @@ public class MyPoliciesCoCoPage {
     WebElement planEndDate;
     @FindBy(css = ".current-policy__container .header-3")
     List<WebElement> planNames; // Both medical and dental plan names for all members
-
+    @FindBy(css="#SOL-CurrentPolicies-.current-future__policy-name")
+    WebElement planNameOnFuturePlans;
     @FindBy(id = "viewPlanHistoryLink_0")
     WebElement viewPlanHistoryLinkMedical; // To DO:: Update the locators in this file
     @FindBy(id = "viewPlanHistoryLink_1")
@@ -54,6 +55,8 @@ public class MyPoliciesCoCoPage {
 
     @FindBy(xpath = "//div[@id='SOL-CurrentPolicies-NoAppliedSubsidy']/div/child::span")
     List<WebElement> premiumAmt;
+    @FindBy(css="#SOL-CurrentPolicies-NoAppliedSubsidy span")
+    List<WebElement> futurePlansPremiumAmt;
 
     @FindBy(xpath = "//div[contains(./span, 'Exchange Policy Number:')]/following-sibling::div/span")
     List<WebElement> EAPID; //exchange policy number for both medical and dental
@@ -68,6 +71,8 @@ public class MyPoliciesCoCoPage {
     WebElement subscriberName;
     @FindBy(css = "span#SOL-CurrentPolicies-LastUpdated")
     WebElement lastUpdatedOn;
+    @FindBy(css = "#SOL-CurrentPolicies-LastUpdated span")
+    List<WebElement> lastUpdatedOnFuturePlans;
     @FindBy(css = "span#SOL-CurrentPolicies-PolicySubmittedDate")
     WebElement lastUpdatedDate;
     @FindBy(id="SOL-CurrentPolicies-CancelCurrentMedical")
@@ -113,6 +118,31 @@ public class MyPoliciesCoCoPage {
         //Validating Total Premium without SES
         String totalAmtAfterZeroFinancialHelp = primaryMember.getMedicalPremiumAmt();
         String premiumWithoutSes = premiumAmt.get(0).getText();
+        softAssert.assertEquals(premiumWithoutSes, "$"+totalAmtAfterZeroFinancialHelp+" /month", "Total Premium amount does not match");
+        softAssert.assertAll();
+    }
+    public void validatePlanDetailsOnFuturePlans(){
+        DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
+        // Validating Names
+        basicActions.waitForElementListToBePresent(memberNames, 40);
+        allMemberNames = new HashSet<>(basicActions.getAllMemNames());
+        Set<String> namesFromUi = new HashSet<>(Arrays.asList(memberNames.get(0).getText().replace(" and ", ", ").split(", ")));
+        softAssert.assertTrue(allMemberNames.equals(namesFromUi));
+
+        softAssert.assertEquals(planStartDate.getText().split(" ")[0], basicActions.changeDateFormat(primaryMember.getMedicalPlanStartDate(), "MM/dd/yyyy", "MM/dd/yy"), "medical plan date did not match");
+        softAssert.assertEquals(planEndDate.getText(), basicActions.changeDateFormat(primaryMember.getMedicalPlanEndDate(), "MM/dd/yyyy", "MM/dd/yy"), "medical plan end date did not match");
+        softAssert.assertEquals(planNameOnFuturePlans.getText(), primaryMember.getMedicalPlan(), "medical plan name did not match");
+        softAssert.assertEquals(futurePlansPremiumAmt.get(0).getText().split(" ")[0], "$" + primaryMember.getMedicalPremiumAmt(), "medical premium did not match");
+
+        Map<String, String> medEapidDb = exchDbDataProvider.getMedicalEap_id();
+        primaryMember.setMedicalEapid_db(medEapidDb.get(primaryMember.getMedGroupInd()));
+        softAssert.assertEquals(medEapidDb.get(primaryMember.getMedGroupInd()),policyNumSubscriber.getText().replace("Exchange policy number: ",""), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
+        softAssert.assertTrue(lastUpdatedOnFuturePlans.get(0).getText().equals("Last updated:"),"Last Updated text mismatch");
+        softAssert.assertEquals(lastUpdatedOnFuturePlans.get(1).getText(),basicActions.changeDateFormat(lastUpdated, "MM/dd/yyyy", "MM/dd/yy"), "Last Updated Date did not match");
+
+        //Validating Total Premium without SES
+        String totalAmtAfterZeroFinancialHelp = primaryMember.getMedicalPremiumAmt();
+        String premiumWithoutSes = futurePlansPremiumAmt.get(0).getText();
         softAssert.assertEquals(premiumWithoutSes, "$"+totalAmtAfterZeroFinancialHelp+" /month", "Total Premium amount does not match");
         softAssert.assertAll();
     }
