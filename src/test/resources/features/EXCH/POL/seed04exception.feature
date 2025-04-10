@@ -297,8 +297,8 @@ Feature: Seed04exception - Exchange
     And I click plus icon next to member on household page for "Spouse"
     Then I click edit basic information icon on household page for "Spouse"
     Then I validate I am on the "Member" page
-    And I update the members gender to "Male"
-    And I update the members relation to Primary to "Spouse"
+    And I update the gender of "Spouse" to "Male"
+    And I update "Spouse" relationship to Primary to "Spouse"
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     Then I click continue on the Add Address page

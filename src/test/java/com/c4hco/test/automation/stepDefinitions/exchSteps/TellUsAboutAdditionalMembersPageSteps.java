@@ -56,12 +56,12 @@ public class TellUsAboutAdditionalMembersPageSteps {
     public void selectTotalBabiesAndSetDueDate(int totalBabies, String expectedDate) {
         tellUsAboutAdditionalMemberPage.selectTotalBabiesAndSetDueDate(totalBabies, expectedDate);
     }
-    @And("I update the members gender to {string}")
-    public void selectSex(String Sex) {tellUsAboutAdditionalMemberPage.selectSex(Sex);
+    @And("I update the gender of {string} to {string}")
+    public void updateMemberGender(String memPrefix, String Sex) {tellUsAboutAdditionalMemberPage.updateMemberGender(memPrefix, Sex);
     }
 
-    @And("I update the members relation to Primary to {string}")
-    public void selectNewRelationship(String Relation) {
-        tellUsAboutAdditionalMemberPage.selectNewRelationship(Relation);
+    @And("I update {string} relationship to Primary to {string}")
+    public void updateRelationship(String memPrefix, String Relation) {
+        tellUsAboutAdditionalMemberPage.updateRelationship(memPrefix, Relation);
     }
 }
