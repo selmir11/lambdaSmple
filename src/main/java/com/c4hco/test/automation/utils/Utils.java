@@ -10,8 +10,6 @@ public class Utils {
     private String isOpenEnrollment = ApplicationProperties.getInstance().getProperty("isOpenEnrollment");
     private String ses = ApplicationProperties.getInstance().getProperty("ses");
     private String dbName = ApplicationProperties.getInstance().getProperty("dbName");
-    private String globalHooksAfter = ApplicationProperties.getInstance().getProperty("globalHooksAfter");
-    private String screenshots = ApplicationProperties.getInstance().getProperty("screenshots");
 
     private BasicActions basicActions;
 
@@ -21,8 +19,6 @@ public class Utils {
         SharedData.setEnv(env);
         SharedData.setIsOpenEnrollment(isOpenEnrollment);
         SharedData.setSes(ses);
-        SharedData.setGlobalHooksAfter(globalHooksAfter);
-        SharedData.setScreenshots(screenshots);
         setdbName();
     }
 
