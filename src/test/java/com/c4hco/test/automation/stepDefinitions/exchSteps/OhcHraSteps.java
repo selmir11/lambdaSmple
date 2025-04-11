@@ -5,6 +5,8 @@ import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
+import java.util.List;
+
 public class OhcHraSteps {
     OhcHraPage ohcHraPage = new OhcHraPage(WebDriverManager.getDriver());
 
@@ -69,7 +71,10 @@ public class OhcHraSteps {
     @And("I select {string} option on the HRA page")
     public void iSelectYearOption(String year){ohcHraPage.selectYearOption(year);}
 
-
+    @And("I validate that, after selecting ICHRA the message is displayed in OHC HRA Page")
+    public void iValidateThatAfterSelectingICHRATheMessageIsDisplayedInInOHCHRAPage( List<String> messege) {
+        ohcHraPage.validateICHRAmessagedisplayed(messege);
+    }
 
 
 
