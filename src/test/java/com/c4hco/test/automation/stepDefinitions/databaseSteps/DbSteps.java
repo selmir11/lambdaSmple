@@ -408,6 +408,11 @@ public class DbSteps {
     public void iValidateTheDocumentDetails(List<String> expectedValues) {
         dbValidations.validateDocumentDetails(expectedValues);
     }
+
+    @Then("I validate the assistnet email in DB")
+    public void iValidateTheAssistnetEmailInDB() {
+        dbValidations.validateTheAssistnetEmailInDB();
+    }
 }
 
 

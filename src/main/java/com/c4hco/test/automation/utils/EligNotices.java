@@ -5,6 +5,8 @@ import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 
@@ -1730,37 +1732,46 @@ public class EligNotices {
                 "Ayuda Lengua Adicional");
     }
     public static String premiumTaxCredits(String docType, String language, String memberNumber, BasicActions basicActions) {
-        String englishTemplate = ", starting as early as "+getFirstOfNextMonth(language, basicActions)+" you are approved for:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String englishTemplate = ", starting as early as "+getFirstOfNextMonth(language, basicActions)+" you are approved for:";
         String englishTemplate2 = "Enroll in a plan by "+getLceCloseDate(language, docType, basicActions)+".\n";
-        String englishTemplate3 = ", you do not qualify for the following:"+SharedData.getPrimaryMember().getFullName()+"\n";
-        String spanishTemplate = ", a partir del "+getFirstOfNextMonth(language, basicActions)+" usted est\u00E1 aprobado para:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String englishTemplate3 = ", you do not qualify for the following:";
+        String englishTemplate4 = "Verification is\n"+"needed\n"+"We\u2019re missing some information!\n"+
+                "You are temporarily approved for 90 days, but we need more information\n"+
+                "from you to continue your coverage after the 90 days. Please see the\n"+
+                "\u201cMore information needed\u201D section below for what is needed and next\n"+"steps.\n";
+        String spanishTemplate = ", a partir del "+getFirstOfNextMonth(language, basicActions)+" usted est\u00E1 aprobado para:";
         String spanishTemplate2 = "Inscr\u00EDbase en un plan antes del "+getLceCloseDate(language, docType, basicActions)+".\n";
-        String spanishTemplate3 = ", no califica para lo siguiente:"+SharedData.getPrimaryMember().getFullName()+"\n";
-        String atpc = "$178.11";
+        String spanishTemplate3 = ", no califica para lo siguiente:";
+        String spanishTemplate4 = "Se requiere\n" + "verificaci\u00F3n\n" + "Nos falta alguna informaci\u00F3n!\n" +
+                "Ha sido aprobado provisionalmente por 90 d\u00EDas, pero necesitamos m\u00E1s\n" +
+                "informaci\u00F3n para que su cobertura contin\u00FAe despu\u00E9s de esos 90 d\u00EDas. En\n" +
+                "la secci\u00F3n \"Se requiere m\u00E1s informaci\u00F3n\" que aparece en seguida se\n" +
+                "indica lo que se necesita y los pasos siguientes.\n";
 
+        String primaryName = SharedData.getPrimaryMember().getFullName();
         List<MemberDetails> memberList = SharedData.getMembers();
         String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
 
         return switch (memberNumber) {
             case "1" -> switch (language) {
                 case "English" -> String.format(
-                        englishTemplate +
+                        englishTemplate +primaryName+"\n" +
                                 "Premium\n" +
                                 "Tax Credits\n" +
                                 "for "+basicActions.getCurrYear()+"\n" +
-                                "Your household qualifies to receive up to "+atpc+" a month to use towards\n" +
+                                "Your household qualifies to receive up to $178.11 a month to use towards\n" +
                                 "lowering the cost of your monthly health insurance premiums when you\n" +
                                 "enroll through Connect for Health Colorado. Based on your application,\n" +
-                                "this applies to "+SharedData.getPrimaryMember().getFullName()+"\n" +
+                                "this applies to "+primaryName+"\n" +
                                 englishTemplate2 +
-                                englishTemplate +
+                                englishTemplate +primaryName+"\n" +
                                 "Health\n" +
                                 "insurance\n" +
                                 "plan for "+basicActions.getCurrYear()+"\n" +
                                 "You can enroll in a health insurance plan for 2025 if you qualify for a Special Enrollment \n" +
                                 "Period or if it\u2019s Open Enrollment.\n" +
                                 englishTemplate2 +
-                                englishTemplate3 +
+                                englishTemplate3 +primaryName+"\n" +
                                 "Cost-Sharing\n" +
                                 "Reduction for\n" +
                                 basicActions.getCurrYear()+"\n"+
@@ -1768,7 +1779,7 @@ public class EligNotices {
                                 "Your household's income is too high\n"
                 );
                 case "Spanish" -> String.format(
-                        spanishTemplate +
+                        spanishTemplate +primaryName+"\n" +
                                 "Cr\u00E9ditos\n" +
                                 "fiscales para\n" +
                                 "el pago de la\n" +
@@ -1777,9 +1788,9 @@ public class EligNotices {
                                 "Su familia tiene derecho a recibir hasta $178.11 al mes para reducir el\n" +
                                 "monto de las cuotas mensuales de su seguro de salud cuando se inscribe\n" +
                                 "a trav\u00E9s de Connect for Health Colorado. De acuerdo con su solicitud,\n" +
-                                "estos ahorros se aplican a: "+SharedData.getPrimaryMember().getFullName()+"\n" +
+                                "estos ahorros se aplican a: "+primaryName+"\n" +
                                 spanishTemplate2 +
-                                spanishTemplate +
+                                spanishTemplate +primaryName+"\n" +
                                 "Plan de\n" +
                                 "seguro de\n" +
                                 "salud para\n" +
@@ -1787,7 +1798,7 @@ public class EligNotices {
                                 "Puede inscribirse en un plan de seguro de salud para 2025 si califica para un per\u00EDodo\n" +
                                 "de inscripci\u00F3n especial o si est\u00E1 activa la inscripci\u00F3n abierta.\n" +
                                 spanishTemplate2 +
-                                spanishTemplate3 +
+                                spanishTemplate3 +primaryName+"\n" +
                                 "Reducci\u00F3n\n" +
                                 "de los costos\n" +
                                 "compartidos\n" +
@@ -1799,15 +1810,258 @@ public class EligNotices {
             };
             case "2" -> switch (language) {
                 case "English" -> String.format(
-                        englishTemplate + englishTemplate2 + englishTemplate3
+                        englishTemplate +primaryName+"\n" +
+                                "Premium Tax\n" +
+                                "Credits for\n" +
+                                 basicActions.getCurrYear()+"\n" +
+                                "Your household qualifies to receive up to $712.11 a month to use towards\n" +
+                                "lowering the cost of your monthly health insurance premiums when you\n" +
+                                "enroll through Connect for Health Colorado. Based on your application,\n" +
+                                "this applies to "+primaryName+"\n" +
+                                englishTemplate2 +
+                                englishTemplate4 +
+                                englishTemplate +primaryName+"\n" +
+                                "Health\n" +
+                                "insurance\n" +
+                                "plan for "+basicActions.getCurrYear()+"\n" +
+                                "You can enroll in a health insurance plan for 2025 if you qualify for a Special Enrollment \n" +
+                                "Period or if it\u2019s Open Enrollment.\n" +
+                                englishTemplate2 +
+                                englishTemplate4 +
+                                englishTemplate3 +primaryName+"\n" +
+                                "Cost-Sharing\n" +
+                                "Reduction for\n" +
+                                basicActions.getCurrYear()+"\n"+
+                                "You do not qualify for Cost-Sharing Reduction because:\n" +
+                                "Your household's income is too high\n" +
+
+                                englishTemplate +member0Name+"\n" +
+                                "Premium Tax\n" +
+                                "Credits for\n" +
+                                basicActions.getCurrYear()+"\n" +
+                                "Your household qualifies to receive up to $712.11 a month to use towards\n" +
+                                "lowering the cost of your monthly health insurance premiums when you\n" +
+                                "enroll through Connect for Health Colorado. Based on your application,\n" +
+                                "this applies to "+member0Name+"\n" +
+                                englishTemplate2 +
+                                englishTemplate4 +
+                                englishTemplate +member0Name+"\n" +
+                                "Health\n" +
+                                "insurance\n" +
+                                "plan for "+basicActions.getCurrYear()+"\n" +
+                                "You can enroll in a health insurance plan for 2025 if you qualify for a Special Enrollment \n" +
+                                "Period or if it\u2019s Open Enrollment.\n" +
+                                englishTemplate2 +
+                                englishTemplate4 +
+                                englishTemplate3 +member0Name+"\n" +
+                                "Cost-Sharing\n" +
+                                "Reduction for\n" +
+                                basicActions.getCurrYear()+"\n"+
+                                "You do not qualify for Cost-Sharing Reduction because:\n" +
+                                "Your household's income is too high\n" +
+                        moreInformationNeededForPremiumTaxCredit(docType, language, memberNumber, basicActions)
                 );
                 case "Spanish" -> String.format(
-                        spanishTemplate + spanishTemplate2 + spanishTemplate3
+                        spanishTemplate +primaryName+"\n" +
+                                "Cr\u00E9ditos\n" +
+                                "fiscales para\n" +
+                                "el pago de la\n" +
+                                "cuota para\n" +
+                                basicActions.getCurrYear()+"\n" +
+                                "Su familia tiene derecho a recibir hasta $712.11 al mes para reducir el\n" +
+                                "monto de las cuotas mensuales de su seguro de salud cuando se inscribe\n" +
+                                "a trav\u00E9s de Connect for Health Colorado. De acuerdo con su solicitud,\n" +
+                                "estos ahorros se aplican a: "+primaryName+"\n" +
+                                spanishTemplate2 +
+                                spanishTemplate4 +
+                                spanishTemplate +primaryName+"\n" +
+                                "Plan de\n" +
+                                "seguro de\n" +
+                                "salud para\n" +
+                                basicActions.getCurrYear()+"\n" +
+                                "Puede inscribirse en un plan de seguro de salud para 2025 si califica para un per\u00EDodo\n" +
+                                "de inscripci\u00F3n especial o si est\u00E1 activa la inscripci\u00F3n abierta.\n" +
+                                spanishTemplate2 +
+                                spanishTemplate4 +
+                                spanishTemplate3 +primaryName+"\n" +
+                                "Reducci\u00F3n\n" +
+                                "de los costos\n" +
+                                "compartidos\n" +
+                                "para "+ basicActions.getCurrYear()+"\n" +
+                                "Reducci\u00F3n de los costos compartidos no califica para lo siguiente:\n" +
+                                "Sus ingresos familiares son demasiado altos\n" +
+
+                                spanishTemplate +member0Name+"\n" +
+                                "Cr\u00E9ditos\n" +
+                                "fiscales para\n" +
+                                "el pago de la\n" +
+                                "cuota para\n" +
+                                basicActions.getCurrYear()+"\n" +
+                                "Su familia tiene derecho a recibir hasta $712.11 al mes para reducir el\n" +
+                                "monto de las cuotas mensuales de su seguro de salud cuando se inscribe\n" +
+                                "a trav\u00E9s de Connect for Health Colorado. De acuerdo con su solicitud,\n" +
+                                "estos ahorros se aplican a: "+member0Name+"\n" +
+                                spanishTemplate2 +
+                                spanishTemplate4 +
+                                spanishTemplate +member0Name+"\n" +
+                                "Plan de\n" +
+                                "seguro de\n" +
+                                "salud para\n" +
+                                basicActions.getCurrYear()+"\n" +
+                                "Puede inscribirse en un plan de seguro de salud para 2025 si califica para un per\u00EDodo\n" +
+                                "de inscripci\u00F3n especial o si est\u00E1 activa la inscripci\u00F3n abierta.\n" +
+                                spanishTemplate2 +
+                                spanishTemplate4 +
+                                spanishTemplate3 +member0Name+"\n" +
+                                "Reducci\u00F3n\n" +
+                                "de los costos\n" +
+                                "compartidos\n" +
+                                "para "+ basicActions.getCurrYear()+"\n" +
+                                "Reducci\u00F3n de los costos compartidos no califica para lo siguiente:\n" +
+                                "Sus ingresos familiares son demasiado altos\n" +
+                                moreInformationNeededForPremiumTaxCredit(docType, language, memberNumber, basicActions)
                 );
                 default -> throw new IllegalArgumentException("Invalid language option: " + language);
             };
             default -> throw new IllegalArgumentException("Invalid member number: " + memberNumber);
         };
 
+    }
+    public static String moreInformationNeededForPremiumTaxCredit(String docType, String language, String memberNumber, BasicActions basicActions) {
+
+        switch (memberNumber) {
+            case "2" -> {
+                switch (language) {
+                    case "English" -> {
+                        return String.format("More information needed\n" +
+                                "1.\n"+
+                                "2.\n"+
+                                "We were unable to verify some of the information you provided and need you to log into your account to verify some\n" +
+                                "details.\n" +
+                                infoNeededForPremiumTaxCredit(docType, language, memberNumber, basicActions) +
+                                "\u002A If you don\u2019t provide the missing information by this due date, you could lose your health insurance plan or the financial\n" +
+                                "help you\u2019re getting to pay for your health insurance plan.\n" +
+                                "Proof of Financial Help Eligibility\n" +
+                                "We were unable to verify some of the information on your last Connect for Health Colorado application. As soon as\n" +
+                                "possible, please  to your account to verify this information. See Next Steps below.log in\n" +
+                                "Next Steps:\n" +
+                                "Log in to your Connect for Health Colorado account.\n" +
+                                "Depending on the information we need to verify, you may have the option to do this by answering some\n" +
+                                "questions in your account. Click \"Verify My Information.\" \n" +
+                                "If you\u2019ve already done that, you may need to submit documents instead. To learn more about how to submit\n" +
+                                "documents, and which documents are appropriate, please visit: https://connectforhealthco.com/find-answers/after-you-\n" +
+                                ".buy/submit-documents/\n" +
+                                "Potential reasons we were unable to verify your eligibility for financial help:\n" +
+                                "We were unable to confirm that you filed your taxes last year.\n" +
+                                "If you receive advance payments of the premium tax credit, you must file Form 8962 with\n" +
+                                "your federal income taxes. By following these steps, the IRS can make sure that you got\n" +
+                                "the right amount of tax credit applied to your monthly premium \u2013 not too little and not too\n" +
+                                "much. Visit  for more information.irs.gov\n" +
+                                "We were unable to confirm the information you provided about your household\u2019s income.\n" +
+                                "You or the person who completed your application selected not to allow us to compare your application \n" +
+                                "information with our data sources.\n" +
+                                "If you would like to allow us to compare your application information with our data sources in the future, \n" +
+                                "you can update your application by clicking on the \u201CMake Changes\u201D button.\n" +
+                                "How to get more information about this notice\n" +
+                                "For more information please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-\n" +
+                                "695-5935) Monday - Friday 8:00a.m. - 6:00p.m.\n" +
+                                "Free help is also available with certified enrollment Brokers and Assisters. To connect with a local Broker or Assister, \n" +
+                                "visit .https://connectforhealthco.com/we-can-help/\n" +
+                                "To learn more about how to submit documents, and which documents are appropriate, please visit \n" +
+                                ".https://connectforhealthco.com/find-answers/after-you-buy/submit-documents/\n");
+                    }
+                    case "Spanish" -> {
+                        return String.format(
+                                "1.\n"+
+                                        "2.\n"+
+                                        "Se necesita m\u00E1s informaci\u00F3n\n" +
+                                        "No pudimos verificar parte de la informaci\u00F3n que nos proporcion\u00F3, es necesario que inicie sesi\u00F3n en su cuenta para\n" +
+                                        "verificar algunos detalles.\n" +
+                                        infoNeededForPremiumTaxCredit(docType, language, memberNumber, basicActions) +
+                                        "\u002A Si no env\u00EDa la informaci\u00F3n faltante antes de la fecha l\u00EDmite, puede perder su plan de seguro de salud o la ayuda \n" +
+                                        "financiera que obtiene para pagar su plan de seguro de salud.\n" +
+                                        "Comprobante De Elegibilidad Para Ayuda Financiera\n" +
+                                        "No pudimos verificar parte de la informaci\u00F3n en su \u00FAltima solicitud para Connect for Health Colorado. Inicie sesi\u00F3n con \n" +
+                                        "su cuenta lo antes posible para verificar su informaci\u00F3n. Consulte los pasos siguientes a continuaci\u00F3n.\n" +
+                                        "Pasos siguientes:\n" +
+                                        "Inicie sesi\u00F3n con su cuenta de Connect for Health Colorado.\n" +
+                                        "Dependiendo de la informaci\u00F3n que necesitemos, es posible que tenga la opci\u00F3n de verificarla respondiendo \n" +
+                                        "algunas preguntas en su cuenta. Haga clic en \"Verify My Information\" (Verificar mi informaci\u00F3n).\n" +
+                                        "Si ya lo hizo, es posible que deba presentar documentos. Para obtener m\u00E1s informaci\u00F3n acerca de c\u00F3mo enviar sus\n" +
+                                        "documentos y cu\u00E1les documentos son adecuados, visite: https://connectforhealthco.com/es/encuentre-respuestas\n" +
+                                        "./despues-de-adquirir/enviar-documentos/\n" +
+                                        "Posibles motivos por lo que no pudimos verificar su elegibilidad para recibir ayuda financiera:\n" +
+                                        "No pudimos confirmar que present\u00F3 sus declaraciones fiscales.\n" +
+                                        "Si usted recibe pagos anticipados del cr\u00E9dito fiscal para el pago de la prima, debe \n" +
+                                        "presentar el Formulario 8962 con su declaraci\u00F3n de impuestos federales. Al seguir estos\n" +
+                                        "pasos, el Servicio de Rentas Internas (IRS) puede asegurarse de que usted recibi\u00F3 la\n" +
+                                        "cantidad correcta del cr\u00E9dito fiscal que se aplica a su prima mensual, es decir, la cantidad\n" +
+                                        "justa. Visite  para obtener m\u00E1s informaci\u00F3n.irs.gov\n" +
+                                        "No pudimos confirmar la informaci\u00F3n proporcionada sobre su ingreso familiar con las fuentes de datos\n" +
+                                        "confiables.\n" +
+                                        "Usted no nos permiti\u00F3 comparar su solicitud con la informaci\u00F3n federal para determinar su elegibilidad \n" +
+                                        "para recibir ayuda financiera cuando llen\u00F3 la solicitud.\n" +
+                                        "Si desea permitirnos revisar los datos de sus ingresos en el futuro, h\u00E1ganoslo saber actualizando su \n" +
+                                        "solicitud.\n" +
+                                        "C\u00F3mo obtener m\u00E1s informaci\u00F3n sobre este aviso\n" +
+                                        "Para m\u00E1s informaci\u00F3n llame al Centro de atenci\u00F3n al cliente de Connect for Health Colorado\u00AE al 855-752-6749 (TTY:\n" +
+                                        "855-695-5935) de lunes a viernes de 8:00 a.m. a 6:00 p.m.\n" +
+                                        "Tambi\u00E9n puede obtener ayuda gratuita con agentes y asistentes de inscripci\u00F3n certificados. Para contactar a un agente \n" +
+                                        "o asistente local, visite .https://connectforhealthco.com/we-can-help\n" +
+                                        "Para obtener m\u00E1s informaci\u00F3n acerca de c\u00F3mo enviar sus documentos y cu\u00E1les documentos son adecuados, visite\n" +
+                                        ".https://connectforhealthco.com/es/encuentre-respuestas/despues-de-adquirir/enviar-documentos/\n"
+                        );
+                    }
+                    default -> throw new IllegalArgumentException("Unexpected value: " + language);
+                }
+            }
+            case "3" -> {
+                switch (language) {
+                    case "English" -> {
+                        return String.format("");
+                    }
+                    case "Spanish" -> {
+                        return String.format("");
+                    }
+                    default -> throw new IllegalArgumentException("Unexpected value: " + language);
+                }
+            }
+            default -> throw new IllegalArgumentException("Unexpected value: " + memberNumber);
+        }
+    }
+    public static String infoNeededForPremiumTaxCredit(String docType, String language, String memberNumber, BasicActions basicActions) {
+        String futureDate = basicActions.getFutureDate(90);
+        String informationDueDate = basicActions.changeDateFormat(futureDate, "MM/dd/yyyy", "MMMM d, yyyy", Locale.ENGLISH);
+
+        Locale spanishLocale = new Locale("es", "ES");
+        String informationDueDateSpanish = basicActions.changeDateFormat(futureDate, "MM/dd/yyyy", "d 'de' MMMM 'del' yyyy", spanishLocale);
+
+        List<MemberDetails> memberList = SharedData.getMembers();
+        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
+
+        return switch (memberNumber) {
+            case "2" -> switch (language) {
+                case "English" -> String.format("Who needs to provide\n" +
+                                "information?\n" +
+                                "What information is needed? When is the information due?\n" +
+                                SharedData.getPrimaryMember().getFullName() +
+                                " Proof of financial help eligibility "+informationDueDate+"\n" +
+                                member0Name +
+                                " Proof of financial help eligibility "+informationDueDate+"\n");
+
+                case "Spanish" -> String.format("\u00BFQui\u00E9n necesita proporcionar\n" +
+                        "informaci\u00F3n?\n" +
+                        "\u00BFQu\u00E9 informaci\u00F3n se necesita? \u00BFCu\u00E1ndo es la fecha l\u00EDmite para\n" +
+                        "enviar la informaci\u00F3n?\n" +
+                        SharedData.getPrimaryMember().getFullName() +
+                        " Comprobante de su elegibilidad para\n" +
+                        "recibir ayuda financiera\n" +informationDueDateSpanish+"\n" +
+                        member0Name +
+                        " Comprobante de su elegibilidad para\n" +
+                        "recibir ayuda financiera\n" +informationDueDateSpanish+"\n");
+                default -> throw new IllegalArgumentException("Unexpected value: " + language);
+            };
+            default -> throw new IllegalArgumentException("Unexpected value: " + memberNumber);
+        };
     }
     }

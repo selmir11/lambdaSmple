@@ -196,3 +196,56 @@ Scenario:COCO Editable Fields on manage plan [CCRT-239]
     Then I verify dental plan not available on manage plan
     Then I close current tab and switch back to previous tab
     Then I logout from Admin Portal
+
+  @SLCR-916
+  Scenario:COCO Manage Plan - Verify Previous Med Container [CCRT-255]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I select "coco" checkbox on Admin Portal Dashboard
+    Then I enter an accountId in any Env "9025379033" "6501370386" to search user
+    And I click on Search button in AP dashboard page
+    And I click acct first row from Search Results table in admin portal
+    Then I click on "Manage Plans" user dashboard button
+    And I validate I am on the "Manage Plans" page
+    And I select the "2023" plan year on manage plan
+    Then I validate previous financial year style properties on manage plan
+    Then I validate the "medical" member details table column header and Style on manage plan
+      | No.         |
+      | Person ID   |
+      | Name        |
+      | Date of Birth   |
+      | Relationship    |
+      | Tobacco         |
+    Then I validate the "medical" coverage details table column header and Style on manage plan
+      | No. |
+      | Coverage Start |
+      | Coverage End   |
+      | Status         |
+      | Effectuated    |
+      | Termination Reason |
+    Then I validate the "medical" financial details table column header and Style on manage plan
+      | No. |
+      | Financial Start |
+      | Financial End   |
+      | Premium         |
+      | SES             |
+    And I verify label on Previous Financial Period Medical Plan container
+      | EHB Premium:             |
+      | Financial End Date:      |
+      | CSR Amount:              |
+      | Plan Premium:            |
+      | Rating Area:             |
+      | Plan APTC:               |
+      | Service Area:            |
+      | Premium after Subsidy:   |
+      | Plan AV:                 |
+      | Financial Start Date:    |
+      | HIOS ID:                 |
+      | Policy ID:               |
+    Then I verify green bar for more financial period
+    Then I verify expand and collapse all financial periods within the Previous Financial Period
+    Then I close current tab and switch back to previous tab
+    Then I logout from Admin Portal

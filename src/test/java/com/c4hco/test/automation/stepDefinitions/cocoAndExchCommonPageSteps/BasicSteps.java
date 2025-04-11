@@ -842,4 +842,9 @@ public class BasicSteps {
     public void changeMemberIdInUrl() {
         basicActions.changeMemberIdInUrlWithRandom();
     }
+
+    @Then("I close child window")
+    public void iCloseChildWindow() {
+        basicActions.closeChildWindow();
+    }
 }
