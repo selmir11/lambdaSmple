@@ -56,7 +56,7 @@ Feature: Tests related to the Income Summary page
         | Terms Of Use       | Terms of Use             | coco/InformationPortal/termsOfUse                |
         | Contact Us         | Contact Us               | coco/InformationPortal/contactUs                 |
         | Learn More         | Contact Us               | coco/InformationPortal/contactUs                 |
-        | Apply for Coverage | Welcome Portal           | coco/WelcomePortal/welcome                       |
+        | Apply for Coverage | Welcome                  | coco/WelcomePortal/welcome                       |
         | Find a Plan        | ApplicationResultsPortal | coco/ApplicationResultsPortal/applicationResults |
         | My Account         | User Profile             | coco/UserProfileAdmin/profile                    |
         | CoCo Logo          | Welcome                  | coco/WelcomePortal/welcome                       |
