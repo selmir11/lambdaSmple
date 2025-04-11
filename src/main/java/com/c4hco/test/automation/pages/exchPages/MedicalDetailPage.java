@@ -797,6 +797,7 @@ public class MedicalDetailPage {
                 softAssert.assertTrue( fileName221.length() > 0, "Downloaded file is empty: " );
                 softAssert.assertAll();
 
+                // this Cigna doc2 area fails where the file is downloaded but selenium pulls up a prior file - this was tested out manually and passed
                 basicActions.waitForElementToBePresentWithRetries( lnkDocument2, 60 );
                 lnkDocument2.isDisplayed();
                 String actualString222 = (lnkDocument2.getText());
