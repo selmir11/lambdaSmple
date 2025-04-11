@@ -1422,6 +1422,19 @@ public class BasicActions {
         Actions actions = new Actions(getDriver());
         actions.moveToElement(element).perform();
     }
+
+    public void closeChildWindow() {
+        String parentWindow = driver.getWindowHandle();
+        Set<String> allWindowHandles = getDriver().getWindowHandles();
+        for (String childWindow : allWindowHandles) {
+            if (!childWindow.equalsIgnoreCase(parentWindow)) {
+                getDriver().switchTo().window(childWindow);
+                break;
+            }
+        }
+        getDriver().close();
+        driver.switchTo().window(parentWindow);
+    }
 }
 
 
