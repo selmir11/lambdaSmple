@@ -105,7 +105,7 @@ public class DeductionsPage {
     @FindBy(css = ".drawer-controls > div > div > a > svg")
     WebElement helpCloseSide;
 
-    @FindBy(css = ".drawer-heading .body-text-1")
+    @FindBy(xpath = "//span[contains(@class, 'c4-type-body')]")
     WebElement helpDrawerHeaderHelp;
 
     @FindBy(css = ".drawer-heading .drawer-title")
@@ -314,104 +314,107 @@ public class DeductionsPage {
                 helpDrawerContactUsLink.click();
                 break;
             case "Item":
-                basicActions.scrollToElement(helpDrawerBodyNewLinks.get(0));
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(0), 20);
                 helpDrawerBodyNewLinks.get(0).click();
                 break;
             case "Item 2":
-                basicActions.scrollToElement(helpDrawerBodyNewLinks.get(1));
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(1), 20);
                 helpDrawerBodyNewLinks.get(1).click();
                 break;
             case "Item 3":
-                basicActions.scrollToElement(helpDrawerBodyNewLinks.get(2));
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(2), 20);
                 helpDrawerBodyNewLinks.get(2).click();
                 break;
             case "Item 4":
-                basicActions.scrollToElement(helpDrawerBodyNewLinks.get(3));
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(3), 20);
                 helpDrawerBodyNewLinks.get(3).click();
                 break;
             case "Item 5":
-                basicActions.scrollToElement(helpDrawerBodyNewLinks.get(4));
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(4), 20);
                 helpDrawerBodyNewLinks.get(4).click();
                 break;
             case "Item 6":
-                basicActions.scrollToElement(helpDrawerBodyNewLinks.get(5));
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(5), 20);
                 helpDrawerBodyNewLinks.get(5).click();
                 break;
             case "Item 7":
-                basicActions.scrollToElement(helpDrawerBodyNewLinks.get(6));
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(6), 20);
                 helpDrawerBodyNewLinks.get(6).click();
                 break;
             case "Alimony paid out":
-                basicActions.scrollToElement(helpDrawerBodyNewLinks.get(0));
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(0), 20);
                 helpDrawerBodyNewLinks.get(0).click();
                 break;
             case "Domestic production activities":
-                basicActions.scrollToElement(helpDrawerBodyNewLinks.get(0));
-                helpDrawerBodyNewLinks.get(0).click();
-                break;
-            case "Pre-tax retirement contribution":
-                basicActions.scrollToElement(helpDrawerBodyNewLinks.get(0));
-                helpDrawerBodyNewLinks.get(0).click();
-                break;
-            case "School tuition":
-                basicActions.scrollToElement(helpDrawerBodyNewLinks.get(0));
-                helpDrawerBodyNewLinks.get(0).click();
-                break;
-            case "School tuition: Self-Employed 1":
-                basicActions.scrollToElement(helpDrawerBodyNewLinks.get(1));
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(1), 20);
                 helpDrawerBodyNewLinks.get(1).click();
                 break;
-            case "School tuition: Self-Employed 2":
-                basicActions.scrollToElement(helpDrawerBodyNewLinks.get(2));
+            case "Pre-tax retirement contribution":
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(2), 20);
                 helpDrawerBodyNewLinks.get(2).click();
                 break;
-            case "School tuition: Armed Forces 1":
-                basicActions.scrollToElement(helpDrawerBodyNewLinks.get(3));
+            case "School tuition":
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(3), 20);
                 helpDrawerBodyNewLinks.get(3).click();
                 break;
-            case "School tuition: Armed Forces 2":
-                basicActions.scrollToElement(helpDrawerBodyNewLinks.get(4));
+            case "School tuition: Self-Employed 1":
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(4), 20);
                 helpDrawerBodyNewLinks.get(4).click();
                 break;
-            case "School tuition: Disability 1":
-                basicActions.scrollToElement(helpDrawerBodyNewLinks.get(5));
+            case "School tuition: Self-Employed 2":
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(5), 20);
                 helpDrawerBodyNewLinks.get(5).click();
                 break;
-            case "School tuition: Disability 2":
-                basicActions.scrollToElement(helpDrawerBodyNewLinks.get(6));
+            case "School tuition: Armed Forces 1":
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(6), 20);
                 helpDrawerBodyNewLinks.get(6).click();
                 break;
+            case "School tuition: Armed Forces 2":
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(7), 20);
+                helpDrawerBodyNewLinks.get(7).click();
+                break;
+            case "School tuition: Disability 1":
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(8), 20);
+                helpDrawerBodyNewLinks.get(8).click();
+                break;
+            case "School tuition: Disability 2":
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(9), 20);
+                helpDrawerBodyNewLinks.get(9).click();
+                break;
             case "Self-employment tax":
-                basicActions.scrollToElement(helpDrawerBodyNewLinks.get(0));
-                helpDrawerBodyNewLinks.get(0).click();
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(10), 20);
+                helpDrawerBodyNewLinks.get(10).click();
                 break;
             case "Student Loan Interest":
-                basicActions.scrollToElement(helpDrawerBodyNewLinks.get(0));
-                helpDrawerBodyNewLinks.get(0).click();
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(11), 20);
+                helpDrawerBodyNewLinks.get(11).click();
                 break;
             case "Self-employment Health Insurance":
-                basicActions.scrollToElement(helpDrawerBodyNewLinks.get(0));
-                helpDrawerBodyNewLinks.get(0).click();
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(12), 20);
+                helpDrawerBodyNewLinks.get(12).click();
                 break;
             case "Self-Employment Retirement Plan":
-                basicActions.scrollToElement(helpDrawerBodyNewLinks.get(0));
-                helpDrawerBodyNewLinks.get(0).click();
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(13), 20);
+                helpDrawerBodyNewLinks.get(13).click();
                 break;
             case "Moving Expenses":
-                String incomeSummaryHeaderText = IncomeSummaryHeader.getText().trim();
+                basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(14), 20);
+                helpDrawerBodyNewLinks.get(14).click();
+                /*String incomeSummaryHeaderText = IncomeSummaryHeader.getText().trim();
                 if (incomeSummaryHeaderText.startsWith("Income")) { // English version
-                    basicActions.scrollToElement(helpDrawerBodyNewLinks.get(0));
-                    int elementWidth = helpDrawerBodyNewLinks.get(0).getSize().getWidth();
-                    int elementHeight = helpDrawerBodyNewLinks.get(0).getSize().getHeight();
+                    basicActions.waitForElementToBeClickableWithRetries(helpDrawerBodyNewLinks.get(14), 20);
+                    basicActions.scrollToElement(helpDrawerBodyNewLinks.get(14));
+                    int elementWidth = helpDrawerBodyNewLinks.get(14).getSize().getWidth();
+                    int elementHeight = helpDrawerBodyNewLinks.get(14).getSize().getHeight();
                     int centerX = elementWidth / 2;
                     int centerY = elementHeight / 2;
                     int offsetX = centerX - 200; // Adjust click position to avoid chat widget
-                    actions.moveToElement(helpDrawerBodyNewLinks.get(0), offsetX, centerY)
+                    actions.moveToElement(helpDrawerBodyNewLinks.get(14), offsetX, centerY)
                             .click()
                             .perform();
                 } else if (incomeSummaryHeaderText.startsWith("Ingresos")) { // Spanish version
-                    helpDrawerBodyNewLinks.get(0).click();
-                }
+                    helpDrawerBodyNewLinks.get(14).click();
+                }*/
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + lnkName);
