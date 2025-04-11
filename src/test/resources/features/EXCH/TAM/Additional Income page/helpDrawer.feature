@@ -58,6 +58,8 @@ Feature: Page Text-Additional Income Page
     And I validate I am on the "Pension" page and close tab
     Then I click on "Private Retirement Income" link in Help Drawer on the Additional Income page
     And I validate I am on the "Private Retirement Income" page and close tab
+    Then I click on "Title II Income" link in Help Drawer on the Additional Income page
+    And I validate I am on the "Title II Income" page and close tab
     Then I click on "Unemployment Insurance" link in Help Drawer on the Additional Income page
     And I validate I am on the "Unemployment Insurance" page and close tab
     Then I click on "Investment Income" link in Help Drawer on the Additional Income page
@@ -66,8 +68,6 @@ Feature: Page Text-Additional Income Page
     And I validate I am on the "Untaxed Foreign Income" page and close tab
     Then I click on "Royalty Income" link in Help Drawer on the Additional Income page
     And I validate I am on the "Royalty Income" page and close tab
-    Then I click on "Title II Income" link in Help Drawer on the Additional Income page
-    And I validate I am on the "Title II Income" page and close tab
     And I click on "Contact Us" link in Help Drawer on the Additional Income page
     And I validate I am on the "We Can Help" page and close tab
     And I select "Help me understand" icon on the Additional Income Page
@@ -84,6 +84,8 @@ Feature: Page Text-Additional Income Page
     And I validate I am on the "Pension" page and close tab
     Then I click on "Private Retirement Income" link in Help Drawer on the Additional Income page
     And I validate I am on the "Private Retirement Income" page and close tab
+    Then I click on "Title II Income" link in Help Drawer on the Additional Income page
+    And I validate I am on the "Title II Income" page and close tab
     Then I click on "Unemployment Insurance" link in Help Drawer on the Additional Income page
     And I validate I am on the "Unemployment Insurance" page and close tab
     Then I click on "Investment Income" link in Help Drawer on the Additional Income page
@@ -92,8 +94,6 @@ Feature: Page Text-Additional Income Page
     And I validate I am on the "Untaxed Foreign Income" page and close tab
     Then I click on "Royalty Income" link in Help Drawer on the Additional Income page
     And I validate I am on the "Royalty Income" page and close tab
-    Then I click on "Title II Income" link in Help Drawer on the Additional Income page
-    And I validate I am on the "Title II Income" page and close tab
     And I click on "Contact Us" link in Help Drawer on the Additional Income page
     And I validate I am on the "We Can Help" page and close tab
     And I select "close side help" icon on the Additional Income Page
@@ -209,6 +209,8 @@ Feature: Page Text-Additional Income Page
     And I validate I am on the "Pension" page and close tab
     Then I click on "Private Retirement Income" link in Help Drawer on the Additional Income page
     And I validate I am on the "Private Retirement Income" page and close tab
+    Then I click on "Title II Income" link in Help Drawer on the Additional Income page
+    And I validate I am on the "Title II Income" page and close tab
     Then I click on "Unemployment Insurance" link in Help Drawer on the Additional Income page
     And I validate I am on the "Unemployment Insurance" page and close tab
     Then I click on "Investment Income" link in Help Drawer on the Additional Income page
@@ -217,8 +219,6 @@ Feature: Page Text-Additional Income Page
     And I validate I am on the "Untaxed Foreign Income" page and close tab
     Then I click on "Royalty Income" link in Help Drawer on the Additional Income page
     And I validate I am on the "Royalty Income" page and close tab
-    Then I click on "Title II Income" link in Help Drawer on the Additional Income page
-    And I validate I am on the "Title II Income" page and close tab
     And I click on "Contact Us" link in Help Drawer on the Additional Income page
     And I validate I am on the "We Can Help" page and close tab
     And I select "Help me understand" icon on the Additional Income Page
@@ -236,6 +236,8 @@ Feature: Page Text-Additional Income Page
     And I validate I am on the "Pension" page and close tab
     Then I click on "Private Retirement Income" link in Help Drawer on the Additional Income page
     And I validate I am on the "Private Retirement Income" page and close tab
+    Then I click on "Title II Income" link in Help Drawer on the Additional Income page
+    And I validate I am on the "Title II Income" page and close tab
     Then I click on "Unemployment Insurance" link in Help Drawer on the Additional Income page
     And I validate I am on the "Unemployment Insurance" page and close tab
     Then I click on "Investment Income" link in Help Drawer on the Additional Income page
@@ -244,8 +246,6 @@ Feature: Page Text-Additional Income Page
     And I validate I am on the "Untaxed Foreign Income" page and close tab
     Then I click on "Royalty Income" link in Help Drawer on the Additional Income page
     And I validate I am on the "Royalty Income" page and close tab
-    Then I click on "Title II Income" link in Help Drawer on the Additional Income page
-    And I validate I am on the "Title II Income" page and close tab
     And I click on "Contact Us" link in Help Drawer on the Additional Income page
     And I validate I am on the "We Can Help" page and close tab
     And I select "close side help" icon on the Additional Income Page

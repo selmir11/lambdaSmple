@@ -50,7 +50,12 @@ public class AdminPortalAccountAccessPage {
         softAssert.assertAll();
     }
 
+    public void validateTheAccountStatusIsInAPProgramManagerPage(String status) {
+        basicActions.waitForElementToBePresentWithRetries(accountStatus,80);
+        softAssert.assertEquals(accountStatus.getText(),"Account Status: "+status);
+        softAssert.assertAll();
     }
+}
 
 
 

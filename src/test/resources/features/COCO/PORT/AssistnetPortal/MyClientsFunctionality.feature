@@ -33,7 +33,7 @@ Feature: CoCo My Clients list functionality in the AssistNet Portal
     Then I verify the current client list result page is "1"
     Then I verify the clients are listed in alphabetical order
 
-    And I search for a client named "AAA"
+    And I search for a client named for staging "AAA" or for QA "AAA"
     Then I click on the first client in my list
 
     And I clear the client search box to reset my list
@@ -42,7 +42,7 @@ Feature: CoCo My Clients list functionality in the AssistNet Portal
 
     And I click the client list right pagination arrow button
     Then I verify the current client list result page is "2"
-    And I search for a client named "Client"
+    And I search for a client named for staging "Client" or for QA "Client"
     And I wait for 1000 milliseconds
     Then I verify the current client list result page is "1"
     Then I verify the clients are listed in alphabetical order
@@ -51,7 +51,7 @@ Feature: CoCo My Clients list functionality in the AssistNet Portal
     Then I verify the current client list result page is "1"
     Then I verify the clients are listed in alphabetical order
 
-    And I search for a client named "AAA"
+    And I search for a client named for staging "AAA" or for QA "AAA"
     Then I click on the first client in my list
 
     Then I click on "colorado Connect" tab
