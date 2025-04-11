@@ -161,11 +161,14 @@ Feature: Page Text-Income Opt Out Page
       |Street address is required|
       |City is required|
       |State is required|
-      |Zip code is required|
+      |ZIP Code is required|
       |Amount is required|
       |Please select one of the options below|
     Then I validate max length of each text field in Employment Income page
-    And I select the option "Yes" to self employment
+    #And I select the option "Yes" to self employment
+    #And I select the option "No" to self employment
+    And I refresh the page
+    Then I select the option "Yes" to employment
     And I select the option "No" to self employment
     Then I validate zip code and include commission text box field
     Then I verify the income frequency dropdown allows single selection
