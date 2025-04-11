@@ -230,11 +230,14 @@ public class YourClientsPage {
         actions.click(firstClientResult).perform();
     }
 
-    public void searchClientNamed(String clientName) {
+    public void searchClientNamed(String STGClientname,String QAClientname) {
         basicActions.waitForElementListToBePresentWithRetries(clientsList, 60);
         basicActions.waitForElementToBePresentWithRetries(searchClient, 60);
-
-        searchClient.sendKeys(clientName);
+        if (SharedData.getEnv().equals("staging")) {
+            searchClient.sendKeys(STGClientname);
+        } else {
+            searchClient.sendKeys(QAClientname);
+        }
         searchClient.sendKeys(Keys.ENTER);
     }
 
