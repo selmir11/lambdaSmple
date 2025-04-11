@@ -221,6 +221,9 @@ public class DbQueries_Exch {
     public String getBookOfBusinessQ(String eventType) {
         return "select status, message->> 'applicationId' as applicationId, message->> 'policyPlanYr' as policyPlanYr, message->> 'eventType' as eventType, message->> 'policyId' as policyId, created_ts, routing_key, exchange from " + dbName + ".rq_queue_messages " + " where application_id = 'book_of_business_q:policy-svc' " + " and message->>'householdAccountId' = '" + acctId + "' " + " and message->>'eventType' ='" + eventType + "' ORDER BY created_ts desc";
     }
+    public String getBookOfBusinessByApplicationId(String eventType) {
+        return "select status, message->> 'applicationId' as applicationId, message->> 'policyPlanYr' as policyPlanYr, message->> 'eventType' as eventType, message->> 'policyId' as policyId, created_ts, routing_key, exchange from " + dbName + ".rq_queue_messages " + " where application_id = 'book_of_business_q:policy-svc' " + " and message->>'householdAccountId' = '" + acctId + "' " + "and message->>'applicationId' ='"+ SharedData.getPrimaryMember().getApplication_id() +"' and message->>'eventType' ='" + eventType + "' ORDER BY created_ts desc";
+    }
 
     public String policyId() {
         return "select ep.policy_id, ep.coverage_type from " + dbName + ".en_policy_ah ep " +
@@ -627,8 +630,28 @@ public class DbQueries_Exch {
     }
 
     public String getEnrollmentPeriodEndDate() {
-        String query =  "SELECT * from " + dbName + ".es_enrollment_period_end_date\n" +
+        String query = "SELECT * from " + dbName + ".es_enrollment_period_end_date\n" +
                 "where application_id = '" + applicationId + "'";
+        System.out.println("Executing Query: " + query);
+        return query;
+    }
+
+    public String getMultipleEnrollmentPeriodEndDate() {
+        String query = "SELECT c.enrollment_period_end_date AS enrollment_period_end_date, c.qlce_present_ind AS qlce_present_ind, c.plan_year AS plan_year\n" +
+                "From " + dbName + ".es_household a\n" +
+                "Join " + dbName + ".es_application b on a.household_id = b.household_id\n" +
+                "Join " + dbName + ".es_enrollment_period_end_date c on c.application_id = b.application_id\n" +
+                "where account_id = '" + acctId + "'";
+        System.out.println("Executing Query: " + query);
+        return query;
+    }
+
+    public String getEnrollmentPeriodEndDateCount() {
+        String query = "Select count(enrollment_period_end_date)\n" +
+                "From " + dbName + ".es_household a\n" +
+                "Join " + dbName + ".es_application b on a.household_id = b.household_id\n" +
+                "Join " + dbName + ".es_enrollment_period_end_date c on c.application_id = b.application_id\n" +
+                "where account_id = '" + acctId + "'";
         System.out.println("Executing Query: " + query);
         return query;
     }
@@ -853,10 +876,10 @@ public class DbQueries_Exch {
     }
 
     public String getVlpRequestCountQuery() {
-            return "select count(evr.*) from " + dbName + ".es_member em, " + dbName + ".es_household eh, " + dbName + ".es_vlp_req evr \n" +
-                    "where eh.household_id = em.household_id and em.member_id = evr.member_id \n" +
-                    "and eh.account_id = '" + acctId + "'";
-        }
+        return "select count(evr.*) from " + dbName + ".es_member em, " + dbName + ".es_household eh, " + dbName + ".es_vlp_req evr \n" +
+                "where eh.household_id = em.household_id and em.member_id = evr.member_id \n" +
+                "and eh.account_id = '" + acctId + "'";
+    }
 
     public String getEligibilityTypeQuery() {
         String query = "Select d.eligibility_type \n" +
@@ -914,6 +937,16 @@ public class DbQueries_Exch {
                 "join " + dbName + ".es_member_lce_ah lah on l.member_lce_id = lah.member_lce_id\n" +
                 "where l.member_id = " + memberId;
         System.out.println("Executing Query: " + query);
+        return query;
+    }
+
+    public String getLatestForm8962DocumentQuery() {
+        String query = "SELECT * \n" +
+                "FROM " + dbName + ".ds_item \n" +
+                "WHERE account_id = '" + acctId + "' \n" +
+                "AND document_display_name = 'Form 8962' \n" +
+                "ORDER BY item_date DESC \n" +
+                "LIMIT 1";
         return query;
     }
 }

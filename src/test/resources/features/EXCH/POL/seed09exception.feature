@@ -1,6 +1,7 @@
 Feature: Seed09exception - Exchange
 
   Background: Seed 09 With Exception For Exchange- Minor Only - FA
+
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -10,6 +11,13 @@ Feature: Seed09exception - Exchange
     And I enter valid credentials to login
     Then I validate I am on the "Account Overview" page
     And I apply for the current year
+    Given I set the dynamic policy, coverage and financial dates for "medical" plan
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate | MemFinancialEndDate      |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate     | PolicyEndDate            | CoverageStartDate   | CoverageEndDate          | FinancialStartDate  | FinancialEndDate         | MemFinancialStartDate | MemFinancialEndDate      |
+      | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month | Last Day Of Current Year | First Of Next Month   | Last Day Of Current Year |
+
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
     Then I click on continue with  application button on Before you begin page
@@ -87,7 +95,7 @@ Feature: Seed09exception - Exchange
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Head of household" tax filing option on the Tax Status page
-    Then I select "Spouse" as filing jointly with option on the Tax Status page
+#    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "Yes" for will claim dependents question
     Then I select "Daughter" for who will be claimed as dependent question on the Tax Status page
     Then I click Save and Continue on Tax Status page
@@ -121,6 +129,8 @@ Feature: Seed09exception - Exchange
     And I select "Cigna Dental Pediatric" plan
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
     And I click continue on plan summary page
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
@@ -128,10 +138,34 @@ Feature: Seed09exception - Exchange
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
-    And I click on Sign Out in the Header for "NonElmo"
+    And I Validate the correct enrolled plans are displayed on account overview page
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I click on Future Plans
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-2032-WIP-@R4V
+    #DB Validation
+    And I validate "medical" entities for "Primary" from policy tables
+    And I validate "dental" entities for "Primary" from policy tables
+
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue by applicationId with "POLICY_SUBMISSION" as event type
+
+    And I validate "medical" entities for "Primary" from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+    And I validate "dental" entities for "Primary" from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
+
+  @SLER-2032
   Scenario: RT-2263 ENR-EXCH: DEMOGRAPHIC CHANGE - CHANGE RESPONSIBLE PERSON CONTACT INFORMATION
+
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     And I enter valid credentials to login
@@ -143,5 +177,21 @@ Feature: Seed09exception - Exchange
     And I update the contact email address on profile page
     And I click on Save Button
     And I click on Sign Out in the Header for "Elmo"
+
+    And I validate "medical" entities for "Primary" from policy tables
+    And I validate "dental" entities for "Primary" from policy tables
+
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue by applicationId with "POLICY_SUBMISSION" as event type
+
+    And I validate "medical" entities for "Primary" from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
+      | 021                   | 021                | EC                    | DEMOGRAPHIC CHANGE | ADMIN_LCE  |
+    And I validate "dental" entities for "Primary" from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
+      | 021                   | 021                | EC                    | DEMOGRAPHIC CHANGE | ADMIN_LCE  |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "medical" file data
+    And I validate the ob834 "dental" file data
 
 

@@ -20,6 +20,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
+
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -27,6 +29,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.time.Year;
 import java.util.*;
+
 
 
 
@@ -116,7 +119,7 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//a[normalize-space()='Cargar otro documento']")
     WebElement btnCargarotrodocumento;
 
-    @FindBy(css = ".modal-title")
+    @FindBy(css = "div.modal-header-container")
     WebElement txtCargarUnDocumento;
 
     @FindBy(xpath = "//span[normalize-space()='Díganos m\u00E1s sobre este documento']")
@@ -402,6 +405,11 @@ public class MyDocumentsPage {
     @FindBy(xpath = "//pre[contains(., 'errorMessage')]")
     WebElement txtMyDocsAccessDenied;
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+    @FindBy(css = "#documentsUploadMessage > p")
+    WebElement messageNoDocumentsNeeded;
+
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
         accountOverviewPage.clickHereLinks("My Documents");
@@ -409,6 +417,7 @@ public class MyDocumentsPage {
 
     public void downloadDocument(String docType) {
         // docType example "Application Results", EN-002-04
+        basicActions.waitForElementToDisappear(spinner,30);
         basicActions.waitForElementToBePresent(expandDownloadEnrolmentDocument, 20);
         basicActions.waitForElementToBeClickable(expandDownloadEnrolmentDocument, 20);
         basicActions.scrollToElement(expandDownloadEnrolmentDocument);
@@ -1052,17 +1061,16 @@ public class MyDocumentsPage {
         basicActions.waitForElementToBePresentWithRetries(expandArrow_forFirstDoc, 10);
         basicActions.clickElementWithRetries(expandArrow_forFirstDoc, 10);
     }
-    public void verifyFileExistAndNotEmpty() {
-        basicActions.waitForElementToBeClickable(btn_download, 10);
-        btn_download.click();
-        String fileName=basicActions.waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(),40);
-        if (SharedData.getEnv().equals("qa")) {
-            Assert.assertEquals(fileName, "Peace Corps-6103120466-11-Aug-2021.docx","File name is not matched");
-        } else {
-            Assert.assertEquals(fileName, "Peace Corps-1801096812-11-Aug-2021.docx","File name is not matched");
-        }
-    }
 
+        public void verifyFileExistAndNotEmpty(String fileNamePrefix) {
+            basicActions.waitForElementToBeClickable(btn_download, 10);
+            btn_download.click();
+            String downloadedFileName = basicActions.waitForDownloadToComplete(SharedData.getLocalPathToDownloadFile(), 40);
+            Assert.assertTrue(downloadedFileName.contains(fileNamePrefix), "Downloaded file name does not contain the expected prefix");
+            File downloadedFile = new File(SharedData.getLocalPathToDownloadFile() + "/" + downloadedFileName);
+            Assert.assertTrue(downloadedFile.exists(), "Downloaded file does not exist");
+            Assert.assertTrue(downloadedFile.length() > 0, "Downloaded file is empty");
+        }
 
     public void ValidateDocumentCategoryinAscendingOrder(String OtherText,String language,List<String> category) {
         basicActions.waitForElementToBePresent(docTypeDrpDwn, 20);
@@ -1814,4 +1822,59 @@ public class MyDocumentsPage {
         softAssert.assertAll();
     }
 
-}
+    public void  selectTypeofDocument(String documentToSelect) {
+        basicActions.waitForElementToBePresent(docTypeDrpDwn, 50);
+        docTypeDrpDwn.click();
+        for (WebElement element : categoryList) {
+            if (element.getText().trim().equalsIgnoreCase(documentToSelect)) {
+                element.click();
+                return;
+            }
+        }
+        throw new NoSuchElementException("Category '" + documentToSelect + "' not found in the dropdown.");
+    }
+
+
+
+    public void selectDocumenttypeCategory(String categoryToSelect) {
+        basicActions.waitForElementToBePresent(docCategoryDrpDwn, 20);
+        docCategoryDrpDwn.click();
+
+        for (WebElement element : categoryList) {
+            if (element.getText().trim().equalsIgnoreCase(categoryToSelect)) {
+                element.click();
+                return;
+            }
+        }
+
+        throw new NoSuchElementException("Category '" + categoryToSelect + "' not found in the dropdown.");
+    }
+
+    public void clickOnDropdownAndVerifyTheMentionedDocumentCategories(List<String> categories) {
+        basicActions.waitForElementToBePresent(docTypeDrpDwn, 30);
+        docTypeDrpDwn.click();
+        List<String> listOfCategories = new ArrayList<>();
+        for (int j = 0; j < categoryList.size(); j++) {
+            listOfCategories.add(categoryList.get(j).getText());
+        }
+        for (int i = 0; i < categories.size(); i++) {
+                softAssert.assertTrue(listOfCategories.contains(categories.get(i)),"The category " + categories.get(i) + " is not present in the document type dropdown.");
+                softAssert.assertAll();
+            }
+        }
+    public void verifyNoDocumentsNeeded() {
+        basicActions.waitForElementToBePresent(myDocumentsSubTitle,30);
+        softAssert.assertTrue(messageNoDocumentsNeeded.isDisplayed(), "You don't need to upload any documents at this time");
+        softAssert.assertAll();
+    }
+
+
+    }
+
+
+
+
+
+
+
+

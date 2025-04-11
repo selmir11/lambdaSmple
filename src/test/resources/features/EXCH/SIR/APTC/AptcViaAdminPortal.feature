@@ -1,4 +1,4 @@
-@APTC @SIRRegression @APTC-SIR5
+@APTC,@APTCSIR, @SIRRegression, @APTC-SIR5,
   # SLER-778
 Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
@@ -361,7 +361,6 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I click continue on grouping Members Medical page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the first medical plan
     Then I click continue on medical plan results page
 
     Then I validate I am on the "Grouping Members Dental" page
@@ -376,7 +375,6 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I click continue on grouping Members Dental page
 
     Then I validate I am on the "Dental Plan Results" page
-    Then I select first dental plan
     Then I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page

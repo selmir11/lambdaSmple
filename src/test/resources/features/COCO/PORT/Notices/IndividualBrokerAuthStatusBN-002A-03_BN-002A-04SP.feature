@@ -23,7 +23,7 @@ Feature: CoCo broker authorization status notices BN-0024-03 and BN-002A-04 sent
     And I validate current Broker text exists
     And I save the broker's details
 
-    Then I Remove my current Broker
+    Then I click remove my current Broker
     And I "Ok" my decision to remove my current broker
 
     Then I open outlook Tab

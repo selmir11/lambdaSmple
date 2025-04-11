@@ -1,4 +1,4 @@
-@SIR-COCO2
+@COCOSIR @SIR-COCO2
   # SLCR-160, SLCR-315,
 Feature: Multiple Household Member - End to End Test
 

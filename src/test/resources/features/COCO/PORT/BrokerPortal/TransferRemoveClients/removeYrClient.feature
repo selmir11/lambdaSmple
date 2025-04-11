@@ -12,7 +12,7 @@ Feature: Remove CoCo Client(s) from Your Client view Functionality in Broker Por
     And I click on Find Expert Assistance in the "CoCo" Header
     Then I validate I am on the "FindExpertHelpCoco" page
     And I click on Find a Broker
-    Then I Search authorized Broker "Primary Rever"
+    Then I Search authorized Broker "TransferRemove One"
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
@@ -20,10 +20,10 @@ Feature: Remove CoCo Client(s) from Your Client view Functionality in Broker Por
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
     And I open the login page on the "broker" portal
-    When I login as Broker User "testing.soukaina+teststg@outlook.com" password "ALaska12!"
+    And I login as Broker User any environment "C4PortTesting+TransferSTG@outlook.com" password "ALaska12!" and "C4PortTesting+Transfer@outlook.com" password "ALaska12!"
     And  I validate I am on the "MFA" page
     Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "testing.soukaina@outlook.com" and "ALaska12!"
+    And I sign in to outlook with Valid Credentials "C4PortTesting@outlook.com" and "ALaska12!"
     Then I open the MFA notice
     And I get the MFA code
     And I delete the open notice
@@ -52,7 +52,7 @@ Feature: Remove CoCo Client(s) from Your Client view Functionality in Broker Por
     And I click on Find Expert Assistance in the "CoCo" Header
     Then I validate I am on the "FindExpertHelpCoco" page
     And I click on Find a Broker
-    Then I Search authorized Broker "Primary Rever"
+    Then I Search authorized Broker "TransferRemove One"
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
@@ -60,10 +60,10 @@ Feature: Remove CoCo Client(s) from Your Client view Functionality in Broker Por
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
     And I open the login page on the "broker" portal
-    When I login as Broker User "testing.soukaina+teststg@outlook.com" password "ALaska12!"
+    And I login as Broker User any environment "C4PortTesting+TransferSTG@outlook.com" password "ALaska12!" and "C4PortTesting+Transfer@outlook.com" password "ALaska12!"
     And  I validate I am on the "MFA" page
     Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "testing.soukaina@outlook.com" and "ALaska12!"
+    And I sign in to outlook with Valid Credentials "C4PortTesting@outlook.com" and "ALaska12!"
     Then I open the MFA notice
     And I get the MFA code
     And I delete the open notice
@@ -92,7 +92,7 @@ Feature: Remove CoCo Client(s) from Your Client view Functionality in Broker Por
     And I click on Find Expert Assistance in the "CoCo" Header
     Then I validate I am on the "FindExpertHelpCoco" page
     And I click on Find a Broker
-    Then I Search authorized Broker "Primary Rever"
+    Then I Search authorized Broker "TransferRemove One"
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
@@ -100,10 +100,10 @@ Feature: Remove CoCo Client(s) from Your Client view Functionality in Broker Por
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page
     And I open the login page on the "broker" portal
-    When I login as Broker User "testing.soukaina+teststg@outlook.com" password "ALaska12!"
+    And I login as Broker User any environment "C4PortTesting+TransferSTG@outlook.com" password "ALaska12!" and "C4PortTesting+Transfer@outlook.com" password "ALaska12!"
     And  I validate I am on the "MFA" page
     Then I open outlook Tab
-    And I sign in to outlook with Valid Credentials "testing.soukaina@outlook.com" and "ALaska12!"
+    And I sign in to outlook with Valid Credentials "C4PortTesting@outlook.com" and "ALaska12!"
     Then I open the MFA notice
     And I get the MFA code
     And I delete the open notice
@@ -123,7 +123,7 @@ Feature: Remove CoCo Client(s) from Your Client view Functionality in Broker Por
     And I click on Find Expert Assistance in the "CoCo" Header
     Then I validate I am on the "FindExpertHelpCoco" page
     And I click on Find a Broker
-    Then I Search authorized Broker "Primary Rever"
+    Then I Search authorized Broker "TransferRemove One"
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker

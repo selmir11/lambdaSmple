@@ -84,7 +84,8 @@ public class HeaderAndFooterSteps {
         headerAndFooterPage.verifyFooterlinktextNavigation(language, dataTable);
     }
 
-
-
-
+    @Then("I verify Copy Rights text in the Header or in the Footer")
+    public void iVerifyCopyRightsTextInTheHeaderOrInTheFooter() {
+        headerAndFooterPage.verifyCopyRightsText();
+    }
 }

@@ -322,6 +322,7 @@ public class HeaderAndFooterPage {
     }
 
     public void clickLearnMoreLink() {
+        basicActions.waitForElementToDisappear(spinner,20);
         basicActions.waitForElementToBeClickableWithRetries(learnMoreLink, 60);
         learnMoreLink.click();
     }
@@ -1302,6 +1303,7 @@ public class HeaderAndFooterPage {
             basicActions.wait(200);
             actionKey.keyDown(Keys.CONTROL).click(hyperlink).keyUp(Keys.CONTROL).build().perform();
             basicActions.switchtoactiveTab();
+            basicActions.wait(250);
             basicActions.waitForElementToDisappear(spinner, 400);
             String actualTitle = basicActions.getDriver().getTitle();
             String currentUrl = basicActions.getDriver().getCurrentUrl();
@@ -1315,4 +1317,9 @@ public class HeaderAndFooterPage {
     }
 
 
+    public void verifyCopyRightsText() {
+        String MyCurrentYear = String.valueOf(Year.now().getValue());
+        basicActions.waitForElementToBePresent(APcopyRightText,20);
+        softAssert.assertEquals(APcopyRightText.getText(), "\u00a9 "+MyCurrentYear+" Connect for Health Colorado. All Rights Reserved.");
+    }
 }

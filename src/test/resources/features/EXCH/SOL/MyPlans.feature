@@ -202,6 +202,7 @@ Feature: My Plans Page test
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
+    Then I click on Future Plans
     Then I click on "Cancel Medical Plan" button
     Then I cancel the active plan detail
     Then I click continue on Cancellation Request page
@@ -271,12 +272,14 @@ Feature: My Plans Page test
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
+    Then I click on Future Plans
     Then I click on "Cancel Dental Plan" button
     Then I cancel the active plan detail
     Then I click continue on Cancellation Request page
     Then I click Okay on Thank you popup
     And I click on Sign Out in the Header for "Elmo"
 
+  
   @SLER-2387 @ClickGoBackOnMyPlansPage
   Scenario: SLER-2387 Navigate to My Plans page and select Go Back
     When I click create a new account on login page

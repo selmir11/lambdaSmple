@@ -33,7 +33,7 @@ Feature: IndDash: Submit NFA Policy/Manage Plans
     And I click more details from the first broker result container
     And I click Authorized broker
     And I validate current Broker text exists
-    And I click Continue with my application
+    Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
@@ -73,7 +73,6 @@ Feature: IndDash: Submit NFA Policy/Manage Plans
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
-    Then I click continue on start shopping page
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
 
@@ -104,7 +103,7 @@ Feature: IndDash: Submit NFA Policy/Manage Plans
     #medical plan
     And I update the medical Plan for the UI
     Then I validate the Latest Application Date for the year DB
-    Then I validate current Medical plan Data for the year "2024" DB
+    Then I validate current Medical plan Data for the year "2025" DB
     #  medical member details table
     And I validate the "Medical" member details Table title columns
     And I update the Medical member details Table for the UI
@@ -123,7 +122,7 @@ Feature: IndDash: Submit NFA Policy/Manage Plans
   #Dental plan
     And I update the dental Plan for the UI
     Then I validate the dental Latest Application Date for the year DB
-    Then I validate current Dental plan Data for the year "2024" DB
+    Then I validate current Dental plan Data for the year "2025" DB
       #  medical member details table
     And I validate the "Dental" member details Table title columns
     And I update the dental member details Table for the UI

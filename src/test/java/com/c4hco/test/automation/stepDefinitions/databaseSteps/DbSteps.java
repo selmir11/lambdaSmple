@@ -40,6 +40,10 @@ public class DbSteps {
     public void iValidateBookOfBusinessQ(String eventType) {
         dbValidations.validateBookOfBusinessQ(eventType);
     }
+    @And("I verify the data from book of business queue by applicationId with {string} as event type")
+    public void iValidateBOBByApplicationId(String eventType ){
+        dbValidations.validateBobByApplicationId(eventType);
+    }
     @And("I verify the BOB entry for {string} with {string} as event type")
     public void iValidateBoBMedical(String coverageType, String eventType){
         dbValidations.validateBookOfBusinessQMedical(coverageType,eventType);
@@ -393,6 +397,17 @@ public class DbSteps {
     @And("I verify plan year is {string} in the DB")
     public void iValidateEnrollmentPlanYear(String year) {dbValidations.validateEnrollmentPlanYear(year);}
 
+    @And("I verify the LCE data in the DB")
+    public void iValidateEnrollmentPlanLce(List<Map<String, String>> expectedValues) {dbValidations.validateEnrollmentPlanLce(expectedValues);}
+
+    @And("I validate the LCE data row count {int}")
+    public void iValidateEnrollmentPlanLceRowCount(int expectedRowCount) {dbValidations.validateEnrollmentPlanLceRowCount(expectedRowCount);}
+
+
+    @Then("I validate the document details with values")
+    public void iValidateTheDocumentDetails(List<String> expectedValues) {
+        dbValidations.validateDocumentDetails(expectedValues);
+    }
 }
 
 

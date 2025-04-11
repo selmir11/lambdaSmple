@@ -161,7 +161,7 @@ Feature: Seed05 W Exception - COCO
     And I select "coco" checkbox on Admin Portal Dashboard
     And I search for user and click email from search results
     Then I click on "Manage Plans" user dashboard button
-    And I select "DIL" from the SelectPolicy Dropdown to update the dates
+    And I select "Son" from the SelectPolicy Dropdown to update the dates
     Then I click Make Changes Medical button
     Then I update the coverage end date
       | 1:Cancel |

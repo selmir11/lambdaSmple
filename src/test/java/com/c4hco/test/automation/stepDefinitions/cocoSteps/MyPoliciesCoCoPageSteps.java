@@ -28,9 +28,19 @@ public class MyPoliciesCoCoPageSteps {
     public void clickFuturePlansCoCo(){
         myPoliciesCoCoPage.clickFuturePlansCoCo();
     }
+    @Then("I validate enrolled medical plans on future plans tab in COCO")
+    public void validatePlanDetailsOnFuturePlans(){
+        myPoliciesCoCoPage.validatePlanDetailsOnFuturePlans();
+    }
 
     @Then("I click on Current Plans CoCo")
     public void clickCurrentPlansCoCo(){myPoliciesCoCoPage.clickCurrentPlansCoCo();
     }
+
+    @Then("I click on Cancel Medical Plans CoCo")
+    public void cancelMedicalPlanbtnCoCo() {
+        myPoliciesCoCoPage.cancelMedicalPlanbtnCoCo();
+    }
+
 
 }

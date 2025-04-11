@@ -1,4 +1,4 @@
-@APTC,@APTC-SIR1
+@APTCSIR,@APTC-SIR1
   #  SLER-1107, SLER-1108, SLER-1150, SLER-1151, SLER-2388
 Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
@@ -956,6 +956,8 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
 
+    # end of initial enrollment
+
     Then I validate I am on the "Account Overview" page
     ## - make change button  - no such element
     Then I click on make changes button
@@ -1453,6 +1455,8 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
+
+     # end of initial enrollment
 
     Then I validate I am on the "Account Overview" page
     Then I click on make changes button

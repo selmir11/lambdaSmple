@@ -297,5 +297,9 @@ public class AdminPortalIndividualDashboardSteps {
     public void iClickOnManageAccountDetailsButtonOnAdminPortalIndividualDashboard() {
         adminPortalIndividualDashboardPage.clickManageAccountDetails();
     }
+    @Then("I validate user name on Selected Member data on the far left side")
+    public void iValidateUserNameOnSelectedMemberDataOnTheFarLeftSide() {
+        adminPortalIndividualDashboardPage.verifyUserName();
+    }
 }
 

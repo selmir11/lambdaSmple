@@ -1,6 +1,7 @@
+@TamExch
 Feature: Page Navigation for two members
 @SLER-2271
-Scenario: Navigation from Employment Income details page back to the calling Exch application page (Go Back Button is Enabled)
+Scenario: SLER-2271 Navigation from Employment Income details page back to the calling Exch application page (Go Back Button is Enabled)
   Given I open the login page on the "login" portal
   And I validate I am on the "Login" page
   When I click create a new account on login page
