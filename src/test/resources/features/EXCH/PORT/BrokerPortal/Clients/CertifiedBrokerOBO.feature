@@ -20,7 +20,7 @@ Feature:  Certify broker able to work obo and not certify broker cannot work on 
     And I validate I am on the "Broker Portal Your Clients" page
     Then I validate the MVR container text in the dashboard Page
     And I wait for 500 milliseconds
-    And I search for a client named "ssen"
+    And I search for a client named for staging "ssen" or for QA "ssen"
     And I wait for 500 milliseconds
     And I click on the first client in my list
     Then I verify that my client's current status is "NO ELIGIBILITY"
@@ -67,7 +67,7 @@ Feature:  Certify broker able to work obo and not certify broker cannot work on 
     And I validate I am on the "Broker Portal Your Clients" page
     Then I validate the MVR container text in the dashboard Page
     And I wait for 1000 milliseconds
-    And I search for a client named "ssen"
+    And I search for a client named for staging "ssen" or for QA "ssen"
     And I wait for 1000 milliseconds
     Then I validate The Client is removed successfully
     Then I click on broker userName and logout

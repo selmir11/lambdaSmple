@@ -31,21 +31,21 @@ Feature: My Clients list client functionality and existing client data validatio
     And I click the client list left pagination arrow button
     Then I verify the current client list result page is "1"
 
-    And I search for a client named "Bridgette"
+    And I search for a client named for staging "Bridgette" or for QA "Bridgette"
     And I wait for 1000 milliseconds
     Then I click on the first client in my list
     Then I verify that my client's current status is "NO ELIGIBILITY"
     And I wait for 1000 milliseconds
 
     And I clear the client search box to reset my list
-    And I search for a client named "Helga"
+    And I search for a client named for staging "Helga" or for QA "Helga"
     And I wait for 1000 milliseconds
     Then I click on the first client in my list
     Then I verify that my client's current status is "ELIGIBILITY ONLY"
     And I wait for 1000 milliseconds
 
     And I clear the client search box to reset my list
-    And I search for a client named "Ollie"
+    And I search for a client named for staging "Ollie" or for QA "Ollie"
     And I wait for 1000 milliseconds
     Then I click on the first client in my list
     Then I verify that my client's current status is "POLICY SUBMITTED"
