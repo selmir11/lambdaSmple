@@ -133,7 +133,7 @@ Feature: Tests related to the Family Overview page
     And I validate I am on the "Login" page
 
   @SLCR-821
-  Scenario: TAM- Member ID in CoCo URLs only allows CoCo inter-household Member IDs(CCRT-220)
+  Scenario: SLCR-821 TAM- Member ID in CoCo URLs only allows CoCo inter-household Member IDs(CCRT-220)
     Then I validate I am on the "CoCo Family Overview" page
     Then I click EditUpdate on Family Overview page for "Primary"
     And I retrieve the memberId of primary member from url

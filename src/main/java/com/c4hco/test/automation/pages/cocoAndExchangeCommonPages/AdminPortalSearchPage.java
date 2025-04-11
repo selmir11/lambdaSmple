@@ -301,15 +301,6 @@ public class AdminPortalSearchPage {
 
         subscriber.setPhoneNumber(phoneNumber.get(0).getText());
         SharedData.setPrimaryMember(subscriber);
-
-        List<MemberDetails> memberslist = SharedData.getMembers();
-        if (memberslist == null) {
-            memberslist = new ArrayList<>();
-        }
-        if (!memberslist.contains(subscriber)) {
-            memberslist.add(subscriber);
-        }
-        SharedData.setAllMembers(memberslist);
     }
 
     public void clickFromApplicationLinksDropdown(String dropdownOption) {

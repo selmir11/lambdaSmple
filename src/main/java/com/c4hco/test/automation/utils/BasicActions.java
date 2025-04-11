@@ -19,6 +19,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalAccessor;
@@ -1461,6 +1462,19 @@ public class BasicActions {
         } catch (NoSuchElementException e) {
             return true;
         }
+    }
+
+    public void closeChildWindow() {
+        String parentWindow = driver.getWindowHandle();
+        Set<String> allWindowHandles = getDriver().getWindowHandles();
+        for (String childWindow : allWindowHandles) {
+            if (!childWindow.equalsIgnoreCase(parentWindow)) {
+                getDriver().switchTo().window(childWindow);
+                break;
+            }
+        }
+        getDriver().close();
+        driver.switchTo().window(parentWindow);
     }
 }
 
