@@ -5,10 +5,7 @@ import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.datatable.DataTable;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -146,12 +143,6 @@ public class AdminPortalSearchPage {
     @FindBy(css = "tbody td:nth-child(7)")
     List<WebElement> phoneNumber;
 
-    @FindBy(id = "ngb-tooltip-0")
-    WebElement hoverNameToolTip;
-
-    @FindBy(id = "ngb-tooltip-1")
-    WebElement hoverEmailToolTip;
-
     @FindBy(xpath = "//table[1]/tbody[1]/tr[3]/td[1]") // This locator just using to avoid hard wait
     WebElement rowTenth;
 
@@ -260,10 +251,21 @@ public class AdminPortalSearchPage {
         }
 
         Actions actions = new Actions(WebDriverManager.getDriver());
-        actions.moveToElement(primaryAccountHolderName.get(0)).perform();
-        basicActions.waitForElementToBePresentWithRetries(hoverNameToolTip, 60);
-        WebElement namehoverNameToolTip = hoverNameToolTip;
-        String fullName = namehoverNameToolTip.getText();
+        WebElement nameCell = primaryAccountHolderName.get(0);
+        actions.moveToElement(nameCell).perform();
+        String fullName;
+        try {
+            WebDriverWait wait = new WebDriverWait(WebDriverManager.getDriver(), Duration.ofSeconds(25));
+            WebElement tooltip = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[id^='ngb-tooltip']")));
+            String tooltipText = tooltip.getText().trim();
+            if (!tooltipText.isEmpty()) {
+                fullName = tooltipText;
+            } else {
+                fullName = nameCell.getText().trim();
+            }
+        } catch (TimeoutException e) {
+            fullName = nameCell.getText().trim();
+        }
         subscriber.setSignature(fullName);
         String[] parts = fullName.split(" ");
         String fName = parts.length > 0 ? parts[0] : "";
@@ -274,9 +276,27 @@ public class AdminPortalSearchPage {
         actions.moveToElement(searchTitle).perform();
 
         actions.moveToElement(emailAddress.get(0)).perform();
-        basicActions.waitForElementToBePresentWithRetries(hoverEmailToolTip, 60);
-        WebElement emailHoverToolTip = hoverEmailToolTip;
-        String email = emailHoverToolTip.getText();
+        WebDriverWait wait = new WebDriverWait(WebDriverManager.getDriver(), Duration.ofSeconds(25));
+        String email = wait.until(driver -> {
+            try {
+                List<WebElement> tooltips = driver.findElements(By.cssSelector("[id^='ngb-tooltip']"));
+                for (WebElement tooltip : tooltips) {
+                    try {
+                        if (tooltip.isDisplayed()) {
+                            String text = tooltip.getText().trim();
+                            if (!text.isEmpty()) {
+                                return text;
+                            }
+                        }
+                    } catch (StaleElementReferenceException ignored) {
+                    }
+                }
+            } catch (Exception ignored) {}
+            return null;
+        });
+        if (email == null || email.isEmpty()) {
+            throw new RuntimeException("Email tooltip was not found or had no text.");
+        }
         subscriber.setEmailId(email);
 
         subscriber.setPhoneNumber(phoneNumber.get(0).getText());

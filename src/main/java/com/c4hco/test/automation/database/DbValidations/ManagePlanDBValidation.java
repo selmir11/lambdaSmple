@@ -14,11 +14,12 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.math.RoundingMode;
-import java.text.NumberFormat;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ManagePlanDBValidation {
     DbDataProvider_Exch exchDbDataProvider = new DbDataProvider_Exch();
@@ -461,145 +462,146 @@ public class ManagePlanDBValidation {
         softAssert.assertAll();
     }
 
-    public void validatePreviousMembersDetailsTableDB(String planType, Integer memberNum) {
+    private List<String> selectRowForMember(List<List<String>> allRows, int memberIndex, int exchPersonIdIndex, int dbRowAdjust) {
+        // Group rows by Person ID using the correct index
+        Map<String, List<List<String>>> grouped = new LinkedHashMap<>();
+
+        for (List<String> row : allRows) {
+            String personId = row.get(exchPersonIdIndex);
+            grouped.computeIfAbsent(personId, k -> new ArrayList<>()).add(row);
+        }
+
+        List<String> orderedKeys = new ArrayList<>(grouped.keySet());
+
+        if (orderedKeys.size() <= memberIndex) {
+            throw new IndexOutOfBoundsException("Member index " + memberIndex + " out of bounds for " + orderedKeys.size() + " members.");
+        }
+
+        String selectedKey = orderedKeys.get(memberIndex);
+        List<List<String>> groupedRows = grouped.get(selectedKey);
+
+        if (groupedRows.size() <= 1) {
+            return groupedRows.get(0);
+        }
+
+        System.out.println("Selected rows for member " + selectedKey + ":");
+        groupedRows.forEach(System.out::println);
+
+        int adjustedIndex = Math.min(dbRowAdjust, groupedRows.size() - 1);
+
+        if (adjustedIndex >= groupedRows.size()) {
+            throw new IndexOutOfBoundsException("Adjusted index " + adjustedIndex + " is out of bounds for the number of rows: " + groupedRows.size());
+        }
+
+        System.out.println("Returning row at adjusted index " + adjustedIndex + ": " + groupedRows.get(adjustedIndex));
+        return groupedRows.get(adjustedIndex);
+    }
+
+    public void validatePreviousMembersDetailsTableDB(String planType, Integer memberNum, String tableIndex, Integer dbRowAdjust) {
         List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansMemberDetails(planType);
-        System.out.println("Query executed, returned values: " + dbValuesList);
+        System.out.println("Query executed, returned values for table " + tableIndex + ": " + dbValuesList);
 
         if (dbValuesList.isEmpty()) {
             throw new RuntimeException("No data returned for account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'");
         }
-        Set<String> processedFirstNamesPrevious = new HashSet<>();
-        int uiRowIndex = 1;
-        for (int i = 0; i < dbValuesList.size(); i++) {
-            if (uiRowIndex > memberNum) {
-                break;
-            }
-            List<String> dbRow = dbValuesList.get(i);
-            String firstName = dbRow.get(1);
-            String coverageEndDateValue = dbRow.get(5);
-            boolean hasSecondRow = (i + 1) < dbValuesList.size() && dbValuesList.get(i + 1).get(1).equals(firstName);
-            if (coverageEndDateValue.contains("12-31") && hasSecondRow) {
-                System.out.println("Skipping first row for " + firstName + " due to coverage_end_date containing 12-31.");
-                dbRow = dbValuesList.get(i + 1);
-                i++;
-            }
-            if (processedFirstNamesPrevious.contains(firstName)) {
-                continue;
-            }
-            processedFirstNamesPrevious.add(firstName);
-            String dbTobaccoValue = dbRow.get(1).equals("1") ? "Yes" : "No";
-            String dbDobValue = basicActions.changeDateFormat(dbRow.get(3), "yyyy-MM-dd", "MM/dd/yyyy");
 
-            WebElement personID = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//div[@id='referenceId_" + uiRowIndex + "']"));
-            WebElement fistName = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//div[@id='firstName_" + uiRowIndex + "']"));
-            WebElement dob = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//div[@id='dateOfBirth_" + uiRowIndex + "']"));
-            WebElement relationship = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//div[@id='relationshipToSubscriber_" + uiRowIndex + "']"));
-            WebElement tobacco = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//div[@id='tobacco_" + uiRowIndex + "']"));
+        int tableIndexInt = Integer.parseInt(tableIndex);
 
-            softAssert.assertEquals(dbRow.get(0), personID.getText(), "Mismatch in exch_person_id for row " + uiRowIndex);
-            softAssert.assertEquals(dbRow.get(1) + " " + dbRow.get(2), fistName.getText(), "Mismatch in first_name last_name for row " + uiRowIndex);
+        for (int memberIndex = 0; memberIndex < memberNum; memberIndex++) {
+            List<String> selectedRow = selectRowForMember(dbValuesList, memberIndex, 0, dbRowAdjust);
+
+            String dbTobaccoValue = selectedRow.get(1).equals("1") ? "Yes" : "No";
+            String dbFinancialPeriodStartValue = basicActions.changeDateFormat(selectedRow.get(6), "yyyy-MM-dd", "MM/dd/yyyy");
+            String dbFinancialPeriodEndValue = basicActions.changeDateFormat(selectedRow.get(7), "yyyy-MM-dd", "MM/dd/yyyy");
+            String dbDobValue = basicActions.changeDateFormat(selectedRow.get(3), "yyyy-MM-dd", "MM/dd/yyyy");
+            int uiRowIndex = memberIndex + 1;
+
+            WebElement financialPeriod = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//app-previous-financial-period[" + tableIndex + "]/div[1]/div[1]/div"));
+            softAssert.assertEquals("Financial Period " + dbFinancialPeriodStartValue + " - " + dbFinancialPeriodEndValue, financialPeriod.getText(), "Mismatch in financialPeriod for row " + uiRowIndex);
+
+            WebElement personID = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//app-previous-financial-period[" + tableIndex + "]//div[@id='referenceId_" + uiRowIndex + "']"));
+            WebElement firstName = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//app-previous-financial-period[" + tableIndex + "]//div[@id='firstName_" + uiRowIndex + "']"));
+            WebElement dob = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//app-previous-financial-period[" + tableIndex + "]//div[@id='dateOfBirth_" + uiRowIndex + "']"));
+            WebElement relationship = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//app-previous-financial-period[" + tableIndex + "]//div[@id='relationshipToSubscriber_" + uiRowIndex + "']"));
+            WebElement tobacco = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//app-previous-financial-period[" + tableIndex + "]//div[@id='tobacco_" + uiRowIndex + "']"));
+
+            softAssert.assertEquals(selectedRow.get(0), personID.getText(), "Mismatch in exch_person_id for row " + uiRowIndex);
+            softAssert.assertEquals(selectedRow.get(1) + " " + selectedRow.get(2), firstName.getText(), "Mismatch in first_name last_name for row " + uiRowIndex);
             softAssert.assertEquals(dbDobValue, dob.getText(), "Mismatch in birth_date for row " + uiRowIndex);
-            softAssert.assertEquals(dbRow.get(4).toLowerCase(), relationship.getText().toLowerCase(), "Mismatch in relation_to_subscriber for row " + uiRowIndex);
+            softAssert.assertEquals(selectedRow.get(4).toLowerCase(), relationship.getText().toLowerCase(), "Mismatch in relation_to_subscriber for row " + uiRowIndex);
             softAssert.assertEquals(dbTobaccoValue, tobacco.getText(), "Mismatch in prior_6_months_tobacco_use_ind for row " + uiRowIndex);
-
-            uiRowIndex++;
         }
-
         softAssert.assertAll();
     }
 
-    public void validatePreviousCoverageDetailsTableDB(String planType, Integer memberNum) {
+    public void validatePreviousCoverageDetailsTableDB(String planType, Integer memberNum, String tableIndex, Integer dbRowAdjust) {
         List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansCoverageDetails(planType);
         System.out.println("Query executed, returned values: " + dbValuesList);
 
         if (dbValuesList.isEmpty()) {
             throw new RuntimeException("No data returned for account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'");
         }
-        Set<String> processedFirstNamesPrevious = new HashSet<>();
-        int uiRowIndex = 1;
-        for (int i = 0; i < dbValuesList.size(); i++) {
-            if (uiRowIndex > memberNum) {
-                break;
-            }
-            List<String> dbRow = dbValuesList.get(i);
-            String firstName = dbRow.get(5);
-            String coverageEndDateValue = dbRow.get(1);
-            boolean hasSecondRow = (i + 1) < dbValuesList.size() && dbValuesList.get(i + 1).get(5).equals(firstName);
-            if (coverageEndDateValue.contains("12-31") && hasSecondRow) {
-                System.out.println("Skipping first row for " + firstName + " due to coverage_end_date containing 12-31.");
-                dbRow = dbValuesList.get(i + 1);
-                i++;
-            }
-            if (processedFirstNamesPrevious.contains(firstName)) {
-                continue;
-            }
-            processedFirstNamesPrevious.add(firstName);
+
+        int tableIndexInt = Integer.parseInt(tableIndex);
+
+        for (int memberIndex = 0; memberIndex < memberNum; memberIndex++) {
+            List<String> dbRow = selectRowForMember(dbValuesList, memberIndex, 5, dbRowAdjust);
+
             String dbStartDateValue = basicActions.changeDateFormat(dbRow.get(0), "yyyy-MM-dd", "MM/dd/yyyy");
             String dbEndDateValue = basicActions.changeDateFormat(dbRow.get(1), "yyyy-MM-dd", "MM/dd/yyyy");
             String dbEffectuatedValue = dbRow.get(3).equals("1") ? "Yes" : "No";
             String dbTermReasonValue = dbRow.get(4) == null ? "" : dbRow.get(4).toString().trim();
+            int uiRowIndex = memberIndex + 1;
 
-            WebElement coverageStartDate = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container']//div[@id='coverageStartDate_" + uiRowIndex + "']"));
-            WebElement coverageEndDate = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container']//div[@id='coverageEndDate_" + uiRowIndex + "']"));
-            WebElement status = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container']//div[@id='status_" + uiRowIndex + "']"));
-            WebElement effectuated = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container']//div[@id='effectuated_" + uiRowIndex + "']"));
-            WebElement terminationReason = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container']//div[@id='terminationReason_" + uiRowIndex + "']"));
+            WebElement coverageStartDate = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//div[@id='coverageStartDate_" + uiRowIndex + "']"));
+            WebElement coverageEndDate = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//div[@id='coverageEndDate_" + uiRowIndex + "']"));
+            WebElement status = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//div[@id='status_" + uiRowIndex + "']"));
+            WebElement effectuated = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//div[@id='effectuated_" + uiRowIndex + "']"));
+            WebElement terminationReason = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//div[@id='terminationReason_" + uiRowIndex + "']"));
 
             softAssert.assertEquals(dbStartDateValue, coverageStartDate.getText(), "Mismatch in coverage_start_date for row " + uiRowIndex);
             softAssert.assertEquals(dbEndDateValue, coverageEndDate.getText(), "Mismatch in coverage_end_date for row " + uiRowIndex);
             softAssert.assertEquals(dbRow.get(2).toLowerCase(), status.getText().toLowerCase(), "Mismatch in policy_member_coverage_status for row " + uiRowIndex);
             softAssert.assertEquals(dbEffectuatedValue, effectuated.getText(), "Mismatch in effectuated_ind for row " + uiRowIndex);
             softAssert.assertEquals(dbTermReasonValue, terminationReason.getText(), "Mismatch in disenrollment_reason for row " + uiRowIndex);
-            uiRowIndex++;
         }
         softAssert.assertAll();
     }
 
-    public void validatePreviousFinancialDetailsTableDB(String planType, Integer memberNum) {
+    public void validatePreviousFinancialDetailsTableDB(String planType, Integer memberNum, String tableIndex, Integer dbRowAdjust) {
         List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansFinancialDetails(planType);
         System.out.println("Query executed, returned values: " + dbValuesList);
 
         if (dbValuesList.isEmpty()) {
             throw new RuntimeException("No data returned for account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'");
         }
-        Set<String> processedFirstNamesPrevious = new HashSet<>();
-        int uiRowIndex = 1;
-        for (int i = 0; i < dbValuesList.size(); i++) {
-            if (uiRowIndex > memberNum) {
-                break;
-            }
-            List<String> dbRow = dbValuesList.get(i);
-            String firstName = dbRow.get(4);
-            String coverageEndDateValue = dbRow.get(5);
-            boolean hasSecondRow = (i + 1) < dbValuesList.size() && dbValuesList.get(i + 1).get(4).equals(firstName);
-            if (coverageEndDateValue.contains("12-31") && hasSecondRow) {
-                System.out.println("Skipping first row for " + firstName + " due to coverage_end_date containing 12-31.");
-                dbRow = dbValuesList.get(i + 1);
-                i++;
-            }
-            if (processedFirstNamesPrevious.contains(firstName)) {
-                continue;
-            }
-            processedFirstNamesPrevious.add(firstName);
+
+        int tableIndexInt = Integer.parseInt(tableIndex);
+
+        for (int memberIndex = 0; memberIndex < memberNum; memberIndex++) {
+            List<String> dbRow = selectRowForMember(dbValuesList, memberIndex, 4, dbRowAdjust);
+
             String dbStartDateValue = basicActions.changeDateFormat(dbRow.get(0), "yyyy-MM-dd", "MM/dd/yyyy");
             String dbEndDateValue = basicActions.changeDateFormat(dbRow.get(1), "yyyy-MM-dd", "MM/dd/yyyy");
+            int uiRowIndex = memberIndex + 1;
 
-            WebElement financialStartDate = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container']//div[@id='financialStartDate_" + uiRowIndex + "']"));
-            WebElement financialEndDate = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container']//div[@id='financialEndDate_" + uiRowIndex + "']"));
-            WebElement premium = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container']//div[@id='premium_" + uiRowIndex + "']"));
+            WebElement financialStartDate = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//div[@id='financialStartDate_" + uiRowIndex + "']"));
+            WebElement financialEndDate = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//div[@id='financialEndDate_" + uiRowIndex + "']"));
+            WebElement premium = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//div[@id='premium_" + uiRowIndex + "']"));
+
             String reduction = "";
             if (SharedData.getDbName().toLowerCase().contains("exch")) {
                 reduction = "APTC";
             } else if (SharedData.getDbName().toLowerCase().contains("coco")) {
                 reduction = "SES";
             }
-            WebElement taxCredit = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container']//div[@id='plan"+reduction+"_" + uiRowIndex + "']"));
+
+            WebElement taxCredit = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//div[@id='plan" + reduction + "_" + uiRowIndex + "']"));
 
             softAssert.assertEquals(dbStartDateValue, financialStartDate.getText(), "Mismatch in member_financial_start_date for row " + uiRowIndex);
             softAssert.assertEquals(dbEndDateValue, financialEndDate.getText(), "Mismatch in member_financial_end_date for row " + uiRowIndex);
-            softAssert.assertEquals("$"+dbRow.get(2), premium.getText(), "Mismatch in plan_premium_amt for row " + uiRowIndex);
-            softAssert.assertEquals("$"+dbRow.get(3), taxCredit.getText(), "Mismatch in premium_reduction_amt for row " + uiRowIndex);
-            uiRowIndex++;
+            softAssert.assertEquals("$" + dbRow.get(2), premium.getText(), "Mismatch in plan_premium_amt for row " + uiRowIndex);
+            softAssert.assertEquals("$" + dbRow.get(3), taxCredit.getText(), "Mismatch in premium_reduction_amt for row " + uiRowIndex);
         }
         softAssert.assertAll();
     }
@@ -800,6 +802,196 @@ public class ManagePlanDBValidation {
 
         return elements;
     }
+
+    public void validatePreviousPlanSummaryDB(String planType, Integer policyNumber, Integer memberNum) throws Exception {
+        List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansPlanSummary(planType);
+        if (dbValuesList.isEmpty()) {
+            throw new RuntimeException("No data returned for account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'");
+        }
+
+        List<List<String>> selectedRows = getPreviousSelectedRows(dbValuesList, policyNumber, memberNum);
+        List<String> selectedRow = getPreviousSelectedRowForAssertions(dbValuesList, policyNumber);
+        Map<String, String> financials = calculatePreviousPlanFinancials(selectedRow, selectedRows, planType);
+        Map<String, WebElement> elements = getPreviousPlanWebElements(planType, financials.get("reduction"));
+
+        assertPreviousPlanSummary(elements, selectedRow, financials, planType);
+    }
+
+    private List<List<String>> getPreviousSelectedRows(List<List<String>> dbValuesList, Integer policyNumber, Integer memberNum) {
+        Set<String> uniqueFirstNames = dbValuesList.stream().map(row -> row.get(2)).distinct().collect(Collectors.toCollection(LinkedHashSet::new));
+        List<List<String>> selectedRows = new ArrayList<>();
+        int count = 0;
+        for (String firstName : uniqueFirstNames) {
+            if (count >= memberNum) break;
+            selectedRows.add(getRowForPolicy(dbValuesList, firstName, policyNumber));
+            count++;
+        }
+        return selectedRows;
+    }
+
+    private List<String> getPreviousSelectedRowForAssertions(List<List<String>> dbValuesList, Integer policyNumber) throws ParseException {
+        Map<String, List<List<String>>> memberToRows = dbValuesList.stream().collect(Collectors.groupingBy(row -> row.get(2)));
+        List<String> sortedFirstNames = new ArrayList<>(memberToRows.keySet());
+        Collections.sort(sortedFirstNames);
+
+        String selectedFirstName = sortedFirstNames.get(policyNumber);
+        List<List<String>> selectedMemberRows = memberToRows.get(selectedFirstName);
+        selectedMemberRows.sort((r1, r2) -> {
+            try {
+                Date d1 = new SimpleDateFormat("yyyy-MM-dd").parse(r1.get(19));
+                Date d2 = new SimpleDateFormat("yyyy-MM-dd").parse(r2.get(19));
+                return d2.compareTo(d1);
+            } catch (ParseException e) {
+                return 0;
+            }
+        });
+        return selectedMemberRows.get(policyNumber);
+    }
+
+    private Map<String, String> calculatePreviousPlanFinancials(List<String> selectedRow, List<List<String>> selectedRows, String planType) {
+        Map<String, String> values = new HashMap<>();
+
+        String dbPolicyStartDateValue = basicActions.changeDateFormat(selectedRow.get(1), "yyyy-MM-dd", "MM/dd/yyyy");
+        String dbPolicyEndDateValue = basicActions.changeDateFormat(selectedRow.get(4), "yyyy-MM-dd", "MM/dd/yyyy");
+        String dbFinancialStartDateValue = basicActions.changeDateFormat(selectedRow.get(19), "yyyy-MM-dd", "MM/dd/yyyy");
+        String dbFinancialEndDateValue = basicActions.changeDateFormat(selectedRow.get(18), "yyyy-MM-dd", "MM/dd/yyyy");
+
+        BigDecimal ehbPercent = new BigDecimal(selectedRow.get(7));
+        BigDecimal totalPremium = selectedRows.stream().map(r -> new BigDecimal(r.get(8))).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal totalCsrAmount = selectedRows.stream().map(r -> new BigDecimal(r.get(10))).reduce(BigDecimal.ZERO, BigDecimal::add).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal totalAptcAmount = selectedRows.stream().map(r -> new BigDecimal(r.get(13))).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal dbEhbPremiumValue = ehbPercent.multiply(totalPremium).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal dbPremiumAfterSubsidy = totalPremium.subtract(totalAptcAmount);
+
+        String dbPlanAvValue = "";
+        if (selectedRow.get(16) != null && !selectedRow.get(16).trim().isEmpty()) {
+            BigDecimal av = new BigDecimal(selectedRow.get(16).trim());
+            dbPlanAvValue = av.compareTo(BigDecimal.ZERO) == 0
+                    ? "0.00%"
+                    : av.multiply(BigDecimal.valueOf(100)).setScale(2, RoundingMode.HALF_UP) + "%";
+        }
+
+        String reduction = "";
+        String dbName = SharedData.getDbName().toLowerCase();
+        if (dbName.contains("exch")) {
+            reduction = "APTC";
+        } else if (dbName.contains("coco")) {
+            reduction = "SES";
+        }
+
+        values.put("policyStart", dbPolicyStartDateValue);
+        values.put("policyEnd", dbPolicyEndDateValue);
+        values.put("financialStart", dbFinancialStartDateValue);
+        values.put("financialEnd", dbFinancialEndDateValue);
+        values.put("ehbPremium", "$" + dbEhbPremiumValue);
+        values.put("csrAmount", "$" + totalCsrAmount);
+        values.put("totalPremium", "$" + totalPremium);
+        values.put("aptcAmount", "$" + totalAptcAmount);
+        values.put("premiumAfterSubsidy", "$" + dbPremiumAfterSubsidy);
+        values.put("planAv", dbPlanAvValue);
+        values.put("reduction", reduction);
+
+        return values;
+    }
+
+    private Map<String, WebElement> getPreviousPlanWebElements(String planType, String reduction) {
+        String base = "//div[@class='" + planType.toLowerCase() + "-plan-container']";
+        Map<String, WebElement> elements = new HashMap<>();
+
+        elements.put("previousPeriodTxt", basicActions.getDriver().findElement(By.xpath(base + "/app-previous-plan/div/div[1]/div[1]")));
+        elements.put("planName", basicActions.getDriver().findElement(By.xpath(base + "//*[@id='enrollment-info']/div/div[1]")));
+        elements.put("policyCoverageDates", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Policy Coverage')]")));
+        elements.put("ehbPremiumTxt", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'EHB Premium')]")));
+        elements.put("ehbPremiumData", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'EHB Premium')]//following::div[1]")));
+        elements.put("financialEndDateTxt", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Financial End Date')]")));
+        elements.put("financialEndDateData", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Financial End Date')]//following::div[1]")));
+        elements.put("csrAmountTxt", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'CSR Amount')]")));
+        elements.put("csrAmountData", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'CSR Amount')]//following::div[1]")));
+        elements.put("planPremiumTxt", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Plan Premium')]")));
+        elements.put("planPremiumData", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Plan Premium')]//following::div[1]")));
+        elements.put("ratingAreaTxt", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Rating Area')]")));
+        elements.put("ratingAreaData", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Rating Area')]//following::div[1]")));
+        elements.put("planReductionTxt", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Plan " + reduction + "')]")));
+        elements.put("planReductionData", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Plan " + reduction + "')]//following::div[1]")));
+        elements.put("serviceAreaTxt", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Service Area')]")));
+        elements.put("serviceAreaData", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Service Area')]//following::div[1]")));
+        elements.put("premiumAfterSubsidyTxt", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Premium after Subsidy')]")));
+        elements.put("premiumAfterSubsidyData", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Premium after Subsidy')]//following::div[1]")));
+        elements.put("policyIdTxt", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Policy ID')]")));
+        elements.put("policyIdData", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Policy ID')]//following::div[1]")));
+        elements.put("planAvTxt", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Plan AV')]")));
+        elements.put("planAvData", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Plan AV')]//following::div[1]")));
+        elements.put("financialStartDateTxt", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Financial Start Date')]")));
+        elements.put("financialStartDateData", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Financial Start Date')]//following::div[1]")));
+        elements.put("hiosIdTxt", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'HIOS ID')]")));
+        elements.put("hiosIdData", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'HIOS ID')]//following::div[1]")));
+
+        return elements;
+    }
+
+    private void assertPreviousPlanSummary(Map<String, WebElement> el, List<String> row, Map<String, String> vals, String planType) throws Exception {
+        softAssert.assertEquals("Previous Financial Periods - " + planType, el.get("previousPeriodTxt").getText(), "Mismatch in currentPolicyTxt");
+        softAssert.assertEquals(row.get(3), el.get("planName").getText(), "Mismatch in planName");
+        softAssert.assertEquals("Policy Coverage: " + vals.get("policyStart") + " to " + vals.get("policyEnd"), el.get("policyCoverageDates").getText(), "Mismatch in policyCoverageDates");
+        softAssert.assertEquals("EHB Premium:", el.get("ehbPremiumTxt").getText(), "Mismatch in ehbPremiumTxt");
+        softAssert.assertEquals(vals.get("ehbPremium"), el.get("ehbPremiumData").getText(), "Mismatch in ehbPremiumData");
+        softAssert.assertEquals("Financial End Date:", el.get("financialEndDateTxt").getText(), "Mismatch in financialEndDateTxt");
+        softAssert.assertEquals(vals.get("financialEnd"), el.get("financialEndDateData").getText(), "Mismatch in financialEndDateData");
+        softAssert.assertEquals("CSR Amount:", el.get("csrAmountTxt").getText(), "Mismatch in csrAmountTxt");
+        softAssert.assertEquals(vals.get("csrAmount"), el.get("csrAmountData").getText(), "Mismatch in csrAmountData");
+        softAssert.assertEquals("Plan Premium:", el.get("planPremiumTxt").getText(), "Mismatch in planPremiumTxt");
+        softAssert.assertEquals(vals.get("totalPremium"), el.get("planPremiumData").getText(), "Mismatch in planPremiumData");
+        softAssert.assertEquals("Rating Area:", el.get("ratingAreaTxt").getText(), "Mismatch in ratingAreaTxt");
+        softAssert.assertEquals(row.get(14).replace("Rating Area ", ""), el.get("ratingAreaData").getText(), "Mismatch in ratingAreaData");
+        softAssert.assertEquals("Plan " + vals.get("reduction") + ":", el.get("planReductionTxt").getText(), "Mismatch in planReductionTxt");
+        softAssert.assertEquals(vals.get("aptcAmount"), el.get("planReductionData").getText(), "Mismatch in planReductionData");
+        softAssert.assertEquals("Service Area:", el.get("serviceAreaTxt").getText(), "Mismatch in serviceAreaTxt");
+        softAssert.assertEquals(row.get(15), el.get("serviceAreaData").getText(), "Mismatch in serviceAreaData");
+        softAssert.assertEquals("Premium after Subsidy:", el.get("premiumAfterSubsidyTxt").getText(), "Mismatch in premiumAfterSubsidyTxt");
+        softAssert.assertEquals(vals.get("premiumAfterSubsidy"), el.get("premiumAfterSubsidyData").getText(), "Mismatch in premiumAfterSubsidyData");
+        softAssert.assertEquals("Policy ID:", el.get("policyIdTxt").getText(), "Mismatch in policyIdTxt");
+        softAssert.assertEquals(row.get(0), el.get("policyIdData").getText(), "Mismatch in policyIdData");
+
+        el.get("policyIdTxt").click();
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Clipboard clipboard = toolkit.getSystemClipboard();
+        String clipboardText = (String) clipboard.getData(DataFlavor.stringFlavor);
+        softAssert.assertEquals(clipboardText, row.get(0), "Clipboard data mismatch");
+
+        softAssert.assertEquals("Plan AV:", el.get("planAvTxt").getText(), "Mismatch in planAvTxt");
+        softAssert.assertEquals(vals.get("planAv"), el.get("planAvData").getText(), "Mismatch in planAvData");
+        softAssert.assertEquals("Financial Start Date:", el.get("financialStartDateTxt").getText(), "Mismatch in financialStartDateTxt");
+        softAssert.assertEquals(vals.get("financialStart"), el.get("financialStartDateData").getText(), "Mismatch in financialStartDateData");
+        softAssert.assertEquals("HIOS ID:", el.get("hiosIdTxt").getText(), "Mismatch in hiosIdTxt");
+        softAssert.assertEquals(row.get(17), el.get("hiosIdData").getText(), "Mismatch in hiosIdData");
+
+        softAssert.assertAll();
+    }
+
+    private List<String> getRowForPolicy(List<List<String>> dbValuesList, String firstName, int policyNumber) {
+        List<List<String>> memberRows = dbValuesList.stream().filter(row -> row.get(2).equalsIgnoreCase(firstName)).collect(Collectors.toList());
+        int[] rowOrder;
+        switch (policyNumber) {
+            case 1:
+                rowOrder = new int[]{1, 0};
+                break;
+            case 2:
+                rowOrder = new int[]{2, 1, 0};
+                break;
+            case 3:
+                rowOrder = new int[]{3, 2, 1, 0};
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported policy number: " + policyNumber);
+        }
+        for (int index : rowOrder) {
+            if (index < memberRows.size()) {
+                return memberRows.get(index);
+            }
+        }
+        throw new RuntimeException("No matching row found for firstName=" + firstName + " with policyNumber=" + policyNumber);
+    }
+
 
 
 

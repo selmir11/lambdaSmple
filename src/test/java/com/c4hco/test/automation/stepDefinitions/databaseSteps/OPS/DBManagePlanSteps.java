@@ -52,7 +52,7 @@ public class DBManagePlanSteps {
         managePlanDBValidation.validateCurrentDentalFinancialDetailsTableDB();
     }
 
-    @Then("I validate current {string} all details table in DB for {int} on AP Manage Plans")
+    @Then("I validate current {string} all details table in DB for {int} members on AP Manage Plans")
     public void iValidateCurrentAllDetailsTableDB(String planType, Integer memberNum) {
         actions.wait(5000);
         managePlanDBValidation.validateCurrentMembersDetailsTableDB(planType, memberNum);
@@ -60,17 +60,23 @@ public class DBManagePlanSteps {
         managePlanDBValidation.validateCurrentFinancialDetailsTableDB(planType, memberNum);
     }
 
-    @Then("I validate previous {string} all details table in DB for {int} on AP Manage Plans")
-    public void iValidatePreviousAllDetailsTableDB(String planType, Integer memberNum) {
+    @Then("I validate previous {string} all details table in DB for {int} members on policy {string} for DB row {int} on AP Manage Plans")
+    public void iValidatePreviousAllDetailsTableDB(String planType, Integer memberNum, String tableIndex, Integer dbRowAdjust) {
         actions.wait(5000);
-        managePlanDBValidation.validatePreviousMembersDetailsTableDB(planType, memberNum);
-        managePlanDBValidation.validatePreviousCoverageDetailsTableDB(planType, memberNum);
-        managePlanDBValidation.validatePreviousFinancialDetailsTableDB(planType, memberNum);
+        managePlanDBValidation.validatePreviousMembersDetailsTableDB(planType, memberNum, tableIndex, dbRowAdjust);
+        managePlanDBValidation.validatePreviousCoverageDetailsTableDB(planType, memberNum, tableIndex, dbRowAdjust);
+        managePlanDBValidation.validatePreviousFinancialDetailsTableDB(planType, memberNum, tableIndex, dbRowAdjust);
     }
 
-    @Then("I validate current {string} plan summary in DB for {int} on AP Manage Plans")
+    @Then("I validate current {string} plan summary in DB for {int} members on AP Manage Plans")
     public void iValidateCurrentPlanSummaryDB(String planType, Integer memberNum) throws Exception {
         actions.wait(5000);
         managePlanDBValidation.validateCurrentPlanSummaryDB(planType, memberNum);
+    }
+
+    @Then("I validate previous financial period {string} plan summary in DB for {int} policy {int} on AP Manage Plans")
+    public void iValidatePreviousPlanSummaryDB(String planType, Integer policyNumber, Integer memberNum) throws Exception {
+        actions.wait(5000);
+        managePlanDBValidation.validatePreviousPlanSummaryDB(planType, policyNumber, memberNum);
     }
 }
