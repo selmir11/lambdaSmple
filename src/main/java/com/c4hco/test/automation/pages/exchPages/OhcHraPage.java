@@ -106,6 +106,13 @@ public class OhcHraPage {
     @FindBy(css = ".drawer-footer h3 a")
     WebElement helpDrawerContactUsLink;
 
+    @FindBy(xpath = "//div[@class='div-input-margin-top-2 ng-star-inserted']//p")
+    WebElement ICHRAErrMsg1;
+
+    @FindBy(xpath = "//div[@class='div-input-margin-top-2 ng-star-inserted']//div//div")
+    WebElement ICHRAErrMsg2;
+
+
 
     public void clickSaveAndContinue() {
         basicActions.waitForElementToBePresent(ohcHeader, 90);
@@ -904,6 +911,13 @@ public class OhcHraPage {
                 throw new IllegalArgumentException("Invalid option: " + year);
         }
     }
+    public void validateICHRAmessagedisplayed(List<String> messege) {
+
+        softAssert.assertEquals(ICHRAErrMsg1.getText(), messege.get(0));
+        softAssert.assertEquals(ICHRAErrMsg2.getText(), messege.get(1));
+        softAssert.assertAll();
+    }
+
 
 
 }

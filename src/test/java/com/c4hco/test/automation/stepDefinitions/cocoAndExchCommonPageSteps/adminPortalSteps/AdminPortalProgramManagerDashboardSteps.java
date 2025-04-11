@@ -37,4 +37,19 @@ public class AdminPortalProgramManagerDashboardSteps {
     public void iValidateTheAssistNetOrganizationDetailsInAdminPortal() {
         adminPortalProgramManagerPage.validateTheAssistNetOrganizationDetailsInAdminPortal();
     }
+
+    @And("I validate the button save and cancel are displayed in AP program manager dashboard")
+    public void iValidateTheButtonSaveAndCancelAreDisplayedInAPProgramManagerDashboard() {
+        adminPortalProgramManagerPage.validateTheButtonSaveAndCancelAreDisplayed();
+    }
+
+    @Then("I validate the error message for empty email is displayed in AP program manager dashboard")
+    public void iValidateTheErrorMessageForEmptyEmailIsDisplayedInAPProgramManagerDashboard() {
+        adminPortalProgramManagerPage.validateTheErrorMessageForEmptyEmailIsDisplayed();
+    }
+
+    @Then("I set the email value for program manager STG {string} QA {string}")
+    public void iSetTheEmailValueForProgramManagerSTGQA(String stgAccountId, String qaAccountID) {
+        adminPortalProgramManagerPage.setEmailValueForPM(stgAccountId,qaAccountID);
+    }
 }

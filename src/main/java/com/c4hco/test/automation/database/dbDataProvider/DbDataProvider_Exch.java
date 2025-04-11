@@ -705,4 +705,7 @@ public class DbDataProvider_Exch {
     }
 
 
+    public String getTheAssistNetEmailInDB() {
+        return postgresHandler.getResultFor("email",exchDbQueries.getAssistNetEmailIn());
+    }
 }
