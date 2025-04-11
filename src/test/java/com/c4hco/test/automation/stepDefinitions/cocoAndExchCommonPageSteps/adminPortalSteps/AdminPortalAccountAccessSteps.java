@@ -14,4 +14,8 @@ public class AdminPortalAccountAccessSteps {
         adminPortalAccountAccessPage.validateAccountStatus(status);
     }
 
+    @And("I validate the account Status is {string} in AP program manager page")
+    public void iValidateTheAccountStatusIsInAPProgramManagerPage(String status) {
+        adminPortalAccountAccessPage.validateTheAccountStatusIsInAPProgramManagerPage(status);
+    }
 }
