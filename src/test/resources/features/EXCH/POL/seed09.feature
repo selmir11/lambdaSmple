@@ -30,15 +30,17 @@ Feature: Seed09 - Exchange
     And I select "No" for Federally Recognized Tribe option
     Then I click continue on the Add Address page
     Then I validate I am on the "Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    And I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    Then I click continue on the Citizenship page
     Then I validate I am on the "Family Overview" page
     And I click Add Another Family Member
     Then I validate I am on the "Add Member" page
-    And I enter member details with "05052019" date of birth
-    And I select "Female" as member's sex option
-    And I select "Daughter" as relationship option
-    And I select "Yes" to Is Member Applying
+    Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "05052019", "Female" and applying "Yes"
+      | Primary:Daughter |
     And I click continue on Tell us about additional members page
     Then I validate I am on the "Add Address" page
     And I select "Household" for Residential Address
@@ -50,7 +52,7 @@ Feature: Seed09 - Exchange
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
     Then I validate I am on the "Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity
+    And I select "Prefer not to answer" for race and ethnicity for "Daughter"
     And I click continue on the Race and Ethnicity page
     Then I validate I am on the "Citizenship" page
     And I select "Yes" for Citizen option
@@ -85,7 +87,6 @@ Feature: Seed09 - Exchange
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Head of household" tax filing option on the Tax Status page
-    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "Yes" for will claim dependents question
     Then I select "Daughter" for who will be claimed as dependent question on the Tax Status page
     Then I click Save and Continue on Tax Status page
@@ -125,7 +126,6 @@ Feature: Seed09 - Exchange
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Eligibility"
     Then I validate I am on the "Application History" page
-    Then I set data from application history page
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     Then I click continue on application results page
@@ -152,7 +152,42 @@ Feature: Seed09 - Exchange
     And I click on Sign Out in the Header for "NonElmo"
 
   @SLER-2436-WIP
-  Scenario: RT-2262 ENR-EXCH: DEMOGRAPHIC CHANGE - CHANGE RESPONSIBLE PERSON (FNAME, LNAME, SSN, MAILING ADDRESS)
+  Scenario: RT-2262 ENR-EXCH: DEMOGRAPHIC CHANGE - CHANGE RESPONSIBLE PERSON (FNAME, MNAME, LNAME, MAILING ADDRESS)
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click on make changes button
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Other" and click continue
+    And I click Continue With Application button on Report Life Change Page
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then  I update full name of member with prefix "Primary"
+    Then I click continue on Tell us about yourself page
+    Then I select the Different Mailing Address option
+    Then I enter member with address line1 "PO BOX 1858" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
+    Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I click continue on the Citizenship page
+    Then I click continue on family overview page
+    Then I validate I am on the "Tell us about life changes" page
+    Then I select "NoneOfThese" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I click on "No Thanks" on good news page
+    Then I validate I am on the "Application History" page
+    Then I click on view results and shop
+    Then I validate I am on the "Application Results" page
+    And I click on Sign Out in the Header for "NonElmo"
 
 
 
