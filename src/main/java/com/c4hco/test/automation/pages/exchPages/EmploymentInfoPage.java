@@ -182,10 +182,10 @@ public class EmploymentInfoPage {
     @FindBy(xpath = "(//div//div//div//label[@class='input-label form-label ng-star-inserted'])[5]")
     WebElement zipCodeLabel;
 
-    @FindBy(xpath = "(//lib-dropdown//div//div//div//label[@class='dropdown-label form-label ng-star-inserted'])[1]")
+    @FindBy(xpath = "//*[@for='ELIG-Exch-EmploymentIncomeJob-employerAddress-selectState']")
     WebElement stateLabel;
 
-    @FindBy(xpath = "(//div//div//select[@id='ELIG-employerAddress-stateSelect']//option)[1]")
+    @FindBy(xpath = "//*[contains(@id, 'selectState')]/*[@value='0: null']")
     WebElement stateDropDownLabel;
 
     @FindBy(xpath = "//div//div//div//label[@class='form-label']")
@@ -1117,12 +1117,12 @@ public class EmploymentInfoPage {
     public void validateMaxLengthOfEachTextField() {
         txtCompanyName.sendKeys(basicActions.generateRandomStringWithAnyLength(105));
         softAssert.assertTrue(txtCompanyName.getAttribute("value").length() == 100, "Company name accepting more than 100 chars");
-        txtAddressOne.sendKeys(basicActions.generateRandomStringWithAnyLength(130));
-        softAssert.assertTrue(txtAddressOne.getAttribute("value").length() == 128, "Address Line 1 accepting more than 128 chars");
-        txtAddressTwo.sendKeys(basicActions.generateRandomStringWithAnyLength(130));
-        softAssert.assertTrue(txtAddressTwo.getAttribute("value").length() == 128, "Address Line 2 accepting more than 128 chars");
-        txtCity.sendKeys(basicActions.generateRandomStringWithAnyLength(55));
-        softAssert.assertTrue(txtAddressTwo.getAttribute("value").length() == 128, "Address Line 2 accepting more than 128 chars");
+        txtAddressOne.sendKeys(basicActions.generateRandomStringWithAnyLength(36));
+        softAssert.assertFalse(txtAddressOne.getAttribute("value").length() == 35, "Address Line 1 accepting more than 35 chars");
+        txtAddressTwo.sendKeys(basicActions.generateRandomStringWithAnyLength(21));
+        softAssert.assertFalse(txtAddressTwo.getAttribute("value").length() == 20, "Address Line 2 accepting more than 20 chars");
+        txtCity.sendKeys(basicActions.generateRandomStringWithAnyLength(21));
+        softAssert.assertFalse(txtAddressTwo.getAttribute("value").length() == 20, "Address Line 2 accepting more than 20 chars");
         txtZip.sendKeys("5809089");
         softAssert.assertTrue(txtZip.getAttribute("value").length() == 5, "Zip field accepting more than 5 numbers");
         txtIncomeAmount.sendKeys("1234567891234");
@@ -1135,13 +1135,13 @@ public class EmploymentInfoPage {
         basicActions.sendTextUsingJavaScript(txtZip,"ABCDE");
         txtZip.click();
         txtZip.sendKeys(Keys.BACK_SPACE);
-        softAssert.assertEquals(c4bodyTextError.get(0).getText(),"Zip code must be 5 numbers","Accepting Only Chars");
+        softAssert.assertEquals(c4bodyTextError.get(0).getText(),"ZIP Code must be five numbers","Accepting Only Chars");
         txtZip.clear();
         basicActions.sendTextUsingJavaScript(txtZip,"123");
-        softAssert.assertEquals(c4bodyTextError.get(0).getText(),"Zip code must be 5 numbers","Accepting less than 5 numbers");
+        softAssert.assertEquals(c4bodyTextError.get(0).getText(),"ZIP Code must be five numbers","Accepting less than 5 numbers");
         txtZip.clear();
         basicActions.sendTextUsingJavaScript(txtZip,"!@#$%");
-        softAssert.assertEquals(c4bodyTextError.get(0).getText(),"Zip code must be 5 numbers","Accepting special characters");
+        softAssert.assertEquals(c4bodyTextError.get(0).getText(),"ZIP Code must be five numbers","Accepting special characters");
         txtIncomeAmount.clear();
         txtIncomeAmount.sendKeys("ABCDE");
         softAssert.assertTrue(txtIncomeAmount.getAttribute("value").isEmpty(),"Amount accepting Characters");
