@@ -28,8 +28,12 @@ public class sftpStepDefinitions {
              String sftpDownloadPath = sftpUtil.getLocalSftpDownloadPath();
             SharedData.setLocalPathToDownloadFile(sftpDownloadPath);
             List<String> allFiles = new ArrayList<>();
-            allFiles.addAll(SharedData.getMedicalFileName_grp());
-            allFiles.addAll(SharedData.getDentalFileName_grp());
+            if(!SharedData.getAppType().equals("coco")) {
+                allFiles.addAll(SharedData.getMedicalFileName_grp());
+                allFiles.addAll(SharedData.getDentalFileName_grp());
+            }else{
+                allFiles.addAll(SharedData.getMedicalFileName_grp());
+            }
             for(String fileName: allFiles){
                 sftpUtil.downloadFileWithSftp(remoteLocation, fileName);
             }
