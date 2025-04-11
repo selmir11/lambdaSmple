@@ -1460,6 +1460,7 @@ public class BasicActions {
         } catch (NoSuchElementException e) {
             return true;
         }
+    }
 
     public void closeChildWindow() {
         String parentWindow = driver.getWindowHandle();
