@@ -19,19 +19,19 @@ Feature: Manage Plans: Plan Summary container
     Then I click "Dental" plan type on Manage Plans page
     Then I verify "Dental" plan type is not showing on Manage Plans page
     Then I verify "Medical" plan type is showing on Manage Plans page
-    Then I validate current "Medical" plan summary in DB for 2 on AP Manage Plans
-    Then I validate current "Medical" all details table in DB for 2 on AP Manage Plans
+    Then I validate current "Medical" plan summary in DB for 2 members on AP Manage Plans
+    Then I validate current "Medical" all details table in DB for 2 members on AP Manage Plans
     Then I click "Dental" plan type on Manage Plans page
     Then I verify "Both" plan type is showing on Manage Plans page
-    Then I validate current "Medical" plan summary in DB for 2 on AP Manage Plans
-    Then I validate current "Medical" all details table in DB for 2 on AP Manage Plans
-    Then I validate current "Dental" plan summary in DB for 2 on AP Manage Plans
-    Then I validate current "Dental" all details table in DB for 2 on AP Manage Plans
+    Then I validate current "Medical" plan summary in DB for 2 members on AP Manage Plans
+    Then I validate current "Medical" all details table in DB for 2 members on AP Manage Plans
+    Then I validate current "Dental" plan summary in DB for 2 members on AP Manage Plans
+    Then I validate current "Dental" all details table in DB for 2 members on AP Manage Plans
     Then I click "Medical" plan type on Manage Plans page
     Then I verify "Medical" plan type is not showing on Manage Plans page
     Then I verify "Dental" plan type is showing on Manage Plans page
-    Then I validate current "Dental" plan summary in DB for 2 on AP Manage Plans
-    Then I validate current "Dental" all details table in DB for 2 on AP Manage Plans
+    Then I validate current "Dental" plan summary in DB for 2 members on AP Manage Plans
+    Then I validate current "Dental" all details table in DB for 2 members on AP Manage Plans
 
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal

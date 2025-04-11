@@ -493,4 +493,7 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.verifyGreenBarForMoreFinancialPeriods();
     }
 
+    @And("I select {string} Show Financial Period for policy {int} on Manage Plans page")
+    public void iSelectFinancialPeriod(String planType, Integer policyNumber) {adminPortalManagePlansPage.selectFinancialPeriod(planType, policyNumber);}
+
 }

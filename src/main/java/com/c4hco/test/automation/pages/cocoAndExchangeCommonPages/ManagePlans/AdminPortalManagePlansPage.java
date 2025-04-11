@@ -549,6 +549,8 @@ public class AdminPortalManagePlansPage {
 
     public void containerTitleLabelsYear(String year) {
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 20);
+        basicActions.waitForElementToBePresentWithRetries(chkMedical, 60);
+        basicActions.waitForElementToBePresentWithRetries(chkDental, 60);
         softAssert.assertEquals(txtTitleManagePlans.getText(), "Manage Plans");
         softAssert.assertEquals(txtSelectPlanYear.getText(), "Select a plan year:");
         softAssert.assertEquals(planYearLabel.getText(), "Year:");
@@ -1888,6 +1890,7 @@ public class AdminPortalManagePlansPage {
         String financialStartDates = parseDate(financialStartDateValue);
 
         WebElement financialStartDateMem = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container plan-container-fill']//div[@id='financialStartDate_" + memberNo + "']"));
+        basicActions.waitForElementToBePresentWithRetries(financialStartDateMem,30);
         softAssert.assertEquals(financialStartDateMem.getText(), financialStartDates);
     }
 
@@ -2307,4 +2310,13 @@ public class AdminPortalManagePlansPage {
         softAssert.assertEquals(previousFinancialPolicyLabel.getText(), expectedlabelName.get(11), "label not match for");
         softAssert.assertAll();
     }
+
+    public void selectFinancialPeriod(String planType, Integer policyNumber) {
+        basicActions.waitForElementListToBePresent(labelShowFinancialPeriod, 30);
+        List<WebElement> showFinancialPeriodBtn= basicActions.getDriver().findElements(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//button[@id='Manage Plans-Show Financial Period']"));
+        int indexPolicyNumber = policyNumber - 1;
+        showFinancialPeriodBtn.get(indexPolicyNumber).click();
+    }
+
+
 }
