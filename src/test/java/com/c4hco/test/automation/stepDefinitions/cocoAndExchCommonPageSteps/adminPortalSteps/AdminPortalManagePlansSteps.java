@@ -465,4 +465,18 @@ public class AdminPortalManagePlansSteps {
     public void iVerifyExpandAndCollapseAllFinancialPeriodsWithinThePreviousFinancialPeriod() {
         adminPortalManagePlansPage.verifyExpandAndCollapsesWithinThePFP();
     }
+
+    @Then("I validate previous financial year style properties on manage plan")
+    public void iValidatePreviousFinancialYearStylePropertiesOnManagePlan() {
+        adminPortalManagePlansPage.validatePreviousFinancialStyleProperties();
+    }
+    @And("I verify label on Previous Financial Period Medical Plan container")
+    public void iVerifyLabelForPreviousPeriodMedical(List<String > labelName) {
+        adminPortalManagePlansPage.verifyPreviousFinanicalLabel(labelName);
+    }
+
+    @Then("I verify green bar for more financial period")
+    public void iVerifyGreenBarForMoreFinancialPeriod() {
+        adminPortalManagePlansPage.verifyGreenBarForMoreFinancialPeriods();
+    }
 }
