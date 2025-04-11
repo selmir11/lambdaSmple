@@ -49,6 +49,8 @@ public class AdminPortalManagePlansPage {
     WebElement btnManagePlans;
     @FindBy(xpath = "//span[@class='select-planyear-label']")
     WebElement planYearLabel;
+    @FindBy(css = ".select-year  app-drop-down-select")
+    WebElement planYearLabelYear;
     @FindBy(xpath = "//div[@class='select-plan-type-label']")
     WebElement txtSelectPlanType;
     @FindBy(xpath = "//label[normalize-space()='Medical']")
@@ -121,8 +123,12 @@ public class AdminPortalManagePlansPage {
     WebElement confirmChangesButton;
     @FindBy(xpath = "//*[@id=\"enrollments-container\"]/div[1]/div[1]/div[2]/app-plan-year-dropdown/div/app-drop-down-select/div/div[1]")
     WebElement yearsDpdArrow;
+    @FindBy(css = ".medical-plan-container.plan-container-fill .current-plan-header > p")
+    WebElement currentMedicalHeader;
     @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//app-plan-information[1]/div[1]/div[1]/div")
     List<WebElement> currentMedicalData;
+    @FindBy(css = ".dental-plan-container.plan-container-fill .current-plan-header > p")
+    WebElement currentDentalHeader;
     @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//app-plan-information[1]/div[1]/div[1]/div")
     List<WebElement> currentDentalData;
     @FindBy(xpath = "//app-drop-down-select[@id='selectPolicy' and contains(@class,'dropdown-container')]")
@@ -535,6 +541,25 @@ public class AdminPortalManagePlansPage {
         softAssert.assertEquals(txtTitleManagePlans.getText(), "Manage Plans");
         softAssert.assertEquals(txtSelectPlanYear.getText(), "Select a plan year:");
         softAssert.assertEquals(planYearLabel.getText(), "Year:");
+        softAssert.assertEquals(txtSelectPlanType.getText(), "Select plan type:");
+        softAssert.assertEquals(chkMedical.getText(), "Medical");
+        softAssert.assertEquals(chkDental.getText(), "Dental");
+        softAssert.assertAll();
+    }
+
+    public void containerTitleLabelsYear(String year) {
+        basicActions.waitForElementToBePresent(txtTitleManagePlans, 20);
+        softAssert.assertEquals(txtTitleManagePlans.getText(), "Manage Plans");
+        softAssert.assertEquals(txtSelectPlanYear.getText(), "Select a plan year:");
+        softAssert.assertEquals(planYearLabel.getText(), "Year:");
+        String yearValue;
+        if (Character.isLetter(year.charAt(0))) {
+            String coverageStartDateBase = basicActions.getDateBasedOnRequirement(year);
+            yearValue = basicActions.changeDateFormat(coverageStartDateBase, "yyyy-MM-dd", "MMddyyyy");
+        } else {
+            yearValue = year;
+        }
+        softAssert.assertEquals(planYearLabelYear.getAttribute("innerText"), yearValue);
         softAssert.assertEquals(txtSelectPlanType.getText(), "Select plan type:");
         softAssert.assertEquals(chkMedical.getText(), "Medical");
         softAssert.assertEquals(chkDental.getText(), "Dental");
@@ -1873,6 +1898,66 @@ public class AdminPortalManagePlansPage {
         } else {
             return dateValue;
         }
+    }
+
+    public void clickPlanType(String planType) {
+        basicActions.waitForElementToBePresent(chkMedical, 60);
+        basicActions.waitForElementToBePresent(chkDental, 60);
+        switch(planType){
+            case "Medical":
+                chkMedical.click();
+                break;
+            case "Dental":
+                chkDental.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + planType);
+        }
+        basicActions.wait(250);
+    }
+
+    public void verifyPlanTypeNotShow(String planType) {
+        basicActions.waitForElementToBePresent(chkMedical, 60);
+        basicActions.waitForElementToBePresent(chkDental, 60);
+
+        switch(planType){
+            case "Medical":
+                softAssert.assertTrue(basicActions.isElementNotDisplayed(currentMedicalHeader), "Medical header is visible");
+                softAssert.assertFalse(chkMedical.getAttribute("class").contains("check"), "Medical is checked");
+                break;
+            case "Dental":
+                softAssert.assertTrue(basicActions.isElementNotDisplayed(currentDentalHeader), "Dental header is visible");
+                softAssert.assertFalse(chkDental.getAttribute("class").contains("check"), "Dental is checked");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + planType);
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyPlanTypeShow(String planType) {
+        basicActions.waitForElementToBePresent(chkMedical, 60);
+        basicActions.waitForElementToBePresent(chkDental, 60);
+
+        switch(planType){
+            case "Medical":
+                softAssert.assertTrue(basicActions.isElementDisplayed(currentMedicalHeader,60), "Medical header is visible");
+                softAssert.assertTrue(chkMedical.getAttribute("class").contains("check"), "Medical is not checked");
+                break;
+            case "Dental":
+                softAssert.assertTrue(basicActions.isElementDisplayed(currentDentalHeader,60), "Dental header is visible");
+                softAssert.assertTrue(chkDental.getAttribute("class").contains("check"), "Dental is not checked");
+                break;
+            case "Both":
+                softAssert.assertTrue(basicActions.isElementDisplayed(currentMedicalHeader,60), "Medical header is visible");
+                softAssert.assertTrue(chkMedical.getAttribute("class").contains("check"), "Medical is not checked");
+                softAssert.assertTrue(basicActions.isElementDisplayed(currentDentalHeader,60), "Dental header is visible");
+                softAssert.assertTrue(chkDental.getAttribute("class").contains("check"), "Dental is not checked");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + planType);
+        }
+        softAssert.assertAll();
     }
 
     public void verifyPlanNameAndPolicyCoverageDisplayed() {
