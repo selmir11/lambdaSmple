@@ -1,16 +1,15 @@
 @APTC,@APTC-SIR1
   #  SLER-2431, SLER-2432
 
-
 Feature: UI Tests related to APTC after second enrollment change - Group tests
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-2431-WIP
+  @SLER-2431
     # 1 family group of 4  thru re-enrollment - income increase from 60k to 80k
-  Scenario: SLER-2431-WIP - APTCRules - Family GroupOf4 - re-enrollment - income change from 60K to 80K
+  Scenario: SLER-2431 - APTCRules - Family GroupOf4 - re-enrollment - income change from 60K to 80K
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -49,9 +48,11 @@ Feature: UI Tests related to APTC after second enrollment change - Group tests
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
+    Then I validate I am on the "Race and Ethnicity" page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
 
+    Then I validate I am on the "Citizenship" page
     Then I select "Yes" for Citizen option
     And I select "No" for Naturalized Immigrant option
     And I click continue on the Citizenship page
@@ -212,7 +213,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group tests
     Then I select the "Married filing jointly" tax filing option on the Tax Status page
     Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "Yes" for will claim dependents question
-    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status page
+    #Note: Since Spouse is filing jointly they are not selected as a dependant
     Then I select "DaughterOne" for who will be claimed as dependent question on the Tax Status page
     Then I select "DaughterTwo" for who will be claimed as dependent question on the Tax Status page
     Then I click Save and Continue on Tax Status page
@@ -378,15 +379,19 @@ Feature: UI Tests related to APTC after second enrollment change - Group tests
     Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Other Health Coverage" page
+    Then I wait for 2000 milliseconds
     Then I click continue on the health coverage page
 
     And I validate I am on the "Other Health Coverage" page
+    Then I wait for 2000 milliseconds
     Then I click continue on the health coverage page
 
     And I validate I am on the "Other Health Coverage" page
+    Then I wait for 2000 milliseconds
     Then I click continue on the health coverage page
 
     And I validate I am on the "Other Health Coverage" page
+    Then I wait for 2000 milliseconds
     Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
@@ -414,39 +419,35 @@ Feature: UI Tests related to APTC after second enrollment change - Group tests
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     And I click continue on start shopping page
 
+    #groups remain the same as before
+
     Then I validate I am on the "Grouping Members Medical" page
     And I click continue on grouping Members Medical page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the first medical plan
-    And I click continue on medical plan results page
-
-    Then I validate I am on the "Medical Plan Results" page
-    And I select the first medical plan
+    # initial medical plan is pre-selected
+    And I wait for 1000 milliseconds
     And I click continue on medical plan results page
 
     Then I validate I am on the "Grouping Members Dental" page
     And I click continue on grouping Members Dental page
 
     Then I validate I am on the "Dental Plan Results" page
-    And I select first dental plan
-    And I click continue on dental plan results page
-
-    Then I validate I am on the "Dental Plan Results" page
-    And I select first dental plan
+    # initial dental plan is pre-selected
+    And I wait for 1000 milliseconds
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "$0.00"
+    And I validate the APTC Credit on the Summary page is "-$748.57"
     And I click continue on plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
 
-  @SLER-2432-WIP
-    #review grouping failure
- Scenario: SLER-Group6ReEnroll-WIP - APTCRules - group of 6 - 4 under 21 with 2 adult
+  @SLER-2432
+    # 1 family group of 6 split into 2 elig groups -   thru re-enrollment - income increase from 60k to 80k
+ Scenario: SLER-2432 - APTCRules - group of 6 - 4 under 21 with 2 adult
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -645,7 +646,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group tests
 
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    And I enter employment details with "1000000" income at "Annually" frequency
+    And I enter employment details with "6000000" income at "Annually" frequency
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -733,7 +734,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group tests
     Then I select the "Married filing jointly" tax filing option on the Tax Status page
     Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "Yes" for will claim dependents question
-    Then I select "Spouse" for who will be claimed as dependent question on the Tax Status page
+    #Note: Since Spouse is filing jointly they are not selected as a dependant
     Then I select "SonOne" for who will be claimed as dependent question on the Tax Status page
     Then I select "SonTwo" for who will be claimed as dependent question on the Tax Status page
     Then I select "SonThree" for who will be claimed as dependent question on the Tax Status page
@@ -790,7 +791,12 @@ Feature: UI Tests related to APTC after second enrollment change - Group tests
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
+    # Eligibility splits family into 2 groups and we do not modifyy
     And I click continue on grouping Members Medical page
+
+    Then I validate I am on the "Medical Plan Results" page
+    And I select the first medical plan
+    And I click continue on medical plan results page
 
     Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan
@@ -803,9 +809,18 @@ Feature: UI Tests related to APTC after second enrollment change - Group tests
     And I select first dental plan
     And I click continue on dental plan results page
 
+    Then I validate I am on the "Dental Plan Results" page
+    And I select first dental plan
+    And I click continue on dental plan results page
+
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "$0.00"
+    And I validate the APTC Credit on the Summary page is "-$1,033.82"
     And I click continue on plan summary page
+
+    Then I validate I am on the "Financial Help Agreements" page
+    And I select the terms and agreements checkbox
+    And I enter householder signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
 
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox
@@ -831,7 +846,6 @@ Feature: UI Tests related to APTC after second enrollment change - Group tests
     Then I validate I am on the "Report a life change" page
     And I report "MovedToColorado" and click continue
 
-
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Male" as sex option
@@ -847,7 +861,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group tests
     And I select "No" for Incarceration option
     And I click continue on the Add Address page
 
-#    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    Then I validate I am on the "Race and Ethnicity" page
     And I click continue on the Race and Ethnicity page
 
     Then I validate I am on the "Citizenship" page
@@ -866,7 +880,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group tests
 
     Then I validate I am on the "Employment Info" page
     And I edit the income level to ""
-    And I edit the income level to "3500000"
+    And I edit the income level to "8000000"
     And I click continue on the Employment Info Page
 
     Then I validate I am on the "Employment Summary" page
@@ -885,21 +899,27 @@ Feature: UI Tests related to APTC after second enrollment change - Group tests
     Then I click Save and Continue on Tax Status page
 
     And I validate I am on the "Other Health Coverage" page
+    Then I wait for 2000 milliseconds
     Then I click continue on the health coverage page
 
     And I validate I am on the "Other Health Coverage" page
+    Then I wait for 2000 milliseconds
     Then I click continue on the health coverage page
 
     And I validate I am on the "Other Health Coverage" page
+    Then I wait for 2000 milliseconds
     Then I click continue on the health coverage page
 
     And I validate I am on the "Other Health Coverage" page
+    Then I wait for 2000 milliseconds
     Then I click continue on the health coverage page
 
     And I validate I am on the "Other Health Coverage" page
+    Then I wait for 2000 milliseconds
     Then I click continue on the health coverage page
 
     And I validate I am on the "Other Health Coverage" page
+    Then I wait for 2000 milliseconds
     Then I click continue on the health coverage page
 
     Then I validate I am on the "Family Overview" page
@@ -931,23 +951,40 @@ Feature: UI Tests related to APTC after second enrollment change - Group tests
     And I click continue on grouping Members Medical page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select the first medical plan
+    # initial medical plan is pre-selected
+    And I wait for 2000 milliseconds
+    And I click continue on medical plan results page
+
+    Then I validate I am on the "Medical Plan Results" page
+    # initial medical plan is pre-selected
+    And I wait for 2000 milliseconds
     And I click continue on medical plan results page
 
     Then I validate I am on the "Grouping Members Dental" page
     And I click continue on grouping Members Dental page
 
     Then I validate I am on the "Dental Plan Results" page
-    And I select first dental plan
+    # initial dental plan is pre-selected
+    And I wait for 1000 milliseconds
+    And I click continue on dental plan results page
+
+    Then I validate I am on the "Dental Plan Results" page
+    # initial dental plan is pre-selected
+    And I wait for 1000 milliseconds
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "$0.00"
+    And I validate the APTC Credit on the Summary page is "-$927.29"
     And I click continue on plan summary page
+
+    Then I validate I am on the "Financial Help Agreements" page
+    And I select the terms and agreements checkbox
+    And I enter householder signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
 
     Then I validate I am on the "Enrollment Agreements" page
     And I click on Sign Out in the Header for "Portal"
-# end of WIPs
+
 
 
 

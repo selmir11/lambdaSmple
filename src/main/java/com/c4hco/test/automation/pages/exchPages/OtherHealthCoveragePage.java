@@ -200,8 +200,8 @@ public class OtherHealthCoveragePage {
                 basicActions.click(insuranceOptionsCheckBox.get(10));
                 break;
             case "None of these":
-                basicActions.waitForElementToBePresent(insuranceOptionsCheckBox.get(11), 10);
-                basicActions.clickElementWithRetries(insuranceOptionsCheckBox.get(11), 10);
+                basicActions.waitForElementToBePresent(insuranceOptionsCheckBox.get(11), 30);
+                basicActions.clickElementWithRetries(insuranceOptionsCheckBox.get(11), 30);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + insuranceOption);
@@ -209,8 +209,8 @@ public class OtherHealthCoveragePage {
     }
 
     public void clickSaveAndContinue(){
-        basicActions.waitForElementToDisappear(spinner, 100);
-        basicActions.waitForElementToBePresentWithRetries(saveAndContinueBtn, 120);
+        basicActions.waitForElementToDisappear(spinner, 150);
+        basicActions.waitForElementToBePresentWithRetries(saveAndContinueBtn, 150);
         basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
     }
