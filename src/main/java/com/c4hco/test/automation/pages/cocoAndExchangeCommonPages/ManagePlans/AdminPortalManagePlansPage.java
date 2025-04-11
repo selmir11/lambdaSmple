@@ -1194,7 +1194,7 @@ public class AdminPortalManagePlansPage {
                 APTCMem.sendKeys(Keys.BACK_SPACE);
             }
             APTCMem.sendKeys(aptcvalue);
-            if (SharedData.getPrimaryMember().getMedicalPremiumAmt() != null) {
+            if (SharedData.getPrimaryMember() != null) {
                 SharedData.getPrimaryMember().setMedicalAptcAmt(aptcvalue);
                 String totalMedPremiumAfterReduction = String.format("%.2f", Float.parseFloat(SharedData.getPrimaryMember().getMedicalPremiumAmt()) - Float.parseFloat(SharedData.getPrimaryMember().getMedicalAptcAmt()));
                 SharedData.getPrimaryMember().setTotalMedAmtAfterReduction(totalMedPremiumAfterReduction);
@@ -1211,7 +1211,7 @@ public class AdminPortalManagePlansPage {
             premiumMem.click();
             premiumMem.clear();
             premiumMem.sendKeys(newPremiumAmt);
-            if (SharedData.getPrimaryMember().getMedicalPremiumAmt() != null) {
+            if (SharedData.getPrimaryMember() != null) {
                 SharedData.getPrimaryMember().setMedicalPremiumAmt(newPremiumAmt);
             }
         }
