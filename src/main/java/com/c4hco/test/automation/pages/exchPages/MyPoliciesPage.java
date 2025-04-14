@@ -202,6 +202,15 @@ public class MyPoliciesPage {
 
     }
 
+    public void setDisEnrollmentReason(String reason, String planType){
+        if (planType.equalsIgnoreCase("medical")){
+            SharedData.setPolicyDisenrollmentReasonMed(reason);
+        }
+        else {
+            SharedData.setPolicyDisenrollmentReasonDen(reason);
+        }
+    }
+
     public void validateCancelPlanButnNotPresent(String planType) {
         switch (planType){
             case "Medical":

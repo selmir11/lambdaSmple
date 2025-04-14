@@ -1,6 +1,6 @@
 Feature: Regression Tests that require Seed 1 w/exception
 
-  Scenario: : Seed 01 w/exception For Exchange- Single Applicant NFA
+  Background: Seed 01 w/exception For Exchange- Single Applicant NFA
     Given I set the test scenario details
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
       | 1           | 1            | 1                 | 0                | 1               |
@@ -125,6 +125,7 @@ Feature: Regression Tests that require Seed 1 w/exception
       | Primary:First Of Next Month |
     And I click Save Button Medical
     And I select the reason to confirm the changes
+    And I set the "NO_REASON" disEnrollment reason for "Medical" plan
     Then I click Make Changes Dental button
     And I update the Coverage End date of member on manage plan page
       | Primary:First Of Next Month |
@@ -132,6 +133,7 @@ Feature: Regression Tests that require Seed 1 w/exception
       | Primary:First Of Next Month |
     And I click Save Button Dental
     And I select the reason to confirm the changes
+    And I set the "NO_REASON" disEnrollment reason for "Dental" plan
     Then logout from Admin Portal
         #DB Validation
     And I validate "medical-cancelled" entities from policy tables

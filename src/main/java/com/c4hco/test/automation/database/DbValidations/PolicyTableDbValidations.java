@@ -28,7 +28,6 @@ public class PolicyTableDbValidations {
     List<MemberDetails> subscribers;
     String policyStatus;
     String policyMemCoverageStatus;
-    String policyDisenrollmentReason;
 
     public void groupRecordsValidations(String recordType) {
         SharedData.setRecType(recordType);
@@ -36,28 +35,24 @@ public class PolicyTableDbValidations {
                 case "medical":
                     policyStatus ="SUBMITTED";
                     policyMemCoverageStatus="SUBMITTED";
-                    policyDisenrollmentReason = null;
                     setMedicalData();
                     medicalRecordsValidations();
                     break;
                 case "dental":
                     policyStatus ="SUBMITTED";
                     policyMemCoverageStatus="SUBMITTED";
-                    policyDisenrollmentReason = null;
                     setDentalData();
                     dentalRecordsValidations();
                     break;
                 case "medical-cancelled":
                     policyStatus ="CANCELLED";
                     policyMemCoverageStatus ="DISENROLL_SUBMITTED";
-                    policyDisenrollmentReason = "NO_REASON";
                     setMedicalCancelData();
                     medicalRecordsValidations();
                     break;
                 case "dental-cancelled":
                     policyStatus ="CANCELLED";
                     policyMemCoverageStatus ="DISENROLL_SUBMITTED";
-                    policyDisenrollmentReason = "NO_REASON";
                     setDentalCancelData();
                     dentalRecordsValidations();
                     break;
@@ -227,7 +222,6 @@ public class PolicyTableDbValidations {
             softAssert.assertEquals(policyTablesEntity.getCsr_level_epfh(), SharedData.getRecType()!=null && SharedData.getRecType().contains("medical")&& SharedData.getIsAiAn()? "03": dbDataMap.get(subscriber.getFirstName()).getCsrLevel(), "epfh CSR level does not match");
             softAssert.assertEquals(policyTablesEntity.getCsr_level_emcfh(),  SharedData.getRecType()!=null && SharedData.getRecType().contains("medical")&& SharedData.getIsAiAn()? "03": dbDataMap.get(subscriber.getFirstName()).getCsrLevel(), "emcfh CSR level does not match");
             softAssert.assertNull(policyTablesEntity.getResponsible_adult_ind(), "Responsible adult indicator is always null except when a minor only kid(s) applying");
-            softAssert.assertEquals(policyTablesEntity.getDisenrollment_reason(), policyDisenrollmentReason,"Disenrollment reason mismatch");
             softAssert.assertAll();
         }
 
@@ -250,7 +244,6 @@ public class PolicyTableDbValidations {
             softAssert.assertNull(policyTablesEntity.getCsr_level_epfh(), "epfh CSR level does not match");
             softAssert.assertEquals(policyTablesEntity.getCsr_level_emcfh(), dbData.getCsrLevel(), "emcfh CSR level does not match");
             softAssert.assertNull(policyTablesEntity.getResponsible_adult_ind(), "Responsible adult indicator is always null except when a minor only kid(s) applying");
-            softAssert.assertEquals(policyTablesEntity.getDisenrollment_reason(), policyDisenrollmentReason,"Disenrollment reason mismatch");
             softAssert.assertAll();
         }
 
@@ -311,6 +304,7 @@ public class PolicyTableDbValidations {
 
             softAssert.assertEquals(policyTablesEntity.getMember_financial_start_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialStartDate(), "Medical member financial start date does not match");
             softAssert.assertEquals(policyTablesEntity.getMember_financial_end_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialEndDate(), "Medical member financial end date does not match");
+            softAssert.assertEquals(policyTablesEntity.getDisenrollment_reason(), SharedData.getPolicyDisenrollmentReasonMed(),"Disenrollment reason mismatch");
             softAssert.assertAll();
         }
 
@@ -326,6 +320,7 @@ public class PolicyTableDbValidations {
 
             softAssert.assertEquals(policyTablesEntity.getMember_financial_start_date(), SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialStartDate(), "Medical member financial start date does not match");
             softAssert.assertEquals(policyTablesEntity.getMember_financial_end_date(), SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialEndDate(), "Medical member financial end date does not match");
+            softAssert.assertEquals(policyTablesEntity.getDisenrollment_reason(), SharedData.getPolicyDisenrollmentReasonDen(),"Disenrollment reason mismatch");
             softAssert.assertAll();
         }
         private void setMedicalData(){
