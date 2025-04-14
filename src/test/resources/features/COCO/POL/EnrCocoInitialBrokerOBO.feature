@@ -102,6 +102,7 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse" coco
+    And I get the application id from the url from tobacco page coco
     Then I click continue on coco start shopping page
     Then I click continue on grouping Members Medical coco page
     Then I validate I am on the "Medical Plan Results" page
@@ -143,6 +144,10 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
 
    And I validate "SUBMITTED" policy table entities for groups in COCO
    And I verify the policy data quality check with Policy Ah keyset size 1
-   
+   And I validate Medical entities for groups from COCO pre edi db tables
+    | maintenance_type_code | hd_maint_type_code | maintenance_reas_code |addl_maint_reason  | sep_reason      |
+    | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+   And I download the medical and dental files from sftp server with location "/outboundedi/"
+   And I validate the coco ob834 medical file data
 
 
