@@ -525,6 +525,14 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//*[@class='previous-plan-details']//*[@class='label-container-copy-icon body-text-2']")
     WebElement previousFinancialPolicyLabel;
 
+    @FindBy(xpath = "//p[@class='plan-header header-2 simple-view-header']")
+    WebElement labelInRedMedicalPlan;
+
+    @FindBy(xpath = "//div[@class='coverage-details-grid']/div")
+    List<WebElement> labelCoverageDetailsGridItems;
+
+    @FindBy(xpath = "//div[@class='financial-details-grid']/div")
+    List<WebElement> labelFinancialDetailsGridItems;
 
 
 
@@ -2318,5 +2326,31 @@ public class AdminPortalManagePlansPage {
         showFinancialPeriodBtn.get(indexPolicyNumber).click();
     }
 
+    public void verifyMedicalPlanText(){
+        basicActions.waitForElementToBePresent(labelInRedMedicalPlan,10);
+        softAssert.assertEquals(labelInRedMedicalPlan.getText().trim(),"Medical Plan:","Medical Plan text mismatch");
+        softAssert.assertEquals(labelInRedMedicalPlan.getCssValue("color"), "rgba(255, 0, 0, 1)", "labelInRedMedicalPlan-Color mismatch");
+        softAssert.assertAll();
+    }
+    public void verifyOneContainerForMedicalPlansDisplayedInsteadOfCurrentAndPreviousSections(){
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(currentPlanContainer,5),"No current medical plan container");
+        softAssert.assertFalse(basicActions.waitForElementToBePresent(previousFinancialMed, 5),"previousFinancialMed is visible");
+        softAssert.assertAll();
+    }
 
+    public void selectPolicyPlanFromDDByVisibleText(String policyName) {
+        basicActions.waitForElementToBePresent(selectPolicyDropdownOptions, 10);
+        selectPolicyDropdownOptions.click();
+        WebElement policyEle = getDriver().findElement(By.xpath("//span[contains(@id,'option') and contains(text(),'" + policyName + "')]"));
+        policyEle.click();
+    }
+    public void VerifyMemberTwoShowsTwiceInCoverageAndFinancialDetailsTables(){
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(labelCoverageDetailsGridItems.get(6),5),"Member 2 not present-1st time");
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(labelCoverageDetailsGridItems.get(18),5),"Member 2 not present-2nd time");
+        softAssert.assertEquals(labelCoverageDetailsGridItems.get(6).getText().trim(),labelCoverageDetailsGridItems.get(18).getText().trim(),"Coverage Details Row 1 and Row 3 data not matching");
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(labelFinancialDetailsGridItems.get(5),5),"Member 2 not present-1st time");
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(labelFinancialDetailsGridItems.get(15),5),"Member 2 not present-2nd time");
+        softAssert.assertEquals(labelFinancialDetailsGridItems.get(5).getText().trim(),labelFinancialDetailsGridItems.get(15).getText().trim(),"Financial Details Row 1 and Row 3 data not matching");
+        softAssert.assertAll();
+    }
 }
