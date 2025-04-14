@@ -19,6 +19,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoField;
+import java.time.temporal.TemporalAccessor;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 import java.util.*;
@@ -26,6 +30,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoField;
 
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -769,6 +775,31 @@ public class BasicActions {
         return date.format(outputFormatter);
     }
 
+    public String changeDateTimeFormat(String dateString, String outputFormat) {
+        List<DateTimeFormatter> inputFormatters = List.of(
+                new DateTimeFormatterBuilder()
+                        .appendPattern("yyyy-MM-dd HH:mm:ss")
+                        .optionalStart().appendFraction(ChronoField.NANO_OF_SECOND, 1, 9, true).optionalEnd()
+                        .toFormatter(),
+                DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        );
+
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(outputFormat);
+
+        for (DateTimeFormatter formatter : inputFormatters) {
+            try {
+                TemporalAccessor parsed = formatter.parse(dateString);
+                if (parsed.isSupported(ChronoField.HOUR_OF_DAY)) {
+                    return outputFormatter.format(LocalDateTime.from(parsed).toLocalDate());
+                } else {
+                    return outputFormatter.format(LocalDate.from(parsed));
+                }
+            } catch (DateTimeParseException ignored) {
+            }
+        }
+        throw new DateTimeParseException("Unable to parse date: " + dateString, dateString, 0);
+    }
+
     public String changeDateFormat(String dateString, String inputFormat, String outputFormat, Locale locale) {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(inputFormat, locale);
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(outputFormat, locale);
@@ -1421,6 +1452,16 @@ public class BasicActions {
     public void mouseHoverOnElement(WebElement element){
         Actions actions = new Actions(getDriver());
         actions.moveToElement(element).perform();
+    }
+
+    public boolean isElementNotDisplayed(WebElement element) {
+        try {
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(15));
+            wait.until(ExpectedConditions.invisibilityOf(element));
+            return true;
+        } catch (NoSuchElementException e) {
+            return true;
+        }
     }
 
     public void closeChildWindow() {
