@@ -209,8 +209,10 @@ Feature: OPS: Create individual account with 2 members and enroll in Medical/Den
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
     Then I click continue on start shopping page
     Then I validate I am on the "Medical Plan Results" page
+    Then I wait for 4500 milliseconds
     Then I click continue on medical plan results page
     And I validate I am on the "Dental Plan Results" page
+    Then I wait for 4500 milliseconds
     Then I click continue on dental plan results page
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on plan summary page
@@ -230,10 +232,10 @@ Feature: OPS: Create individual account with 2 members and enroll in Medical/Den
     And I validate I am on the "Manage Plans" page
     And I select Plans Med Active Policy
     And I select Plans Dental Active Policy
-    Then I validate current "Medical" all details table in DB for 1 on AP Manage Plans
-    Then I validate current "Dental" all details table in DB for 1 on AP Manage Plans
-    Then I validate previous "Medical" all details table in DB for 2 on AP Manage Plans
-    Then I validate previous "Dental" all details table in DB for 2 on AP Manage Plans
+    Then I validate current "Medical" all details table in DB for 1 members on AP Manage Plans
+    Then I validate current "Dental" all details table in DB for 1 members on AP Manage Plans
+    Then I validate previous "Medical" all details table in DB for 2 members on policy "1" for DB row 2 on AP Manage Plans
+    Then I validate previous "Dental" all details table in DB for 2 members on policy "1" for DB row 0 on AP Manage Plans
 
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal

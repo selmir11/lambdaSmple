@@ -136,14 +136,11 @@ public class DbDataProvider_Exch {
         String fipcode = getFipcode();
         String ratingAreaName = getRatingAreaName(fipcode);
         String ratingAreaId = getRatingAreaId(fipcode);
+        String csrLevel = getCSRLevel();
         String brokerTinNum = null;
-        String csrLevel = null;
         if(SharedData.getHasBroker()){
                 brokerTinNum = getTinNumForBroker();
             }
-        if (!SharedData.getAppType().equals("coco")) {
-            csrLevel = getCSRLevel();
-        }
         DbData dbData = new DbData();
 
         dbData.setFipcode(fipcode);
@@ -157,13 +154,10 @@ public class DbDataProvider_Exch {
         String fipcode = getFipCodeForMem(name);
         String ratingAreaName = getRatingAreaName(fipcode);
         String ratingAreaId = getRatingAreaId(fipcode);
+        String csrLevel = getCSRLevel();
         String brokerTinNum = null;
-        String csrLevel = null;
-        if (!SharedData.getAppType().equals("coco")) {
-            if(SharedData.getHasBroker()){
-                brokerTinNum = getTinNumForBroker();
-            }
-            csrLevel = getCSRLevel();
+        if(SharedData.getHasBroker()){
+            brokerTinNum = getTinNumForBroker();
         }
         DbData dbData = new DbData();
 
@@ -705,4 +699,7 @@ public class DbDataProvider_Exch {
     }
 
 
+    public String getTheAssistNetEmailInDB() {
+        return postgresHandler.getResultFor("email",exchDbQueries.getAssistNetEmailIn());
+    }
 }

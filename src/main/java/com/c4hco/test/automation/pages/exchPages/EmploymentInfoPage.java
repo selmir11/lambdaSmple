@@ -53,32 +53,17 @@ public class EmploymentInfoPage {
     @FindBy(css = "#ELIG-Exch-EmploymentIncomeJob-employerAddress-addressLine1Input")
     WebElement txtAddressOne;
 
-    @FindBy(id = "ELIG-employerAddress-addressLine1Input") //this element and all others can be removed once TAM-5360 is in Staging
-    WebElement txtAddressOneStg;
-
     @FindBy(css = "#ELIG-Exch-EmploymentIncomeJob-employerAddress-addressLine2Input")
     WebElement txtAddressTwo;
-
-    @FindBy(id = "ELIG-employerAddress-addressLine2Input") //this element and all others can be removed once TAM-5360 is in Staging
-    WebElement txtAddressTwoStg;
 
     @FindBy(css = "#ELIG-Exch-EmploymentIncomeJob-employerAddress-cityInput")
     WebElement txtCity;
 
-    @FindBy(id = "ELIG-employerAddress-cityInput") //this element and all others can be removed once TAM-5360 is in Staging
-    WebElement txtCityStg;
-
     @FindBy(css = "#ELIG-Exch-EmploymentIncomeJob-employerAddress-selectState")
     WebElement selectState;
 
-    @FindBy(id = "ELIG-employerAddress-stateSelect") //this element and all others can be removed once TAM-5360 is in Staging
-    WebElement selectStateStg;
-
     @FindBy(css = "#ELIG-Exch-EmploymentIncomeJob-employerAddress-zipCodeInput")
     WebElement txtZip;
-
-    @FindBy(id = "ELIG-employerAddress-zipCodeInput") //this element and all others can be removed once TAM-5360 is in Staging
-    WebElement txtZipStg;
 
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-amountInput")
     WebElement txtIncomeAmount;
@@ -182,10 +167,10 @@ public class EmploymentInfoPage {
     @FindBy(xpath = "(//div//div//div//label[@class='input-label form-label ng-star-inserted'])[5]")
     WebElement zipCodeLabel;
 
-    @FindBy(xpath = "(//lib-dropdown//div//div//div//label[@class='dropdown-label form-label ng-star-inserted'])[1]")
+    @FindBy(xpath = "//*[@for='ELIG-Exch-EmploymentIncomeJob-employerAddress-selectState']")
     WebElement stateLabel;
 
-    @FindBy(xpath = "(//div//div//select[@id='ELIG-employerAddress-stateSelect']//option)[1]")
+    @FindBy(xpath = "//*[contains(@id, 'selectState')]/*[@value='0: null']")
     WebElement stateDropDownLabel;
 
     @FindBy(xpath = "//div//div//div//label[@class='form-label']")
@@ -303,25 +288,14 @@ public class EmploymentInfoPage {
         SharedData.setCompanyname(employerNames);
         txtCompanyName.sendKeys(companyName);
 
-        if (SharedData.getEnv().equals("qa")) {//this if statement can be removed once TAM-5360 is in Staging leaving the non-stg elements
-            txtAddressOne.sendKeys("123 Test Address");
-            txtAddressTwo.sendKeys("Test Suite 321");
-            txtCity.sendKeys("Denver");
+        txtAddressOne.sendKeys("123 Test Address");
+        txtAddressTwo.sendKeys("Test Suite 321");
+        txtCity.sendKeys("Denver");
 
-            Select dropdown = new Select(selectState);
-            dropdown.selectByVisibleText(" CO ");
+        Select dropdownState = new Select(selectState);
+        dropdownState.selectByVisibleText(" CO ");
 
-            txtZip.sendKeys("80205");
-        } else {
-            txtAddressOneStg.sendKeys("123 Test Address");
-            txtAddressTwoStg.sendKeys("Test Suite 321");
-            txtCityStg.sendKeys("Denver");
-
-            Select dropdown = new Select(selectStateStg);
-            dropdown.selectByVisibleText(" CO ");
-
-            txtZipStg.sendKeys("80205");
-        }
+        txtZip.sendKeys("80205");
         txtIncomeAmount.clear();
         txtIncomeAmount.sendKeys(Salary);
         SharedData.setFinancialIncome(Salary);
@@ -391,23 +365,13 @@ public class EmploymentInfoPage {
         }
         txtCompanyName.sendKeys(companyName);
 
-        if (SharedData.getEnv().equals("qa")) {//this if statement can be removed once TAM-5360 is in Staging leaving the non-stg elements
-            txtAddressOne.sendKeys(addressline1);
-            txtCity.sendKeys(city);
+        txtAddressOne.sendKeys(addressline1);
+        txtCity.sendKeys(city);
 
-            Select dropdown = new Select(selectState);
-            dropdown.selectByVisibleText(state);
+        Select dropdownState = new Select(selectState);
+        dropdownState.selectByVisibleText(state);
 
-            txtZip.sendKeys(zipcode);
-        } else {
-            txtAddressOneStg.sendKeys(addressline1);
-            txtCityStg.sendKeys(city);
-
-            Select dropdown = new Select(selectStateStg);
-            dropdown.selectByVisibleText(state);
-
-            txtZipStg.sendKeys(zipcode);
-        }
+        txtZip.sendKeys(zipcode);
         txtIncomeAmount.sendKeys(Salary);
 
         Select dropdown = new Select(selectIncomeFreq);
@@ -1117,12 +1081,12 @@ public class EmploymentInfoPage {
     public void validateMaxLengthOfEachTextField() {
         txtCompanyName.sendKeys(basicActions.generateRandomStringWithAnyLength(105));
         softAssert.assertTrue(txtCompanyName.getAttribute("value").length() == 100, "Company name accepting more than 100 chars");
-        txtAddressOne.sendKeys(basicActions.generateRandomStringWithAnyLength(130));
-        softAssert.assertTrue(txtAddressOne.getAttribute("value").length() == 128, "Address Line 1 accepting more than 128 chars");
-        txtAddressTwo.sendKeys(basicActions.generateRandomStringWithAnyLength(130));
-        softAssert.assertTrue(txtAddressTwo.getAttribute("value").length() == 128, "Address Line 2 accepting more than 128 chars");
-        txtCity.sendKeys(basicActions.generateRandomStringWithAnyLength(55));
-        softAssert.assertTrue(txtAddressTwo.getAttribute("value").length() == 128, "Address Line 2 accepting more than 128 chars");
+        txtAddressOne.sendKeys(basicActions.generateRandomStringWithAnyLength(36));
+        softAssert.assertFalse(txtAddressOne.getAttribute("value").length() == 35, "Address Line 1 accepting more than 35 chars");
+        txtAddressTwo.sendKeys(basicActions.generateRandomStringWithAnyLength(21));
+        softAssert.assertFalse(txtAddressTwo.getAttribute("value").length() == 20, "Address Line 2 accepting more than 20 chars");
+        txtCity.sendKeys(basicActions.generateRandomStringWithAnyLength(21));
+        softAssert.assertFalse(txtAddressTwo.getAttribute("value").length() == 20, "Address Line 2 accepting more than 20 chars");
         txtZip.sendKeys("5809089");
         softAssert.assertTrue(txtZip.getAttribute("value").length() == 5, "Zip field accepting more than 5 numbers");
         txtIncomeAmount.sendKeys("1234567891234");
@@ -1135,13 +1099,13 @@ public class EmploymentInfoPage {
         basicActions.sendTextUsingJavaScript(txtZip,"ABCDE");
         txtZip.click();
         txtZip.sendKeys(Keys.BACK_SPACE);
-        softAssert.assertEquals(c4bodyTextError.get(0).getText(),"Zip code must be 5 numbers","Accepting Only Chars");
+        softAssert.assertEquals(c4bodyTextError.get(0).getText(),"ZIP Code must be five numbers","Accepting Only Chars");
         txtZip.clear();
         basicActions.sendTextUsingJavaScript(txtZip,"123");
-        softAssert.assertEquals(c4bodyTextError.get(0).getText(),"Zip code must be 5 numbers","Accepting less than 5 numbers");
+        softAssert.assertEquals(c4bodyTextError.get(0).getText(),"ZIP Code must be five numbers","Accepting less than 5 numbers");
         txtZip.clear();
         basicActions.sendTextUsingJavaScript(txtZip,"!@#$%");
-        softAssert.assertEquals(c4bodyTextError.get(0).getText(),"Zip code must be 5 numbers","Accepting special characters");
+        softAssert.assertEquals(c4bodyTextError.get(0).getText(),"ZIP Code must be five numbers","Accepting special characters");
         txtIncomeAmount.clear();
         txtIncomeAmount.sendKeys("ABCDE");
         softAssert.assertTrue(txtIncomeAmount.getAttribute("value").isEmpty(),"Amount accepting Characters");

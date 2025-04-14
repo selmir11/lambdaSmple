@@ -949,4 +949,8 @@ public class DbQueries_Exch {
                 "LIMIT 1";
         return query;
     }
+
+    public String getAssistNetEmailIn() {
+        return  "Select email From "+ dbName+ ".an_staff ESH Where account_id = '"+acctId+"'";
+    }
 }
