@@ -39,9 +39,9 @@ public class YourClientsPageSteps {
         yourClientsPage.clickFirstClient();
     }
 
-    @And("I search for a client named {string}")
-    public void ISearchClientNamed(String clientName) {
-        yourClientsPage.searchClientNamed(clientName);
+    @And("I search for a client named for staging {string} or for QA {string}")
+    public void ISearchClientNamed(String STGClientname,String QAClientname) {
+        yourClientsPage.searchClientNamed(STGClientname,QAClientname);
     }
 
     @And("I clear the client search box to reset my list")
@@ -324,5 +324,6 @@ public class YourClientsPageSteps {
     public void iValidateTheClientDataOnTheMVRContainer(String  actionBtn) {
         yourClientsPage.validateTheClientDataOnTheMVRContainer(actionBtn);
     }
+
 }
 

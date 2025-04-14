@@ -12,4 +12,5 @@ public class AssisterDetails {
     String programManagerInviteCode;
     String organizationGroupName;
     String organizationSiteName;
+    String accountID;
 }

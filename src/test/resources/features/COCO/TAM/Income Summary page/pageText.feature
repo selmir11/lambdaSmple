@@ -699,7 +699,7 @@ Feature: Tests related to the Deductions page
     Then I validate I am on the "Login" page
     
     @SLCR-887
-    Scenario: ELIG-As a user on the Income Summary page, 
+    Scenario: SLCR-887 ELIG-As a user on the Income Summary page,
     I want to see the total annual income and projected income so that 
     I know the income amounts that will be used in determining eligibility [CCRT-253]
       And I verify no error shows on the Income Summary page
