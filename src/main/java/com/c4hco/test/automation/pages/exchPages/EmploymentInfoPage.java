@@ -92,22 +92,22 @@ public class EmploymentInfoPage {
     @FindBy(xpath = "//*[@class='company-column-value']")
     List<WebElement> Companynames;
 
-    @FindBy(css = ".drawer-heading .body-text-1")
+    @FindBy(css = "div.drawer-heading.ng-tns-c1953390725-1 > div > span")
     WebElement helpDrawerHeaderHelp;
 
-    @FindBy(css = ".drawer-heading .drawer-title")
+    @FindBy(css = "div.drawer-heading.ng-tns-c1953390725-1 > span")
     WebElement helpDrawerHeaderIncome;
 
-    @FindBy(css = ".drawer .header-1")
+    @FindBy(css = ".drawer .c4-text-body-200")
     List<WebElement> helpDrawerMainHeaders;
 
-    @FindBy(css = ".drawer .header-2")
+    @FindBy(css = ".drawer .section-help-content-container")
     List<WebElement> helpDrawerOverviewHeaders;
 
     @FindBy(css = ".drawer-body .drawer-text-content")
     WebElement questionsHelpText;
 
-    @FindBy(css = ".drawer-text-content p")
+    @FindBy(css = ".drawer .section-help-content-container .c4-text-body-150")
     List<WebElement> helpDrawerBodyParagraphs;
 
     @FindBy(css = ".drawer-text-content li")
@@ -445,7 +445,7 @@ public class EmploymentInfoPage {
                 helpIcons.get(5).click();
                 break;
             case "Address 1":
-                helpIcons.get(4).click();
+                helpIcons.get(3).click();
                 break;
             case "Address 2":
                 helpIcons.get(5).click();
@@ -525,12 +525,11 @@ public class EmploymentInfoPage {
     }
 
     public void validateGeneralHelpBodyVerbiageEng() {
-        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText() + " " + helpDrawerOverviewHeaders.get(0).getText(), "Income Overview");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText() + " " + helpDrawerOverviewHeaders.get(1).getText(), "Employment Overview");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText() + " " + helpDrawerOverviewHeaders.get(2).getText(), "Employment Overview");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Overview");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(3).getText(), "Employment");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "We need to know how much you and your family members earn at your job(s).");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "We need to know about the company you work for.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(4).getText(), "We need to know how much money you make from self-employment.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "We need to know about the company you work for.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "We need to know how much money you make from self-employment.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "Employment\n" + "Does this person earn money through a job or by being self-employed?");
         softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "Company Name\n" + "Enter a company name for each job.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(2).getText(), "Gross Income\n" + "Tell us the total amount paid by this job BEFORE taxes or any other deductions (like retirement contributions) are taken out. This is gross pay and would be MORE than the amount received on a check or deposited in a bank account, which is the net pay.");
@@ -543,12 +542,11 @@ public class EmploymentInfoPage {
     }
 
     public void validateGeneralHelpBodyVerbiageSp() {
-        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText() + " " + helpDrawerOverviewHeaders.get(0).getText(), "Ingreso Resumen");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText() + " " + helpDrawerOverviewHeaders.get(1).getText(), "Empleo Resumen");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText() + " " + helpDrawerOverviewHeaders.get(2).getText(), "Empleo Resumen");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Resumen");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(3).getText(), "Empleo");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Necesitamos saber cu\u00E1nto ganan usted y los miembros de su familia en su(s) trabajo(s).");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Necesitamos informaci\u00F3n sobre la empresa para la que trabaja usted.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(4).getText(), "Necesitamos saber cu\u00E1nto gana como trabajador independiente.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Necesitamos informaci\u00F3n sobre la empresa para la que trabaja usted.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Necesitamos saber cu\u00E1nto gana como trabajador independiente.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "Empleo\n" + "\u00BFEsta persona tiene un ingreso como empleado o como trabajador independiente?");
         softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "Nombre de la empresa\n" + "Ingrese el nombre de la empresa de cada trabajo.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(2).getText(), "Ingreso bruto\n" + "Indique la cantidad total que le pagan en este trabajo ANTES de descontar impuestos o hacer otras deducciones (como aportes para el retiro). Es el salario bruto y debe ser m\u00E1s que la cantidad que recibe en cheque o le depositan en su cuenta bancaria, que es el salario neto.");
@@ -601,7 +599,7 @@ public class EmploymentInfoPage {
             case "English":
                 softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Income");
-                softAssert.assertEquals(questionsHelpText.getText(), "Income\nOverview\nWe need to know how much you and your family members earn at your job(s).\nEmployment\nDoes this person earn money through a job or by being self-employed?\nCompany Name\nEnter a company name for each job.\nEmployment\nOverview\nWe need to know about the company you work for.\nGross Income\nTell us the total amount paid by this job BEFORE taxes or any other deductions (like retirement contributions) are taken out. This is gross pay and would be MORE than the amount received on a check or deposited in a bank account, which is the net pay.\nSeasonal, commission or tipped base employment\nThis question helps us calculate the annual income for customers who don't have the same income every week or month.\nSame or lower\nWe ask this question to make sure the calculation of your annual income is correct for customers who don't have consistent income.\nEmployment\nOverview\nWe need to know how much money you make from self-employment.\nNet Income\nTell us your income from your self-employment after business expenses have been paid. (Net income is sometimes called \"profit\".)\nSame or lower\nWe ask this question to make sure the calculation of your annual income is correct for customers who don't have consistent income.\nEmployer Address\nConnect for Health Colorado will notify an employer if an employee has been determined eligible for Advance Premium Tax Credits and/or Cost-Sharing Reductions and has enrolled in a Qualified Health Plan. The employer has the right to file an appeal if they believe this determination is incorrect. The correct contact information for the employer is required to support the employer appeal process, so please double check your entry of the employer contact information.");
+                softAssert.assertEquals(questionsHelpText.getText(), "Overview\nWe need to know how much you and your family members earn at your job(s).\nEmployment\nDoes this person earn money through a job or by being self-employed?\nCompany Name\nEnter a company name for each job.\nEmployment\nWe need to know about the company you work for.\nGross Income\nTell us the total amount paid by this job BEFORE taxes or any other deductions (like retirement contributions) are taken out. This is gross pay and would be MORE than the amount received on a check or deposited in a bank account, which is the net pay.\nSeasonal, commission or tipped base employment\nThis question helps us calculate the annual income for customers who don't have the same income every week or month.\nSame or lower\nWe ask this question to make sure the calculation of your annual income is correct for customers who don't have consistent income.\nWe need to know how much money you make from self-employment.\nNet Income\nTell us your income from your self-employment after business expenses have been paid. (Net income is sometimes called \"profit\".)\nSame or lower\nWe ask this question to make sure the calculation of your annual income is correct for customers who don't have consistent income.\nEmployer Address\nConnect for Health Colorado will notify an employer if an employee has been determined eligible for Advance Premium Tax Credits and/or Cost-Sharing Reductions and has enrolled in a Qualified Health Plan. The employer has the right to file an appeal if they believe this determination is incorrect. The correct contact information for the employer is required to support the employer appeal process, so please double check your entry of the employer contact information.");
                 softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
                 softAssert.assertAll();
                 break;
@@ -639,7 +637,7 @@ public class EmploymentInfoPage {
                 break;
             case "Spanish":
                 softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
-                softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Direcci\u00F3n del empleador");
+                softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Nombre de la empresa");
                 softAssert.assertEquals(questionsHelpText.getText(), "Connect for Health Colorado notificar\u00E1 a un empleador si un empleado ha sido determinado elegible para Cr\u00E9dito fiscal anticipado para la cuota y/o reducciones en los costos compartidos y se ha inscrito en un Plan de salud calificado. El empleador tiene el derecho a presentar una apelaci\u00F3n si creen que esta determinaci\u00F3n es incorrecta. Se requiere la informaci\u00F3n de contacto correcta para el empleador para apoyar este proceso, por favor verifique que la informaci\u00F3n del empleador esta correcta.");
                 softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
                 softAssert.assertAll();
