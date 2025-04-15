@@ -187,7 +187,7 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Then I validate I am on the "CoCo Welcome" page
     And I click on "My Profile" link on welcome page
     And I click change primary contact on my profile page
-    Then I select the second household member as primary contact
+    Then I update "Wife" as primary member
     Then I validate I am on the "My Profile" page
     Then I click on Go back to Welcome page Button on My Profile CoCo
     And I apply for the current year in CoCo
@@ -204,12 +204,11 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Then I validate I am on the "Application Results CoCo" page
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse" coco
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Wife" coco
     Then I click continue on coco start shopping page
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical coco page
     Then I validate I am on the "Medical Plan Results" page
-    And I select the first medical plan option CoCo
     And I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "Plan Summary" page
     And I click continue on coco plan summary page
