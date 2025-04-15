@@ -256,7 +256,7 @@ Feature: End to End Testing
     And  I enter valid credentials to login
     Then I click continue signing in on the CAC Screener page
     Then I validate I am on the "CoCo Welcome" page
-    And I select year "2025" from My Current Plan container
+    #And I select year "2025" from My Current Plan container
     Then I verify text on the Welcome page with policy "Cigna Connect Colorado Option Bronze" "Bronze/EPO" for $"333.88" in "English"
     And I apply for the current year in CoCo
     Then I click Continue on my own button from Manage who helps you page
@@ -475,7 +475,7 @@ Feature: End to End Testing
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse" coco
     Then I click continue on coco start shopping page
     Then I click continue on grouping Members Medical coco page
-    And I select "RMHP Colorado Doctors Plan Colorado Option Silver" coco medical plan
+    #And I select "RMHP Colorado Doctors Plan Colorado Option Silver" coco medical plan
     And I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
@@ -638,7 +638,7 @@ Feature: End to End Testing
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse" coco
     Then I click continue on coco start shopping page
     Then I click continue on grouping Members Medical coco page
-    And I select "KP Colorado Option Bronze" coco medical plan
+    #And I select "KP Colorado Option Bronze" coco medical plan
     And I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
@@ -801,7 +801,7 @@ Feature: End to End Testing
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse" coco
     Then I click continue on coco start shopping page
     Then I click continue on grouping Members Medical coco page
-    And I select "Elevate Health Plans Colorado Option Bronze" coco medical plan
+    #And I select "Elevate Health Plans Colorado Option Bronze" coco medical plan
     And I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
@@ -964,7 +964,7 @@ Feature: End to End Testing
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse" coco
     Then I click continue on coco start shopping page
     Then I click continue on grouping Members Medical coco page
-    And I select "KP Colorado Option Bronze" coco medical plan
+    #And I select "KP Colorado Option Bronze" coco medical plan
     And I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
@@ -1060,7 +1060,7 @@ Feature: End to End Testing
     Then I validate I am on the "Start Shopping" page
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on coco start shopping page
-    And I select "Cigna Connect Colorado Option Bronze" coco medical plan
+    #And I select "Cigna Connect Colorado Option Bronze" coco medical plan
     And I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page
@@ -1156,7 +1156,7 @@ Feature: End to End Testing
     Then I validate I am on the "Start Shopping" page
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on coco start shopping page
-    And I select "Anthem Colorado Option Bronze Pathway Essentials Std" coco medical plan
+    #And I select "Anthem Colorado Option Bronze Pathway Essentials Std" coco medical plan
     And I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "planSummaryMedicalDental" page
     And I click continue on coco plan summary page

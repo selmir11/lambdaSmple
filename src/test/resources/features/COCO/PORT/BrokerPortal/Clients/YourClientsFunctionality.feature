@@ -20,7 +20,7 @@ Feature: CoCo Your Clients page functionality in Broker Portal
 
     And I click on "colorado Connect" tab
     Then I verify the current client list result page is "1"
-    And I search for a client named "AAA"
+    And I search for a client named for staging "AAA" or for QA "AAA"
     Then I click on first client search result
     Then I validate the "Remove Client" option is displayed
     Then I validate the "Transfer" option is displayed
@@ -28,7 +28,7 @@ Feature: CoCo Your Clients page functionality in Broker Portal
 
     And I click on "connect For Health Colorado" tab
     Then I verify the current client list result page is "1"
-    And I search for a client named "AAA"
+    And I search for a client named for staging "AAA" or for QA "AAA"
     Then I click on first client search result
     Then I validate the "Remove Client" option is displayed
     Then I validate the "Transfer" option is displayed

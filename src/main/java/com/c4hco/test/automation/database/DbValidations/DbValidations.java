@@ -1092,12 +1092,10 @@ public class DbValidations {
     }
 
 
-
-
-
-
-
-
-
+    public void validateTheAssistnetEmailInDB() {
+        String assistNetEmail = exchDbDataProvider.getTheAssistNetEmailInDB();
+        softAssert.assertEquals(assistNetEmail,SharedData.getAssisterDetails().getEmail());
+        softAssert.assertAll();
+    }
 }
 

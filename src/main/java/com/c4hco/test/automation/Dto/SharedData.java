@@ -59,8 +59,6 @@ public class SharedData {
     @Getter @Setter private static String dbName;
     @Getter @Setter private static String isOpenEnrollment;
     @Getter @Setter private static String ses;
-    @Getter @Setter private static String globalHooksAfter;
-    @Getter @Setter private static String screenshots;
     @Getter @Setter private static Map<String, String> memIdAndMedicalFileName;
     @Getter @Setter private static Map<String, String> memIdAndDentalFileName;
     @Getter @Setter private static Boolean hasBroker = false;

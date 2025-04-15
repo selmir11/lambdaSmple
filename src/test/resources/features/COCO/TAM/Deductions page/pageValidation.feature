@@ -432,7 +432,7 @@ Feature: Tests related to the Deductions page
 
 
   @SLCR-838
-  Scenario: As CoCo user on the Income Summary page,
+  Scenario: SLCR-838 As CoCo user on the Income Summary page,
   I want to see my Income and Deductions so that I can review my financial information [CCRT-552]
     And I select continue on the Deductions CoCo page
     Then I verify the header for Primary Member on the CoCo Deductions page in "English"

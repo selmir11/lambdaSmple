@@ -350,7 +350,7 @@ Feature: Page validation - Life Change Event page
     Then I validate I am on the "Login" page
 
   @SLCR-824
-  Scenario: ELIG-As a CoCo user,
+  Scenario: SLCR-824 ELIG-As a CoCo user,
   I want to see the Tell us about life changes page in English or Spanish
   so that I can review the life change events for my application [CCRT-395]
     And I change the language from header to "English"

@@ -218,7 +218,7 @@ public class FamilyOverviewPage {
 
     public void verifyDeductionAmount(String amount){
         basicActions.waitForElementListToBePresent(editUpdateLink, 10);
-        softAssert.assertEquals(annualFinInfoAmt.getText(),amount);
+        softAssert.assertEquals(annualIncomeAmount.getText(),amount);
         softAssert.assertAll();
     }
 
