@@ -678,9 +678,8 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click on Sign Out in the Header for "Portal"
 
 
-  @SLER-GroupOf4-WIP-PASS
-    #review  - grouping failed
-  Scenario: SLER-GroupOf4-WIP - GroupOf4 - APTCRules - group of 4  - 60K to 80K
+  @SLER-2442
+  Scenario: SLER-2442 - GroupOf4 - APTCRules - group of 4 - two adults and two youth - 60K income
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -965,6 +964,11 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I validate the APTC Credit on the Summary page is "-$947.71"
     And I click continue on plan summary page
 
+    Then I validate I am on the "Financial Help Agreements" page
+    And I select the terms and agreements checkbox
+    And I enter householder signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
+
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox
     And I select "Submit" agreement checkbox
@@ -977,12 +981,12 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     # end of initial enrollment
 
     Then I validate I am on the "Account Overview" page
-    And I click on Sign Out in the Header for "Portal"
+    And I wait for 2000 milliseconds
+    And I click on Sign Out in the Header for "Account Overview"
 
 
-  @Group6ReEnroll-WIP-PASS
-    #review grouping failure
- Scenario: SLER-Group6ReEnroll-WIP - APTCRules - group of 6 - 4 under 21 with 2 adult
+  @SLER-2441
+ Scenario: SLER-2441 - APTCRules - group of 6 - 4 under 21 with 2 adult
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1355,6 +1359,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     # end of initial enrollment
 
     Then I validate I am on the "Account Overview" page
+    And I wait for 2000 milliseconds
     And I click on Sign Out in the Header for "Account Overview"
 
   @SLER-1107 @Group9Enroll
