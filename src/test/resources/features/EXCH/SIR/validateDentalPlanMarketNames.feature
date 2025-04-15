@@ -77,6 +77,7 @@ Feature: Tests related to Dental plans
     Then I click continue on start shopping page
 
     And I validate I am on the "Medical Plan Results" page
+    And I wait for 2000 milliseconds
     Then I click skip on medical plan results page
     And  I store the Dental plan market names from results page
     And  I validate there are a total 9 dentalPlans
