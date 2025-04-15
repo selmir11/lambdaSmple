@@ -496,4 +496,9 @@ public class AdminPortalManagePlansSteps {
     @And("I select {string} Show Financial Period for policy {int} on Manage Plans page")
     public void iSelectFinancialPeriod(String planType, Integer policyNumber) {adminPortalManagePlansPage.selectFinancialPeriod(planType, policyNumber);}
 
+    @And("I select the plan year based on the running environment")
+    public void iSelectThePlanYearOnManagePlanBasedOnEnv() {
+        adminPortalManagePlansPage.selectThePlanYearOnManagePlanBasedOnEnv();
+    }
+
 }

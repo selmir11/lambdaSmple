@@ -2318,5 +2318,22 @@ public class AdminPortalManagePlansPage {
         showFinancialPeriodBtn.get(indexPolicyNumber).click();
     }
 
+    public void selectThePlanYearOnManagePlanBasedOnEnv() {
+        basicActions.waitForElementToBePresent(dpdCurrentYearMP, 50);
+        dpdCurrentYearMP.click();
+        if (SharedData.getEnv().equals("staging")) {
+            for(int i=0;i<planYearList.size();i++){
+                if(planYearList.get(i).getText().contains("2023"))
+                    planYearList.get(i).click();
+            }
+        } else {
+            for(int i=0;i<planYearList.size();i++){
+                if(planYearList.get(i).getText().contains("2022"))
+                    planYearList.get(i).click();
+            }
+        }
+        basicActions.switchtoactiveTab();
+    }
+
 
 }
