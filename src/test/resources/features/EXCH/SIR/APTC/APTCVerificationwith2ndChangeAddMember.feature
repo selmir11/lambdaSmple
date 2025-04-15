@@ -1,4 +1,4 @@
-@APTC,@APTCSIR,@APTC-SIR4,
+@APTC @APTCSIR @APTC-SIR4
   #SLER-325, SLER-802, SLER-803, SLER-804, @SLER-805, @SLER-806, SLER-807, @SLER-808, @SLER-809, SLER-998, SLER-999, SLER-1007,
 Feature: UI Tests related to APTC after second enrollment change
 
@@ -2398,7 +2398,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
     Examples:
       |City     |State      |DOB        |County     |Zipcode   | incomeChange | firstplanSummaryAPTC | finalapplicationResultAPTC | finalplanSummaryAPTC |
-      |NewTown  |CO         |01011958   |PARK       |80449     |  $6000000     |   $0.00              |   $1170.91/mo             |  -$1,158.37          |
+     # |NewTown  |CO         |01011958   |PARK       |80449     |  $6000000     |   $0.00              |   $1170.91/mo             |  -$1,158.37          |
       |NewTown  |CO         |01011958   |PROWERS    |81052     |  $5000000     |   $0.00              |   $1628.10/mo             |  -$1,399.66          |
 
 

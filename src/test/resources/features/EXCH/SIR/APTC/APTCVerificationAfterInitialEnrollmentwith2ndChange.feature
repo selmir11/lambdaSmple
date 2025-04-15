@@ -241,7 +241,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-322
-  Scenario: SLER-322 - ELIG - APTCRules - 40 year old - incom
+  Scenario: SLER-322 - ELIG - APTCRules - 40 year old - income
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1840,6 +1840,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
+    And I wait for 2000 milliseconds  
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page

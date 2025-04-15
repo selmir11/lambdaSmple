@@ -2641,6 +2641,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click continue on grouping Members Medical page
 
     Then I validate I am on the "Medical Plan Results" page
+    And I wait for 2000 milliseconds  
     And I select the Insurance Company dropdown
     And I select "Select Health" to filter for desired plan provider
     And I select the Metal Tier dropdown
