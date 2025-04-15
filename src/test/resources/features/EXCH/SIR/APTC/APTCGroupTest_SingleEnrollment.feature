@@ -678,7 +678,6 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click on Sign Out in the Header for "Portal"
 
 
-
   @SLER-GroupOf4-WIP-PASS
     #review  - grouping failed
   Scenario: SLER-GroupOf4-WIP - GroupOf4 - APTCRules - group of 4  - 60K to 80K
@@ -930,11 +929,30 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
+    Then I click on edit enrollment groups link
+
+    #default groups are 2 due to eligibility rules
+    Then I validate I am on the "Edit Grouping Members Medical" page
+    Then I create new group in edit medical grouping page and drag members to the new group
+      | Primary,Spouse,DaughterOne,DaughterTwo:Group1 |
+    Then I click save button to save the groups
+    Then I click on continue button on success pop-up
+
+    Then I validate I am on the "Grouping Members Medical" page
     And I click continue on grouping Members Medical page
 
     Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan
     And I click continue on medical plan results page
+
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click on dental edit enrollment groups link
+
+    Then I validate I am on the "Edit Grouping Members Dental" page
+    Then I create new group in edit dental grouping page and drag members to the new group
+      | Primary,Spouse,DaughterOne,DaughterTwo:Group1 |
+    Then I click save button to save the groups
+    Then I click on continue button on success pop-up
 
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
@@ -1337,7 +1355,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     # end of initial enrollment
 
     Then I validate I am on the "Account Overview" page
-    And I click on Sign Out in the Header for "Portal"
+    And I click on Sign Out in the Header for "Account Overview"
 
   @SLER-1107 @Group9Enroll
   Scenario: SLER-1107 - APTCRules - group of 9 Variable 1 - 4 under 19, 3 young adults - with 2 adult parents - tests SIR-2810 bug
@@ -2418,7 +2436,12 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click submit enrollment on Enrollment Agreements page
 
     Then I validate I am on the "Pay now" page
-    And I click on Sign Out in the Header for "Portal"
+    Then I click all done from payment portal page
+    # end of initial enrollment
+
+    Then I validate I am on the "Account Overview" page
+    And I click on Sign Out in the Header for "Account Overview"
+
 
 
 
