@@ -81,7 +81,7 @@ Feature: Verify COCO Medical Plan results
 
 
   @SCLR-360
-  Scenario: SCLR-360 - This will validate the Plan detail link on the Plan Compare page
+  Scenario: SCLR-360 - This will validate the Plan detail link on the Medical Plan Compare page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
