@@ -209,7 +209,6 @@ Feature: UI Page Validation - Medical Enrollment Grouping page related tests
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical coco page
     Then I validate I am on the "Medical Plan Results" page
-    #And I select the first medical plan option CoCo
     And I click Continue on the Medical Plans Page CoCo
     Then I validate I am on the "Plan Summary" page
     And I click continue on coco plan summary page
