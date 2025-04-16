@@ -1,5 +1,5 @@
 @SIR-EXCH1 @Dental @DentalCompare
-  # SLER-80, SLER-727, SLER-1037, SLER-1921, SLER-1927, SLER-2443-WIP
+  # SLER-80, SLER-727, SLER-1037, SLER-1921, SLER-1927, SLER-2443
 Feature: Medical Plan Results page related tests
 
   Background:
