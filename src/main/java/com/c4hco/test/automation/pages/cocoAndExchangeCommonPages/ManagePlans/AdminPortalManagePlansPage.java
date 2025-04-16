@@ -45,8 +45,6 @@ public class AdminPortalManagePlansPage {
     WebElement titleInBlueBar;
     @FindBy(css = ".drop-down-option.drop-down-option-selected")
     WebElement dpdCurrentYearMP;
-    @FindBy(css = "a[target='_blank'][routerlink='policies']")
-    WebElement btnManagePlans;
     @FindBy(xpath = "//span[@class='select-planyear-label']")
     WebElement planYearLabel;
     @FindBy(css = ".select-year  app-drop-down-select")
@@ -549,7 +547,7 @@ public class AdminPortalManagePlansPage {
 
     public void containerTitleLabelsYear(String year) {
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 20);
-        basicActions.waitForElementToBePresentWithRetries(chkMedical, 60);
+        basicActions.waitForElementToBePresentWithRetries(chkMedical, 90);
         basicActions.waitForElementToBePresentWithRetries(chkDental, 60);
         softAssert.assertEquals(txtTitleManagePlans.getText(), "Manage Plans");
         softAssert.assertEquals(txtSelectPlanYear.getText(), "Select a plan year:");
@@ -2316,6 +2314,15 @@ public class AdminPortalManagePlansPage {
         List<WebElement> showFinancialPeriodBtn= basicActions.getDriver().findElements(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//button[@id='Manage Plans-Show Financial Period']"));
         int indexPolicyNumber = policyNumber - 1;
         showFinancialPeriodBtn.get(indexPolicyNumber).click();
+    }
+
+    public void verifyPlanDetails(List<String> data) {
+        basicActions.waitForElementToBePresent(txtTitleManagePlans, 20);
+        softAssert.assertEquals(txtTitleManagePlans.getText(), data.get(0));
+        basicActions.waitForElementListToBePresent(labelPlanNameForMedAndDen, 20);
+        softAssert.assertEquals(labelPlanNameForMedAndDen.get(0).getText(), data.get(1));
+        softAssert.assertEquals(labelPlanNameForMedAndDen.get(1).getText(), data.get(2));
+        softAssert.assertAll();
     }
 
 
