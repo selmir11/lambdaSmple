@@ -409,6 +409,14 @@ public class QlceConfirmationPage {
                 String endDate = basicActions.changeDateFormat(date, "yyyy-MM-dd", "MM/dd/yyyy");
                 lostCoverageEventDate.sendKeys(endDate);
                 break;
+            case "Change Income or Job":
+                basicActions.waitForElementToBeClickable(changeOfIncomeOrJobLCE, 10);
+                changeOfIncomeOrJobLCE.click();
+                WebElement changeOfIncomeOrJobLCEMemCheckbox = basicActions.getDriver().findElement(By.xpath( "//div[@class='col-sm-4 incomeMemberWrapper']//span[contains(text(),'"+selectMember+"')]/preceding::input[2]"));
+                WebElement changeOfIncomeOrJobLCEMemEventDate = basicActions.getDriver().findElement(By.xpath( "//div[@class='col-sm-4 incomeMemberWrapper']//span[contains(text(),'"+selectMember+"')]/following::input[1]"));
+                changeOfIncomeOrJobLCEMemCheckbox.click();
+                changeOfIncomeOrJobLCEMemEventDate.sendKeys(getCurrentDate());
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + QLCEType);
         }
