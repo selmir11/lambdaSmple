@@ -25,11 +25,26 @@ public class DentalPlanComparePage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
+    @FindBy(xpath = "//*[@class ='c4-type-header-lg header-container']")
+    WebElement comparePlansTitle;
+
     @FindBy(id = "ComparePlans-TopGoBackToPlans")
     WebElement goBackDentalCompareLink;
 
     @FindBy(id = "ComparePlans-GoBackToPlans")
     WebElement goBackDentalCompareBtn;
+
+    //@FindBy(xpath = "//*[@id='PlanCompare-PlanDetails_1']")
+    //@FindBy(xpath = "//*[contains(text(), 'Plan Details')]")
+    //@FindBy(xpath = "//a[@id ='PlanCompare-PlanDetails_1']")
+    @FindBy(css = ".PlanCompare-PlanDetails_1")
+    WebElement click1stDentalPlanDetailLink;
+
+    @FindBy(xpath = "//*[@id ='PlanCompare-PlanDetails_2']")
+    WebElement click2ndDentalPlanDetailLink;
+
+    @FindBy(xpath = "//*[@id ='PlanCompare-PlanDetails_3']")
+    WebElement click3rdDentalPlanDetailLink;
 
     @FindBy(xpath = "//*[normalize-space()='In-Network']")
     WebElement inNetworkDentalLink;
@@ -305,5 +320,46 @@ public class DentalPlanComparePage {
 
     }
 
+    public void clickFirstDentalPlanDetailLink() {
+        //basicActions.waitForElementToBePresent( spinner, 120 );
+        basicActions.waitForElementToBePresentWithRetries( click1stDentalPlanDetailLink, 7000 );
+        basicActions.scrollToElement( comparePlansTitle );
+        basicActions.click( click1stDentalPlanDetailLink );
+
+    }
+
+    public void clickSecondDentalPlanDetailLink() {
+        basicActions.waitForElementToBePresent( spinner, 120 );
+        basicActions.waitForElementToBePresentWithRetries( click2ndDentalPlanDetailLink, 2000 );
+        basicActions.scrollToElement( comparePlansTitle );
+        basicActions.click( click2ndDentalPlanDetailLink );
+
+    }
+    public void clickThirdDentalPlanDetailLink() {
+        basicActions.waitForElementToBePresent( spinner, 120 );
+        basicActions.waitForElementToBePresentWithRetries( click3rdDentalPlanDetailLink, 2000 );
+        basicActions.scrollToElement( comparePlansTitle );
+        basicActions.click( click3rdDentalPlanDetailLink );
+
+    }
+
+    public void clickDentalPlanDetaiLink(String planDetailNumber) {
+        basicActions.waitForElementToDisappear( spinner, 20 );
+        switch (planDetailNumber) {
+            case "1":
+                clickFirstDentalPlanDetailLink();
+                break;
+            case "2":
+                clickSecondDentalPlanDetailLink();
+                break;
+            case "3":
+                clickThirdDentalPlanDetailLink();
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + planDetailNumber );
+
+        }
+
+    }
 
 }
