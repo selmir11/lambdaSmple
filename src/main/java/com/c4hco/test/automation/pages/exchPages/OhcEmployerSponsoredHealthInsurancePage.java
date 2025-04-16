@@ -173,14 +173,8 @@ public class OhcEmployerSponsoredHealthInsurancePage {
     @FindBy(css = ".drawer-text-content lib-help-window-link")
     List<WebElement> helpDrawerParagraphLnk1;
 
-    @FindBy(css = ".drawer-text-content > p:nth-child(4) > a")
-    WebElement helpDrawerParagraphLnk1SpMinVal;
-
     @FindBy(xpath = "//lib-help-drawer//div[3]/div/lib-help-window-link")
     WebElement helpDrawerParagraphLnk2;
-
-    @FindBy(css = ".drawer-text-content > p:nth-child(14) > a")
-    WebElement helpDrawerParagraphLnk2Sp;
 
     @FindBy(css = ".drawer-text-content li")
     List<WebElement> helpDrawerBodyPoints;
@@ -211,9 +205,6 @@ public class OhcEmployerSponsoredHealthInsurancePage {
 
     @FindBy(css = "div.input-error-message.error-icon.ng-star-inserted span.error-message")
     WebElement healthinsuranceenrollmentstatuserrorMessage;
-
-    @FindBy(xpath = "//button[contains(@id,'CoverageTypeNoAccessButton')]//span[@class='ng-star-inserted']")
-    List<WebElement> coverageTypeNoAccessButtonLabels;
 
     
 
