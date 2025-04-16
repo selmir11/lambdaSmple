@@ -195,7 +195,7 @@ public class DentalPlansResultsPage {
 
     public void clickContinueOnDentalResultsPage() {
         basicActions.waitForElementToDisappear( spinner, 160 );
-        basicActions.waitForElementToBePresentWithRetries( continueBtnOnDentalPlanResults, 80 );
+        basicActions.waitForElementToBePresentWithRetries( continueBtnOnDentalPlanResults, 160 );
         basicActions.scrollToElement( continueBtnOnDentalPlanResults );
         continueBtnOnDentalPlanResults.click();
     }
