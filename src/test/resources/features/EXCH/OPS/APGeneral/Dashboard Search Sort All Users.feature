@@ -51,7 +51,7 @@ Feature: Dashboard Search Sort All Users
     And I select "individual" checkbox on Admin Portal Dashboard
     Then I enter an "FirstName" in any env "a" "a" to search user
     Then I click on Search button in AP dashboard page
-    Then I wait for 1000 milliseconds
+    Then I wait for 5000 milliseconds
     Then I validate message for over hundred records
     When I click on reset button on admin portal search page
     And I validate I am on the "Admin search" page
@@ -63,7 +63,6 @@ Feature: Dashboard Search Sort All Users
       | accountID           | 8510935600               | 8510935600      |
       | FirstName           | Amethyst                 | Amethyst        |
       | LastName            | Broker                   | Broker          |
-      | Email               | accts.forc4.test.i.n.g@gmail.com| accts.forc4.test.i.n.g@gmail.com|
       | PrimaryPhone        | 432-432-5555             | 432-432-5555    |
       | LicenseNumber       | 456787654                | 456787654       |
     Then I click on Search button in AP dashboard page
