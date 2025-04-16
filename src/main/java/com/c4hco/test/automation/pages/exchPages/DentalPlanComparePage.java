@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.util.List;
 import java.util.Optional;
 
 public class DentalPlanComparePage {
@@ -34,17 +35,9 @@ public class DentalPlanComparePage {
     @FindBy(id = "ComparePlans-GoBackToPlans")
     WebElement goBackDentalCompareBtn;
 
-    //@FindBy(xpath = "//*[@id='PlanCompare-PlanDetails_1']")
-    //@FindBy(xpath = "//*[contains(text(), 'Plan Details')]")
-    //@FindBy(xpath = "//a[@id ='PlanCompare-PlanDetails_1']")
-    @FindBy(css = ".PlanCompare-PlanDetails_1")
-    WebElement click1stDentalPlanDetailLink;
+    @FindBy(xpath = "//*[contains (@id,'PlanCompare-PlanDetails')]")
+    List<WebElement> click1stDentalPlanDetailLink;
 
-    @FindBy(xpath = "//*[@id ='PlanCompare-PlanDetails_2']")
-    WebElement click2ndDentalPlanDetailLink;
-
-    @FindBy(xpath = "//*[@id ='PlanCompare-PlanDetails_3']")
-    WebElement click3rdDentalPlanDetailLink;
 
     @FindBy(xpath = "//*[normalize-space()='In-Network']")
     WebElement inNetworkDentalLink;
@@ -321,25 +314,19 @@ public class DentalPlanComparePage {
     }
 
     public void clickFirstDentalPlanDetailLink() {
-        //basicActions.waitForElementToBePresent( spinner, 120 );
-        basicActions.waitForElementToBePresentWithRetries( click1stDentalPlanDetailLink, 7000 );
         basicActions.scrollToElement( comparePlansTitle );
-        basicActions.click( click1stDentalPlanDetailLink );
+        click1stDentalPlanDetailLink.get(0).click();
 
     }
 
     public void clickSecondDentalPlanDetailLink() {
-        basicActions.waitForElementToBePresent( spinner, 120 );
-        basicActions.waitForElementToBePresentWithRetries( click2ndDentalPlanDetailLink, 2000 );
         basicActions.scrollToElement( comparePlansTitle );
-        basicActions.click( click2ndDentalPlanDetailLink );
+        click1stDentalPlanDetailLink.get(1).click();
 
     }
     public void clickThirdDentalPlanDetailLink() {
-        basicActions.waitForElementToBePresent( spinner, 120 );
-        basicActions.waitForElementToBePresentWithRetries( click3rdDentalPlanDetailLink, 2000 );
         basicActions.scrollToElement( comparePlansTitle );
-        basicActions.click( click3rdDentalPlanDetailLink );
+        click1stDentalPlanDetailLink.get(2).click();
 
     }
 

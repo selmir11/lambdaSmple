@@ -401,8 +401,8 @@ Feature: Medical Plan Results page related tests
     Then I click on Sign Out in the Header for "DentalPlanResults"
 
 
-    @SLER-2443-WIP
-    Scenario: SLER-2443-wIP - Validate the Navigation and Functionality of Compare Page Detail Link (Dental)
+    @SLER-2443
+    Scenario: SLER-2443 - Validate the Navigation and Functionality of Compare Page Detail Link (Dental)
       When I click create a new account on login page
       Then I click create my account from pre-screen page
       And I enter general mandatory data for "exchange" account creation
@@ -476,6 +476,7 @@ Feature: Medical Plan Results page related tests
       And I click detail link "1" on the Dental Compare page
 
       Then I validate I am on the "Dental Plan Detail" page
+      And I wait for 2000 milliseconds
       Then I click Go Back on the Dental Detail page
 
       Then I validate I am on the "Dental Plan Results" page
@@ -490,6 +491,7 @@ Feature: Medical Plan Results page related tests
       And I click detail link "2" on the Dental Compare page
 
       Then I validate I am on the "Dental Plan Detail" page
+      And I wait for 2000 milliseconds
       Then I click Go Back on the Dental Detail page
 
       Then I validate I am on the "Dental Plan Results" page
