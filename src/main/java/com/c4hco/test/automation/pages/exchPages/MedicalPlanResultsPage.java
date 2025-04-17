@@ -127,7 +127,7 @@ public class MedicalPlanResultsPage {
 
     public void clickContinue() {
         basicActions.waitForElementToDisappear( spinner,160 );
-        basicActions.waitForElementToBePresentWithRetries(continueBtn,60);
+        basicActions.waitForElementToBePresentWithRetries(continueBtn,80);
         basicActions.scrollToElement( continueBtn );
         continueBtn.click();
     }

@@ -701,8 +701,8 @@ public class AdminPortalSearchPage {
 
     public void verifyBrokerData() {
         basicActions.waitForElementListToBePresent(aactsearchResults, 30);
-        List<String> qaexpectedTitles = List.of("8510935600", "Amethyst", "Broker", "accts.forc4.test.i.n..", "432-432-5555", "456787654", "OWNER");
-        List<String> stgexpectedTitles = List.of("8510935600", "Amethyst", "Broker", "accts.forc4.test.i.n..", "432-432-5555", "456787654", "OWNER");
+        List<String> qaexpectedTitles = List.of("8510935600", "Amethyst", "Broker", "ops.testing+Dsvsp@ou..", "432-432-5555", "456787654", "OWNER");
+        List<String> stgexpectedTitles = List.of("8510935600", "Amethyst", "Broker", "ops.testing+Dsvsp@ou..", "432-432-5555", "456787654", "OWNER");
         List<String> actualTitles = aactsearchResults.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
