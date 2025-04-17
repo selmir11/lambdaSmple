@@ -264,7 +264,7 @@ Feature: UI Tests related to APTC after initial enrollment
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-1144-WIP
-  Scenario Outline: SLER-1144-WIP - ELIG -APTCRules  - mother with future newborn - verify initial APTC calculations
+  Scenario Outline: SLER-1144-WIP - ELIG -APTCRules  - mother with future newborn
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -293,10 +293,12 @@ Feature: UI Tests related to APTC after initial enrollment
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
     Then I select "Female" as sex option
+    # pregnancy
     And I select "Yes" as pregnancy option
-
+    Then I select the number of expected babies at "1"
+    Then I select the expected birth due date at "04202025"
     And I select "Yes" to Are You Applying
-    #And I click continue on Tell us about yourself page
+    And I click continue on Tell us about yourself page
 
     Then I enter generic mailing address details
     And I select "Yes" for CO Resident option

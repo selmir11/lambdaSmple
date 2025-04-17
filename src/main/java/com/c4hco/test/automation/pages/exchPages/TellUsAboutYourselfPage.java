@@ -24,6 +24,7 @@ public class TellUsAboutYourselfPage {
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
 
+
     public TellUsAboutYourselfPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
@@ -102,20 +103,15 @@ public class TellUsAboutYourselfPage {
     @FindBy(id = "memberRelationship0")
     WebElement drpdwnRealtionship;
 
-    public void userPregnantQuestion(String Pregnant) {
-        switch (Pregnant){
-            case "No":
-                rdobtnPregnantNo.click();
-                break;
-            case "Yes":
-                rdobtnPregnantYes.click();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalide option: " + Pregnant);
 
-        }
+    @FindBy(xpath = "//*[@class = 'form-control']")
+    List<WebElement> drpdwnExpected;
 
-    }
+    @FindBy(xpath = "//*[@id='expectedDueDate']")
+    WebElement expectedDOB;
+
+
+
     public void userSexQuestion(String Sex) {
         MemberDetails acctHolder = SharedData.getPrimaryMember();
         acctHolder.setGender(Sex);
@@ -397,5 +393,65 @@ public class TellUsAboutYourselfPage {
                     }
             }
         }
+    }
+
+    public void userPregnantQuestion(String Pregnant) {
+        switch (Pregnant){
+            case "No":
+                rdobtnPregnantNo.click();
+                break;
+            case "Yes":
+                rdobtnPregnantYes.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + Pregnant);
+
+        }
+
+    }
+    public void iSelectNumberOfBabies(String babiesDue){
+        switch(babiesDue){
+            case "1":
+                drpdwnExpected.get(12).click();
+                break;
+            case "2":
+                drpdwnExpected.get(13).click();
+                break;
+            case "3":
+                drpdwnExpected.get(14).click();
+                break;
+            case "4":
+                drpdwnExpected.get(15).click();
+                break;
+            case "5":
+                drpdwnExpected.get(16).click();
+                break;
+            case "6":
+                drpdwnExpected.get(17).click();
+                break;
+            case "7":
+                drpdwnExpected.get(18).click();
+                break;
+            case "8":
+                drpdwnExpected.get(19).click();
+                break;
+            case "9":
+                drpdwnExpected.get(20).click();
+                break;
+            case "10":
+                drpdwnExpected.get(21).click();
+                break;
+
+
+            default:
+                throw new IllegalArgumentException("Invalid option: " + babiesDue);
+        }
+
+    }
+    public void iSelectDueDate(String dueDate){
+        basicActions.waitForElementToBePresent(expectedDOB, 20);
+        expectedDOB.clear();
+        expectedDOB.sendKeys(dueDate);
+        System.out.println("Expected Due date");
     }
 }

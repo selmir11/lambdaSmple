@@ -83,4 +83,13 @@ public class TellUsAboutYourselfPageSteps {
     public void iSelectNewRelationship(List<String> relationship) {
         tellUsAboutYourselfPage.selectNewRelationship(relationship);
     }
+
+    @Then ("I select the number of expected babies at {string}")
+    public void iSelectNewRelationshipWith(String babiesDue) {
+        tellUsAboutYourselfPage.iSelectNumberOfBabies(babiesDue);
+    }
+    @Then ("I select the expected birth due date at {string}")
+    public void iSelectNewDueDate(String dueDate) {
+        tellUsAboutYourselfPage.iSelectDueDate(dueDate);
+    }
 }
