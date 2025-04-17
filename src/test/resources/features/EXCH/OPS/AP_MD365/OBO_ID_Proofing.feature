@@ -55,8 +55,18 @@ Feature: OPS:  OBO flow ID Proofing with MD365 check and back to OBO
     Then I click on continue with  application button on Before you begin page
     And I report "Birth" and click continue
     Then I click Continue on my own button from Manage who helps you page
+    Then I select "Male" as sex option
+    And I select "Yes" to Are You Applying
     And I click continue on Tell us about yourself page
+    Then I enter member with address line1 "1234 Street" in city "Denver" in state "CO" with zipcode "80205" and county "DENVER"
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
     And I click continue on the Add Address page
-    Then I click continue on the Race and Ethnicity page
-    And I click continue on the Citizenship page
-    Then I click continue on family overview page
+    Then I validate I am on the "Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page

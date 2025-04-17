@@ -62,9 +62,9 @@ Feature: IndDash: Projected Income one member
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     And I wait for 3000 milliseconds
-    And I select the option "Yes" to projected income
+    Then I select the projected income option as "Yes"
     And I enter the projected income "2900000" on summary details page
-    Then I click continue on the Employment Summary Page
+    Then I click the save and continue button on the Income Summary Detail page
 
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question

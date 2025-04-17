@@ -118,40 +118,8 @@ Feature: IndDash: Submit FA Policy/Manage Plans
     And I switch to the tab number 1
     And I validate I am on the "Manage Plans" page
     Then I validate title and labels on Manage page
-
-
-    #medical plan
-    And I update the medical Plan for the UI
-    Then I validate the Latest Application Date for the year DB
-    Then I validate current Medical plan Data for the year "2025" DB
-    #  medical member details table
-    And I validate the "Medical" member details Table title columns
-    And I update the Medical member details Table for the UI
-    Then I validate current medical member details table DB
-    # medical coverage details table
-    And I validate the "Medical" coverage details table title columns
-    And I update the Medical coverage details Table for the UI
-    Then I validate current medical coverage details table DB
-    # medical  verify financial table
-    And I validate the "Medical" financial details table title columns
-    And I update the Medical financial details Table for the UI
-    Then I validate current financial details table DB
-
-  #################################################
-  #Dental plan
-    And I update the dental Plan for the UI
-    Then I validate the dental Latest Application Date for the year DB
-    Then I validate current Dental plan Data for the year "2025" DB
-      #  medical member details table
-    And I validate the "Dental" member details Table title columns
-    And I update the dental member details Table for the UI
-    Then I validate current dental member details table DB
-    # medical coverage details table
-    And I validate the "Dental" coverage details table title columns
-    And I update the dental coverage details Table for the UI
-    Then I validate current dental coverage details table DB
-    # medical  verify financial table
-    And I validate the "Medical" financial details table title columns
-    And I update the dental financial details Table for the UI
-    Then I validate current dental financial details table DB
+    And I select Plans Med Active Policy
+    And I select Plans Dental Active Policy
+    Then I validate current "Medical" all details table in DB for 1 members on AP Manage Plans
+    Then I validate current "Dental" all details table in DB for 1 members on AP Manage Plans
 

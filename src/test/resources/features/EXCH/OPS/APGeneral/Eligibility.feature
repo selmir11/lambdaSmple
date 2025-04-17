@@ -8,6 +8,7 @@ Feature: AP Individual dashboard - Eligibility data
     And I validate I am on the "Admin Portal search" page
     Then I enter an accountId in any Env "7746317007" "7634740008" to search user
     And I click on Search button in AP dashboard page
+    And I wait for 2000 milliseconds
     And I click acct first row from Search Results table in admin portal
     And I validate I am on the "Admin Portal individual dashboard" page
     Then I verify Primary account holder and account number displays
@@ -24,6 +25,7 @@ Feature: AP Individual dashboard - Eligibility data
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin Portal search" page
+    And I wait for 1000 milliseconds
     Then I enter an accountId in any Env "4007901519" "8780994000" to search user
     And I click on Search button in AP dashboard page
     And I click acct first row from Search Results table in admin portal
@@ -38,6 +40,7 @@ Feature: AP Individual dashboard - Eligibility data
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin Portal search" page
+    And I wait for 1000 milliseconds
     Then I enter an accountId in any Env "4007800744" "1106017043" to search user
     And I click on Search button in AP dashboard page
     And I click acct first row from Search Results table in admin portal
