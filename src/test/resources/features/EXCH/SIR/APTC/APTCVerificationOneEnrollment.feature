@@ -351,7 +351,11 @@ Feature: UI Tests related to APTC after initial enrollment
     Then I validate I am on the "Family Overview" page
     Then I click continue on family overview page
 
-    Then I select "MoveToCO" QLCE on tell us about life changes page
+    Then I validate I am on the "Tell us about life changes" page
+    #Then I set pregnancy event date as "04172025"
+    Then I select "04172025" on elgibility for pregnancy coverage for "Primary"
+    Then I select "Yes" on elgibility for pregnancy coverage
+    #Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
 
     Then I validate I am on the "EXCH Declarations and Signature" page
