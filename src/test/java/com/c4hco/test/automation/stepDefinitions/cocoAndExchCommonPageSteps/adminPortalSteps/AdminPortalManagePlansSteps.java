@@ -106,9 +106,9 @@ public class AdminPortalManagePlansSteps {
     public void financialStartDateCOCO(List<String> memberFinancialStrtDtList) {
         adminPortalManagePlansPage.memberFinancialStrtDateNew(memberFinancialStrtDtList);
     }
-    @And("I update the Coverage End date of member on manage plan page")
-    public void coverageEndDateMP(List<String> memberCoverageEndDtList) {
-        adminPortalManagePlansPage.updateTheCoverageEndDateNew(memberCoverageEndDtList);
+    @And("I update the Coverage End date of member on manage plan page for {string}")
+    public void coverageEndDateMP(String planType,List<String> memberCoverageEndDtList) {
+        adminPortalManagePlansPage.updateTheCoverageEndDateNew(planType,memberCoverageEndDtList);
     }
     @And("I update the Financial End date of member on manage plan page")
     public void financialEndDateMP(List<String> memberFinancialEndDtList) {

@@ -187,6 +187,7 @@ public class PolicyTableDbValidations {
                softAssert.assertEquals(policyTablesEntity.getTotal_csr_amt(), medicalPlanDbDataMap.get(subscriber.getFirstName()).getCsrAmt(), "Medical Policy total CSR amount does not match");
                softAssert.assertEquals(policyTablesEntity.getFinancial_period_start_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialStartDate(), "Medical financial start date does not match");
                softAssert.assertEquals(policyTablesEntity.getFinancial_period_end_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialEndDate(), "Medical financial end date does not match");
+               softAssert.assertEquals(policyTablesEntity.getDisenrollment_reason(), SharedData.getPrimaryMember().getPolicyDisenrollmentReasonMed(),"Disenrollment reason mismatch");
             softAssert.assertAll();
         }
 
@@ -201,6 +202,7 @@ public class PolicyTableDbValidations {
             softAssert.assertEquals(policyTablesEntity.getTotal_csr_amt(), dentalPlanDbDataMap.get(subscriber.getFirstName()).getCsrAmt(), "Dental Policy total CSR amount does not match");
             softAssert.assertEquals(policyTablesEntity.getFinancial_period_start_date(), SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialStartDate(), "Dental financial start date does not match");
             softAssert.assertEquals(policyTablesEntity.getFinancial_period_end_date(), SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialEndDate(), "Dental financial end date does not match");
+            softAssert.assertEquals(policyTablesEntity.getDisenrollment_reason(), SharedData.getPrimaryMember().getPolicyDisenrollmentReasonDen(),"Disenrollment reason mismatch");
             softAssert.assertAll();
         }
 
@@ -263,6 +265,7 @@ public class PolicyTableDbValidations {
                     softAssert.assertNull(policyTablesEntity.getTotal_csr_amt(), "Medical Policy total CSR amount does not match");
                     softAssert.assertNull(policyTablesEntity.getFinancial_period_start_date(), "Medical financial start date does not match");
                     softAssert.assertNull(policyTablesEntity.getFinancial_period_end_date(), "Medical financial end date,null does not match");
+                    softAssert.assertEquals(policyTablesEntity.getDisenrollment_reason(), member.getPolicyDisenrollmentReasonMed(),"Disenrollment reason mismatch");
                     softAssert.assertAll();
                 }
             }
@@ -284,6 +287,7 @@ public class PolicyTableDbValidations {
                     softAssert.assertNull(denEntity.getTotal_csr_amt(), "Dental Policy total CSR amount does not match");
                     softAssert.assertNull(denEntity.getFinancial_period_start_date(), "Dental financial start date does not match");
                     softAssert.assertNull(denEntity.getFinancial_period_end_date(), "Dental financial end date does not match");
+                    softAssert.assertEquals(denEntity.getDisenrollment_reason(), member.getPolicyDisenrollmentReasonMed(),"Disenrollment reason mismatch");
                     softAssert.assertAll();
                 }
             }
@@ -304,7 +308,6 @@ public class PolicyTableDbValidations {
 
             softAssert.assertEquals(policyTablesEntity.getMember_financial_start_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialStartDate(), "Medical member financial start date does not match");
             softAssert.assertEquals(policyTablesEntity.getMember_financial_end_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialEndDate(), "Medical member financial end date does not match");
-            softAssert.assertEquals(policyTablesEntity.getDisenrollment_reason(), SharedData.getPolicyDisenrollmentReasonMed(),"Disenrollment reason mismatch");
             softAssert.assertAll();
         }
 
@@ -320,7 +323,6 @@ public class PolicyTableDbValidations {
 
             softAssert.assertEquals(policyTablesEntity.getMember_financial_start_date(), SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialStartDate(), "Medical member financial start date does not match");
             softAssert.assertEquals(policyTablesEntity.getMember_financial_end_date(), SharedData.getExpectedCalculatedDates_dentalPlan().getFinancialEndDate(), "Medical member financial end date does not match");
-            softAssert.assertEquals(policyTablesEntity.getDisenrollment_reason(), SharedData.getPolicyDisenrollmentReasonDen(),"Disenrollment reason mismatch");
             softAssert.assertAll();
         }
         private void setMedicalData(){

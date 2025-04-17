@@ -119,21 +119,19 @@ Feature: Regression Tests that require Seed 1 w/exception
       | PolicyStartDate     | PolicyEndDate      | CoverageStartDate   | CoverageEndDate     | FinancialStartDate  | FinancialEndDate    |
       | First Of Next Month |First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month |
     Then I click Make Changes Medical button
-    And I update the Coverage End date of member on manage plan page
+    And I update the Coverage End date of member on manage plan page for "Medical"
       | Primary:First Of Next Month |
     And I update the Financial End date of member on manage plan page
       | Primary:First Of Next Month |
     And I click Save Button Medical
     And I select the reason to confirm the changes
-    And I set the "NO_REASON" disEnrollment reason for "Medical" plan
     Then I click Make Changes Dental button
-    And I update the Coverage End date of member on manage plan page
+    And I update the Coverage End date of member on manage plan page for "Dental"
       | Primary:First Of Next Month |
     And I update the Financial End date of member on manage plan page
       | Primary:First Of Next Month |
     And I click Save Button Dental
     And I select the reason to confirm the changes
-    And I set the "NO_REASON" disEnrollment reason for "Dental" plan
     Then logout from Admin Portal
         #DB Validation
     And I validate "medical-cancelled" entities from policy tables

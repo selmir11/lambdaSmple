@@ -905,7 +905,7 @@ public class AdminPortalManagePlansPage {
         }
     }
 
-    public void updateTheCoverageEndDateNew(List<String> memberCoverageEndDtList) {
+    public void updateTheCoverageEndDateNew(String planType,List<String> memberCoverageEndDtList) {
         List<Map<String, String>> memberUpdates = memberCoverageEndDtList.stream()
                 .map(entry -> entry.split(":"))
                 .map(parts -> {
@@ -927,6 +927,24 @@ public class AdminPortalManagePlansPage {
             String coverageEndDateElement = "//div[@id='coverageEndDate_" + index + "']//input[1]";
             basicActions.waitForElementToBeClickable(coverageEndDate, 30);
             basicActions.updateElementWithRetries(coverageEndDateElement, updatedDate);
+            // Set disenrollment reason if start and end dates are same
+            WebElement coverageStartDateElement =  basicActions.getDriver().findElement(By.xpath("//div[@id='coverageStartDate_" + index + "']//input[1]"));
+            String coverageStartDate = basicActions.changeDateFormat(coverageStartDateElement.getAttribute("value"),"yyyy-MM-dd", "MM/dd/yyyy");
+            if(updatedDate.equals(coverageStartDate)){
+                setDisenrollmentReason(planType,matchingname);
+            }
+        }
+    }
+
+    public void setDisenrollmentReason(String planType, String name){
+        List<MemberDetails> members = basicActions.getAllMem();
+        switch (planType){
+            case("Medical"):
+                members.stream().filter(member -> member.getFirstName().contains(name)).findFirst().ifPresent(member -> member.setPolicyDisenrollmentReasonMed("NO_REASON"));
+                break;
+            case("Dental"):
+                members.stream().filter(member -> member.getFirstName().contains(name)).findFirst().ifPresent(member -> member.setPolicyDisenrollmentReasonDen("NO_REASON"));
+                break;
         }
     }
 

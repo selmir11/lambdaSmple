@@ -99,8 +99,6 @@ public class SharedData {
     @Getter @Setter private static List<String> Companyname;
     @Getter @Setter private static String FinancialIncome;
     @Getter @Setter private static String EffectiveLCEDate;
-    @Getter @Setter private static String policyDisenrollmentReasonMed = null;
-    @Getter @Setter private static String policyDisenrollmentReasonDen = null;
 
     @Getter @Setter private static Boolean isAiAn = false;
     @Getter @Setter private static String recType = null;
@@ -158,8 +156,6 @@ public class SharedData {
         isAiAn = false;
         recType = null;
         carrierPdfFileName = null;
-        policyDisenrollmentReasonMed = null;
-        policyDisenrollmentReasonDen = null;
     }
 
 }

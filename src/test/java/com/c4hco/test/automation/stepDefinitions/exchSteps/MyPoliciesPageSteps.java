@@ -26,10 +26,6 @@ public class MyPoliciesPageSteps {
     public void clickMedicalPlansCancelButton(String btnDetail){
         myPoliciesPage.clickPlanCancelButton(btnDetail);
     }
-    @And("I set the {string} disEnrollment reason for {string} plan")
-    public void iSetDisEnrollmentReason(String reason, String planType){
-        myPoliciesPage.setDisEnrollmentReason(reason,planType);
-    }
     @Then("I click on Future Plans")
     public void clickFuturePlans(){
         myPoliciesPage.clickFuturePlans();
