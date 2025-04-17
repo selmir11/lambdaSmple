@@ -515,4 +515,10 @@ public class AdminPortalManagePlansSteps {
     public void iVerifyMemberTwoShowsTwiceInCoverageDetailsAndFinancialDetailsTables() {
         adminPortalManagePlansPage.VerifyMemberTwoShowsTwiceInCoverageAndFinancialDetailsTables();
     }
+
+
+    @Then("I select Plans {string} Termed policy with {string} coverage end date on manage plan page")
+    public void iSelectPlansTermedPolicyWith(String planType, String expectedValues) {
+        adminPortalManagePlansPage.selectTermedPolicyBasedOnEndDate(planType, expectedValues);
+    }
 }

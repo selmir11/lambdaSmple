@@ -534,7 +534,11 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//div[@class='financial-details-grid']/div")
     List<WebElement> labelFinancialDetailsGridItems;
 
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@id='coverageEndDate_1']")
+    WebElement coverageEndDateMedTxt;
 
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@id='coverageEndDate_1']")
+    WebElement coverageEndDateDentTxt;
 
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
@@ -2352,5 +2356,147 @@ public class AdminPortalManagePlansPage {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(labelFinancialDetailsGridItems.get(15),5),"Member 2 not present-2nd time");
         softAssert.assertEquals(labelFinancialDetailsGridItems.get(5).getText().trim(),labelFinancialDetailsGridItems.get(15).getText().trim(),"Financial Details Row 1 and Row 3 data not matching");
         softAssert.assertAll();
+    }
+
+    public void selectTermedPolicyBasedOnEndDate(String planType,String expectedValues) {
+        basicActions.wait(1000);
+
+        if (planType.equalsIgnoreCase("Medical")) {
+            openPolicyDropdownAndWait(
+                    medicalpolicyDropdownOptions,
+                    selectPolicyDropdownOptions,
+                    currentMedicalPlanName
+            );
+            selectMedicalPolicyBasedOnStatus(expectedValues);
+        } else if (planType.equalsIgnoreCase("Dental")) {
+            openPolicyDropdownAndWait(
+                    dentalpolicyDropdownOptions,
+                    selectDentalPolicyDropdownOptions,
+                    currentDentalPlanName
+            );
+            selectDentalPolicyBasedOnStatus(expectedValues);
+        } else {
+            throw new IllegalArgumentException("Invalid plan type: " + planType);
+        }
+    }
+
+    private void openPolicyDropdownAndWait(List<WebElement> policyDropdownOptions, WebElement selectDropdown, WebElement planNameElement) {
+        basicActions.waitForElementToBePresentWithRetries(selectDropdown, 60);
+        basicActions.waitForElementToBePresentWithRetries(planNameElement, 60);
+        basicActions.scrollToElement(selectDropdown);
+        selectDropdown.click();
+        basicActions.waitForElementListToBePresent(policyDropdownOptions, 60);
+        basicActions.wait(100);
+    }
+
+    private void selectMedicalPolicyBasedOnStatus(String expectedValues) {
+        String expectedDate = basicActions.getDateBasedOnRequirement(expectedValues); // expected: yyyy-MM-dd
+
+        for (int i = 0; i < 10; i++) {
+            try {
+                List<WebElement> options = basicActions.getDriver().findElements(By.xpath(
+                        "//div[@class='medical-plan-container plan-container-fill']//div[@class='drop-down-secondary-options']//span"
+                ));
+
+                if (options.isEmpty() || i >= options.size()) {
+                    reopenPolicyDropdown(selectPolicyDropdownOptions, "Medical");
+                    continue;
+                }
+
+                WebElement option = options.get(i);
+                option.click();
+                basicActions.wait(500);
+
+                basicActions.waitForElementToBePresent(medPolicyStatus, 5);
+                String status = medPolicyStatus.getText().trim();
+                System.out.println("Medical policy " + i + " has status: " + status);
+
+                if (status.equalsIgnoreCase("Disenroll_submitted")) {
+                    String uiDate = coverageEndDateMedTxt.getText().trim(); // e.g. 04/30/2025
+                    String formattedUIDate = basicActions.changeDateFormat(uiDate, "MM/dd/yyyy", "yyyy-MM-dd");
+
+                    System.out.println("End date from UI: " + formattedUIDate + " | Expected: " + expectedDate);
+                    if (formattedUIDate.equals(expectedDate)) {
+                        System.out.println("Found correct Medical policy.");
+                        return;
+                    }
+                }
+
+                reopenPolicyDropdown(selectPolicyDropdownOptions, "Medical");
+
+            } catch (Exception e) {
+                System.out.println("Error processing medical policy " + i + ": " + e.getMessage());
+                reopenPolicyDropdown(selectPolicyDropdownOptions, "Medical");
+            }
+        }
+
+        throw new RuntimeException("No Medical policy found with CANCELLED status and end date " + expectedDate);
+    }
+
+    private void selectDentalPolicyBasedOnStatus(String expectedValues) {
+        String expectedDate = basicActions.getDateBasedOnRequirement(expectedValues); // expected: yyyy-MM-dd
+
+        for (int i = 0; i < 10; i++) {
+            try {
+                List<WebElement> options = basicActions.getDriver().findElements(By.xpath(
+                        "//div[@class='dental-plan-container plan-container-fill']//div[@class='drop-down-secondary-options']//span"
+                ));
+
+                if (options.isEmpty() || i >= options.size()) {
+                    reopenPolicyDropdown(selectDentalPolicyDropdownOptions, "Dental");
+                    continue;
+                }
+
+                WebElement option = options.get(i);
+                option.click();
+                basicActions.wait(500);
+
+                basicActions.waitForElementToBePresent(denPolicyStatus, 5);
+                String status = denPolicyStatus.getText().trim();
+                System.out.println("Dental policy " + i + " has status: " + status);
+
+                if (status.equalsIgnoreCase("Disenroll_submitted")) {
+                    String uiDate = coverageEndDateDentTxt.getText().trim();
+                    String formattedUIDate = basicActions.changeDateFormat(uiDate, "MM/dd/yyyy", "yyyy-MM-dd");
+
+                    System.out.println("End date from UI: " + formattedUIDate + " | Expected: " + expectedDate);
+                    if (formattedUIDate.equals(expectedDate)) {
+                        System.out.println("Found correct Dental policy.");
+                        return;
+                    }
+                }
+                reopenPolicyDropdown(selectDentalPolicyDropdownOptions, "Dental");
+
+            } catch (Exception e) {
+                System.out.println("Error processing dental policy " + i + ": " + e.getMessage());
+                reopenPolicyDropdown(selectDentalPolicyDropdownOptions, "Dental");
+            }
+        }
+
+        throw new RuntimeException("No Dental policy found with CANCELLED status and end date " + expectedDate);
+    }
+
+    private void reopenPolicyDropdown(WebElement dropdownElement,String planType) {
+        int retry = 0;
+        String xpath = planType.equalsIgnoreCase("Medical")
+                ? "//div[@class='medical-plan-container plan-container-fill']//div[@class='drop-down-secondary-options']//span"
+                : "//div[@class='dental-plan-container plan-container-fill']//div[@class='drop-down-secondary-options']//span";
+
+        while (retry < 3) {
+            try {
+                basicActions.waitForElementToBePresentWithRetries(dropdownElement, 60);
+                dropdownElement.click();
+                basicActions.wait(200);
+
+                List<WebElement> options = basicActions.getDriver().findElements(By.xpath(xpath));
+                if (!options.isEmpty()) return;
+
+            } catch (Exception e) {
+                System.out.println("Retry " + retry + ": Failed to reopen " + planType + " dropdown.");
+            }
+            retry++;
+        }
+
+        throw new RuntimeException("Failed to reopen " + planType + " dropdown after 3 retries.");
     }
 }

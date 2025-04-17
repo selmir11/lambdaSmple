@@ -39,4 +39,25 @@ public class MpDbDataProvider {
         System.out.println("Number of rows retrieved: " + results.size());
         return results;
     }
+
+    public List<List<String>> getManagePlansTermedMemberDetails(String planType) {
+        List<List<String>> results = postgresHandler.getResultForMultipleDynamicColumns(dbMpQueries.getManagePlansTermedDetails(planType), "exch_person_id", "first_name", "last_name", "birth_date", "relation_to_subscriber", "prior_6_months_tobacco_use_ind", "coverage_end_date");
+
+        System.out.println("Number of rows retrieved: " + results.size());
+        return results;
+    }
+
+    public List<List<String>> getManagePlansTermedCoverageDetails(String planType) {
+        List<List<String>> results = postgresHandler.getResultForMultipleDynamicColumns(dbMpQueries.getManagePlansTermedDetails(planType), "coverage_start_date", "coverage_end_date", "policy_member_coverage_status", "effectuated_ind", "disenrollment_reason", "first_name");
+
+        System.out.println("Number of rows retrieved: " + results.size());
+        return results;
+    }
+
+    public List<List<String>> getManagePlanstermedFinancialDetails(String planType) {
+        List<List<String>> results = postgresHandler.getResultForMultipleDynamicColumns(dbMpQueries.getManagePlansTermedDetails(planType), "member_financial_start_date", "member_financial_end_date", "plan_premium_amt", "premium_reduction_amt", "first_name", "coverage_end_date");
+
+        System.out.println("Number of rows retrieved: " + results.size());
+        return results;
+    }
 }
