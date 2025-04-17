@@ -29,7 +29,7 @@ Feature: Seed03exception - Exchange
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
     And I click on Find a Broker
-    And I Search authorized Broker "Margie"
+    And I Search authorized Broker "Amethyst"
     And I click on Search button in find certified broker page
     And I click more details from the first broker result container
     Then I click Authorized broker
@@ -120,7 +120,7 @@ Feature: Seed03exception - Exchange
     And I click on Future Plans
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
-    And I click on Sign Out in the Header for "Elmo"
+    And I click on Sign Out in the Header for "NonElmo"
 
     #DB Validation
     And I validate "medical" entities from policy tables
@@ -216,6 +216,7 @@ Feature: Seed03exception - Exchange
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Plans"
     And I validate I am on the "My Policies" page
+    Then I click on Future Plans
     And I click on "Cancel Medical Plan" button
     And I validate I am on the "Cancellation Request" page
     Then I affirm and cancel the active plan
