@@ -496,4 +496,23 @@ public class AdminPortalManagePlansSteps {
     @And("I select {string} Show Financial Period for policy {int} on Manage Plans page")
     public void iSelectFinancialPeriod(String planType, Integer policyNumber) {adminPortalManagePlansPage.selectFinancialPeriod(planType, policyNumber);}
 
+    @Then("I verify medical_plan text available in red color")
+    public void iVerifyMedical_planTextAvailableInRedColor() {
+        adminPortalManagePlansPage.verifyMedicalPlanText();
+    }
+
+    @Then("I verify one container for Medical plans displayed instead of Current and Previous sections")
+    public void iVerifyOneContainerForMedicalPlansDisplayedInsteadOfCurrentAndPreviousSections() {
+        adminPortalManagePlansPage.verifyOneContainerForMedicalPlansDisplayedInsteadOfCurrentAndPreviousSections();
+    }
+
+    @Then("I select policy plan {string} from select_a_policy dd by visible text")
+    public void iSelectPolicyPlanFromSelect_a_policyDdByVisibleText(String policyName) {
+        adminPortalManagePlansPage.selectPolicyPlanFromDDByVisibleText(policyName);
+    }
+
+    @Then("I verify member two shows twice in CoverageDetails and FinancialDetails tables")
+    public void iVerifyMemberTwoShowsTwiceInCoverageDetailsAndFinancialDetailsTables() {
+        adminPortalManagePlansPage.VerifyMemberTwoShowsTwiceInCoverageAndFinancialDetailsTables();
+    }
 }
