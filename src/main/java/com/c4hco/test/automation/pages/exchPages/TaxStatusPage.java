@@ -1317,7 +1317,7 @@ public class TaxStatusPage {
         softAssert.assertEquals(filingStatusDpd.get(0).getText(), option);
         softAssert.assertEquals(filingStatusDpd.get(0).getCssValue("font-weight"), "400",option+" Text is not as expected");
         softAssert.assertEquals(filingStatusDpd.get(0).getCssValue("font-size"), "16px",option+" Text is not as expected");
-        softAssert.assertEquals(filingStatusDpd.get(0).getCssValue("color"), "rgba(109, 109, 109, 1)",option+" Text is not as expected");
+        softAssert.assertEquals(filingStatusDpd.get(0).getCssValue("color"), "rgba(150, 0, 0, 1)",option+" Text is not as expected");
         softAssert.assertEquals(filingStatusDpd.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif",option+" Text is not as expected");
         softAssert.assertEquals(filingStatusDpd.get(1).getText(), option2);
         softAssert.assertEquals(filingStatusDpd.get(1).getCssValue("font-weight"), "400",option2+" Text is not as expected");

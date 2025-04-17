@@ -897,6 +897,7 @@ Feature: Header and Footer validation on Coco application pages
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
+    And I wait for 3000 milliseconds
     And I verify text on the "CoCo" "Header" in "Spanish"
     And I wait for 2000 milliseconds
     And I click on My Account in the "Elmo" Header

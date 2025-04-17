@@ -143,34 +143,43 @@ public class OhcEmployerSponsoredHealthInsurancePage {
     @FindBy(css = ".drawer-heading > h3")
     WebElement helpSubHeaderTxt;
 
-    @FindBy(css = ".drawer-text-content > p > b")
+    @FindBy(css = ".section-help-content-container span")
     List<WebElement> helpDrawerHeaderTxt;
 
-    @FindBy(css = ".drawer-text-content > span")
+    @FindBy(css = ".drawer-text-content span")
     List<WebElement> helpDrawerSubHeaderTxt;
 
-    @FindBy(css = ".drawer-text-content p")
+    @FindBy(css = ".drawer-text-content> div > div > div > span")
+    List<WebElement> helpDrawerHeaderSection2Txt;
+
+    @FindBy(css = ".drawer-text-content> div > div > span")
+    List<WebElement> helpDrawerHeaderEnrollmentTxt;
+
+    @FindBy(css = ".section-help-content-container > div > div > div")
+    WebElement helpDrawerWaitingPeriodTxt;
+
+    @FindBy(css = ".section-help-content-container > div > div > span")
+    List<WebElement> helpDrawerSubHdrTxt;
+
+    @FindBy(css = ".drawer-text-content span")
+    List<WebElement> helpDrawerSubHdr2Txt;
+
+    @FindBy(css = ".drawer-text-content > div > div > div")
     List<WebElement> helpDrawerBodyParagraphs;
 
-    @FindBy(css = ".drawer-text-content > p:nth-child(3) > a")
-    WebElement helpDrawerParagraphLnk1;
+    @FindBy(css = ".drawer-text-content > div > div")
+    List<WebElement> helpDrawerBodyParagraphs2;
 
-    @FindBy(css = ".drawer-text-content > p:nth-child(4) > a")
-    WebElement helpDrawerParagraphLnk1SpMinVal;
+    @FindBy(css = ".drawer-text-content lib-help-window-link")
+    List<WebElement> helpDrawerParagraphLnk1;
 
-    @FindBy(css = ".drawer-text-content > p:nth-child(12) > a")
+    @FindBy(xpath = "//lib-help-drawer//div[3]/div/lib-help-window-link")
     WebElement helpDrawerParagraphLnk2;
-
-    @FindBy(css = ".drawer-text-content > p:nth-child(14) > a")
-    WebElement helpDrawerParagraphLnk2Sp;
-
-    @FindBy(css = ".drawer-text-content > p:nth-child(4) > a")
-    WebElement helpDrawerParagraphLnk2SpMinVal;
 
     @FindBy(css = ".drawer-text-content li")
     List<WebElement> helpDrawerBodyPoints;
 
-    @FindBy(css = ".drawer-text-content > p > i > a")
+    @FindBy(xpath = "//lib-help-drawer//div[4]/em/lib-help-window-link")
     WebElement helpDrawerPrintLnk;
 
     @FindBy(css = ".drawer-footer h3")
@@ -196,9 +205,6 @@ public class OhcEmployerSponsoredHealthInsurancePage {
 
     @FindBy(css = "div.input-error-message.error-icon.ng-star-inserted span.error-message")
     WebElement healthinsuranceenrollmentstatuserrorMessage;
-
-    @FindBy(xpath = "//button[contains(@id,'CoverageTypeNoAccessButton')]//span[@class='ng-star-inserted']")
-    List<WebElement> coverageTypeNoAccessButtonLabels;
 
     
 
@@ -408,24 +414,14 @@ public class OhcEmployerSponsoredHealthInsurancePage {
                 helpDrawerContactUsLink.click();
                 break;
             case "Employer Coverage Tool 1":
-                basicActions.waitForElementToBePresentWithRetries(helpDrawerParagraphLnk1, 10);
-                basicActions.scrollToElement(helpDrawerParagraphLnk1);
-                helpDrawerParagraphLnk1.click();
-                break;
-            case "Employer Coverage Tool 1 Spanish Min Val":
-                basicActions.waitForElementToBePresent(helpDrawerParagraphLnk1SpMinVal, 10);
-                basicActions.scrollToElement(helpDrawerParagraphLnk1SpMinVal);
-                helpDrawerParagraphLnk1SpMinVal.click();
+                basicActions.waitForElementListToBePresentWithRetries(helpDrawerParagraphLnk1, 10);
+                basicActions.scrollToElement(helpDrawerParagraphLnk1.get(0));
+                helpDrawerParagraphLnk1.get(0).click();
                 break;
             case "Employer Coverage Tool 2":
                 basicActions.waitForElementToBePresent(helpDrawerParagraphLnk2, 10);
                 basicActions.scrollToElement(helpDrawerParagraphLnk2);
                 helpDrawerParagraphLnk2.click();
-                break;
-            case "Employer Coverage Tool 2 Spanish":
-                basicActions.waitForElementToBePresent(helpDrawerParagraphLnk2Sp, 10);
-                basicActions.scrollToElement(helpDrawerParagraphLnk2Sp);
-                helpDrawerParagraphLnk2Sp.click();
                 break;
             case "Employer Coverage Tool 3":
                 basicActions.waitForElementToBePresent(helpDrawerPrintLnk, 10);
@@ -1298,41 +1294,41 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpDrawerHeaderTxt.get(0).getText(), "Overview");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Overview\nBefore you continue, gather any documents about health coverage that include information about premium costs and who in the household can get coverage.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "You may find this information in an online employee account, a letter, email, PDF, or another document from the job that's offering health coverage.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "If none of these are available, ask your job to fill out information in the Employer Information section of the Employer Coverage Tool.");
-        softAssert.assertEquals(helpDrawerParagraphLnk1.getText(), "Employer Coverage Tool");
-        softAssert.assertEquals(helpDrawerSubHeaderTxt.get(0).getText(), "Tell us about coverage if you:");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "If none of these are available, ask your job to fill out information in the Employer Information section of the Employer Coverage Tool");
+        softAssert.assertEquals(helpDrawerParagraphLnk1.get(0).getText(), "Employer Coverage Tool");
+        softAssert.assertEquals(helpDrawerHeaderTxt.get(1).getText(), "Tell us about coverage if you:");
         softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "Can get health coverage through a job, even if you're not currently enrolled or don't plan to enroll.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "Can get health coverage through a job, even if the employer's plan isn't currently in Open Enrollment.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(2).getText(), "Don't think you can afford the coverage that's being offered. We'll ask more questions later to help determine if you can qualify for savings through Connect for Health Colorado.");
-        softAssert.assertEquals(helpDrawerSubHeaderTxt.get(1).getText(), "You don\u2019t need to answer these questions if:");
+        softAssert.assertEquals(helpDrawerHeaderTxt.get(2).getText(), "You don\u2019t need to answer these questions if:");
         softAssert.assertEquals(helpDrawerBodyPoints.get(3).getText(), "You aren't offered coverage through your job at all.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(4).getText(), "You don't work enough hours to qualify for the coverage your job offers.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(5).getText(), "The only type of coverage available through a job is a Health Reimbursement Arrangement (HRA). However, if a person is offered an HRA and another group health insurance plan, select their name. Remember: you will also need to provide information about the HRA on the \"Other Health Insurance\" page.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(6).getText(), "Your only option for getting health insurance is COBRA continuation coverage or retiree coverage.");
-        softAssert.assertEquals(helpDrawerHeaderTxt.get(1).getText(), "If you are or will be in a \"waiting period\", don\u2019t answer these questions yet.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(3).getText(), "If you are or will be in a \"waiting period\", don\u2019t answer these questions yet. When that waiting period ends, return to the application, report a life change, and enter your job\u2019s health insurance information here.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(4).getText(), "A waiting period is the time that must pass before an employer offers an employee health coverage. Waiting periods can be 0-90 days.");
-        softAssert.assertEquals(helpDrawerHeaderTxt.get(3).getText(), "Minimum Value Standard:");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(5).getText(), "Minimum Value Standard:\nMost health insurance plans offered by jobs meet the minimum value standard.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(6).getText(), "More about the minimum value standard\nA health plan meets the minimum value standard if it's designed to pay at least 60% of the total cost of medical services for a standard population, and if its benefits include substantial coverage of inpatient hospital and physician services.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(7).getText(), "To find out if a plan meets the minimum value standard, check the Summary of Benefits and Coverage (SBC) from your job\u2019s plan, or ask them to fill out the Employer Coverage Tool.");
-        softAssert.assertEquals(helpDrawerParagraphLnk2.getText(), "Employer Coverage Tool");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(8).getText(), "Print or download the Employer Coverage Tool.");
-        softAssert.assertEquals(helpDrawerPrintLnk.getText(), "Employer Coverage Tool");
-        softAssert.assertEquals(helpDrawerHeaderTxt.get(4).getText(), "Lowest-Cost Premium:");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(9).getText(), "Lowest-Cost Premium:\nHint Text: Only enter the amount you would pay. Don't include any amount paid by your employer.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(10).getText(), "Learn more about entering premium amounts\nEnter the regular amount the employee would have to pay for their health coverage (the \"premium\") if they enrolled.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(11).getText(), "Enter the amount of the lowest-cost plan offered by the employer that would cover only the employee.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(12).getText(), "If the employer has wellness programs:\nEnter the premium this person would pay if they got the maximum discount for any tobacco cessation programs (counseling to stop smoking), but no other programs.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(13).getText(), "These amounts should be listed in a notice from your employer. But, if you don't have a notice or you're not sure what these amounts are, ask your employer.");
-        softAssert.assertEquals(helpDrawerHeaderTxt.get(6).getText(), "Enrollment:");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(14).getText(), "Enrollment:\nIf this person currently has health insurance through this job, select \"Yes\". If this person is able to get this health insurance, but has chosen not to enroll, select \"No\".");
-        softAssert.assertEquals(helpDrawerSubHeaderTxt.get(2).getText(), "End in the next 60 days:\nIf this insurance will end soon because:");
+        softAssert.assertEquals(helpDrawerHeaderTxt.get(4).getText(), "If you are or will be in a \"waiting period\", don\u2019t answer these questions yet. When that waiting period ends, return to the application, report a life change, and enter your job\u2019s health insurance information here.");
+        softAssert.assertEquals(helpDrawerWaitingPeriodTxt.getText(), "A waiting period is the time that must pass before an employer offers an employee health coverage. Waiting periods can be 0-90 days.");
+        softAssert.assertEquals(helpDrawerHeaderSection2Txt.get(1).getText(), "Minimum Value Standard:");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(4).getText(), "Minimum Value Standard:\nMost health insurance plans offered by jobs meet the minimum value standard");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(5).getText(), "More about the minimum value standard\nA health plan meets the minimum value standard if it's designed to pay at least 60% of the total cost of medical services for a standard population, and if its benefits include substantial coverage of inpatient hospital and physician services.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(6).getText(), "To find out if a plan meets the minimum value standard, check the Summary of Benefits and Coverage (SBC) from your job\u2019s plan, or ask them to fill out the Employer Coverage Tool");
+        softAssert.assertEquals(helpDrawerParagraphLnk1.get(1).getText(), "Employer Coverage Tool");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(7).getText(), "Print or download the Employer Coverage Tool");
+        softAssert.assertEquals(helpDrawerParagraphLnk1.get(2).getText(), "Employer Coverage Tool");
+        softAssert.assertEquals(helpDrawerHeaderSection2Txt.get(3).getText(), "Lowest Cost Premium:");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(8).getText(), "Lowest Cost Premium:\nHint Text:Only enter the amount you would pay. Don't include any amount paid by your employer.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(9).getText(), "Learn more about entering premium amounts\nEnter the regular amount you would have to pay for health coverage (the \"premium\") if you enrolled.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(10).getText(), "Enter the amount of the lowest-cost plan offered by the employer that would only cover you.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(11).getText(), "If the employer has wellness programs:\nEnter the premium you would pay if you got the maximum discount for any tobacco cessation programs (counseling to stop smoking), but no other programs.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(12).getText(), "These amounts should be listed in a notice from your employer. But, if you don't have a notice or you're not sure what these amounts are, ask the employer.");
+        softAssert.assertEquals(helpDrawerHeaderEnrollmentTxt.get(0).getText(), "Enrollment:");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(13).getText(), "If you currently have health insurance through this job, select \"Yes\". If you are able to get this health insurance, but have chosen not to enroll, select \"No\".");
+        softAssert.assertEquals(helpDrawerHeaderEnrollmentTxt.get(1).getText(), "End in the next 60 days:");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(14).getText(), "If this insurance will end soon because:");
         softAssert.assertEquals(helpDrawerBodyPoints.get(7).getText(), "the job is ending,");
         softAssert.assertEquals(helpDrawerBodyPoints.get(8).getText(), "the company is no longer offering health insurance,");
         softAssert.assertEquals(helpDrawerBodyPoints.get(9).getText(), "or you won't qualify for it any longer,");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(15).getText(), "select \"Yes\" and enter the date the insurance will end.");
-        softAssert.assertEquals(helpDrawerHeaderTxt.get(7).getText(), "Voluntarily Ending Health Insurance:");
+        softAssert.assertEquals(helpDrawerHeaderSection2Txt.get(6).getText(), "Voluntarily Ending Health Insurance:");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(16).getText(), "Voluntarily Ending Health Insurance:\nSelect \"Yes\" if you are still eligible for health insurance through your employer but have chosen to cancel the plan or if you declined to enroll in a plan when you had the opportunity.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(17).getText(), "Select \"No\" if you are no longer eligible for health insurance through your employer or your employer used to offer health insurance and no longer provides health insurance.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(18).getText(), "Select \"No\" if your employer used to offer health insurance and now only offers a Health Reimbursement Arrangement (HRA)");
@@ -1344,17 +1340,17 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink, 25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Help");
         softAssert.assertEquals(helpSubHeaderTxt.getText(), "Health insurance offered through a job");
-        softAssert.assertEquals(helpDrawerSubHeaderTxt.get(0).getText(), "Tell us about coverage if you:");
+        softAssert.assertEquals(helpDrawerSubHdrTxt.get(0).getText(), "Tell us about coverage if you:");
         softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "Can get health coverage through a job, even if you're not currently enrolled or don't plan to enroll.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "Can get health coverage through a job, even if the employer's plan isn't currently in Open Enrollment.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(2).getText(), "Don't think you can afford the coverage that's being offered. We'll ask more questions later to help determine if you can qualify for savings through Connect for Health Colorado.");
-        softAssert.assertEquals(helpDrawerSubHeaderTxt.get(1).getText(), "You don\u2019t need to answer these questions if:");
+        softAssert.assertEquals(helpDrawerSubHdrTxt.get(1).getText(), "You don\u2019t need to answer these questions if:");
         softAssert.assertEquals(helpDrawerBodyPoints.get(3).getText(), "You aren't offered coverage through your job at all.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(4).getText(), "You don't work enough hours to qualify for the coverage your job offers.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(5).getText(), "The only type of coverage available through a job is a Health Reimbursement Arrangement (HRA). However, if a person is offered an HRA and another group health insurance plan, select their name. Remember: you will also need to provide information about the HRA on the \"Other Health Insurance\" page.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(6).getText(), "Your only option for getting health insurance is COBRA continuation coverage or retiree coverage.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "If you are or will be in a \"waiting period\", don\u2019t answer these questions yet. When that waiting period ends, return to the application, report a life change, and enter your job\u2019s health insurance information here.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "A waiting period is the time that must pass before an employer offers an employee health coverage. Waiting periods can be 0-90 days.");
+        softAssert.assertEquals(helpDrawerHeaderSection2Txt.get(2).getText(), "If you are or will be in a \"waiting period\", don\u2019t answer these questions yet. When that waiting period ends, return to the application, report a life change, and enter your job\u2019s health insurance information here.");
+        softAssert.assertEquals(helpDrawerWaitingPeriodTxt.getText(), "A waiting period is the time that must pass before an employer offers an employee health coverage. Waiting periods can be 0-90 days.");
         softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
         softAssert.assertAll();
     }
@@ -1363,12 +1359,13 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink, 25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Help");
         softAssert.assertEquals(helpSubHeaderTxt.getText(), "Health insurance offered through a job");
-        softAssert.assertEquals(helpDrawerHeaderTxt.get(0).getText(), "Minimum Value Standard:");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Minimum Value Standard:\nMost health insurance plans offered by jobs meet the minimum value standard.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "More about the minimum value standard\nA health plan meets the minimum value standard if it's designed to pay at least 60% of the total cost of medical services for a standard population, and if its benefits include substantial coverage of inpatient hospital and physician services.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "To find out if a plan meets the minimum value standard, check the Summary of Benefits and Coverage (SBC) from your job\u2019s plan, or ask them to fill out the Employer Coverage Tool.");
-        softAssert.assertEquals(helpDrawerParagraphLnk1.getText(), "Employer Coverage Tool");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(3).getText(), "Print or download the Employer Coverage Tool.");
+        softAssert.assertEquals(helpDrawerSubHdr2Txt.get(0).getText(), "Minimum Value Standard:");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(0).getText(), "Minimum Value Standard:\nMost health insurance plans offered by jobs meet the minimum value standard");
+        softAssert.assertEquals(helpDrawerSubHdr2Txt.get(1).getText(), "More about the minimum value standard");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(1).getText(), "More about the minimum value standard\nA health plan meets the minimum value standard if it's designed to pay at least 60% of the total cost of medical services for a standard population, and if its benefits include substantial coverage of inpatient hospital and physician services.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(2).getText(), "To find out if a plan meets the minimum value standard, check the Summary of Benefits and Coverage (SBC) from your job\u2019s plan, or ask them to fill out the Employer Coverage Tool");
+        softAssert.assertEquals(helpDrawerParagraphLnk1.get(0).getText(), "Employer Coverage Tool");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(3).getText(), "Print or download the Employer Coverage Tool");
         softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
         softAssert.assertAll();
     }
@@ -1377,12 +1374,12 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink, 25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Help");
         softAssert.assertEquals(helpSubHeaderTxt.getText(), "Health insurance offered through a job");
-        softAssert.assertEquals(helpDrawerHeaderTxt.get(0).getText(), "Lowest-Cost Premium:");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Lowest-Cost Premium:\nHint Text: Only enter the amount you would pay. Don't include any amount paid by your employer.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Learn more about entering premium amounts\nEnter the regular amount the employee would have to pay for their health coverage (the \"premium\") if they enrolled.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Enter the amount of the lowest-cost plan offered by the employer that would cover only the employee.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(3).getText(), "If the employer has wellness programs:\nEnter the premium this person would pay if they got the maximum discount for any tobacco cessation programs (counseling to stop smoking), but no other programs.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(4).getText(), "These amounts should be listed in a notice from your employer. But, if you don't have a notice or you're not sure what these amounts are, ask your employer.");
+        softAssert.assertEquals(helpDrawerSubHdr2Txt.get(0).getText(), "Lowest Cost Premium:");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(0).getText(), "Lowest Cost Premium:\nHint Text:Only enter the amount you would pay. Don't include any amount paid by your employer.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(1).getText(), "Learn more about entering premium amounts\nEnter the regular amount you would have to pay for health coverage (the \"premium\") if you enrolled.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(2).getText(), "Enter the amount of the lowest-cost plan offered by the employer that would only cover you.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(3).getText(), "If the employer has wellness programs:\nEnter the premium you would pay if you got the maximum discount for any tobacco cessation programs (counseling to stop smoking), but no other programs.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(4).getText(), "These amounts should be listed in a notice from your employer. But, if you don't have a notice or you're not sure what these amounts are, ask the employer.");
         softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
         softAssert.assertAll();
     }
@@ -1391,8 +1388,8 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink, 25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Help");
         softAssert.assertEquals(helpSubHeaderTxt.getText(), "Health insurance offered through a job");
-        softAssert.assertEquals(helpDrawerHeaderTxt.get(0).getText(), "Enrollment:");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Enrollment:\nIf this person currently has health insurance through this job, select \"Yes\". If this person is able to get this health insurance, but has chosen not to enroll, select \"No\".");
+        softAssert.assertEquals(helpDrawerSubHdr2Txt.get(0).getText(), "Enrollment:");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(0).getText(), "If you currently have health insurance through this job, select \"Yes\". If you are able to get this health insurance, but have chosen not to enroll, select \"No\".");
         softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
         softAssert.assertAll();
     }
@@ -1401,11 +1398,12 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink, 25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Help");
         softAssert.assertEquals(helpSubHeaderTxt.getText(), "Health insurance offered through a job");
-        softAssert.assertEquals(helpDrawerSubHeaderTxt.get(0).getText(), "End in the next 60 days:\nIf this insurance will end soon because:");
+        softAssert.assertEquals(helpDrawerSubHeaderTxt.get(0).getText(), "End in the next 60 days:");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(0).getText(), "If this insurance will end soon because:");
         softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "the job is ending,");
         softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "the company is no longer offering health insurance,");
         softAssert.assertEquals(helpDrawerBodyPoints.get(2).getText(), "or you won't qualify for it any longer,");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "select \"Yes\" and enter the date the insurance will end.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(1).getText(), "select \"Yes\" and enter the date the insurance will end.");
         softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
         softAssert.assertAll();
     }
@@ -1414,10 +1412,10 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink, 25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Help");
         softAssert.assertEquals(helpSubHeaderTxt.getText(), "Health insurance offered through a job");
-        softAssert.assertEquals(helpDrawerHeaderTxt.get(0).getText(), "Voluntarily Ending Health Insurance:");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Voluntarily Ending Health Insurance:\nSelect \"Yes\" if you are still eligible for health insurance through your employer but have chosen to cancel the plan or if you declined to enroll in a plan when you had the opportunity.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Select \"No\" if you are no longer eligible for health insurance through your employer or your employer used to offer health insurance and no longer provides health insurance.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Select \"No\" if your employer used to offer health insurance and now only offers a Health Reimbursement Arrangement (HRA).");
+        softAssert.assertEquals(helpDrawerSubHeaderTxt.get(0).getText(), "Voluntarily Ending Health Insurance:");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(0).getText(), "Voluntarily Ending Health Insurance:\nSelect \"Yes\" if you are still eligible for health insurance through your employer but have chosen to cancel the plan or if you declined to enroll in a plan when you had the opportunity.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(1).getText(), "Select \"No\" if you are no longer eligible for health insurance through your employer or your employer used to offer health insurance and no longer provides health insurance.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(2).getText(), "Select \"No\" if your employer used to offer health insurance and now only offers a Health Reimbursement Arrangement (HRA)");
         softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
         softAssert.assertAll();
     }
@@ -1457,39 +1455,44 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpDrawerHeaderTxt.get(0).getText(), "Resumen");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Resumen\nAntes de continuar, re\u00FAna todos los documentos sobre la cobertura de salud que incluyan informaci\u00F3n sobre el costo de las primas y qui\u00E9n en la familia puede tener cobertura.");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Puede encontrar esta informaci\u00F3n en una cuenta de empleado en l\u00EDnea, una carta, un correo electr\u00F3nico, un PDF u otro documento del trabajo en el que se ofrece cobertura de salud.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Si no dispone de ninguno de ellos, pida en su trabajo que llenen la informaci\u00F3n de la secci\u00F3n \"Informaci\u00F3n del empleador\" de la herramienta de cobertura del empleador.");
-        softAssert.assertEquals(helpDrawerParagraphLnk1.getText(), "herramienta de cobertura del empleador.");
-        softAssert.assertEquals(helpDrawerSubHeaderTxt.get(0).getText(), "Inf\u00F3rmenos sobre la cobertura en los siguientes casos:");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "Puede obtener cobertura de salud a trav\u00E9s de un empleo, aunque no est\u00E9 inscrito actualmente ni tenga previsto hacerlo.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Si no dispone de ninguno de ellos, pida en su trabajo que llenen la informaci\u00F3n de la secci\u00F3n \"Informaci\u00F3n del empleador\" de la herramienta de cobertura del empleador");
+        softAssert.assertEquals(helpDrawerParagraphLnk1.get(0).getText(), "herramienta de cobertura del empleador");
+        softAssert.assertEquals(helpDrawerHeaderTxt.get(1).getText(), "Inf\u00F3rmenos sobre la cobertura en los siguientes casos:");
+        softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "Puede obtener cobertura de salud a trav\u00E9s de un empleo, aunque no est\u00E9 inscrita actualmente ni tenga previsto hacerlo.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "Puede obtener cobertura de salud a trav\u00E9s de un empleo, incluso si el plan del empleador no est\u00E1 actualmente en el per\u00EDodo de inscripci\u00F3n abierta.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(2).getText(), "No cree que pueda pagar la cobertura que le ofrecen. M\u00E1s adelante, le haremos m\u00E1s preguntas para ayudarle a determinar si puede calificar para obtener ahorros a trav\u00E9s de Connect for Health Colorado.");
-        softAssert.assertEquals(helpDrawerSubHeaderTxt.get(1).getText(), "No tiene que responder estas preguntas en los siguientes casos:");
+        softAssert.assertEquals(helpDrawerHeaderTxt.get(2).getText(), "No tiene que responder estas preguntas en los siguientes casos:");
         softAssert.assertEquals(helpDrawerBodyPoints.get(3).getText(), "No se le ofrece cobertura a trav\u00E9s de su empleo.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(4).getText(), "No trabaja suficientes horas para calificar para la cobertura que ofrece su empleo.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(5).getText(), "El \u00FAnico tipo de cobertura disponible a trav\u00E9s del trabajo es el acuerdo de reembolsos de salud (HRA). Sin embargo, si a una persona se le ofrece un HRA y otro plan de seguro de salud grupal, seleccione el nombre. Recuerde: tambi\u00E9n deber\u00E1 proporcionar informaci\u00F3n sobre el HRA en la p\u00E1gina \"Otros seguros de salud\".");
         softAssert.assertEquals(helpDrawerBodyPoints.get(6).getText(), "La \u00FAnica opci\u00F3n que tiene para conseguir un seguro de salud es la continuaci\u00F3n de la cobertura COBRA o la cobertura para retirados.");
-        softAssert.assertEquals(helpDrawerHeaderTxt.get(1).getText(), "Si est\u00E1 o va a estar en \"per\u00EDodo de espera\", no responda a\u00FAn estas preguntas. Cuando finalice ese per\u00EDodo de espera, vuelva a la solicitud, comunique el cambio de vida e introduzca aqu\u00ED los datos del seguro de salud de su trabajo.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(4).getText(), "Un per\u00EDodo de espera es el tiempo que debe transcurrir antes de que un empleador ofrezca cobertura de salud a un empleado. Los per\u00EDodos de espera pueden ser de 0 a 90 d\u00EDas.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(6).getText(), "Est\u00E1ndar de valor m\u00EDnimo:\nLa mayor\u00EDa de los planes de seguro de salud que se ofrecen a trav\u00E9s de los trabajos cumplen el est\u00E1ndar de valor m\u00EDnimo.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(7).getText(), "M\u00E1s informaci\u00F3n sobre el est\u00E1ndar de valor m\u00EDnimo\nUn plan de salud cumple el est\u00E1ndar de valor m\u00EDnimo si est\u00E1 dise\u00F1ado para pagar al menos el 60% del costo total de los servicios m\u00E9dicos para una poblaci\u00F3n est\u00E1ndar y si sus beneficios incluyen una cobertura considerable de los servicios hospitalarios y m\u00E9dicos.");
-        softAssert.assertEquals(helpDrawerParagraphLnk2Sp.getText(), "herramienta de cobertura del empleador.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(8).getText(), "Para saber si un plan cumple el est\u00E1ndar de valor m\u00EDnimo, consulte el Resumen de beneficios y cobertura (SBC) del plan de su empleo o pida en su trabajo que le llenen la herramienta de cobertura del empleador.");
-        softAssert.assertEquals(helpDrawerPrintLnk.getText(), "herramienta de cobertura del empleador.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(9).getText(), "Imprima o descargue la herramienta de cobertura del empleador.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(10).getText(), "Prima de costo m\u00E1s bajo:\nTexto de sugerencia: Solo ingrese la cantidad que pagar\u00EDa. No incluya ninguna cantidad que pague su empleador.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(11).getText(), "Obtenga m\u00E1s informaci\u00F3n sobre c\u00F3mo ingresar las cantidades de las primas\nIngrese la cantidad normal que el empleado tendr\u00EDa que pagar por su cobertura de salud (la \"prima\") si se inscribiera.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(12).getText(), "Ingrese la cantidad del plan de menor costo que ofrece el empleador y que cubrir\u00EDa solo al empleado.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(13).getText(), "Si el empleador tiene programas de bienestar, haga lo siguiente:\nIngrese la prima que pagar\u00EDa esta persona si obtuviera el descuento m\u00E1ximo para cualquier programa de suspensi\u00F3n al tabaco (consejer\u00EDa para dejar de fumar), pero para ning\u00FAn otro programa.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(14).getText(), "El empleador debe indicar estas cantidades en un aviso. Sin embargo, si usted no dispone de un aviso o no est\u00E1 seguro de cu\u00E1les son estas cantidades, pregunte a su empleador.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(15).getText(), "Inscripci\u00F3n:\nSi esta persona tiene actualmente seguro de salud a trav\u00E9s de este trabajo, seleccione \"S\u00ED\". Si esta persona puede obtener ese seguro de salud, pero ha preferido no inscribirse, seleccione \"No\".");
-        softAssert.assertEquals(helpDrawerSubHeaderTxt.get(2).getText(), "Finalizaci\u00F3n en los pr\u00F3ximos 60 d\u00EDas:\nSi este seguro acabar\u00E1 pronto porque:");
+        softAssert.assertEquals(helpDrawerHeaderTxt.get(4).getText(), "Si est\u00E1 o va a estar en \"per\u00EDodo de espera\", no responda a\u00FAn estas preguntas. Cuando finalice ese per\u00EDodo de espera, vuelva a la solicitud, comunique el cambio de vida e introduzca aqu\u00ED los datos del seguro de salud de su trabajo.");
+        softAssert.assertEquals(helpDrawerWaitingPeriodTxt.getText(),"Un per\u00EDodo de espera es el tiempo que debe transcurrir antes de que un empleador ofrezca cobertura de salud a un empleado. Los per\u00EDodos de espera pueden ser de 0 a 90 d\u00EDas.");
+        softAssert.assertEquals(helpDrawerHeaderSection2Txt.get(1).getText(), "Est\u00E1ndar de valor m\u00EDnimo:");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(4).getText(), "Est\u00E1ndar de valor m\u00EDnimo:\nLa mayor\u00EDa de los planes de seguro de salud que se ofrecen a trav\u00E9s de los trabajos cumplen el est\u00E1ndar de valor m\u00EDnimo.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(5).getText(), "M\u00E1s informaci\u00F3n sobre el est\u00E1ndar de valor m\u00EDnimo\nUn plan de salud cumple el est\u00E1ndar de valor m\u00EDnimo si est\u00E1 dise\u00F1ado para pagar al menos el 60% del costo total de los servicios m\u00E9dicos para una poblaci\u00F3n est\u00E1ndar y si sus beneficios incluyen una cobertura considerable de los servicios hospitalarios y m\u00E9dicos.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(6).getText(), "Para saber si un plan cumple el est\u00E1ndar de valor m\u00EDnimo, consulte el Resumen de beneficios y cobertura (SBC) del plan de su empleo o pida en su trabajo que le llenen la herramienta de cobertura del empleador");
+        softAssert.assertEquals(helpDrawerParagraphLnk1.get(1).getText(), "herramienta de cobertura del empleador");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(7).getText(), "Imprima o descargue la herramienta de cobertura del empleador");
+        softAssert.assertEquals(helpDrawerParagraphLnk1.get(2).getText(), "herramienta de cobertura del empleador");
+        softAssert.assertEquals(helpDrawerHeaderSection2Txt.get(3).getText(), "Prima de costo m\u00E1s bajo:");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(8).getText(), "Prima de costo m\u00E1s bajo:\nTexto de sugerencia:Solo ingrese la cantidad que pagar\u00EDa. No incluya ninguna cantidad que pague su empleador.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(9).getText(), "Obtenga m\u00E1s informaci\u00F3n sobre c\u00F3mo ingresar las cantidades de las primas\nIngrese la cantidad normal que el empleado tendr\u00EDa que pagar por su cobertura de salud (la \"prima\") si se inscribiera.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(10).getText(), "Ingrese la cantidad del plan de menor costo que ofrece el empleador y que cubrir\u00EDa solo al empleado.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(11).getText(), "Si el empleador tiene programas de bienestar, haga lo siguiente:\nIngrese la prima que pagar\u00EDa esta persona si obtuviera el descuento m\u00E1ximo para cualquier programa de suspensi\u00F3n al tabaco (consejer\u00EDa para dejar de fumar), pero para ning\u00FAn otro programa.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(12).getText(), "El empleador debe indicar estas cantidades en un aviso. Sin embargo, si usted no dispone de un aviso o no est\u00E1 seguro de cu\u00E1les son estas cantidades, pregunte a su empleador.");
+        softAssert.assertEquals(helpDrawerHeaderEnrollmentTxt.get(0).getText(), "Inscripci\u00F3n:");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(13).getText(), "Si esta persona tiene actualmente seguro de salud a trav\u00E9s de este trabajo, seleccione \"S\u00ED\". Si esta persona puede obtener ese seguro de salud, pero ha preferido no inscribirse, seleccione \"No\".");
+        softAssert.assertEquals(helpDrawerHeaderEnrollmentTxt.get(1).getText(), "Finalizaci\u00F3n en los pr\u00F3ximos 60 d\u00EDas:");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(14).getText(), "Si este seguro acabar\u00E1 pronto porque:");
         softAssert.assertEquals(helpDrawerBodyPoints.get(7).getText(), "el trabajo est\u00E1 por terminarse;");
         softAssert.assertEquals(helpDrawerBodyPoints.get(8).getText(), "la empresa ya no ofrecer\u00E1 seguro de salud;");
         softAssert.assertEquals(helpDrawerBodyPoints.get(9).getText(), "usted ya no calificar\u00E1 para recibirlo;");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(16).getText(), "seleccione \"S\u00ED\" e ingrese la fecha en que terminar\u00E1 el seguro.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(17).getText(), "Cancelar el seguro de salud de manera voluntaria:\nSeleccione \"S\u00ED\" si todav\u00EDa es elegible para recibir seguro de salud a trav\u00E9s de su empleador, pero ha elegido cancelar el plan o si rechaz\u00F3 la inscripci\u00F3n cuando tuvo la oportunidad.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(18).getText(), "Seleccione \"No\" si ya no es elegible para recibir seguro de salud por medio de su empleador o si su empleador ofrec\u00EDa seguro de salud y ya no lo ofrece.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(19).getText(), "Seleccione \"No\" si su empleador ofrec\u00EDa seguro de salud y ahora solo ofrece un acuerdo de reembolsos de salud (HRA).");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(15).getText(), "seleccione \"S\u00ED\" e ingrese la fecha en que terminar\u00E1 el seguro.");
+        softAssert.assertEquals(helpDrawerHeaderSection2Txt.get(6).getText(), "Cancelar el seguro de salud de manera voluntaria:");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(16).getText(), "Cancelar el seguro de salud de manera voluntaria:\nSeleccione \"S\u00ED\" si todav\u00EDa es elegible para recibir seguro de salud a trav\u00E9s de su empleador, pero ha elegido cancelar el plan o si rechaz\u00F3 la inscripci\u00F3n cuando tuvo la oportunidad.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(17).getText(), "Seleccione \"No\" si ya no es elegible para recibir seguro de salud por medio de su empleador o si su empleador ofrec\u00EDa seguro de salud y ya no lo ofrece.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(18).getText(), "Seleccione \"No\" si su empleador ofrec\u00EDa seguro de salud y ahora solo ofrece un acuerdo de reembolsos de salud (HRA).");
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
@@ -1499,7 +1502,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpHeaderTxt.getText(), "Ayuda");
         softAssert.assertEquals(helpSubHeaderTxt.getText(), "Seguro de salud ofrecido a trav\u00E9s de un empleo");
         softAssert.assertEquals(helpDrawerSubHeaderTxt.get(0).getText(), "Inf\u00F3rmenos sobre la cobertura en los siguientes casos:");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "Puede obtener cobertura de salud a trav\u00E9s de un empleo, aunque no est\u00E9 inscrito actualmente ni tenga previsto hacerlo.");
+        softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "Puede obtener cobertura de salud a trav\u00E9s de un empleo, aunque no est\u00E9 inscrita actualmente ni tenga previsto hacerlo.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "Puede obtener cobertura de salud a trav\u00E9s de un empleo, incluso si el plan del empleador no est\u00E1 actualmente en el per\u00EDodo de inscripci\u00F3n abierta.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(2).getText(), "No cree que pueda pagar la cobertura que le ofrecen. M\u00E1s adelante, le haremos m\u00E1s preguntas para ayudarle a determinar si puede calificar para obtener ahorros a trav\u00E9s de Connect for Health Colorado.");
         softAssert.assertEquals(helpDrawerSubHeaderTxt.get(1).getText(), "No tiene que responder estas preguntas en los siguientes casos:");
@@ -1507,8 +1510,8 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         softAssert.assertEquals(helpDrawerBodyPoints.get(4).getText(), "No trabaja suficientes horas para calificar para la cobertura que ofrece su empleo.");
         softAssert.assertEquals(helpDrawerBodyPoints.get(5).getText(), "El \u00FAnico tipo de cobertura disponible a trav\u00E9s del trabajo es el acuerdo de reembolsos de salud (HRA). Sin embargo, si a una persona se le ofrece un HRA y otro plan de seguro de salud grupal, seleccione el nombre. Recuerde: tambi\u00E9n deber\u00E1 proporcionar informaci\u00F3n sobre el HRA en la p\u00E1gina \"Otros seguros de salud\".");
         softAssert.assertEquals(helpDrawerBodyPoints.get(6).getText(), "La \u00FAnica opci\u00F3n que tiene para conseguir un seguro de salud es la continuaci\u00F3n de la cobertura COBRA o la cobertura para retirados.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Si est\u00E1 o va a estar en \"per\u00EDodo de espera\", no responda a\u00FAn estas preguntas. Cuando finalice ese per\u00EDodo de espera, vuelva a la solicitud, comunique el cambio de vida e introduzca aqu\u00ED los datos del seguro de salud de su trabajo.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Un per\u00EDodo de espera es el tiempo que debe transcurrir antes de que un empleador ofrezca cobertura de salud a un empleado. Los per\u00EDodos de espera pueden ser de 0 a 90 d\u00EDas.");
+        softAssert.assertEquals(helpDrawerHeaderSection2Txt.get(2).getText(), "Si est\u00E1 o va a estar en \"per\u00EDodo de espera\", no responda a\u00FAn estas preguntas. Cuando finalice ese per\u00EDodo de espera, vuelva a la solicitud, comunique el cambio de vida e introduzca aqu\u00ED los datos del seguro de salud de su trabajo.");
+        softAssert.assertEquals(helpDrawerWaitingPeriodTxt.getText(), "Un per\u00EDodo de espera es el tiempo que debe transcurrir antes de que un empleador ofrezca cobertura de salud a un empleado. Los per\u00EDodos de espera pueden ser de 0 a 90 d\u00EDas.");
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
@@ -1517,11 +1520,13 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink, 25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Ayuda");
         softAssert.assertEquals(helpSubHeaderTxt.getText(), "Seguro de salud ofrecido a trav\u00E9s de un empleo");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Est\u00E1ndar de valor m\u00EDnimo:\nLa mayor\u00EDa de los planes de seguro de salud que se ofrecen a trav\u00E9s de los trabajos cumplen el est\u00E1ndar de valor m\u00EDnimo.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "M\u00E1s informaci\u00F3n sobre el est\u00E1ndar de valor m\u00EDnimo\nUn plan de salud cumple el est\u00E1ndar de valor m\u00EDnimo si est\u00E1 dise\u00F1ado para pagar al menos el 60% del costo total de los servicios m\u00E9dicos para una poblaci\u00F3n est\u00E1ndar y si sus beneficios incluyen una cobertura considerable de los servicios hospitalarios y m\u00E9dicos.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Para saber si un plan cumple el est\u00E1ndar de valor m\u00EDnimo, consulte el Resumen de beneficios y cobertura (SBC) del plan de su empleo o pida en su trabajo que le llenen la herramienta de cobertura del empleador.");
-        softAssert.assertEquals(helpDrawerPrintLnk.getText(), "herramienta de cobertura del empleador.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(3).getText(), "Imprima o descargue la herramienta de cobertura del empleador.");
+        softAssert.assertEquals(helpDrawerSubHdr2Txt.get(0).getText(), "Est\u00E1ndar de valor m\u00EDnimo:");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(0).getText(), "Est\u00E1ndar de valor m\u00EDnimo:\nLa mayor\u00EDa de los planes de seguro de salud que se ofrecen a trav\u00E9s de los trabajos cumplen el est\u00E1ndar de valor m\u00EDnimo.");
+        softAssert.assertEquals(helpDrawerSubHdr2Txt.get(1).getText(), "M\u00E1s informaci\u00F3n sobre el est\u00E1ndar de valor m\u00EDnimo");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(1).getText(), "M\u00E1s informaci\u00F3n sobre el est\u00E1ndar de valor m\u00EDnimo\nUn plan de salud cumple el est\u00E1ndar de valor m\u00EDnimo si est\u00E1 dise\u00F1ado para pagar al menos el 60% del costo total de los servicios m\u00E9dicos para una poblaci\u00F3n est\u00E1ndar y si sus beneficios incluyen una cobertura considerable de los servicios hospitalarios y m\u00E9dicos.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(2).getText(), "Para saber si un plan cumple el est\u00E1ndar de valor m\u00EDnimo, consulte el Resumen de beneficios y cobertura (SBC) del plan de su empleo o pida en su trabajo que le llenen la herramienta de cobertura del empleador");
+        softAssert.assertEquals(helpDrawerParagraphLnk1.get(0).getText(), "herramienta de cobertura del empleador");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(3).getText(), "Imprima o descargue la herramienta de cobertura del empleador");
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
@@ -1530,11 +1535,12 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink, 25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Ayuda");
         softAssert.assertEquals(helpSubHeaderTxt.getText(), "Seguro de salud ofrecido a trav\u00E9s de un empleo");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Prima de costo m\u00E1s bajo:\nTexto de sugerencia: Solo ingrese la cantidad que pagar\u00EDa. No incluya ninguna cantidad que pague su empleador.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Obtenga m\u00E1s informaci\u00F3n sobre c\u00F3mo ingresar las cantidades de las primas\nIngrese la cantidad normal que el empleado tendr\u00EDa que pagar por su cobertura de salud (la \"prima\") si se inscribiera.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Ingrese la cantidad del plan de menor costo que ofrece el empleador y que cubrir\u00EDa solo al empleado.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(3).getText(), "Si el empleador tiene programas de bienestar, haga lo siguiente:\nIngrese la prima que pagar\u00EDa esta persona si obtuviera el descuento m\u00E1ximo para cualquier programa de suspensi\u00F3n al tabaco (consejer\u00EDa para dejar de fumar), pero para ning\u00FAn otro programa.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(4).getText(), "El empleador debe indicar estas cantidades en un aviso. Sin embargo, si usted no dispone de un aviso o no est\u00E1 seguro de cu\u00E1les son estas cantidades, pregunte a su empleador.");
+        softAssert.assertEquals(helpDrawerSubHdr2Txt.get(0).getText(), "Prima de costo m\u00E1s bajo:");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(0).getText(), "Prima de costo m\u00E1s bajo:\nTexto de sugerencia:Solo ingrese la cantidad que pagar\u00EDa. No incluya ninguna cantidad que pague su empleador.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(1).getText(), "Obtenga m\u00E1s informaci\u00F3n sobre c\u00F3mo ingresar las cantidades de las primas\nIngrese la cantidad normal que el empleado tendr\u00EDa que pagar por su cobertura de salud (la \"prima\") si se inscribiera.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(2).getText(), "Ingrese la cantidad del plan de menor costo que ofrece el empleador y que cubrir\u00EDa solo al empleado.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(3).getText(), "Si el empleador tiene programas de bienestar, haga lo siguiente:\nIngrese la prima que pagar\u00EDa esta persona si obtuviera el descuento m\u00E1ximo para cualquier programa de suspensi\u00F3n al tabaco (consejer\u00EDa para dejar de fumar), pero para ning\u00FAn otro programa.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(4).getText(), "El empleador debe indicar estas cantidades en un aviso. Sin embargo, si usted no dispone de un aviso o no est\u00E1 seguro de cu\u00E1les son estas cantidades, pregunte a su empleador.");
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
@@ -1543,7 +1549,8 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink, 25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Ayuda");
         softAssert.assertEquals(helpSubHeaderTxt.getText(), "Seguro de salud ofrecido a trav\u00E9s de un empleo");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Inscripci\u00F3n:\nSi esta persona tiene actualmente seguro de salud a trav\u00E9s de este trabajo, seleccione \"S\u00ED\". Si esta persona puede obtener ese seguro de salud, pero ha preferido no inscribirse, seleccione \"No\".");
+        softAssert.assertEquals(helpDrawerSubHdr2Txt.get(0).getText(), "Inscripci\u00F3n:");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(0).getText(), "Si esta persona tiene actualmente seguro de salud a trav\u00E9s de este trabajo, seleccione \"S\u00ED\". Si esta persona puede obtener ese seguro de salud, pero ha preferido no inscribirse, seleccione \"No\".");
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
@@ -1552,11 +1559,12 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink, 25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Ayuda");
         softAssert.assertEquals(helpSubHeaderTxt.getText(), "Seguro de salud ofrecido a trav\u00E9s de un empleo");
-        softAssert.assertEquals(helpDrawerSubHeaderTxt.get(0).getText(), "Finalizaci\u00F3n en los pr\u00F3ximos 60 d\u00EDas:\nSi este seguro acabar\u00E1 pronto porque:");
+        softAssert.assertEquals(helpDrawerSubHeaderTxt.get(0).getText(), "Finalizaci\u00F3n en los pr\u00F3ximos 60 d\u00EDas:");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(0).getText(), "Si este seguro acabar\u00E1 pronto porque:");
         softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "el trabajo est\u00E1 por terminarse;");
         softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "la empresa ya no ofrecer\u00E1 seguro de salud;");
         softAssert.assertEquals(helpDrawerBodyPoints.get(2).getText(), "usted ya no calificar\u00E1 para recibirlo;");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "seleccione \"S\u00ED\" e ingrese la fecha en que terminar\u00E1 el seguro.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(1).getText(), "seleccione \"S\u00ED\" e ingrese la fecha en que terminar\u00E1 el seguro.");
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }
@@ -1565,9 +1573,10 @@ public class OhcEmployerSponsoredHealthInsurancePage {
         basicActions.waitForElementToBeClickable(helpDrawerContactUsLink, 25);
         softAssert.assertEquals(helpHeaderTxt.getText(), "Ayuda");
         softAssert.assertEquals(helpSubHeaderTxt.getText(), "Seguro de salud ofrecido a trav\u00E9s de un empleo");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Cancelar el seguro de salud de manera voluntaria:\nSeleccione \"S\u00ED\" si todav\u00EDa es elegible para recibir seguro de salud a trav\u00E9s de su empleador, pero ha elegido cancelar el plan o si rechaz\u00F3 la inscripci\u00F3n cuando tuvo la oportunidad.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Seleccione \"No\" si ya no es elegible para recibir seguro de salud por medio de su empleador o si su empleador ofrec\u00EDa seguro de salud y ya no lo ofrece.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Seleccione \"No\" si su empleador ofrec\u00EDa seguro de salud y ahora solo ofrece un acuerdo de reembolsos de salud (HRA).");
+        softAssert.assertEquals(helpDrawerSubHeaderTxt.get(0).getText(), "Cancelar el seguro de salud de manera voluntaria:");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(0).getText(), "Cancelar el seguro de salud de manera voluntaria:\nSeleccione \"S\u00ED\" si todav\u00EDa es elegible para recibir seguro de salud a trav\u00E9s de su empleador, pero ha elegido cancelar el plan o si rechaz\u00F3 la inscripci\u00F3n cuando tuvo la oportunidad.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(1).getText(), "Seleccione \"No\" si ya no es elegible para recibir seguro de salud por medio de su empleador o si su empleador ofrec\u00EDa seguro de salud y ya no lo ofrece.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs2.get(2).getText(), "Seleccione \"No\" si su empleador ofrec\u00EDa seguro de salud y ahora solo ofrece un acuerdo de reembolsos de salud (HRA).");
         softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
         softAssert.assertAll();
     }

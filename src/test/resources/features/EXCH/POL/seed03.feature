@@ -573,5 +573,72 @@ Feature: Seed03 - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
+  @SLER-2439-WIP
+  Scenario: RT-2280 ENR-EXCH: APPS - FINANCIAL CHANGE (w/LCE: Change of Income or Job) that triggers abortion rules
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click on make changes button
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Other" and click continue
+    And I click Continue With Application button on Report Life Change Page
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click continue on Tell us about yourself page
+    Then I validate I am on the "Add Address" page
+    Then I click continue on the Add Address page
+    And I click continue on the Race and Ethnicity page
+    Then I click continue on the Immigration Status page
+    Then I validate I am on the "Family Overview" page
+    And I click plus icon next to member on household page for "Primary"
+    And I click the edit income icon on household page for "Primary"
+    Then I select the option "Yes" to employment
+    And I select the option "No" to self employment
+    And I enter company details with addressline1 as "101 Google Drive" and city as "Boulder" and state as "CO" and zipcode as "80020" and income "38000.00" at frequency "Annually"
+    And I select the option "No" to seasonal employment
+    And I select the option "No" to projected income
+    And I click continue on the Employment Info Page
+    Then I click continue on the Employment Summary Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    And I click the edit income icon on household page for "Spouse"
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I validate I am on the "Additional income" page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I validate I am on the "Income Summary" page
+    Then I select the projected income option "No" and continue
+    Then I select "No" for will you be claimed as dependent question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
+    Then I select "No" for will claim dependents question
+    Then I click Save and Continue on Tax Status page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+    Then I select "Change Income or Job" QLCE on tell us about life changes page for "Primary"
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    Then I click on view results and shop
+    Then I validate I am on the "Application Results" page
+    And I click on Sign Out in the Header for "NonElmo"
+
 
 
