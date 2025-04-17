@@ -523,6 +523,14 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//*[@class='previous-plan-details']//*[@class='label-container-copy-icon body-text-2']")
     WebElement previousFinancialPolicyLabel;
 
+    @FindBy(xpath = "//p[@class='plan-header header-2 simple-view-header']")
+    WebElement labelInRedMedicalPlan;
+
+    @FindBy(xpath = "//div[@class='coverage-details-grid']/div")
+    List<WebElement> labelCoverageDetailsGridItems;
+
+    @FindBy(xpath = "//div[@class='financial-details-grid']/div")
+    List<WebElement> labelFinancialDetailsGridItems;
 
 
 
@@ -547,7 +555,7 @@ public class AdminPortalManagePlansPage {
 
     public void containerTitleLabelsYear(String year) {
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 20);
-        basicActions.waitForElementToBePresentWithRetries(chkMedical, 90);
+        basicActions.waitForElementToBePresentWithRetries(chkMedical, 60);
         basicActions.waitForElementToBePresentWithRetries(chkDental, 60);
         softAssert.assertEquals(txtTitleManagePlans.getText(), "Manage Plans");
         softAssert.assertEquals(txtSelectPlanYear.getText(), "Select a plan year:");
@@ -2325,5 +2333,16 @@ public class AdminPortalManagePlansPage {
         softAssert.assertAll();
     }
 
+    public void verifyMedicalPlanText(){
+        basicActions.waitForElementToBePresent(labelInRedMedicalPlan,10);
+        softAssert.assertEquals(labelInRedMedicalPlan.getText().trim(),"Medical Plan:","Medical Plan text mismatch");
+        softAssert.assertEquals(labelInRedMedicalPlan.getCssValue("color"), "rgba(255, 0, 0, 1)", "labelInRedMedicalPlan-Color mismatch");
+        softAssert.assertAll();
+    }
+    public void verifyOneContainerForMedicalPlansDisplayedInsteadOfCurrentAndPreviousSections(){
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(currentPlanContainer,5),"No current medical plan container");
+        softAssert.assertFalse(basicActions.waitForElementToBePresent(previousFinancialMed, 5),"previousFinancialMed is visible");
+        softAssert.assertAll();
+    }
 
 }

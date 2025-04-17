@@ -12,6 +12,9 @@ import org.testng.asserts.SoftAssert;
 public class ApplicationSummaryPage {
 
     SoftAssert softAssert = new SoftAssert();
+
+    @FindBy(css=".fas.fa-spinner.fa-spin")
+    WebElement spinner;
     @FindBy(id = "editBasicInfo")
     WebElement editBasicInfoButton;
     @FindBy(id = "submitButton_Income")
@@ -45,6 +48,9 @@ public class ApplicationSummaryPage {
         editBasicInfoButton.click();
     }
     public void clickEditIncomelink(){
+        basicActions.waitForElementToDisappear( spinner, 60 );
+        basicActions.waitForElementToBePresentWithRetries( editIncome, 40);
+        basicActions.scrollToElement(editIncome);
         editIncome.click();
     }
 
