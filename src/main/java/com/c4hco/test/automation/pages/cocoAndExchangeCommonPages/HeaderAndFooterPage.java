@@ -658,6 +658,7 @@ public class HeaderAndFooterPage {
     public void verifyTextInExchHeader() {
         basicActions.waitForElementToBePresentWithRetries(connectLogoLink, 90);
         basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 90);
+        basicActions.waitForElementToBePresentWithRetries(learnMoreLink, 90);
         softAssert.assertEquals(connectLogoLink.getText(), "");
         softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
         softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
