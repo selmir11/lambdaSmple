@@ -90,7 +90,7 @@ Feature: Manage Plans: Buttons (positive and negative testing)
       | HIOS ID:                 |
       | Policy ID:               |
     Then I verify color font size of medical plan container
-    Then I verify previous_Financial_Periods - Medical text labels
+    Then I verify previous_Financial_Periods - Medical_Or_Dental text labels
       | EHB Premium:           |
       | Financial End Date:    |
       | CSR Amount:            |
@@ -180,3 +180,47 @@ Feature: Manage Plans: Buttons (positive and negative testing)
       | HIOS ID:                 |
       | Policy ID:               |
     Then I check for Previous Medical container message display
+
+  @SLER-2446 @OPSRegression
+  Scenario: OPS MP Previous Dent Container verification (order)[RT-2101]
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    Then I enter an "accountID" in any env "5830336830" "2642003470" to search user
+    Then I click on Search button in AP dashboard page
+    Then I select the first record from the search results
+    Then I click on manage plan button on admin portal Individual dashboard
+    And I validate I am on the "Manage Plans" page
+    Then I verify admin portal header text in manage plans page
+      |Primary Account Holder:|
+      |Account ID:|
+    Then I verify page texts of select_a_plan_year dropdown
+      |2025|
+      |2021|
+      |2022|
+      |2023|
+    And I select the "2022" plan year on manage plan
+    Then I verify font color etc of web element of empty container
+    And I select the "2023" plan year on manage plan
+    Then I unchecked "Medical" from plan type
+    Then I verify Previous_Financial_Periods_Dental text color size etc
+    Then I verify color border of Previous_Financial_Periods_Dental container and all columns inside container
+    Then I verify previous_Financial_Periods - Medical_Or_Dental text labels
+      | EHB Premium:           |
+      | Financial End Date:    |
+      | CSR Amount:            |
+      | Plan Premium:          |
+      | Rating Area:           |
+      | Plan APTC:             |
+      | Service Area:          |
+      | Premium after Subsidy: |
+      | Plan AV:               |
+      | Financial Start Date:  |
+      | HIOS ID:               |
+    Then I verify green bar between two financial periods
+    Then I verify expand and collapse all financial periods within the Previous Financial Period
+    Then I validate green back ground and white text of "Dental" button only when checked
+    Then I validate white back ground and black text of "Medical" button only when unchecked
+
