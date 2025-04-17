@@ -182,8 +182,8 @@ public class AdminPortalDetailedEligibilityPage {
     }
 
     private void validateHousehold(Map<String, String> envRow, List<WebElement> householderFields) {
-        basicActions.waitForElementListToBePresentWithRetries(householderFields, 100);
-        basicActions.wait(100);
+         basicActions.wait(100);
+        basicActions.waitForElementListToBePresentWithRetries(householderFields, 300);
         int index = 0;
         for (Map.Entry<String, String> entry : envRow.entrySet()) {
             if (entry.getKey().equals("Env")) {
@@ -191,6 +191,7 @@ public class AdminPortalDetailedEligibilityPage {
             }
             String expectedLabel = entry.getKey();
             String expectedValue = Optional.ofNullable(entry.getValue()).orElse("");
+            basicActions.wait(100);
 
             WebElement fieldLabel = householderFields.get(index);
             WebElement fieldValue = householderFields.get(index + 1);
@@ -211,12 +212,13 @@ public class AdminPortalDetailedEligibilityPage {
 
     public void validateMemberLevelHeader() {
         basicActions.wait(100);
-        basicActions.waitForElementListToBePresentWithRetries(houseHoldLevelTxt, 50);
+        basicActions.waitForElementListToBePresentWithRetries(houseHoldLevelTxt, 100);
         softAssert.assertEquals(houseHoldLevelTxt.get(1).getText(), "Member level eligibility data");
         softAssert.assertAll();
     }
 
     public void validateMemberLevelDetails(List<Map<String, String>> data) {
+        basicActions.wait(200);
         String env = SharedData.getEnv();
         List<Map<String, String>> envRows = data.stream().filter(row -> row.get("Env").equalsIgnoreCase(env)).toList();
 
@@ -228,7 +230,7 @@ public class AdminPortalDetailedEligibilityPage {
     }
 
     private void validateMemberLevelColHeader(List<String> expectedHeaders) {
-        basicActions.waitForElementListToBePresentWithRetries(memberContainer, 100);
+        basicActions.waitForElementListToBePresentWithRetries(memberContainer, 200);
         List<String> Headers = memberColName.stream().map(WebElement::getText).toList();
         softAssert.assertEquals(Headers, expectedHeaders, " Table header not match");
         softAssert.assertAll();
@@ -236,8 +238,8 @@ public class AdminPortalDetailedEligibilityPage {
 
     private void validateMemberLevelTableValues(List<Map<String, String>> expectedData, List<String> expectedHeaders) {
         basicActions.wait(50);
-        basicActions.waitForElementListToBePresentWithRetries(memberColName,50);
-        basicActions.waitForElementListToBePresentWithRetries(memberRow, 100);
+        basicActions.waitForElementListToBePresentWithRetries(memberColName,100);
+        basicActions.waitForElementListToBePresentWithRetries(memberRow, 200);
 
         int headOffSet = 1;
         int actualDataRowCount = memberRow.size() - headOffSet;
@@ -260,7 +262,7 @@ public class AdminPortalDetailedEligibilityPage {
     }
 
     public void validateLCEHeader() {
-        basicActions.waitForElementListToBePresentWithRetries(houseHoldLevelTxt, 50);
+        basicActions.waitForElementListToBePresentWithRetries(houseHoldLevelTxt, 100);
         softAssert.assertEquals(houseHoldLevelTxt.get(2).getText(), "Life change events");
         softAssert.assertAll();
     }
@@ -278,6 +280,7 @@ public class AdminPortalDetailedEligibilityPage {
 
 
     private void validateLCEColName(List<String> expectedHeaders) {
+        basicActions.wait(300);
         List<WebElement> actualHeaders = basicActions.getDriver().findElements(By.xpath("//*[@class='table-container'][3]//tr/th"));
         List<String> Headers = actualHeaders.stream().map(WebElement::getText).toList();
         softAssert.assertEquals(Headers, expectedHeaders, " Table header not match");
@@ -285,6 +288,7 @@ public class AdminPortalDetailedEligibilityPage {
     }
 
     private void validateLCETableValues(List<Map<String, String>> expectedData, List<String> expectedHeaders) {
+        basicActions.wait(300);
         List<WebElement> actualRows = basicActions.getDriver().findElements(By.xpath("//*[@class='table-container'][3]//tr"));
 
         for (int i = 0; i < expectedData.size(); i++) {
@@ -304,7 +308,7 @@ public class AdminPortalDetailedEligibilityPage {
     }
 
     public void validatePreviousApplnHeader() {
-        basicActions.waitForElementListToBePresentWithRetries(detailedEligibilityLabel, 50);
+        basicActions.waitForElementListToBePresentWithRetries(detailedEligibilityLabel, 100);
         softAssert.assertEquals(detailedEligibilityLabel.get(1).getText(), "Previous Applications");
         softAssert.assertAll();
 
@@ -319,6 +323,7 @@ public class AdminPortalDetailedEligibilityPage {
     }
 
     private void validateAppData(Map<String, String> expectedData) {
+        basicActions.waitForElementListToBePresentWithRetries(PreviousAppln,100);
         String expectedPlanYear = expectedData.get("Plan Year");
         boolean matchfound = false;
         for (WebElement container : PreviousAppln) {
