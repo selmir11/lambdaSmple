@@ -935,9 +935,9 @@ public class AdminPortalManagePlansPage {
             String coverageEndDateElement = "//div[@id='coverageEndDate_" + index + "']//input[1]";
             basicActions.waitForElementToBeClickable(coverageEndDate, 30);
             basicActions.updateElementWithRetries(coverageEndDateElement, updatedDate);
-            // Set disenrollment reason if start and end dates are same
             WebElement coverageStartDateElement =  basicActions.getDriver().findElement(By.xpath("//div[@id='coverageStartDate_" + index + "']//input[1]"));
             String coverageStartDate = basicActions.changeDateFormat(coverageStartDateElement.getAttribute("value"),"yyyy-MM-dd", "MM/dd/yyyy");
+            // Set disenrollment reason if start and end dates are same
             if(updatedDate.equals(coverageStartDate)){
                 setDisenrollmentReason(planType,matchingname);
             }
