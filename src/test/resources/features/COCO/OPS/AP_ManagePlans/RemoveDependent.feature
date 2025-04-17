@@ -150,7 +150,7 @@ Feature: OPS: CoCo: MP: FA Removing Dependent from policy
     And I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     And I get the application id from the url from tobacco page coco
     Then I click continue on coco start shopping page
-    Then I click continue on grouping Members Medical coco page
+
     Then I validate I am on the "Medical Plan Results" page
     And I click Continue on the Medical Plans Page CoCo
     And I click continue on coco plan summary page
@@ -167,6 +167,6 @@ Feature: OPS: CoCo: MP: FA Removing Dependent from policy
     And I validate I am on the "Manage Plans" page
     And I select Plans Med Active Policy
 
+    Then I validate current "Medical" all details table in DB for 1 members on AP Manage Plans
+    Then I validate previous "Medical" all details table in DB for 2 members on policy "1" for DB row 0 on AP Manage Plans
     And I wait for 1000 milliseconds
-    Then I validate current "Medical" all details table in DB for 1 on AP Manage Plans
-    Then I validate previous "Medical" all details table in DB for 2 on AP Manage Plans
