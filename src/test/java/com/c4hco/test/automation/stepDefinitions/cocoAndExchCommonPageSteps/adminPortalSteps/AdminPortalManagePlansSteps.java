@@ -496,6 +496,12 @@ public class AdminPortalManagePlansSteps {
     @And("I select {string} Show Financial Period for policy {int} on Manage Plans page")
     public void iSelectFinancialPeriod(String planType, Integer policyNumber) {adminPortalManagePlansPage.selectFinancialPeriod(planType, policyNumber);}
 
+    @And("I Validate the correct enrolled plans are displayed on Manage Plans page")
+    public void iverifyPlanDetails(List<String> data) {
+        adminPortalManagePlansPage.verifyPlanDetails(data);
+    }
+
+
     @Then("I verify medical_plan text available in red color")
     public void iVerifyMedical_planTextAvailableInRedColor() {
         adminPortalManagePlansPage.verifyMedicalPlanText();

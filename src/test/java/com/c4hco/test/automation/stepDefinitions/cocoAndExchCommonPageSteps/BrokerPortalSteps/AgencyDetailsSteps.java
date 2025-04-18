@@ -138,4 +138,9 @@ public class AgencyDetailsSteps {
         agencyDetailsPage.enterAgencyDetails();
     }
 
+    @And("I validate the Save and Finish Later button is not displayed")
+    public void iValidateSaveAndFinishLaterButton(){
+        agencyDetailsPage.validateSaveAndFinishLaterButton();
+    }
+
 }
