@@ -402,8 +402,8 @@ Feature: New payment portal - currently in QA only
     Then I click all done from payment portal page
     Then I validate I am on the "Account Overview" page
 
-  @SLER-2449 @PayNowCoordinatePayment
-  Scenario:SLER-2449 Verify that sign out works from the Payment page
+  @SLER-2449 @ClickSignOut
+  Scenario:SLER-2449 Click sign out works from the Payment page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
