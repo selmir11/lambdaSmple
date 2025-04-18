@@ -11,6 +11,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class QlceConfirmationPage {
@@ -234,6 +235,9 @@ public class QlceConfirmationPage {
 
     @FindBy(xpath = "//p[@class='c4BodyText1']")
     List<WebElement> PregancyAddtionalText;
+
+    @FindBy(xpath = "//*[@id='lceMembersForPregnancyStatus0.lceEventDate']")
+    WebElement eventDatePregnancy;
 
 
 
@@ -578,14 +582,7 @@ public class QlceConfirmationPage {
         pregnancyEventDate.get(0).sendKeys(formattedDate);
         pregnancyStatusRetainCoverageYes.click();
     }
-    public void selectElgibilityPregnancyCoverageForMember(String eventDateType, String selectMember) {
-        String resolvedDate = basicActions.getDateBasedOnRequirement(eventDateType);
-        String formattedDate = basicActions.changeDateFormat(resolvedDate, "yyyy-MM-dd", "MM/dd/yyyy");
-        WebElement pregnancyMemCheckbox = basicActions.getDriver().findElement(By.xpath("//div[@class='col-sm-4 pregnancyMemberWrapper']//span[contains(text(),'" + selectMember + "')]/preceding::input[2]"));
-        WebElement pregnancyMemEventDate = basicActions.getDriver().findElement(By.xpath("//div[@class='col-sm-4 pregnancyMemberWrapper']//span[contains(text(),'" + selectMember + "')]/following::input[1]"));
-        pregnancyMemCheckbox.click();
-        pregnancyMemEventDate.sendKeys(formattedDate);
-    }
+
 
     public void selectBirthOptionWithEventDate(String firstDateOfCurrentMonth){
         basicActions.waitForElementToBeClickable(birthQLCE, 10);
@@ -614,4 +611,55 @@ public class QlceConfirmationPage {
                 throw new IllegalArgumentException("Invalid option: " + elgibility);
         }
     }
+
+    public void setFutureBirthEventDate(String eventDateType) {
+        basicActions.waitForElementListToBePresent(pregnancyEventDate, 20);
+        pregnancyEventDate.clear();
+        pregnancyEventDate.get(0).click();
+        switch (eventDateType) {
+            case "First Date of Current Month":
+                pregnancyEventDate.get(0).sendKeys(getFirstDateOfCurrentMonth());
+                break;
+            case "Last Date of Current Month":
+                pregnancyEventDate.get(0).sendKeys(getLastDateOfCurrentMonth());
+                break;
+            case "Future Date":
+                pregnancyEventDate.get(0).sendKeys(getFutureDate());
+                break;
+            case "Current Date":
+                pregnancyEventDate.get(0).sendKeys(getCurrentDate());
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + eventDateType);
+        }
+    }
+    public String getFirstDateOfCurrentMonth() {
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate firstDate = LocalDate.now().withDayOfMonth(1);
+        return dateFormat.format(firstDate);
+    }
+    public String getLastDateOfCurrentMonth() {
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate lastDate = LocalDate.now().withDayOfMonth(LocalDate.now().lengthOfMonth());
+        return dateFormat.format(lastDate);
+    }
+    public String getFutureDate() {
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate futureDate = LocalDate.now().plus(1, ChronoUnit.MONTHS);
+        return dateFormat.format(futureDate);
+    }
+
+
+    public void selectElgibilityPregnancyCoverageForMember(String eventDateType, String selectMember) {
+        String resolvedDate = basicActions.getDateBasedOnRequirement(eventDateType);
+        String formattedDate = basicActions.changeDateFormat(resolvedDate, "yyyy-MM-dd", "MM/dd/yyyy");
+        WebElement pregnancyMemCheckbox = basicActions.getDriver().findElement(By.xpath("//div[@class='col-sm-4 pregnancyMemberWrapper']//span[contains(text(),'" + selectMember + "')]/preceding::input[2]"));
+        WebElement pregnancyMemEventDate = basicActions.getDriver().findElement(By.xpath("//div[@class='col-sm-4 pregnancyMemberWrapper']//span[contains(text(),'" + selectMember + "')]/following::input[1]"));
+        pregnancyMemCheckbox.click();
+        pregnancyMemEventDate.sendKeys(formattedDate);
+    }
+
+
+
 }
+

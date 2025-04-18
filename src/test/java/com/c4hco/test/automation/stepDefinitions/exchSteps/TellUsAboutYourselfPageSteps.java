@@ -88,8 +88,8 @@ public class TellUsAboutYourselfPageSteps {
     public void iSelectNewRelationshipWith(String babiesDue) {
         tellUsAboutYourselfPage.iSelectNumberOfBabies(babiesDue);
     }
-    @Then ("I select the expected birth due date at {string}")
-    public void iSelectNewDueDate(String dueDate) {
-        tellUsAboutYourselfPage.iSelectDueDate(dueDate);
+    @Then ("I select the expected birth due date at Future Date {string}")
+    public void setPregnancyEventDate(String eventDateType) {
+        tellUsAboutYourselfPage.setPregnancyEventDate(eventDateType);
     }
 }

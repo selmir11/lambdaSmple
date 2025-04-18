@@ -12,12 +12,18 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
+import java.time.temporal.UnsupportedTemporalTypeException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static com.c4hco.test.automation.utils.Race.getCodeForRace;
+import static java.time.temporal.ChronoField.ERA;
 
 public class TellUsAboutYourselfPage {
 
@@ -448,10 +454,39 @@ public class TellUsAboutYourselfPage {
         }
 
     }
-    public void iSelectDueDate(String dueDate){
+
+
+    public void setPregnancyEventDate(String eventDateType) {
         basicActions.waitForElementToBePresent(expectedDOB, 20);
         expectedDOB.clear();
-        expectedDOB.sendKeys(dueDate);
-        System.out.println("Expected Due date");
+        expectedDOB.click();
+        switch (eventDateType) {
+            case "First Date of Current Month":
+                expectedDOB.sendKeys(getFirstDateOfCurrentMonth());
+                break;
+            case "Last Date of Current Month":
+                expectedDOB.sendKeys(getLastDateOfCurrentMonth());
+                break;
+            case "Future Date":
+                expectedDOB.sendKeys(getFutureDate());
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + eventDateType);
+        }
+    }
+    public String getFirstDateOfCurrentMonth() {
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate firstDate = LocalDate.now().withDayOfMonth(1);
+        return dateFormat.format(firstDate);
+    }
+    public String getLastDateOfCurrentMonth() {
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate lastDate = LocalDate.now().withDayOfMonth(LocalDate.now().lengthOfMonth());
+        return dateFormat.format(lastDate);
+    }
+    public String getFutureDate() {
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate futureDate = LocalDate.now().plus(1, ChronoUnit.MONTHS);
+        return dateFormat.format(futureDate);
     }
 }

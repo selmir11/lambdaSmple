@@ -52,7 +52,12 @@ public class QlceConfirmationPageSteps {
     public void iSelectForElgibilityForPregnancyCoverage(String elgibility) {
         qlceConfirmationPage.selectElgibilityPregnancyCoverage(elgibility);
     }
-    @Then("I select {string} on elgibility for pregnancy coverage for {string}")
+
+    @Then ("I set pregnancy date {string} on elgibility for pregnancy coverage")
+    public void setFutureBirthEventDate(String eventDateType) {
+        qlceConfirmationPage.setFutureBirthEventDate(eventDateType);
+    }
+    @Then("I select this date {string} on elgibility for pregnancy coverage for {string}")
     public void iSelectForElgibilityForPregnancyCoverageFor(String elgibility, String selectMember) {
         qlceConfirmationPage.selectElgibilityPregnancyCoverageForMember(elgibility, selectMember);
     }
