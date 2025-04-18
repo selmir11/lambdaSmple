@@ -2,6 +2,10 @@
   # SLER-1144
 Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
+  Background: I go the login portal
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+
   @SLER-1144
   Scenario Outline: SLER-1144 - ELIG -APTCRules  - mother with future newborn - Open Enrollment
     When I click create a new account on login page
@@ -92,6 +96,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
     Then I validate I am on the "Tell us about life changes" page
     Then I set pregnancy date "First Date of Current Month" on elgibility for pregnancy coverage
+    Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I select "Yes" on elgibility for pregnancy coverage
     Then I click on Save and Continue
 
@@ -113,10 +118,12 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
+    And I wait for 2000 milliseconds
     And I select the first medical plan
     And I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
+    And I wait for 2000 milliseconds
     And I select first dental plan
     And I click continue on dental plan results page
 
@@ -141,8 +148,8 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
       | City    | State | DOB      | County   | Zipcode | income   | applicationHistoryAPTC | applicationResultAPTC | planSummaryAPTC |
       | NewTown | CO    | 01011990 | EAGLE    | 81657   | $7758000 | $0.00/mo               | $0.00/mo              | $0.00           |
 
-  @SLER-1???-variation
-  Scenario Outline: SLER-??? - ELIG -APTCRules  - mother with future newborn - married - Open Enrollment
+  @SLER-2451
+  Scenario Outline: SLER-2451 - ELIG -APTCRules  - mother with future newborn - married - Open Enrollment
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -266,6 +273,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Married filing jointly" tax filing option on the Tax Status page
+    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status page
 
@@ -283,6 +291,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I validate I am on the "Tell us about life changes" page
     Then I set pregnancy date "First Date of Current Month" on elgibility for pregnancy coverage
     Then I select "Yes" on elgibility for pregnancy coverage
+    Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I click on Save and Continue
 
     Then I validate I am on the "EXCH Declarations and Signature" page
@@ -299,14 +308,22 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I click continue on application results page
 
     Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
     And I click continue on start shopping page
 
+    Then I validate I am on the "Grouping Members Medical" page
+    And I click continue on grouping Members Medical page
+
     Then I validate I am on the "Medical Plan Results" page
+    And I wait for 2000 milliseconds
     And I select the first medical plan
     And I click continue on medical plan results page
 
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click continue on grouping Members Dental page
+
     Then I validate I am on the "Dental Plan Results" page
+    And I wait for 2000 milliseconds
     And I select first dental plan
     And I click continue on dental plan results page
 
@@ -329,5 +346,5 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     And I click on Sign Out in the Header for "Portal"
     Examples:
       | City    | State | DOB      | County   | Zipcode | income   | income2   | applicationHistoryAPTC | applicationResultAPTC | planSummaryAPTC |
-      | NewTown | CO    | 01011990 | EAGLE    | 81657   | $7758000 | $5000000 | $0.00/mo               | $0.00/mo              | $0.00           |
+      | NewTown | CO    | 01011990 | EAGLE    | 81657   | $7758000 | $5000000 | $133.75/mo               | $133.75/mo              | -$133.75           |
 
