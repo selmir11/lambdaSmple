@@ -11,8 +11,6 @@ public class MpDbDataProvider {
     DbMpQueries dbMpQueries = new DbMpQueries();
     PostgresHandler postgresHandler = new PostgresHandler();
 
-
-
     public List<List<String>> getManagePlansMemberDetails(String planType) {
         List<List<String>> results = postgresHandler.getResultForMultipleDynamicColumns(dbMpQueries.getManagePlansDetails(planType), "exch_person_id", "first_name", "last_name", "birth_date", "relation_to_subscriber", "prior_6_months_tobacco_use_ind", "financial_period_start_date", "financial_period_end_date");
 
@@ -56,6 +54,11 @@ public class MpDbDataProvider {
 
     public List<List<String>> getManagePlanstermedFinancialDetails(String planType) {
         List<List<String>> results = postgresHandler.getResultForMultipleDynamicColumns(dbMpQueries.getManagePlansTermedDetails(planType), "member_financial_start_date", "member_financial_end_date", "plan_premium_amt", "premium_reduction_amt", "first_name", "coverage_end_date");
+
+
+    ////////////////////////////Plans Container//////////////////////////
+    public List<List<String>> getManagePlanContainerDetails(String planType, String planYear) {
+        List<List<String>> results = postgresHandler.getResultForMultipleDynamicColumns(dbMpQueries.getManagePlansDetailsYear(planType, planYear), "policy_start_date", "policy_end_date", "plan_marketing_name", "first_name", "plan_premium_amt", "premium_reduction_amt");
 
         System.out.println("Number of rows retrieved: " + results.size());
         return results;

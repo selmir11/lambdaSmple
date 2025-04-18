@@ -45,8 +45,6 @@ public class AdminPortalManagePlansPage {
     WebElement titleInBlueBar;
     @FindBy(css = ".drop-down-option.drop-down-option-selected")
     WebElement dpdCurrentYearMP;
-    @FindBy(css = "a[target='_blank'][routerlink='policies']")
-    WebElement btnManagePlans;
     @FindBy(xpath = "//span[@class='select-planyear-label']")
     WebElement planYearLabel;
     @FindBy(css = ".select-year  app-drop-down-select")
@@ -2330,10 +2328,12 @@ public class AdminPortalManagePlansPage {
         showFinancialPeriodBtn.get(indexPolicyNumber).click();
     }
 
-    public void verifyMedicalPlanText(){
-        basicActions.waitForElementToBePresent(labelInRedMedicalPlan,10);
-        softAssert.assertEquals(labelInRedMedicalPlan.getText().trim(),"Medical Plan:","Medical Plan text mismatch");
-        softAssert.assertEquals(labelInRedMedicalPlan.getCssValue("color"), "rgba(255, 0, 0, 1)", "labelInRedMedicalPlan-Color mismatch");
+    public void verifyPlanDetails(List<String> data) {
+        basicActions.waitForElementToBePresent(txtTitleManagePlans, 20);
+        softAssert.assertEquals(txtTitleManagePlans.getText(), data.get(0));
+        basicActions.waitForElementListToBePresent(labelPlanNameForMedAndDen, 20);
+        softAssert.assertEquals(labelPlanNameForMedAndDen.get(0).getText(), data.get(1));
+        softAssert.assertEquals(labelPlanNameForMedAndDen.get(1).getText(), data.get(2));
         softAssert.assertAll();
     }
     public void verifyOneContainerForMedicalPlansDisplayedInsteadOfCurrentAndPreviousSections(){
@@ -2341,7 +2341,6 @@ public class AdminPortalManagePlansPage {
         softAssert.assertFalse(basicActions.waitForElementToBePresent(previousFinancialMed, 5),"previousFinancialMed is visible");
         softAssert.assertAll();
     }
-
     public void selectPolicyPlanFromDDByVisibleText(String policyName) {
         basicActions.waitForElementToBePresent(selectPolicyDropdownOptions, 10);
         selectPolicyDropdownOptions.click();
@@ -2476,5 +2475,11 @@ public class AdminPortalManagePlansPage {
         }
 
         System.out.println("❌ Failed to reopen " + planType + " dropdown after 3 retries.");
+    }
+    public void verifyMedicalPlanText(){
+        basicActions.waitForElementToBePresent(labelInRedMedicalPlan,10);
+        softAssert.assertEquals(labelInRedMedicalPlan.getText().trim(),"Medical Plan:","Medical Plan text mismatch");
+        softAssert.assertEquals(labelInRedMedicalPlan.getCssValue("color"), "rgba(255, 0, 0, 1)", "labelInRedMedicalPlan-Color mismatch");
+        softAssert.assertAll();
     }
 }
