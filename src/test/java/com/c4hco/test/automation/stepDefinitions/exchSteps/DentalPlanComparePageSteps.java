@@ -35,6 +35,11 @@ public class DentalPlanComparePageSteps {
     @And( "I will validate the expand and collapse header functionality for a specific header on the Dental Compare page" )
     public void validateSpecificExpandCollapseDentalCompareHeaders(){dentalPlanComparePage.validateSpecificExpandCollapseDentalCompareHeaders();}
 
+
+    @And ("I click detail link {string} on the Dental Compare page")
+    public void clickDentalPlanDetailLink(String planDetailNumber) {dentalPlanComparePage.clickDentalPlanDetaiLink(planDetailNumber);
+    }
+
 }
 
 
