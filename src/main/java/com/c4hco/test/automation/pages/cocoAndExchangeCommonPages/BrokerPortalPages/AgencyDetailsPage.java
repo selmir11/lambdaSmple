@@ -206,6 +206,9 @@ public class AgencyDetailsPage {
     @FindBy(id = "hideAddress_helptext")
     WebElement agencyHideAddressTooltipText;
 
+    @FindBy(id = "BP-AgencyDetails-SaveAndFinishLater")
+    WebElement agencyDetailsSaveFinishLaterButton;
+
     private BasicActions basicActions;
     Actions builder;
     public AgencyDetailsPage(WebDriver webDriver){
@@ -508,5 +511,8 @@ public class AgencyDetailsPage {
         phoneNumberField.sendKeys(SharedData.getAgencyOwner().getAgencyPhoneNumber());
     }
 
-
+    public void validateSaveAndFinishLaterButton(){
+        softAssert.assertFalse(basicActions.waitForElementPresence(agencyDetailsSaveFinishLaterButton,30));
+        softAssert.assertAll();
+    }
 }
