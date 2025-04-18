@@ -928,7 +928,7 @@ public class AdminPortalManagePlansPage {
             String memberFullName = nameElement.getText().trim();
             String nameElementID = nameElement.getAttribute("id");
             String index = nameElementID.replace("firstName_", "");
-            String matchingname = memberUpdates.stream().map(m -> m.get("key")).filter(memberFullName::startsWith).findFirst().orElse(null);
+            Map<String,String> matchingname = memberUpdates.stream().filter(m -> memberFullName.startsWith(m.get("key"))).findFirst().orElse(null);
             Assert.assertNotNull(matchingname, "Member Name not found: " + memberFullName);
             String inputDate = memberUpdates.stream().map(m -> m.get("value")).findFirst().orElse("");
             String updatedDate = basicActions.changeDateFormat(basicActions.getDateBasedOnRequirement(inputDate), "yyyy-MM-dd", "MM/dd/yyyy");
@@ -937,9 +937,10 @@ public class AdminPortalManagePlansPage {
             basicActions.updateElementWithRetries(coverageEndDateElement, updatedDate);
             WebElement coverageStartDateElement =  basicActions.getDriver().findElement(By.xpath("//div[@id='coverageStartDate_" + index + "']//input[1]"));
             String coverageStartDate = basicActions.changeDateFormat(coverageStartDateElement.getAttribute("value"),"yyyy-MM-dd", "MM/dd/yyyy");
+            String name = matchingname.get("key");
             // Set disenrollment reason if start and end dates are same
             if(updatedDate.equals(coverageStartDate)){
-                setDisenrollmentReason(planType,matchingname);
+                setDisenrollmentReason(planType,name);
             }
         }
     }
