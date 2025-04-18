@@ -382,7 +382,7 @@ Feature: Seed08 - Exchange
 
     Then I click continue on family overview page
     Then I validate I am on the "Tell us about life changes" page
-    Then I select "Birth" QLCE on tell us about life changes page for "Newborn"
+    Then I select Birth QLCE on tell us about life changes page
     Then I click on Save and Continue
     Then I validate I am on the "EXCH Declarations and Signature" page
     Then I Declare as Tax Household 1
