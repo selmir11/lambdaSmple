@@ -187,7 +187,7 @@ public class AdminPortalDetailedEligibilityPage {
         int index = 0;
         for (Map.Entry<String, String> entry : envRow.entrySet()) {
             if (entry.getKey().equals("Env")) {
-                continue;
+                continue; // skip Env col and move to next col to fetch fields
             }
             String expectedLabel = entry.getKey();
             String expectedValue = Optional.ofNullable(entry.getValue()).orElse("");
@@ -328,9 +328,7 @@ public class AdminPortalDetailedEligibilityPage {
         boolean matchfound = false;
         for (WebElement container : PreviousAppln) {
             List<WebElement> fields = container.findElements(By.xpath(".//span"));
-            if (fields.size() < 9) {
-                continue;
-            }
+            basicActions.waitForElementListToBePresentWithRetries(fields,100);
             String actualPlanYear = fields.get(0).getText();
             if (actualPlanYear.equals(expectedPlanYear)) {
                 matchfound = true;
@@ -365,11 +363,7 @@ public class AdminPortalDetailedEligibilityPage {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mma");
         for (WebElement container : PreviousApplnContainer) {
             List<WebElement> fields = container.findElements(By.xpath(".//span"));
-            if (fields.size() < 9) {
-                throw new RuntimeException();
-            }
             String dateText = fields.get(6).getText();
-
             try {
                 dates.add(dateFormat.parse(dateText));
             } catch (Exception e) {
