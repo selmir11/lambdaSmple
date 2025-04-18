@@ -555,7 +555,7 @@ public class AdminPortalManagePlansPage {
 
     public void containerTitleLabelsYear(String year) {
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 20);
-        basicActions.waitForElementToBePresentWithRetries(chkMedical, 90);
+        basicActions.waitForElementToBePresentWithRetries(chkMedical, 60);
         basicActions.waitForElementToBePresentWithRetries(chkDental, 60);
         softAssert.assertEquals(txtTitleManagePlans.getText(), "Manage Plans");
         softAssert.assertEquals(txtSelectPlanYear.getText(), "Select a plan year:");
@@ -2384,6 +2384,7 @@ public class AdminPortalManagePlansPage {
         softAssert.assertEquals(labelInRedMedicalPlan.getCssValue("color"), "rgba(255, 0, 0, 1)", "labelInRedMedicalPlan-Color mismatch");
         softAssert.assertAll();
     }
+	
     public void verifyOneContainerForMedicalPlansDisplayedInsteadOfCurrentAndPreviousSections(){
         softAssert.assertTrue(basicActions.waitForElementToBePresent(currentPlanContainer,5),"No current medical plan container");
         softAssert.assertFalse(basicActions.waitForElementToBePresent(previousFinancialMed, 5),"previousFinancialMed is visible");
@@ -2414,4 +2415,6 @@ public class AdminPortalManagePlansPage {
         softAssert.assertEquals(labelPlanNameForMedAndDen.get(1).getText(), data.get(2));
         softAssert.assertAll();
     }
+
+
 }

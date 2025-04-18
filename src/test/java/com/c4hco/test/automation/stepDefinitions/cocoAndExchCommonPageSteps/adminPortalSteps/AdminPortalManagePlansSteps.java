@@ -515,10 +515,9 @@ public class AdminPortalManagePlansSteps {
     public void iVerifyMemberTwoShowsTwiceInCoverageDetailsAndFinancialDetailsTables() {
         adminPortalManagePlansPage.VerifyMemberTwoShowsTwiceInCoverageAndFinancialDetailsTables();
     }
-    @And("I Validate the correct enrolled plans are displayed on Manage Plans page")
+	
+	@And("I Validate the correct enrolled plans are displayed on Manage Plans page")
     public void iverifyPlanDetails(List<String> data) {
         adminPortalManagePlansPage.verifyPlanDetails(data);
     }
-
-
 }
