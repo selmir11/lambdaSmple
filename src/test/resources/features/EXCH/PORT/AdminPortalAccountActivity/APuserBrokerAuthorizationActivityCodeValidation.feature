@@ -1,4 +1,4 @@
-@port @APAccountActivity @FindExpertHelp
+@port @APAccountActivityExch @FindExpertHelp
 Feature: Admin Portal user authorizing and deauthorizing a customer's broker and verifying the account activity codes
 
   @SLER-1803
