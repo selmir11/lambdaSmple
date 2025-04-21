@@ -848,6 +848,13 @@ public class DbValidations {
         softAssert.assertEquals(fplValue.trim(), expectedFplPercent, "FPL Percent mismatch: Expected " + expectedFplPercent + ".");
         softAssert.assertAll();
     }
+
+    public void validateFPLESTaxReturnAPTC(String expectedFPL){
+        String fpl = exchDbDataProvider.getFPLPercentEsTaxReturnAPTC();
+        softAssert.assertEquals(fpl.trim(), expectedFPL, "FPL Percent mismatch: ");
+        softAssert.assertAll();
+
+    }
     public void validateEnrollmentEndDateDB(int enrollmentEndDate) {
         String enrEndDateDb = basicActions.changeDateFormat(exchDbDataProvider.getEnrollmentEndDate(), "yyyy-MM-dd", "MM/dd/yyyy");
         LocalDate expectedEndDate = LocalDate.now().plusDays(enrollmentEndDate); // works only when qlce date is today
