@@ -187,6 +187,7 @@ Feature: Seed04exception - Exchange
       | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month |
     Then I click on ClickHere link for "My Plans"
     And I validate I am on the "My Policies" page
+    And I click on Future Plans
     And I click on "Cancel Medical Plan" button
     And I validate I am on the "Cancellation Request" page
     Then I affirm and cancel the active plan
@@ -196,6 +197,7 @@ Feature: Seed04exception - Exchange
     Then I validate I am on the "Account Overview" page
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
+    And I click on Future Plans
     And I validate "Medical" details card is not present on my policies page
     And I validate "dental" details on my policies page
     And I validate "medical-cancelled" entities from policy tables

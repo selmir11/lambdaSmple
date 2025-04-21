@@ -3,6 +3,7 @@ package com.c4hco.test.automation.stepDefinitions.databaseSteps.OPS;
 import com.c4hco.test.automation.database.DbValidations.ManagePlanDBValidation;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
 import java.util.List;
@@ -87,4 +88,9 @@ public class DBManagePlanSteps {
         managePlanDBValidation.validateTermedCoverageDetailsTableDB(planType, memberNum);
         managePlanDBValidation.validateTermedFinancialDetailsTableDB(planType, memberNum);
     }
+
+
+    ////////////////////////////Plans Container Individual Dashboard//////////////////////////
+    @And("I verify Plan container for year {string} against the DB on the Individual dashboard")
+    public void iVerifyPlanContainer(String planYear) {managePlanDBValidation.verifyPlanContainer(planYear);}
 }
