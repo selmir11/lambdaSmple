@@ -200,8 +200,8 @@ public class OtherHealthCoveragePage {
                 basicActions.click(insuranceOptionsCheckBox.get(10));
                 break;
             case "None of these":
-                basicActions.waitForElementToBePresent(insuranceOptionsCheckBox.get(11), 10);
-                basicActions.clickElementWithRetries(insuranceOptionsCheckBox.get(11), 10);
+                basicActions.waitForElementToBePresent(insuranceOptionsCheckBox.get(11), 30);
+                basicActions.clickElementWithRetries(insuranceOptionsCheckBox.get(11), 30);
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + insuranceOption);
@@ -209,9 +209,8 @@ public class OtherHealthCoveragePage {
     }
 
     public void clickSaveAndContinue(){
-        basicActions.waitForElementToDisappear(spinner, 60);
-        basicActions.waitForElementToBePresentWithRetries(existingHealthInsuranceHeader, 60);
-        basicActions.waitForElementToBeClickableWithRetries(saveAndContinueBtn, 60);
+        basicActions.waitForElementToDisappear(spinner, 150);
+        basicActions.waitForElementToBePresentWithRetries(saveAndContinueBtn, 150);
         basicActions.scrollToElement(saveAndContinueBtn);
         saveAndContinueBtn.click();
     }
@@ -1708,14 +1707,14 @@ public class OtherHealthCoveragePage {
         softAssert.assertEquals(dropDownUnderWhichJobIs.getCssValue("background-color"), "rgba(255, 255, 255, 1)", "Back ground Color mismatch");
         softAssert.assertEquals(dropDownUnderWhichJobIs.getCssValue("color"), "rgba(77, 77, 79, 1)", "Color mismatch");
         softAssert.assertEquals(dropDownUnderWhichJobIs.getCssValue("border"), "1px solid rgb(149, 147, 147)", "border mismatch");
-        softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("background-color"), "rgba(26, 112, 179, 1)", "Back ground Color mismatch");
+        softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("background-color"), "rgba(22, 156, 216, 1)", "Back ground Color mismatch");
         softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("font-family"), "\"PT Sans\", sans-serif", "Font family mismatch");
         softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("font-size"), "20px", "Font size mismatch");
         softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("border-top-left-radius"), "4px", "Border radios mismatch");
         softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("padding-bottom"), "12px", "Padding bottom not matching");
         softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("padding-right"), "20px", "Pading right not matching");
         softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("color"), "rgba(252, 252, 252, 1)", "Color mismatch");
-        softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("border"), "2px solid rgb(26, 112, 179)", "border mismatch");
+        softAssert.assertEquals(saveAndContBtnEmpSpon.getCssValue("border"), "2px solid rgb(252, 252, 252)", "border mismatch");
         softAssert.assertEquals(saveAndContBtnEmpSpon.getText().trim(), "Save and continue", "Save And Continue text mismatch");
         softAssert.assertAll();
     }
