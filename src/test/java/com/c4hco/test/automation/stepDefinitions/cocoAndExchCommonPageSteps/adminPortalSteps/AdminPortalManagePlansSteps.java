@@ -520,4 +520,9 @@ public class AdminPortalManagePlansSteps {
     public void iverifyPlanDetails(List<String> data) {
         adminPortalManagePlansPage.verifyPlanDetails(data);
     }
+
+    @And("I select the plan year based on the running environment")
+    public void iSelectThePlanYearOnManagePlanBasedOnEnv() {
+        adminPortalManagePlansPage.selectThePlanYearOnManagePlanBasedOnEnv();
+    }
 }
