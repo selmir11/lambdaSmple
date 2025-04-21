@@ -463,7 +463,7 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.verifyFontColorEtcOfMedicalPlanContainer();
     }
 
-    @Then("I verify previous_Financial_Periods - Medical_Or_Dental text labels")
+    @Then("I verify previous_Financial_Periods - Medical text labels")
     public void iVerifyPrevious_Financial_PeriodsMedicalTextLabels(List<String> pageTexts) {
         adminPortalManagePlansPage.verifyPrevious_Financial_PeriodsMedicalTexts(pageTexts);
     }
@@ -496,23 +496,28 @@ public class AdminPortalManagePlansSteps {
     @And("I select {string} Show Financial Period for policy {int} on Manage Plans page")
     public void iSelectFinancialPeriod(String planType, Integer policyNumber) {adminPortalManagePlansPage.selectFinancialPeriod(planType, policyNumber);}
 
-    @Then("I verify Previous_Financial_Periods_Dental text color size etc")
-    public void iVerifyPrevious_Financial_Periods_DentalTextColorSizeEtc() {
-        adminPortalManagePlansPage.verifyPreviousFinancialPeriodsDentalColorSizeEtc();
+    @Then("I verify medical_plan text available in red color")
+    public void iVerifyMedical_planTextAvailableInRedColor() {
+        adminPortalManagePlansPage.verifyMedicalPlanText();
     }
 
-    @Then("I verify color border of Previous_Financial_Periods_Dental container and all columns inside container")
-    public void iVerifyColorBorderOfPrevious_Financial_Periods_DentalContainerAndAllColumnsInsideContainer() {
-        adminPortalManagePlansPage.verifyColorBorderOfPreviousFinancialPeriodsDentalContainerAndAllColumnsInsideContainer();
+    @Then("I verify one container for Medical plans displayed instead of Current and Previous sections")
+    public void iVerifyOneContainerForMedicalPlansDisplayedInsteadOfCurrentAndPreviousSections() {
+        adminPortalManagePlansPage.verifyOneContainerForMedicalPlansDisplayedInsteadOfCurrentAndPreviousSections();
     }
 
-    @Then("I validate green back ground and white text of {string} button only when checked")
-    public void iValidateGreenBackGroundAndWhiteTextOfButtonWhenChecked(String btnType) {
-        adminPortalManagePlansPage.validateGreenBackGroundAndWhiteTextOfMedical_or_dentalButtonWhenChecked(btnType);
+    @Then("I select policy plan {string} from select_a_policy dd by visible text")
+    public void iSelectPolicyPlanFromSelect_a_policyDdByVisibleText(String policyName) {
+        adminPortalManagePlansPage.selectPolicyPlanFromDDByVisibleText(policyName);
     }
 
-    @Then("I validate white back ground and black text of {string} button only when unchecked")
-    public void iValidateWhiteBackGroundAndBlackTextOfButtonOnlyWhenUnchecked(String btnType) {
-        adminPortalManagePlansPage.validateWhiteBackGroundAndBlackTextOfButtonOnlyWhenUnchecked(btnType);
+    @Then("I verify member two shows twice in CoverageDetails and FinancialDetails tables")
+    public void iVerifyMemberTwoShowsTwiceInCoverageDetailsAndFinancialDetailsTables() {
+        adminPortalManagePlansPage.VerifyMemberTwoShowsTwiceInCoverageAndFinancialDetailsTables();
+    }
+	
+	@And("I Validate the correct enrolled plans are displayed on Manage Plans page")
+    public void iverifyPlanDetails(List<String> data) {
+        adminPortalManagePlansPage.verifyPlanDetails(data);
     }
 }

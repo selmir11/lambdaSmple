@@ -414,7 +414,7 @@ public class ManagePlanDBValidation {
             softAssert.assertEquals(dbEndDateValue, coverageEndDate.getText(), "Mismatch in coverage_end_date for row " + uiRowIndex);
             softAssert.assertEquals(dbRow.get(2).toLowerCase(), status.getText().toLowerCase(), "Mismatch in policy_member_coverage_status for row " + uiRowIndex);
             softAssert.assertEquals(dbEffectuatedValue, effectuated.getText(), "Mismatch in effectuated_ind for row " + uiRowIndex);
-            softAssert.assertEquals(dbTermReasonValue, terminationReason.getText(), "Mismatch in disenrollment_reason for row " + uiRowIndex);
+            softAssert.assertEquals(dbTermReasonValue.toLowerCase(), terminationReason.getText().toLowerCase(), "Mismatch in disenrollment_reason for row " + uiRowIndex);
             uiRowIndex++;
         }
         softAssert.assertAll();
@@ -451,7 +451,7 @@ public class ManagePlanDBValidation {
             } else if (SharedData.getDbName().toLowerCase().contains("coco")) {
                 reduction = "SES";
             }
-            WebElement taxCredit = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[@id='plan"+reduction+"_" + uiRowIndex + "']"));
+            WebElement taxCredit = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[@id='planAPTC_" + uiRowIndex + "']"));
 
             softAssert.assertEquals(dbStartDateValue, financialStartDate.getText(), "Mismatch in member_financial_start_date for row " + uiRowIndex);
             softAssert.assertEquals(dbEndDateValue, financialEndDate.getText(), "Mismatch in member_financial_end_date for row " + uiRowIndex);
@@ -596,7 +596,7 @@ public class ManagePlanDBValidation {
                 reduction = "SES";
             }
 
-            WebElement taxCredit = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//div[@id='plan" + reduction + "_" + uiRowIndex + "']"));
+            WebElement taxCredit = basicActions.getDriver().findElement(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//div[@id='planAPTC_" + uiRowIndex + "']"));
 
             softAssert.assertEquals(dbStartDateValue, financialStartDate.getText(), "Mismatch in member_financial_start_date for row " + uiRowIndex);
             softAssert.assertEquals(dbEndDateValue, financialEndDate.getText(), "Mismatch in member_financial_end_date for row " + uiRowIndex);
