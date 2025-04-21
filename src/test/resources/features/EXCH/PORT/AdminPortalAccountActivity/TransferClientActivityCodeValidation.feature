@@ -1,4 +1,4 @@
-@TransferRemove @port @APAccountActivity
+@TransferRemove @port @APAccountActivityExch
 Feature: Client transfer account activity code validation in Admin Portal
 
   @SLER-1773
