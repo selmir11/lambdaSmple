@@ -1,4 +1,4 @@
-@APTCSIR,@APTC-SIR1
+@APTCSIR @APTC-SIR1
   #  SLER-1107, SLER-1108, SLER-1150, SLER-1151, SLER-2388
 Feature: UI Tests related to APTC after second enrollment change - Group of 4
 
@@ -678,10 +678,8 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click on Sign Out in the Header for "Portal"
 
 
-
-  @SLER-GroupOf4-WIP-PASS
-    #review  - grouping failed
-  Scenario: SLER-GroupOf4-WIP - GroupOf4 - APTCRules - group of 4  - 60K to 80K
+  @SLER-2442
+  Scenario: SLER-2442 - GroupOf4 - APTCRules - group of 4 - two adults and two youth - 60K income
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -930,11 +928,30 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
+    Then I click on edit enrollment groups link
+
+    #default groups are 2 due to eligibility rules
+    Then I validate I am on the "Edit Grouping Members Medical" page
+    Then I create new group in edit medical grouping page and drag members to the new group
+      | Primary,Spouse,DaughterOne,DaughterTwo:Group1 |
+    Then I click save button to save the groups
+    Then I click on continue button on success pop-up
+
+    Then I validate I am on the "Grouping Members Medical" page
     And I click continue on grouping Members Medical page
 
     Then I validate I am on the "Medical Plan Results" page
     And I select the first medical plan
     And I click continue on medical plan results page
+
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click on dental edit enrollment groups link
+
+    Then I validate I am on the "Edit Grouping Members Dental" page
+    Then I create new group in edit dental grouping page and drag members to the new group
+      | Primary,Spouse,DaughterOne,DaughterTwo:Group1 |
+    Then I click save button to save the groups
+    Then I click on continue button on success pop-up
 
     Then I validate I am on the "Grouping Members Dental" page
     Then I click continue on grouping Members Dental page
@@ -946,6 +963,11 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Plan Summary" page
     And I validate the APTC Credit on the Summary page is "-$947.71"
     And I click continue on plan summary page
+
+    Then I validate I am on the "Financial Help Agreements" page
+    And I select the terms and agreements checkbox
+    And I enter householder signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
 
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox
@@ -959,134 +981,12 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     # end of initial enrollment
 
     Then I validate I am on the "Account Overview" page
-    ## - make change button  - no such element
-    Then I click on make changes button
-
-    Then I validate I am on the "Let us guide you" page
-    Then I select "No" option on the Let us guide you page
-    And I click on save and continue button
-
-    Then I validate I am on the "Before you begin" page
-    Then I click on continue with  application button on Before you begin page
-
-    Then I validate I am on the "Report a life change" page
-    And I report "MovedToColorado" and click continue
+    And I wait for 2000 milliseconds
+    And I click on Sign Out in the Header for "Account Overview"
 
 
-    Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Manage who helps you page
-    Then I select "Male" as sex option
-    And I select "Yes" to Are You Applying
-    And I click continue on Tell us about yourself page
-
-    Then I validate I am on the "Add Address" page
-    And I select "Yes" for CO Resident option
-    And I select "No" for Federally Recognized Tribe option
-    And I select "No" for Hardship Exemption option
-    And I select "No" for Disability option
-    And I select "No" to the recently denied medicaid question
-    And I select "No" for Incarceration option
-    And I click continue on the Add Address page
-
-    And I select "Prefer not to answer" for race and ethnicity for "Primary"
-    And I click continue on the Race and Ethnicity page
-
-    Then I validate I am on the "Citizenship" page
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
-    And I click continue on the Citizenship page
-
-    Then I validate I am on the "Family Overview" page
-    And I click on "Primary" to edit information from household page
-
-    Then I validate I am on the "Application Summary" page
-    Then I select the Edit Income link
-
-    Then I validate I am on the "Employment Summary" page
-    Then I click Edit on Income Summary row 1
-
-    Then I validate I am on the "Employment Info" page
-    And I edit the income level to ""
-    And I edit the income level to "8000000"
-    And I click continue on the Employment Info Page
-
-    Then I validate I am on the "Employment Summary" page
-    Then I click continue on the Employment Summary Page
-
-    Then I validate I am on the "Additional income" page
-    Then I click continue on the Additional Income page
-
-    Then I validate I am on the "Deductions" page
-    Then I click continue on the Deductions page
-
-    Then I validate I am on the "Income Summary" page
-    Then I click the save and continue button on the Income Summary Detail page
-
-    Then I validate I am on the "Tax status" page
-    Then I click Save and Continue on Tax Status page
-
-    And I validate I am on the "Other Health Coverage" page
-    Then I click continue on the health coverage page
-
-    And I validate I am on the "Other Health Coverage" page
-    Then I click continue on the health coverage page
-
-    And I validate I am on the "Other Health Coverage" page
-    Then I click continue on the health coverage page
-
-    And I validate I am on the "Other Health Coverage" page
-    Then I click continue on the health coverage page
-
-    Then I validate I am on the "Family Overview" page
-    Then I click continue on family overview page
-
-    Then I validate I am on the "Tell us about life changes" page
-    And  I select "LostCoverage" QLCE on tell us about life changes page
-    Then I click on Save and Continue
-
-    Then I validate I am on the "EXCH Declarations and Signature" page
-    Then I Declare as Tax Household 1
-    And I click Continue on the Declarations And Signature Page
-    And I wait for hold on content to disappear
-
-    Then I validate I am on the "Good News" page
-    Then I click on "No Thanks" on good news page
-
-    Then I validate I am on the "Application History" page
-    Then I click on view results and shop
-
-    Then I validate I am on the "Application Results" page
-    Then I click continue on application results page
-
-    Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
-    And I click continue on start shopping page
-
-    Then I validate I am on the "Grouping Members Medical" page
-    And I click continue on grouping Members Medical page
-
-    Then I validate I am on the "Medical Plan Results" page
-    And I select the first medical plan
-    And I click continue on medical plan results page
-
-    Then I validate I am on the "Grouping Members Dental" page
-    And I click continue on grouping Members Dental page
-
-    Then I validate I am on the "Dental Plan Results" page
-    And I select first dental plan
-    And I click continue on dental plan results page
-
-    Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "$0.00"
-    And I click continue on plan summary page
-
-    Then I validate I am on the "Enrollment Agreements" page
-    And I click on Sign Out in the Header for "Portal"
-
-
-  @Group6ReEnroll-WIP-PASS
-    #review grouping failure
- Scenario: SLER-Group6ReEnroll-WIP - APTCRules - group of 6 - 4 under 21 with 2 adult
+  @SLER-2441
+ Scenario: SLER-2441 - APTCRules - group of 6 - 4 under 21 with 2 adult
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1456,137 +1356,11 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     Then I validate I am on the "Pay now" page
     Then I click all done from payment portal page
 
-     # end of initial enrollment
+    # end of initial enrollment
 
     Then I validate I am on the "Account Overview" page
-    Then I click on make changes button
-
-    Then I validate I am on the "Let us guide you" page
-    Then I select "No" option on the Let us guide you page
-    And I click on save and continue button
-
-    Then I validate I am on the "Before you begin" page
-    Then I click on continue with  application button on Before you begin page
-
-    Then I validate I am on the "Report a life change" page
-    And I report "MovedToColorado" and click continue
-
-
-    Then I validate I am on the "Find Expert Help" page
-    Then I click Continue on my own button from Manage who helps you page
-    Then I select "Male" as sex option
-    And I select "Yes" to Are You Applying
-    And I click continue on Tell us about yourself page
-
-    Then I validate I am on the "Add Address" page
-    And I select "Yes" for CO Resident option
-    And I select "No" for Federally Recognized Tribe option
-    And I select "No" for Hardship Exemption option
-    And I select "No" for Disability option
-    And I select "No" to the recently denied medicaid question
-    And I select "No" for Incarceration option
-    And I click continue on the Add Address page
-
-#    And I select "Prefer not to answer" for race and ethnicity for "Primary"
-    And I click continue on the Race and Ethnicity page
-
-    Then I validate I am on the "Citizenship" page
-    Then I select "Yes" for Citizen option
-    And I select "No" for Naturalized Immigrant option
-    And I click continue on the Citizenship page
-
-    Then I validate I am on the "Family Overview" page
-    And I click on "Primary" to edit information from household page
-
-    Then I validate I am on the "Application Summary" page
-    Then I select the Edit Income link
-
-    Then I validate I am on the "Employment Summary" page
-    Then I click Edit on Income Summary row 1
-
-    Then I validate I am on the "Employment Info" page
-    And I edit the income level to ""
-    And I edit the income level to "3500000"
-    And I click continue on the Employment Info Page
-
-    Then I validate I am on the "Employment Summary" page
-    Then I click continue on the Employment Summary Page
-
-    Then I validate I am on the "Additional income" page
-    Then I click continue on the Additional Income page
-
-    Then I validate I am on the "Deductions" page
-    Then I click continue on the Deductions page
-
-    Then I validate I am on the "Income Summary" page
-    Then I click the save and continue button on the Income Summary Detail page
-
-    Then I validate I am on the "Tax status" page
-    Then I click Save and Continue on Tax Status page
-
-    And I validate I am on the "Other Health Coverage" page
-    Then I click continue on the health coverage page
-
-    And I validate I am on the "Other Health Coverage" page
-    Then I click continue on the health coverage page
-
-    And I validate I am on the "Other Health Coverage" page
-    Then I click continue on the health coverage page
-
-    And I validate I am on the "Other Health Coverage" page
-    Then I click continue on the health coverage page
-
-    And I validate I am on the "Other Health Coverage" page
-    Then I click continue on the health coverage page
-
-    And I validate I am on the "Other Health Coverage" page
-    Then I click continue on the health coverage page
-
-    Then I validate I am on the "Family Overview" page
-    Then I click continue on family overview page
-
-    Then I validate I am on the "Tell us about life changes" page
-    And  I select "LostCoverage" QLCE on tell us about life changes page
-    Then I click on Save and Continue
-
-    Then I validate I am on the "EXCH Declarations and Signature" page
-    Then I Declare as Tax Household 1
-    And I click Continue on the Declarations And Signature Page
-    And I wait for hold on content to disappear
-
-    Then I validate I am on the "Good News" page
-    Then I click on "No Thanks" on good news page
-
-    Then I validate I am on the "Application History" page
-    Then I click on view results and shop
-
-    Then I validate I am on the "Application Results" page
-    Then I click continue on application results page
-
-    Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
-    And I click continue on start shopping page
-
-    Then I validate I am on the "Grouping Members Medical" page
-    And I click continue on grouping Members Medical page
-
-    Then I validate I am on the "Medical Plan Results" page
-    And I select the first medical plan
-    And I click continue on medical plan results page
-
-    Then I validate I am on the "Grouping Members Dental" page
-    And I click continue on grouping Members Dental page
-
-    Then I validate I am on the "Dental Plan Results" page
-    And I select first dental plan
-    And I click continue on dental plan results page
-
-    Then I validate I am on the "Plan Summary" page
-    And I validate the APTC Credit on the Summary page is "$0.00"
-    And I click continue on plan summary page
-
-    Then I validate I am on the "Enrollment Agreements" page
-    And I click on Sign Out in the Header for "Portal"
+    And I wait for 2000 milliseconds
+    And I click on Sign Out in the Header for "Account Overview"
 
   @SLER-1107 @Group9Enroll
   Scenario: SLER-1107 - APTCRules - group of 9 Variable 1 - 4 under 19, 3 young adults - with 2 adult parents - tests SIR-2810 bug
@@ -2641,6 +2415,7 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click continue on grouping Members Medical page
 
     Then I validate I am on the "Medical Plan Results" page
+    And I wait for 2000 milliseconds  
     And I select the Insurance Company dropdown
     And I select "Select Health" to filter for desired plan provider
     And I select the Metal Tier dropdown
@@ -2667,7 +2442,12 @@ Feature: UI Tests related to APTC after second enrollment change - Group of 4
     And I click submit enrollment on Enrollment Agreements page
 
     Then I validate I am on the "Pay now" page
-    And I click on Sign Out in the Header for "Portal"
+    Then I click all done from payment portal page
+    # end of initial enrollment
+
+    Then I validate I am on the "Account Overview" page
+    And I click on Sign Out in the Header for "Account Overview"
+
 
 
 
