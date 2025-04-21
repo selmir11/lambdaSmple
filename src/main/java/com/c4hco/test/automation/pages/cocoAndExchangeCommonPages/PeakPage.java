@@ -26,7 +26,7 @@ public class PeakPage {
     @FindBy(xpath = "//input[@placeholder='Enter email address or mobile number']")
     WebElement peakUsername;
 
-    @FindBy(xpath = "//input[@id='input-93']")
+    @FindBy(xpath = "//input[@id='input-102']")
     WebElement peakPassword;
 
     @FindBy(xpath = "//button[@name='SignInButton']")
