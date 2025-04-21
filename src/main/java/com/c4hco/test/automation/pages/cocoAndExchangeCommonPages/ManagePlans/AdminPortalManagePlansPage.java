@@ -2579,9 +2579,6 @@ public class AdminPortalManagePlansPage {
     public void verifyAllColumnsSizeColorETCOfPFPDentalContainer(){
         List<WebElement> firstTenElements=PreviousFinancialPeriodsDentalContainerTable1Cols1.stream().limit(10).toList();
         for (int i=0;i<firstTenElements.size();i++){
-            if (i == 5) {
-                continue;
-            }
             softAssert.assertEquals(PreviousFinancialPeriodsDentalContainerTable1Cols1.get(i).getCssValue("font-family"), "\"PT Sans\"", "PreviousFinancialPeriodsDentalContainerTable1Cols1 "+i+"-Font family mismatch");
             softAssert.assertEquals(PreviousFinancialPeriodsDentalContainerTable1Cols1.get(i).getCssValue("font-size"), "16px", "PreviousFinancialPeriodsDentalContainerTable1Cols1 "+i+"-Font size mismatch");
             softAssert.assertEquals(PreviousFinancialPeriodsDentalContainerTable1Cols1.get(i).getCssValue("color"), "rgba(77, 77, 79, 1)", "PreviousFinancialPeriodsDentalContainerTable1Cols1 "+i+"-Color mismatch");
