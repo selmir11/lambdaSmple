@@ -120,6 +120,9 @@ public class MedicalPlansCoCoPage {
     @FindBy(xpath = "//div[@class='col-sm-12 text-start mt-3 body-text-1 csrtxt ng-star-inserted']")
     WebElement silverPlanTopReferenceInformation;
 
+    @FindBy(id = "PlanResults-CurrentPlanLabel")
+    WebElement greenMedicalBannerText;
+
     public void selectFirstMedicalPlanCoCo() {
         basicActions.waitForElementToBeClickable(selectFirstPlan, 20);
         selectFirstPlan.click();
@@ -496,4 +499,34 @@ public class MedicalPlansCoCoPage {
         basicActions.waitForElementToBePresent(skipBtn, 30);
         skipBtn.click();
     }
+
+    public void validateMedicalGreenBannerTxt(String language){
+        basicActions.waitForElementToDisappear( spinner, 20 );
+        switch (language) {
+            case "English":
+                validateMedicalGreenBannerEnglishTxt();
+                break;
+            case "Spanish":
+                validateMedicalGreenBannerSpanishTxt();
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + language );
+
+        }
+    }
+
+    public void validateMedicalGreenBannerEnglishTxt(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresentWithRetries( greenMedicalBannerText,20);
+        softAssert.assertEquals(greenMedicalBannerText.getText(), "Current plan");
+        softAssert.assertAll();
+    }
+
+    public void validateMedicalGreenBannerSpanishTxt(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresentWithRetries( greenMedicalBannerText,20);
+        softAssert.assertEquals(greenMedicalBannerText.getText(), "Plan actual");
+        softAssert.assertAll();
+    }
+
 }
