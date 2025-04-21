@@ -1,6 +1,5 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.adminPortalSteps;
 
-import com.c4hco.test.automation.database.DbValidations.ManagePlanDBValidation;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -13,7 +12,6 @@ import java.util.Map;
 public class AdminPortalIndividualDashboardSteps {
 
     AdminPortalIndividualDashboardPage adminPortalIndividualDashboardPage = new AdminPortalIndividualDashboardPage(WebDriverManager.getDriver());
-    ManagePlanDBValidation managePlanDBValidation = new ManagePlanDBValidation(WebDriverManager.getDriver());
 
     @Then("I verify Reports container title")
     public void iVerifyContainerTitle() {
@@ -300,9 +298,6 @@ public class AdminPortalIndividualDashboardSteps {
     public void iSelectMedicalPlanYear(String planYear) {
         adminPortalIndividualDashboardPage.selectMedicalPlanYear(planYear);
     }
-
-    @And("I verify Plan container for year {string} against the DB on the Individual dashboard")
-    public void iVerifyPlanContainer(String planYear) {adminPortalIndividualDashboardPage.verifyPlanContainer(planYear);}
 
     @And("I verify Plan container with no active plan on the Individual dashboard")
     public void iVerifyPlanContainerNoActive() {adminPortalIndividualDashboardPage.verifyPlanContainerNoActive();}

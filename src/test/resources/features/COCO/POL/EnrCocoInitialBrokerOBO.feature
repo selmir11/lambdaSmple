@@ -150,4 +150,18 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
    And I download the medical and dental files from sftp server with location "/outboundedi/"
    And I validate the coco ob834 medical file data
 
+   And I upload all the "medical" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+   # Ib999 DB Validation
+   And I validate "medical" entities from ib999_details db table
+   And I download the "medical" ib999 files from sftp server with location "/archive/INBOUND999/"
+   And I validate the ib999 "medical" file data
+
+       #Ib834
+   And I validate coco ib834 file for groups
+    | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
+    | 021                   | 021                | 28                    | CONFIRM           |
+   And I download the "medical" ib834 file from sftp server location "/archive/inboundedi/"
+   And I validate coco Ib834 file data
+
+
 
