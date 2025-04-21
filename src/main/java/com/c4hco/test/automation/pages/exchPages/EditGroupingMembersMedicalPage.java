@@ -131,8 +131,9 @@ public class EditGroupingMembersMedicalPage {
     }
 
     public void iClickSaveButton() {
+        basicActions.waitForElementToDisappear( spinner,50 );
+        basicActions.waitForElementToBePresentWithRetries(saveButtonOnEditGroupingPage, 60);
         softAssert.assertTrue(saveButtonOnEditGroupingPage.isEnabled());
-        basicActions.waitForElementToBePresent(saveButtonOnEditGroupingPage, 20);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].scrollIntoView(true);", saveButtonOnEditGroupingPage);
         saveButtonOnEditGroupingPage.click();
     }
@@ -278,6 +279,7 @@ public class EditGroupingMembersMedicalPage {
             closeIcon.click();
         }
     }
+
 
 }
 

@@ -261,6 +261,7 @@ public class EligNotices {
             case "ANAI" -> ANAIGain(docType, language, memberNumber, basicActions);
             case "QHP" -> QHP(docType, language, memberNumber, basicActions);
             case "Eligibile: APTC" -> premiumTaxCredits(docType, language, memberNumber, basicActions);
+            case "No Cost Sharing Reduction" -> noCostSharingReduction(docType, language, memberNumber, basicActions);
             default -> throw new IllegalArgumentException("Invalid option: " + docType);
         };
     }
@@ -2064,4 +2065,88 @@ public class EligNotices {
             default -> throw new IllegalArgumentException("Unexpected value: " + memberNumber);
         };
     }
+
+    public static String noCostSharingReduction(String docType, String language, String memberNumber, BasicActions basicActions) {
+
+        String lceCloseDate = getLceCloseDate(language, docType, basicActions);
+        String englishTemplate = ", starting as early as "+getFirstOfNextMonth(language, basicActions)+" you are approved for:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String englishTemplate2 = "Enroll in a plan by "+lceCloseDate+".\n";
+        String englishTemplate3 = ", you do not qualify for the following:"+SharedData.getPrimaryMember().getFullName()+"\n";
+
+        String spanishTemplate = ", a partir del "+getFirstOfNextMonth(language, basicActions)+" usted est\u00E1 aprobado para:"+SharedData.getPrimaryMember().getFullName()+"\n";
+        String spanishTemplate2 = "Inscr\u00EDbase en un plan antes del "+getLceCloseDate(language, docType, basicActions)+".\n";
+        String spanishTemplate3 = ", no califica para lo siguiente:"+SharedData.getPrimaryMember().getFullName()+"\n";
+
+        String qualifierAmt = "$0";
+
+        List<MemberDetails> memberList = SharedData.getMembers();
+        String member0Name = (memberList != null && !memberList.isEmpty()) ? SharedData.getMembers().get(0).getFullName() : "";
+
+        return switch (memberNumber) {
+            case "1" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate +
+                                "Premium\n" +
+                                "Tax Credits\n" +
+                                "for "+basicActions.getCurrYear()+"\n" +
+                                "While you qualify for Premium Tax Credits, the amount you qualify for is \n"+
+                                qualifierAmt+" because of your income and the health insurance plans available in\n" +
+                                "your area\n" +
+                                englishTemplate +
+                                "Health\n" +
+                                "insurance\n" +
+                                "plan for "+basicActions.getCurrYear()+"\n" +
+                                "You can enroll in a health insurance plan for 2025 if you qualify for a Special Enrollment \n" +
+                                "Period or if it\u2019s Open Enrollment.\n" +
+                                englishTemplate2+
+                                englishTemplate3 +
+                                "Cost-Sharing\n" +
+                                "Reduction for\n" +
+                                basicActions.getCurrYear()+"\n"+
+                                "You do not qualify for Cost-Sharing Reduction because:\n" +
+                                "Your household's income is too high\n"
+                );
+
+                case "Spanish" -> String.format(
+                        spanishTemplate +
+                                "Cr\u00E9ditos\n" +
+                                "fiscales para\n" +
+                                "el pago de la\n" +
+                                "cuota para\n" +
+                                basicActions.getCurrYear()+"\n" +
+                                "Aunque califica para cr\u00E9dito fiscal para el pago de la cuota, la cantidad\n" +
+                                "que le han autorizado es de "+qualifierAmt+" luego de considerar sus ingresos y los\n" +
+                                "planes de seguro de salud disponibles en su zona\n" +
+                                spanishTemplate+
+                                "Plan de\n" +
+                                "seguro de\n" +
+                                "salud para\n" +
+                                basicActions.getCurrYear()+"\n" +
+                                "Puede inscribirse en un plan de seguro de salud para 2025 si califica para un per\u00EDodo\n" +
+                                "de inscripci\u00F3n especial o si est\u00E1 activa la inscripci\u00F3n abierta.\n" +
+                                spanishTemplate2 +
+                                spanishTemplate3 +
+                                "Reducci\u00F3n\n" +
+                                "de los costos\n" +
+                                "compartidos\n" +
+                                "para "+ basicActions.getCurrYear()+"\n" +
+                                "Reducci\u00F3n de los costos compartidos no califica para lo siguiente:\n" +
+                                "Sus ingresos familiares son demasiado altos\n"
+                );
+
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            case "2" -> switch (language) {
+                case "English" -> String.format(
+                        englishTemplate + englishTemplate2 + englishTemplate3
+                );
+                case "Spanish" -> String.format(
+                        spanishTemplate + spanishTemplate2 + spanishTemplate3
+                );
+                default -> throw new IllegalArgumentException("Invalid language option: " + language);
+            };
+            default -> throw new IllegalArgumentException("Invalid member number: " + memberNumber);
+        };
+    }
+
     }
