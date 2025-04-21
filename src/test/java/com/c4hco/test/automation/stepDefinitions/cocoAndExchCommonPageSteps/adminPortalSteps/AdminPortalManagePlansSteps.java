@@ -463,7 +463,7 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.verifyFontColorEtcOfMedicalPlanContainer();
     }
 
-    @Then("I verify previous_Financial_Periods - Medical text labels")
+    @Then("I verify previous_Financial_Periods - Medical_Or_Dental text labels")
     public void iVerifyPrevious_Financial_PeriodsMedicalTextLabels(List<String> pageTexts) {
         adminPortalManagePlansPage.verifyPrevious_Financial_PeriodsMedicalTexts(pageTexts);
     }
@@ -514,5 +514,30 @@ public class AdminPortalManagePlansSteps {
     @Then("I verify member two shows twice in CoverageDetails and FinancialDetails tables")
     public void iVerifyMemberTwoShowsTwiceInCoverageDetailsAndFinancialDetailsTables() {
         adminPortalManagePlansPage.VerifyMemberTwoShowsTwiceInCoverageAndFinancialDetailsTables();
+    }
+	
+	@And("I Validate the correct enrolled plans are displayed on Manage Plans page")
+    public void iverifyPlanDetails(List<String> data) {
+        adminPortalManagePlansPage.verifyPlanDetails(data);
+    }
+
+    @Then("I verify Previous_Financial_Periods_Dental text color size etc")
+    public void iVerifyPrevious_Financial_Periods_DentalTextColorSizeEtc() {
+        adminPortalManagePlansPage.verifyPreviousFinancialPeriodsDentalColorSizeEtc();
+    }
+
+    @Then("I verify color border of Previous_Financial_Periods_Dental container and all columns inside container")
+    public void iVerifyColorBorderOfPrevious_Financial_Periods_DentalContainerAndAllColumnsInsideContainer() {
+        adminPortalManagePlansPage.verifyColorBorderOfPreviousFinancialPeriodsDentalContainerAndAllColumnsInsideContainer();
+    }
+
+    @Then("I validate green back ground and white text of {string} button only when checked")
+    public void iValidateGreenBackGroundAndWhiteTextOfButtonWhenChecked(String btnType) {
+        adminPortalManagePlansPage.validateGreenBackGroundAndWhiteTextOfMedical_or_dentalButtonWhenChecked(btnType);
+    }
+
+    @Then("I validate white back ground and black text of {string} button only when unchecked")
+    public void iValidateWhiteBackGroundAndBlackTextOfButtonOnlyWhenUnchecked(String btnType) {
+        adminPortalManagePlansPage.validateWhiteBackGroundAndBlackTextOfButtonOnlyWhenUnchecked(btnType);
     }
 }
