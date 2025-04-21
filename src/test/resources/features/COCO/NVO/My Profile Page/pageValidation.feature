@@ -14,12 +14,14 @@ Feature: My Profile Page Coco
     Then I validate I am on the "CoCo Welcome" page
     And I click on "My Profile" link on welcome page
     Then I validate I am on the "My Profile" page
-    And I wait for 3000 milliseconds
+    And I wait for 2000 milliseconds
     And I validate Email save changes on My Profile page CoCo
-    And I wait for 5000 milliseconds
+    And I wait for 2000 milliseconds
     Then I validate I am on the "My Profile" page
+    And I wait for 2000 milliseconds
     And I validate phone number save changes on My Profile page CoCo
     Then I validate I am on the "My Profile" page
+    And I wait for 3000 milliseconds
     And I validate Preferred Language save changes on My Profile page CoCo
     Then I validate I am on the "My Profile" page
     Then I click on Go back to Welcome page Button on My Profile CoCo

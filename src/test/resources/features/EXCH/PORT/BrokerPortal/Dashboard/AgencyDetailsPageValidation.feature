@@ -41,6 +41,7 @@ Feature: Verify the Agency Details page of Broker Portal
     Then I validate the email field maximum character limit
     Then I validate the phone number field formatting
     And I validate letters are not allowed in the phone field
+    And I validate the Save and Finish Later button is not displayed
 
     Then I click Go Back on the Agency Details page
     Then I validate the Communication Preferences page title

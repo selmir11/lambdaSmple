@@ -370,8 +370,7 @@ public class EmploymentSummaryPage {
     }
 
     public void verifyHeadersEmploymentSummaryPageEnglish(){
-        basicActions.waitForElementToBePresent(hdr_Income,15);
-        basicActions.wait(250);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Income,60);
         softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Income: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertEquals(hdr_Employment.getText(),"Employment");
         softAssert.assertAll();
@@ -431,7 +430,8 @@ public class EmploymentSummaryPage {
     }
 
     public void validateEnglishTextEmploymentSummaryPage() {
-        basicActions.waitForElementToBePresent(hdr_Income, 30);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Income, 30);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Employment, 30);
 
         softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Income: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertTrue(hdr_Employment.getText().contains("Employment"), "Header text mismatch!");

@@ -388,11 +388,11 @@ Feature: Manage Plans:Editing Validation Errors(Medical and Dental)
     And I click Reset Changes Medical
     And I click Make Changes Medical button
     Then I update the APTC value for
-      | 2:78090 |
+      | 2:79876 |
     And I click Save Button Medical
     Then I should see the Invalid monetary amount for APTC error for
       | member | aptc   |
-      | 2      | 780.90  |
+      | 2      | 798.76  |
     And I validate APTC entered exceeds EHB amount error is displaying for "medical"
     And I click Reset Changes Medical
     And I click Make Changes Medical button

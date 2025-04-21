@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.util.List;
 import java.util.Optional;
 
 public class DentalPlanComparePage {
@@ -25,11 +26,18 @@ public class DentalPlanComparePage {
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
     WebElement spinner;
 
+    @FindBy(xpath = "//*[@class ='c4-type-header-lg header-container']")
+    WebElement comparePlansTitle;
+
     @FindBy(id = "ComparePlans-TopGoBackToPlans")
     WebElement goBackDentalCompareLink;
 
     @FindBy(id = "ComparePlans-GoBackToPlans")
     WebElement goBackDentalCompareBtn;
+
+    @FindBy(xpath = "//*[contains (@id,'PlanCompare-PlanDetails')]")
+    List<WebElement> click1stDentalPlanDetailLink;
+
 
     @FindBy(xpath = "//*[normalize-space()='In-Network']")
     WebElement inNetworkDentalLink;
@@ -305,5 +313,40 @@ public class DentalPlanComparePage {
 
     }
 
+    public void clickFirstDentalPlanDetailLink() {
+        basicActions.scrollToElement( comparePlansTitle );
+        click1stDentalPlanDetailLink.get(0).click();
+
+    }
+
+    public void clickSecondDentalPlanDetailLink() {
+        basicActions.scrollToElement( comparePlansTitle );
+        click1stDentalPlanDetailLink.get(1).click();
+
+    }
+    public void clickThirdDentalPlanDetailLink() {
+        basicActions.scrollToElement( comparePlansTitle );
+        click1stDentalPlanDetailLink.get(2).click();
+
+    }
+
+    public void clickDentalPlanDetaiLink(String planDetailNumber) {
+        basicActions.waitForElementToDisappear( spinner, 20 );
+        switch (planDetailNumber) {
+            case "1":
+                clickFirstDentalPlanDetailLink();
+                break;
+            case "2":
+                clickSecondDentalPlanDetailLink();
+                break;
+            case "3":
+                clickThirdDentalPlanDetailLink();
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + planDetailNumber );
+
+        }
+
+    }
 
 }
