@@ -104,7 +104,7 @@ Feature: Regression Tests that require Seed 1 w/exception
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-1993-WIP-R4V
+  @SLER-1993 @pol_exch_passed
   Scenario: RT-2327 ENR-EXCH: EDIT POLICY - COVERAGE & FINANCIAL END DATES  (CANCEL)
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
