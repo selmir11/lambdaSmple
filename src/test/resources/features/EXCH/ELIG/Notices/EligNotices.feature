@@ -614,5 +614,5 @@ Feature: Elig101-01 - Elig Notices
       Then I validate I am on the "My Documents" page
       Then I validate the notice "Application Results" exist in my document letter Containers
       Then I click on download "Application Results" document
-      Then I validate "ELG-101-01 MVR English 1" notice content
+      Then I validate "ELIG-001-01 MVR English 1" notice content
       And I click on Sign Out in the Header for "Elmo"
