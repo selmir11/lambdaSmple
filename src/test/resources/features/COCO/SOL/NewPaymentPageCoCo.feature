@@ -62,7 +62,7 @@ Feature: New payment portal - payment page related tests
     Then I click all done from payment portal page coco
 
   @SLCR-925 @ClickSignOutCoCo
-  Scenario: SLCR-925 Click sign out works from the Payment CoCo page
+  Scenario: SLCR-925 Click sign out from the Payment CoCo page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
