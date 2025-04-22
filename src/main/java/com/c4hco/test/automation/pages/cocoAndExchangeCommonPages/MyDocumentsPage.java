@@ -532,7 +532,8 @@ public class MyDocumentsPage {
                     "ELIG-001-01 MA QHP English Mail", "ELIG-001-01 QHP English Mail", "ELIG-001-01 Gain of Tribal Status English 1 Mail",
                     "ELIG-001-01 Gain of Tribal Status English 2 Mail", "ELIG-001-01 Spanish Mail", "ELIG-001-01 NO CO RES Spanish Mail",
                     "ELIG-001-01 MA QHP Spanish Mail", "ELIG-001-01 QHP Spanish Mail", "ELIG-001-01 Gain of Tribal Status Spanish 1 Mail",
-                    "ELIG-001-01 Gain of Tribal Status Spanish 2 Mail", "AM-011-02 English", "AM-011-02 Spanish Mail","ELIG-001-01 MVR English 1", "ELIG-001-01 AIAN MVR Valid SEP English 1":
+                    "ELIG-001-01 Gain of Tribal Status Spanish 2 Mail", "AM-011-02 English", "AM-011-02 Spanish Mail","ELIG-001-01 MVR English 1",
+                    "ELIG-001-01 AIAN MVR Valid SEP English 1", "ELIG-001-01 AIAN MVR Valid SEP Spanish 1":
                     pdf.validateEntirePDF(docType);
             break;
             default: Assert.fail("Illegal argument Exception: Notice Name Incorrect");
