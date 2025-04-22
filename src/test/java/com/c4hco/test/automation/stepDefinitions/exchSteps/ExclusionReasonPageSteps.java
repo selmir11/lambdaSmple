@@ -25,4 +25,9 @@ public class ExclusionReasonPageSteps {
     public void iValidateSortingIsWorkingAsExpectedForAllColumns() {
         exclusionReasonPage.verifySort();
     }
+
+    @Then("I select {string} to search exclusion report")
+    public void iSelectToSearchExclusionReport(String year) {
+        exclusionReasonPage.selectYearToAnyENV(year);
+    }
 }
