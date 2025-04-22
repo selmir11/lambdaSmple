@@ -2621,17 +2621,13 @@ public class AdminPortalManagePlansPage {
                 : "//div[@class='dental-plan-container plan-container-fill']//div[@class='drop-down-secondary-options']//span";
 
         while (retry < 3) {
-            try {
-                basicActions.waitForElementToBePresentWithRetries(dropdownElement, 60);
-                dropdownElement.click();
-                basicActions.wait(200);
+            basicActions.waitForElementToBePresentWithRetries(dropdownElement, 60);
+            dropdownElement.click();
+            basicActions.wait(200);
 
-                List<WebElement> options = basicActions.getDriver().findElements(By.xpath(xpath));
-                if (!options.isEmpty()) return;
+            List<WebElement> options = basicActions.getDriver().findElements(By.xpath(xpath));
 
-            } catch (Exception e) {
-                System.out.println("Retry " + retry + ": Failed to reopen " + planType + " dropdown.");
-            }
+            System.out.println("Retry " + retry + ": Reopened " + planType + " dropdown with " + options.size() + " option(s).");
             retry++;
         }
 
