@@ -751,6 +751,12 @@ public class DbQueries_Exch {
                 "  and esh.account_id = '" + acctId + "'";
     }
 
+    public String fplEsTaxReturn(){
+        return "select calculated_fpl \n" +
+                "from " + dbName + ".es_tax_return_aptc \n" +
+                "where created_by = '" + SharedData.getPrimaryMember().getEmailId() +"'";
+    }
+
     public String compareExchPersonIds() {
         return "Select esm.exch_person_id\n" +
                 "From " + dbName + ".ES_MEMBER esm\n" +

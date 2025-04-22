@@ -118,6 +118,7 @@ public class HeaderAndFooterPage {
     @FindBy(css = ".toolbar-content .sign-out")
     WebElement signOutLink;
 
+
     @FindBy(xpath = "//strong[normalize-space()='Sign Out']")
     WebElement signOutOverview;
 
