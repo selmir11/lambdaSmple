@@ -922,8 +922,8 @@ public class AdminPortalManagePlansPage {
         }
     }
 
-    public void updateTheCoverageEndDateNew(List<String> memberCoverageEndDtList) {
-        List<Map<String, String>> memberUpdates = memberCoverageEndDtList.stream()
+    public void updateTheCoverageEndDateNew(String planType,List<String> memberCoverageEndDtList) {
+        List<Map<String, String>> memberCoverageDateUpdateList = memberCoverageEndDtList.stream()
                 .map(entry -> entry.split(":"))
                 .map(parts -> {
                     Map<String, String> map = new HashMap<>();
@@ -937,13 +937,32 @@ public class AdminPortalManagePlansPage {
             String memberFullName = nameElement.getText().trim();
             String nameElementID = nameElement.getAttribute("id");
             String index = nameElementID.replace("firstName_", "");
-            String matchingname = memberUpdates.stream().map(m -> m.get("key")).filter(memberFullName::startsWith).findFirst().orElse(null);
-            Assert.assertNotNull(matchingname, "Member Name not found: " + memberFullName);
-            String inputDate = memberUpdates.stream().map(m -> m.get("value")).findFirst().orElse("");
+            Map<String,String> matchedMemberDetails = memberCoverageDateUpdateList.stream().filter(m -> memberFullName.startsWith(m.get("key"))).findFirst().orElse(null);
+            Assert.assertNotNull(matchedMemberDetails, "Member Name not found: " + memberFullName);
+            String inputDate = matchedMemberDetails.get("value");
             String updatedDate = basicActions.changeDateFormat(basicActions.getDateBasedOnRequirement(inputDate), "yyyy-MM-dd", "MM/dd/yyyy");
             String coverageEndDateElement = "//div[@id='coverageEndDate_" + index + "']//input[1]";
             basicActions.waitForElementToBeClickableWithRetries(coverageEndDate, 30);
             basicActions.updateElementWithRetries(coverageEndDateElement, updatedDate);
+            WebElement coverageStartDateElement =  basicActions.getDriver().findElement(By.xpath("//div[@id='coverageStartDate_" + index + "']//input[1]"));
+            String coverageStartDate = basicActions.changeDateFormat(coverageStartDateElement.getAttribute("value"),"yyyy-MM-dd", "MM/dd/yyyy");
+            String name = matchedMemberDetails.get("key");
+            // Set disenrollment reason if start and end dates are same
+            if(updatedDate.equals(coverageStartDate)){
+                setDisenrollmentReason(planType,name);
+            }
+        }
+    }
+
+    public void setDisenrollmentReason(String planType, String name){
+        List<MemberDetails> members = basicActions.getAllMem();
+        switch (planType){
+            case("Medical"):
+                members.stream().filter(member -> member.getFirstName().contains(name)).findFirst().ifPresent(member -> member.setPolicyDisenrollmentReasonMed("NO_REASON"));
+                break;
+            case("Dental"):
+                members.stream().filter(member -> member.getFirstName().contains(name)).findFirst().ifPresent(member -> member.setPolicyDisenrollmentReasonDen("NO_REASON"));
+                break;
         }
     }
 
