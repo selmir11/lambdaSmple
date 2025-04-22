@@ -482,7 +482,7 @@ public class AdminPortalManagePlansSteps {
     public void iValidatePreviousFinancialYearStylePropertiesOnManagePlan() {
         adminPortalManagePlansPage.validatePreviousFinancialStyleProperties();
     }
-	
+
     @And("I verify label on Previous Financial Period Medical Plan container")
     public void iVerifyLabelForPreviousPeriodMedical(List<String > labelName) {
         adminPortalManagePlansPage.verifyPreviousFinanicalLabel(labelName);
@@ -515,8 +515,8 @@ public class AdminPortalManagePlansSteps {
     public void iVerifyMemberTwoShowsTwiceInCoverageDetailsAndFinancialDetailsTables() {
         adminPortalManagePlansPage.VerifyMemberTwoShowsTwiceInCoverageAndFinancialDetailsTables();
     }
-	
-	@And("I Validate the correct enrolled plans are displayed on Manage Plans page")
+
+    @And("I Validate the correct enrolled plans are displayed on Manage Plans page")
     public void iverifyPlanDetails(List<String> data) {
         adminPortalManagePlansPage.verifyPlanDetails(data);
     }
@@ -539,5 +539,10 @@ public class AdminPortalManagePlansSteps {
     @Then("I validate white back ground and black text of {string} button only when unchecked")
     public void iValidateWhiteBackGroundAndBlackTextOfButtonOnlyWhenUnchecked(String btnType) {
         adminPortalManagePlansPage.validateWhiteBackGroundAndBlackTextOfButtonOnlyWhenUnchecked(btnType);
+    }
+
+    @Then("I select Plans {string} Termed policy with {string} coverage end date on manage plan page")
+    public void iSelectPlansTermedPolicyWith(String planType, String expectedValues) {
+        adminPortalManagePlansPage.selectTermedPolicyBasedOnEndDate(planType, expectedValues);
     }
 }
