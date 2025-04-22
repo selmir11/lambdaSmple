@@ -1,4 +1,4 @@
-@AssistNet @port
+@APAccountActivityExch @port
 Feature: Create a new Program Manager account and verify the account activity in Admin Portal
 
   @SLER-2046
@@ -48,6 +48,7 @@ Feature: Create a new Program Manager account and verify the account activity in
 
     Then I click Complete Profile on assistnet dashboard page
     Then I click save and continue on my information assistnet Page
+    And I wait for 1000 milliseconds
     And I click go back to my dashboard button from assistNet Dashboared Page
 
     And I wait for 1000 milliseconds
