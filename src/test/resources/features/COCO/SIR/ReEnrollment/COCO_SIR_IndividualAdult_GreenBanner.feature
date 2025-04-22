@@ -199,6 +199,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Additional Income CoCO page
 
     Then I validate I am on the "CoCo Deductions" page
+    And I wait for 2000 milliseconds
     And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
@@ -236,6 +237,7 @@ Feature: Individual adult - End to End Test
     Then I click continue on grouping Members Medical coco page
 
     Then I validate I am on the "Medical Plan Results" page
+    And I wait for 2000 milliseconds
     And I select the COCO Metal Tier dropdown
     And I select "Silver" to filter for a  COCO Metal Tier plan
     And I validate the COCO plan option 1 has text "KP Colorado Option Silver X"
@@ -285,14 +287,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical coco page
 
-    #primary
-    Then I validate I am on the "Medical Plan Results" page
-    And I validate the current plan green banner "English" on the COCO Medical Plan Results page
-    And  I change the language from header to "Spanish"
-    Then I validate the current plan green banner "Spanish" on the COCO Medical Plan Results page
-    And  I change the language from header to "English"
-    And I click Continue on the Medical Plans Page CoCo
-    #spouse
+    #primary and spouse
     Then I validate I am on the "Medical Plan Results" page
     And I validate the current plan green banner "English" on the COCO Medical Plan Results page
     And  I change the language from header to "Spanish"
@@ -305,7 +300,7 @@ Feature: Individual adult - End to End Test
 
 
 
-  @SLCR-WIP3 @greenbannerThreePerson
+  @SLCR-255 @greenbannerThreePerson
   Scenario: SLCR-255 - This will create Family of 3 members as minors with multiple groups
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -445,7 +440,7 @@ Feature: Individual adult - End to End Test
     And I select "KP Colorado Option Silver X" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
-    Then I validate I am on the "planSummaryMedicalDental" page
+    Then I validate I am on the "Plan Summary" page
     And I click continue on coco plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
@@ -458,6 +453,65 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo Welcome" page
     And I click on Sign Out in the Header for "Elmo"
 
+    # end of intial enrollment
+
+    Then I validate I am on the "CoCo Welcome" page
+    And I wait for 2000 milliseconds
+    And I click make Changes button on welcome page
+
+    Then I validate I am on the "Find Expert Help" page
+    And I click Continue on my own button from Manage who helps you page
+
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
+
+    Then I validate I am on the "CoCo life change event" page
+    And I select "MoveToCO" life change event with event date of "Today"
+    And I select continue on the LCE page
+
+    Then I validate I am on the "CoCo Declarations and Signature" page
+    And I enter a valid signature
+    And I click Continue on the Declarations And Signature Page CoCo
+
+    Then I validate I am on the "Application Results CoCo" page
+    And I click Continue on the Application Results Page CoCo
+
+    Then I validate I am on the "Start Shopping" page
+    # no tobacco text for minor
+    #Then I click "No" to the Tobacco usage question on start shopping page for "Primary,MinorTwo,MinorThree" coco
+    Then I click continue on start shopping page
+
+    Then I validate I am on the "Grouping Members Medical" page
+    Then I click continue on coco start shopping page
+
+    Then I validate I am on the "Grouping Members Medical" page
+    Then I click continue on grouping Members Medical coco page
+
+    #primary and spouse
+    Then I validate I am on the "Medical Plan Results" page
+    And I validate the current plan green banner "English" on the COCO Medical Plan Results page
+    And  I change the language from header to "Spanish"
+    Then I validate the current plan green banner "Spanish" on the COCO Medical Plan Results page
+    And  I change the language from header to "English"
+    And I click Continue on the Medical Plans Page CoCo
+
+    Then I validate I am on the "Medical Plan Results" page
+    And I validate the current plan green banner "English" on the COCO Medical Plan Results page
+    And  I change the language from header to "Spanish"
+    Then I validate the current plan green banner "Spanish" on the COCO Medical Plan Results page
+    And  I change the language from header to "English"
+    And I click Continue on the Medical Plans Page CoCo
+
+    Then I validate I am on the "Medical Plan Results" page
+    And I validate the current plan green banner "English" on the COCO Medical Plan Results page
+    And  I change the language from header to "Spanish"
+    Then I validate the current plan green banner "Spanish" on the COCO Medical Plan Results page
+    And  I change the language from header to "English"
+    And I click Continue on the Medical Plans Page CoCo
+
+
+    Then I validate I am on the "Plan Summary" page
+    And I click on Sign Out in the Header for "Portal"
 
   @SLCR-265 @EndToEndTest
   Scenario: SLCR-265 - This will create Family of 3 members as minor siblings with multiple groups $0 income
