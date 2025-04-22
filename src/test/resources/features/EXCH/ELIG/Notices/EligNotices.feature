@@ -618,7 +618,7 @@ Feature: Elig101-01 - Elig Notices
       And I click on Sign Out in the Header for "Elmo"
 
   @SLER-2438
-  Scenario: SLER-2438 Elig101-01- 1 member AI/AN MVR valid SEP
+  Scenario: SLER-2438 Elig101-01- 1 member AI/AN MVR valid SEP English
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -693,3 +693,4 @@ Feature: Elig101-01 - Elig Notices
     And I switch to the tab number 0
 
     And I click on Sign Out in the Header for "Elmo"
+    
