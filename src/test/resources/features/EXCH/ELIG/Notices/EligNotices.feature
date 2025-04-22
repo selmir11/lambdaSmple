@@ -617,15 +617,8 @@ Feature: Elig101-01 - Elig Notices
       Then I validate "ELIG-001-01 MVR English 1" notice content
       And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-2459
-  Scenario: SLER-2459 Elig101-01- 1 member AI/AN MVR valid SEP Spanish
-    And I click on the Username in the "Exch NonElmo" Header
-    And I validate I am on the "My Profile" page
-    And I click on Make Changes Button
-    And I change Preferred Language Contact Method to "Spanish"
-    And I click on Save Button
-    And I click on Apply for Coverage in the "Elmo" Header
-
+  @SLER-2438
+  Scenario: SLER-2438 Elig101-01- 1 member AI/AN MVR valid SEP English
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
     And I click on save and continue button
@@ -689,14 +682,15 @@ Feature: Elig101-01 - Elig Notices
     Then I validate I am on the "My Documents" page
     Then I validate the notice "Application Results" exist in my document letter Containers
     Then I click on download "Application Results" document
-    Then I validate "ELIG-001-01 AIAN MVR Valid SEP Spanish 1" notice content
+    Then I validate "ELIG-001-01 AIAN MVR Valid SEP English 1" notice content
 
-#    Then I open outlook Tab
-#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-#    Then I open the notice "resultados de su solicitu" in "Spanish"
-#    And I verify the notice Text for "ELG-101-01" in "Spanish" for "Exch"
-#    Then I delete the open notice
-#    And I sign out of Outlook
-#    And I switch to the tab number 0
-#
-#    And I click on Sign Out in the Header for "Elmo"
+    Then I open outlook Tab
+    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+    Then I open the notice "Application Results" in "English"
+    And I verify the notice Text for "ELG-101-01" in "English" for "Exch"
+    Then I delete the open notice
+    And I sign out of Outlook
+    And I switch to the tab number 0
+
+    And I click on Sign Out in the Header for "Elmo"
+    

@@ -467,7 +467,7 @@ public class AdminPortalSearchPage {
     }
 
     public void enterAccountIdToAnyENV(String accountIdSTG, String accountIdQA) {
-        basicActions.wait(2000);
+        basicActions.wait(4000);
         basicActions.waitForElementListToBePresentWithRetries(searchInputList,60);
         if (SharedData.getEnv().equals("staging")) {
             searchInputList.get(0).sendKeys(accountIdSTG);
