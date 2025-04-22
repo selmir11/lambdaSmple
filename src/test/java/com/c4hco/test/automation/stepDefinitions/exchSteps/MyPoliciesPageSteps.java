@@ -26,7 +26,6 @@ public class MyPoliciesPageSteps {
     public void clickMedicalPlansCancelButton(String btnDetail){
         myPoliciesPage.clickPlanCancelButton(btnDetail);
     }
-
     @Then("I click on Future Plans")
     public void clickFuturePlans(){
         myPoliciesPage.clickFuturePlans();
