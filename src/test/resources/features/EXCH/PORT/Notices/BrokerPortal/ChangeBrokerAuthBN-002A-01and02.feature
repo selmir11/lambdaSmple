@@ -1,4 +1,4 @@
-@port @portNotice
+@port @portNoticeBrokerPortal
 Feature: Trigger the exchange individual notices for broker authorization/deauthorization by changing the broker - BN-002A-01 and BN-002A-02
 
   @SLER-1873
