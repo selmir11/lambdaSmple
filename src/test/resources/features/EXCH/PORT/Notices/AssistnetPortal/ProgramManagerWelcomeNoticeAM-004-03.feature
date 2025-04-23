@@ -1,4 +1,4 @@
-@port @portNotice @AssistNet
+@port @portNoticeAssistnetPortal
 Feature:  Create a new Program Manager account and verify the Welcome notice AM-004-03
 
   @SLER-2045
