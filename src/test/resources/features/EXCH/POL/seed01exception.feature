@@ -104,7 +104,7 @@ Feature: Regression Tests that require Seed 1 w/exception
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-1993-WIP-R4V
+  @SLER-1993   @pol_exch_passed
   Scenario: RT-2327 ENR-EXCH: EDIT POLICY - COVERAGE & FINANCIAL END DATES  (CANCEL)
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
@@ -119,14 +119,14 @@ Feature: Regression Tests that require Seed 1 w/exception
       | PolicyStartDate     | PolicyEndDate      | CoverageStartDate   | CoverageEndDate     | FinancialStartDate  | FinancialEndDate    |
       | First Of Next Month |First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month | First Of Next Month |
     Then I click Make Changes Medical button
-    And I update the Coverage End date of member on manage plan page
+    And I update the Coverage End date of member on manage plan page for "Medical"
       | Primary:First Of Next Month |
     And I update the Financial End date of member on manage plan page
       | Primary:First Of Next Month |
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I click Make Changes Dental button
-    And I update the Coverage End date of member on manage plan page
+    And I update the Coverage End date of member on manage plan page for "Dental"
       | Primary:First Of Next Month |
     And I update the Financial End date of member on manage plan page
       | Primary:First Of Next Month |

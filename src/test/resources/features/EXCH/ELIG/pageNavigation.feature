@@ -199,7 +199,7 @@ Feature: Verify Navigation to the ELIG Pages
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    And I enter employment details with "5500000" income at "Annually" frequency
+    And I enter employment details with "6000000" income at "Annually" frequency
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -440,7 +440,7 @@ Feature: Verify Navigation to the ELIG Pages
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    And I enter employment details with "5500000" income at "Annually" frequency
+    And I enter employment details with "6000000" income at "Annually" frequency
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -548,16 +548,16 @@ Feature: Verify Navigation to the ELIG Pages
       | You can also check this box if your household's annual Modified Adjusted Gross Income is at or below 150% of the federal poverty level: |
       | https://www.healthcare.gov/glossary/federal-poverty-level-fpl/ |
       | Please use the list below to see the income limits by household size: |
-      | 1 person: $21,870 |
-      | 2 people: $29,580 |
-      | 3 people: $37,290 |
-      | 4 people: $45,000 |
-      | 5 people: $52,710 |
-      | 6 people: $60,240 |
-      | 7 people: $68,130 |
-      | 8 people: $75,840 |
-      | 9 people: $83,550 |
-      | 10 people: $91,260 |
+      | 1 person: $22,590 |
+      | 2 people: $30,660 |
+      | 3 people: $38,730 |
+      | 4 people: $46,800 |
+      | 5 people: $54,870 |
+      | 6 people: $62,940 |
+      | 7 people: $71,010 |
+      | 8 people: $79,080 |
+      | 9 people: $87,150 |
+      | 10 people: $95,220 |
       | Need more help? |
       | Contact us |
     Then I click Help me understand this page link on Report a Life change Page

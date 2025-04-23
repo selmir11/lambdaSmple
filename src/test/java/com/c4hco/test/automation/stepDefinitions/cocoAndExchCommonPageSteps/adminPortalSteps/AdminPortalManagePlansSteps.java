@@ -106,9 +106,9 @@ public class AdminPortalManagePlansSteps {
     public void financialStartDateCOCO(List<String> memberFinancialStrtDtList) {
         adminPortalManagePlansPage.memberFinancialStrtDateNew(memberFinancialStrtDtList);
     }
-    @And("I update the Coverage End date of member on manage plan page")
-    public void coverageEndDateMP(List<String> memberCoverageEndDtList) {
-        adminPortalManagePlansPage.updateTheCoverageEndDateNew(memberCoverageEndDtList);
+    @And("I update the Coverage End date of member on manage plan page for {string}")
+    public void coverageEndDateMP(String planType,List<String> memberCoverageEndDtList) {
+        adminPortalManagePlansPage.updateTheCoverageEndDateNew(planType,memberCoverageEndDtList);
     }
     @And("I update the Financial End date of member on manage plan page")
     public void financialEndDateMP(List<String> memberFinancialEndDtList) {
@@ -463,7 +463,7 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.verifyFontColorEtcOfMedicalPlanContainer();
     }
 
-    @Then("I verify previous_Financial_Periods - Medical text labels")
+    @Then("I verify previous_Financial_Periods - Medical_Or_Dental text labels")
     public void iVerifyPrevious_Financial_PeriodsMedicalTextLabels(List<String> pageTexts) {
         adminPortalManagePlansPage.verifyPrevious_Financial_PeriodsMedicalTexts(pageTexts);
     }
@@ -519,6 +519,26 @@ public class AdminPortalManagePlansSteps {
 	@And("I Validate the correct enrolled plans are displayed on Manage Plans page")
     public void iverifyPlanDetails(List<String> data) {
         adminPortalManagePlansPage.verifyPlanDetails(data);
+    }
+
+    @Then("I verify Previous_Financial_Periods_Dental text color size etc")
+    public void iVerifyPrevious_Financial_Periods_DentalTextColorSizeEtc() {
+        adminPortalManagePlansPage.verifyPreviousFinancialPeriodsDentalColorSizeEtc();
+    }
+
+    @Then("I verify color border of Previous_Financial_Periods_Dental container and all columns inside container")
+    public void iVerifyColorBorderOfPrevious_Financial_Periods_DentalContainerAndAllColumnsInsideContainer() {
+        adminPortalManagePlansPage.verifyColorBorderOfPreviousFinancialPeriodsDentalContainerAndAllColumnsInsideContainer();
+    }
+
+    @Then("I validate green back ground and white text of {string} button only when checked")
+    public void iValidateGreenBackGroundAndWhiteTextOfButtonWhenChecked(String btnType) {
+        adminPortalManagePlansPage.validateGreenBackGroundAndWhiteTextOfMedical_or_dentalButtonWhenChecked(btnType);
+    }
+
+    @Then("I validate white back ground and black text of {string} button only when unchecked")
+    public void iValidateWhiteBackGroundAndBlackTextOfButtonOnlyWhenUnchecked(String btnType) {
+        adminPortalManagePlansPage.validateWhiteBackGroundAndBlackTextOfButtonOnlyWhenUnchecked(btnType);
     }
 
     @Then("I update manage plan editable fields")
