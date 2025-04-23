@@ -417,6 +417,15 @@ public class QlceConfirmationPage {
                 changeOfIncomeOrJobLCEMemCheckbox.click();
                 changeOfIncomeOrJobLCEMemEventDate.sendKeys(getCurrentDate());
                 break;
+            case "Gain Lawful Presence":
+                basicActions.waitForElementToBeClickable(LawfulPresenceLCE, 10);
+                LawfulPresenceLCE.click();
+                WebElement LawfulPresenceLCEMemCheckbox = basicActions.getDriver().findElement(By.xpath( "//div[@class='col-sm-4 lawfulPresenceMemberWrapper']//span[contains(text(),'"+selectMember+"')]/preceding::input[2]"));
+                WebElement LawfulPresenceLCEMemEventDate = basicActions.getDriver().findElement(By.xpath( "//div[@class='col-sm-4 lawfulPresenceMemberWrapper']//span[contains(text(),'"+selectMember+"')]/following::input[1]"));
+                LawfulPresenceLCEMemCheckbox.click();
+                LawfulPresenceLCEMemEventDate.sendKeys(getCurrentDate());
+                break;
+
             default:
                 throw new IllegalArgumentException("Invalid option: " + QLCEType);
         }
