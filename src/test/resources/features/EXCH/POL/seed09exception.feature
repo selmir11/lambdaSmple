@@ -160,7 +160,7 @@ Feature: Seed09exception - Exchange
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
       | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
 
-#    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue by applicationId with "POLICY_SUBMISSION" as event type
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
@@ -184,7 +184,7 @@ Feature: Seed09exception - Exchange
     And I validate "medical" entities from policy tables
     And I validate "dental" entities from policy tables
 
-#    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue by applicationId with "POLICY_SUBMISSION" as event type
 
     And I validate "medical" entities from pre edi db tables
