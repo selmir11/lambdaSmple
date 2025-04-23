@@ -99,34 +99,34 @@ public class DeductionsPage {
     @FindBy(css = "lib-help-icon a")
     List<WebElement> helpLnk;
 
-    @FindBy(css = ".help-label")
+    @FindBy(id = "Help.Button")
     WebElement helpSide;
 
-    @FindBy(css = ".drawer-controls > div > div > a > svg")
-    WebElement helpCloseSide;
+    @FindBy(css = ".header-close-link")
+    WebElement helpCloseLink;
 
-    @FindBy(xpath = "//span[contains(@class, 'c4-type-body')]")
+    @FindBy(css = ".title-row .c4-text-body-200")
     WebElement helpDrawerHeaderHelp;
 
-    @FindBy(css = ".drawer-heading .drawer-title")
+    @FindBy(css = ".title-row .title")
     WebElement helpDrawerHeaderDeductions;
 
-    @FindBy(css = "span.c4-text-body-200")
-    List<WebElement> helpDrawerNewHeaders;
+    @FindBy(css = ".c4-text-body-200")
+    List<WebElement> helpDrawerHeaders;
 
     @FindBy(css = "div.section-help-content-container > p")
     List<WebElement> helpDrawerNewParagraphs;
 
-    @FindBy(css = "div.drawer-text-content > p")
+    @FindBy(css = "div.help-main-content > p")
     WebElement helpDrawerNewIconsParagraphs;
 
     @FindBy(css = "lib-help-window-link > a")
     List<WebElement> helpDrawerBodyNewLinks;
 
-    @FindBy(css = ".drawer-footer h3")
-    WebElement helpDrawerFooter;
+    @FindBy(css = ".help-footer .c4-type-links-md")
+    List<WebElement> helpDrawerFooter;
 
-    @FindBy(css = ".drawer-footer h3 a")
+    @FindBy(css = ".help-footer .clickable")
     WebElement helpDrawerContactUsLink;
 
     @FindBy(css=".fas.fa-spinner.fa-spin")
@@ -269,8 +269,8 @@ public class DeductionsPage {
             case "side help":
                 helpSide.click();
                 break;
-            case "close side help":
-                helpCloseSide.click();
+            case "close help":
+                helpCloseLink.click();
                 break;
             case "Alimony paid out":
                 helpLnk.get(1).click();
@@ -678,25 +678,25 @@ public class DeductionsPage {
     }
 
     public void validateGeneralHelpBodyVerbiageEng() {
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
-        softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
+        basicActions.waitForElementToBePresent(helpDrawerFooter.get(0),20);
+        softAssert.assertEquals(helpDrawerHeaders.get(0).getText(), "Help");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "Deductions");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(0).getText(), "Overview");
+        softAssert.assertEquals(helpDrawerHeaders.get(1).getText(), "Overview");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(0).getText(), "If there are things that can be deducted on an income tax return, telling us about them could make the cost of health insurance a little lower.");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(1).getText(), "Deductions");
+        softAssert.assertEquals(helpDrawerHeaders.get(2).getText(), "Deductions");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(1).getText(), "Tell us all deductions you will take when filing taxes and tell us the amount of each deduction.");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(2).getText(), "Alimony or spousal support paid out");
+        softAssert.assertEquals(helpDrawerHeaders.get(3).getText(), "Alimony or spousal support paid out");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(2).getText(), "Alimony is a payment to a spouse or former spouse under a divorce or separation agreement. For more information, see:\nhttps://www.irs.gov/taxtopics/tc452\nIf your divorce or separation was finalized on or before December 31, 2018, you should include alimony or spousal support you paid in your Deductions. If your divorce or separation was finalized on or after January 1, 2019, do not include alimony or spousal support you pay in your Deductions.");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(0).getText(), "https://www.irs.gov/taxtopics/tc452");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(3).getText(), "Domestic production activities");
+        softAssert.assertEquals(helpDrawerHeaders.get(4).getText(), "Domestic production activities");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(3).getText(), "The Domestic Production Activities Tax Deduction is intended to provide tax relief for businesses that produce goods in the United States rather than producing it overseas. For more information, see:\nhttps://www.irs.gov/pub/irs-pdf/i8903.pdf");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(1).getText(), "https://www.irs.gov/pub/irs-pdf/i8903.pdf");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(4).getText(), "Health Savings Account");
+        softAssert.assertEquals(helpDrawerHeaders.get(5).getText(), "Health Savings Account");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(4).getText(), "A type of savings account that lets you set aside money on a pre-tax basis to pay for qualified medical expenses. Enter contributions made to your health savings account, up to the yearly limit. For more information see IRS Form 8889.");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(5).getText(), "Pre-tax retirement account contribution");
+        softAssert.assertEquals(helpDrawerHeaders.get(6).getText(), "Pre-tax retirement account contribution");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(5).getText(), "A pre-tax contribution is a payment made to a retirement account with money that has not been taxed. For more information, see:\nhttps://www.irs.gov/retirement-plans/plan-participant-employee/retirement-savings-contributions-savers-credit");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(2).getText(), "https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-savings-contributions-savers-credit");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(6).getText(), "School tuition and fees");
+        softAssert.assertEquals(helpDrawerHeaders.get(7).getText(), "School tuition and fees");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(6).getText(), "Certain school tuition and fees are able to be deducted from your taxes. For more information, see:\nhttps://www.irs.gov/taxtopics/tc513\nSelf-Employed Individuals - https://www.irs.gov/pub/irs-pdf/f1040sc.pdf or https://www.irs.gov/pub/irs-pdf/f1040sf.pdf\nArmed Forces Reservists, Qualified Performing Artists, and State/Local Government Officials \u2013 https://www.irs.gov/pub/irs-pdf/f1040s1.pdf and https://www.irs.gov/pub/irs-pdf/f2106.pdf\nIndividuals with a Disability - https://www.irs.gov/pub/irs-pdf/f1040sa.pdf and https://www.irs.gov/pub/irs-pdf/f2106.pdf");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(3).getText(), "https://www.irs.gov/taxtopics/tc513");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(4).getText(), "https://www.irs.gov/pub/irs-pdf/f1040sc.pdf");
@@ -705,45 +705,46 @@ public class DeductionsPage {
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(7).getText(), "https://www.irs.gov/pub/irs-pdf/f2106.pdf");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(8).getText(), "https://www.irs.gov/pub/irs-pdf/f1040sa.pdf");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(9).getText(), "https://www.irs.gov/pub/irs-pdf/f2106.pdf");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(7).getText(), "Self-employment tax");
+        softAssert.assertEquals(helpDrawerHeaders.get(8).getText(), "Self-employment tax");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(7).getText(), "Self-employment income is income that arises from the performance of personal services, but which cannot be classified as wages because an employer-employee relationship does not exist between the payer and the payee. The Internal Revenue Code imposes the self-employment tax on the self-employment income of any U.S. citizen or resident alien who has such self-employment income. For more information, see:\nhttps://www.irs.gov/individuals/international-taxpayers/self-employment-tax");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(10).getText(), "https://www.irs.gov/individuals/international-taxpayers/self-employment-tax");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(8).getText(), "Student Loan Interest");
+        softAssert.assertEquals(helpDrawerHeaders.get(9).getText(), "Student Loan Interest");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(8).getText(), "Student loan interest is interest you paid during the year on a qualified student loan. For more information, see:\nhttps://www.irs.gov/taxtopics/tc456");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(11).getText(), "https://www.irs.gov/taxtopics/tc456");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(9).getText(), "Self-employment Health Insurance");
+        softAssert.assertEquals(helpDrawerHeaders.get(10).getText(), "Self-employment Health Insurance");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(9).getText(), "If you are self-employed, there is a tax deduction generally available for medical, dental or long-term care insurance premiums that self-employed people often pay for themselves, their spouse and their dependents. For more information, see:\nhttps://www.healthinsurance.org/obamacare/self-employed-health-insurance-deduction/");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(12).getText(), "https://www.healthinsurance.org/obamacare/self-employed-health-insurance-deduction/");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(10).getText(), "Self-Employment Retirement Plan");
+        softAssert.assertEquals(helpDrawerHeaders.get(11).getText(), "Self-Employment Retirement Plan");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(10).getText(), "There are numerous options for contributing to a retirement plan for the self-employed, and claiming a tax deduction for the contribution. For more information, see:\nhttps://www.irs.gov/retirement-plans/retirement-plans-for-self-employed-people");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(13).getText(), "https://www.irs.gov/retirement-plans/retirement-plans-for-self-employed-people");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(11).getText(), "Moving Expenses");
+        softAssert.assertEquals(helpDrawerHeaders.get(12).getText(), "Moving Expenses");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(11).getText(), "If you are a member of the U.S. Armed Forces on active duty and are moving due to a permanent change of duty station, you may deduct unreimbursed moving expenses. If you are not in the military, do not include moving expenses on your application. For more information, see:\nhttps://www.irs.gov/forms-pubs/about-form-3903");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(14).getText(), "https://www.irs.gov/forms-pubs/about-form-3903");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Contact us");
         softAssert.assertAll();
     }
 
     public void validateGeneralHelpBodyVerbiageSp() {
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
-        softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
+        basicActions.waitForElementToBePresent(helpDrawerFooter.get(0),20);
+        softAssert.assertEquals(helpDrawerHeaders.get(0).getText(), "Ayuda");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "Deducciones");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(0).getText(), "Resumen");
+        softAssert.assertEquals(helpDrawerHeaders.get(1).getText(), "Resumen");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(0).getText(), "Si hay ciertos gastos que puedan deducirse en una declaraci\u00F3n de impuestos, esta informaci\u00F3n nos servir\u00EDa para reducir un poco m\u00E1s el costo del seguro de salud.");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(1).getText(), "Deducciones");
+        softAssert.assertEquals(helpDrawerHeaders.get(2).getText(), "Deducciones");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(1).getText(), "D\u00EDganos todas las deducciones que har\u00E1 cuando presente su declaraci\u00F3n de impuestos de este a\u00F1o e indique la cantidad de cada deducci\u00F3n.");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(2).getText(), "Pensi\u00F3n alimenticia o apoyo conyugal que paga");
+        softAssert.assertEquals(helpDrawerHeaders.get(3).getText(), "Pensi\u00F3n alimenticia o apoyo conyugal que paga");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(2).getText(), "La pensi\u00F3n alimenticia es un pago a un c\u00F3nyuge o exc\u00F3nyuge por un acuerdo de divorcio o separaci\u00F3n. Para m\u00E1s informaci\u00F3n visite:\nhttps://www.irs.gov/es/taxtopics/tc452\nSi su divorcio o separaci\u00F3n finaliz\u00F3 en o antes del 31 de diciembre de 2018, debe incluir la pensi\u00F3n alimenticia o apoyo conyugal que pag\u00F3 en sus Deducciones. Si su divorcio o separaci\u00F3n finaliz\u00F3 en o despu\u00E9s del 1\u00BA de enero de 2019, no incluya la pensi\u00F3n alimenticia o apoyo conyugal que pag\u00F3 en sus Deducciones.");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(0).getText(), "https://www.irs.gov/es/taxtopics/tc452");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(3).getText(), "Actividades de producci\u00F3n para el mercado interno");
+        softAssert.assertEquals(helpDrawerHeaders.get(4).getText(), "Actividades de producci\u00F3n para el mercado interno");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(3).getText(), "La Deducci\u00F3n de impuestos por actividades dom\u00E9sticas de producci\u00F3n pretende brindarle un alivio fiscal a las empresas que producen mercanc\u00EDa en los Estados Unidos en lugar de producirlas en el extranjero. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/pub/irs-pdf/i8903.pdf");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(1).getText(), "https://www.irs.gov/pub/irs-pdf/i8903.pdf");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(4).getText(), "Cuenta de ahorros de salud");
+        softAssert.assertEquals(helpDrawerHeaders.get(5).getText(), "Cuenta de ahorros de salud");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(4).getText(), "Un tipo de cuenta de ahorros que le permite ahorrar dinero en una base antes de impuestos para pagar los gastos m\u00E9dicos calificados. Ingrese las contribuciones hechas a su cuenta de ahorros de salud, hasta el l\u00EDmite anual. Para m\u00E1s informaci\u00F3n, consulte el formulario 8889 del IRS.");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(5).getText(), "Aportes a la cuenta de retiro antes de impuestos");
+        softAssert.assertEquals(helpDrawerHeaders.get(6).getText(), "Aportes a la cuenta de retiro antes de impuestos");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(5).getText(), "Un aporte antes de impuestos es un pago realizado a una cuenta de retiro con dinero que no ha sido sujeto a impuestos. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/retirement-plans/plan-participant-employee/retirement-savings-contributions-savers-credit");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(2).getText(), "https://www.irs.gov/es/retirement-plans/plan-participant-employee/retirement-savings-contributions-savers-credit");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(6).getText(), "Colegiatura y cuotas escolares");
+        softAssert.assertEquals(helpDrawerHeaders.get(7).getText(), "Colegiatura y cuotas escolares");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(6).getText(), "Ciertas colegiaturas y cuotas de inscripci\u00F3n pueden ser deducidas de sus impuestos. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/taxtopics/tc513\nTrabajadores independientes: https://www.irs.gov/pub/irs-pdf/f1040scs.pdf o https://www.irs.gov/pub/irs-pdf/f1040sfs.pdf\nReservistas de las Fuerzas Armadas, artistas ejecutantes calificados y funcionarios del gobierno estatal y local: https://www.irs.gov/pub/irs-pdf/f1040s1s.pdf y https://www.irs.gov/pub/irs-pdf/f2106.pdf\nPersonas con alguna discapacidad: https://www.irs.gov/pub/irs-pdf/f1040sa.pdf y https://www.irs.gov/pub/irs-pdf/f2106.pdf");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(3).getText(), "https://www.irs.gov/es/taxtopics/tc513");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(4).getText(), "https://www.irs.gov/pub/irs-pdf/f1040scs.pdf");
@@ -752,107 +753,122 @@ public class DeductionsPage {
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(7).getText(), "https://www.irs.gov/pub/irs-pdf/f2106.pdf");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(8).getText(), "https://www.irs.gov/pub/irs-pdf/f1040sa.pdf");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(9).getText(), "https://www.irs.gov/pub/irs-pdf/f2106.pdf");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(7).getText(), "Impuesto al trabajo independiente");
+        softAssert.assertEquals(helpDrawerHeaders.get(8).getText(), "Impuesto al trabajo independiente");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(7).getText(), "El ingreso como trabajador independiente es ingreso que se genera por servicios personales otorgados, los cuales no pueden ser clasificados como sueldos, ya que no existe una relaci\u00F3n de empleador y el empleado entre el pagador y el beneficiario. El C\u00F3digo de impuestos internos impone el impuesto de trabajador independiente al ingreso de trabajo independiente sujeto a impuestos a todos los ciudadanos estadounidenses o extranjeros residentes que tienen dicho ingreso como trabajador independiente. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/individuals/international-taxpayers/self-employment-tax");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(10).getText(), "https://www.irs.gov/es/individuals/international-taxpayers/self-employment-tax");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(8).getText(), "Inter\u00E9s por pr\u00E9stamo de estudiante");
+        softAssert.assertEquals(helpDrawerHeaders.get(9).getText(), "Inter\u00E9s por pr\u00E9stamo de estudiante");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(8).getText(), "El inter\u00E9s del pr\u00E9stamo estudiantil que paga durante el a\u00F1o de un pr\u00E9stamo estudiantil calificado. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/taxtopics/tc456");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(11).getText(), "https://www.irs.gov/es/taxtopics/tc456");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(9).getText(), "Seguro de salud de trabajador independiente");
+        softAssert.assertEquals(helpDrawerHeaders.get(10).getText(), "Seguro de salud de trabajador independiente");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(9).getText(), "Si usted es trabajador independiente, hay una deducci\u00F3n generalmente disponible para las cuotas de seguro m\u00E9dico, dental o de atenci\u00F3n prolongada que las personas que trabajan de manera independiente pagan para s\u00ED mismos, para sus c\u00F3nyuges o para sus dependientes. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.healthinsurance.org/obamacare/self-employed-health-insurance-deduction/");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(12).getText(), "https://www.healthinsurance.org/obamacare/self-employed-health-insurance-deduction/");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(10).getText(), "Plan de retiro como trabajador independiente");
+        softAssert.assertEquals(helpDrawerHeaders.get(11).getText(), "Plan de retiro como trabajador independiente");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(10).getText(), "Existen m\u00FAltiples opciones de planes de retiro para los trabajadores independientes y para reclamar una deducci\u00F3n de impuestos por los aportes. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/retirement-plans/retirement-plans-for-self-employed-people");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(13).getText(), "https://www.irs.gov/es/retirement-plans/retirement-plans-for-self-employed-people");
-        softAssert.assertEquals(helpDrawerNewHeaders.get(11).getText(), "Gastos de mudanza");
+        softAssert.assertEquals(helpDrawerHeaders.get(12).getText(), "Gastos de mudanza");
         softAssert.assertEquals(helpDrawerNewParagraphs.get(11).getText(), "Si es un miembro del servicio activo de las Fuerzas Armadas de Estados Unidos y se muda debido a un cambio permanente en la estaci\u00F3n de servicio, puede deducir los gastos de mudanza no reembolsados. Si no est\u00E1 en el servicio militar, no incluya gastos de mudanza en su solicitud. Para m\u00E1s informaci\u00F3n visite:\nhttps://www.irs.gov/es/forms-pubs/about-form-3903");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(14).getText(), "https://www.irs.gov/es/forms-pubs/about-form-3903");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        basicActions.waitForElementListToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter.get(0));
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "\u00BFNecesitas m\u00E1s ayuda?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 
     public void validateAlimonyPaidOutHelpBodyVerbiageEng() {
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
+        basicActions.waitForElementToBePresent(helpDrawerFooter.get(0),20);
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "Alimony or spousal support paid out");
         softAssert.assertEquals(helpDrawerNewIconsParagraphs.getText(), "Alimony is a payment to a spouse or former spouse under a divorce or separation agreement. For more information, see:\nhttps://www.irs.gov/taxtopics/tc452\nIf your divorce or separation was finalized on or before December 31, 2018, you should include alimony or spousal support you paid in your Deductions. If your divorce or separation was finalized on or after January 1, 2019, do not include alimony or spousal support you pay in your Deductions.");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(0).getText(), "https://www.irs.gov/taxtopics/tc452");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Contact us");
         softAssert.assertAll();
     }
 
     public void validateAlimonyPaidOutHelpBodyVerbiageSp() {
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "Pensi\u00F3n alimenticia o apoyo conyugal que paga");
         softAssert.assertEquals(helpDrawerNewIconsParagraphs.getText(), "La pensi\u00F3n alimenticia es un pago a un c\u00F3nyuge o exc\u00F3nyuge por un acuerdo de divorcio o separaci\u00F3n. Para m\u00E1s informaci\u00F3n visite:\nhttps://www.irs.gov/es/taxtopics/tc452\nSi su divorcio o separaci\u00F3n finaliz\u00F3 en o antes del 31 de diciembre de 2018, debe incluir la pensi\u00F3n alimenticia o apoyo conyugal que pag\u00F3 en sus Deducciones. Si su divorcio o separaci\u00F3n finaliz\u00F3 en o despu\u00E9s del 1\u00BA de enero de 2019, no incluya la pensi\u00F3n alimenticia o apoyo conyugal que pag\u00F3 en sus Deducciones.");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(0).getText(), "https://www.irs.gov/es/taxtopics/tc452");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        basicActions.waitForElementListToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter.get(0));
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "\u00BFNecesitas m\u00E1s ayuda?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 
     public void validateDomesticActivitiesHelpBodyVerbiageEng() {
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
+        basicActions.waitForElementToBePresent(helpDrawerFooter.get(0),20);
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "Domestic production activities");
         softAssert.assertEquals(helpDrawerNewIconsParagraphs.getText(), "The Domestic Production Activities Tax Deduction is intended to provide tax relief for businesses that produce goods in the United States rather than producing it overseas. For more information, see:\nhttps://www.irs.gov/pub/irs-pdf/i8903.pdf");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(0).getText(), "https://www.irs.gov/pub/irs-pdf/i8903.pdf");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Contact us");
         softAssert.assertAll();
     }
 
     public void validateDomesticActivitiesHelpBodyVerbiageSp() {
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "Actividades de producci\u00F3n para el mercado interno");
         softAssert.assertEquals(helpDrawerNewIconsParagraphs.getText(), "La Deducci\u00F3n de impuestos por actividades dom\u00E9sticas de producci\u00F3n pretende brindarle un alivio fiscal a las empresas que producen mercanc\u00EDa en los Estados Unidos en lugar de producirlas en el extranjero. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/pub/irs-pdf/i8903.pdf");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(0).getText(), "https://www.irs.gov/pub/irs-pdf/i8903.pdf");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        basicActions.waitForElementListToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter.get(0));
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "\u00BFNecesitas m\u00E1s ayuda?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 
     public void validateHealthSavingsHelpBodyVerbiageEng() {
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
+        basicActions.waitForElementToBePresent(helpDrawerFooter.get(0),20);
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "Health Savings Account");
         softAssert.assertEquals(helpDrawerNewIconsParagraphs.getText(), "A type of savings account that lets you set aside money on a pre-tax basis to pay for qualified medical expenses. Enter contributions made to your health savings account, up to the yearly limit. For more information see IRS Form 8889.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Contact us");
         softAssert.assertAll();
     }
 
     public void validateHealthSavingsHelpBodyVerbiageSp() {
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "Cuenta de ahorros de salud");
         softAssert.assertEquals(helpDrawerNewIconsParagraphs.getText(), "Un tipo de cuenta de ahorros que le permite ahorrar dinero en una base antes de impuestos para pagar los gastos m\u00E9dicos calificados. Ingrese las contribuciones hechas a su cuenta de ahorros de salud, hasta el l\u00EDmite anual. Para m\u00E1s informaci\u00F3n, consulte el formulario 8889 del IRS.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        basicActions.waitForElementListToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter.get(0));
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "\u00BFNecesitas m\u00E1s ayuda?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 
     public void validatePreTaxRetireHelpBodyVerbiageEng() {
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
+        basicActions.waitForElementToBePresent(helpDrawerFooter.get(0),20);
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "Pre-tax retirement account contribution");
         softAssert.assertEquals(helpDrawerNewIconsParagraphs.getText(), "A pre-tax contribution is a payment made to a retirement account with money that has not been taxed. For more information, see:\nhttps://www.irs.gov/retirement-plans/plan-participant-employee/retirement-savings-contributions-savers-credit");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(0).getText(), "https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-savings-contributions-savers-credit");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Contact us");
         softAssert.assertAll();
     }
 
     public void validatePreTaxRetireHelpBodyVerbiageSp() {
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "Aportes a la cuenta de retiro antes de impuestos");
         softAssert.assertEquals(helpDrawerNewIconsParagraphs.getText(), "Un aporte antes de impuestos es un pago realizado a una cuenta de retiro con dinero que no ha sido sujeto a impuestos. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/retirement-plans/plan-participant-employee/retirement-savings-contributions-savers-credit");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(0).getText(), "https://www.irs.gov/es/retirement-plans/plan-participant-employee/retirement-savings-contributions-savers-credit");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        basicActions.waitForElementListToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter.get(0));
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "\u00BFNecesitas m\u00E1s ayuda?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 
     public void validateSchoolTuitionHelpBodyVerbiageEng() {
         basicActions.wait(50);
-        basicActions.waitForElementToBeClickable(helpDrawerFooter, 10);
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
+        basicActions.waitForElementToBeClickable(helpDrawerFooter.get(0), 10);
+        basicActions.waitForElementToBePresent(helpDrawerFooter.get(0),20);
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "School tuition and fees");
         softAssert.assertEquals(helpDrawerNewIconsParagraphs.getText(), "Certain school tuition and fees are able to be deducted from your taxes. For more information, see:\nhttps://www.irs.gov/taxtopics/tc513\nSelf-Employed Individuals - https://www.irs.gov/pub/irs-pdf/f1040sc.pdf or https://www.irs.gov/pub/irs-pdf/f1040sf.pdf\nArmed Forces Reservists, Qualified Performing Artists, and State/Local Government Officials \u2013 https://www.irs.gov/pub/irs-pdf/f1040s1.pdf and https://www.irs.gov/pub/irs-pdf/f2106.pdf\nIndividuals with a Disability - https://www.irs.gov/pub/irs-pdf/f1040sa.pdf and https://www.irs.gov/pub/irs-pdf/f2106.pdf");
@@ -863,14 +879,15 @@ public class DeductionsPage {
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(4).getText(), "https://www.irs.gov/pub/irs-pdf/f2106.pdf");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(5).getText(), "https://www.irs.gov/pub/irs-pdf/f1040sa.pdf");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(6).getText(), "https://www.irs.gov/pub/irs-pdf/f2106.pdf");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Contact us");
         softAssert.assertAll();
     }
 
     public void validateSchoolTuitionHelpBodyVerbiageSp() {
         basicActions.wait(50);
-        basicActions.waitForElementToBeClickable(helpDrawerFooter, 10);
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
+        basicActions.waitForElementToBeClickable(helpDrawerFooter.get(0), 10);
+        basicActions.waitForElementToBePresent(helpDrawerFooter.get(0),20);
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "Colegiatura y cuotas escolares");
         softAssert.assertEquals(helpDrawerNewIconsParagraphs.getText(), "Ciertas colegiaturas y cuotas de inscripci\u00F3n pueden ser deducidas de sus impuestos. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/taxtopics/tc513\nTrabajadores independientes: https://www.irs.gov/pub/irs-pdf/f1040scs.pdf o https://www.irs.gov/pub/irs-pdf/f1040sfs.pdf\nReservistas de las Fuerzas Armadas, artistas ejecutantes calificados y funcionarios del gobierno estatal y local: https://www.irs.gov/pub/irs-pdf/f1040s1s.pdf y https://www.irs.gov/pub/irs-pdf/f2106.pdf\nPersonas con alguna discapacidad: https://www.irs.gov/pub/irs-pdf/f1040sa.pdf y https://www.irs.gov/pub/irs-pdf/f2106.pdf");
@@ -881,107 +898,125 @@ public class DeductionsPage {
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(4).getText(), "https://www.irs.gov/pub/irs-pdf/f2106.pdf");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(5).getText(), "https://www.irs.gov/pub/irs-pdf/f1040sa.pdf");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(6).getText(), "https://www.irs.gov/pub/irs-pdf/f2106.pdf");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        basicActions.waitForElementListToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter.get(0));
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "\u00BFNecesitas m\u00E1s ayuda?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 
     public void validateSelfEmployTaxHelpBodyVerbiageEng() {
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
+        basicActions.waitForElementToBePresent(helpDrawerFooter.get(0),20);
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "Self-employment tax");
         softAssert.assertEquals(helpDrawerNewIconsParagraphs.getText(), "Self-employment income is income that arises from the performance of personal services, but which cannot be classified as wages because an employer-employee relationship does not exist between the payer and the payee. The Internal Revenue Code imposes the self-employment tax on the self-employment income of any U.S. citizen or resident alien who has such self-employment income. For more information, see:\nhttps://www.irs.gov/individuals/international-taxpayers/self-employment-tax");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(0).getText(), "https://www.irs.gov/individuals/international-taxpayers/self-employment-tax");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Contact us");
         softAssert.assertAll();
     }
 
     public void validateSelfEmployTaxHelpBodyVerbiageSp() {
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "Impuesto al trabajo independiente");
         softAssert.assertEquals(helpDrawerNewIconsParagraphs.getText(), "El ingreso como trabajador independiente es ingreso que se genera por servicios personales otorgados, los cuales no pueden ser clasificados como sueldos, ya que no existe una relaci\u00F3n de empleador y el empleado entre el pagador y el beneficiario. El C\u00F3digo de impuestos internos impone el impuesto de trabajador independiente al ingreso de trabajo independiente sujeto a impuestos a todos los ciudadanos estadounidenses o extranjeros residentes que tienen dicho ingreso como trabajador independiente. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/individuals/international-taxpayers/self-employment-tax");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(0).getText(), "https://www.irs.gov/es/individuals/international-taxpayers/self-employment-tax");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        basicActions.waitForElementListToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter.get(0));
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "\u00BFNecesitas m\u00E1s ayuda?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 
     public void validateStudentLoanHelpBodyVerbiageEng() {
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
+        basicActions.waitForElementToBePresent(helpDrawerFooter.get(0),20);
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "Student Loan Interest");
         softAssert.assertEquals(helpDrawerNewIconsParagraphs.getText(), "Student loan interest is interest you paid during the year on a qualified student loan. For more information, see:\nhttps://www.irs.gov/taxtopics/tc456");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(0).getText(), "https://www.irs.gov/taxtopics/tc456");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Contact us");
         softAssert.assertAll();
     }
 
     public void validateStudentLoanHelpBodyVerbiageSp() {
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "Inter\u00E9s por pr\u00E9stamo de estudiante");
         softAssert.assertEquals(helpDrawerNewIconsParagraphs.getText(), "El inter\u00E9s del pr\u00E9stamo estudiantil que paga durante el a\u00F1o de un pr\u00E9stamo estudiantil calificado. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/taxtopics/tc456");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(0).getText(), "https://www.irs.gov/es/taxtopics/tc456");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        basicActions.waitForElementListToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter.get(0));
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "\u00BFNecesitas m\u00E1s ayuda?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 
     public void validateSelfEmployHealthHelpBodyVerbiageEng() {
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
+        basicActions.waitForElementToBePresent(helpDrawerFooter.get(0),20);
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "Self-employment Health Insurance");
         softAssert.assertEquals(helpDrawerNewIconsParagraphs.getText(), "If you are self-employed, there is a tax deduction generally available for medical, dental or long-term care insurance premiums that self-employed people often pay for themselves, their spouse and their dependents. For more information, see:\nhttps://www.healthinsurance.org/obamacare/self-employed-health-insurance-deduction/");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(0).getText(), "https://www.healthinsurance.org/obamacare/self-employed-health-insurance-deduction/");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Contact us");
         softAssert.assertAll();
     }
 
     public void validateSelfEmployHealthHelpBodyVerbiageSp() {
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "Seguro de salud de trabajador independiente");
         softAssert.assertEquals(helpDrawerNewIconsParagraphs.getText(), "Si usted es trabajador independiente, hay una deducci\u00F3n generalmente disponible para las cuotas de seguro m\u00E9dico, dental o de atenci\u00F3n prolongada que las personas que trabajan de manera independiente pagan para s\u00ED mismos, para sus c\u00F3nyuges o para sus dependientes. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.healthinsurance.org/obamacare/self-employed-health-insurance-deduction/");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(0).getText(), "https://www.healthinsurance.org/obamacare/self-employed-health-insurance-deduction/");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        basicActions.waitForElementListToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter.get(0));
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "\u00BFNecesitas m\u00E1s ayuda?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 
     public void validateSelfEmployRetireHelpBodyVerbiageEng() {
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
+        basicActions.waitForElementToBePresent(helpDrawerFooter.get(0),20);
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "Self-Employment Retirement Plan");
         softAssert.assertEquals(helpDrawerNewIconsParagraphs.getText(), "There are numerous options for contributing to a retirement plan for the self-employed, and claiming a tax deduction for the contribution. For more information, see:\nhttps://www.irs.gov/retirement-plans/retirement-plans-for-self-employed-people");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(0).getText(), "https://www.irs.gov/retirement-plans/retirement-plans-for-self-employed-people");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Contact us");
         softAssert.assertAll();
     }
 
     public void validateSelfEmployRetireHelpBodyVerbiageSp() {
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "Plan de retiro como trabajador independiente");
         softAssert.assertEquals(helpDrawerNewIconsParagraphs.getText(), "Existen m\u00FAltiples opciones de planes de retiro para los trabajadores independientes y para reclamar una deducci\u00F3n de impuestos por los aportes. Para obtener m\u00E1s informaci\u00F3n, visite:\nhttps://www.irs.gov/es/retirement-plans/retirement-plans-for-self-employed-people");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(0).getText(), "https://www.irs.gov/es/retirement-plans/retirement-plans-for-self-employed-people");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        basicActions.waitForElementListToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter.get(0));
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "\u00BFNecesitas m\u00E1s ayuda?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 
     public void validateMovingExpensesHelpBodyVerbiageEng() {
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
+        basicActions.waitForElementToBePresent(helpDrawerFooter.get(0),20);
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "Moving Expenses");
         softAssert.assertEquals(helpDrawerNewIconsParagraphs.getText(), "If you are a member of the U.S. Armed Forces on active duty and are moving due to a permanent change of duty station, you may deduct unreimbursed moving expenses. If you are not in the military, do not include moving expenses on your application. For more information, see:\nhttps://www.irs.gov/forms-pubs/about-form-3903");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(0).getText(), "https://www.irs.gov/forms-pubs/about-form-3903");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Contact us");
         softAssert.assertAll();
     }
 
     public void validateMovingExpensesHelpBodyVerbiageSp() {
-        basicActions.waitForElementToBePresent(helpDrawerFooter,20);
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
         softAssert.assertEquals(helpDrawerHeaderDeductions.getText(), "Gastos de mudanza");
         softAssert.assertEquals(helpDrawerNewIconsParagraphs.getText(), "Si es un miembro del servicio activo de las Fuerzas Armadas de Estados Unidos y se muda debido a un cambio permanente en la estaci\u00F3n de servicio, puede deducir los gastos de mudanza no reembolsados. Si no est\u00E1 en el servicio militar, no incluya gastos de mudanza en su solicitud. Para m\u00E1s informaci\u00F3n visite:\nhttps://www.irs.gov/es/forms-pubs/about-form-3903");
         softAssert.assertEquals(helpDrawerBodyNewLinks.get(0).getText(), "https://www.irs.gov/es/forms-pubs/about-form-3903");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        basicActions.waitForElementListToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter.get(0));
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "\u00BFNecesitas m\u00E1s ayuda?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 
