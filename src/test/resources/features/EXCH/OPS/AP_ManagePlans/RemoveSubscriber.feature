@@ -328,7 +328,7 @@ Scenario: [RT-2478] Cancel and Reinstate
   Then I validate current "Dental" all details table in DB for 2 members on AP Manage Plans
 
 @SLER-2464
-Scenario: [RT-2425] OPS: MP: FA Removing Subscriber from policy
+Scenario: [RT-2425] OPS: MP: NFA Removing Subscriber from policy
   And I Apply for no financial help
   Then I select the option "Yes" to employment
 
