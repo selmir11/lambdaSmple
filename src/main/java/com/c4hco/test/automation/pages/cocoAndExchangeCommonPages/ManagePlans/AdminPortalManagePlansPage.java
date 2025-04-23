@@ -1,23 +1,23 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.ManagePlans;
-        import com.c4hco.test.automation.Dto.ManagePlanDentalMedicalPlan;
-        import com.c4hco.test.automation.Dto.MemberDetails;
-        import com.c4hco.test.automation.Dto.SharedData;
-        import com.c4hco.test.automation.utils.BasicActions;
-        import com.c4hco.test.automation.utils.WebDriverManager;
-        import io.cucumber.datatable.DataTable;
-        import org.openqa.selenium.*;
-        import org.openqa.selenium.interactions.Actions;
-        import org.openqa.selenium.support.FindBy;
-        import org.openqa.selenium.support.PageFactory;
-        import org.testng.Assert;
-        import org.testng.asserts.SoftAssert;
+import com.c4hco.test.automation.Dto.ManagePlanDentalMedicalPlan;
+import com.c4hco.test.automation.Dto.MemberDetails;
+import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.utils.BasicActions;
+import com.c4hco.test.automation.utils.WebDriverManager;
+import io.cucumber.datatable.DataTable;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
-        import java.math.BigDecimal;
-        import java.time.Year;
-        import java.util.*;
-        import java.util.stream.Collectors;
+import java.math.BigDecimal;
+import java.time.Year;
+import java.util.*;
+import java.util.stream.Collectors;
 
-        import static com.c4hco.test.automation.utils.WebDriverManager.getDriver;
+import static com.c4hco.test.automation.utils.WebDriverManager.getDriver;
 
 public class AdminPortalManagePlansPage {
 
@@ -544,6 +544,11 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//div[@class='multiselect-item-unselected']")
     WebElement btnMedicalOrDentalWhenUnchecked;
 
+    @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@id='coverageEndDate_1']")
+    WebElement coverageEndDateMedTxt;
+
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@id='coverageEndDate_1']")
+    WebElement coverageEndDateDentTxt;
 
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
@@ -2420,7 +2425,7 @@ public class AdminPortalManagePlansPage {
         softAssert.assertEquals(labelInRedMedicalPlan.getCssValue("color"), "rgba(255, 0, 0, 1)", "labelInRedMedicalPlan-Color mismatch");
         softAssert.assertAll();
     }
-	
+
     public void verifyOneContainerForMedicalPlansDisplayedInsteadOfCurrentAndPreviousSections(){
         softAssert.assertTrue(basicActions.waitForElementToBePresent(currentPlanContainer,5),"No current medical plan container");
         softAssert.assertFalse(basicActions.waitForElementToBePresent(previousFinancialMed, 5),"previousFinancialMed is visible");
@@ -2512,4 +2517,122 @@ public class AdminPortalManagePlansPage {
                 throw new IllegalArgumentException("Invalid option: " + btnType);
         }
     }
+
+    public void selectTermedPolicyBasedOnEndDate(String planType, String expectedValues) {
+        basicActions.wait(1000);
+
+        switch (planType.toLowerCase()) {
+            case "medical":
+                openPolicyDropdownAndWait(medicalpolicyDropdownOptions, selectPolicyDropdownOptions, currentMedicalPlanName);
+                boolean medicalFound = selectPolicyBasedOnStatus(
+                        "Medical",
+                        "//div[@class='medical-plan-container plan-container-fill']//div[@class='drop-down-secondary-options']//span",
+                        selectPolicyDropdownOptions,
+                        medPolicyStatus,
+                        coverageEndDateMedTxt,
+                        expectedValues
+                );
+                softAssert.assertTrue(medicalFound, " No Medical policy found with matching status and end date: " + expectedValues);
+                break;
+
+            case "dental":
+                openPolicyDropdownAndWait(dentalpolicyDropdownOptions, selectDentalPolicyDropdownOptions, currentDentalPlanName);
+                boolean dentalFound = selectPolicyBasedOnStatus(
+                        "Dental",
+                        "//div[@class='dental-plan-container plan-container-fill']//div[@class='drop-down-secondary-options']//span",
+                        selectDentalPolicyDropdownOptions,
+                        denPolicyStatus,
+                        coverageEndDateDentTxt,
+                        expectedValues
+                );
+                softAssert.assertTrue(dentalFound, " No Dental policy found with matching status and end date: " + expectedValues);
+                break;
+
+            default:
+                softAssert.fail(" Invalid plan type: " + planType);
+        }
+
+        softAssert.assertAll();
+    }
+
+    private void openPolicyDropdownAndWait(List<WebElement> policyDropdownOptions, WebElement selectDropdown, WebElement planNameElement) {
+        basicActions.waitForElementToBePresentWithRetries(selectDropdown, 60);
+        basicActions.waitForElementToBePresentWithRetries(planNameElement, 60);
+        basicActions.scrollToElement(selectDropdown);
+        selectDropdown.click();
+        basicActions.waitForElementListToBePresent(policyDropdownOptions, 60);
+        basicActions.wait(200);
+    }
+
+    private boolean selectPolicyBasedOnStatus(
+            String planType,
+            String dropdownXpath,
+            WebElement dropdownElement,
+            WebElement statusElement,
+            WebElement coverageEndDateElement,
+            String expectedValues
+    ) {
+        String expectedDate = basicActions.getDateBasedOnRequirement(expectedValues); // Expected in yyyy-MM-dd
+        System.out.println(" Searching for a CANCELLED policy with end date: " + expectedDate);
+
+        for (int i = 0; i < 10; i++) {
+            List<WebElement> options = basicActions.getDriver().findElements(By.xpath(dropdownXpath));
+
+            if (options.isEmpty() || i >= options.size()) {
+                System.out.println("️ Index out of bounds or no policies listed.");
+                break;
+            }
+
+            WebElement option = options.get(i);
+            String policyText = option.getText().trim();
+            System.out.println("🟡 Trying option " + i + ": " + policyText);
+            option.click();
+
+            basicActions.wait(500);
+            basicActions.waitForElementToBePresent(statusElement, 5);
+            String status = statusElement.getText().trim();
+            System.out.println(" Status: " + status);
+
+            if (status.equalsIgnoreCase("Cancelled") || status.equalsIgnoreCase("Disenroll_submitted")) {
+                String uiDate = coverageEndDateElement.getText().trim(); // e.g. 04/30/2025
+                String formattedDate = basicActions.changeDateFormat(uiDate, "MM/dd/yyyy", "yyyy-MM-dd");
+                System.out.println("End Date: " + formattedDate + " vs Expected: " + expectedDate);
+
+                if (formattedDate.equals(expectedDate)) {
+                    System.out.println("Matched policy found.");
+                    return true;
+                } else {
+                    System.out.println("End date doesn't match.");
+                }
+            } else {
+                System.out.println("Status is not Cancelled or Disenroll_submitted.");
+            }
+
+            reopenPolicyDropdown(dropdownElement, planType); // Prepare for next loop
+        }
+
+        return false;
+    }
+
+    private void reopenPolicyDropdown(WebElement dropdownElement, String planType) {
+        int retry = 0;
+        String xpath = planType.equalsIgnoreCase("Medical")
+                ? "//div[@class='medical-plan-container plan-container-fill']//div[@class='drop-down-secondary-options']//span"
+                : "//div[@class='dental-plan-container plan-container-fill']//div[@class='drop-down-secondary-options']//span";
+
+        while (retry < 3) {
+            basicActions.waitForElementToBePresentWithRetries(dropdownElement, 60);
+            dropdownElement.click();
+            basicActions.wait(200);
+
+            List<WebElement> options = basicActions.getDriver().findElements(By.xpath(xpath));
+
+            System.out.println("Retry " + retry + ": Reopened " + planType + " dropdown with " + options.size() + " option(s).");
+            retry++;
+        }
+
+        System.out.println("Failed to reopen " + planType + " dropdown after 3 retries.");
+    }
+
+
 }
