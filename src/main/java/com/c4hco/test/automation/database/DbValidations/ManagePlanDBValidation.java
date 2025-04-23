@@ -1031,6 +1031,9 @@ public class ManagePlanDBValidation {
             }
             List<String> dbRow = dbValuesList.get(i);
             String firstName = dbRow.get(1);
+            if (processedFirstNames.contains(firstName)) {
+                continue;
+            }
             processedFirstNames.add(firstName);
             String dbTobaccoValue = dbRow.get(1).equals("1") ? "Yes" : "No";
             String dbDobValue = basicActions.changeDateFormat(dbRow.get(3), "yyyy-MM-dd", "MM/dd/yyyy");
@@ -1134,6 +1137,9 @@ public class ManagePlanDBValidation {
             }
             List<String> dbRow = dbValuesList.get(i);
             String firstName = dbRow.get(5);
+            if (processedFirstNames.contains(firstName)) {
+                continue;
+            }
             processedFirstNames.add(firstName);
             String dbStartDateValue = basicActions.changeDateFormat(dbRow.get(0), "yyyy-MM-dd", "MM/dd/yyyy");
             String dbEndDateValue = basicActions.changeDateFormat(dbRow.get(1), "yyyy-MM-dd", "MM/dd/yyyy");
@@ -1171,6 +1177,9 @@ public class ManagePlanDBValidation {
             }
             List<String> dbRow = dbValuesList.get(i);
             String firstName = dbRow.get(4);
+            if (processedFirstNames.contains(firstName)) {
+                continue;
+            }
             processedFirstNames.add(firstName);
             String dbStartDateValue = basicActions.changeDateFormat(dbRow.get(0), "yyyy-MM-dd", "MM/dd/yyyy");
             String dbEndDateValue = basicActions.changeDateFormat(dbRow.get(1), "yyyy-MM-dd", "MM/dd/yyyy");
