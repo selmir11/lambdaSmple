@@ -279,6 +279,7 @@ Scenario: [RT-2478] Cancel and Reinstate
   And I validate I am on the "Manage Plans" page
   And I wait for 500 milliseconds
   Then I click Make Changes Medical button
+  And I wait for 500 milliseconds
   And I update the Coverage End date of member on manage plan page for "Medical"
     | Primary:First Day Of Current Year |
     | Spouse:First Day Of Current Year |
