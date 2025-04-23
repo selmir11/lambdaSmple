@@ -332,7 +332,7 @@ Feature: Regression Tests that require Seed 1
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-1244
+  @SLER-1244 @pol_exch_passed
   Scenario: RT-2074 ENR-EXCH: ADD DEPENDENT (LCE: Birth) - SAME CARRIER / SAME PLANS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
