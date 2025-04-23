@@ -1,4 +1,4 @@
-@port @portNotice
+@port @portNoticeLoginPortal
 Feature: Trigger Notice IND_Welcome Message AM-001-01 from Admin Portal
 
   @SLER-1843

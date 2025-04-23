@@ -1,4 +1,4 @@
-@port @portNotice
+@port @portNoticeBrokerPortal
 Feature: Admin portal user triggering the broker notice for client deauthorization - BN-002A-02
 
   @SLER-1926

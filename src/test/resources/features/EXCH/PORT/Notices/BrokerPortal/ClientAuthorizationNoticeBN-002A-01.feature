@@ -1,4 +1,4 @@
-@port @portNotice
+@port @portNoticeBrokerPortal
 Feature: Trigger the broker notice for client authorization - BN-002A-01
 
   @SLER-1851

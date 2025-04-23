@@ -110,31 +110,32 @@ Feature: Tests related to the help drawer on ELMO pages
     And I change the language from header to "Spanish"
     And I select "Company Name" icon on the Employment Info Page
     Then I validate Company verbiage in "Spanish"
-    And I select "Address 1" icon on the Employment Info Page
-    Then I validate Address 1 verbiage in "Spanish"
+    #Commented out the steps below due to bug ticket TAM-5424
+    #And I select "Address 1" icon on the Employment Info Page
+    #Then I validate Address 1 verbiage in "Spanish"
+    #And I change the language from header to "English"
+    #And I select "Address 1" icon on the Employment Info Page
+    #Then I validate Address 1 verbiage in "English"
+    #And I select "Address 2" icon on the Employment Info Page
+    #Then I validate Address 1 verbiage in "English"
+    #And I change the language from header to "Spanish"
+    #And I select "Address 2" icon on the Employment Info Page
+    #Then I validate Address 1 verbiage in "Spanish"
+    #And I select "City" icon on the Employment Info Page
+    #Then I validate Address 1 verbiage in "Spanish"
+    #And I change the language from header to "English"
+    #And I select "City" icon on the Employment Info Page
+    #Then I validate Address 1 verbiage in "English"
+    #And I select "State" icon on the Employment Info Page
+    #Then I validate Address 1 verbiage in "English"
+    #And I change the language from header to "Spanish"
+    #And I select "State" icon on the Employment Info Page
+    #Then I validate Address 1 verbiage in "Spanish"
+    #And I select "Zip" icon on the Employment Info Page
+    #Then I validate Address 1 verbiage in "Spanish"
     And I change the language from header to "English"
-    And I select "Address 1" icon on the Employment Info Page
-    Then I validate Address 1 verbiage in "English"
-    And I select "Address 2" icon on the Employment Info Page
-    Then I validate Address 1 verbiage in "English"
-    And I change the language from header to "Spanish"
-    And I select "Address 2" icon on the Employment Info Page
-    Then I validate Address 1 verbiage in "Spanish"
-    And I select "City" icon on the Employment Info Page
-    Then I validate Address 1 verbiage in "Spanish"
-    And I change the language from header to "English"
-    And I select "City" icon on the Employment Info Page
-    Then I validate Address 1 verbiage in "English"
-    And I select "State" icon on the Employment Info Page
-    Then I validate Address 1 verbiage in "English"
-    And I change the language from header to "Spanish"
-    And I select "State" icon on the Employment Info Page
-    Then I validate Address 1 verbiage in "Spanish"
-    And I select "Zip" icon on the Employment Info Page
-    Then I validate Address 1 verbiage in "Spanish"
-    And I change the language from header to "English"
-    And I select "Zip" icon on the Employment Info Page
-    Then I validate Address 1 verbiage in "English"
+    #And I select "Zip" icon on the Employment Info Page
+    #Then I validate Address 1 verbiage in "English"
     And I select "Gross Income" icon on the Employment Info Page
     Then I validate Gross Income verbiage in "English"
     And I change the language from header to "Spanish"

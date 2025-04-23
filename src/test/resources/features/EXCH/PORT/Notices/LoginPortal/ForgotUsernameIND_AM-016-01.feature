@@ -1,4 +1,4 @@
-@SLER-698  @portNotice
+@port  @portNoticeLoginPortal
 Feature: Exch Forgot Username Notice (AM-016-01) in DocGen
 
   @SLER-698

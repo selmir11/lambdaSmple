@@ -1,4 +1,4 @@
-@port @portNotice
+@port @portNoticeBrokerPortal
 Feature: End to End broker authorization notice validation for an individual, agency owner, and a broker
 
   @SLER-1970
