@@ -15,15 +15,11 @@ import org.testng.asserts.SoftAssert;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
-import java.time.temporal.UnsupportedTemporalTypeException;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static com.c4hco.test.automation.utils.Race.getCodeForRace;
-import static java.time.temporal.ChronoField.ERA;
+
 
 public class TellUsAboutYourselfPage {
 
