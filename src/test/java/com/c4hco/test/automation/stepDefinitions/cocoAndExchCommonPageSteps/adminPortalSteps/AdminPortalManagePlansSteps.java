@@ -545,4 +545,10 @@ public class AdminPortalManagePlansSteps {
     public void iSelectPlansTermedPolicyWith(String planType, String expectedValues) {
         adminPortalManagePlansPage.selectTermedPolicyBasedOnEndDate(planType, expectedValues);
     }
+
+    @Then("I set the Person IDs on manage plan page")
+    public void iSetPersonIds() {adminPortalManagePlansPage.setPersonIds();}
+
+    @Then("I validate the Person ID didn't change on manage plan page")
+    public void iValidatePersonIdsUnchanged() {adminPortalManagePlansPage.validatePersonIdsUnchanged();}
 }

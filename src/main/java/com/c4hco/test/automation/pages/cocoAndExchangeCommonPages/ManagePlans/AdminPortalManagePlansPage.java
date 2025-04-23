@@ -3,10 +3,8 @@ import com.c4hco.test.automation.Dto.ManagePlanDentalMedicalPlan;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.datatable.DataTable;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -572,7 +570,6 @@ public class AdminPortalManagePlansPage {
     public void containerTitleLabelsYear(String year) {
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 20);
         basicActions.waitForElementToBePresentWithRetries(chkMedical, 60);
-        basicActions.waitForElementToBePresentWithRetries(chkDental, 60);
         softAssert.assertEquals(txtTitleManagePlans.getText(), "Manage Plans");
         softAssert.assertEquals(txtSelectPlanYear.getText(), "Select a plan year:");
         softAssert.assertEquals(planYearLabel.getText(), "Year:");
@@ -586,6 +583,7 @@ public class AdminPortalManagePlansPage {
         softAssert.assertEquals(planYearLabelYear.getAttribute("innerText"), yearValue);
         softAssert.assertEquals(txtSelectPlanType.getText(), "Select plan type:");
         softAssert.assertEquals(chkMedical.getText(), "Medical");
+        basicActions.waitForElementToBePresentWithRetries(chkDental, 60);
         softAssert.assertEquals(chkDental.getText(), "Dental");
         softAssert.assertAll();
     }
@@ -2633,6 +2631,42 @@ public class AdminPortalManagePlansPage {
 
         System.out.println("Failed to reopen " + planType + " dropdown after 3 retries.");
     }
+
+    public void setPersonIds() {
+        basicActions.waitForElementToBePresent(personIdData, 30);
+        List<WebElement> memberRows = basicActions.getDriver().findElements(By.xpath("//div[@class='medical-plan-container plan-container-fill']//div[contains(@id, 'firstName_')]"));
+        int totalRows = memberRows.size();
+
+        Map<String, String> exchPersonId = new HashMap<>();
+
+        for (int i = 1; i <= totalRows; i++) {
+            String firstNameXpath = "//div[@class='medical-plan-container plan-container-fill']//*[@id='firstName_" + i + "']";
+            String referenceIdXpath = "//div[@class='medical-plan-container plan-container-fill']//*[@id='referenceId_" + i + "']";
+
+            String fullName = basicActions.getDriver().findElement(By.xpath(firstNameXpath)).getText();
+            String firstName = fullName.split(" ")[0];
+            String referenceId = basicActions.getDriver().findElement(By.xpath(referenceIdXpath)).getText();
+
+            exchPersonId.put(firstName, referenceId);
+        }
+        SharedData.setExchPersonId(exchPersonId);
+    }
+
+    public void validatePersonIdsUnchanged() {
+        Map<String, String> originalIds = SharedData.getExchPersonId();
+        setPersonIds();
+        Map<String, String> updatedIds = SharedData.getExchPersonId();
+
+        for (Map.Entry<String, String> entry : originalIds.entrySet()) {
+            String name = entry.getKey();
+            String originalId = entry.getValue();
+            String updatedId = updatedIds.get(name);
+            if (!originalId.equals(updatedId)) {
+                throw new AssertionError("Person ID changed for member '" + name + "': expected " + originalId + ", got " + updatedId);
+            }
+        }
+    }
+
 
 
 }
