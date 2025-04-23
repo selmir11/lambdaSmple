@@ -1,4 +1,4 @@
-@port @portNotice
+@port @portNoticeBrokerPortal
 Feature: Verify the client's deauthorize broker notice BN-002-04 email and My Docs
 
   @SLER-1930
