@@ -1,5 +1,5 @@
 @COCOSIR @SIR-COCO9
-    # SLCR-921, SLCR-WIP2
+    # SLCR-921, SLCR-927
 Feature: Individual adult - End to End Test
 
   Background: I go the login portal
@@ -126,8 +126,8 @@ Feature: Individual adult - End to End Test
     And I click on Sign Out in the Header for "Portal"
 
 
-  @SLCR-WIP2 @greenbannerTwoPerson
-  Scenario: SLCR-182 - This will create Family of 2 members, Couples with multiple groups
+  @SLCR-927 @greenbannerTwoPerson
+  Scenario: SLCR-WIP2 - This will create Family of 2 members - couple - edit group
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -211,6 +211,7 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "CoCo life change event" page
     And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
+
     Then I validate I am on the "CoCo Declarations and Signature" page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
@@ -243,6 +244,7 @@ Feature: Individual adult - End to End Test
     And I validate the COCO plan option 1 has text "KP Colorado Option Silver X"
     And I select "KP Colorado Option Silver X" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
+
     Then I validate I am on the "Medical Plan Results" page
     And I select "KP Colorado Option Silver X" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
@@ -300,8 +302,8 @@ Feature: Individual adult - End to End Test
 
 
 
-  @SLCR-255 @greenbannerThreePerson
-  Scenario: SLCR-255 - This will create Family of 3 members as minors with multiple groups
+  @SLCR-928 @greenbannerThreePerson
+  Scenario: SLCR-928 - This will create Family of 3 members as minors with multiple groups
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -509,12 +511,11 @@ Feature: Individual adult - End to End Test
     And  I change the language from header to "English"
     And I click Continue on the Medical Plans Page CoCo
 
-
     Then I validate I am on the "Plan Summary" page
     And I click on Sign Out in the Header for "Portal"
 
-  @SLCR-265 @EndToEndTest
-  Scenario: SLCR-265 - This will create Family of 3 members as minor siblings with multiple groups $0 income
+  @SLCR-WIP3 @EndToEndTest
+  Scenario: SLCR-WIP3- This will create Family of 3 members as minor siblings with multiple groups $0 income
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -665,155 +666,3 @@ Feature: Individual adult - End to End Test
     Then I validate I am on the "My Policies" page
     And I validate enrolled medical plans details on my policies page coco
     And I click on Sign Out in the Header for "Elmo"
-
-
-  @SLCR-316 @EndToEndTest
-  Scenario: SLCR-316 - This will create Family of 3 members as minors with multiple groups - 3 kids  - 3 groups
-    When I click create a new account on login page
-    Then I click create my account from pre-screen page
-    And I enter general mandatory data for "coco" account creation
-
-    Then I validate I am on the "Login" page
-    And  I enter valid credentials to login
-    Then I click continue signing in on the CAC Screener page
-
-    Then I validate I am on the "CoCo Welcome" page
-    And I apply for the current year in CoCo
-
-    Then I validate I am on the "Find Expert Help" page
-    And I click Continue on my own button from Manage who helps you page
-
-    Then I validate I am on the "CoCo Family Overview" page
-    Then I click EditUpdate on Family Overview page for "Primary"
-
-    Then I enter details on tell us about yourself page and continue with "11282011", "Male", and applying "Yes"
-    And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
-    And I select "Yes" for mailing address option
-    And I select "Yes" for live in Colorado option
-    And I click continue on the Add info for yourself page
-
-    Then I validate I am on the "Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
-    And I click save and continue on the Race and Ethnicity page
-
-    And I select "Yes" employment option
-    And I enter "20,000.00" income amount
-    And I select "Annually" income frequency option
-    And I select "No" income seasonal option
-    And I select "No" income changes option
-    And I click continue on the Employment income page
-
-    And I select None of these as additional income option
-    And I select continue on the Additional Income CoCO page
-
-    Then I validate I am on the "CoCo Deductions" page
-    And I select "None of these" as deductions option
-    And I select continue on the Deductions CoCo page
-
-    And I select the No projected Income button on the Income Summary page
-    And I select continue on the income Summary CoCo page
-
-    Then I validate I am on the "CoCo Family Overview" page
-    Then I select add another family member on the Family Overview page
-    Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page with "MinorTwo", "03052012", "Female", and applying "Yes"
-      | Primary:Sibling |
-    And I click continue on Tell us about additional members of your household page
-
-    Then I validate I am on the "CoCo Additional info for additional member" page
-    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
-    And I select "Yes" for live in Colorado option for additional member
-    And I click continue on the Additional information for additional member page
-
-    Then I validate I am on the "Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "MinorTwo"
-    And I click save and continue on the Race and Ethnicity page
-
-    And I select "No" employment option
-    And I click continue on the Employment income page
-
-    And I select None of these as additional income option
-    And I select continue on the Additional Income CoCO page
-
-    Then I validate I am on the "CoCo Deductions" page
-    And I select "None of these" as deductions option
-    And I select continue on the Deductions CoCo page
-
-    And I select the No projected Income button on the Income Summary page
-    And I select continue on the income Summary CoCo page
-
-    Then I validate I am on the "CoCo Family Overview" page
-    Then I select add another family member on the Family Overview page
-    Then I validate I am on the "CoCo Tell us about additional members" page
-    Then I enter details on tell us about additional members of your household page with "MinorThree", "12222016", "Male", and applying "Yes"
-      | Primary:Sibling  |
-      | MinorTwo:Sibling |
-    And I click continue on Tell us about additional members of your household page
-
-    Then I validate I am on the "CoCo Additional info for additional member" page
-    And I enter residential address details for additional member "1234 Road", "Denver", "CO", "80205", "DENVER"
-    And I select "Yes" for live in Colorado option for additional member
-    And I click continue on the Additional information for additional member page
-
-    Then I validate I am on the "Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "MinorThree"
-    And I click save and continue on the Race and Ethnicity page
-
-    And I select "No" employment option
-    And I click continue on the Employment income page
-    And I select None of these as additional income option
-    And I select continue on the Additional Income CoCO page
-
-    Then I validate I am on the "CoCo Deductions" page
-    And I select "None of these" as deductions option
-    And I select continue on the Deductions CoCo page
-    And I select the No projected Income button on the Income Summary page
-    And I select continue on the income Summary CoCo page
-    And I select continue on the Family Overview page
-
-    Then I validate I am on the "CoCo life change event" page
-    And I select "MoveToCO" life change event with event date of "Today"
-    And I select continue on the LCE page
-
-    Then I validate I am on the "CoCo Declarations and Signature" page
-    And I enter a valid signature
-    And I click Continue on the Declarations And Signature Page CoCo
-
-    Then I validate I am on the "Application Results CoCo" page
-    And I click Continue on the Application Results Page CoCo
-
-    Then I validate I am on the "Start Shopping" page
-    Then I click continue on coco start shopping page
-
-    Then I validate I am on the "Grouping Members Medical" page
-    Then I validate that there are 3 default groups in coco page
-    Then I click continue on grouping Members Medical coco page
-
-    Then I validate I am on the "Medical Plan Results" page
-    And I select the COCO Metal Tier dropdown
-    And I select "Silver" to filter for a  COCO Metal Tier plan
-    And I validate the COCO plan option 1 has text "KP Colorado Option Silver X"
-    And I select "KP Colorado Option Silver X" coco medical plan
-    Then I click Continue on the Medical Plans Page CoCo
-
-    Then I validate I am on the "Medical Plan Results" page
-    And I select "KP Colorado Option Silver X" coco medical plan
-    Then I click Continue on the Medical Plans Page CoCo
-
-    Then I validate I am on the "Medical Plan Results" page
-    And I select "KP Colorado Option Silver X" coco medical plan
-    Then I click Continue on the Medical Plans Page CoCo
-
-    Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on coco plan summary page
-
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Acknowledgement" agreement checkbox CoCo
-    And I select "Submit" agreement checkbox CoCo
-    And I enter householder signature on the Enrollment Agreements page CoCo
-    And I select submit enrollment button on the Enrollment Agreements CoCo page
-
-    Then I click all done from payment portal page coco
-    Then I validate I am on the "CoCo Welcome" page
-    And I click on Sign Out in the Header for "Elmo"
-
