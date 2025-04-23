@@ -81,6 +81,14 @@ public class DBManagePlanSteps {
         managePlanDBValidation.validatePreviousPlanSummaryDB(planType, policyNumber, memberNum);
     }
 
+    @Then("I validate termed {string} all details table in DB for {int} on AP Manage Plans")
+    public void iValidateTermedAllDetailsTableInDBForOnAPManagePlans(String planType, int memberNum) {
+        actions.wait(5000);
+        managePlanDBValidation.validateTermedMembersDetailsTableDB(planType, memberNum);
+        managePlanDBValidation.validateTermedCoverageDetailsTableDB(planType, memberNum);
+        managePlanDBValidation.validateTermedFinancialDetailsTableDB(planType, memberNum);
+    }
+
 
     ////////////////////////////Plans Container Individual Dashboard//////////////////////////
     @And("I verify Plan container for year {string} against the DB on the Individual dashboard")
