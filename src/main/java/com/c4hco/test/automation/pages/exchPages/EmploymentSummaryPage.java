@@ -23,7 +23,7 @@ public class EmploymentSummaryPage {
     @FindBy(css = ".header-1")
     WebElement hdr_Income;
 
-    @FindBy(css = ".header-2")
+    @FindBy(css = ".header-2 > span")
     WebElement hdr_Employment;
 
     @FindBy(css = ".header-3")
@@ -47,26 +47,23 @@ public class EmploymentSummaryPage {
     @FindBy(css = "lib-help-icon a")
     WebElement helpLnk;
 
-    @FindBy(css = ".help-label")
+    @FindBy(id = "Help.Button")
     WebElement helpSide;
 
-    @FindBy(css = ".drawer-controls > div > div > a > svg")
-    WebElement helpCloseSide;
+    @FindBy(css = ".header-close-link")
+    WebElement helpCloseLink;
 
-    @FindBy(css = "div.drawer-heading.ng-tns-c1953390725-1 > div > span")
+    @FindBy(css = ".title-row .c4-text-body-200")
     WebElement helpDrawerHeaderHelp;
 
-    @FindBy(css = ".drawer-heading .drawer-title")
+    @FindBy(css = ".title-row .title")
     WebElement helpDrawerHeaderEmploymentSummary;
 
-    @FindBy(css = "div.drawer-text-content.ng-tns-c1953390725-1.ng-star-inserted > div > span")
-    List<WebElement> helpDrawerMainHeaders;
+    @FindBy(css = ".help-main-content .c4-text-body-200")
+    WebElement helpDrawerMainHeaders;
 
-    @FindBy(css = "div.drawer-body.ng-tns-c1953390725-1 > div.drawer-text-content.ng-tns-c1953390725-1.ng-star-inserted > div > div")
+    @FindBy(css = "div.section-help-content-gap-0-container > div")
     List<WebElement> helpDrawerBodyParagraphs;
-
-    @FindBy(css = "div.drawer-text-content.body-text-1 > ul > li")
-    List<WebElement> helpDrawerBodySubParagraphs;
 
     @FindBy(css = "ul:nth-child(18) > li:nth-child(1) > a, ul:nth-child(17) > li:nth-child(1) > a")
     WebElement helpDrawerAlimonyRecievedLink; //English and Spanish
@@ -143,10 +140,10 @@ public class EmploymentSummaryPage {
     @FindBy(css = "ul:nth-child(24) > li:nth-child(11) > a, ul:nth-child(23) > li:nth-child(11) > a")
     WebElement helpDrawerMovingExpensesLink;
 
-    @FindBy(css = ".drawer-footer h3")
-    WebElement helpDrawerFooter;
+    @FindBy(css = ".help-footer .c4-type-links-md")
+    List<WebElement> helpDrawerFooter;
 
-    @FindBy(css = ".drawer-footer h3 a")
+    @FindBy(css = ".help-footer .clickable")
     WebElement helpDrawerContactUsLink;
 
     @FindBy(css=".fas.fa-spinner.fa-spin")
@@ -233,8 +230,8 @@ public class EmploymentSummaryPage {
             case "side help":
                 helpSide.click();
                 break;
-            case "close side help":
-                helpCloseSide.click();
+            case "close help":
+                helpCloseLink.click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + label);
@@ -401,17 +398,22 @@ public class EmploymentSummaryPage {
     public void validateGeneralHelpBodyVerbiageEng() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
         softAssert.assertEquals(helpDrawerHeaderEmploymentSummary.getText(), "Employment summary");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Overview");
+        softAssert.assertEquals(helpDrawerMainHeaders.getText(), "Overview");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "This page provides a summary of the jobs, self-employment and income details you\u2019ve provided for your household. Review the information carefully and make updates if needed. This ensures the financial help you may receive is accurate.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Contact us");
         softAssert.assertAll();
     }
 
     public void validateGeneralHelpBodyVerbiageSp() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
         softAssert.assertEquals(helpDrawerHeaderEmploymentSummary.getText(), "Resumen del empleo");
+        softAssert.assertEquals(helpDrawerMainHeaders.getText(), "Resumen");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Esta p\u00E1gina muestra un resumen de la informaci\u00F3n sobre los empleos, el trabajo independiente y el ingreso que proporcion\u00F3 respecto a su familia. Revise la informaci\u00F3n con cuidado y actual\u00EDcela de ser necesario. Con esto se garantiza que la ayuda financiera que pueda recibir sea la correcta.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        basicActions.waitForElementListToBePresent(helpDrawerFooter, 30);
+        basicActions.scrollToElement(helpDrawerFooter.get(0));
+        softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "\u00BFNecesitas m\u00E1s ayuda?");
+        softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Cont\u00E1ctenos");
         softAssert.assertAll();
     }
 
