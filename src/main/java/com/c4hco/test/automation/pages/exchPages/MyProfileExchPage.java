@@ -1121,4 +1121,13 @@ public class MyProfileExchPage {
         }
     }
 
+    public void validateTimeoutSessionPopupWithoutTakingAnyActions() {
+        basicActions.wait(840000);
+        softAssert.assertEquals(Headertimeout.getText(), "Your session is about to end.");
+        softAssert.assertEquals(NoTimeout.getText(), "No, sign me out");
+        softAssert.assertEquals(YesTimeout.getText(), "Yes, stay signed in");
+        basicActions.isElementDisplayed(Questiontext, 10);
+        basicActions.waitForElementToBePresent(MyProfileButtonExch.get(1), 10);
+        softAssert.assertAll();
+    }
 }
