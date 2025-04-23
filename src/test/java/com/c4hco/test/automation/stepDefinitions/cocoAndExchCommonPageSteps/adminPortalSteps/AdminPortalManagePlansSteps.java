@@ -520,4 +520,19 @@ public class AdminPortalManagePlansSteps {
     public void iverifyPlanDetails(List<String> data) {
         adminPortalManagePlansPage.verifyPlanDetails(data);
     }
+
+    @Then("I update manage plan editable fields")
+    public void iUpdateManagePlanEditableFieldsForMember(DataTable data){
+        adminPortalManagePlansPage.updateAllEditableFields(data);
+    }
+
+    @Then("I verify fields are editable on Manage plan for {int} member")
+    public void iVerifyFieldsAreEditableOnManagePlanForMember(int memberCount) {
+        adminPortalManagePlansPage.verifyMPEditableFields(memberCount);
+    }
+
+    @And("I click on cancel button on confirm changes popup")
+    public void iClickOnCancelButtonOnConfirmChangesPopup() {
+        adminPortalManagePlansPage.clickCancelOnConfirm();
+    }
 }
