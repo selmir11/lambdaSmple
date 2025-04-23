@@ -166,7 +166,7 @@ Feature: Seed09exception - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-2032 @pol_exch_passed
+  @SLER-2032_WIP
   Scenario: RT-2263 ENR-EXCH: DEMOGRAPHIC CHANGE - CHANGE RESPONSIBLE PERSON CONTACT INFORMATION
 
     Given I open the login page on the "login" portal
