@@ -73,7 +73,7 @@ Feature: Coco Initial Application Multi group
   And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I enter residential address details for additional member "500 Diff Drive", "Colorado Springs", "CO", "80919", "EL PASO"
-#    And I enter complete residential address details for additional member addressLine1 "500 Diff Drive",addressLine2 "",city "Colorado Springs",state "CO",zipcode "80919",county "EL PASO"
+
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Race and Ethnicity" page
@@ -103,7 +103,7 @@ Feature: Coco Initial Application Multi group
     And I click continue on Tell us about additional members of your household page
     Then I validate I am on the "CoCo Additional info for additional member" page
     And I enter residential address details for additional member "500 Diff Drive", "Colorado Springs", "CO", "80919", "EL PASO"
-#    And I enter complete residential address details for additional member addressLine1 "500 Diff Drive",addressLine2 "",city "Colorado Springs",state "CO",zipcode "80919",county "EL PASO"
+
     And I select "Yes" for live in Colorado option for additional member
     And I click continue on the Additional information for additional member page
     Then I validate I am on the "Race and Ethnicity" page
