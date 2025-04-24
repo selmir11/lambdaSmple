@@ -5,7 +5,7 @@ Feature: Verify Plans Container Ind Dash
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin Portal search" page
 
-  @SLER-2427 @test
+  @SLER-2427
   Scenario: SLER-2427 OPS: MP: Checking Years for Coverage
 #    scenarios for Dental only in 2023 QA
     Then I enter an accountId in any Env "1300057292" "8277667600" to search user
