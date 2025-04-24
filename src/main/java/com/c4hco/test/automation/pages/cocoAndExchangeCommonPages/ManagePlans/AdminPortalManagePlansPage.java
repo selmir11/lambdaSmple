@@ -148,6 +148,11 @@ public class AdminPortalManagePlansPage {
 
     @FindBy(xpath = "//p[@class= 'plan-header header-2']")
     List<WebElement> currentMedicalDentalPlan;
+
+    @FindBy(css = "div.medical-plan-container.plan-container-fill > app-current-plan > div > div.plan-summary")
+    WebElement currentMedPlanSummaryContainer;
+    @FindBy(css = "div.dental-plan-container.plan-container-fill > app-current-plan > div > div.plan-summary")
+    WebElement currentDentPlanSummaryContainer;
     @FindBy(xpath = "//div[@class='label-container body-text-2']")
     List<WebElement> containerTextValidation;
     @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//app-current-plan//div[@id='status_1']")
@@ -569,7 +574,6 @@ public class AdminPortalManagePlansPage {
 
     public void containerTitleLabelsYear(String year) {
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 20);
-        basicActions.waitForElementToBePresentWithRetries(chkMedical, 60);
         softAssert.assertEquals(txtTitleManagePlans.getText(), "Manage Plans");
         softAssert.assertEquals(txtSelectPlanYear.getText(), "Select a plan year:");
         softAssert.assertEquals(planYearLabel.getText(), "Year:");
@@ -582,8 +586,9 @@ public class AdminPortalManagePlansPage {
         }
         softAssert.assertEquals(planYearLabelYear.getAttribute("innerText"), yearValue);
         softAssert.assertEquals(txtSelectPlanType.getText(), "Select plan type:");
+        basicActions.waitForElementToBePresentWithRetries(chkMedical, 90);
         softAssert.assertEquals(chkMedical.getText(), "Medical");
-        basicActions.waitForElementToBePresentWithRetries(chkDental, 60);
+        basicActions.waitForElementToBePresentWithRetries(chkDental, 90);
         softAssert.assertEquals(chkDental.getText(), "Dental");
         softAssert.assertAll();
     }
@@ -597,7 +602,7 @@ public class AdminPortalManagePlansPage {
     }
 
     public void verifyButtonsCheckedBoth() {
-        basicActions.waitForElementToBePresent(btnMedicalChecked, 20);
+        basicActions.waitForElementToBePresentWithRetries(btnMedicalChecked, 60);
         softAssert.assertTrue(btnMedicalChecked.isDisplayed());
         softAssert.assertTrue(btnDentalChecked.isDisplayed());
         softAssert.assertAll();
@@ -1034,11 +1039,90 @@ public class AdminPortalManagePlansPage {
 
     }
 
-    public void validateTheTextOfTheMedicalContainer() {
+    public void validateMedicalDentalPlanSummary(String textType, String planType) {
+        switch (textType) {
+            case "Policy":
+                validatePolicyMedicalDentalPlanSummary(planType);
+                break;
+            case "No Policy":
+                validateNoPolicyMedicalDentalPlanSummary(planType);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + textType);
+        }
+    }
+
+    public void validatePolicyMedicalDentalPlanSummary(String planType) {
+        basicActions.waitForElementListToBePresent(currentMedicalDentalPlan,60);
+        switch (planType) {
+            case "Medical":
+                validateTheTextOfTheMedicalPlanSummary();
+                break;
+            case "Dental":
+                validateTheTextOfTheDentalPlanSummary();
+                break;
+            case "Both":
+                validateTheTextOfTheMedicalPlanSummary();
+                validateTheTextOfTheDentalPlanSummary();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + planType);
+        }
+    }
+
+    public void validateTheTextOfTheMedicalPlanSummary() {
+        basicActions.waitForElementToBePresent(currentMedPlanSummaryContainer,60);
         softAssert.assertEquals(currentMedicalDentalPlan.get(0).getText(), "Current Medical Plan:");
-        List<String> existingList = Arrays.asList("Current Medical Plan:", "Latest Application Date:", "Financial Start Date:", "EHB Premium:", "Financial End Date:", "CSR Amount:", "Plan Premium:", "Latest LCE and Date:", "Plan APTC:", "Rating Area:", "Premium after Subsidy:", "Service Area:", "Plan AV:", "Policy ID:", "HIOS ID:");
-        List<String> resultList = new ArrayList<>(existingList.subList(0, Math.min(existingList.size(), 15)));
-        softAssert.assertEquals(existingList, resultList);
+        List<String> expectedLabels = Arrays.asList("Latest Application Date:", "Financial Start Date:", "EHB Premium:", "Financial End Date:", "CSR Amount:", "Plan Premium:", "Latest LCE and Date:", "Plan APTC:", "Rating Area:", "Premium after Subsidy:", "Service Area:", "Plan AV:", "Policy ID:", "HIOS ID:");
+        String containerText = currentMedPlanSummaryContainer.getText();
+        for (String expectedLabel : expectedLabels) {
+            softAssert.assertTrue(containerText.contains(expectedLabel), "Expected label not found in container: " + expectedLabel);
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateTheTextOfTheDentalPlanSummary() {
+        basicActions.waitForElementToBePresent(currentDentPlanSummaryContainer,60);
+        softAssert.assertEquals(currentMedicalDentalPlan.get(1).getText(), "Current Dental Plan:");
+        List<String> expectedLabels = Arrays.asList("Latest Application Date:", "Financial Start Date:", "EHB Premium:", "Financial End Date:", "CSR Amount:", "Plan Premium:", "Latest LCE and Date:", "Plan APTC:", "Rating Area:", "Premium after Subsidy:", "Service Area:", "Plan AV:", "Policy ID:", "HIOS ID:");
+        String containerText = currentDentPlanSummaryContainer.getText();
+        for (String expectedLabel : expectedLabels) {
+            softAssert.assertTrue(containerText.contains(expectedLabel), "Expected label not found in container: " + expectedLabel);
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateNoPolicyMedicalDentalPlanSummary(String planType) {
+        switch (planType) {
+            case "Medical":
+                validateTheTextOfTheMedicalNoPolicyPlanSummary();
+                break;
+            case "Dental":
+                validateTheTextOfTheDentalNoPolicyPlanSummary();
+                break;
+            case "Both":
+                validateNoPlanMessageIsDisplayed("Select a plan year to view policies");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + planType);
+        }
+    }
+
+    public void validateTheTextOfTheMedicalNoPolicyPlanSummary() {
+        basicActions.waitForElementListToBePresent(currentMedicalDentalPlan,60);
+        softAssert.assertEquals(currentMedicalDentalPlan.get(0).getText(), "Current Medical Plan:");
+        WebElement containerText = basicActions.getDriver().findElement(By.cssSelector("div.medical-plan-container.plan-container-fill > app-current-plan > div > div.no-plan-message"));
+        softAssert.assertEquals(containerText.getText(),"No Current Medical Plan");
+        softAssert.assertFalse(basicActions.waitForElementPresence(currentMedPlanSummaryContainer,5));
+        softAssert.assertAll();
+    }
+
+    public void validateTheTextOfTheDentalNoPolicyPlanSummary() {
+        basicActions.waitForElementListToBePresent(currentMedicalDentalPlan,60);
+        softAssert.assertEquals(currentMedicalDentalPlan.get(1).getText(), "Current Dental Plan:");
+        WebElement containerText = basicActions.getDriver().findElement(By.cssSelector("div.dental-plan-container.plan-container-fill > app-current-plan > div > div.no-plan-message"));
+        softAssert.assertEquals(containerText.getText(),"No Current Dental Plan");
+        softAssert.assertFalse(basicActions.waitForElementPresence(currentDentPlanSummaryContainer,5));
         softAssert.assertAll();
     }
 

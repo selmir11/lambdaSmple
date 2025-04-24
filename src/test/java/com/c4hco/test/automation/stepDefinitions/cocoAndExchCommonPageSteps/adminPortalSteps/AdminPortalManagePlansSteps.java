@@ -151,9 +151,9 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.UpdateMyAccount_idAnyEnv(stgAccountId,qaAccountId);
     }
 
-    @Then("I validate the text of the Medical Dental container")
-    public void iValidateTheTextOfTheMedicalDentalContainer() {
-        adminPortalManagePlansPage.validateTheTextOfTheMedicalContainer();
+    @Then("I validate the {string} text of {string} plan summary container on Manage Plans")
+    public void iValidateMedicalDentalPlanSummary(String textType, String planType) {
+        adminPortalManagePlansPage.validateMedicalDentalPlanSummary(textType, planType);
     }
     @Then("I select the {int} {string} policy Plan")
     public void iSelectThePolicyPlan(int policyNumber, String planType) {
