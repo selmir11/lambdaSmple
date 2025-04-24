@@ -138,7 +138,7 @@ public class COCO_Grp_PolicyTable_Val {
         getMedicalPlanDbDataMap(subscriber.getFirstName());
         softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), "SELF", "Relationship to subscriber does not match");
         softAssert.assertEquals(policyTablesEntity.getTotal_plan_premium_amt(), subscriber.getMedicalPremiumAmt().replace(",", ""), "Medical Policy total plan premium amount does not match");
-        softAssert.assertEquals(policyTablesEntity.getTotal_premium_reduction_amt(), subscriber.getAptcAmt(), "Subscriber Medical APTC amount does not match");
+        softAssert.assertEquals(basicActions.doubleAmountFormat(policyTablesEntity.getTotal_premium_reduction_amt()), subscriber.getMedicalAptcAmt(), "Subscriber Medical APTC amount does not match");
         softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_emcfh()), "null", "Subscriber Medical Policy premium reduction type does not match");
         softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_epfh()), "null", "premium reduction type in en policy financial ah table does not match");
         softAssert.assertEquals(policyTablesEntity.getTotal_responsible_amt(), subscriber.getMedicalPremiumAmt().replace(",", ""), "Medical Policy total responsible amount does not match");
