@@ -109,7 +109,7 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     And I select or skip the medical plans for groups on medical plan page
       | Group 1:Select Health Value Colorado Option Bronze |
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I set medical premium amount
+    And I set "Medical" Plans premium amount
     And I click continue on coco plan summary page
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox CoCo
