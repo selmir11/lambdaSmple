@@ -1,4 +1,4 @@
-@OPS @SLER-2020 @managePlan
+@OPS @SLER-2020 @managePlan @test
 Feature: Manage Plans: Button Go Back navigation
   Scenario:Manage plan 2022 Go Back navigation
     Given I open the login page on the "admin" portal
@@ -18,7 +18,7 @@ Feature: Manage Plans: Button Go Back navigation
     And I wait for 300 milliseconds
     And I validate I am on the "Manage Plans" page
     Then I validate buttons displayed on Manage page
-    And I validate the text of the Medical Dental container
+    Then I validate the "Policy" text of "Both" plan summary container on Manage Plans
     Then I validate Go Back button on Manage Plan page
     And I click Go Back button on Manage Plan page
     And I validate I am on the "Admin Portal individual dashboard" page
