@@ -112,7 +112,8 @@ public class TellUsAboutYourselfPage {
     @FindBy(xpath = "//*[@id='expectedDueDate']")
     WebElement expectedDOB;
 
-
+    @FindBy(id="totalBabiesExpected")
+    WebElement babiesExpected;
 
     public void userSexQuestion(String Sex) {
         MemberDetails acctHolder = SharedData.getPrimaryMember();
@@ -411,44 +412,10 @@ public class TellUsAboutYourselfPage {
         }
 
     }
+
     public void iSelectNumberOfBabies(String babiesDue){
-        switch(babiesDue){
-            case "1":
-                drpdwnExpected.get(12).click();
-                break;
-            case "2":
-                drpdwnExpected.get(13).click();
-                break;
-            case "3":
-                drpdwnExpected.get(14).click();
-                break;
-            case "4":
-                drpdwnExpected.get(15).click();
-                break;
-            case "5":
-                drpdwnExpected.get(16).click();
-                break;
-            case "6":
-                drpdwnExpected.get(17).click();
-                break;
-            case "7":
-                drpdwnExpected.get(18).click();
-                break;
-            case "8":
-                drpdwnExpected.get(19).click();
-                break;
-            case "9":
-                drpdwnExpected.get(20).click();
-                break;
-            case "10":
-                drpdwnExpected.get(21).click();
-                break;
-
-
-            default:
-                throw new IllegalArgumentException("Invalid option: " + babiesDue);
-        }
-
+        Select selectBabiesCount = new Select(babiesExpected);
+        selectBabiesCount.selectByVisibleText(babiesDue);
     }
 
 
@@ -485,4 +452,5 @@ public class TellUsAboutYourselfPage {
         LocalDate futureDate = LocalDate.now().plus(1, ChronoUnit.MONTHS);
         return dateFormat.format(futureDate);
     }
+
 }
