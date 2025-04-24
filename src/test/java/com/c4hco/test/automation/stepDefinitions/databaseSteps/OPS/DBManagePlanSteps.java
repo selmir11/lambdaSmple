@@ -61,6 +61,14 @@ public class DBManagePlanSteps {
         managePlanDBValidation.validateCurrentFinancialDetailsTableDB(planType, memberNum);
     }
 
+    @Then("I validate current {string} all details table in DB for {int} members {string} LCE on AP Manage Plans")
+    public void iValidateCurrentAllDetailsTableLceDB(String planType, Integer memberNum, String lceType) {
+        actions.wait(5000);
+        managePlanDBValidation.validateCurrentMembersDetailsTableLceDB(planType, memberNum, lceType);
+        managePlanDBValidation.validateCurrentCoverageDetailsTableLceDB(planType, memberNum, lceType);
+        managePlanDBValidation.validateCurrentFinancialDetailsTableLceDB(planType, memberNum, lceType);
+    }
+
     @Then("I validate previous {string} all details table in DB for {int} members on policy {string} for DB row {int} on AP Manage Plans")
     public void iValidatePreviousAllDetailsTableDB(String planType, Integer memberNum, String tableIndex, Integer dbRowAdjust) {
         actions.wait(5000);
@@ -75,7 +83,13 @@ public class DBManagePlanSteps {
         managePlanDBValidation.validateCurrentPlanSummaryDB(planType, memberNum);
     }
 
-    @Then("I validate previous financial period {string} plan summary in DB for {int} policy {int} on AP Manage Plans")
+    @Then("I validate current {string} plan summary in DB for {int} members {string} LCE on AP Manage Plans")
+    public void iValidateCurrentPlanSummaryLceDB(String planType, Integer memberNum, String lceType) throws Exception {
+        actions.wait(5000);
+        managePlanDBValidation.validateCurrentPlanSummaryLceDB(planType, memberNum, lceType);
+    }
+
+    @Then("I validate previous financial period {string} plan summary in DB for {int} policy {int} members on AP Manage Plans")
     public void iValidatePreviousPlanSummaryDB(String planType, Integer policyNumber, Integer memberNum) throws Exception {
         actions.wait(5000);
         managePlanDBValidation.validatePreviousPlanSummaryDB(planType, policyNumber, memberNum);
