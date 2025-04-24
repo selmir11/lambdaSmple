@@ -2056,13 +2056,25 @@ public class AdminPortalManagePlansPage {
         softAssert.assertAll();
     }
 
-    public void verifyPlanNameAndPolicyCoverageDisplayed() {
-        basicActions.wait(600);
-        softAssert.assertTrue(labelPlanNameForMedAndDen.get(0).isDisplayed(), "Plan name not visible for medical");
-        softAssert.assertTrue(labelCoverageForMedAndDen.get(0).getText().contains("Policy Coverage:"), "Policy coverage not visible for medical");
-        softAssert.assertTrue(labelPlanNameForMedAndDen.get(1).isDisplayed(), "Plan name not visible for dental");
-        softAssert.assertTrue(labelCoverageForMedAndDen.get(1).getText().contains("Policy Coverage:"), "Policy coverage not visible for dental");
-        softAssert.assertAll();
+    public void verifyPlanNameAndPolicyCoverageDisplayed(String planType) {
+        switch (planType) {
+            case "medical_and_dental":
+                basicActions.wait(600);
+                softAssert.assertTrue(labelPlanNameForMedAndDen.get(0).isDisplayed(), "Plan name not visible for medical");
+                softAssert.assertTrue(labelCoverageForMedAndDen.get(0).getText().contains("Policy Coverage:"), "Policy coverage not visible for medical");
+                softAssert.assertTrue(labelPlanNameForMedAndDen.get(1).isDisplayed(), "Plan name not visible for dental");
+                softAssert.assertTrue(labelCoverageForMedAndDen.get(1).getText().contains("Policy Coverage:"), "Policy coverage not visible for dental");
+                softAssert.assertAll();
+                break;
+            case "only_medical", "only_dental":
+                basicActions.wait(600);
+                softAssert.assertTrue(labelPlanNameForMedAndDen.get(0).isDisplayed(), "Plan name not visible for medical or dental");
+                softAssert.assertTrue(labelCoverageForMedAndDen.get(0).getText().contains("Policy Coverage:"), "Policy coverage not visible for medical or dental");
+                softAssert.assertAll();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + planType);
+        }
     }
 
     public void verifyAllPageTextsMedicalAndDentalPlan(String opt, List<String> pageTexts) {
@@ -2286,6 +2298,7 @@ public class AdminPortalManagePlansPage {
         txtAlreadySelectedYearOption.click();
     }
     public void verifyFontColorEtcOfContainerElements(){
+        basicActions.wait(700);
         softAssert.assertEquals(managePlansContainer.getCssValue("background-color"), "rgba(255, 255, 255, 1)", "Container-back ground Color mismatching");
         softAssert.assertEquals(managePlansContainer.getCssValue("border-top-color"), "rgba(149, 192, 60, 1)", "Container-border top Color mismatching");
         softAssert.assertEquals(txtTitleManagePlans.getCssValue("font-family"), "\"PT Sans\"", "txtTitleManagePlans-Font family mismatch");
@@ -2299,7 +2312,7 @@ public class AdminPortalManagePlansPage {
         softAssert.assertEquals(denPlanTypeUnChecked.getCssValue("color"), "rgba(77, 77, 79, 1)", "denPlanTypeUnChecked-Color mismatch");
         softAssert.assertAll();
     }
-    public void verifyFontColorEtcOfMedicalPlanContainer(){
+    public void verifyFontColorEtcOfMedicalOrDentalPlanContainer(){
         softAssert.assertEquals(currentMedicalDentalPlan.get(0).getCssValue("font-family"), "\"PT Sans\"", "currentMedicalDentalPlan-Font family mismatch");
         softAssert.assertEquals(currentMedicalDentalPlan.get(0).getCssValue("font-size"), "28px", "currentMedicalDentalPlan-Font size mismatch");
         softAssert.assertEquals(currentMedicalDentalPlan.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)", "currentMedicalDentalPlan-Color mismatch");
@@ -2666,7 +2679,10 @@ public class AdminPortalManagePlansPage {
             }
         }
     }
-
-
-
+    public void verifyPlanNameAndPolicyCoverageDatesAreVisibleForPreviousFinancialPeriods() {
+        basicActions.scrollToElement(labelPlanNamePFPM);
+        softAssert.assertTrue(labelPlanNamePFPM.isDisplayed(), "labelPlanNamePFPM is not displayed");
+        softAssert.assertTrue(labelPolicyCoveragePFPM.isDisplayed(), "labelPolicyCoveragePFPM is not displayed");
+        softAssert.assertAll();
+    }
 }
