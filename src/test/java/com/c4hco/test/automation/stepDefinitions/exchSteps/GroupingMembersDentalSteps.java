@@ -14,7 +14,7 @@ public class GroupingMembersDentalSteps {
     }
 
     @Then("I click continue on grouping Members Dental page")
-    public void clickContinue() {groupingMembersDental.clickContinueWithRetries();}
+    public void clickContinue() {groupingMembersDental.clickContinue();}
 
     @And( "I click Go Back on the Dental Grouping page" )
     public void clickGoBack() {groupingMembersDental.clickGoBack();}

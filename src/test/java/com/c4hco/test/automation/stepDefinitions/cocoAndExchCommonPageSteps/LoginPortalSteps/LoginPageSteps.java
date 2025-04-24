@@ -182,4 +182,9 @@ public class LoginPageSteps {
     public void iValidateTheErrorMsgUsernameAndPasswordRequiredIn(String language) {
             loginPage.validateTheErrorMsgUsernameAndPasswordRequiredIn(language);
     }
+
+    @Then("I validate the automatically signed out message appear in {string}")
+    public void iValidateTheAutomaticallySignedOutMessageAppearIn(String language) {
+            loginPage.validateTheAutomaticallySignedOutMessageAppearIn(language);
+    }
 }
