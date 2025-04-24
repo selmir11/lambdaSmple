@@ -119,4 +119,9 @@ public class MedicalPlansCoCoPageSteps {
     public void selectMedicalPlanForGroupCOCO(List<String> plansOfGroups) {
         medicalPlansCoCoPage.selectPlansForGroups(plansOfGroups);
     }
+
+    @And("I validate the current plan green banner {string} on the COCO Medical Plan Results page")
+    public void validateCurrentPlanGreenBanner(String planName) {
+        medicalPlansCoCoPage.validateMedicalGreenBannerTxt(planName);
+    }
 }
