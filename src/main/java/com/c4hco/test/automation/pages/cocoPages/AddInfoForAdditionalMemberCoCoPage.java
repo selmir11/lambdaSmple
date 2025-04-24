@@ -109,6 +109,20 @@ public class AddInfoForAdditionalMemberCoCoPage {
         basicActions.waitForElementToBeClickable(countyDropdown, 30);
         countyDropdown.click();
         basicActions.selectValueFromDropdown(countyDropdown, countyDropdownOptions, county);
+        List<MemberDetails> memberList=basicActions.getAllMem();
+        String actualMemberInfo = hdrAddInfoForAddMember.getText().replace("Additional information for ","");
+        for(MemberDetails actualMember : memberList) {
+            if(actualMemberInfo.contains(actualMember.getFirstName())) {
+                Address address = new Address();
+                address.setAddressLine1(addressLine1);
+                address.setAddressCity(city);
+                address.setAddressState(state);
+                address.setAddressZipcode(zipcode);
+                address.setAddressCounty(county);
+                actualMember.setResAddress(address);
+                break;
+            }
+        }
     }
     public void addMemberCompleteResidentialAddressCoCo(String addressLine1, String addressLine2, String city, String state, String zipcode, String county) {
         basicActions.waitForElementToBePresent(addressLine1Input, 30);

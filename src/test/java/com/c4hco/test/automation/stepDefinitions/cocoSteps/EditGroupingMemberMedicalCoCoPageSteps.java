@@ -17,7 +17,10 @@ public class EditGroupingMemberMedicalCoCoPageSteps {
     public void createNewGroupAndAddMembers(List<String> grouping) {
         editGroupingMembersMedicalCoCoPage.createNewGroup(grouping);
     }
-
+    @And("I redifine the relationships based on groups")
+    public void reassignRelationships(List<String> relation){
+        editGroupingMembersMedicalCoCoPage.relationshipsInGroups(relation);
+    }
     @Then("I click save button to save the groups in CoCo Page")
     public void saveGroups(){
         editGroupingMembersMedicalCoCoPage.iClickSaveButton();
