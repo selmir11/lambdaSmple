@@ -2674,7 +2674,7 @@ public class AdminPortalManagePlansPage {
             List<WebElement> options = basicActions.getDriver().findElements(By.xpath(dropdownXpath));
 
             if (options.isEmpty() || i >= options.size()) {
-                System.out.println("️ Index out of bounds or no policies listed.");
+                System.out.println("Index out of bounds or no policies listed.");
                 break;
             }
 
