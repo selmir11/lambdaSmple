@@ -482,7 +482,7 @@ public class AdminPortalManagePlansSteps {
     public void iValidatePreviousFinancialYearStylePropertiesOnManagePlan() {
         adminPortalManagePlansPage.validatePreviousFinancialStyleProperties();
     }
-	
+
     @And("I verify label on Previous Financial Period Medical Plan container")
     public void iVerifyLabelForPreviousPeriodMedical(List<String > labelName) {
         adminPortalManagePlansPage.verifyPreviousFinanicalLabel(labelName);
@@ -515,8 +515,8 @@ public class AdminPortalManagePlansSteps {
     public void iVerifyMemberTwoShowsTwiceInCoverageDetailsAndFinancialDetailsTables() {
         adminPortalManagePlansPage.VerifyMemberTwoShowsTwiceInCoverageAndFinancialDetailsTables();
     }
-	
-	@And("I Validate the correct enrolled plans are displayed on Manage Plans page")
+
+    @And("I Validate the correct enrolled plans are displayed on Manage Plans page")
     public void iverifyPlanDetails(List<String> data) {
         adminPortalManagePlansPage.verifyPlanDetails(data);
     }
@@ -540,6 +540,17 @@ public class AdminPortalManagePlansSteps {
     public void iValidateWhiteBackGroundAndBlackTextOfButtonOnlyWhenUnchecked(String btnType) {
         adminPortalManagePlansPage.validateWhiteBackGroundAndBlackTextOfButtonOnlyWhenUnchecked(btnType);
     }
+
+    @Then("I select Plans {string} Termed policy with {string} coverage end date on manage plan page")
+    public void iSelectPlansTermedPolicyWith(String planType, String expectedValues) {
+        adminPortalManagePlansPage.selectTermedPolicyBasedOnEndDate(planType, expectedValues);
+    }
+
+    @Then("I set the Person IDs on manage plan page")
+    public void iSetPersonIds() {adminPortalManagePlansPage.setPersonIds();}
+
+    @Then("I validate the Person ID didn't change on manage plan page")
+    public void iValidatePersonIdsUnchanged() {adminPortalManagePlansPage.validatePersonIdsUnchanged();}
 
     @Then("I update manage plan editable fields")
     public void iUpdateManagePlanEditableFieldsForMember(DataTable data){

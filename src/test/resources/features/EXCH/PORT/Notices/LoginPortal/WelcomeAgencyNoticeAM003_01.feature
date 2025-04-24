@@ -1,4 +1,4 @@
-@port @portNotice
+@port @portNoticeLoginPortal
 Feature:Agency Welcome notice AM-003-01
   @SLER-1923
   Scenario: Agency Welcome notice AM-003-01
