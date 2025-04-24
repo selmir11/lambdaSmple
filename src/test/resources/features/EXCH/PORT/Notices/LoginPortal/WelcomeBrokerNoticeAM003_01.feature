@@ -1,4 +1,4 @@
-@port @portNotice
+@port @portNoticeLoginPortal
 Feature:Broker Welcome notice AM-003-01
 @SLER-1922
   Scenario: Broker Welcome notice AM-003-01

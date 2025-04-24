@@ -1,4 +1,4 @@
-@deauthorizeBroker @PORT @portNotice
+@portNoticeBrokerPortal @port
 Feature:verify deauthorize broker notice Spanish BN-002-04
 
   @SLER-1859
