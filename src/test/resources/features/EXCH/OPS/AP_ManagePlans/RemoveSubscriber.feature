@@ -184,10 +184,8 @@ Feature: OPS: MP: FA Removing Subscriber from policy
     Then I validate current "Dental" all details table in DB for 1 members on AP Manage Plans
     Then I select Plans "Medical" Termed policy with "Last Day Of Current Month" coverage end date on manage plan page
     Then I select Plans "Dental" Termed policy with "Last Day Of Current Month" coverage end date on manage plan page
-    Then I validate termed "Medical" all details table in DB for 1 on AP Manage Plans
-    Then I validate termed "Dental" all details table in DB for 1 on AP Manage Plans
-    Then I validate termed "Medical" all details table in DB for 2 on AP Manage Plans
-    Then I validate termed "Dental" all details table in DB for 2 on AP Manage Plans
+    Then I validate termed "Medical" all details table in DB for 2 member for DB row 1 on AP Manage Plans
+    Then I validate termed "Dental" all details table in DB for 2 member for DB row 1 on AP Manage Plans
     Then logout from Admin Portal
 
 @SLER-2428
@@ -299,10 +297,8 @@ Scenario: [RT-2478] Cancel and Reinstate
   And I click Save Button Dental
   And I select the reason to confirm the changes
   And I wait for 1000 milliseconds
-  Then I validate termed "Medical" all details table in DB for 1 on AP Manage Plans
-  Then I validate termed "Dental" all details table in DB for 1 on AP Manage Plans
-  Then I validate termed "Medical" all details table in DB for 2 on AP Manage Plans
-  Then I validate termed "Dental" all details table in DB for 2 on AP Manage Plans
+  Then I validate termed "Medical" all details table in DB for 2 member for DB row 1 on AP Manage Plans
+  Then I validate termed "Dental" all details table in DB for 2 member for DB row 1 on AP Manage Plans
 #  Reinstate policy
   Then I click Make Changes Medical button
   And I update the Coverage End date of member on manage plan page for "Medical"
@@ -416,10 +412,8 @@ Scenario: [RT-2425] OPS: MP: NFA Removing Subscriber from policy
   Then I validate current "Dental" all details table in DB for 1 members on AP Manage Plans
   Then I select Plans "Medical" Termed policy with "Last Day Of Current Month" coverage end date on manage plan page
   Then I select Plans "Dental" Termed policy with "Last Day Of Current Month" coverage end date on manage plan page
-  Then I validate termed "Medical" all details table in DB for 1 on AP Manage Plans
-  Then I validate termed "Dental" all details table in DB for 1 on AP Manage Plans
-  Then I validate termed "Medical" all details table in DB for 2 on AP Manage Plans
-  Then I validate termed "Dental" all details table in DB for 2 on AP Manage Plans
+  Then I validate termed "Medical" all details table in DB for 2 member for DB row 1 on AP Manage Plans
+  Then I validate termed "Dental" all details table in DB for 2 member for DB row 1 on AP Manage Plans
   Then logout from Admin Portal
 
   @SLER-1616
@@ -532,10 +526,8 @@ Scenario: [RT-2425] OPS: MP: NFA Removing Subscriber from policy
     And I click Save Button Dental
     And I select the reason to confirm the changes
     And I wait for 1000 milliseconds
-    Then I validate termed "Medical" all details table in DB for 1 on AP Manage Plans
-    Then I validate termed "Dental" all details table in DB for 1 on AP Manage Plans
-    Then I validate termed "Medical" all details table in DB for 2 on AP Manage Plans
-    Then I validate termed "Dental" all details table in DB for 2 on AP Manage Plans
+    Then I validate termed "Medical" all details table in DB for 2 member for DB row 1 on AP Manage Plans
+    Then I validate termed "Dental" all details table in DB for 2 member for DB row 1 on AP Manage Plans
 #    New Policy
 #    admin lce
     And I close current tab and switch back to previous tab
@@ -612,11 +604,9 @@ Scenario: [RT-2425] OPS: MP: NFA Removing Subscriber from policy
     And I select the reason to confirm the changes
     And I wait for 1000 milliseconds
     Then I select Plans "Medical" Termed policy with "First Day Of Current Year|KP Select CO Bronze 8500/50" coverage end date on manage plan page
-    Then I validate termed "Medical" all details table in DB for 1 on AP Manage Plans
-    Then I validate termed "Medical" all details table in DB for 2 on AP Manage Plans
+    Then I validate termed "Medical" all details table in DB for 2 member for DB row 1 on AP Manage Plans
     Then I select Plans "Dental" Termed policy with "First Day Of Current Year|Anthem Dental Family Value" coverage end date on manage plan page
-    Then I validate termed "Dental" all details table in DB for 1 on AP Manage Plans
-    Then I validate termed "Dental" all details table in DB for 2 on AP Manage Plans
+    Then I validate termed "Dental" all details table in DB for 2 member for DB row 1 on AP Manage Plans
 #  Reinstate policy
     And I wait for 2000 milliseconds
     Then I select Plans "Medical" Termed policy with "First Day Of Current Year|Cigna Connect Colorado Option Bronze" coverage end date on manage plan page
@@ -642,7 +632,5 @@ Scenario: [RT-2425] OPS: MP: NFA Removing Subscriber from policy
     And I wait for 1000 milliseconds
     And I select Plans Med Active Policy
     And I select Plans Dental Active Policy
-    Then I validate current "Medical" all details table in DB for 1 members on AP Manage Plans
-    Then I validate current "Dental" all details table in DB for 1 members on AP Manage Plans
     Then I validate current "Medical" all details table in DB for 2 members on AP Manage Plans
     Then I validate current "Dental" all details table in DB for 2 members on AP Manage Plans
