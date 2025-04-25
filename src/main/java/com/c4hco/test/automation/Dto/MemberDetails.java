@@ -101,6 +101,7 @@ public class MemberDetails {
     Boolean isResAddChange = false;
     String policyDisenrollmentReasonMed;
     String policyDisenrollmentReasonDen;
+    String submittedBy;
 }
 
 

@@ -35,7 +35,7 @@ public class ManagePlanDBValidation {
         PageFactory.initElements(basicActions.getDriver(), this);
     }
 
-    ////////////////////////////Plans Container//////////////////////////
+    ////////////////////////////Plans Container Individual Dashboard//////////////////////////
     @FindBy(xpath = "//p[normalize-space()='Plans']")
     WebElement plansTitle;
     @FindBy(id = "Individual Dashboard-Manage Plans")
@@ -1279,74 +1279,6 @@ public class ManagePlanDBValidation {
         softAssert.assertAll();
     }
 
-    public void verifyPlanContainer(String planYear) {
-        basicActions.waitForElementToBePresentWithRetries(medicalPolicyDates,60);
-        String planYearValue;
-        if (Character.isLetter(planYear.charAt(0))) {
-            planYearValue = basicActions.getDateBasedOnRequirement(planYear);
-        } else {
-            planYearValue = planYear;
-        }
-        List<List<String>> dbMedValuesList = mpDbDataProvider.getManagePlanContainerDetails("Medical",planYearValue);
-        System.out.println("Query executed, returned Medical values: " + dbMedValuesList);
-        List<String> dbMedValues = dbMedValuesList.get(0);
-        List<List<String>> dbDentValuesList = mpDbDataProvider.getManagePlanContainerDetails("Dental",planYearValue);
-        System.out.println("Query executed, returned Dental values: " + dbDentValuesList);
-        List<String> dbDentValues = dbDentValuesList.get(0);
-
-        String dbMedStartValue = basicActions.changeDateFormat(dbMedValues.get(0), "yyyy-MM-dd", "MM/dd/yyyy");
-        String dbMedEndValue = basicActions.changeDateFormat(dbMedValues.get(1), "yyyy-MM-dd", "MM/dd/yyyy");
-        String dbMedMemberNames = dbMedValuesList.stream().map(row -> row.get(3)).distinct().collect(Collectors.joining(", "));
-        Set<String> seenMembers = new HashSet<>();
-        BigDecimal dbMedTotalResponsible = BigDecimal.ZERO;
-        for (List<String> row : dbMedValuesList) {
-            String memberName = row.get(3);
-            if (!seenMembers.contains(memberName)) {
-                seenMembers.add(memberName);
-                BigDecimal amount = new BigDecimal(row.get(4));
-                BigDecimal subsidy = new BigDecimal(row.get(5));
-                BigDecimal responsible = amount.subtract(subsidy);
-                dbMedTotalResponsible = dbMedTotalResponsible.add(responsible);
-            }
-        }
-        String dbDentStartValue = basicActions.changeDateFormat(dbDentValues.get(0), "yyyy-MM-dd", "MM/dd/yyyy");
-        String dbDentEndValue = basicActions.changeDateFormat(dbDentValues.get(1), "yyyy-MM-dd", "MM/dd/yyyy");
-        String dbDentMemberNames = dbDentValuesList.stream().map(row -> row.get(3)).distinct().collect(Collectors.joining(", "));
-        Set<String> seenMembersDent = new HashSet<>();
-        BigDecimal dbDentTotalResponsible = BigDecimal.ZERO;
-        for (List<String> row : dbDentValuesList) {
-            String memberName = row.get(3);
-            if (!seenMembersDent.contains(memberName)) {
-                seenMembersDent.add(memberName);
-                BigDecimal amount = new BigDecimal(row.get(4));
-                BigDecimal subsidy = new BigDecimal(row.get(5));
-                BigDecimal responsible = amount.subtract(subsidy);
-                dbDentTotalResponsible = dbDentTotalResponsible.add(responsible);
-            }
-        }
-        BigDecimal dbTotalResponsibleValue = dbMedTotalResponsible.add(dbDentTotalResponsible);
-        String dbTotalResponsible = dbTotalResponsibleValue.toPlainString();
-
-        softAssert = new SoftAssert();
-        softAssert.assertEquals("Plans", plansTitle.getText());
-        softAssert.assertEquals("Medical "+dbMedStartValue+" \u2014 "+dbMedEndValue, medicalPolicyDates.getText(), "Mismatch in Medical Policy Dates");
-        softAssert.assertEquals(dbMedValues.get(2).trim(), medicalPolicyName.getText(), "Mismatch in Medical Policy Name");
-        softAssert.assertEquals(dbMedMemberNames, medicalMemberName.getText(), "Mismatch in Medical Member Name");
-        softAssert.assertEquals("Total Responsible Amount: $"+dbMedTotalResponsible, medicalTotalResponsible.getText(), "Mismatch in Medical Total Responsible Amount");
-
-        softAssert.assertEquals("Dental "+dbDentStartValue+" \u2014 "+dbDentEndValue, dentalPolicyDates.getText(), "Mismatch in Dental Policy Dates");
-        softAssert.assertEquals(dbDentValues.get(2).trim(), dentalPolicyName.getText(), "Mismatch in Dental Policy Name");
-        softAssert.assertEquals(dbDentMemberNames, dentalMemberName.getText(), "Mismatch in Dental Member Name");
-        softAssert.assertEquals("Total Responsible Amount: $"+dbDentTotalResponsible, dentalTotalResponsible.getText(), "Mismatch in Dental Total Responsible Amount");
-
-        softAssert.assertEquals("Total Responsible Amount For Plans: $"+dbTotalResponsible, totalResponsible.getText(), "Mismatch in Total Responsible Amount For Plans");
-        softAssert.assertEquals("Manage Plans", managePlanButton.getText(), "Mismatch in Manage Plans");
-        softAssert.assertAll();
-
-        dbMedValues.clear();
-        dbDentValues.clear();
-    }
-
     public void validateTermedCoverageDetailsTableDB(String planType, Integer memberNum) {
         List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansTermedCoverageDetails(planType);
         System.out.println("Query executed, returned values: " + dbValuesList);
@@ -1427,6 +1359,78 @@ public class ManagePlanDBValidation {
             uiRowIndex++;
         }
         softAssert.assertAll();
+    }
+
+
+
+
+    ////////////////////////////Plans Container Individual Dashboard//////////////////////////
+    public void verifyPlanContainer(String planYear) {
+        basicActions.waitForElementToBePresentWithRetries(medicalPolicyDates,60);
+        String planYearValue;
+        if (Character.isLetter(planYear.charAt(0))) {
+            planYearValue = basicActions.getDateBasedOnRequirement(planYear);
+        } else {
+            planYearValue = planYear;
+        }
+        List<List<String>> dbMedValuesList = mpDbDataProvider.getManagePlanContainerDetails("Medical",planYearValue);
+        System.out.println("Query executed, returned Medical values: " + dbMedValuesList);
+        List<String> dbMedValues = dbMedValuesList.get(0);
+        List<List<String>> dbDentValuesList = mpDbDataProvider.getManagePlanContainerDetails("Dental",planYearValue);
+        System.out.println("Query executed, returned Dental values: " + dbDentValuesList);
+        List<String> dbDentValues = dbDentValuesList.get(0);
+
+        String dbMedStartValue = basicActions.changeDateFormat(dbMedValues.get(0), "yyyy-MM-dd", "MM/dd/yyyy");
+        String dbMedEndValue = basicActions.changeDateFormat(dbMedValues.get(1), "yyyy-MM-dd", "MM/dd/yyyy");
+        String dbMedMemberNames = dbMedValuesList.stream().map(row -> row.get(3)).distinct().collect(Collectors.joining(", "));
+        Set<String> seenMembers = new HashSet<>();
+        BigDecimal dbMedTotalResponsible = BigDecimal.ZERO;
+        for (List<String> row : dbMedValuesList) {
+            String memberName = row.get(3);
+            if (!seenMembers.contains(memberName)) {
+                seenMembers.add(memberName);
+                BigDecimal amount = new BigDecimal(row.get(4));
+                BigDecimal subsidy = new BigDecimal(row.get(5));
+                BigDecimal responsible = amount.subtract(subsidy);
+                dbMedTotalResponsible = dbMedTotalResponsible.add(responsible);
+            }
+        }
+        String dbDentStartValue = basicActions.changeDateFormat(dbDentValues.get(0), "yyyy-MM-dd", "MM/dd/yyyy");
+        String dbDentEndValue = basicActions.changeDateFormat(dbDentValues.get(1), "yyyy-MM-dd", "MM/dd/yyyy");
+        String dbDentMemberNames = dbDentValuesList.stream().map(row -> row.get(3)).distinct().collect(Collectors.joining(", "));
+        Set<String> seenMembersDent = new HashSet<>();
+        BigDecimal dbDentTotalResponsible = BigDecimal.ZERO;
+        for (List<String> row : dbDentValuesList) {
+            String memberName = row.get(3);
+            if (!seenMembersDent.contains(memberName)) {
+                seenMembersDent.add(memberName);
+                BigDecimal amount = new BigDecimal(row.get(4));
+                BigDecimal subsidy = new BigDecimal(row.get(5));
+                BigDecimal responsible = amount.subtract(subsidy);
+                dbDentTotalResponsible = dbDentTotalResponsible.add(responsible);
+            }
+        }
+        BigDecimal dbTotalResponsibleValue = dbMedTotalResponsible.add(dbDentTotalResponsible);
+        String dbTotalResponsible = dbTotalResponsibleValue.toPlainString();
+
+        softAssert = new SoftAssert();
+        softAssert.assertEquals("Plans", plansTitle.getText());
+        softAssert.assertEquals("Medical "+dbMedStartValue+" \u2014 "+dbMedEndValue, medicalPolicyDates.getText(), "Mismatch in Medical Policy Dates");
+        softAssert.assertEquals(dbMedValues.get(2).trim(), medicalPolicyName.getText(), "Mismatch in Medical Policy Name");
+        softAssert.assertEquals(dbMedMemberNames, medicalMemberName.getText(), "Mismatch in Medical Member Name");
+        softAssert.assertEquals("Total Responsible Amount: $"+dbMedTotalResponsible, medicalTotalResponsible.getText(), "Mismatch in Medical Total Responsible Amount");
+
+        softAssert.assertEquals("Dental "+dbDentStartValue+" \u2014 "+dbDentEndValue, dentalPolicyDates.getText(), "Mismatch in Dental Policy Dates");
+        softAssert.assertEquals(dbDentValues.get(2).trim(), dentalPolicyName.getText(), "Mismatch in Dental Policy Name");
+        softAssert.assertEquals(dbDentMemberNames, dentalMemberName.getText(), "Mismatch in Dental Member Name");
+        softAssert.assertEquals("Total Responsible Amount: $"+dbDentTotalResponsible, dentalTotalResponsible.getText(), "Mismatch in Dental Total Responsible Amount");
+
+        softAssert.assertEquals("Total Responsible Amount For Plans: $"+dbTotalResponsible, totalResponsible.getText(), "Mismatch in Total Responsible Amount For Plans");
+        softAssert.assertEquals("Manage Plans", managePlanButton.getText(), "Mismatch in Manage Plans");
+        softAssert.assertAll();
+
+        dbMedValues.clear();
+        dbDentValues.clear();
     }
 
 
