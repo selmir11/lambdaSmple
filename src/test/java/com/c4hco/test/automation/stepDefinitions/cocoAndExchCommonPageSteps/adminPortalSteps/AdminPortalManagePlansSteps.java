@@ -633,5 +633,4 @@ public class AdminPortalManagePlansSteps {
     public void iVerifyReasonFieldIsNonEditableOnManagePlanForMember( ) {
         adminPortalManagePlansPage.validateReasonNotEnabled();
     }
-
 }
