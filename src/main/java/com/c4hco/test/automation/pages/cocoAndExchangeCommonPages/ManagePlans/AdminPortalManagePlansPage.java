@@ -509,6 +509,12 @@ public class AdminPortalManagePlansPage {
 
     @FindBy(id = "enrollments-container")
     WebElement mPlansContainer;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[@class='two-column-twentyfive-row-container header-3']")
+    WebElement dentalPlanName;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[@class='two-column-twentyfive-row-container body-text-2']")
+    WebElement denCoverageData;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[@class='value-container body-text-1']")
+    WebElement denLatestApplicationDateData;
 
     @FindBy(xpath = "//*[@class='previous-plan-container']")
     WebElement previousFinancialContainer;
@@ -702,7 +708,7 @@ public class AdminPortalManagePlansPage {
     }
 
     public void clickSaveButton() {
-        basicActions.scrollToElement(btnMedSave);
+     //   basicActions.scrollToElement(btnMedSave);
         basicActions.waitForElementToBePresent(btnMedReset, 20);
         basicActions.waitForElementToBePresent(btnMedSave, 20);
         btnMedSave.click();
@@ -1194,7 +1200,7 @@ public class AdminPortalManagePlansPage {
                 APTCMem.sendKeys(Keys.BACK_SPACE);
             }
             APTCMem.sendKeys(aptcvalue);
-            if (SharedData.getPrimaryMember() != null) {
+            if (SharedData.getPrimaryMember().getMedicalPremiumAmt()!= null) {
                 SharedData.getPrimaryMember().setMedicalAptcAmt(aptcvalue);
                 String totalMedPremiumAfterReduction = String.format("%.2f", Float.parseFloat(SharedData.getPrimaryMember().getMedicalPremiumAmt()) - Float.parseFloat(SharedData.getPrimaryMember().getMedicalAptcAmt()));
                 SharedData.getPrimaryMember().setTotalMedAmtAfterReduction(totalMedPremiumAfterReduction);
@@ -2311,11 +2317,46 @@ public class AdminPortalManagePlansPage {
         softAssert.assertAll();
     }
 
+
     public void selectFinancialPeriod(String planType, Integer policyNumber) {
         basicActions.waitForElementListToBePresent(labelShowFinancialPeriod, 30);
         List<WebElement> showFinancialPeriodBtn= basicActions.getDriver().findElements(By.xpath("//div[@class='" + planType.toLowerCase() + "-plan-container']//button[@id='Manage Plans-Show Financial Period']"));
         int indexPolicyNumber = policyNumber - 1;
         showFinancialPeriodBtn.get(indexPolicyNumber).click();
+    }
+
+
+    public void validateSimplifyViewDentalData(String planNameSTG, String policyCoverageSTG, String latestApplicationDateSTG, String planNameQA, String policyCoverageQA, String latestApplicationDateQA) {
+        basicActions.switchtoactiveTab();
+        basicActions.waitForElementToBePresent(medPlanNameData, 5000);
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(dentalPlanName.getText(), planNameSTG);
+            softAssert.assertEquals(denCoverageData.getText(), policyCoverageSTG);
+            softAssert.assertEquals(denLatestApplicationDateData.getText(), latestApplicationDateSTG);
+            softAssert.assertAll();
+        } else {
+            softAssert.assertEquals(dentalPlanName.getText(), planNameQA);
+            softAssert.assertEquals(denCoverageData.getText(), policyCoverageQA);
+            softAssert.assertEquals(denLatestApplicationDateData.getText(), latestApplicationDateQA);
+            softAssert.assertAll();
+        }
+    }
+
+    public void validateDentalFinancialTableDataOnSimplifiedViewOr(String rowSTG, String financialStartSTG, String financialEndSTG, String premiumSTG, String APTCSTG, String rowQA, String financialStartQA, String financialEndQA, String premiumQA, String APTCQA) {
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(rowNumberData.getText(), rowSTG);
+            softAssert.assertEquals(denFinancialStartDateFNTable.getText(), financialStartSTG);
+            softAssert.assertEquals(denFinancialEndDateFNTable.getText(), financialEndSTG);
+            softAssert.assertEquals(denPlanPremiumAmtFnTable.getText(), premiumSTG);
+            softAssert.assertEquals(denAPTCAmtFnTable.getText(), APTCSTG);
+        } else {
+            softAssert.assertEquals(rowNumberData.getText(), rowQA);
+            softAssert.assertEquals(denFinancialStartDateFNTable.getText(), financialStartQA);
+            softAssert.assertEquals(denFinancialEndDateFNTable.getText(), financialEndQA);
+            softAssert.assertEquals(denPlanPremiumAmtFnTable.getText(), premiumQA);
+            softAssert.assertEquals(denAPTCAmtFnTable.getText(), APTCQA);
+        }
+        softAssert.assertAll();
     }
 
 
