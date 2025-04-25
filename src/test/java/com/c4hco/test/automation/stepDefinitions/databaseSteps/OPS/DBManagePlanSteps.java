@@ -95,6 +95,12 @@ public class DBManagePlanSteps {
         managePlanDBValidation.validatePreviousPlanSummaryDB(planType, policyNumber, memberNum);
     }
 
+    @Then("I validate previous financial period {string} plan summary in DB for {int} policy {int} members for DB row {int} on AP Manage Plans")
+    public void iValidatePreviousPlanSummaryRowDB(String planType, Integer policyNumber, Integer memberNum, Integer dbRowAdjust) throws Exception {
+        actions.wait(5000);
+        managePlanDBValidation.validatePreviousPlanSummaryRowDB(planType, policyNumber, memberNum, dbRowAdjust);
+    }
+
     @Then("I validate termed {string} all details table in DB for {int} on AP Manage Plans")
     public void iValidateTermedAllDetailsTableInDBForOnAPManagePlans(String planType, int memberNum) {
         actions.wait(5000);
