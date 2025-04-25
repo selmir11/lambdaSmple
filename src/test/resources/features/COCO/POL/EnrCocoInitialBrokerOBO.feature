@@ -1,4 +1,5 @@
 Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
+
   @SLCR-298 @SLCR-929 @SLCR-930 @SLCR-931 @SLCR-932 @pol_coco_passed
   Scenario: CCRT-49 COCO Initial Application HUSBAND + WIFE (Colorado Option) (BROKER OBO)
    Given I set the test scenario details in coco

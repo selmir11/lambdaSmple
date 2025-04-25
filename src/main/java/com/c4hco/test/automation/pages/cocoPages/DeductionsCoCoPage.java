@@ -195,6 +195,7 @@ public class DeductionsCoCoPage {
     }
 
     public void selectDeductionOptionOnly(String deductionOption) {
+        basicActions.wait(3000);
         basicActions.waitForElementToDisappear(spinner, 15);
         basicActions.waitForElementListToBePresentWithRetries(deductionButton, 10);
 
