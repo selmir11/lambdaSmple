@@ -150,6 +150,15 @@ Feature: Shopping Page - Continue and Go back funtionality
     And I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Plan Summary" page
+    And I click continue on coco plan summary page
+
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+
+    Then I click all done from payment portal page coco
     And I click on Sign Out in the Header for "Portal"
 
 
@@ -277,9 +286,10 @@ Feature: Shopping Page - Continue and Go back funtionality
     And I wait for 2000 milliseconds
     And I select the COCO Metal Tier dropdown
     And I wait for 2000 milliseconds
-    And I select "Silver" to filter for a  COCO Metal Tier plan
-    And I validate the COCO plan option 1 has text "Cigna Connect Colorado Option Silver Off Exchange"
-    And I select "Cigna Connect Colorado Option Silver Off Exchange" coco medical plan
+    And I select "Bronze" to filter for a  COCO Metal Tier plan
+    And I select "Cigna Healthcare" to filter for desired COCO plan provider
+    And I validate the COCO plan option 1 has text "Cigna Connect Colorado Option Bronze"
+    And I select "Cigna Connect Colorado Option Bronze" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Plan Summary" page

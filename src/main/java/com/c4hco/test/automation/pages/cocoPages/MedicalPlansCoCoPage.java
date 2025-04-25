@@ -45,7 +45,7 @@ public class MedicalPlansCoCoPage {
     @FindBy(id = "PlanResults-ResetFilters")
     WebElement filterResetButton;
 
-    @FindBy(id = "PlanResults-MetalTier")
+    @FindBy(xpath = "//*[id ='PlanResults-MetalTier']")
     WebElement metalTierDropdown;
 
     @FindBy(id = "PlanResults-PlanCompareCheckbox_1")
@@ -156,7 +156,7 @@ public class MedicalPlansCoCoPage {
 
     public void clickMetalTierDropdown() {
         basicActions.waitForElementToDisappear(spinner, 10);
-        basicActions.waitForElementToBePresentWithRetries(metalTierDropdown, 40);
+        basicActions.waitForElementToBePresentWithRetries(metalTierDropdown, 120);
         metalTierDropdown.click();
 
     }
@@ -168,7 +168,7 @@ public class MedicalPlansCoCoPage {
     }
 
     public void selectfromMetalTierList(String Selecting) {
-        basicActions.waitForElementToBePresentWithRetries( metalTierDropdown, 30);
+        basicActions.waitForElementToBePresentWithRetries( metalTierDropdown, 60);
         switch(Selecting){
             case "Bronze":
                 basicActions.getDriver().findElement(By.id("PlanResults-MetalTier_0-input")).click();
