@@ -1,6 +1,6 @@
 Feature: Initial Application Single Applicant(Silver Enhanced)
 
-  @SLCR-297 @SLCR-933 @SLCR-934 @SLCR-935 @SLCR-936
+  @SLCR-297 @SLCR-933 @SLCR-934 @SLCR-935 @SLCR-936 @pol_coco_passed
   Scenario: COCO Initial Application - Single Applicant (Silver Enhanced)
     Given I set the test scenario details in coco
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
