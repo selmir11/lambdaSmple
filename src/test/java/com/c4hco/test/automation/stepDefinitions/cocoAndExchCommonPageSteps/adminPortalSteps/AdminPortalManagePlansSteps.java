@@ -477,7 +477,6 @@ public class AdminPortalManagePlansSteps {
     public void iVerifyExpandAndCollapseAllFinancialPeriodsWithinThePreviousFinancialPeriod() {
         adminPortalManagePlansPage.verifyExpandAndCollapsesWithinThePFP();
     }
-
     @Then("I validate previous financial year style properties on manage plan")
     public void iValidatePreviousFinancialYearStylePropertiesOnManagePlan() {
         adminPortalManagePlansPage.validatePreviousFinancialStyleProperties();
@@ -490,7 +489,26 @@ public class AdminPortalManagePlansSteps {
 
     @Then("I verify green bar for more financial period")
     public void iVerifyGreenBarForMoreFinancialPeriod() {
-        adminPortalManagePlansPage.verifyGreenBarForMoreFinancialPeriods();
+        adminPortalManagePlansPage.verifyGreenBarForMoreFinancialPeriods();}
+    @Then("I validate the no previous financial period medical on manage plan")
+    public void iValidateTheNoPreviousFinancialPeriodMedicalOnManagePlan() {
+        adminPortalManagePlansPage.checkPreviousFinancialMedical();
+    }
+
+    @Then("I validate the no previous financial period dental on manage plan")
+    public void iValidateTheNoPreviousFinancialPeriodDentalOnManagePlan() {
+        adminPortalManagePlansPage.checkPreviousFinancialDentalMessage();
+    }
+
+    @And("I check dental plan name: {string} {string} {string} or plan name: {string} {string} {string}")
+    public void iCheckDentalPlanNameOrPlanName(String planNameSTG, String policyCoverageSTG, String latestApplicationDateSTG, String planNameQA, String policyCoverageQA, String latestApplicationDateQA) {
+        adminPortalManagePlansPage.validateSimplifyViewDentalData(planNameSTG, policyCoverageSTG, latestApplicationDateSTG, planNameQA, policyCoverageQA, latestApplicationDateQA);
+    }
+
+    @And("I validate Dental financial table data on Simplified View {string}, {string}, {string}, {string}, {string} or {string}, {string}, {string}, {string}, {string}")
+    public void iValidateDentalFinancialTableDataOnSimplifiedViewOr(String rowSTG, String financialStartSTG, String financialEndSTG, String premiumSTG, String APTCSTG, String rowQA, String financialStartQA, String financialEndQA, String premiumQA, String APTCQA) {
+        adminPortalManagePlansPage.validateDentalFinancialTableDataOnSimplifiedViewOr( rowSTG, financialStartSTG, financialEndSTG, premiumSTG, APTCSTG, rowQA, financialStartQA, financialEndQA, premiumQA, APTCQA);
+
     }
 
     @And("I select {string} Show Financial Period for policy {int} on Manage Plans page")
