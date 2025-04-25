@@ -34,9 +34,9 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.verifyButtonsCheckedBoth();
     }
 
-    @And("I validate buttons displayed on Manage page")
-    public void iResetMakeChangeButtonsDisplayed() {
-        adminPortalManagePlansPage.resetMakeChangeButtonsDisplayed();
+    @And("I validate Make Changes button displayed for {string} on Manage page")
+    public void iResetMakeChangeButtonsDisplayed(String planType) {
+        adminPortalManagePlansPage.resetMakeChangeButtonsDisplayed(planType);
     }
     @And("I validate {string} medical button displays on Manage page")
     public void iVerifySaveButtonDisplayed(String saveMed) {
