@@ -385,7 +385,7 @@ public class ManagePlanDBValidation {
                 continue;
             }
             processedFirstNames.add(firstName);
-            String dbTobaccoValue = dbRow.get(1).equals("1") ? "Yes" : "No";
+            String dbTobaccoValue = dbRow.get(5).equals("1") ? "Yes" : "No";
             String dbDobValue = basicActions.changeDateFormat(dbRow.get(3), "yyyy-MM-dd", "MM/dd/yyyy");
 
             WebElement personID = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[@id='referenceId_" + uiRowIndex + "']"));
@@ -505,7 +505,7 @@ public class ManagePlanDBValidation {
                 continue;
             }
             processedFirstNames.add(firstName);
-            String dbTobaccoValue = dbRow.get(1).equals("1") ? "Yes" : "No";
+            String dbTobaccoValue = dbRow.get(5).equals("1") ? "Yes" : "No";
             String dbDobValue = basicActions.changeDateFormat(dbRow.get(3), "yyyy-MM-dd", "MM/dd/yyyy");
 
             WebElement personID = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[@id='referenceId_" + uiRowIndex + "']"));
@@ -648,7 +648,7 @@ public class ManagePlanDBValidation {
         for (int memberIndex = 0; memberIndex < memberNum; memberIndex++) {
             List<String> selectedRow = selectRowForMember(dbValuesList, memberIndex, 0, dbRowAdjust);
 
-            String dbTobaccoValue = selectedRow.get(1).equals("1") ? "Yes" : "No";
+            String dbTobaccoValue = selectedRow.get(5).equals("1") ? "Yes" : "No";
             String dbFinancialPeriodStartValue = basicActions.changeDateFormat(selectedRow.get(6), "yyyy-MM-dd", "MM/dd/yyyy");
             String dbFinancialPeriodEndValue = basicActions.changeDateFormat(selectedRow.get(7), "yyyy-MM-dd", "MM/dd/yyyy");
             String dbDobValue = basicActions.changeDateFormat(selectedRow.get(3), "yyyy-MM-dd", "MM/dd/yyyy");
@@ -834,9 +834,14 @@ public class ManagePlanDBValidation {
         String dbPlanAvValue = "";
         if (firstRow.get(16) != null && !firstRow.get(16).trim().isEmpty()) {
             BigDecimal av = new BigDecimal(firstRow.get(16).trim());
-            dbPlanAvValue = av.compareTo(BigDecimal.ZERO) == 0
-                    ? (planType.equalsIgnoreCase("Dental") ? "0.00%" : "")
-                    : av.multiply(BigDecimal.valueOf(100)).setScale(2, RoundingMode.HALF_UP) + "%";
+            if (planType.equalsIgnoreCase("Dental")) {
+                dbPlanAvValue = av.compareTo(BigDecimal.ZERO) == 0
+                        ? "0.00%"
+                        : av.multiply(BigDecimal.valueOf(100))
+                        .setScale(2, RoundingMode.HALF_UP) + "%";
+            } else if (planType.equalsIgnoreCase("Medical")) {
+                dbPlanAvValue = ""; // Always blank for Medical due to bug OPS-6639
+            }
         }
 
         values.put("policyStartDate", policyStart);
@@ -947,7 +952,11 @@ public class ManagePlanDBValidation {
         String dbPlanAvValue = "";
         if (primaryRow.get(16) != null && !primaryRow.get(16).trim().isEmpty()) {
             BigDecimal av = new BigDecimal(primaryRow.get(16).trim());
-            dbPlanAvValue = av.compareTo(BigDecimal.ZERO) == 0 ? (planType.equalsIgnoreCase("Dental") ? "0.00%" : "") : av.multiply(BigDecimal.valueOf(100)).setScale(2, RoundingMode.HALF_UP) + "%";
+            if (planType.equalsIgnoreCase("Dental")) {
+                dbPlanAvValue = av.compareTo(BigDecimal.ZERO) == 0 ? "0.00%" : av.multiply(BigDecimal.valueOf(100)).setScale(2, RoundingMode.HALF_UP) + "%";
+            } else if (planType.equalsIgnoreCase("Medical")) {
+                dbPlanAvValue = ""; // Always blank for Medical due to bug OPS-6639
+            }
         }
 
         values.put("policyStartDate", policyStart);
@@ -1054,12 +1063,29 @@ public class ManagePlanDBValidation {
 
     public void validatePreviousPlanSummaryDB(String planType, Integer policyNumber, Integer memberNum) throws Exception {
         List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansPlanSummary(planType);
+        System.out.println("Query executed, returned values: " + dbValuesList);
         if (dbValuesList.isEmpty()) {
             throw new RuntimeException("No data returned for account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'");
         }
 
         List<List<String>> selectedRows = getPreviousSelectedRows(dbValuesList, policyNumber, memberNum);
         List<String> selectedRow = getPreviousSelectedRowForAssertions(dbValuesList, policyNumber);
+        Map<String, String> financials = calculatePreviousPlanFinancials(selectedRow, selectedRows, planType);
+        Map<String, WebElement> elements = getPreviousPlanWebElements(planType, financials.get("reduction"));
+
+        assertPreviousPlanSummary(elements, selectedRow, financials, planType);
+    }
+
+    public void validatePreviousPlanSummaryRowDB(String planType, Integer policyNumber, Integer memberNum, Integer dbRowAdjust) throws Exception {
+        List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansPlanSummary(planType);
+        System.out.println("Query executed, returned values: " + dbValuesList);
+        if (dbValuesList.isEmpty()) {
+            throw new RuntimeException("No data returned for account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'");
+        }
+
+        List<List<String>> selectedRows = getPreviousSelectedRows(dbValuesList, policyNumber, memberNum);
+        List<String> selectedRow = getPreviousRowForAssertions(dbValuesList, dbRowAdjust);
+        System.out.println("Selected row is "+selectedRow);
         Map<String, String> financials = calculatePreviousPlanFinancials(selectedRow, selectedRows, planType);
         Map<String, WebElement> elements = getPreviousPlanWebElements(planType, financials.get("reduction"));
 
@@ -1097,6 +1123,13 @@ public class ManagePlanDBValidation {
         return selectedMemberRows.get(policyNumber);
     }
 
+    private List<String> getPreviousRowForAssertions(List<List<String>> dbValuesList, int dbRowAdjust) {
+        if (dbRowAdjust >= dbValuesList.size()) {
+            throw new IndexOutOfBoundsException("Requested row index " + dbRowAdjust + " exceeds available rows: " + dbValuesList.size());
+        }
+        return dbValuesList.get(dbRowAdjust);
+    }
+
     private Map<String, String> calculatePreviousPlanFinancials(List<String> selectedRow, List<List<String>> selectedRows, String planType) {
         Map<String, String> values = new HashMap<>();
 
@@ -1108,16 +1141,18 @@ public class ManagePlanDBValidation {
         BigDecimal ehbPercent = new BigDecimal(selectedRow.get(7));
         BigDecimal totalPremium = selectedRows.stream().map(r -> new BigDecimal(r.get(8))).reduce(BigDecimal.ZERO, BigDecimal::add);
         BigDecimal totalCsrAmount = selectedRows.stream().map(r -> new BigDecimal(r.get(10))).reduce(BigDecimal.ZERO, BigDecimal::add).setScale(2, RoundingMode.HALF_UP);
-        BigDecimal totalAptcAmount = selectedRows.stream().map(r -> new BigDecimal(r.get(13))).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal totalAptcAmount = new BigDecimal(selectedRow.get(13));
         BigDecimal dbEhbPremiumValue = ehbPercent.multiply(totalPremium).setScale(2, RoundingMode.HALF_UP);
         BigDecimal dbPremiumAfterSubsidy = totalPremium.subtract(totalAptcAmount);
 
         String dbPlanAvValue = "";
         if (selectedRow.get(16) != null && !selectedRow.get(16).trim().isEmpty()) {
             BigDecimal av = new BigDecimal(selectedRow.get(16).trim());
-            dbPlanAvValue = av.compareTo(BigDecimal.ZERO) == 0
-                    ? "0.00%"
-                    : av.multiply(BigDecimal.valueOf(100)).setScale(2, RoundingMode.HALF_UP) + "%";
+            if (planType.equalsIgnoreCase("Dental")) {
+                dbPlanAvValue = av.compareTo(BigDecimal.ZERO) == 0 ? "0.00%" : av.multiply(BigDecimal.valueOf(100)).setScale(2, RoundingMode.HALF_UP) + "%";
+            } else if (planType.equalsIgnoreCase("Medical")) {
+                dbPlanAvValue = ""; // Always blank for Medical due to bug OPS-6639
+            }
         }
 
         String reduction = "";
@@ -1260,7 +1295,7 @@ public class ManagePlanDBValidation {
                 continue;
             }
             processedFirstNames.add(firstName);
-            String dbTobaccoValue = dbRow.get(1).equals("1") ? "Yes" : "No";
+            String dbTobaccoValue = dbRow.get(5).equals("1") ? "Yes" : "No";
             String dbDobValue = basicActions.changeDateFormat(dbRow.get(3), "yyyy-MM-dd", "MM/dd/yyyy");
 
             WebElement personID = basicActions.getDriver().findElement(By.xpath("//div[@class='"+planType.toLowerCase()+"-plan-container plan-container-fill']//div[@id='referenceId_" + uiRowIndex + "']"));
