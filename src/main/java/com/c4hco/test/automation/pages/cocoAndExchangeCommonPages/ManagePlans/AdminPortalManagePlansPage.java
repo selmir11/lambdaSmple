@@ -1945,7 +1945,7 @@ public class AdminPortalManagePlansPage {
     public void verifyFieldIsEditable(String fieldName, int memberList) {
         basicActions.wait(30);
         for (int i = 1; i <= memberList; i++) {
-            WebElement actualField = null;
+            WebElement actualField = getWebelement(fieldName,i);
             switch (fieldName) {
                 case "APTC", "SES":
                     actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='planAPTC_" + i + "']//input"));
@@ -2845,11 +2845,28 @@ public class AdminPortalManagePlansPage {
     private WebElement getWebelement(String fieldName, int memberNo) {
         WebElement actualField = null;
         switch (fieldName) {
-            case "SES", "APTC":
+            case "APTC", "SES":
                 actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='planAPTC_" + memberNo + "']//input"));
                 break;
             case "premium":
                 actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='premium_" + memberNo + "']//input"));
+                break;
+            case "financial end date":
+                actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='financialEndDate_" + memberNo + "']//input"));
+                break;
+            case "financial start date":
+                actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='financialStartDate_" + memberNo + "']//input"));
+                break;
+            case "coverage start date":
+                actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageStartDate_" + memberNo + "']//input"));
+                break;
+            case "coverage end date":
+                actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageEndDate_" + memberNo + "']//input"));
+                break;
+            case "termination reason":
+                String terminate = "//*[@class='member-details-grid-item dropdown']";
+                String terminateXpath = terminate + "[" + memberNo + "]";
+                actualField = basicActions.getDriver().findElement(By.xpath(terminateXpath));
                 break;
         }
         return actualField;
