@@ -285,7 +285,7 @@ Feature: Seed06 - Exchange
       And I validate the ob834 "medical" file data
       And I validate the ob834 "dental" file data
 
-  @SLER-2034-WIP-@R4V @n1
+  @SLER-2034-WIP-@R4V
   Scenario: RT-2322 ENR-EXCH: APPS - CHANGE OF SUBSCRIBER
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
