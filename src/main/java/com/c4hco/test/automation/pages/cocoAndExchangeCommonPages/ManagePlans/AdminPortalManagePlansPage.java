@@ -548,6 +548,12 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@id='coverageEndDate_1']")
     WebElement coverageEndDateDentTxt;
 
+    @FindBy(xpath = "//div[contains(text(),'Invalid monetary amount for SES: ')]")
+    WebElement SESInvalidAmtError;
+
+    @FindBy(xpath = "//div[contains(text(),'SES entered exceeds SES amount: ')]")
+    WebElement SESExceedError;
+
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
         softAssert.assertEquals(titleInBlueBar.getText(), "Admin Portal");
@@ -2668,5 +2674,139 @@ public class AdminPortalManagePlansPage {
     }
 
 
+    public void validateFieldValuesNotChanged(String fieldName, DataTable memberDetails) {
+
+        List<Map<String, String>> data = memberDetails.asMaps();
+
+        String currentEnv = SharedData.getEnv();
+        List<Map<String, String>> envBasedData = data.stream().filter(row -> row.get("Env").equals(currentEnv)).toList();
+
+        for (int i = 0; i < envBasedData.size(); i++) {
+            Map<String, String> details = envBasedData.get(i);
+            String memberNo = details.get("Member");
+            String value = details.get("Value");
+            valueNotChanged(fieldName, value, memberNo);
+        }
+    }
+
+    private void valueNotChanged(String fieldName, String value, String memberNo) {
+        WebElement actualField = null;
+        switch (fieldName) {
+            case "SES", "APTC":
+                actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='planAPTC_" + memberNo + "']"));
+                break;
+            case "premium":
+                actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='premium_" + memberNo + "']"));
+                break;
+            case "financial end date":
+                actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='financialEndDate_" + memberNo + "']"));
+                break;
+            case "financial start date":
+                actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='financialStartDate_" + memberNo + "']"));
+                break;
+            case "coverage start date":
+                actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageStartDate_" + memberNo + "']"));
+                break;
+            case "coverage end date":
+                actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageEndDate_" + memberNo + "']"));
+                break;
+            case "termination reason":
+                String terminate = "//*[@class='member-details-grid-item dropdown']";
+                String terminateXpath = terminate + "[" + memberNo + "]";
+                actualField = basicActions.getDriver().findElement(By.xpath(terminateXpath));
+                break;
+        }
+        softAssert.assertEquals(actualField.getText(), value, "Amount got changed");
+        softAssert.assertAll();
+    }
+
+    public void updateCopyPasteValue(String fieldName,DataTable memberDetails) {
+        basicActions.wait(30);
+        List<Map<String, String>> data = memberDetails.asMaps();
+
+        String currentEnv = SharedData.getEnv();
+        List<Map<String, String>> envBasedData = data.stream().filter(row -> row.get("Env").equals(currentEnv)).toList();
+        JavascriptExecutor js = (JavascriptExecutor) basicActions.getDriver();
+        for (int i = 0; i < envBasedData.size(); i++) {
+            Map<String, String> details = envBasedData.get(i);
+            int memberNo = Integer.parseInt(details.get("Member"));
+            String value = details.get("Value");
+            WebElement fieldElement = getWebelement(fieldName, memberNo);
+            String script = "arguments[0].value = arguments[1];" + // set input field value ( [0] - field = [1] - value (ie, premiumMem.value = "44444.44"')
+                    "arguments[0].dispatchEvent( new Event('input'));" + //simulate typing
+                    "arguments[0].dispatchEvent( new Event('change'));"; //finalize the value
+            js.executeScript(script, fieldElement, value);
+        }
+    }
+
+    private WebElement getWebelement(String fieldName, int memberNo) {
+        WebElement actualField = null;
+        switch (fieldName) {
+            case "SES", "APTC":
+                actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='planAPTC_" + memberNo + "']//input"));
+                break;
+            case "premium":
+                actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='premium_" + memberNo + "']//input"));
+                break;
+        }
+        return actualField;
+    }
+
+    public void validateErrorWithColor(String  data) {
+        softAssert.assertEquals(ValidationError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        softAssert.assertEquals(ValidationError.getText(), data,"Message not match");
+        softAssert.assertAll();
+
+    }
+    public void validateSESErrorWithColor(DataTable memberDetails) {
+
+        List<Map<String, String>> data = memberDetails.asMaps();
+
+        String currentEnv = SharedData.getEnv();
+        List<Map<String, String>> envBasedData = data.stream().filter(row -> row.get("Env").equals(currentEnv)).toList();
+
+        for (int i = 0; i < envBasedData.size(); i++) {
+            Map<String, String> details = envBasedData.get(i);
+            String SESInvalidAmtErr = details.get("Invalid Message");
+            String SESExceedErr = details.get("SES exceed Message");
+            basicActions.waitForElementToBePresent(SESInvalidAmtError, 20);
+            softAssert.assertEquals(SESInvalidAmtError.getText(), SESInvalidAmtErr, "Message not match");
+            softAssert.assertEquals(SESInvalidAmtError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+            softAssert.assertEquals(SESExceedError.getText(), SESExceedErr, "Message not match");
+            softAssert.assertEquals(SESExceedError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+        }
+        softAssert.assertAll();
+    }
+
+    public void validatePremiumNotEnabled( ) {
+        List<WebElement> premium = basicActions.getDriver().findElements(By.xpath("//div[@id='planAPTC_']//input"));
+        Assert.assertTrue(premium.isEmpty()," premium field should not be editable ");
+    }
+    public void validateSESNotEnabled( ) {
+        List<WebElement> SES = basicActions.getDriver().findElements(By.xpath("//div[@id='planAPTC_']//input"));
+        Assert.assertTrue(SES.isEmpty()," premium field should not be editable ");
+    }
+
+    public void validateCoverageStartNotEnabled( ) {
+        List<WebElement> coverageStart = basicActions.getDriver().findElements(By.xpath("//div[@id='coverageStartDate_']//input"));
+        Assert.assertTrue(coverageStart.isEmpty()," Coverage start field should not be editable ");
+    }
+    public void validateCoverageEndNotEnabled( ) {
+        List<WebElement> coverageEnd = basicActions.getDriver().findElements(By.xpath("//div[@id='coverageEndDate_']//input"));
+        Assert.assertTrue(coverageEnd.isEmpty()," Coverage start field should not be editable ");
+    }
+
+    public void validateFinancialStartNotEnabled( ) {
+        List<WebElement> financialStart = basicActions.getDriver().findElements(By.xpath("//div[@id='financialStartDate_']//input"));
+        Assert.assertTrue(financialStart.isEmpty()," Coverage start field should not be editable ");
+    }
+    public void validateFinancialEndNotEnabled( ) {
+        List<WebElement> financialEnd = basicActions.getDriver().findElements(By.xpath("//div[@id='financialEndDate_']//input"));
+        Assert.assertTrue(financialEnd.isEmpty()," Coverage start field should not be editable ");
+    }
+    public void validateReasonNotEnabled( ) {
+        List<WebElement> reason = basicActions.getDriver().findElements(By.xpath("//*[@class='member-details-grid-item dropdown']"));
+        Assert.assertTrue(reason.isEmpty()," Coverage start field should not be editable ");
+    }
 
 }
