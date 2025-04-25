@@ -151,9 +151,9 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.UpdateMyAccount_idAnyEnv(stgAccountId,qaAccountId);
     }
 
-    @Then("I validate the text of the Medical Dental container")
-    public void iValidateTheTextOfTheMedicalDentalContainer() {
-        adminPortalManagePlansPage.validateTheTextOfTheMedicalContainer();
+    @Then("I validate the {string} text of {string} plan summary container on Manage Plans")
+    public void iValidateMedicalDentalPlanSummary(String textType, String planType) {
+        adminPortalManagePlansPage.validateMedicalDentalPlanSummary(textType, planType);
     }
     @Then("I select the {int} {string} policy Plan")
     public void iSelectThePolicyPlan(int policyNumber, String planType) {
@@ -428,9 +428,9 @@ public class AdminPortalManagePlansSteps {
     @Then("I verify {string} plan type is showing on Manage Plans page")
     public void iVerifyPlanTypeShow(String planType) {adminPortalManagePlansPage.verifyPlanTypeShow(planType);}
 
-    @Then("I verify plan name and policy coverage dates are visible")
-    public void iVerifyPlanNameAndPolicyCoverageDatesAreVisible() {
-        adminPortalManagePlansPage.verifyPlanNameAndPolicyCoverageDisplayed();
+    @Then("I verify plan name and policy coverage dates are visible for {string}")
+    public void iVerifyPlanNameAndPolicyCoverageDatesAreVisibleFor(String planType) {
+        adminPortalManagePlansPage.verifyPlanNameAndPolicyCoverageDisplayed(planType);
     }
 
     @Then("I verify page texts of all labels of {string} plan")
@@ -458,9 +458,9 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.verifyFontColorEtcOfContainerElements();
     }
 
-    @Then("I verify color font size of medical plan container")
+    @Then("I verify color font size of medical_or_dental plan container")
     public void iVerifyColorFontSizeOfMedicalPlanContainer() {
-        adminPortalManagePlansPage.verifyFontColorEtcOfMedicalPlanContainer();
+        adminPortalManagePlansPage.verifyFontColorEtcOfMedicalOrDentalPlanContainer();
     }
 
     @Then("I verify previous_Financial_Periods - Medical_Or_Dental text labels")
@@ -551,6 +551,11 @@ public class AdminPortalManagePlansSteps {
 
     @Then("I validate the Person ID didn't change on manage plan page")
     public void iValidatePersonIdsUnchanged() {adminPortalManagePlansPage.validatePersonIdsUnchanged();}
+
+    @Then("I verify plan name and policy coverage dates are visible for Previous_Financial_Periods medical_or_dental")
+    public void iVerifyPlanNameAndPolicyCoverageDatesAreVisibleForPrevious_Financial_PeriodsFor() {
+        adminPortalManagePlansPage.verifyPlanNameAndPolicyCoverageDatesAreVisibleForPreviousFinancialPeriods();
+    }
 
     @Then("I verify {string} values not changed on manage plan")
     public void iVerifyFieldValuesNotChangedOnManagePlan(String fieldName, DataTable data) {

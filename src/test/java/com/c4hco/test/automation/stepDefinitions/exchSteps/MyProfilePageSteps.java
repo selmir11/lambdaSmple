@@ -145,5 +145,10 @@ public class MyProfilePageSteps {
     public void iUpdatePreferredLanguageContactMethodTo(String langContactPreferred) {
         myProfileExchPage.PreferredWritternLanguage(langContactPreferred);
     }
+
+    @And("I validate timeout session popup without taking any actions")
+    public void iValidateTimeoutSessionPopupWithoutTakingAnyActions() {
+        myProfileExchPage.validateTimeoutSessionPopupWithoutTakingAnyActions();
+    }
 }
 
