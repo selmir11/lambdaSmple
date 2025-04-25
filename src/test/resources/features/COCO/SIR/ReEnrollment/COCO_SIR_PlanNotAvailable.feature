@@ -35,6 +35,7 @@ Feature: Shopping Page - Continue and Go back funtionality
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
 
+    Then I validate I am on the "CoCo Employment Income" page
     And I select "Yes" employment option
     And I enter "40,000.00" income amount
     And I select "Annually" income frequency option
@@ -42,6 +43,7 @@ Feature: Shopping Page - Continue and Go back funtionality
     And I select "No" income changes option
     And I click continue on the Employment income page
 
+    Then I validate I am on the "CoCo Additional Income" page
     And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
 
@@ -49,6 +51,7 @@ Feature: Shopping Page - Continue and Go back funtionality
     And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
 
+    Then I validate I am on the "CoCo Income Summary" page
     And I select the No projected Income button on the Income Summary page
     And I select continue on the income Summary CoCo page
 
@@ -95,7 +98,30 @@ Feature: Shopping Page - Continue and Go back funtionality
     Then I validate I am on the "CoCo Family Overview" page
     Then I click EditUpdate on Family Overview page for "Primary"
 
-    #And I select continue on the Family Overview page
+    Then I validate I am on the "Tell us about yourself" page
+    Then I click Save and Continue only on the tell us about yourself page
+
+    Then I validate I am on the "CoCo Additional information for yourself" page
+    And I update my residential address "1234 test road", "Telluride", "CO", "81435", "San Miguel"
+    And I click continue on the Add info for yourself page
+
+    Then I validate I am on the "Race and Ethnicity" page
+    And I click save and continue on the Race and Ethnicity page
+
+    Then I validate I am on the "CoCo Employment Income" page
+    And I click continue on the Employment income page
+
+    Then I validate I am on the "CoCo Additional Income" page
+    And I select continue on the Additional Income CoCO page
+
+    Then I validate I am on the "CoCo Deductions" page
+    And I select continue on the Deductions CoCo page
+
+    Then I validate I am on the "CoCo Income Summary" page
+    And I select continue on the income Summary CoCo page
+
+    Then I validate I am on the "CoCo Family Overview" page
+    And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
     And I select "MoveToCO" life change event with event date of "Today"
@@ -113,16 +139,14 @@ Feature: Shopping Page - Continue and Go back funtionality
     Then I click continue on start shopping page
 
     Then I validate I am on the "Medical Plan Results" page
-    #And I validate the current plan green banner "English" on the COCO Medical Plan Results page
-    And I click Continue on the Medical Plans Page CoCo
-
-    Then I validate I am on the "Plan Summary" page
-    Then I click Go Back on coco plan summary page
-
-    Then I validate I am on the "Medical Plan Results" page
+    And I validate that the "English" no longer available plan label is on the COCO Medical Plan Results page
     And  I change the language from header to "Spanish"
-    #Then I validate the current plan green banner "Spanish" on the COCO Medical Plan Results page
+    And I validate that the "Spanish" no longer available plan label is on the COCO Medical Plan Results page
     And  I change the language from header to "English"
+
+    And I wait for 2000 milliseconds
+    #And I validate that the Continue button is disabled on the COCO Medical Plan Results page
+    And I select the first medical plan option CoCo
     And I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Plan Summary" page
@@ -177,6 +201,7 @@ Feature: Shopping Page - Continue and Go back funtionality
 
     Then I validate I am on the "CoCo Family Overview" page
     Then I select add another family member on the Family Overview page
+
     Then I validate I am on the "CoCo Tell us about additional members" page
     Then I enter details on tell us about additional members of your household page with "Spouse", "03051989", "Female", and applying "Yes"
       | Primary:Spouse |
@@ -237,19 +262,24 @@ Feature: Shopping Page - Continue and Go back funtionality
     Then I click on continue button on success pop-up in CoCo Page
 
     Then I validate I am on the "Grouping Members Medical" page
-    And I validate that there are 2 default groups in coco page
     Then I click continue on grouping Members Medical coco page
 
     Then I validate I am on the "Medical Plan Results" page
     And I wait for 2000 milliseconds
     And I select the COCO Metal Tier dropdown
+    And I wait for 2000 milliseconds
     And I select "Silver" to filter for a  COCO Metal Tier plan
-    And I validate the COCO plan option 1 has text "KP Colorado Option Silver X"
-    And I select "KP Colorado Option Silver X" coco medical plan
+    And I validate the COCO plan option 1 has text "Cigna Connect Colorado Option Silver Off Exchange"
+    And I select "Cigna Connect Colorado Option Silver Off Exchange" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Medical Plan Results" page
-    And I select "KP Colorado Option Silver X" coco medical plan
+    And I wait for 2000 milliseconds
+    And I select the COCO Metal Tier dropdown
+    And I wait for 2000 milliseconds
+    And I select "Silver" to filter for a  COCO Metal Tier plan
+    And I validate the COCO plan option 1 has text "Cigna Connect Colorado Option Silver Off Exchange"
+    And I select "Cigna Connect Colorado Option Silver Off Exchange" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Plan Summary" page
@@ -272,6 +302,31 @@ Feature: Shopping Page - Continue and Go back funtionality
     And I click Continue on my own button from Manage who helps you page
 
     Then I validate I am on the "CoCo Family Overview" page
+    Then I click EditUpdate on Family Overview page for "Primary"
+
+    Then I validate I am on the "Tell us about yourself" page
+    Then I click Save and Continue only on the tell us about yourself page
+
+    Then I validate I am on the "CoCo Additional information for yourself" page
+    And I update my residential address "1234 test road", "Telluride", "CO", "81435", "San Miguel"
+    And I click continue on the Add info for yourself page
+
+    Then I validate I am on the "Race and Ethnicity" page
+    And I click save and continue on the Race and Ethnicity page
+
+    Then I validate I am on the "CoCo Employment Income" page
+    And I click continue on the Employment income page
+
+    Then I validate I am on the "CoCo Additional Income" page
+    And I select continue on the Additional Income CoCO page
+
+    Then I validate I am on the "CoCo Deductions" page
+    And I select continue on the Deductions CoCo page
+
+    Then I validate I am on the "CoCo Income Summary" page
+    And I select continue on the income Summary CoCo page
+
+    Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
@@ -289,17 +344,28 @@ Feature: Shopping Page - Continue and Go back funtionality
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse" coco
     Then I click continue on coco start shopping page
 
+     #primary and spouse - previous edited group is reset to the default of 1 group
     Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical coco page
 
-    #primary and spouse
     Then I validate I am on the "Medical Plan Results" page
-    #And I validate the current plan green banner "English" on the COCO Medical Plan Results page
+    And I validate that the "English" no longer available plan label is on the COCO Medical Plan Results page
     And  I change the language from header to "Spanish"
-    #Then I validate the current plan green banner "Spanish" on the COCO Medical Plan Results page
+    And I validate that the "Spanish" no longer available plan label is on the COCO Medical Plan Results page
     And  I change the language from header to "English"
+
+    And I wait for 2000 milliseconds
+    #And I validate that the Continue button is disabled on the COCO Medical Plan Results page
+    And I select the first medical plan option CoCo
     And I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Plan Summary" page
-    And I click on Sign Out in the Header for "Portal"
+    And I click continue on coco plan summary page
 
+    Then I validate I am on the "Enrollment Agreements" page
+    And I select "Acknowledgement" agreement checkbox CoCo
+    And I select "Submit" agreement checkbox CoCo
+    And I enter householder signature on the Enrollment Agreements page CoCo
+    And I select submit enrollment button on the Enrollment Agreements CoCo page
+
+    Then I click all done from payment portal page coco

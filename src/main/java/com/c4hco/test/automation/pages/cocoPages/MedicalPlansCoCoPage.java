@@ -34,6 +34,9 @@ public class MedicalPlansCoCoPage {
 
     @FindBy(xpath = "//*[@id='SHP-MedicalPlanResults-Continue'] | //*[@id='MedicalPlanResults-Continue']")
     public WebElement continueButton;
+
+    @FindBy(css = "#MedicalPlanResults-Continue.btn-primary button-disabled")
+    WebElement continueButtonDisabled;
     @FindBy(css = ".header-1")
     WebElement medicalplanheader;
     @FindBy(xpath = "//*[@id='PlanResults-InsuranceCompany']")
@@ -96,6 +99,9 @@ public class MedicalPlansCoCoPage {
     @FindBy(css = ".header-2.text-start")
     WebElement planHeaderTwodetails;
 
+    @FindBy(id="PlanResults-CurrentPlanWarningMessage")
+    WebElement planNotAvailableText;
+
     @FindBy(css = ".filter-section.filterText.body-text-1")
     List<WebElement> filterText;
 
@@ -135,6 +141,12 @@ public class MedicalPlansCoCoPage {
         basicActions.click(continueButton);
     }
 
+    public void validateContinueButtonDisabled() {
+        basicActions.waitForElementToDisappear(spinner, 30);
+        basicActions.waitForElementToBePresent(continueButtonDisabled, 20);
+        Assert.assertFalse(continueButtonDisabled.isEnabled(), "Continue button is enabled when it should be disabled");
+    }
+
     public void clickInsuranceCompanyDropdown() {
         basicActions.waitForElementToDisappear(spinner, 30);
         basicActions.waitForElementToBePresentWithRetries(insuranceCompanyDropdown, 40);
@@ -144,7 +156,7 @@ public class MedicalPlansCoCoPage {
 
     public void clickMetalTierDropdown() {
         basicActions.waitForElementToDisappear(spinner, 10);
-        basicActions.waitForElementToBePresent(metalTierDropdown, 30);
+        basicActions.waitForElementToBePresentWithRetries(metalTierDropdown, 40);
         metalTierDropdown.click();
 
     }
@@ -156,8 +168,24 @@ public class MedicalPlansCoCoPage {
     }
 
     public void selectfromMetalTierList(String Selecting) {
-        String providerPath = "//label[text()='" + Selecting + "']";
-        basicActions.getDriver().findElement(By.xpath(providerPath)).click();
+        basicActions.waitForElementToBePresentWithRetries( metalTierDropdown, 30);
+        switch(Selecting){
+            case "Bronze":
+                basicActions.getDriver().findElement(By.id("PlanResults-MetalTier_0-input")).click();
+                break;
+            case "Silver":
+                basicActions.getDriver().findElement(By.id("PlanResults-MetalTier_1-input")).click();
+                break;
+            case "Gold":
+                basicActions.getDriver().findElement(By.id("PlanResults-MetalTier_2-input")).click();
+                break;
+            case "Platinum":
+                basicActions.getDriver().findElement(By.id("PlanResults-MetalTier_3-input")).click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + Selecting);}
+       // String providerPath = "//label[text()='" + Selecting + "']";
+       // basicActions.getDriver().findElement(By.xpath(providerPath)).click();
     }
 
     public void selectSilverEnhancedBox() {
@@ -529,4 +557,34 @@ public class MedicalPlansCoCoPage {
         softAssert.assertAll();
     }
 
+
+
+    public void validatePlanNotAvailableMessage(String language) {
+        basicActions.waitForElementToDisappear( spinner, 20 );
+        switch (language) {
+            case "English":
+                validatePlanNotAvailableEnglishText();
+                break;
+            case "Spanish":
+                validatePlanNotAvailableSpanishText();
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + language );
+
+        }
+    }
+
+        public void validatePlanNotAvailableEnglishText() {
+            basicActions.waitForElementToDisappear( spinner, 20 );
+            basicActions.waitForElementToBePresentWithRetries( planNotAvailableText, 20 );
+            softAssert.assertEquals( planNotAvailableText.getText(), "Your current plan is not available, but you can choose a new one from the options below." );
+            softAssert.assertAll();
+        }
+
+        public void validatePlanNotAvailableSpanishText(){
+            basicActions.waitForElementToDisappear( spinner,20 );
+            basicActions.waitForElementToBePresentWithRetries( planNotAvailableText,20);
+            softAssert.assertEquals(planNotAvailableText.getText(), "Su plan actual no est\u00E1 disponible, pero puede elegir uno nuevo de entre las opciones mostradas a continuaci\u00F3n.");
+            softAssert.assertAll();
+        }
 }
