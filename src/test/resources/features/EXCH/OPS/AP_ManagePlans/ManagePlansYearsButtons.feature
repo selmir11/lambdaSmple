@@ -333,3 +333,28 @@ Feature: Manage Plans: Buttons (positive and negative testing)
       | Plan AV:                 |
       | HIOS ID:                 |
       | Policy ID:               |
+
+  @SLCR-776 @OPSRegression
+  Scenario: OPS CoCo MP Simplified View Editable Fields for all member Medical[CCRT-461]
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I select "coco" checkbox on Admin Portal Dashboard
+    Then I enter an accountId in any Env "8313683700" "8920958600" to search user
+    Then I click on Search button in AP dashboard page
+    Then I select the first record from the search results
+    Then I click on manage plan button on admin portal Individual dashboard
+    And I validate I am on the "Manage Plans" page
+    And I select the "2023" plan year on manage plan
+    Then I click Make Changes Medical button
+    Then I verify edit "coverage_start_date" with value "01102023" for all members
+    Then I verify edit "coverage_end_date" with value "12302023" for all members
+    Then I verify edit "financial_start_date" with value "01102023" for all members
+    Then I verify edit "financial_end_date" with value "12302023" for all members
+    Then I verify edit "Premium" with value "9006" for all members
+    Then I verify edit "SES" with value "9007" for all members
+    And I click Reset Changes Medical
+    Then I click Make Changes Medical button
+    Then I verify options are getting selected from termination reason drop down for all members
+    And I click Reset Changes Medical
