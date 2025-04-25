@@ -103,31 +103,52 @@ public class OhcMedicarePage {
     @FindBy(id = "medicareOhc-SaveAndContinue")
     WebElement saveAndContinueBtn;
 
-    @FindBy(css = ".header-3.content-center > a")
+    @FindBy(css = "div.header-3.text-center.content-center.ng-star-inserted > a")
     WebElement helpLnk;
 
     @FindBy(css = "lib-help-icon a")
     List<WebElement> helpIcons;
 
-    @FindBy(css = ".drawer-heading .body-text-1")
+    @FindBy(css = "div.desktop-help > div > span.c4-text-body-200")
     WebElement helpDrawerHeaderHelp;
 
-    @FindBy(css = ".drawer-heading .drawer-title")
+    @FindBy(css = "div.desktop-help > div > span.title.c4-type-header-sm")
     WebElement helpDrawerHeaderMedicare;
 
-    @FindBy(css = "div > strong")
-    List<WebElement> helpDrawerMainHeaders;
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(1)")
+    WebElement helpDrawerHeaderOne;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(4)")
+    WebElement helpDrawerHeaderTwo;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(7)")
+    WebElement helpDrawerHeaderThree;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(10)")
+    WebElement helpDrawerHeaderFour;
 
     @FindBy(css = ".drawer-text-content p")
     List<WebElement> helpDrawerBodyParagraphs;
 
-    @FindBy(css = ".drawer-text-content.body-text-1 a")
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(3)")
+    WebElement helpDrawerBodyParagraphOne;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(6)")
+    WebElement helpDrawerBodyParagraphTwo;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(9)")
+    WebElement helpDrawerBodyParagraphThree;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(12)")
+    WebElement helpDrawerBodyParagraphFour;
+
+    @FindBy(css = "div.help-main-content.ng-star-inserted > p:nth-child(9) > a")
     WebElement doiMedicareLink;
 
-    @FindBy(css = ".drawer-footer h3")
+    @FindBy(css = "div.help-footer.ng-star-inserted")
     WebElement helpDrawerFooter;
 
-    @FindBy(css = ".drawer-footer h3 a")
+    @FindBy(css = "div.help-footer.ng-star-inserted > a")
     WebElement helpDrawerContactUsLink;
 
     public void clickSaveAndContinue(){
@@ -915,26 +936,26 @@ public class OhcMedicarePage {
     public void validateGeneralHelpBodyVerbiageEng() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
         softAssert.assertEquals(helpDrawerHeaderMedicare.getText(), "Medicare");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Overview");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText(), "Medicare");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText(), "Part A");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "We are asking because if this person is enrolled in this plan, they won t be eligible for financial help if they buy a Connect for Health Colorado insurance plan instead.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Tell us about anyone who is getting Medicare Part A or Part B or who is entitled to Part A, or B. By entitled, we mean that you are able to get the benefit, even if you arent actually getting it.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "If you have Medicare Part A (Hospital Insurance), you're considered covered under the health care law and don't need a Connect for Health Colorado insurance plan.\nThe decision not to enroll in Medicare when eligible, or to cancel Medicare coverage, should not be taken lightly. Consumers with questions should consult the State Health Insurance Assistance Program (SHIP) office or their Broker. For more information, please see https://doi.colorado.gov/insurance-products/health-insurance/senior-health-care-medicare");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Overview");
+        softAssert.assertEquals(helpDrawerHeaderTwo.getText(), "Medicare");
+        softAssert.assertEquals(helpDrawerHeaderThree.getText(), "Part A");
+        softAssert.assertEquals(helpDrawerBodyParagraphOne.getText(), "We are asking because if this person is enrolled in this plan, they won t be eligible for financial help if they buy a Connect for Health Colorado insurance plan instead.");
+        softAssert.assertEquals(helpDrawerBodyParagraphTwo.getText(), "Tell us about anyone who is getting Medicare Part A or Part B or who is entitled to Part A, or B. By entitled, we mean that you are able to get the benefit, even if you arent actually getting it.");
+        softAssert.assertEquals(helpDrawerBodyParagraphThree.getText(), "If you have Medicare Part A (Hospital Insurance), you're considered covered under the health care law and don't need a Connect for Health Colorado insurance plan.\nThe decision not to enroll in Medicare when eligible, or to cancel Medicare coverage, should not be taken lightly. Consumers with questions should consult the State Health Insurance Assistance Program (SHIP) office or their Broker. For more information, please see https://doi.colorado.gov/insurance-products/health-insurance/senior-health-care-medicare");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help?\nContact us");
         softAssert.assertAll();
     }
 
     public void validateGeneralHelpBodyVerbiageSp() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
         softAssert.assertEquals(helpDrawerHeaderMedicare.getText(), "Medicare");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Resumen");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText(), "Medicare");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText(), "Part A");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Se lo preguntamos porque, si esta persona est\u00E1 inscrita en ese plan, no tendr\u00E1 derecho a ayuda financiera si adquiere en su lugar un plan de seguro con Connect for Health Colorado.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Indique si cualquier persona que reciba beneficios de Medicare Parte A, Parte B, o que tenga derecho a recibir beneficios de la Parte A o B. Cuando decimos \"que tenga derecho\" nos referimos a que puede recibir el beneficio, aunque en la actualidad no lo est\u00E9 recibiendo.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Si tiene la Parte A de Medicare (Seguro de Hospital), est\u00E1 cubierto bajo la ley de salud y no necesita un plan de seguro con Connect for Health Colorado.\nNo debe tomarse a la ligera la decisi\u00F3n de no inscribirse en Medicare cuando es elegible, o de cancelar su cobertura de Medicare. Los consumidores que tengan preguntas deben consultar la oficina estatal del Programa de asistencia de seguro de salud (SHIP, por sus siglas en ingl\u00E9s) o con su agente. Para obtener m\u00E1s informaci\u00F3n, visite https://doi.colorado.gov/insurance-products/health-insurance/senior-health-care-medicare");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Resumen");
+        softAssert.assertEquals(helpDrawerHeaderTwo.getText(), "Medicare");
+        softAssert.assertEquals(helpDrawerHeaderThree.getText(), "Part A");
+        softAssert.assertEquals(helpDrawerBodyParagraphOne.getText(), "Se lo preguntamos porque, si esta persona est\u00E1 inscrita en ese plan, no tendr\u00E1 derecho a ayuda financiera si adquiere en su lugar un plan de seguro con Connect for Health Colorado.");
+        softAssert.assertEquals(helpDrawerBodyParagraphTwo.getText(), "Indique si cualquier persona que reciba beneficios de Medicare Parte A, Parte B, o que tenga derecho a recibir beneficios de la Parte A o B. Cuando decimos \"que tenga derecho\" nos referimos a que puede recibir el beneficio, aunque en la actualidad no lo est\u00E9 recibiendo.");
+        softAssert.assertEquals(helpDrawerBodyParagraphThree.getText(), "Si tiene la Parte A de Medicare (Seguro de Hospital), est\u00E1 cubierto bajo la ley de salud y no necesita un plan de seguro con Connect for Health Colorado.\nNo debe tomarse a la ligera la decisi\u00F3n de no inscribirse en Medicare cuando es elegible, o de cancelar su cobertura de Medicare. Los consumidores que tengan preguntas deben consultar la oficina estatal del Programa de asistencia de seguro de salud (SHIP, por sus siglas en ingl\u00E9s) o con su agente. Para obtener m\u00E1s informaci\u00F3n, visite https://doi.colorado.gov/insurance-products/health-insurance/senior-health-care-medicare");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda?\nCont\u00E1ctenos");
         softAssert.assertAll();
     }
 

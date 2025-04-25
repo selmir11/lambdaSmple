@@ -72,17 +72,116 @@ public class OtherHealthCoveragePage {
     @FindBy(css = ".error-message")
     WebElement errorMessageTxt;
 
-    @FindBy(css = ".boot-input-group .btn")
+    @FindBy(id = "Help.Button")
     WebElement helpSideButton;
 
     @FindBy(css = ".drawer-heading > *")
     List<WebElement> helpDrawerHeader;
 
-    @FindBy(css = ".drawer-text-content *:not(br)")
+    @FindBy(css = "div.desktop-help > div > span.c4-text-body-200")
+    WebElement helpDrawerHelpHeader;
+
+    @FindBy(css = "div.desktop-help > div > span.title.c4-type-header-sm")
+    WebElement helpDrawerOHCHeader;
+
+    @FindBy(css = ".div.desktop-help > mat-dialog-content *:not(br)")
     List<WebElement> helpDrawerBody;
 
-    @FindBy(css = ".drawer-footer *")
-    List<WebElement> helpDrawerFooter;
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(1)")
+    WebElement helpDrawerHeaderOne;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(1) > em")
+    WebElement helpDrawerHeaderOneItalic;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(4)")
+    WebElement helpDrawerHeaderTwo;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(7)")
+    WebElement helpDrawerHeaderThree;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(7) > em")
+    WebElement helpDrawerHeaderThreeItalic;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(10)")
+    WebElement helpDrawerHeaderFour;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(13)")
+    WebElement helpDrawerHeaderFive;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(16)")
+    WebElement helpDrawerHeaderSix;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(19)")
+    WebElement helpDrawerHeaderSeven;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(22)")
+    WebElement helpDrawerHeaderEight;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(25)")
+    WebElement helpDrawerHeaderNine;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(28)")
+    WebElement helpDrawerHeaderTen;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(31)")
+    WebElement helpDrawerHeaderEleven;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(34)")
+    WebElement helpDrawerHeaderTwelve;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(3)")
+    WebElement helpDrawerParagraphOne;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p > strong")
+    WebElement helpDrawerParagraphOneBold;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(6)")
+    WebElement helpDrawerParagraphTwo;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(6) > strong")
+    WebElement helpDrawerParagraphTwoBold;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(9)")
+    WebElement helpDrawerParagraphThree;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(9) > strong")
+    WebElement helpDrawerParagraphThreeBold;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(12)")
+    WebElement helpDrawerParagraphFour;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(15)")
+    WebElement helpDrawerParagraphFive;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(18)")
+    WebElement helpDrawerParagraphSix;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(21)")
+    WebElement helpDrawerParagraphSeven;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(24)")
+    WebElement helpDrawerParagraphEight;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(27)")
+    WebElement helpDrawerParagraphNine;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(30)")
+    WebElement helpDrawerParagraphTen;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(33)")
+    WebElement helpDrawerParagraphEleven;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(36)")
+    WebElement helpDrawerParagraphTwelve;
+
+    @FindBy(css = "div.help-footer.ng-star-inserted")
+    WebElement helpDrawerFooter;
+
+    @FindBy(css = "div.help-footer.ng-star-inserted > span")
+    WebElement helpDrawerFooterText;
+
+    @FindBy(css = "div.help-footer.ng-star-inserted > a")
+    WebElement helpDrawerFooterLink;
 
     @FindBy(css = ".loader-overlay")
     WebElement spinner;
@@ -232,8 +331,8 @@ public class OtherHealthCoveragePage {
     }
 
     public void clickHelpContactUsNavigation() {
-        basicActions.waitForElementListToBePresent(helpDrawerFooter, 10);
-        helpDrawerFooter.get(1).click();
+        basicActions.waitForElementToBePresent(helpDrawerFooterLink, 10);
+        helpDrawerFooterLink.click();
     }
 
 
@@ -912,7 +1011,7 @@ public class OtherHealthCoveragePage {
         String memberName = getMemberFullName(member);
         expectedText += memberName;
 
-        basicActions.wait(3000);
+        basicActions.wait(300);
         WebElement value = basicActions.getDriver().findElement(By.xpath("//div[contains(text(),'"+expectedText+"')]"));
         basicActions.waitForElementToBePresent(value, 50);
 
@@ -1109,23 +1208,23 @@ public class OtherHealthCoveragePage {
 
         switch (language) {
             case "English":
-                softAssert.assertEquals(helpDrawerHeader.get(0).getText(), "Help");
-                verifyHelpDrawerParagraphsFormat(helpDrawerHeader.get(0));
-                softAssert.assertEquals(helpDrawerHeader.get(1).getText(), "Other Health Coverage");
-                softAssert.assertEquals(helpDrawerHeader.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(helpDrawerHeader.get(1).getCssValue("font-size"), "19px");
-                softAssert.assertEquals(helpDrawerHeader.get(1).getCssValue("font-weight"), "700");
-                softAssert.assertEquals(helpDrawerHeader.get(1).getCssValue("color"), "rgba(112, 163, 0, 1)");
+                softAssert.assertEquals(helpDrawerHelpHeader.getText(), "Help");
+                verifyHelpDrawerParagraphsFormat(helpDrawerHelpHeader);
+                softAssert.assertEquals(helpDrawerOHCHeader.getText(), "Other Health Coverage");
+                softAssert.assertEquals(helpDrawerOHCHeader.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(helpDrawerOHCHeader.getCssValue("font-size"), "20px");
+                softAssert.assertEquals(helpDrawerOHCHeader.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(helpDrawerOHCHeader.getCssValue("color"), "rgba(112, 163, 0, 1)");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(helpDrawerHeader.get(0).getText(), "Ayuda");
-                verifyHelpDrawerParagraphsFormat(helpDrawerHeader.get(0));
-                softAssert.assertEquals(helpDrawerHeader.get(1).getText(), "Otra cobertura de salud");
-                softAssert.assertEquals(helpDrawerHeader.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(helpDrawerHeader.get(1).getCssValue("font-size"), "19px");
-                softAssert.assertEquals(helpDrawerHeader.get(1).getCssValue("font-weight"), "700");
-                softAssert.assertEquals(helpDrawerHeader.get(1).getCssValue("color"), "rgba(112, 163, 0, 1)");
+                softAssert.assertEquals(helpDrawerHelpHeader.getText(), "Ayuda");
+                verifyHelpDrawerParagraphsFormat(helpDrawerHelpHeader);
+                softAssert.assertEquals(helpDrawerOHCHeader.getText(), "Otra cobertura de salud");
+                softAssert.assertEquals(helpDrawerOHCHeader.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(helpDrawerOHCHeader.getCssValue("font-size"), "20px");
+                softAssert.assertEquals(helpDrawerOHCHeader.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(helpDrawerOHCHeader.getCssValue("color"), "rgba(112, 163, 0, 1)");
                 softAssert.assertAll();
                 break;
             default:
@@ -1135,121 +1234,121 @@ public class OtherHealthCoveragePage {
 
     public void verifyHelpDrawerBodyText_English() {
         basicActions.waitForElementListToBePresent(helpDrawerBody, 20);
-        softAssert.assertEquals(helpDrawerBody.get(0).getText(), "Overview");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-        softAssert.assertEquals(helpDrawerBody.get(1).getText(), "Connect for Health Colorado is required to find out if you have or can get any other type of health coverage right now. This information will help us find which health plans and financial help you can get.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
-        softAssert.assertEquals(helpDrawerBody.get(2).getText(), "Health First Colorado (Colorado's Medicaid program)");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(2));
-        softAssert.assertEquals(helpDrawerBody.get(4).getText(), "If you will lose eligibility for this program, do not select this option. Instead, select \"None of these apply\" and click \"Save and Continue.\"");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(4));
-        softAssert.assertEquals(helpDrawerBody.get(3).getText(), "If you will lose eligibility for this program, do not select this option. Instead, select \"None of these apply\" and click \"Save and Continue.\"\n" +
+        softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Overview");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+        softAssert.assertEquals(helpDrawerParagraphOne.getText(), "Connect for Health Colorado is required to find out if you have or can get any other type of health coverage right now. This information will help us find which health plans and financial help you can get.");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
+        softAssert.assertEquals(helpDrawerHeaderTwo.getText(), "Health First Colorado (Colorado's Medicaid program)");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderTwo);
+        softAssert.assertEquals(helpDrawerParagraphTwoBold.getText(), "If you will lose eligibility for this program, do not select this option. Instead, select \"None of these apply\" and click \"Save and Continue.\"");
+        verifyHelpDrawerHeadersFormat(helpDrawerParagraphTwoBold);
+        softAssert.assertEquals(helpDrawerParagraphTwo.getText(), "If you will lose eligibility for this program, do not select this option. Instead, select \"None of these apply\" and click \"Save and Continue.\"\n" +
                 "This program provides low and $0 health insurance coverage for people with qualified income.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(3));
-        softAssert.assertEquals(helpDrawerBody.get(5).getText(), "Child Health Plan Plus (CHP+)");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(5));
-        softAssert.assertEquals(helpDrawerBody.get(7).getText(), "If you will lose eligibility for this program, do not select this option. Instead, select \"None of these apply\" and click \"Save and Continue.\"\n" +
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphTwo);
+        softAssert.assertEquals(helpDrawerHeaderThree.getText(), "Child Health Plan Plus (CHP+)");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderThree);
+        softAssert.assertEquals(helpDrawerParagraphThree.getText(), "If you will lose eligibility for this program, do not select this option. Instead, select \"None of these apply\" and click \"Save and Continue.\"\n" +
                 "This program provides low-cost health insurance for children and pregnant people who earn too much to qualify for Health First Colorado. If you decide to buy a health insurance plan through Connect for Health Colorado, you cannot keep your CHP+ insurance.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(7));
-        softAssert.assertEquals(helpDrawerBody.get(6).getText(), "Plus");
-        verifyHelpDrawerHeadersItalicFormat(helpDrawerBody.get(6));
-        softAssert.assertEquals(helpDrawerBody.get(8).getText(), "If you will lose eligibility for this program, do not select this option. Instead, select \"None of these apply\" and click \"Save and Continue.\"");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(8));
-        softAssert.assertEquals(helpDrawerBody.get(9).getText(), "Medicare");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(9));
-        softAssert.assertEquals(helpDrawerBody.get(10).getText(), "This is the national health insurance program for people age 65 or older, or who have a disability determined by the Social Security Administration.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(10));
-        softAssert.assertEquals(helpDrawerBody.get(11).getText(), "Employer Sponsored Health Insurance");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(11));
-        softAssert.assertEquals(helpDrawerBody.get(12).getText(), "This is health insurance through a job or a spouse's job. If you are currently in a waiting period for your employer-sponsored health insurance to begin (meaning that your employer has offered coverage to you or your dependent, but the coverage will be effective later), you may be eligible for a Premium Tax Credit during that waiting period. If you are currently in a waiting period, you should not check the box here. Instead, you should come back just before your waiting period is over to report your upcoming enrollment in employer-sponsored insurance. To avoid duplicate coverage and overlapping monthly premium charges for both plans, you must report your employer insurance change in your Connect for Health Colorado account as soon as possible \u2013 ideally, in the month before your coverage begins.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(12));
-        softAssert.assertEquals(helpDrawerBody.get(13).getText(), "Employer Sponsored Health Reimbursement Arrangement");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(13));
-        softAssert.assertEquals(helpDrawerBody.get(14).getText(), "Select this option if your employer offers you a Health Reimbursement Arrangement (HRA) to help you pay for health insurance, even if you do not sign up for it. The HRA option that your employer offers may be called a Qualified Small Employer HRA (QSEHRA) or an Individual Coverage HRA (ICHRA).");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(14));
-        softAssert.assertEquals(helpDrawerBody.get(15).getText(), "Retiree Health Plan");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(15));
-        softAssert.assertEquals(helpDrawerBody.get(16).getText(), "This is the health insurance option for people who have retired from their job.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(16));
-        softAssert.assertEquals(helpDrawerBody.get(17).getText(), "Peace Corps");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(17));
-        softAssert.assertEquals(helpDrawerBody.get(18).getText(), "This is a health insurance program for former Peace Corps volunteers.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(18));
-        softAssert.assertEquals(helpDrawerBody.get(19).getText(), "COBRA");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(19));
-        softAssert.assertEquals(helpDrawerBody.get(20).getText(), "This is the health insurance option for people after they've left their job with employer-sponsored health insurance.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(20));
-        softAssert.assertEquals(helpDrawerBody.get(21).getText(), "Veteran's (VA) Healthcare");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(21));
-        softAssert.assertEquals(helpDrawerBody.get(22).getText(), "This is the national health insurance program for qualified veterans of the military.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(22));
-        softAssert.assertEquals(helpDrawerBody.get(23).getText(), "TRICARE");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(23));
-        softAssert.assertEquals(helpDrawerBody.get(24).getText(), "This is a health care program of the United States Department of Defense Military Health System.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(24));
-        softAssert.assertEquals(helpDrawerBody.get(25).getText(), "Individual Insurance (outside of Marketplace)");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(25));
-        softAssert.assertEquals(helpDrawerBody.get(26).getText(), "This is health private insurance that you currently have that you did not get through Connect for Health Colorado or your job.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(26));
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphThree);
+        softAssert.assertEquals(helpDrawerHeaderThreeItalic.getText(), "Plus");
+        verifyHelpDrawerHeadersItalicFormat(helpDrawerHeaderThreeItalic);
+        softAssert.assertEquals(helpDrawerParagraphThreeBold.getText(), "If you will lose eligibility for this program, do not select this option. Instead, select \"None of these apply\" and click \"Save and Continue.\"");
+        verifyHelpDrawerHeadersFormat(helpDrawerParagraphThreeBold);
+        softAssert.assertEquals(helpDrawerHeaderFour.getText(), "Medicare");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderFour);
+        softAssert.assertEquals(helpDrawerParagraphFour.getText(), "This is the national health insurance program for people age 65 or older, or who have a disability determined by the Social Security Administration.");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphFour);
+        softAssert.assertEquals(helpDrawerHeaderFive.getText(), "Employer Sponsored Health Insurance");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderFive);
+        softAssert.assertEquals(helpDrawerParagraphFive.getText(), "This is health insurance through a job or a spouse's job. If you are currently in a waiting period for your employer-sponsored health insurance to begin (meaning that your employer has offered coverage to you or your dependent, but the coverage will be effective later), you may be eligible for a Premium Tax Credit during that waiting period. If you are currently in a waiting period, you should not check the box here. Instead, you should come back just before your waiting period is over to report your upcoming enrollment in employer-sponsored insurance. To avoid duplicate coverage and overlapping monthly premium charges for both plans, you must report your employer insurance change in your Connect for Health Colorado account as soon as possible \u2013 ideally, in the month before your coverage begins.");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphFive);
+        softAssert.assertEquals(helpDrawerHeaderSix.getText(), "Employer Sponsored Health Reimbursement Arrangement");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderSix);
+        softAssert.assertEquals(helpDrawerParagraphSix.getText(), "Select this option if your employer offers you a Health Reimbursement Arrangement (HRA) to help you pay for health insurance, even if you do not sign up for it. The HRA option that your employer offers may be called a Qualified Small Employer HRA (QSEHRA) or an Individual Coverage HRA (ICHRA).");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphSix);
+        softAssert.assertEquals(helpDrawerHeaderSeven.getText(), "Retiree Health Plan");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderSeven);
+        softAssert.assertEquals(helpDrawerParagraphSeven.getText(), "This is the health insurance option for people who have retired from their job.");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphSeven);
+        softAssert.assertEquals(helpDrawerHeaderEight.getText(), "Peace Corps");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderEight);
+        softAssert.assertEquals(helpDrawerParagraphEight.getText(), "This is a health insurance program for former Peace Corps volunteers.");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphEight);
+        softAssert.assertEquals(helpDrawerHeaderNine.getText(), "COBRA");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderNine);
+        softAssert.assertEquals(helpDrawerParagraphNine.getText(), "This is the health insurance option for people after they've left their job with employer-sponsored health insurance.");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphNine);
+        softAssert.assertEquals(helpDrawerHeaderTen.getText(), "Veteran's (VA) Healthcare");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderTen);
+        softAssert.assertEquals(helpDrawerParagraphTen.getText(), "This is the national health insurance program for qualified veterans of the military.");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphTen);
+        softAssert.assertEquals(helpDrawerHeaderEleven.getText(), "TRICARE");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderEleven);
+        softAssert.assertEquals(helpDrawerParagraphEleven.getText(), "This is a health care program of the United States Department of Defense Military Health System.");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphEleven);
+        softAssert.assertEquals(helpDrawerHeaderTwelve.getText(), "Individual Insurance (outside of Marketplace)");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderTwelve);
+        softAssert.assertEquals(helpDrawerParagraphTwelve.getText(), "This is health private insurance that you currently have that you did not get through Connect for Health Colorado or your job.");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphTwelve);
         softAssert.assertAll();
     }
 
     public void verifyHelpDrawerBodyText_Spanish() {
         basicActions.waitForElementListToBePresent(helpDrawerBody, 20);
-        softAssert.assertEquals(helpDrawerBody.get(0).getText(), "Resumen");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-        softAssert.assertEquals(helpDrawerBody.get(1).getText(), "Es obligaci\u00F3n de Connect for Health Colorado preguntarle si en este momento tiene o puede obtener alg\u00FAn otro tipo de cobertura de salud. Esta informaci\u00F3n nos ayudar\u00E1 a encontrar qu\u00E9 planes de seguro de salud y ayuda financiera puede obtener.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
-        softAssert.assertEquals(helpDrawerBody.get(2).getText(), "Health First Colorado (Programa Medicaid de Colorado)");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(2));
-        softAssert.assertEquals(helpDrawerBody.get(4).getText(), "No seleccione esta opci\u00F3n si va a perder elegibilidad para este programa. Seleccione \"Ninguno de estos aplica\" y haga clic en \"Guardar y continuar\".");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(4));
-        softAssert.assertEquals(helpDrawerBody.get(3).getText(), "No seleccione esta opci\u00F3n si va a perder elegibilidad para este programa. Seleccione \"Ninguno de estos aplica\" y haga clic en \"Guardar y continuar\".\nEste programa ofrece una cobertura de seguro de salud gratuito o de bajo costo a las personas con ingresos calificados.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(3));
-        softAssert.assertEquals(helpDrawerBody.get(5).getText(), "Child Health Plan Plus (CHP+)");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(5));
-        softAssert.assertEquals(helpDrawerBody.get(7).getText(), "No seleccione esta opci\u00F3n si va a perder elegibilidad para este programa. Seleccione \"Ninguno de estos aplica\" y haga clic en \"Guardar y continuar\".\nEste programa ofrece un seguro de salud de bajo costo para ni\u00F1os y personas embarazadas que ganan demasiado para calificar para Health First Colorado. Si decide adquirir un plan de seguro de salud a trav\u00E9s de Connect for Health Colorado, no podr\u00E1 mantener su seguro CHP+.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(7));
-        softAssert.assertEquals(helpDrawerBody.get(6).getText(), "Plus");
-        verifyHelpDrawerHeadersItalicFormat(helpDrawerBody.get(6));
-        softAssert.assertEquals(helpDrawerBody.get(8).getText(), "No seleccione esta opci\u00F3n si va a perder elegibilidad para este programa. Seleccione \"Ninguno de estos aplica\" y haga clic en \"Guardar y continuar\".");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(8));
-        softAssert.assertEquals(helpDrawerBody.get(9).getText(), "Medicare");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(9));
-        softAssert.assertEquals(helpDrawerBody.get(10).getText(), "Es el programa nacional de seguro de salud para las personas de 65 a\u00F1os o m\u00E1s o que tienen una discapacidad seg\u00FAn lo determina la Administraci\u00F3n del Seguro Social.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(10));
-        softAssert.assertEquals(helpDrawerBody.get(11).getText(), "Seguro de salud patrocinado por el empleador");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(11));
-        softAssert.assertEquals(helpDrawerBody.get(12).getText(), "Es el seguro de salud que se obtiene a trav\u00E9s de un empleo propio o del c\u00F3nyuge. Si est\u00E1 actualmente en un per\u00EDodo de espera para que comience el seguro de salud de patrocinado por su empleador (es decir, que su empleador le ofrece cobertura para usted o su dependiente, pero la cobertura tomar\u00E1 efecto despu\u00E9s), puede ser elegible para obtener un Cr\u00E9dito fiscal para el pago de la cuota durante ese per\u00EDodo. Si actualmente est\u00E1 en un per\u00EDodo de espera, no debe marcar la casilla aqu\u00ED. Por el contrario, debe regresar justo antes de que el per\u00EDodo de espera finalice para reportar su pr\u00F3xima inscripci\u00F3n en el seguro patrocinado por su empleador. Para evitar doble cobertura y cargos mensuales de las cuotas de ambos planes, debe reportar el cambio del seguro patrocinado por su empleador en su cuenta de Connect for Health Colorado lo m\u00E1s pronto posible, preferentemente, el mes antes de que comience su cobertura.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(12));
-        softAssert.assertEquals(helpDrawerBody.get(13).getText(), "Una cuenta de reembolso de gastos m\u00E9dicos (HRA en ingl\u00E9s) ofrecido a trav\u00E9s de un empleador");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(13));
-        softAssert.assertEquals(helpDrawerBody.get(14).getText(), "Seleccione esta opci\u00F3n si sus empleador le ofrece una Cuenta de reembolso de gastos m\u00E9dicos (HRA) para ayudarle a pagar su seguro de salud, incluso si no se inscribe en uno. La opci\u00F3n HRA que le ofrece su empleador puede ser llamada HRA de Peque\u00F1o empleador calificado (QSEHRA) o HRA de Cobertura individual (ICHRA).");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(14));
-        softAssert.assertEquals(helpDrawerBody.get(15).getText(), "Plan de salud de jubilado");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(15));
-        softAssert.assertEquals(helpDrawerBody.get(16).getText(), "Esta es la opci\u00F3n de seguro de salud para las personas que se han retirado en su trabajo.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(16));
-        softAssert.assertEquals(helpDrawerBody.get(17).getText(), "Cuerpos de paz (Peace Corps)");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(17));
-        softAssert.assertEquals(helpDrawerBody.get(18).getText(), "Este es un programa de seguro de salud para antiguos voluntarios del Cuerpo de Paz.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(18));
-        softAssert.assertEquals(helpDrawerBody.get(19).getText(), "COBRA");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(19));
-        softAssert.assertEquals(helpDrawerBody.get(20).getText(), "Esta es la opci\u00F3n de seguro de salud para personas que han dejado su empleo con seguro de salud patrocinado por el empleador.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(20));
-        softAssert.assertEquals(helpDrawerBody.get(21).getText(), "Servicios de Salud para Veteranos (VA)");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(21));
-        softAssert.assertEquals(helpDrawerBody.get(22).getText(), "Este es el programa nacional de seguro de salud para veteranos del ej\u00E9rcito aprobados.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(22));
-        softAssert.assertEquals(helpDrawerBody.get(23).getText(), "TRICARE");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(23));
-        softAssert.assertEquals(helpDrawerBody.get(24).getText(), "Este es un programa de servicios m\u00E9dicos del Sistema de Salud Militar del Departamento de Defensa de Estados Unidos.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(24));
-        softAssert.assertEquals(helpDrawerBody.get(25).getText(), "Seguro individual (fuera del Mercado)");
-        verifyHelpDrawerHeadersFormat(helpDrawerBody.get(25));
-        softAssert.assertEquals(helpDrawerBody.get(26).getText(), "Este es el seguro de salud privado que tiene usted actualmente y que no obtuvo por medio de Connect for Health Colorado o su trabajo.");
-        verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(26));
+        softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Resumen");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+        softAssert.assertEquals(helpDrawerParagraphOne.getText(), "Es obligaci\u00F3n de Connect for Health Colorado preguntarle si en este momento tiene o puede obtener alg\u00FAn otro tipo de cobertura de salud. Esta informaci\u00F3n nos ayudar\u00E1 a encontrar qu\u00E9 planes de seguro de salud y ayuda financiera puede obtener.");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
+        softAssert.assertEquals(helpDrawerHeaderTwo.getText(), "Health First Colorado (Programa Medicaid de Colorado)");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderTwo);
+        softAssert.assertEquals(helpDrawerParagraphTwoBold.getText(), "No seleccione esta opci\u00F3n si va a perder elegibilidad para este programa. Seleccione \"Ninguno de estos aplica\" y haga clic en \"Guardar y continuar\".");
+        verifyHelpDrawerHeadersFormat(helpDrawerParagraphTwoBold);
+        softAssert.assertEquals(helpDrawerParagraphTwo.getText(), "No seleccione esta opci\u00F3n si va a perder elegibilidad para este programa. Seleccione \"Ninguno de estos aplica\" y haga clic en \"Guardar y continuar\".\nEste programa ofrece una cobertura de seguro de salud gratuito o de bajo costo a las personas con ingresos calificados.");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphTwo);
+        softAssert.assertEquals(helpDrawerHeaderThree.getText(), "Child Health Plan Plus (CHP+)");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderThree);
+        softAssert.assertEquals(helpDrawerParagraphThree.getText(), "No seleccione esta opci\u00F3n si va a perder elegibilidad para este programa. Seleccione \"Ninguno de estos aplica\" y haga clic en \"Guardar y continuar\".\nEste programa ofrece un seguro de salud de bajo costo para ni\u00F1os y personas embarazadas que ganan demasiado para calificar para Health First Colorado. Si decide adquirir un plan de seguro de salud a trav\u00E9s de Connect for Health Colorado, no podr\u00E1 mantener su seguro CHP+.");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphThree);
+        softAssert.assertEquals(helpDrawerHeaderThreeItalic.getText(), "Plus");
+        verifyHelpDrawerHeadersItalicFormat(helpDrawerHeaderThreeItalic);
+        softAssert.assertEquals(helpDrawerParagraphThreeBold.getText(), "No seleccione esta opci\u00F3n si va a perder elegibilidad para este programa. Seleccione \"Ninguno de estos aplica\" y haga clic en \"Guardar y continuar\".");
+        verifyHelpDrawerHeadersFormat(helpDrawerParagraphThreeBold);
+        softAssert.assertEquals(helpDrawerHeaderFour.getText(), "Medicare");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderFour);
+        softAssert.assertEquals(helpDrawerParagraphFour.getText(), "Es el programa nacional de seguro de salud para las personas de 65 a\u00F1os o m\u00E1s o que tienen una discapacidad seg\u00FAn lo determina la Administraci\u00F3n del Seguro Social.");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphFour);
+        softAssert.assertEquals(helpDrawerHeaderFive.getText(), "Seguro de salud patrocinado por el empleador");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderFive);
+        softAssert.assertEquals(helpDrawerParagraphFive.getText(), "Es el seguro de salud que se obtiene a trav\u00E9s de un empleo propio o del c\u00F3nyuge. Si est\u00E1 actualmente en un per\u00EDodo de espera para que comience el seguro de salud de patrocinado por su empleador (es decir, que su empleador le ofrece cobertura para usted o su dependiente, pero la cobertura tomar\u00E1 efecto despu\u00E9s), puede ser elegible para obtener un Cr\u00E9dito fiscal para el pago de la cuota durante ese per\u00EDodo. Si actualmente est\u00E1 en un per\u00EDodo de espera, no debe marcar la casilla aqu\u00ED. Por el contrario, debe regresar justo antes de que el per\u00EDodo de espera finalice para reportar su pr\u00F3xima inscripci\u00F3n en el seguro patrocinado por su empleador. Para evitar doble cobertura y cargos mensuales de las cuotas de ambos planes, debe reportar el cambio del seguro patrocinado por su empleador en su cuenta de Connect for Health Colorado lo m\u00E1s pronto posible, preferentemente, el mes antes de que comience su cobertura.");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphFive);
+        softAssert.assertEquals(helpDrawerHeaderSix.getText(), "Una cuenta de reembolso de gastos m\u00E9dicos (HRA en ingl\u00E9s) ofrecido a trav\u00E9s de un empleador");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderSix);
+        softAssert.assertEquals(helpDrawerParagraphSix.getText(), "Seleccione esta opci\u00F3n si sus empleador le ofrece una Cuenta de reembolso de gastos m\u00E9dicos (HRA) para ayudarle a pagar su seguro de salud, incluso si no se inscribe en uno. La opci\u00F3n HRA que le ofrece su empleador puede ser llamada HRA de Peque\u00F1o empleador calificado (QSEHRA) o HRA de Cobertura individual (ICHRA).");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphSix);
+        softAssert.assertEquals(helpDrawerHeaderSeven.getText(), "Plan de salud de jubilado");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderSeven);
+        softAssert.assertEquals(helpDrawerParagraphSeven.getText(), "Esta es la opci\u00F3n de seguro de salud para las personas que se han retirado en su trabajo.");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphSeven);
+        softAssert.assertEquals(helpDrawerHeaderEight.getText(), "Cuerpos de paz (Peace Corps)");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderEight);
+        softAssert.assertEquals(helpDrawerParagraphEight.getText(), "Este es un programa de seguro de salud para antiguos voluntarios del Cuerpo de Paz.");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphEight);
+        softAssert.assertEquals(helpDrawerHeaderNine.getText(), "COBRA");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderNine);
+        softAssert.assertEquals(helpDrawerParagraphNine.getText(), "Esta es la opci\u00F3n de seguro de salud para personas que han dejado su empleo con seguro de salud patrocinado por el empleador.");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphNine);
+        softAssert.assertEquals(helpDrawerHeaderTen.getText(), "Servicios de Salud para Veteranos (VA)");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderTen);
+        softAssert.assertEquals(helpDrawerParagraphTen.getText(), "Este es el programa nacional de seguro de salud para veteranos del ej\u00E9rcito aprobados.");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphTen);
+        softAssert.assertEquals(helpDrawerHeaderEleven.getText(), "TRICARE");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderEleven);
+        softAssert.assertEquals(helpDrawerParagraphEleven.getText(), "Este es un programa de servicios m\u00E9dicos del Sistema de Salud Militar del Departamento de Defensa de Estados Unidos.");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphEleven);
+        softAssert.assertEquals(helpDrawerHeaderTwelve.getText(), "Seguro individual (fuera del Mercado)");
+        verifyHelpDrawerHeadersFormat(helpDrawerHeaderTwelve);
+        softAssert.assertEquals(helpDrawerParagraphTwelve.getText(), "Este es el seguro de salud privado que tiene usted actualmente y que no obtuvo por medio de Connect for Health Colorado o su trabajo.");
+        verifyHelpDrawerParagraphsFormat(helpDrawerParagraphTwelve);
         softAssert.assertAll();
     }
 
@@ -1269,33 +1368,33 @@ public class OtherHealthCoveragePage {
     }
 
     public void verifyHelpDrawerFooterText(String language) {
-        basicActions.waitForElementListToBePresent(helpDrawerFooter, 20);
+        basicActions.waitForElementToBePresent(helpDrawerFooter, 20);
 
         switch (language) {
             case "English":
-                softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help? Contact us");
-                softAssert.assertEquals(helpDrawerFooter.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(helpDrawerFooter.get(0).getCssValue("font-size"), "19px");
-                softAssert.assertEquals(helpDrawerFooter.get(0).getCssValue("font-weight"), "700");
-                softAssert.assertEquals(helpDrawerFooter.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)");
-                softAssert.assertEquals(helpDrawerFooter.get(1).getText(), "Contact us");
-                softAssert.assertEquals(helpDrawerFooter.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(helpDrawerFooter.get(1).getCssValue("font-size"), "18px");
-                softAssert.assertEquals(helpDrawerFooter.get(1).getCssValue("font-weight"), "700");
-                softAssert.assertEquals(helpDrawerFooter.get(1).getCssValue("color"), "rgba(26, 112, 179, 1)");
+                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help?\nContact us");
+                softAssert.assertEquals(helpDrawerFooterText.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(helpDrawerFooterText.getCssValue("font-size"), "16px");
+                softAssert.assertEquals(helpDrawerFooterText.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(helpDrawerFooterText.getCssValue("color"), "rgba(43, 49, 60, 1)");
+                softAssert.assertEquals(helpDrawerFooterLink.getText(), "Contact us");
+                softAssert.assertEquals(helpDrawerFooterLink.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(helpDrawerFooterLink.getCssValue("font-size"), "16px");
+                softAssert.assertEquals(helpDrawerFooterLink.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(helpDrawerFooterLink.getCssValue("color"), "rgba(26, 112, 179, 1)");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
-                softAssert.assertEquals(helpDrawerFooter.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(helpDrawerFooter.get(0).getCssValue("font-size"), "19px");
-                softAssert.assertEquals(helpDrawerFooter.get(0).getCssValue("font-weight"), "700");
-                softAssert.assertEquals(helpDrawerFooter.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)");
-                softAssert.assertEquals(helpDrawerFooter.get(1).getText(), "Cont\u00E1ctenos");
-                softAssert.assertEquals(helpDrawerFooter.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif");
-                softAssert.assertEquals(helpDrawerFooter.get(1).getCssValue("font-size"), "18px");
-                softAssert.assertEquals(helpDrawerFooter.get(1).getCssValue("font-weight"), "700");
-                softAssert.assertEquals(helpDrawerFooter.get(1).getCssValue("color"), "rgba(26, 112, 179, 1)");
+                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda?\nCont\u00E1ctenos");
+                softAssert.assertEquals(helpDrawerFooterText.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(helpDrawerFooterText.getCssValue("font-size"), "16px");
+                softAssert.assertEquals(helpDrawerFooterText.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(helpDrawerFooterText.getCssValue("color"), "rgba(43, 49, 60, 1)");
+                softAssert.assertEquals(helpDrawerFooterLink.getText(), "Cont\u00E1ctenos");
+                softAssert.assertEquals(helpDrawerFooterLink.getCssValue("font-family"), "\"PT Sans\", sans-serif");
+                softAssert.assertEquals(helpDrawerFooterLink.getCssValue("font-size"), "16px");
+                softAssert.assertEquals(helpDrawerFooterLink.getCssValue("font-weight"), "700");
+                softAssert.assertEquals(helpDrawerFooterLink.getCssValue("color"), "rgba(26, 112, 179, 1)");
                 softAssert.assertAll();
                 break;
             default:
@@ -1309,96 +1408,97 @@ public class OtherHealthCoveragePage {
         switch(insurance){
             case "Health First Colorado":
                 helpCircleButton.get(0).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "Health First Colorado (Colorado's Medicaid program)");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(2).getText(), "If you will lose eligibility for this program, do not select this option. Instead, select \"None of these apply\" and click \"Save and Continue.\"");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(2));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "If you will lose eligibility for this program, do not select this option. Instead, select \"None of these apply\" and click \"Save and Continue.\"\n" +
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Health First Colorado (Colorado's Medicaid program)");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerParagraphOneBold.getText(), "If you will lose eligibility for this program, do not select this option. Instead, select \"None of these apply\" and click \"Save and Continue.\"");
+                verifyHelpDrawerHeadersFormat(helpDrawerParagraphOneBold);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "If you will lose eligibility for this program, do not select this option. Instead, select \"None of these apply\" and click \"Save and Continue.\"\n" +
                         "This program provides low and $0 health insurance coverage for people with qualified income.");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             case "Child Health Plan Plus":
                 helpCircleButton.get(1).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "Child Health Plan Plus (CHP+)");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "Plus");
-                verifyHelpDrawerHeadersItalicFormat(helpDrawerBody.get(1));
-                softAssert.assertEquals(helpDrawerBody.get(2).getText(), "If you will lose eligibility for this program, do not select this option. Instead, select \"None of these apply\" and click \"Save and Continue.\"\n" +
-                        "This program provides low-cost health insurance for children and pregnant people who earn too much to qualify for Health First Colorado. If you decide to buy a health insurance plan through Connect for Health Colorado, you cannot keep your CHP+ insurance.");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(2));
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Child Health Plan Plus (CHP+)");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerHeaderOneItalic.getText(), "Plus");
+                verifyHelpDrawerHeadersItalicFormat(helpDrawerHeaderOneItalic);
+                softAssert.assertEquals(helpDrawerParagraphOneBold.getText(), "If you will lose eligibility for this program, do not select this option. Instead, select \"None of these apply\" and click \"Save and Continue.\"");
+                verifyHelpDrawerHeadersFormat(helpDrawerParagraphOneBold);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "If you will lose eligibility for this program, do not select this option. Instead, select \"None of these apply\" and click \"Save and Continue.\"\nThis program provides low-cost health insurance for children and pregnant people who earn too much to qualify for Health First Colorado. If you decide to buy a health insurance plan through Connect for Health Colorado, you cannot keep your CHP+ insurance.");
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             case "Medicare":
                 helpCircleButton.get(2).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "Medicare");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "This is the national health insurance program for people age 65 or older, or who have a disability determined by the Social Security Administration.");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Medicare");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "This is the national health insurance program for people age 65 or older, or who have a disability determined by the Social Security Administration.");
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             case "ESI":
                 helpCircleButton.get(3).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "Employer Sponsored Health Insurance");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "This is health insurance through a job or a spouse's job. If you are currently in a waiting period for your employer-sponsored health insurance to begin (meaning that your employer has offered coverage to you or your dependent, but the coverage will be effective later), you may be eligible for a Premium Tax Credit during that waiting period. If you are currently in a waiting period, you should not check the box here. Instead, you should come back just before your waiting period is over to report your upcoming enrollment in employer-sponsored insurance. To avoid duplicate coverage and overlapping monthly premium charges for both plans, you must report your employer insurance change in your Connect for Health Colorado account as soon as possible \u2013 ideally, in the month before your coverage begins.");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Employer Sponsored Health Insurance");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "This is health insurance through a job or a spouse's job. If you are currently in a waiting period for your employer-sponsored health insurance to begin (meaning that your employer has offered coverage to you or your dependent, but the coverage will be effective later), you may be eligible for a Premium Tax Credit during that waiting period. If you are currently in a waiting period, you should not check the box here. Instead, you should come back just before your waiting period is over to report your upcoming enrollment in employer-sponsored insurance. To avoid duplicate coverage and overlapping monthly premium charges for both plans, you must report your employer insurance change in your Connect for Health Colorado account as soon as possible \u2013 ideally, in the month before your coverage begins.");
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             case "HRA":
                 helpCircleButton.get(4).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "Employer Sponsored Health Reimbursement Arrangement");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "Select this option if your employer offers you a Health Reimbursement Arrangement (HRA) to help you pay for health insurance, even if you do not sign up for it. The HRA option that your employer offers may be called a Qualified Small Employer HRA (QSEHRA) or an Individual Coverage HRA (ICHRA).");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Employer Sponsored Health Reimbursement Arrangement");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "Select this option if your employer offers you a Health Reimbursement Arrangement (HRA) to help you pay for health insurance, even if you do not sign up for it. The HRA option that your employer offers may be called a Qualified Small Employer HRA (QSEHRA) or an Individual Coverage HRA (ICHRA).");
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             case "Retiree":
                 helpCircleButton.get(5).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "Retiree Health Plan");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "This is the health insurance option for people who have retired from their job.");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Retiree Health Plan");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "This is the health insurance option for people who have retired from their job.");
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             case "Peace Corps":
                 helpCircleButton.get(6).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "Peace Corps");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "This is a health insurance program for former Peace Corps volunteers.");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Peace Corps");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "This is a health insurance program for former Peace Corps volunteers.");
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             case "COBRA":
                 helpCircleButton.get(7).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "COBRA");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "This is the health insurance option for people after they've left their job with employer-sponsored health insurance.");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "COBRA");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "This is the health insurance option for people after they've left their job with employer-sponsored health insurance.");
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             case "VA Health Care":
                 helpCircleButton.get(8).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "Veteran's (VA) Healthcare");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "This is the national health insurance program for qualified veterans of the military.");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Veteran's (VA) Healthcare");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "This is the national health insurance program for qualified veterans of the military.");
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             case "TRICARE":
                 helpCircleButton.get(9).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "TRICARE");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "This is a health care program of the United States Department of Defense Military Health System.");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "TRICARE");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "This is a health care program of the United States Department of Defense Military Health System.");
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             case "Individual":
                 helpCircleButton.get(10).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "Individual Insurance (outside of Marketplace)");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "This is health private insurance that you currently have that you did not get through Connect for Health Colorado or your job.");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Individual Insurance (outside of Marketplace)");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "This is health private insurance that you currently have that you did not get through Connect for Health Colorado or your job.");
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             default:
@@ -1412,94 +1512,96 @@ public class OtherHealthCoveragePage {
         switch(insurance) {
             case "Health First Colorado":
                 helpCircleButton.get(0).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "Health First Colorado (Programa Medicaid de Colorado)");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(2).getText(), "No seleccione esta opci\u00F3n si va a perder elegibilidad para este programa. Seleccione \"Ninguno de estos aplica\" y haga clic en \"Guardar y continuar\".");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(2));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "No seleccione esta opci\u00F3n si va a perder elegibilidad para este programa. Seleccione \"Ninguno de estos aplica\" y haga clic en \"Guardar y continuar\".\nEste programa ofrece una cobertura de seguro de salud gratuito o de bajo costo a las personas con ingresos calificados.");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Health First Colorado (Programa Medicaid de Colorado)");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerParagraphOneBold.getText(), "No seleccione esta opci\u00F3n si va a perder elegibilidad para este programa. Seleccione \"Ninguno de estos aplica\" y haga clic en \"Guardar y continuar\".");
+                verifyHelpDrawerHeadersFormat(helpDrawerParagraphOneBold);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "No seleccione esta opci\u00F3n si va a perder elegibilidad para este programa. Seleccione \"Ninguno de estos aplica\" y haga clic en \"Guardar y continuar\".\nEste programa ofrece una cobertura de seguro de salud gratuito o de bajo costo a las personas con ingresos calificados.");
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             case "Child Health Plan Plus":
                 helpCircleButton.get(1).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "Child Health Plan Plus (CHP+)");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "Plus");
-                verifyHelpDrawerHeadersItalicFormat(helpDrawerBody.get(1));
-                softAssert.assertEquals(helpDrawerBody.get(2).getText(), "No seleccione esta opci\u00F3n si va a perder elegibilidad para este programa. Seleccione \"Ninguno de estos aplica\" y haga clic en \"Guardar y continuar\".\nEste programa ofrece un seguro de salud de bajo costo para ni\u00F1os y personas embarazadas que ganan demasiado para calificar para Health First Colorado. Si decide adquirir un plan de seguro de salud a trav\u00E9s de Connect for Health Colorado, no podr\u00E1 mantener su seguro CHP+.");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(2));
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Child Health Plan Plus (CHP+)");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerHeaderOneItalic.getText(), "Plus");
+                verifyHelpDrawerHeadersItalicFormat(helpDrawerHeaderOneItalic);
+                softAssert.assertEquals(helpDrawerParagraphOneBold.getText(), "No seleccione esta opci\u00F3n si va a perder elegibilidad para este programa. Seleccione \"Ninguno de estos aplica\" y haga clic en \"Guardar y continuar\".");
+                verifyHelpDrawerHeadersFormat(helpDrawerParagraphOneBold);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "No seleccione esta opci\u00F3n si va a perder elegibilidad para este programa. Seleccione \"Ninguno de estos aplica\" y haga clic en \"Guardar y continuar\".\nEste programa ofrece un seguro de salud de bajo costo para ni\u00F1os y personas embarazadas que ganan demasiado para calificar para Health First Colorado. Si decide adquirir un plan de seguro de salud a trav\u00E9s de Connect for Health Colorado, no podr\u00E1 mantener su seguro CHP+.");
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             case "Medicare":
                 helpCircleButton.get(2).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "Medicare");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "Es el programa nacional de seguro de salud para las personas de 65 a\u00F1os o m\u00E1s o que tienen una discapacidad seg\u00FAn lo determina la Administraci\u00F3n del Seguro Social.");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Medicare");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "Es el programa nacional de seguro de salud para las personas de 65 a\u00F1os o m\u00E1s o que tienen una discapacidad seg\u00FAn lo determina la Administraci\u00F3n del Seguro Social.");
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             case "ESI":
                 helpCircleButton.get(3).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "Seguro de salud patrocinado por el empleador");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "Es el seguro de salud que se obtiene a trav\u00E9s de un empleo propio o del c\u00F3nyuge. Si est\u00E1 actualmente en un per\u00EDodo de espera para que comience el seguro de salud de patrocinado por su empleador (es decir, que su empleador le ofrece cobertura para usted o su dependiente, pero la cobertura tomar\u00E1 efecto despu\u00E9s), puede ser elegible para obtener un Cr\u00E9dito fiscal para el pago de la cuota durante ese per\u00EDodo. Si actualmente est\u00E1 en un per\u00EDodo de espera, no debe marcar la casilla aqu\u00ED. Por el contrario, debe regresar justo antes de que el per\u00EDodo de espera finalice para reportar su pr\u00F3xima inscripci\u00F3n en el seguro patrocinado por su empleador. Para evitar doble cobertura y cargos mensuales de las cuotas de ambos planes, debe reportar el cambio del seguro patrocinado por su empleador en su cuenta de Connect for Health Colorado lo m\u00E1s pronto posible, preferentemente, el mes antes de que comience su cobertura.");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Seguro de salud patrocinado por el empleador");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "Es el seguro de salud que se obtiene a trav\u00E9s de un empleo propio o del c\u00F3nyuge. Si est\u00E1 actualmente en un per\u00EDodo de espera para que comience el seguro de salud de patrocinado por su empleador (es decir, que su empleador le ofrece cobertura para usted o su dependiente, pero la cobertura tomar\u00E1 efecto despu\u00E9s), puede ser elegible para obtener un Cr\u00E9dito fiscal para el pago de la cuota durante ese per\u00EDodo. Si actualmente est\u00E1 en un per\u00EDodo de espera, no debe marcar la casilla aqu\u00ED. Por el contrario, debe regresar justo antes de que el per\u00EDodo de espera finalice para reportar su pr\u00F3xima inscripci\u00F3n en el seguro patrocinado por su empleador. Para evitar doble cobertura y cargos mensuales de las cuotas de ambos planes, debe reportar el cambio del seguro patrocinado por su empleador en su cuenta de Connect for Health Colorado lo m\u00E1s pronto posible, preferentemente, el mes antes de que comience su cobertura.");
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             case "HRA":
                 helpCircleButton.get(4).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "Una cuenta de reembolso de gastos m\u00E9dicos (HRA en ingl\u00E9s) ofrecido a trav\u00E9s de un empleador");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "Seleccione esta opci\u00F3n si sus empleador le ofrece una Cuenta de reembolso de gastos m\u00E9dicos (HRA) para ayudarle a pagar su seguro de salud, incluso si no se inscribe en uno. La opci\u00F3n HRA que le ofrece su empleador puede ser llamada HRA de Peque\u00F1o empleador calificado (QSEHRA) o HRA de Cobertura individual (ICHRA).");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Una cuenta de reembolso de gastos m\u00E9dicos (HRA en ingl\u00E9s) ofrecido a trav\u00E9s de un empleador");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "Seleccione esta opci\u00F3n si sus empleador le ofrece una Cuenta de reembolso de gastos m\u00E9dicos (HRA) para ayudarle a pagar su seguro de salud, incluso si no se inscribe en uno. La opci\u00F3n HRA que le ofrece su empleador puede ser llamada HRA de Peque\u00F1o empleador calificado (QSEHRA) o HRA de Cobertura individual (ICHRA).");
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             case "Retiree":
                 helpCircleButton.get(5).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "Plan de salud de jubilado");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "Esta es la opci\u00F3n de seguro de salud para las personas que se han retirado en su trabajo.");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Plan de salud de jubilado");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "Esta es la opci\u00F3n de seguro de salud para las personas que se han retirado en su trabajo.");
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             case "Peace Corps":
                 helpCircleButton.get(6).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "Cuerpos de paz (Peace Corps)");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "Este es un programa de seguro de salud para antiguos voluntarios del Cuerpo de Paz.");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Cuerpos de paz (Peace Corps)");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "Este es un programa de seguro de salud para antiguos voluntarios del Cuerpo de Paz.");
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             case "COBRA":
                 helpCircleButton.get(7).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "COBRA");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "Esta es la opci\u00F3n de seguro de salud para personas que han dejado su empleo con seguro de salud patrocinado por el empleador.");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "COBRA");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "Esta es la opci\u00F3n de seguro de salud para personas que han dejado su empleo con seguro de salud patrocinado por el empleador.");
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             case "VA Health Care":
                 helpCircleButton.get(8).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "Servicios de Salud para Veteranos (VA)");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "Este es el programa nacional de seguro de salud para veteranos del ej\u00E9rcito aprobados.");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Servicios de Salud para Veteranos (VA)");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "Este es el programa nacional de seguro de salud para veteranos del ej\u00E9rcito aprobados.");
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             case "TRICARE":
                 helpCircleButton.get(9).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "TRICARE");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "Este es un programa de servicios m\u00E9dicos del Sistema de Salud Militar del Departamento de Defensa de Estados Unidos.");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "TRICARE");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "Este es un programa de servicios m\u00E9dicos del Sistema de Salud Militar del Departamento de Defensa de Estados Unidos.");
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             case "Individual":
                 helpCircleButton.get(10).click();
-                softAssert.assertEquals(helpDrawerBody.get(0).getText(), "Seguro individual (fuera del Mercado)");
-                verifyHelpDrawerHeadersFormat(helpDrawerBody.get(0));
-                softAssert.assertEquals(helpDrawerBody.get(1).getText(), "Este es el seguro de salud privado que tiene usted actualmente y que no obtuvo por medio de Connect for Health Colorado o su trabajo.");
-                verifyHelpDrawerParagraphsFormat(helpDrawerBody.get(1));
+                softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Seguro individual (fuera del Mercado)");
+                verifyHelpDrawerHeadersFormat(helpDrawerHeaderOne);
+                softAssert.assertEquals(helpDrawerParagraphOne.getText(), "Este es el seguro de salud privado que tiene usted actualmente y que no obtuvo por medio de Connect for Health Colorado o su trabajo.");
+                verifyHelpDrawerParagraphsFormat(helpDrawerParagraphOne);
                 softAssert.assertAll();
                 break;
             default:
