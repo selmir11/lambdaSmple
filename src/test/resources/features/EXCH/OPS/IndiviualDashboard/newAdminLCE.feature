@@ -30,7 +30,7 @@ Feature: new admin LCE
 
   @SLER-1996
   Scenario: New admin LCE: Recreate application link navigation and verify links from page
-    Then I enter an account ID in "8574680700" "8574680700" accountID field
+    Then I enter an account ID in "5020327630" "5020327630" accountID field
     Then I click on Look up button
     Then I click on application data dropdown arrow
     Then I click on Recreate application link number 1 for plan year 2025 on the Admin LCE page

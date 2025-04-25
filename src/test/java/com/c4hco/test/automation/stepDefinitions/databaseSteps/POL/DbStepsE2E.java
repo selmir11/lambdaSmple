@@ -15,6 +15,7 @@ public class DbStepsE2E {
     private final Ob834DbValForMember ob834DbValForMember = new Ob834DbValForMember();
     private final Ib834DbValidations ib834DbValidations = new Ib834DbValidations();
     private final PolicyTableMemberDbValidations policyTableMemberDbValidations = new PolicyTableMemberDbValidations();
+    private final COCO_grp_Ib834DbValidations coco_grp_Ib834DbValidations = new COCO_grp_Ib834DbValidations();
 
     @And("I validate {string} entities from policy tables")
     public void validateMedicalRecordsForGroups(String recordType){
@@ -50,6 +51,10 @@ public class DbStepsE2E {
     @And("I validate ib834 {string} details in database for groups")
     public void validateIb834DetailsDb_grps(String recordType, List<Map<String, String>> expectedValues){
         ib834DbValidations.ib834DbRecordsValidations(recordType, expectedValues);
+    }
+    @And("I validate coco ib834 file for groups")
+    public void validateCocoIb834DetailsDb(List<Map<String, String>> expectedValues){
+        coco_grp_Ib834DbValidations.coco_ib834DbRecordsValidations(expectedValues);
     }
 
     @And("I validate {string} entities from ob999_details db table")

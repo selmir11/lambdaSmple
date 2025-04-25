@@ -1,4 +1,4 @@
-@SLER-1010 @SLER-1019 @SLER-1020 @SLER-1021 @portNotice
+@port @portNoticeLoginPortal
 Feature: Trigger Broker Password reset and confirmation Notices AM-016-07 AND AM-016-08
 
   @SLER-1010 @SLER-1019 @SLER-1020 @SLER-1021

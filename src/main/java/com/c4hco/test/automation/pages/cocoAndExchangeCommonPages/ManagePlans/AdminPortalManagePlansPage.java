@@ -708,7 +708,7 @@ public class AdminPortalManagePlansPage {
     }
 
     public void clickSaveButton() {
-     //   basicActions.scrollToElement(btnMedSave);
+        basicActions.scrollToElement(btnMedSave);
         basicActions.waitForElementToBePresent(btnMedReset, 20);
         basicActions.waitForElementToBePresent(btnMedSave, 20);
         btnMedSave.click();

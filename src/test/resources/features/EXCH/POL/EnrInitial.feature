@@ -229,7 +229,7 @@ Feature: Admin Portal OBO - Create Account & Submit FA Application & Enroll in a
     Then I click on manage plan button on admin portal Individual dashboard
     And I initiate incoming page
     #WIP - we have the plans stored already. Can be removed from the step.
-    And I Validate the correct enrolled plans are displayed on admin portal individual page
+    And I Validate the correct enrolled plans are displayed on Manage Plans page
       | Manage Plans                                         |
       | Anthem Colorado Option Bronze Pathway Essentials Std |
       | Anthem Dental Family                                 |

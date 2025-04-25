@@ -95,7 +95,8 @@ public class PlanSummaryMedicalDentalPage {
     WebElement toolTipInformation;
 
     public void verifyAPTCPlanSummaryAmt(String aPTCPlanSummaryAmt) {
-        basicActions.waitForElementToBePresentWithRetries( aPTCPlanSummary, 30 );
+        basicActions.waitForElementToBePresentWithRetries( aPTCPlanSummary, 60 );
+        basicActions.scrollToElement( aPTCPlanSummary );
         softAssert.assertEquals( aPTCPlanSummary.getText(), aPTCPlanSummaryAmt );
         softAssert.assertAll();
     }

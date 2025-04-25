@@ -1,4 +1,4 @@
-@APTC,@APTCSIR, @APTC-SIR2
+@APTC @APTCSIR @APTC-SIR2
   # Tests include SLER-131, SLER-319, SLER-320, SLER-321, SLER-322, SLER-323, SLER-324, SLER- 375, SLER-689, SLER-690, SLER-691, SLER-692
 Feature: UI Tests related to APTC after second enrollment change
 
@@ -241,7 +241,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-322
-  Scenario: SLER-322 - ELIG - APTCRules - 40 year old - incom
+  Scenario: SLER-322 - ELIG - APTCRules - 40 year old - income
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -1840,6 +1840,7 @@ Feature: UI Tests related to APTC after second enrollment change
     And I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
+    And I wait for 2000 milliseconds  
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page

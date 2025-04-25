@@ -606,7 +606,7 @@ public class MyProfilePage {
         basicActions.waitForElementListToBePresent(MyProfileButtonCoCo, 40);
         MyProfileButtonCoCo.get(1).click();
         System.out.println("Email ::" + SharedData.getPrimaryMember().getEmailId());
-        String newEmail = "updated.automation1025@test.com";
+        String newEmail = "updated.automation1026@test.com";
         InputEmailCoCo.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         InputEmailCoCo.sendKeys(newEmail);
         MyProfileButtonCoCo.get(1).click();

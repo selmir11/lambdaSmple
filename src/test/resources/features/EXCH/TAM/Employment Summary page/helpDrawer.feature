@@ -46,6 +46,7 @@ Feature: Page Text-Income Opt Out Page
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
     Then I validate I am on the "Employment Summary" page
+    And I wait for 15 milliseconds
     And I set the browser resolution to 1536 x 864
     And I verify the header for Primary Member on the Employment Summary page in "English"
 
@@ -53,115 +54,9 @@ Feature: Page Text-Income Opt Out Page
   Scenario: SLER-920 Validate help drawer text on the Employment Summary page - English
     And I select "Help me understand" icon on the Employment Summary Page
     Then I validate Employment Summary help drawer verbiage in "English"
-    Then I click on "Alimony Received" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Alimony Received" page and close tab
-    Then I click on "Capital Gains" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Capital Gains" page and close tab
-    Then I click on "Income from Rental" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Income from Rental" page and close tab
-    Then I click on "Pension" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Pension" page and close tab
-    Then I click on "Private Retirement Income" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Private Retirement Income" page and close tab
-    Then I click on "Unemployment Insurance" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Unemployment Insurance" page and close tab
-    Then I click on "Investment Income" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Investment Income" page and close tab
-    Then I click on "Untaxed Foreign Income" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Untaxed Foreign Income" page and close tab
-    Then I click on "Royalty Income" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Royalty Income" page and close tab
-    Then I click on "Title II Income" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Title II Income" page and close tab
-    Then I click on "Alimony paid out" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Alimony paid out" page and close tab
-    Then I click on "Domestic production activities" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Domestic production activities" page and close tab
-    Then I click on "Pre-tax retirement contribution" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Pre-tax retirement contribution" page and close tab
-    Then I click on "School tuition" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition" page and close tab
-    Then I click on "School tuition: Self-Employed 1" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Self-Employed 1" page and close tab
-    Then I click on "School tuition: Self-Employed 2" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Self-Employed 2" page and close tab
-    Then I click on "School tuition: Armed Forces 1" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Armed Forces 1" page and close tab
-    Then I click on "School tuition: Armed Forces 2" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Armed Forces 2" page and close tab
-    Then I click on "School tuition: Disability 1" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Disability 1" page and close tab
-    Then I click on "School tuition: Disability 2" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Disability 2" page and close tab
-    Then I click on "Self-employment tax" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Self-employment tax" page and close tab
-    Then I click on "Student Loan Interest" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Student Loan Interest" page and close tab
-    Then I click on "Self-employment Health Insurance" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Self-employment Health Insurance" page and close tab
-    Then I click on "Self-Employment Retirement Plan" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Self-Employment Retirement Plan" page and close tab
-    Then I click on "Moving Expenses" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Moving Expenses" page and close tab
     And I click on "Contact Us" link in Help Drawer on the Employment Summary page
     And I validate I am on the "We Can Help" page and close tab
-    And I select "Help me understand" icon on the Employment Summary Page
-    Then I validate I am on the "Employment Summary" page
-    And I select "side help" icon on the Employment Summary Page
-    Then I validate Employment Summary help drawer verbiage in "English"
-    Then I click on "Alimony Received" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Alimony Received" page and close tab
-    Then I click on "Capital Gains" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Capital Gains" page and close tab
-    Then I click on "Income from Rental" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Income from Rental" page and close tab
-    Then I click on "Pension" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Pension" page and close tab
-    Then I click on "Private Retirement Income" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Private Retirement Income" page and close tab
-    Then I click on "Unemployment Insurance" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Unemployment Insurance" page and close tab
-    Then I click on "Investment Income" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Investment Income" page and close tab
-    Then I click on "Untaxed Foreign Income" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Untaxed Foreign Income" page and close tab
-    Then I click on "Royalty Income" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Royalty Income" page and close tab
-    Then I click on "Title II Income" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Title II Income" page and close tab
-    Then I click on "Alimony paid out" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Alimony paid out" page and close tab
-    Then I click on "Domestic production activities" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Domestic production activities" page and close tab
-    Then I click on "Pre-tax retirement contribution" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Pre-tax retirement contribution" page and close tab
-    Then I click on "School tuition" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition" page and close tab
-    Then I click on "School tuition: Self-Employed 1" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Self-Employed 1" page and close tab
-    Then I click on "School tuition: Self-Employed 2" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Self-Employed 2" page and close tab
-    Then I click on "School tuition: Armed Forces 1" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Armed Forces 1" page and close tab
-    Then I click on "School tuition: Armed Forces 2" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Armed Forces 2" page and close tab
-    Then I click on "School tuition: Disability 1" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Disability 1" page and close tab
-    Then I click on "School tuition: Disability 2" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Disability 2" page and close tab
-    Then I click on "Self-employment tax" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Self-employment tax" page and close tab
-    Then I click on "Student Loan Interest" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Student Loan Interest" page and close tab
-    Then I click on "Self-employment Health Insurance" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Self-employment Health Insurance" page and close tab
-    Then I click on "Self-Employment Retirement Plan" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Self-Employment Retirement Plan" page and close tab
-    Then I click on "Moving Expenses" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Moving Expenses" page and close tab
-    Then I click on "Contact Us" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "We Can Help" page and close tab
-    And I select "close side help" icon on the Employment Summary Page
+    And I select "close help" icon on the Employment Summary Page
 
     And I click on Sign Out in the Header for "Elmo"
 
@@ -171,114 +66,9 @@ Feature: Page Text-Income Opt Out Page
     And I validate I am on the "Spanish" page
     And I select "Help me understand" icon on the Employment Summary Page
     Then I validate Employment Summary help drawer verbiage in "Spanish"
-    Then I click on "Alimony Received" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Alimony Received" page and close tab
-    Then I click on "Capital Gains" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Capital Gains" page and close tab
-    Then I click on "Income from Rental" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Income from Rental" page and close tab
-    Then I click on "Pension" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Pension" page and close tab
-    Then I click on "Private Retirement Income" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Private Retirement Income" page and close tab
-    Then I click on "Unemployment Insurance" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Unemployment Insurance" page and close tab
-    Then I click on "Investment Income" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Investment Income" page and close tab
-    Then I click on "Untaxed Foreign Income" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Untaxed Foreign Income" page and close tab
-    Then I click on "Royalty Income" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Royalty Income" page and close tab
-    Then I click on "Title II Income" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Title II Income" page and close tab
-    Then I click on "Alimony paid out" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Alimony paid out" page and close tab
-    Then I click on "Domestic production activities" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Domestic production activities" page and close tab
-    Then I click on "Pre-tax retirement contribution" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Pre-tax retirement contribution" page and close tab
-    Then I click on "School tuition" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition" page and close tab
-    Then I click on "School tuition: Self-Employed 1" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Self-Employed 1" page and close tab
-    Then I click on "School tuition: Self-Employed 2" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Self-Employed 2" page and close tab
-    Then I click on "School tuition: Armed Forces 1" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Armed Forces 1" page and close tab
-    Then I click on "School tuition: Armed Forces 2" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Armed Forces 2" page and close tab
-    Then I click on "School tuition: Disability 1" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Disability 1" page and close tab
-    Then I click on "School tuition: Disability 2" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Disability 2" page and close tab
-    Then I click on "Self-employment tax" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Self-employment tax" page and close tab
-    Then I click on "Student Loan Interest" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Student Loan Interest" page and close tab
-    Then I click on "Self-employment Health Insurance" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Self-employment Health Insurance" page and close tab
-    Then I click on "Self-Employment Retirement Plan" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Self-Employment Retirement Plan" page and close tab
-    Then I click on "Moving Expenses" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Moving Expenses" page and close tab
     And I click on "Contact Us" link in Help Drawer on the Employment Summary page
     And I validate I am on the "We Can Help" page and close tab
-    And I select "Help me understand" icon on the Employment Summary Page
-    And I select "side help" icon on the Employment Summary Page
-    Then I validate Employment Summary help drawer verbiage in "Spanish"
-    Then I click on "Alimony Received" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Alimony Received" page and close tab
-    Then I click on "Capital Gains" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Capital Gains" page and close tab
-    Then I click on "Income from Rental" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Income from Rental" page and close tab
-    Then I click on "Pension" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Pension" page and close tab
-    Then I click on "Private Retirement Income" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Private Retirement Income" page and close tab
-    Then I click on "Unemployment Insurance" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Unemployment Insurance" page and close tab
-    Then I click on "Investment Income" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Investment Income" page and close tab
-    Then I click on "Untaxed Foreign Income" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Untaxed Foreign Income" page and close tab
-    Then I click on "Royalty Income" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Royalty Income" page and close tab
-    Then I click on "Title II Income" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Title II Income" page and close tab
-    Then I click on "Alimony paid out" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Alimony paid out" page and close tab
-    Then I click on "Domestic production activities" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Domestic production activities" page and close tab
-    Then I click on "Pre-tax retirement contribution" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Pre-tax retirement contribution" page and close tab
-    Then I click on "School tuition" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition" page and close tab
-    Then I click on "School tuition: Self-Employed 1" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Self-Employed 1" page and close tab
-    Then I click on "School tuition: Self-Employed 2" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Self-Employed 2" page and close tab
-    Then I click on "School tuition: Armed Forces 1" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Armed Forces 1" page and close tab
-    Then I click on "School tuition: Armed Forces 2" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Armed Forces 2" page and close tab
-    Then I click on "School tuition: Disability 1" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Disability 1" page and close tab
-    Then I click on "School tuition: Disability 2" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "School tuition: Disability 2" page and close tab
-    Then I click on "Self-employment tax" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Self-employment tax" page and close tab
-    Then I click on "Student Loan Interest" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Student Loan Interest" page and close tab
-    Then I click on "Self-employment Health Insurance" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Self-employment Health Insurance" page and close tab
-    Then I click on "Self-Employment Retirement Plan" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Self-Employment Retirement Plan" page and close tab
-    Then I click on "Moving Expenses" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "Moving Expenses" page and close tab
-    Then I click on "Contact Us" link in Help Drawer on the Employment Summary page
-    And I validate I am on the "We Can Help" page and close tab
-    And I select "close side help" icon on the Employment Summary Page
+    And I select "close help" icon on the Employment Summary Page
 
     And I click on Sign Out in the Header for "Elmo"
 

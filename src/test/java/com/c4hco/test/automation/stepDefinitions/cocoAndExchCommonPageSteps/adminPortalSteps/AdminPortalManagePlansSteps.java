@@ -106,9 +106,9 @@ public class AdminPortalManagePlansSteps {
     public void financialStartDateCOCO(List<String> memberFinancialStrtDtList) {
         adminPortalManagePlansPage.memberFinancialStrtDateNew(memberFinancialStrtDtList);
     }
-    @And("I update the Coverage End date of member on manage plan page")
-    public void coverageEndDateMP(List<String> memberCoverageEndDtList) {
-        adminPortalManagePlansPage.updateTheCoverageEndDateNew(memberCoverageEndDtList);
+    @And("I update the Coverage End date of member on manage plan page for {string}")
+    public void coverageEndDateMP(String planType,List<String> memberCoverageEndDtList) {
+        adminPortalManagePlansPage.updateTheCoverageEndDateNew(planType,memberCoverageEndDtList);
     }
     @And("I update the Financial End date of member on manage plan page")
     public void financialEndDateMP(List<String> memberFinancialEndDtList) {
@@ -151,9 +151,9 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.UpdateMyAccount_idAnyEnv(stgAccountId,qaAccountId);
     }
 
-    @Then("I validate the text of the Medical Dental container")
-    public void iValidateTheTextOfTheMedicalDentalContainer() {
-        adminPortalManagePlansPage.validateTheTextOfTheMedicalContainer();
+    @Then("I validate the {string} text of {string} plan summary container on Manage Plans")
+    public void iValidateMedicalDentalPlanSummary(String textType, String planType) {
+        adminPortalManagePlansPage.validateMedicalDentalPlanSummary(textType, planType);
     }
     @Then("I select the {int} {string} policy Plan")
     public void iSelectThePolicyPlan(int policyNumber, String planType) {
@@ -428,9 +428,9 @@ public class AdminPortalManagePlansSteps {
     @Then("I verify {string} plan type is showing on Manage Plans page")
     public void iVerifyPlanTypeShow(String planType) {adminPortalManagePlansPage.verifyPlanTypeShow(planType);}
 
-    @Then("I verify plan name and policy coverage dates are visible")
-    public void iVerifyPlanNameAndPolicyCoverageDatesAreVisible() {
-        adminPortalManagePlansPage.verifyPlanNameAndPolicyCoverageDisplayed();
+    @Then("I verify plan name and policy coverage dates are visible for {string}")
+    public void iVerifyPlanNameAndPolicyCoverageDatesAreVisibleFor(String planType) {
+        adminPortalManagePlansPage.verifyPlanNameAndPolicyCoverageDisplayed(planType);
     }
 
     @Then("I verify page texts of all labels of {string} plan")
@@ -458,12 +458,12 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.verifyFontColorEtcOfContainerElements();
     }
 
-    @Then("I verify color font size of medical plan container")
+    @Then("I verify color font size of medical_or_dental plan container")
     public void iVerifyColorFontSizeOfMedicalPlanContainer() {
-        adminPortalManagePlansPage.verifyFontColorEtcOfMedicalPlanContainer();
+        adminPortalManagePlansPage.verifyFontColorEtcOfMedicalOrDentalPlanContainer();
     }
 
-    @Then("I verify previous_Financial_Periods - Medical text labels")
+    @Then("I verify previous_Financial_Periods - Medical_Or_Dental text labels")
     public void iVerifyPrevious_Financial_PeriodsMedicalTextLabels(List<String> pageTexts) {
         adminPortalManagePlansPage.verifyPrevious_Financial_PeriodsMedicalTexts(pageTexts);
     }
@@ -481,7 +481,7 @@ public class AdminPortalManagePlansSteps {
     public void iValidatePreviousFinancialYearStylePropertiesOnManagePlan() {
         adminPortalManagePlansPage.validatePreviousFinancialStyleProperties();
     }
-	
+
     @And("I verify label on Previous Financial Period Medical Plan container")
     public void iVerifyLabelForPreviousPeriodMedical(List<String > labelName) {
         adminPortalManagePlansPage.verifyPreviousFinanicalLabel(labelName);
@@ -514,4 +514,64 @@ public class AdminPortalManagePlansSteps {
     @And("I select {string} Show Financial Period for policy {int} on Manage Plans page")
     public void iSelectFinancialPeriod(String planType, Integer policyNumber) {adminPortalManagePlansPage.selectFinancialPeriod(planType, policyNumber);}
 
+    @Then("I verify medical_plan text available in red color")
+    public void iVerifyMedical_planTextAvailableInRedColor() {
+        adminPortalManagePlansPage.verifyMedicalPlanText();
+    }
+
+    @Then("I verify one container for Medical plans displayed instead of Current and Previous sections")
+    public void iVerifyOneContainerForMedicalPlansDisplayedInsteadOfCurrentAndPreviousSections() {
+        adminPortalManagePlansPage.verifyOneContainerForMedicalPlansDisplayedInsteadOfCurrentAndPreviousSections();
+    }
+
+    @Then("I select policy plan {string} from select_a_policy dd by visible text")
+    public void iSelectPolicyPlanFromSelect_a_policyDdByVisibleText(String policyName) {
+        adminPortalManagePlansPage.selectPolicyPlanFromDDByVisibleText(policyName);
+    }
+
+    @Then("I verify member two shows twice in CoverageDetails and FinancialDetails tables")
+    public void iVerifyMemberTwoShowsTwiceInCoverageDetailsAndFinancialDetailsTables() {
+        adminPortalManagePlansPage.VerifyMemberTwoShowsTwiceInCoverageAndFinancialDetailsTables();
+    }
+
+    @And("I Validate the correct enrolled plans are displayed on Manage Plans page")
+    public void iverifyPlanDetails(List<String> data) {
+        adminPortalManagePlansPage.verifyPlanDetails(data);
+    }
+
+    @Then("I verify Previous_Financial_Periods_Dental text color size etc")
+    public void iVerifyPrevious_Financial_Periods_DentalTextColorSizeEtc() {
+        adminPortalManagePlansPage.verifyPreviousFinancialPeriodsDentalColorSizeEtc();
+    }
+
+    @Then("I verify color border of Previous_Financial_Periods_Dental container and all columns inside container")
+    public void iVerifyColorBorderOfPrevious_Financial_Periods_DentalContainerAndAllColumnsInsideContainer() {
+        adminPortalManagePlansPage.verifyColorBorderOfPreviousFinancialPeriodsDentalContainerAndAllColumnsInsideContainer();
+    }
+
+    @Then("I validate green back ground and white text of {string} button only when checked")
+    public void iValidateGreenBackGroundAndWhiteTextOfButtonWhenChecked(String btnType) {
+        adminPortalManagePlansPage.validateGreenBackGroundAndWhiteTextOfMedical_or_dentalButtonWhenChecked(btnType);
+    }
+
+    @Then("I validate white back ground and black text of {string} button only when unchecked")
+    public void iValidateWhiteBackGroundAndBlackTextOfButtonOnlyWhenUnchecked(String btnType) {
+        adminPortalManagePlansPage.validateWhiteBackGroundAndBlackTextOfButtonOnlyWhenUnchecked(btnType);
+    }
+
+    @Then("I select Plans {string} Termed policy with {string} coverage end date on manage plan page")
+    public void iSelectPlansTermedPolicyWith(String planType, String expectedValues) {
+        adminPortalManagePlansPage.selectTermedPolicyBasedOnEndDate(planType, expectedValues);
+    }
+
+    @Then("I set the Person IDs on manage plan page")
+    public void iSetPersonIds() {adminPortalManagePlansPage.setPersonIds();}
+
+    @Then("I validate the Person ID didn't change on manage plan page")
+    public void iValidatePersonIdsUnchanged() {adminPortalManagePlansPage.validatePersonIdsUnchanged();}
+
+    @Then("I verify plan name and policy coverage dates are visible for Previous_Financial_Periods medical_or_dental")
+    public void iVerifyPlanNameAndPolicyCoverageDatesAreVisibleForPrevious_Financial_PeriodsFor() {
+        adminPortalManagePlansPage.verifyPlanNameAndPolicyCoverageDatesAreVisibleForPreviousFinancialPeriods();
+    }
 }

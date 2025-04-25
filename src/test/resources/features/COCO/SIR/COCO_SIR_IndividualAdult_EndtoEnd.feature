@@ -1357,7 +1357,7 @@ Feature: Individual adult - End to End Test
     And I click on Sign Out in the Header for "Elmo"
 
   @SLCR-317 @EndToEndTest
-  Scenario: SLCR-317 - This will create Individual Minor COCO - Open Enrollment: 1 minor (SES plan not viewable)
+  Scenario: SLCR-317 - This will create Individual Minor COCO - Closed Enrollment: 1 minor (SES plan not viewable)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -1406,7 +1406,7 @@ Feature: Individual adult - End to End Test
     And I select continue on the Family Overview page
 
     Then I validate I am on the "CoCo life change event" page
-    And I select "Birth" life change event with event date of "Today"
+    And I select "MoveToCO" life change event with event date of "Today"
     And I select continue on the LCE page
 
     Then I validate I am on the "CoCo Declarations and Signature" page

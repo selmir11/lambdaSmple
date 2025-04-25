@@ -1,5 +1,6 @@
 package com.c4hco.test.automation.pages.cocoPages;
 
+import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -110,4 +111,18 @@ public class EditGroupingMemberMedicalCoCoPage {
         }
     }
 
+    public void relationshipsInGroups(List<String> relation) {
+        List<MemberDetails> membersList = basicActions.getAllMedicalEligibleMemInfo();
+        for (int i = relation.size() - 1; i >= 0; i--) {
+            String[] groupDetail = relation.get(i).split(":");
+            String Name = groupDetail[0];
+            String relationshipToSubscriber = groupDetail[1];
+
+            for (MemberDetails member : membersList) {
+                if (member.getFirstName().contains(Name)) {
+                    member.setRelation_to_subscriber(relationshipToSubscriber);
+                }
+            }
+        }
+    }
 }

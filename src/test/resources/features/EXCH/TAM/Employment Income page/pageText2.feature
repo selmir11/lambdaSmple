@@ -143,12 +143,12 @@ Feature: Page Text-Income Page
       | Will this income be the same or lower next year?                                 |
       | Yes                                                                              |
       | No                                                                               |
-      | Address Line 1                                                                   |
-      | Address Line 2 (optional)                                                        |
+      | Address line 1                                                                   |
+      | Address line 2                                                                   |
       | City                                                                             |
       | State                                                                            |
       | Select Option                                                                    |
-      | Zip Code                                                                         |
+      | ZIP Code                                                                         |
       | What is your current gross income from this company or job?                      |
       | Include commission or tips earned.                                               |
       | Is this income part of seasonal, commission, or tip based employment?            |

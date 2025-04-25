@@ -60,8 +60,8 @@ public class GroupingMembersDentalPage {
     SoftAssert softAssert = new SoftAssert();
 
     public void clickContinue()  {
-        basicActions.waitForElementToDisappear(spinner,15);
-        basicActions.waitForElementToBePresent(continueButton,10);
+        basicActions.waitForElementToDisappear(spinner,30);
+        basicActions.waitForElementToBePresentWithRetries(continueButton,30);
         List<MemberDetails> memberInfoDetails = basicActions.getAllDentalEligibleMemInfo();
         for (MemberDetails memDet : memberInfoDetails){
             basicActions.waitForElementListToBePresent(groupTitle,10);
@@ -72,6 +72,11 @@ public class GroupingMembersDentalPage {
         }
         basicActions.scrollToElement(continueButton);
         continueButton.click();
+    }
+    public void clickContinueWithRetries() {
+        basicActions.waitForElementToDisappear(spinner,30);
+        basicActions.waitForElementToBePresentWithRetries(continueButton,30);
+        basicActions.clickElementWithRetries(continueButton, 10);
     }
 
     public void clickGoBack() {

@@ -17,24 +17,24 @@ Feature: Manage Plans: Plan Summary container
     And I validate I am on the "Manage Plans" page
     And I select the "2023" plan year on manage plan
     And I validate title and labels on Manage page for year "2023"
-    Then I validate previous financial period "Medical" plan summary in DB for 1 policy 2 on AP Manage Plans
+    Then I validate previous financial period "Medical" plan summary in DB for 1 policy 2 members on AP Manage Plans
     Then I validate previous "Medical" all details table in DB for 2 members on policy "1" for DB row 1 on AP Manage Plans
     Then I validate previous "Medical" all details table in DB for 1 members on policy "2" for DB row 0 on AP Manage Plans
     And I select "Medical" Show Financial Period for policy 2 on Manage Plans page
-    Then I validate previous financial period "Medical" plan summary in DB for 2 policy 1 on AP Manage Plans
+    Then I validate previous financial period "Medical" plan summary in DB for 2 policy 1 members on AP Manage Plans
     Then I validate previous "Medical" all details table in DB for 2 members on policy "1" for DB row 1 on AP Manage Plans
     Then I validate previous "Medical" all details table in DB for 1 members on policy "2" for DB row 0 on AP Manage Plans
     And I select "Medical" Show Financial Period for policy 1 on Manage Plans page
-    Then I validate previous financial period "Medical" plan summary in DB for 1 policy 2 on AP Manage Plans
+    Then I validate previous financial period "Medical" plan summary in DB for 1 policy 2 members on AP Manage Plans
 #    Medical only view (add steps needed)
     Then I click "Dental" plan type on Manage Plans page
     Then I verify "Dental" plan type is not showing on Manage Plans page
     Then I verify "Medical" plan type is showing on Manage Plans page
-    Then I validate previous financial period "Medical" plan summary in DB for 1 policy 2 on AP Manage Plans
+    Then I validate previous financial period "Medical" plan summary in DB for 1 policy 2 members on AP Manage Plans
     Then I validate previous "Medical" all details table in DB for 2 members on policy "1" for DB row 1 on AP Manage Plans
     Then I validate previous "Medical" all details table in DB for 1 members on policy "2" for DB row 0 on AP Manage Plans
     And I select "Medical" Show Financial Period for policy 2 on Manage Plans page
-    Then I validate previous financial period "Medical" plan summary in DB for 2 policy 1 on AP Manage Plans
+    Then I validate previous financial period "Medical" plan summary in DB for 2 policy 1 members on AP Manage Plans
     Then I validate previous "Medical" all details table in DB for 2 members on policy "1" for DB row 1 on AP Manage Plans
     Then I validate previous "Medical" all details table in DB for 1 members on policy "2" for DB row 0 on AP Manage Plans
 

@@ -1,4 +1,4 @@
-@port @APAccountActivity
+@port @APAccountActivityExch
 Feature: Exchange individual password reset account activity code validation via Admin Portal
 
   @SLER-2334

@@ -117,7 +117,7 @@ Feature: Page Text-Deductions Page
     And I validate I am on the "Moving Expenses" page and close tab
     And I click on "Contact Us" link in Help Drawer on the Deductions page
     And I validate I am on the "We Can Help" page and close tab
-    And I select "close side help" icon on the Deductions Page
+    And I select "close help" icon on the Deductions Page
 
     And I select "Alimony paid out" icon on the Deductions Page
     Then I validate Deductions help drawer "Alimony paid out" verbiage in "English"
@@ -289,7 +289,7 @@ Feature: Page Text-Deductions Page
     And I validate I am on the "Moving Expenses" page and close tab
     And I click on "Contact Us" link in Help Drawer on the Deductions page
     And I validate I am on the "We Can Help" page and close tab
-    And I select "close side help" icon on the Deductions Page
+    And I select "close help" icon on the Deductions Page
 
     And I select "Alimony paid out" icon on the Deductions Page
     Then I validate Deductions help drawer "Alimony paid out" verbiage in "Spanish"

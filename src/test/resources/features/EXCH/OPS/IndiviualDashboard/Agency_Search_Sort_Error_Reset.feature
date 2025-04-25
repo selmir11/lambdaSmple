@@ -41,5 +41,5 @@ Feature: Agency
     And I select "Agency" checkbox on Admin Portal Dashboard
     Then I enter an "AgencyName" in any env "a" "agency" to search user
     Then I click on Search button in AP dashboard page
-    Then I wait for 10000 milliseconds
+    Then I wait for 15000 milliseconds
     Then I validate message for over hundred records

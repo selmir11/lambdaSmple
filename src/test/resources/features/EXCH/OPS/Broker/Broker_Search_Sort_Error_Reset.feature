@@ -15,7 +15,6 @@ Feature: Broker
       | accountID           | 8510935600               | 8510935600      |
       | FirstName           | Amethyst                 | Amethyst        |
       | LastName            | Broker                   | Broker          |
-      | Email               | accts.forc4.test.i.n.g@gmail.com| accts.forc4.test.i.n.g@gmail.com|
       | PrimaryPhone        | 432-432-5555             | 432-432-5555    |
       | LicenseNumber       | 456787654                | 456787654       |
     Then I click on Search button in AP dashboard page

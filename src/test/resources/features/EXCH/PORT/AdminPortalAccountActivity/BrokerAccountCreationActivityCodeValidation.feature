@@ -1,4 +1,4 @@
-@APAccountActivity @port @BrokerPortalCreateAccount
+@APAccountActivityExch @port @BrokerPortalCreateAccount
 Feature: Broker account creation and account activity code verification
 
   @SLER-2305

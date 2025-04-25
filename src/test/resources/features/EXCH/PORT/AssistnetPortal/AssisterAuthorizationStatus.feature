@@ -40,7 +40,7 @@ Feature: Assister authorization and deauthorization functionality
     And I click on username dropdown
     Then I click sign out from the assistnet Dashboard
 
-  Scenario: : Exchange individual revoking assister authorization
+  #Exchange individual revoking assister authorization
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     And  I enter valid credentials to login

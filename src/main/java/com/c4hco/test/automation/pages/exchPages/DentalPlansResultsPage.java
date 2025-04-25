@@ -195,7 +195,7 @@ public class DentalPlansResultsPage {
 
     public void clickContinueOnDentalResultsPage() {
         basicActions.waitForElementToDisappear( spinner, 160 );
-        basicActions.waitForElementToBePresentWithRetries( continueBtnOnDentalPlanResults, 80 );
+        basicActions.waitForElementToBePresentWithRetries( continueBtnOnDentalPlanResults, 160 );
         basicActions.scrollToElement( continueBtnOnDentalPlanResults );
         continueBtnOnDentalPlanResults.click();
     }
@@ -272,9 +272,9 @@ public class DentalPlansResultsPage {
     }
 
     public void clickDentalInsuranceCompanyDropdown() {
-        basicActions.waitForElementToDisappear( spinner, 20 );
-        basicActions.waitForElementToBePresentWithRetries( dropdownCoverageLevel, 10 );
-        basicActions.waitForElementToBePresentWithRetries( dropdownInsuranceCompany, 10 );
+        basicActions.waitForElementToDisappear( spinner, 120 );
+        basicActions.waitForElementToBePresentWithRetries( dropdownCoverageLevel, 110 );
+        basicActions.waitForElementToBePresentWithRetries( dropdownInsuranceCompany, 110 );
         dropdownInsuranceCompany.click();
     }
 

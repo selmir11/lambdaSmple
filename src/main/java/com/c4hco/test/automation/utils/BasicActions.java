@@ -870,6 +870,9 @@ public class BasicActions {
                 case "Last Day Of Current Month":
                     date = lastDateOfCurrentMonth();
                     break;
+                case "End of May Current Year":
+                    date = getCurrYear()+"-05-31";
+                    break;
                 default:
                     throw new IllegalArgumentException("Invalid option: " + dateRequirement);
             }

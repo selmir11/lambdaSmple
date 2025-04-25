@@ -58,7 +58,7 @@ Feature: Help Drawer-Income Summary Page
     Then I validate Income Summary help drawer "Full" verbiage in "English"
     And I click on Contact Us link in Help Drawer on the Income Summary page
     And I validate I am on the "We Can Help" page and close tab
-    And I select "close side help" icon on the Income Summary Page
+    And I select "close help" icon on the Income Summary Page
 
     And I select "Projected Income" icon on the Income Summary Page
     Then I validate Income Summary help drawer "Projected Income" verbiage in "English"
@@ -82,7 +82,7 @@ Feature: Help Drawer-Income Summary Page
     Then I validate Income Summary help drawer "Full" verbiage in "Spanish"
     And I click on Contact Us link in Help Drawer on the Income Summary page
     And I validate I am on the "We Can Help" page and close tab
-    And I select "close side help" icon on the Income Summary Page
+    And I select "close help" icon on the Income Summary Page
 
     And I select "Projected Income" icon on the Income Summary Page
     Then I validate Income Summary help drawer "Projected Income" verbiage in "Spanish"

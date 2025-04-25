@@ -45,6 +45,12 @@ public class ExclusionReasonPage {
     @FindBy(xpath = "(//tr[@class='sort-table-data-row'])")
     List<WebElement> tablerows;
 
+    @FindBy(xpath = "//app-drop-down-select[@id='plan-year']//div[@class='drop-down-option drop-down-option-selected']")
+   WebElement planyeardropdown;
+
+    @FindBy(xpath = "//div[@class='drop-down-secondary-options']//span")
+    List<WebElement> selectYear;
+
     public void verifyExclusionReportHeaders() {
         if (SharedData.getEnv().equals("qa")) {
             softAssert.assertTrue(basicActions.waitForElementToBePresent(txtExclusionReportPrimary, 10));
@@ -66,7 +72,7 @@ public class ExclusionReasonPage {
 
     public void verifyExclusionReasonReportTableHeaders() {
         basicActions.waitForElementListToBePresent(TableHeadersforExclusionReason, 5000);
-        String[] expectedHeaders = {"Account ID","Plan Year","Exclusion Reason"};
+        String[] expectedHeaders = {"Account ID","Plan Year","Coverage Type", "Exclusion Reason", "Error Level", "Removed", "Removed Date", "Removed By","Exclusion Type","Date Updated","Date Created","Updated By","Notes"};
         for (int i = 0; i < TableHeadersforExclusionReason.size(); i++) {
             String actualHeader = TableHeadersforExclusionReason.get(i).getText();
             softAssert.assertEquals(actualHeader, expectedHeaders[i],
@@ -79,14 +85,14 @@ public class ExclusionReasonPage {
     public void verifyExclusionReasonData() {
         basicActions.waitForElementListToBePresent(ExclusionReportData, 5000);
         if (SharedData.getEnv().equals("staging")) {
-            String[] expectedData = {"4007993032", "2022", "Multiple Active Enrollments"};
+            String[] expectedData = {"4006144055","2022","MEDICAL","Invalid ADDL_MAINT_REASON","Exclusion","  ","2023-02-17 9:00:00 AM","SYSTEM","AUTO","2022-08-08 4:19:31 PM","2022-03-10 11:08:43 AM","SYSTEM"," "};
             for (int i = 0; i < ExclusionReportData.size(); i++) {
                 String actualHeader = ExclusionReportData.get(i).getText();
                 softAssert.assertEquals(actualHeader, expectedData[i],
                         "Exclusion Data mismatched at index " + i + ": Expected " + expectedData[i] + ", but got " + actualHeader);
             }
         } else {
-            String[] expectedData = {"4006144055", "2022", "Multiple Active Enrollments"};
+            String[] expectedData = {"4006144055","2022","MEDICAL","Invalid ADDL_MAINT_REASON","Exclusion","","2023-02-17 9:00:00 AM","SYSTEM","AUTO","2022-08-08 4:19:31 PM","2022-03-10 11:08:43 AM","SYSTEM",""};
             for (int i = 0; i < ExclusionReportData.size(); i++) {
                 String actualHeader = ExclusionReportData.get(i).getText();
                 softAssert.assertEquals(actualHeader, expectedData[i],
@@ -130,6 +136,10 @@ public class ExclusionReasonPage {
         }
         columnData.removeIf(String::isEmpty);
         return columnData;
+    }
+
+    public void selectYearToAnyENV(String year) {
+        basicActions.selectValueFromDropdown(planyeardropdown, selectYear, year);
     }
 }
 

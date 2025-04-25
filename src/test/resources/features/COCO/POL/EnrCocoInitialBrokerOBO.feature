@@ -102,13 +102,14 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse" coco
+    And I get the application id from the url from tobacco page coco
     Then I click continue on coco start shopping page
     Then I click continue on grouping Members Medical coco page
     Then I validate I am on the "Medical Plan Results" page
     And I select or skip the medical plans for groups on medical plan page
       | Group 1:Select Health Value Colorado Option Bronze |
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I set medical premium amount
+    And I set "Medical" Plans premium amount
     And I click continue on coco plan summary page
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox CoCo
@@ -143,6 +144,29 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
 
    And I validate "SUBMITTED" policy table entities for groups in COCO
    And I verify the policy data quality check with Policy Ah keyset size 1
-   
+   And I validate Medical entities for groups from COCO pre edi db tables
+    | maintenance_type_code | hd_maint_type_code | maintenance_reas_code |addl_maint_reason  | sep_reason      |
+    | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+   And I download the medical and dental files from sftp server with location "/outboundedi/"
+   And I validate the coco ob834 medical file data
+
+   And I upload all the "medical" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+   # Ib999 DB Validation
+   And I validate "medical" entities from ib999_details db table
+   And I download the "medical" ib999 files from sftp server with location "/archive/INBOUND999/"
+   And I validate the ib999 "medical" file data
+
+   #Ib834
+   And I validate coco ib834 file for groups
+    | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
+    | 021                   | 021                | 28                    | CONFIRM           |
+   And I download the "medical" ib834 file from sftp server location "/archive/inboundedi/"
+   And I validate coco Ib834 file data
+
+#  Ob999
+  And I validate "medical" entities from ob999_details db table
+  And I download the "medical" ob999 file from sftp server with location "/outbound999/"
+  And I validate the ob999 "medical" file data
+
 
 

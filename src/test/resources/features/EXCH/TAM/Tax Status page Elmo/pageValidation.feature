@@ -1686,7 +1686,7 @@ Feature: Page Validation-Tax Status Elmo Page
       |    FILER      |                              |      QWD        |           0            |
     And I verify the tax return data for "Daughter" in DB
       |tax_filing_type|claimed_as_dep_on_othr_ftr_ind|tax_filing_status|exceptional_circumstance|
-      |               |                              |                 |                        |
+      |    FILER      |                              |      SNGL       |           0            |
     And I validate I am on the "Other Health Coverage" page
     Then I click continue on the health coverage page
     And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"

@@ -35,8 +35,8 @@ public class MyPoliciesCoCoPage {
     WebElement planStartDate;
     @FindBy(css = "span#SOL-CurrentPolicies-PolicyEndDateCoverage")
     WebElement planEndDate;
-    @FindBy(css = ".current-policy__container .header-3")
-    List<WebElement> planNames; // Both medical and dental plan names for all members
+    @FindBy(css = "span#SOL-CurrentPolicies-.c4-type-header-sm.current-future__policy-name")
+    WebElement planNames; // Both medical and dental plan names for all members
     @FindBy(css="#SOL-CurrentPolicies-.current-future__policy-name")
     WebElement planNameOnFuturePlans;
     @FindBy(id = "viewPlanHistoryLink_0")
@@ -53,7 +53,7 @@ public class MyPoliciesCoCoPage {
     @FindBy(id="backToCurrentPlanDetailsButton")
     WebElement backToCurPlansBtn;
 
-    @FindBy(xpath = "//div[@id='SOL-CurrentPolicies-NoAppliedSubsidy']/div/child::span")
+    @FindBy(xpath = "//div[@id='SOL-CurrentPolicies-NoAppliedSubsidy']/child::span")
     List<WebElement> premiumAmt;
     @FindBy(css="#SOL-CurrentPolicies-NoAppliedSubsidy span")
     List<WebElement> futurePlansPremiumAmt;
@@ -69,7 +69,7 @@ public class MyPoliciesCoCoPage {
 
     @FindBy(css = "span#SOL-MyPolicies-subscriberName")
     WebElement subscriberName;
-    @FindBy(css = "span#SOL-CurrentPolicies-LastUpdated")
+    @FindBy(xpath = "//div[@id='SOL-CurrentPolicies-LastUpdated']/span")
     WebElement lastUpdatedOn;
     @FindBy(css = "#SOL-CurrentPolicies-LastUpdated span")
     List<WebElement> lastUpdatedOnFuturePlans;
@@ -106,13 +106,13 @@ public class MyPoliciesCoCoPage {
 
         softAssert.assertEquals(planStartDate.getText().split(" ")[0], basicActions.changeDateFormat(primaryMember.getMedicalPlanStartDate(), "MM/dd/yyyy", "MM/dd/yy"), "medical plan date did not match");
         softAssert.assertEquals(planEndDate.getText(), basicActions.changeDateFormat(primaryMember.getMedicalPlanEndDate(), "MM/dd/yyyy", "MM/dd/yy"), "medical plan end date did not match");
-        softAssert.assertEquals(planNames.get(0).getText(), primaryMember.getMedicalPlan(), "medical plan name did not match");
+        softAssert.assertEquals(planNames.getText(), primaryMember.getMedicalPlan(), "medical plan name did not match");
         softAssert.assertEquals(premiumAmt.get(0).getText().split(" ")[0], "$" + primaryMember.getMedicalPremiumAmt(), "medical premium did not match");
 
         Map<String, String> medEapidDb = exchDbDataProvider.getMedicalEap_id();
         primaryMember.setMedicalEapid_db(medEapidDb.get(primaryMember.getMedGroupInd()));
-        softAssert.assertEquals(medEapidDb.get(primaryMember.getMedGroupInd()),policyNumSubscriber.getText().replace("Policy Number: ",""), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
-        softAssert.assertTrue(lastUpdatedOn.getText().equals("Last Updated:"));
+        softAssert.assertEquals(medEapidDb.get(primaryMember.getMedGroupInd()),policyNumSubscriber.getText().replace("Exchange policy number: ",""), "Medical EAP_ID from My Policies page does not match EAP_ID plan summary page");
+        softAssert.assertTrue(lastUpdatedOn.getText().equals("Last updated:"));
         softAssert.assertEquals(lastUpdatedDate.getText(),basicActions.changeDateFormat(lastUpdated, "MM/dd/yyyy", "MM/dd/yy"), "Last Updated Date did not match");
 
         //Validating Total Premium without SES

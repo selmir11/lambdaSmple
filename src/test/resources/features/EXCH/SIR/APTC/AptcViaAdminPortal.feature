@@ -1,4 +1,4 @@
-@APTC,@APTCSIR, @SIRRegression, @APTC-SIR5,
+@APTC @APTCSIR @SIRRegression @APTC-SIR5
   # SLER-778
 Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
@@ -351,7 +351,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
     Then I click on edit enrollment groups link
 
     Then I validate I am on the "Edit Grouping Members Medical" page
-    #Then I validate that there are 2 default groups
+
     Then I create new group in edit medical grouping page and drag members to the new group
       | Primary,Spouse,Son,Daughter:Group1 |
     Then I click save button to save the groups
@@ -365,7 +365,7 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
     Then I validate I am on the "Grouping Members Dental" page
     Then I click on dental edit enrollment groups link
-      # Then I validate that there are 1 default dental groups
+
     Then I create new group in edit dental grouping page and drag members to the new group
       | Primary,Spouse,Son,Daughter:Group1 |
     And I click save button to save the dental groups

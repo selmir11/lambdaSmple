@@ -53,32 +53,17 @@ public class EmploymentInfoPage {
     @FindBy(css = "#ELIG-Exch-EmploymentIncomeJob-employerAddress-addressLine1Input")
     WebElement txtAddressOne;
 
-    @FindBy(id = "ELIG-employerAddress-addressLine1Input") //this element and all others can be removed once TAM-5360 is in Staging
-    WebElement txtAddressOneStg;
-
     @FindBy(css = "#ELIG-Exch-EmploymentIncomeJob-employerAddress-addressLine2Input")
     WebElement txtAddressTwo;
-
-    @FindBy(id = "ELIG-employerAddress-addressLine2Input") //this element and all others can be removed once TAM-5360 is in Staging
-    WebElement txtAddressTwoStg;
 
     @FindBy(css = "#ELIG-Exch-EmploymentIncomeJob-employerAddress-cityInput")
     WebElement txtCity;
 
-    @FindBy(id = "ELIG-employerAddress-cityInput") //this element and all others can be removed once TAM-5360 is in Staging
-    WebElement txtCityStg;
-
     @FindBy(css = "#ELIG-Exch-EmploymentIncomeJob-employerAddress-selectState")
     WebElement selectState;
 
-    @FindBy(id = "ELIG-employerAddress-stateSelect") //this element and all others can be removed once TAM-5360 is in Staging
-    WebElement selectStateStg;
-
     @FindBy(css = "#ELIG-Exch-EmploymentIncomeJob-employerAddress-zipCodeInput")
     WebElement txtZip;
-
-    @FindBy(id = "ELIG-employerAddress-zipCodeInput") //this element and all others can be removed once TAM-5360 is in Staging
-    WebElement txtZipStg;
 
     @FindBy(id = "ELIG-Exch-EmploymentIncomeJob-amountInput")
     WebElement txtIncomeAmount;
@@ -107,31 +92,19 @@ public class EmploymentInfoPage {
     @FindBy(xpath = "//*[@class='company-column-value']")
     List<WebElement> Companynames;
 
-    @FindBy(css = ".drawer-heading .body-text-1")
-    WebElement helpDrawerHeaderHelp;
-
-    @FindBy(css = ".drawer-heading .drawer-title")
+    @FindBy(css = ".title-row .title")
     WebElement helpDrawerHeaderIncome;
 
-    @FindBy(css = ".drawer .header-1")
+    @FindBy(css = ".c4-text-body-200")
     List<WebElement> helpDrawerMainHeaders;
 
-    @FindBy(css = ".drawer .header-2")
-    List<WebElement> helpDrawerOverviewHeaders;
-
-    @FindBy(css = ".drawer-body .drawer-text-content")
-    WebElement questionsHelpText;
-
-    @FindBy(css = ".drawer-text-content p")
+    @FindBy(css = "div.section-help-content-container > p")
     List<WebElement> helpDrawerBodyParagraphs;
 
-    @FindBy(css = ".drawer-text-content li")
-    List<WebElement> helpDrawerBodyPoints;
+    @FindBy(css = ".help-footer .c4-type-links-md")
+    List<WebElement> helpDrawerFooter;
 
-    @FindBy(css = ".drawer-footer h3")
-    WebElement helpDrawerFooter;
-
-    @FindBy(css = ".drawer-footer h3 a")
+    @FindBy(css = ".help-footer .clickable")
     WebElement helpDrawerContactUsLink;
 
     @FindBy(xpath = "(//a[@class=’clickable link-text-1’])[0]")
@@ -303,25 +276,14 @@ public class EmploymentInfoPage {
         SharedData.setCompanyname(employerNames);
         txtCompanyName.sendKeys(companyName);
 
-        if (SharedData.getEnv().equals("qa")) {//this if statement can be removed once TAM-5360 is in Staging leaving the non-stg elements
-            txtAddressOne.sendKeys("123 Test Address");
-            txtAddressTwo.sendKeys("Test Suite 321");
-            txtCity.sendKeys("Denver");
+        txtAddressOne.sendKeys("123 Test Address");
+        txtAddressTwo.sendKeys("Test Suite 321");
+        txtCity.sendKeys("Denver");
 
-            Select dropdown = new Select(selectState);
-            dropdown.selectByVisibleText(" CO ");
+        Select dropdownState = new Select(selectState);
+        dropdownState.selectByVisibleText(" CO ");
 
-            txtZip.sendKeys("80205");
-        } else {
-            txtAddressOneStg.sendKeys("123 Test Address");
-            txtAddressTwoStg.sendKeys("Test Suite 321");
-            txtCityStg.sendKeys("Denver");
-
-            Select dropdown = new Select(selectStateStg);
-            dropdown.selectByVisibleText(" CO ");
-
-            txtZipStg.sendKeys("80205");
-        }
+        txtZip.sendKeys("80205");
         txtIncomeAmount.clear();
         txtIncomeAmount.sendKeys(Salary);
         SharedData.setFinancialIncome(Salary);
@@ -391,23 +353,13 @@ public class EmploymentInfoPage {
         }
         txtCompanyName.sendKeys(companyName);
 
-        if (SharedData.getEnv().equals("qa")) {//this if statement can be removed once TAM-5360 is in Staging leaving the non-stg elements
-            txtAddressOne.sendKeys(addressline1);
-            txtCity.sendKeys(city);
+        txtAddressOne.sendKeys(addressline1);
+        txtCity.sendKeys(city);
 
-            Select dropdown = new Select(selectState);
-            dropdown.selectByVisibleText(state);
+        Select dropdownState = new Select(selectState);
+        dropdownState.selectByVisibleText(state);
 
-            txtZip.sendKeys(zipcode);
-        } else {
-            txtAddressOneStg.sendKeys(addressline1);
-            txtCityStg.sendKeys(city);
-
-            Select dropdown = new Select(selectStateStg);
-            dropdown.selectByVisibleText(state);
-
-            txtZipStg.sendKeys(zipcode);
-        }
+        txtZip.sendKeys(zipcode);
         txtIncomeAmount.sendKeys(Salary);
 
         Select dropdown = new Select(selectIncomeFreq);
@@ -480,8 +432,9 @@ public class EmploymentInfoPage {
             case "Income Change":
                 helpIcons.get(5).click();
                 break;
+                /*commented out due to bug ticket TAM-5424
             case "Address 1":
-                helpIcons.get(4).click();
+                helpIcons.get(3).click();
                 break;
             case "Address 2":
                 helpIcons.get(5).click();
@@ -494,15 +447,15 @@ public class EmploymentInfoPage {
                 break;
             case "Zip":
                 helpIcons.get(8).click();
-                break;
+                break;*/
             case "Gross Income":
-                helpIcons.get(9).click();
+                helpIcons.get(4).click();
                 break;
             case "Seasonal":
-                helpIcons.get(10).click();
+                helpIcons.get(5).click();
                 break;
             case "Job Income Change":
-                helpIcons.get(11).click();
+                helpIcons.get(6).click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + label);
@@ -525,16 +478,16 @@ public class EmploymentInfoPage {
     // ############################## VALIDATION METHODS #########################
 
     public void validateHelpHeaderVerbiage(String language) {
-        basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
+        basicActions.waitForElementToBePresent(helpDrawerMainHeaders.get(0), 10);
         basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
         switch (language) {
             case "English":
-                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Help");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Income");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Ayuda");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Ingreso");
                 softAssert.assertAll();
                 break;
@@ -546,7 +499,6 @@ public class EmploymentInfoPage {
     public void validateGeneralHelpBodyVerbiage(String language) {
         basicActions.click(helpDrawerMainHeaders.get(0));
         basicActions.click(helpDrawerBodyParagraphs.get(0));
-        basicActions.click(helpDrawerBodyPoints.get(0));
         switch (language) {
             case "English":
                 validateGeneralHelpBodyVerbiageEng();
@@ -561,50 +513,67 @@ public class EmploymentInfoPage {
     }
 
     public void validateGeneralHelpBodyVerbiageEng() {
-        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText() + " " + helpDrawerOverviewHeaders.get(0).getText(), "Income Overview");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText() + " " + helpDrawerOverviewHeaders.get(1).getText(), "Employment Overview");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText() + " " + helpDrawerOverviewHeaders.get(2).getText(), "Employment Overview");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText(), "Overview");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "We need to know how much you and your family members earn at your job(s).");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "We need to know about the company you work for.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(4).getText(), "We need to know how much money you make from self-employment.");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "Employment\n" + "Does this person earn money through a job or by being self-employed?");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "Company Name\n" + "Enter a company name for each job.");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(2).getText(), "Gross Income\n" + "Tell us the total amount paid by this job BEFORE taxes or any other deductions (like retirement contributions) are taken out. This is gross pay and would be MORE than the amount received on a check or deposited in a bank account, which is the net pay.");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(3).getText(), "Seasonal, commission or tipped base employment\n" + "This question helps us calculate the annual income for customers who don't have the same income every week or month.");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(4).getText(), "Same or lower\n" + "We ask this question to make sure the calculation of your annual income is correct for customers who don't have consistent income.");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(5).getText(), "Net Income\n" + "Tell us your income from your self-employment after business expenses have been paid. (Net income is sometimes called \"profit\".)");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(6).getText(), "Same or lower\n" + "We ask this question to make sure the calculation of your annual income is correct for customers who don't have consistent income.");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(7).getText(), "Employer Address\n" + "Connect for Health Colorado will notify an employer if an employee has been determined eligible for Advance Premium Tax Credits and/or Cost-Sharing Reductions and has enrolled in a Qualified Health Plan. The employer has the right to file an appeal if they believe this determination is incorrect. The correct contact information for the employer is required to support the employer appeal process, so please double check your entry of the employer contact information.");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText(), "Employment");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Does this person earn money through a job or by being self-employed?");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(3).getText(), "Company Name");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Enter a company name for each job.");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(4).getText(), "Employment");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(3).getText(), "We need to know about the company you work for.");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(5).getText(), "Gross Income");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(4).getText(), "Tell us the total amount paid by this job BEFORE taxes or any other deductions (like retirement contributions) are taken out. This is gross pay and would be MORE than the amount received on a check or deposited in a bank account, which is the net pay.");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(6).getText(), "Seasonal, commission or tipped base employment");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(5).getText(), "This question helps us calculate the annual income for customers who don't have the same income every week or month.");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(7).getText(), "Same or lower");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(6).getText(), "We ask this question to make sure the calculation of your annual income is correct for customers who don't have consistent income.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(7).getText(), "We need to know how much money you make from self-employment.");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(8).getText(), "Net Income");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(8).getText(), "Tell us your income from your self-employment after business expenses have been paid. (Net income is sometimes called \"profit\".)");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(9).getText(), "Same or lower");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(9).getText(), "We ask this question to make sure the calculation of your annual income is correct for customers who don't have consistent income.");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(10).getText(), "Employer Address");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(10).getText(), "Connect for Health Colorado will notify an employer if an employee has been determined eligible for Advance Premium Tax Credits and/or Cost-Sharing Reductions and has enrolled in a Qualified Health Plan. The employer has the right to file an appeal if they believe this determination is incorrect. The correct contact information for the employer is required to support the employer appeal process, so please double check your entry of the employer contact information.");
         softAssert.assertAll();
     }
 
     public void validateGeneralHelpBodyVerbiageSp() {
-        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText() + " " + helpDrawerOverviewHeaders.get(0).getText(), "Ingreso Resumen");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText() + " " + helpDrawerOverviewHeaders.get(1).getText(), "Empleo Resumen");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText() + " " + helpDrawerOverviewHeaders.get(2).getText(), "Empleo Resumen");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText(), "Resumen");
         softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Necesitamos saber cu\u00E1nto ganan usted y los miembros de su familia en su(s) trabajo(s).");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Necesitamos informaci\u00F3n sobre la empresa para la que trabaja usted.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(4).getText(), "Necesitamos saber cu\u00E1nto gana como trabajador independiente.");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(0).getText(), "Empleo\n" + "\u00BFEsta persona tiene un ingreso como empleado o como trabajador independiente?");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(1).getText(), "Nombre de la empresa\n" + "Ingrese el nombre de la empresa de cada trabajo.");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(2).getText(), "Ingreso bruto\n" + "Indique la cantidad total que le pagan en este trabajo ANTES de descontar impuestos o hacer otras deducciones (como aportes para el retiro). Es el salario bruto y debe ser m\u00E1s que la cantidad que recibe en cheque o le depositan en su cuenta bancaria, que es el salario neto.");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(3).getText(), "Trabajo temporal, por comisiones o por propinas\n" + "Esta pregunta nos ayuda a calcular el ingreso anual de los clientes que no tienen el mismo ingreso cada semana o mes.");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(4).getText(), "Igual o bajar\u00E1\n" + "Le hacemos esta pregunta para asegurarnos de calcular correctamente su ingreso anual, como es el caso de clientes que no tienen un ingreso constante.");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(5).getText(), "Ingreso neto\n" + "Indique su ingreso como trabajador independiente despues de pagar sus gastos de negocios. (Ingreso neto a veces se llama \"ganacias\".)");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(6).getText(), "Igual o bajar\u00E1\n" + "Le hacemos esta pregunta para asegurarnos de calcular correctamente su ingreso anual, como es el caso de clientes que no tienen un ingreso constante.");
-        softAssert.assertEquals(helpDrawerBodyPoints.get(7).getText(), "Direcci\u00F3n del empleador\n" + "Connect for Health Colorado notificar\u00E1 a un empleador si un empleado ha sido determinado elegible para Cr\u00E9dito fiscal anticipado para la cuota y/o reducciones en los costos compartidos y se ha inscrito en un Plan de salud calificado. El empleador tiene el derecho a presentar una apelaci\u00F3n si creen que esta determinaci\u00F3n es incorrecta. Se requiere la informaci\u00F3n de contacto correcta para el empleador para apoyar este proceso, por favor verifique que la informaci\u00F3n del empleador esta correcta.");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText(), "Empleo");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "\u00BFEsta persona tiene un ingreso como empleado o como trabajador independiente?");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(3).getText(), "Nombre de la empresa");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Ingrese el nombre de la empresa de cada trabajo.");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(4).getText(), "Empleo");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(3).getText(), "Necesitamos informaci\u00F3n sobre la empresa para la que trabaja usted.");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(5).getText(), "Ingreso bruto");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(4).getText(), "Indique la cantidad total que le pagan en este trabajo ANTES de descontar impuestos o hacer otras deducciones (como aportes para el retiro). Es el salario bruto y debe ser m\u00E1s que la cantidad que recibe en cheque o le depositan en su cuenta bancaria, que es el salario neto.");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(6).getText(), "Trabajo temporal, por comisiones o por propinas");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(5).getText(), "Esta pregunta nos ayuda a calcular el ingreso anual de los clientes que no tienen el mismo ingreso cada semana o mes.");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(7).getText(), "Igual o bajar\u00E1");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(6).getText(), "Le hacemos esta pregunta para asegurarnos de calcular correctamente su ingreso anual, como es el caso de clientes que no tienen un ingreso constante.");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(7).getText(), "Necesitamos saber cu\u00E1nto gana como trabajador independiente.");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(8).getText(), "Ingreso neto");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(8).getText(), "Indique su ingreso como trabajador independiente despues de pagar sus gastos de negocios. (Ingreso neto a veces se llama \"ganacias\".)");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(9).getText(), "Igual o bajar\u00E1");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(9).getText(), "Le hacemos esta pregunta para asegurarnos de calcular correctamente su ingreso anual, como es el caso de clientes que no tienen un ingreso constante.");
+        softAssert.assertEquals(helpDrawerMainHeaders.get(10).getText(), "Direcci\u00F3n del empleador");
+        softAssert.assertEquals(helpDrawerBodyParagraphs.get(10).getText(), "Connect for Health Colorado notificar\u00E1 a un empleador si un empleado ha sido determinado elegible para Cr\u00E9dito fiscal anticipado para la cuota y/o reducciones en los costos compartidos y se ha inscrito en un Plan de salud calificado. El empleador tiene el derecho a presentar una apelaci\u00F3n si creen que esta determinaci\u00F3n es incorrecta. Se requiere la informaci\u00F3n de contacto correcta para el empleador para apoyar este proceso, por favor verifique que la informaci\u00F3n del empleador esta correcta.");
         softAssert.assertAll();
     }
 
     public void validateHelpFooterVerbiage(String language) {
-        basicActions.waitForElementToBePresent(helpDrawerFooter, 10);
+        basicActions.waitForElementToBePresent(helpDrawerFooter.get(0), 10);
         switch (language) {
             case "English":
-                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+                softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help?");
+                softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Contact us");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+                basicActions.scrollToElement(helpDrawerFooter.get(0));
+                softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "\u00BFNecesitas m\u00E1s ayuda?");
+                softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Cont\u00E1ctenos");
                 softAssert.assertAll();
                 break;
             default:
@@ -629,30 +598,35 @@ public class EmploymentInfoPage {
     }
 
     public void validateJobQuestionsHelpVerbiage(String language) {
-        basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
+        basicActions.waitForElementToBePresent(helpDrawerMainHeaders.get(0), 10);
         basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
-        basicActions.waitForElementToBePresent(questionsHelpText, 10);
-        basicActions.waitForElementToBePresent(helpDrawerFooter, 10);
+        basicActions.waitForElementToBePresent(helpDrawerBodyParagraphs.get(0), 10);
+        basicActions.waitForElementToBePresent(helpDrawerFooter.get(0), 10);
         switch (language) {
             case "English":
-                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Help");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Income");
-                softAssert.assertEquals(questionsHelpText.getText(), "Income\nOverview\nWe need to know how much you and your family members earn at your job(s).\nEmployment\nDoes this person earn money through a job or by being self-employed?\nCompany Name\nEnter a company name for each job.\nEmployment\nOverview\nWe need to know about the company you work for.\nGross Income\nTell us the total amount paid by this job BEFORE taxes or any other deductions (like retirement contributions) are taken out. This is gross pay and would be MORE than the amount received on a check or deposited in a bank account, which is the net pay.\nSeasonal, commission or tipped base employment\nThis question helps us calculate the annual income for customers who don't have the same income every week or month.\nSame or lower\nWe ask this question to make sure the calculation of your annual income is correct for customers who don't have consistent income.\nEmployment\nOverview\nWe need to know how much money you make from self-employment.\nNet Income\nTell us your income from your self-employment after business expenses have been paid. (Net income is sometimes called \"profit\".)\nSame or lower\nWe ask this question to make sure the calculation of your annual income is correct for customers who don't have consistent income.\nEmployer Address\nConnect for Health Colorado will notify an employer if an employee has been determined eligible for Advance Premium Tax Credits and/or Cost-Sharing Reductions and has enrolled in a Qualified Health Plan. The employer has the right to file an appeal if they believe this determination is incorrect. The correct contact information for the employer is required to support the employer appeal process, so please double check your entry of the employer contact information.");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText(), "Overview");
+                softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "We need to know how much you and your family members earn at your job(s).");
+                softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help?");
+                softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Contact us");
                 softAssert.assertAll();
                 break;
             case "English job":
-                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Help");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Employment");
-                softAssert.assertEquals(questionsHelpText.getText(), "Does this person earn money through a job or by being self-employed?");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+                softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Does this person earn money through a job or by being self-employed?");
+                softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help?");
+                softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Contact us");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Ayuda");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Empleo");
-                softAssert.assertEquals(questionsHelpText.getText(), "\u00BFEsta persona tiene un ingreso como empleado o como trabajador independiente?");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+                softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "\u00BFEsta persona tiene un ingreso como empleado o como trabajador independiente?");
+                basicActions.scrollToElement(helpDrawerFooter.get(0));
+                softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "\u00BFNecesitas m\u00E1s ayuda?");
+                softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Cont\u00E1ctenos");
                 softAssert.assertAll();
                 break;
             default:
@@ -661,23 +635,26 @@ public class EmploymentInfoPage {
     }
 
     public void validateCompanyHelpVerbiage(String language) {
-        basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
+        basicActions.waitForElementToBePresent(helpDrawerMainHeaders.get(0), 10);
         basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
-        basicActions.waitForElementToBePresent(questionsHelpText, 10);
-        basicActions.waitForElementToBePresent(helpDrawerFooter, 10);
+        basicActions.waitForElementToBePresent(helpDrawerBodyParagraphs.get(0), 10);
+        basicActions.waitForElementToBePresent(helpDrawerFooter.get(0), 10);
         switch (language) {
             case "English":
-                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Help");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Company Name");
-                softAssert.assertEquals(questionsHelpText.getText(), "Connect for Health Colorado will notify an employer if an employee has been determined eligible for Advance Premium Tax Credits and/or Cost-Sharing Reductions and has enrolled in a Qualified Health Plan. The employer has the right to file an appeal if they believe this determination is incorrect. The correct contact information for the employer is required to support the employer appeal process, so please double check your entry of the employer contact information.");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+                softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Connect for Health Colorado will notify an employer if an employee has been determined eligible for Advance Premium Tax Credits and/or Cost-Sharing Reductions and has enrolled in a Qualified Health Plan. The employer has the right to file an appeal if they believe this determination is incorrect. The correct contact information for the employer is required to support the employer appeal process, so please double check your entry of the employer contact information.");
+                softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help?");
+                softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Contact us");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
-                softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Direcci\u00F3n del empleador");
-                softAssert.assertEquals(questionsHelpText.getText(), "Connect for Health Colorado notificar\u00E1 a un empleador si un empleado ha sido determinado elegible para Cr\u00E9dito fiscal anticipado para la cuota y/o reducciones en los costos compartidos y se ha inscrito en un Plan de salud calificado. El empleador tiene el derecho a presentar una apelaci\u00F3n si creen que esta determinaci\u00F3n es incorrecta. Se requiere la informaci\u00F3n de contacto correcta para el empleador para apoyar este proceso, por favor verifique que la informaci\u00F3n del empleador esta correcta.");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Ayuda");
+                softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Nombre de la empresa");
+                softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Connect for Health Colorado notificar\u00E1 a un empleador si un empleado ha sido determinado elegible para Cr\u00E9dito fiscal anticipado para la cuota y/o reducciones en los costos compartidos y se ha inscrito en un Plan de salud calificado. El empleador tiene el derecho a presentar una apelaci\u00F3n si creen que esta determinaci\u00F3n es incorrecta. Se requiere la informaci\u00F3n de contacto correcta para el empleador para apoyar este proceso, por favor verifique que la informaci\u00F3n del empleador esta correcta.");
+                basicActions.scrollToElement(helpDrawerFooter.get(0));
+                softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "\u00BFNecesitas m\u00E1s ayuda?");
+                softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Cont\u00E1ctenos");
                 softAssert.assertAll();
                 break;
             default:
@@ -686,23 +663,26 @@ public class EmploymentInfoPage {
     }
 
     public void validateNetIncomeHelpVerbiage(String language) {
-        basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
+        basicActions.waitForElementToBePresent(helpDrawerMainHeaders.get(0), 10);
         basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
-        basicActions.waitForElementToBePresent(questionsHelpText, 10);
-        basicActions.waitForElementToBePresent(helpDrawerFooter, 10);
+        basicActions.waitForElementToBePresent(helpDrawerBodyParagraphs.get(0), 10);
+        basicActions.waitForElementToBePresent(helpDrawerFooter.get(0), 10);
         switch (language) {
             case "English":
-                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Help");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Net Income");
-                softAssert.assertEquals(questionsHelpText.getText(), "Tell us your income from your self-employment after business expenses have been paid. (Net income is sometimes called \"profit\".)");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+                softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Tell us your income from your self-employment after business expenses have been paid. (Net income is sometimes called \"profit\".)");
+                softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help?");
+                softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Contact us");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Ayuda");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Ingreso neto");
-                softAssert.assertEquals(questionsHelpText.getText(), "Indique su ingreso como trabajador independiente despues de pagar sus gastos de negocios. (Ingreso neto a veces se llama \"ganacias\".)");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+                softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Indique su ingreso como trabajador independiente despues de pagar sus gastos de negocios. (Ingreso neto a veces se llama \"ganacias\".)");
+                basicActions.scrollToElement(helpDrawerFooter.get(0));
+                softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "\u00BFNecesitas m\u00E1s ayuda?");
+                softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Cont\u00E1ctenos");
                 softAssert.assertAll();
                 break;
             default:
@@ -711,23 +691,26 @@ public class EmploymentInfoPage {
     }
 
     public void validateGrossIncomeHelpVerbiage(String language) {
-        basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
+        basicActions.waitForElementToBePresent(helpDrawerMainHeaders.get(0), 10);
         basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
-        basicActions.waitForElementToBePresent(questionsHelpText, 10);
-        basicActions.waitForElementToBePresent(helpDrawerFooter, 10);
+        basicActions.waitForElementToBePresent(helpDrawerBodyParagraphs.get(0), 10);
+        basicActions.waitForElementToBePresent(helpDrawerFooter.get(0), 10);
         switch (language) {
             case "English":
-                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Help");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Gross Income");
-                softAssert.assertEquals(questionsHelpText.getText(), "Tell us the total amount paid by this job BEFORE taxes or any other deductions (like retirement contributions) are taken out. This is gross pay and would be MORE than the amount received on a check or deposited in a bank account, which is the net pay.");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+                softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Tell us the total amount paid by this job BEFORE taxes or any other deductions (like retirement contributions) are taken out. This is gross pay and would be MORE than the amount received on a check or deposited in a bank account, which is the net pay.");
+                softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help?");
+                softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Contact us");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Ayuda");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Ingreso bruto");
-                softAssert.assertEquals(questionsHelpText.getText(), "Indique la cantidad total que le pagan en este trabajo ANTES de descontar impuestos o hacer otras deducciones (como aportes para el retiro). Es el salario bruto y debe ser m\u00E1s que la cantidad que recibe en cheque o le depositan en su cuenta bancaria, que es el salario neto");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+                softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Indique la cantidad total que le pagan en este trabajo ANTES de descontar impuestos o hacer otras deducciones (como aportes para el retiro). Es el salario bruto y debe ser m\u00E1s que la cantidad que recibe en cheque o le depositan en su cuenta bancaria, que es el salario neto.");
+                basicActions.scrollToElement(helpDrawerFooter.get(0));
+                softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "\u00BFNecesitas m\u00E1s ayuda?");
+                softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Cont\u00E1ctenos");
                 softAssert.assertAll();
                 break;
             default:
@@ -736,23 +719,26 @@ public class EmploymentInfoPage {
     }
 
     public void validateIncomeChangeHelpVerbiage(String language) {
-        basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
+        basicActions.waitForElementToBePresent(helpDrawerMainHeaders.get(0), 10);
         basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
-        basicActions.waitForElementToBePresent(questionsHelpText, 10);
-        basicActions.waitForElementToBePresent(helpDrawerFooter, 10);
+        basicActions.waitForElementToBePresent(helpDrawerBodyParagraphs.get(0), 10);
+        basicActions.waitForElementToBePresent(helpDrawerFooter.get(0), 10);
         switch (language) {
             case "English":
-                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Help");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Same or lower");
-                softAssert.assertEquals(questionsHelpText.getText(), "We ask this question to make sure the calculation of your annual income is correct for customers who don't have consistent income.");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+                softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "We ask this question to make sure the calculation of your annual income is correct for customers who don't have consistent income.");
+                softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help?");
+                softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Contact us");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Ayuda");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Igual o bajar\u00E1");
-                softAssert.assertEquals(questionsHelpText.getText(), "Le hacemos esta pregunta para asegurarnos de calcular correctamente su ingreso anual, como es el caso de clientes que no tienen un ingreso constante.");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+                softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Le hacemos esta pregunta para asegurarnos de calcular correctamente su ingreso anual, como es el caso de clientes que no tienen un ingreso constante.");
+                basicActions.scrollToElement(helpDrawerFooter.get(0));
+                softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "\u00BFNecesitas m\u00E1s ayuda?");
+                softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Cont\u00E1ctenos");
                 softAssert.assertAll();
                 break;
             default:
@@ -761,23 +747,26 @@ public class EmploymentInfoPage {
     }
 
     public void validateAddress1HelpVerbiage(String language) {
-        basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
+        basicActions.waitForElementToBePresent(helpDrawerMainHeaders.get(0), 10);
         basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
-        basicActions.waitForElementToBePresent(questionsHelpText, 10);
-        basicActions.waitForElementToBePresent(helpDrawerFooter, 10);
+        basicActions.waitForElementToBePresent(helpDrawerBodyParagraphs.get(0), 10);
+        basicActions.waitForElementToBePresent(helpDrawerFooter.get(0), 10);
         switch (language) {
             case "English":
-                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Help");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Employer Address");
-                softAssert.assertEquals(questionsHelpText.getText(), "Connect for Health Colorado will notify an employer if an employee has been determined eligible for Advance Premium Tax Credits and/or Cost-Sharing Reductions and has enrolled in a Qualified Health Plan. The employer has the right to file an appeal if they believe this determination is incorrect. The correct contact information for the employer is required to support the employer appeal process, so please double check your entry of the employer contact information.");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+                softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Connect for Health Colorado will notify an employer if an employee has been determined eligible for Advance Premium Tax Credits and/or Cost-Sharing Reductions and has enrolled in a Qualified Health Plan. The employer has the right to file an appeal if they believe this determination is incorrect. The correct contact information for the employer is required to support the employer appeal process, so please double check your entry of the employer contact information.");
+                softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help?");
+                softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Contact us");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Ayuda");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Direcci\u00F3n del empleador");
-                softAssert.assertEquals(questionsHelpText.getText(), "Connect for Health Colorado notificar\u00E1 a un empleador si un empleado ha sido determinado elegible para Cr\u00E9dito fiscal anticipado para la cuota y/o reducciones en los costos compartidos y se ha inscrito en un Plan de salud calificado. El empleador tiene el derecho a presentar una apelaci\u00F3n si creen que esta determinaci\u00F3n es incorrecta. Se requiere la informaci\u00F3n de contacto correcta para el empleador para apoyar este proceso, por favor verifique que la informaci\u00F3n del empleador esta correcta.");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+                softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Connect for Health Colorado notificar\u00E1 a un empleador si un empleado ha sido determinado elegible para Cr\u00E9dito fiscal anticipado para la cuota y/o reducciones en los costos compartidos y se ha inscrito en un Plan de salud calificado. El empleador tiene el derecho a presentar una apelaci\u00F3n si creen que esta determinaci\u00F3n es incorrecta. Se requiere la informaci\u00F3n de contacto correcta para el empleador para apoyar este proceso, por favor verifique que la informaci\u00F3n del empleador esta correcta.");
+                basicActions.scrollToElement(helpDrawerFooter.get(0));
+                softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "\u00BFNecesitas m\u00E1s ayuda?");
+                softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Cont\u00E1ctenos");
                 softAssert.assertAll();
                 break;
             default:
@@ -786,23 +775,26 @@ public class EmploymentInfoPage {
     }
 
     public void validateSeasonalHelpVerbiage(String language) {
-        basicActions.waitForElementToBePresent(helpDrawerHeaderHelp, 10);
+        basicActions.waitForElementToBePresent(helpDrawerMainHeaders.get(0), 10);
         basicActions.waitForElementToBePresent(helpDrawerHeaderIncome, 10);
-        basicActions.waitForElementToBePresent(questionsHelpText, 10);
-        basicActions.waitForElementToBePresent(helpDrawerFooter, 10);
+        basicActions.waitForElementToBePresent(helpDrawerBodyParagraphs.get(0), 10);
+        basicActions.waitForElementToBePresent(helpDrawerFooter.get(0), 10);
         switch (language) {
             case "English":
-                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Help");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Seasonal, commission or tipped base employment");
-                softAssert.assertEquals(questionsHelpText.getText(), "This question helps us calculate the annual income for customers who don't have the same income every week or month.");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+                softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "This question helps us calculate the annual income for customers who don't have the same income every week or month.");
+                softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "Need more help?");
+                softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Contact us");
                 softAssert.assertAll();
                 break;
             case "Spanish":
-                softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
+                softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Ayuda");
                 softAssert.assertEquals(helpDrawerHeaderIncome.getText(), "Trabajo temporal, por comisiones o por propinas");
-                softAssert.assertEquals(questionsHelpText.getText(), "Esta pregunta nos ayuda a calcular el ingreso anual de los clientes que no tienen el mismo ingreso cada semana o mes.");
-                softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+                softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Esta pregunta nos ayuda a calcular el ingreso anual de los clientes que no tienen el mismo ingreso cada semana o mes.");
+                basicActions.scrollToElement(helpDrawerFooter.get(0));
+                softAssert.assertEquals(helpDrawerFooter.get(0).getText(), "\u00BFNecesitas m\u00E1s ayuda?");
+                softAssert.assertEquals(helpDrawerContactUsLink.getText(), "Cont\u00E1ctenos");
                 softAssert.assertAll();
                 break;
             default:

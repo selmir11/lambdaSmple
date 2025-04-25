@@ -55,12 +55,16 @@ Feature: Document Lookup page : Verify all data
       And I enter from and to dates
       Then I click on submit button
       Then I select "Document Type A to Z" from sort options
+      And I wait for 1500 milliseconds
       Then I verify if DLT is sorted "asc" by "Document Type"
       Then I select "Document Type Z to A" from sort options
+      And I wait for 500 milliseconds
       Then I verify if DLT is sorted "desc" by "Document Type"
       Then I select "created date low to high" from sort options
+      And I wait for 500 milliseconds
       Then I verify if DLT is sorted "asc" by "Created Date"
       Then I select "created date high to low" from sort options
+      And I wait for 500 milliseconds
       Then I verify if DLT is sorted "desc" by "Created Date"
 
     @SLER-2122

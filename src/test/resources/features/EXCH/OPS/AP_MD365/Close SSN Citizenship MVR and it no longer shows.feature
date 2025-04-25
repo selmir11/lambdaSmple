@@ -73,10 +73,9 @@ Feature: OPS: MD365: Create then Close SSN/Citizenship MVRs and they no longer s
 
     Then I log into the CRM system
     Then I search for user's Email
-    And I click on popup Work smarter with AI to close it
-    And I wait for 70000 milliseconds
-    Then I handle the search results page
-
+   And I click on popup Work smarter with AI to close it
+   And I wait for 70000 milliseconds
+   Then I handle the search results page
     Then I open the "MVRDVR" Tab on contact page
     And I wait for 5000 milliseconds
     Then I open the "Citizenship" MVR

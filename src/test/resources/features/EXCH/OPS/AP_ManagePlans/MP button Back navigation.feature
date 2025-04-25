@@ -18,7 +18,7 @@ Feature: Manage Plans: Button Go Back navigation
     And I wait for 300 milliseconds
     And I validate I am on the "Manage Plans" page
     Then I validate buttons displayed on Manage page
-    And I validate the text of the Medical Dental container
+    Then I validate the "Policy" text of "Both" plan summary container on Manage Plans
     Then I validate Go Back button on Manage Plan page
     And I click Go Back button on Manage Plan page
     And I validate I am on the "Admin Portal individual dashboard" page

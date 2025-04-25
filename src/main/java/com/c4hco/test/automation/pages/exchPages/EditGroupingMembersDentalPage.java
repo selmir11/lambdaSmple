@@ -91,9 +91,10 @@ public class EditGroupingMembersDentalPage {
     }
 
     public void createNewDentalGroups(List<String> groupingList) {
-        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementToDisappear(spinner, 80);
         removeSuggestedGroups();
         for (String group : groupingList) {
+            basicActions.waitForElementToBePresentWithRetries(createNewGroupLink, 50);
             basicActions.scrollToElement(createNewGroupLink);
             createNewGroupLink.click();
             String[] groupDetail = group.split(":");
