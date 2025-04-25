@@ -546,6 +546,9 @@ public class AdminPortalManagePlansPage {
 
     @FindBy(xpath = "//div[@class='multiselect-item-unselected']")
     WebElement btnMedicalOrDentalWhenUnchecked;
+    @FindBy(xpath = "//button[text()='Cancel']")
+    WebElement cancelBtnOnConfirm;
+
 
     @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@id='coverageEndDate_1']")
     WebElement coverageEndDateMedTxt;
@@ -2762,6 +2765,82 @@ public class AdminPortalManagePlansPage {
                 throw new AssertionError("Person ID changed for member '" + name + "': expected " + originalId + ", got " + updatedId);
             }
         }
+    }
+
+    public void updateAllEditableFields(DataTable data) {
+        List<Map<String, String>> allDataList = data.asMaps();
+        String currentEnv = SharedData.getEnv();
+        List<Map<String,String>> envBasedData = allDataList.stream().filter(row -> row.get("Env").equals(currentEnv)).toList();
+
+        basicActions.waitForElementToBePresent(coverageStartdate, 60);
+        for (int i = 0; i < envBasedData.size(); i++) {
+            Map<String, String> membervalue = envBasedData.get(i);
+            String memberNo = membervalue.get("Member");
+            updateMPEditableTextFields("coverageEndDate" , memberNo ,membervalue.get("Coverage End"));
+            updateMPEditableTextFields("coverageStartDate" , memberNo ,membervalue.get("Coverage Start"));
+            updateMPEditableTextFields("financialEndDate" , memberNo ,membervalue.get("Financial End"));
+            updateMPEditableTextFields("financialStartDate" , memberNo ,membervalue.get("Financial Start"));
+            updateMPEditableTextFields("premium" , memberNo ,membervalue.get("Premium"));
+            updateMPEditableTextFields("planAPTC" , memberNo ,membervalue.get("APTC"));
+            updateReasonFields(i, membervalue.get("Termination Reason"));
+        }
+    }
+
+    private void updateReasonFields(int i, String terminationReason) {
+        List<WebElement> reasonField = basicActions.getDriver().findElements(By.xpath("//*[@class='member-details-grid-item dropdown']"));
+        reasonField.get(i).click();
+        List<WebElement> terminateOption = basicActions.getDriver().findElements(By.xpath("//*[@class='member-details-grid-item dropdown']//div[@class='drop-down-option']"));
+        terminateOption.stream().filter(e -> e.getText().equalsIgnoreCase(terminationReason)).forEach(WebElement::click);
+    }
+
+    private void updateMPEditableTextFields(String fieldID,String memberNo, String value) {
+        String xpathEnding = ( fieldID.equals("premium") || fieldID.equals("APTC")) ? "//input[@type='text']" : "//input[1]";
+        String fieldxpath = "//div[@id ='" + fieldID + "_" + memberNo + "']" + xpathEnding;
+        WebElement inputField = basicActions.getDriver().findElement(By.xpath(fieldxpath));
+        inputField.clear();
+        inputField.sendKeys(value);
+    }
+
+    public void verifyMPEditableFields(int memberCount) {
+        for (int i = 1; i <= memberCount; i++) {
+            coverageEditableFields(i);
+            financialEditableFields(i);
+        }
+    }
+
+    private void coverageEditableFields(int i) {
+        WebElement coverageStartDate = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageStartDate_" + i + "']//input"));
+        softAssert.assertTrue(coverageStartDate != null && coverageStartDate.isEnabled(), " Coverage start date field not editable ");
+
+        WebElement coverageEndDate = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageEndDate_" + i + "']//input"));
+        softAssert.assertTrue(coverageEndDate != null && coverageEndDate.isEnabled(), "  Coverage End date field not editable ");
+
+        String terminate = "//*[@class='member-details-grid-item dropdown']";
+        String terminateXpath = terminate + "[" + i + "]";
+        WebElement reason = basicActions.getDriver().findElement(By.xpath(terminateXpath));
+        softAssert.assertTrue(reason != null && reason.isEnabled(), "  Termination reason field not editable ");
+        softAssert.assertAll();
+    }
+
+    private void financialEditableFields(int i) {
+        WebElement financialStart = basicActions.getDriver().findElement(By.xpath("//div[@id='financialStartDate_" + i + "']//input"));
+        softAssert.assertTrue(financialStart != null && financialStart.isEnabled(), "  Financial start date field not editable ");
+
+        WebElement financialEndDate = basicActions.getDriver().findElement(By.xpath("//div[@id='financialEndDate_" + i + "']//input"));
+        softAssert.assertTrue(financialEndDate != null && financialEndDate.isEnabled(), "  Financial End date field not editable ");
+
+        WebElement premium= basicActions.getDriver().findElement(By.xpath("//div[@id='premium_" + i + "']//input"));
+        softAssert.assertTrue(premium != null && premium.isEnabled(), "   Premium field not editable ");
+
+        WebElement APTC= basicActions.getDriver().findElement(By.xpath("//div[@id='planAPTC_" + i + "']//input"));
+        softAssert.assertTrue(APTC != null && APTC.isEnabled(), "  APTC field not editable ");
+        softAssert.assertAll();
+    }
+
+    public void clickCancelOnConfirm() {
+        basicActions.waitForElementToBePresent(cancelBtnOnConfirm, 20);
+        cancelBtnOnConfirm.click();
+        basicActions.wait(500);
     }
     public void verifyPlanNameAndPolicyCoverageDatesAreVisibleForPreviousFinancialPeriods() {
         basicActions.scrollToElement(labelPlanNamePFPM);

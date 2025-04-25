@@ -333,3 +333,153 @@ Feature: Manage Plans: Buttons (positive and negative testing)
       | Plan AV:                 |
       | HIOS ID:                 |
       | Policy ID:               |
+    @SLER-2448
+  Scenario: Verify Editable Fields on manage plan for 2021 and 2022 (med, den) [RT-2186]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    Then I enter an accountId in any Env "1300066709" "1502076601" to search user
+    And I click on Search button in AP dashboard page
+    And I click acct first row from Search Results table in admin portal
+    Then I click on "Manage Plans" user dashboard button
+    And I validate I am on the "Manage Plans" page
+    And I select the "2021" plan year on manage plan
+    Then I wait for 1000 milliseconds
+    Then I click Make Changes Medical button
+    Then I verify fields are editable on Manage plan for 2 member
+    Then I update manage plan editable fields
+     |   Env   | Member    | Coverage End   | Coverage Start   |  Termination Reason  | Financial End    | Financial Start   | Premium        | APTC |
+     |   qa    |    1      |  07012021      |   07012021       |     Non_Payment      |  07012021        |     07012021      |    250.55      | 25.00 |
+     |   qa    |    2      |  07012021      |  07012021        |     No_Reason_Ci     |  07012021        |    07012021       |    200.00      | 25.00 |
+     | staging |    1      |  12312021      |   09222021       |     No_Reason        | 12312021         |    09222021       |    150.55      | 10.00 |
+     | staging |    2      | 12312021       | 09222021         |     Age_Out          |  12312021        |    09222021       |    100.00      | 10.00 |
+   And I click Save Button Medical
+   And I select the reason to confirm the changes
+   Then I wait for 2000 milliseconds
+   And I select the "2021" plan year on manage plan
+   Then I wait for 1000 milliseconds
+   Then I click Make Changes Dental button
+   Then I verify fields are editable on Manage plan for 2 member
+   Then I update manage plan editable fields
+     |   Env    | Member    | Coverage End   | Coverage Start   |  Termination Reason  | Financial End  | Financial Start  | Premium        | APTC |
+     |  qa      |   1       |  12312021      |   09222021       |     No_Reason        | 12312021       |    09222021      |    150.55      | 10.00 |
+     |  qa      |   2       | 12312021       |   09222021       |     Age_Out          |  12312021      |    09222021      |    100.00      | 10.00 |
+     | staging  |   1       |  01012021      |   01012021       |     No_Reason        | 01012021       |    01012021      |    150.55      | 10.00 |
+     | staging  |   2       | 01012021       |    01012021      |     Age_Out          |  01012021      |    01012021      |    100.00      | 10.00 |
+
+   And I click Save Button Dental
+   And I select the reason to confirm the changes
+   Then I close current tab and switch back to previous tab
+   Then I click Go Back on admin portal broker dashboard
+   And I click on reset button on admin portal search page
+   Then I enter an "accountID" in any env "5770106760" "2436002372" to search user
+   Then I click on Search button in AP dashboard page
+   Then I select the first record from the search results
+   Then I click on "Manage Plans" user dashboard button
+   And I validate I am on the "Manage Plans" page
+   And I select the "2022" plan year on manage plan
+   Then I click Make Changes Medical button
+   Then I verify fields are editable on Manage plan for 2 member
+   Then I update manage plan editable fields
+     |  Env     | Member    | Coverage End   | Coverage Start   |  Termination Reason  | Financial End    | Financial Start   | Premium        | APTC |
+     |  qa      |   1       |  11182022      |   11182022       |     Non_Payment      |  11182022        |     11182022      |    277.89      | 25.00 |
+     |  qa      |   2       |  11182022      |  11182022        |     No_Reason_Ci     |  11182022        |    11182022       |    163.27      | 25.00 |
+     | staging  |   1       |  10012022      |   10012022       |     No_Reason        | 10012022         |    10012022       |    150.55      | 0.00 |
+     | staging  |   2       | 10012022       | 10012022         |     Age_Out          |  10012022        |    10012022       |    100.00      | 0.00 |
+   And I click Save Button Medical
+   And I select the reason to confirm the changes
+   Then I wait for 1000 milliseconds
+   And I select the "2022" plan year on manage plan
+   Then I click Make Changes Dental button
+   Then I verify fields are editable on Manage plan for 2 member
+   Then I update manage plan editable fields
+     |   Env     | Member    | Coverage End   | Coverage Start   |  Termination Reason  | Financial End    | Financial Start   | Premium        | APTC |
+     |   qa     |    1       |  10012022      |   10012022       |    No_Reason         |  10012022        |     10012022      |    150.55      | 0.00 |
+     |   qa     |    2       |  10012022      |  10012022        |    Age_Out           |  10012022        |    10012022       |    100.00      | 0.00 |
+     | staging  |    1       |  10012022      |   10012022       |     No_Reason        |  10012022        |    10012022       |    150.55      | 0.00 |
+     | staging  |    2       | 10012022       | 10012022         |     Age_Out          |  10012022        |    10012022       |    100.00      | 0.00 |
+  And I click Save Button Dental
+  And I select the reason to confirm the changes
+  Then I close current tab and switch back to previous tab
+  Then I logout from Admin Portal
+
+
+  @SLER-2452
+  Scenario: Verify Editable Fields on manage plan for 2023 and 2024 (med, den) [RT-2189]
+    Given I open the login page on the "admin" portal
+    And I refresh the page
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I select "individual" checkbox on Admin Portal Dashboard
+    Then I enter an accountId in any Env "5470217690" "9075763090" to search user
+    And I click on Search button in AP dashboard page
+    And I click acct first row from Search Results table in admin portal
+    Then I click on "Manage Plans" user dashboard button
+    And I validate I am on the "Manage Plans" page
+    And I select the "2024" plan year on manage plan
+    Then I wait for 1000 milliseconds
+    Then I click Make Changes Medical button
+    Then I verify fields are editable on Manage plan for 2 member
+    Then I update manage plan editable fields
+      |   Env   | Member    | Coverage End   | Coverage Start   |  Termination Reason  | Financial End    | Financial Start   | Premium        | APTC    |
+      |   qa    |    1      |  06022024      |   01012024       |     Age_Out          |   06022024       |     01012024      |    425.73      | 403.88  |
+      |   qa    |    2      |  06022024      |   01012024       |     No_Reason        |   06022024       |    01012024       |   271.86       | 0.00    |
+      | staging |    1      |  12312024      |   01012024       |     No_Reason        |   12312024       |    01012024       |    291.04      | 0.00    |
+      | staging |    2      |  12312024      |   01012024       |     No_Reason        |   12312024       |    01012024       |    179.83      | 0.00    |
+         And I click Save Button Medical
+    And I click on cancel button on confirm changes popup
+    Then I click Reset Changes Medical
+    Then I wait for 2000 milliseconds
+    And I select the "2024" plan year on manage plan
+    Then I wait for 1000 milliseconds
+    Then I click Make Changes Dental button
+    Then I verify fields are editable on Manage plan for 2 member
+    Then I update manage plan editable fields
+      |   Env    | Member    | Coverage End   | Coverage Start   |  Termination Reason  | Financial End  | Financial Start  | Premium        | APTC |
+      |  qa      |   1       |  12312024      |   01012024       |     No_Reason        | 12312024       |    01012024      |    9.11        | 0.00 |
+      |  qa      |   2       |  12312024      |   01012024       |     Age_Out          |  12312024      |    01012024      |    13.84       | 0.00 |
+      | staging  |   1       |   12312024     |   01012024       |     No_Reason        |  12312024      |   01012024       |    13.84      | 0.00 |
+      | staging  |   2       |   12312024     |   01012024       |     Age_Out          |   12312024     |   01012024       |    22.84      | 0.00 |
+
+    And I click Save Button Dental
+    And I click on cancel button on confirm changes popup
+    Then I click Reset Changes Dental
+    Then I close current tab and switch back to previous tab
+    Then I click Go Back on admin portal broker dashboard
+    And I click on reset button on admin portal search page
+    Then I enter an "accountID" in any env "9075763090" "5470217690" to search user
+    Then I click on Search button in AP dashboard page
+    And I click acct first row from Search Results table in admin portal
+    Then I click on "Manage Plans" user dashboard button
+    And I validate I am on the "Manage Plans" page
+    And I select the "2023" plan year on manage plan
+    Then I click Make Changes Medical button
+    Then I verify fields are editable on Manage plan for 2 member
+    Then I update manage plan editable fields
+      |  Env     | Member    | Coverage End   | Coverage Start   |  Termination Reason  | Financial End    | Financial Start   |  Premium       | APTC   |
+      |  qa      |   1       |  12312023      |   01012023       |     Non_Payment      |  12312023        |    01012023       |    396.20      | 297.58 |
+      |  qa      |   2       |  12312023      |   01012023       |     No_Reason_Ci     |  12312023        |    01012023       |    256.21      | 0.00   |
+      | staging  |   1       |  12312023      |   01012023       |     No_Reason        |  12312023        |   01012023        |    241.12      | 0.00   |
+      | staging  |   2       |  12312023      |   04232023       |     Age_Out          |  12312023        |   05012023        |    149.96      | 0.00    |
+    And I click Save Button Medical
+    And I click on cancel button on confirm changes popup
+    Then I click Reset Changes Medical
+    Then I wait for 1000 milliseconds
+    And I select the "2023" plan year on manage plan
+    Then I click Make Changes Dental button
+    Then I verify fields are editable on Manage plan for 2 member
+    Then I update manage plan editable fields
+      |   Env     | Member     | Coverage End   | Coverage Start   |  Termination Reason  | Financial End    | Financial Start   | Premium        | APTC  |
+      |   qa      |    1       | 12312023       |   01012023       |    No_Reason         | 12312023         |   01012023        |    9.11        | 0.00  |
+      |   qa      |    2       | 12312023       |   01012023       |    Age_Out           |  12312023        |   01012023        |    13.84       | 0.00  |
+      | staging   |   1        |  12312023      |   01012023       |     No_Reason        |  12312023        |   01012023        |    13.84       | 0.00  |
+      | staging   |   2        |  12312023      |   04232023       |     Age_Out          |  12312023        |   05012023        |    22.84       | 0.00  |
+    And I click Save Button Dental
+    And I click on cancel button on confirm changes popup
+    Then I click Reset Changes Dental
+    Then I close current tab and switch back to previous tab
+    Then I logout from Admin Portal
