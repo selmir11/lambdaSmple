@@ -1,6 +1,6 @@
 Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
 
- @SLCR-298
+  @SLCR-298 @SLCR-929 @SLCR-930 @SLCR-931 @SLCR-932 @pol_coco_passed
   Scenario: CCRT-49 COCO Initial Application HUSBAND + WIFE (Colorado Option) (BROKER OBO)
    Given I set the test scenario details in coco
      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
@@ -130,18 +130,18 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     Then I validate enrolled medical plans on future plans tab in COCO
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
-    And I click on "My Documents and Letters" link on welcome page
+#    And I click on "My Documents and Letters" link on welcome page
 #    And I click on download "EN-002-04" document
 #    Then I validate "EN-002-04 English" notice content
-#    And I click on Sign Out in the Header for "Elmo"
-#
-#    Then I open outlook Tab
-#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-#    Then I open the notice "(EN-002-04)" in "English"
-#    And I verify the notice Text for "EN-002-04" in "English" for "Coco"
-#    Then I delete the open notice
-#    And I sign out of Outlook
-#    And I switch to the tab number 0
+    And I click on Sign Out in the Header for "Elmo"
+
+    Then I open outlook Tab
+    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+    Then I open the notice "(EN-002-04)" in "English"
+    And I verify the notice Text for "EN-002-04" in "English" for "Coco"
+    Then I delete the open notice
+    And I sign out of Outlook
+    And I switch to the tab number 0
 
    And I validate "SUBMITTED" policy table entities for groups in COCO
    And I verify the policy data quality check with Policy Ah keyset size 1
