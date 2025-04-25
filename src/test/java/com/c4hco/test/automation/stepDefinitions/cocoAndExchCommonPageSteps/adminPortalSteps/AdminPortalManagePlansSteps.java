@@ -589,4 +589,66 @@ public class AdminPortalManagePlansSteps {
     public void iClickOnCancelButtonOnConfirmChangesPopup() {
         adminPortalManagePlansPage.clickCancelOnConfirm();
     }
+
+    @Then("I verify edit {string} with value {string} for all members")
+    public void iEditWithValue(String editInputTextBoxName, String inputValue) {
+        adminPortalManagePlansPage.verifyEditGridItems(editInputTextBoxName,inputValue);
+    }
+
+    @Then("I verify options are getting selected from termination reason drop down for all members")
+    public void iVerifyOptionsAreGettingSelectedFromTerminationReasonDropDown() {
+        adminPortalManagePlansPage.verifyOptionsGettingSelectedFromTerminationReasonDropDown();
+    }
+
+    @Then("I verify {string} values not changed on manage plan")
+    public void iVerifyFieldValuesNotChangedOnManagePlan(String fieldName, DataTable data) {
+        adminPortalManagePlansPage.validateFieldValuesNotChanged(fieldName,data);
+    }
+
+    @Then("I update the {string} value using copy paste")
+    public void iUpdateTheSESValueUsingCopyPasteFor(String field,DataTable memberpremiumList ) {
+        adminPortalManagePlansPage.updateCopyPasteValue(field,memberpremiumList);
+    }
+
+    @Then("I validate SES error message in Red color with value")
+    public void iValidateSESErrorMessageInRedColorWithValue(DataTable data) {
+        adminPortalManagePlansPage.validateSESErrorWithColor(data);
+    }
+
+    @Then("I validate error message in Red color for date fields")
+    public void iValidateCoverageDateErrorMessageInRedColor(String data) {
+        adminPortalManagePlansPage.validateErrorWithColor(data);
+    }
+
+    @Then("I verify premium field is Non editable on Manage plan")
+    public void iVerifyPremiumFieldIsNonEditableOnManagePlanForMember( ) {
+        adminPortalManagePlansPage.validatePremiumNotEnabled();
+    }
+
+    @Then("I verify SES field is Non editable on Manage plan")
+    public void iVerifySESFieldIsNonEditableOnManagePlanForMember( ) {
+        adminPortalManagePlansPage.validateSESNotEnabled();
+    }
+
+    @Then("I verify coverage start field is Non editable on Manage plan")
+    public void iVerifyCoverageStartFieldIsNonEditableOnManagePlanForMember() {
+        adminPortalManagePlansPage.validateCoverageStartNotEnabled();
+    }
+
+    @Then("I verify coverage end date is Non editable on Manage plan")
+    public void iVerifyCoverageEndDateIsNonEditableOnManagePlanForMember( ) {
+        adminPortalManagePlansPage.validateCoverageEndNotEnabled();
+    }
+    @Then("I verify financial start field is Non editable on Manage plan")
+    public void iVerifyFinancialStartFieldIsNonEditableOnManagePlanForMember() {
+        adminPortalManagePlansPage.validateFinancialStartNotEnabled();
+    }
+    @Then("I verify financial end date field is Non editable on Manage plan")
+    public void iVerifyFinancialEndFieldIsNonEditableOnManagePlanForMember() {
+        adminPortalManagePlansPage.validateFinancialEndNotEnabled();
+    }
+    @Then("I verify reason field is Non editable on Manage plan")
+    public void iVerifyReasonFieldIsNonEditableOnManagePlanForMember( ) {
+        adminPortalManagePlansPage.validateReasonNotEnabled();
+    }
 }
