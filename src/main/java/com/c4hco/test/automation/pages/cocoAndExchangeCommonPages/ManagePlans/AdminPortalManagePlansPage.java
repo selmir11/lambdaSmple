@@ -2810,29 +2810,31 @@ public class AdminPortalManagePlansPage {
 
     private void coverageEditableFields(int i) {
         WebElement coverageStartDate = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageStartDate_" + i + "']//input"));
-        Assert.assertTrue(coverageStartDate != null && coverageStartDate.isEnabled(), " Coverage start date field not editable ");
+        softAssert.assertTrue(coverageStartDate != null && coverageStartDate.isEnabled(), " Coverage start date field not editable ");
 
         WebElement coverageEndDate = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageEndDate_" + i + "']//input"));
-        Assert.assertTrue(coverageEndDate != null && coverageEndDate.isEnabled(), "  Coverage End date field not editable ");
+        softAssert.assertTrue(coverageEndDate != null && coverageEndDate.isEnabled(), "  Coverage End date field not editable ");
 
         String terminate = "//*[@class='member-details-grid-item dropdown']";
         String terminateXpath = terminate + "[" + i + "]";
         WebElement reason = basicActions.getDriver().findElement(By.xpath(terminateXpath));
-        Assert.assertTrue(reason != null && reason.isEnabled(), "  Termination reason field not editable ");
+        softAssert.assertTrue(reason != null && reason.isEnabled(), "  Termination reason field not editable ");
+        softAssert.assertAll();
     }
 
     private void financialEditableFields(int i) {
         WebElement financialStart = basicActions.getDriver().findElement(By.xpath("//div[@id='financialStartDate_" + i + "']//input"));
-        Assert.assertTrue(financialStart != null && financialStart.isEnabled(), "  Financial start date field not editable ");
+        softAssert.assertTrue(financialStart != null && financialStart.isEnabled(), "  Financial start date field not editable ");
 
         WebElement financialEndDate = basicActions.getDriver().findElement(By.xpath("//div[@id='financialEndDate_" + i + "']//input"));
-        Assert.assertTrue(financialEndDate != null && financialEndDate.isEnabled(), "  Financial End date field not editable ");
+        softAssert.assertTrue(financialEndDate != null && financialEndDate.isEnabled(), "  Financial End date field not editable ");
 
         WebElement premium= basicActions.getDriver().findElement(By.xpath("//div[@id='premium_" + i + "']//input"));
-        Assert.assertTrue(premium != null && premium.isEnabled(), "   Premium field not editable ");
+        softAssert.assertTrue(premium != null && premium.isEnabled(), "   Premium field not editable ");
 
         WebElement APTC= basicActions.getDriver().findElement(By.xpath("//div[@id='planAPTC_" + i + "']//input"));
-        Assert.assertTrue(APTC != null && APTC.isEnabled(), "  APTC field not editable ");
+        softAssert.assertTrue(APTC != null && APTC.isEnabled(), "  APTC field not editable ");
+        softAssert.assertAll();
     }
 
     public void clickCancelOnConfirm() {
