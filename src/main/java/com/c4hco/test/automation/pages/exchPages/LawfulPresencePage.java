@@ -316,6 +316,7 @@ public class LawfulPresencePage {
                 chkBoxParentsMilitary.click();
                 break;
             case "None of the above":
+                basicActions.waitForElementToBeClickable(chkBoxNoneOfTheAbove, 20);
                 chkBoxNoneOfTheAbove.click();
                 break;
             default:
