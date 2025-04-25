@@ -101,12 +101,12 @@ public class DBManagePlanSteps {
         managePlanDBValidation.validatePreviousPlanSummaryRowDB(planType, policyNumber, memberNum, dbRowAdjust);
     }
 
-    @Then("I validate termed {string} all details table in DB for {int} on AP Manage Plans")
-    public void iValidateTermedAllDetailsTableInDBForOnAPManagePlans(String planType, int memberNum) {
+    @Then("I validate termed {string} all details table in DB for {int} member for DB row {int} on AP Manage Plans")
+    public void iValidateTermedAllDetailsTableInDBForOnAPManagePlans(String planType, int memberNum,Integer dbRowAdjust) {
         actions.wait(5000);
-        managePlanDBValidation.validateTermedMembersDetailsTableDB(planType, memberNum);
-        managePlanDBValidation.validateTermedCoverageDetailsTableDB(planType, memberNum);
-        managePlanDBValidation.validateTermedFinancialDetailsTableDB(planType, memberNum);
+        managePlanDBValidation.validateTermedMembersDetailsTableDB(planType, memberNum,dbRowAdjust);
+        managePlanDBValidation.validateTermedCoverageDetailsTableDB(planType, memberNum,dbRowAdjust);
+        managePlanDBValidation.validateTermedFinancialDetailsTableDB(planType, memberNum,dbRowAdjust);
     }
 
 

@@ -662,7 +662,7 @@ public class AdminPortalManagePlansPage {
 
     public void clickMakeChangesMedical() {
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 30);
-        basicActions.waitForElementToBePresent(btnMakeChangeMed, 10);
+        basicActions.waitForElementToBePresent(btnMakeChangeMed, 30);
         basicActions.waitForElementToBeClickable(btnMakeChangeMed, 10);
         btnMakeChangeMed.click();
         basicActions.waitForElementToBePresentWithRetries(CurrentPlanInfo, 60);
