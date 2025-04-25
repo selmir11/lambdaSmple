@@ -107,4 +107,6 @@ public class DBManagePlanSteps {
     ////////////////////////////Plans Container Individual Dashboard//////////////////////////
     @And("I verify Plan container for year {string} against the DB on the Individual dashboard")
     public void iVerifyPlanContainer(String planYear) {managePlanDBValidation.verifyPlanContainer(planYear);}
+    @And("I verify Plan container for year {string} against the DB on the CoCo dashboard")
+    public void iVerifyPlanContainerCoCo(String planYear) {managePlanDBValidation.verifyPlanContainerCoCo(planYear);}
 }
