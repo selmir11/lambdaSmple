@@ -1485,6 +1485,10 @@ public class BasicActions {
         getDriver().close();
         driver.switchTo().window(parentWindow);
     }
+    public int generateRandomDigits(int endBound){ //starting from 0 to given bound
+        Random rand = new Random();
+        return rand.nextInt(endBound);
+    }
 }
 
 

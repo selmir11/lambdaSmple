@@ -571,4 +571,14 @@ public class AdminPortalManagePlansSteps {
     public void iClickOnCancelButtonOnConfirmChangesPopup() {
         adminPortalManagePlansPage.clickCancelOnConfirm();
     }
+
+    @Then("I verify edit {string} with value {string} for all members")
+    public void iEditWithValue(String editInputTextBoxName, String inputValue) {
+        adminPortalManagePlansPage.verifyEditGridItems(editInputTextBoxName,inputValue);
+    }
+
+    @Then("I verify options are getting selected from termination reason drop down for all members")
+    public void iVerifyOptionsAreGettingSelectedFromTerminationReasonDropDown() {
+        adminPortalManagePlansPage.verifyOptionsGettingSelectedFromTerminationReasonDropDown();
+    }
 }

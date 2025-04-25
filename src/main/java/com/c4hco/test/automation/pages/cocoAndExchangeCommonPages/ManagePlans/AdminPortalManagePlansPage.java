@@ -556,6 +556,30 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@id='coverageEndDate_1']")
     WebElement coverageEndDateDentTxt;
 
+    @FindBy(xpath = "//div[contains(@id,'coverageStartDate')]/input")
+    List<WebElement> inputAllCoverageStartDate;
+
+    @FindBy(xpath = "//div[contains(@id,'coverageEndDate')]/input")
+    List<WebElement> inputAllCoverageEndDate;
+
+    @FindBy(xpath = "//div[contains(@id,'financialStartDate')]/input")
+    List<WebElement> inputAllFinancialStartDate;
+
+    @FindBy(xpath = "//div[contains(@id,'financialEndDate')]/input")
+    List<WebElement> inputAllFinancialEndDate;
+
+    @FindBy(xpath = "//div[contains(@id,'premium')]/input")
+    List<WebElement> inputAllPremiums;
+
+    @FindBy(xpath = "//div[contains(@id,'planAPTC')]/input")
+    List<WebElement> inputAllSESs;
+
+    @FindBy(xpath = "//*[@formcontrolname='terminationReason']//div[@class='drop-down-option drop-down-option-selected']")
+    List<WebElement> drpDwnArrowTerminationReason;
+
+    @FindBy(xpath = "//div[@class='drop-down-secondary-options']/div")
+    List<WebElement> allDrpDownOptionsTerminationReason;
+
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
         softAssert.assertEquals(titleInBlueBar.getText(), "Admin Portal");
@@ -2862,5 +2886,52 @@ public class AdminPortalManagePlansPage {
         softAssert.assertTrue(labelPlanNamePFPM.isDisplayed(), "labelPlanNamePFPM is not displayed");
         softAssert.assertTrue(labelPolicyCoveragePFPM.isDisplayed(), "labelPolicyCoveragePFPM is not displayed");
         softAssert.assertAll();
+    }
+    public void verifyEditGridItems(String editInputTextBoxName, String inputValue){
+        switch (editInputTextBoxName){
+            case "coverage_start_date":
+                editGridTableValues(inputAllCoverageStartDate,inputValue);
+                break;
+            case "coverage_end_date":
+                editGridTableValues(inputAllCoverageEndDate,inputValue);
+                break;
+            case "financial_start_date":
+                editGridTableValues(inputAllFinancialStartDate,inputValue);
+                break;
+            case "financial_end_date":
+                editGridTableValues(inputAllFinancialEndDate,inputValue);
+                break;
+            case "Premium":
+                editGridTableValues(inputAllPremiums,inputValue);
+                break;
+            case "SES":
+                editGridTableValues(inputAllSESs,inputValue);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + editInputTextBoxName);
+        }
+    }
+
+    private void editGridTableValues(List<WebElement> toBeEdited,String inputToEdit){
+        basicActions.waitForElementToBePresent(toBeEdited.get(0),5);
+        for (WebElement element : toBeEdited) {
+            String beforeEdit = element.getAttribute("value");
+            element.sendKeys(inputToEdit);
+            String afterEdit = element.getAttribute("value");
+            Assert.assertNotEquals(beforeEdit, afterEdit, "Edit not successful for" + element);
+        }
+    }
+
+    public void verifyOptionsGettingSelectedFromTerminationReasonDropDown() {
+        basicActions.waitForElementToBePresent(drpDwnArrowTerminationReason.get(0), 5);
+        for (WebElement element : drpDwnArrowTerminationReason) {
+            element.click();
+            softAssert.assertTrue(element.getText().isEmpty(), "Initially it is not empty");
+            int optionNum = basicActions.generateRandomDigits(4);
+            basicActions.wait(1000);
+            allDrpDownOptionsTerminationReason.get(optionNum).click();
+            softAssert.assertFalse(element.getText().isEmpty(), "Option did not get selected");
+            softAssert.assertAll();
+        }
     }
 }
