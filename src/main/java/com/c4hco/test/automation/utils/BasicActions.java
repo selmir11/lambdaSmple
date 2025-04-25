@@ -873,6 +873,12 @@ public class BasicActions {
                 case "End of May Current Year":
                     date = getCurrYear()+"-05-31";
                     break;
+                case "First of May Current Year":
+                    date = getCurrYear()+"-05-01";
+                    break;
+                case "April 10 Current Year":
+                    date = getCurrYear()+"-04-10";
+                    break;
                 default:
                     throw new IllegalArgumentException("Invalid option: " + dateRequirement);
             }
