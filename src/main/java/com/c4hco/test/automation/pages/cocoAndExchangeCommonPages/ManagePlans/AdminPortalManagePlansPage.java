@@ -2619,37 +2619,40 @@ public class AdminPortalManagePlansPage {
     public void selectTermedPolicyBasedOnEndDate(String planType, String expectedValues) {
         basicActions.wait(1000);
 
+        WebElement dropdownElement;
+        List<WebElement> dropdownOptions;
+        WebElement statusElement;
+        WebElement coverageEndDateElement;
+        WebElement currentPlanNameElement;
+        String dropdownXpath;
+
         switch (planType.toLowerCase()) {
             case "medical":
-                openPolicyDropdownAndWait(medicalpolicyDropdownOptions, selectPolicyDropdownOptions, currentMedicalPlanName);
-                boolean medicalFound = selectPolicyBasedOnStatus(
-                        "Medical",
-                        "//div[@class='medical-plan-container plan-container-fill']//div[@class='drop-down-secondary-options']//span",
-                        selectPolicyDropdownOptions,
-                        medPolicyStatus,
-                        coverageEndDateMedTxt,
-                        expectedValues
-                );
-                softAssert.assertTrue(medicalFound, " No Medical policy found with matching status and end date: " + expectedValues);
+                dropdownElement = selectPolicyDropdownOptions;
+                dropdownOptions = medicalpolicyDropdownOptions;
+                statusElement = medPolicyStatus;
+                coverageEndDateElement = coverageEndDateMedTxt;
+                currentPlanNameElement = currentMedicalPlanName;
+                dropdownXpath = "//div[@class='medical-plan-container plan-container-fill']//div[@class='drop-down-secondary-options']//span";
                 break;
 
             case "dental":
-                openPolicyDropdownAndWait(dentalpolicyDropdownOptions, selectDentalPolicyDropdownOptions, currentDentalPlanName);
-                boolean dentalFound = selectPolicyBasedOnStatus(
-                        "Dental",
-                        "//div[@class='dental-plan-container plan-container-fill']//div[@class='drop-down-secondary-options']//span",
-                        selectDentalPolicyDropdownOptions,
-                        denPolicyStatus,
-                        coverageEndDateDentTxt,
-                        expectedValues
-                );
-                softAssert.assertTrue(dentalFound, " No Dental policy found with matching status and end date: " + expectedValues);
+                dropdownElement = selectDentalPolicyDropdownOptions;
+                dropdownOptions = dentalpolicyDropdownOptions;
+                statusElement = denPolicyStatus;
+                coverageEndDateElement = coverageEndDateDentTxt;
+                currentPlanNameElement = currentDentalPlanName;
+                dropdownXpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='drop-down-secondary-options']//span";
                 break;
 
             default:
-                softAssert.fail(" Invalid plan type: " + planType);
+                softAssert.fail("Invalid plan type: " + planType);
+                return;
         }
 
+        openPolicyDropdownAndWait(dropdownOptions, dropdownElement, currentPlanNameElement);
+        boolean found = iterateAndMatchPolicy(dropdownXpath, dropdownElement, statusElement, coverageEndDateElement, currentPlanNameElement, expectedValues, planType);
+        softAssert.assertTrue(found, " No " + planType + " policy found matching: " + expectedValues);
         softAssert.assertAll();
     }
 
@@ -2658,55 +2661,64 @@ public class AdminPortalManagePlansPage {
         basicActions.waitForElementToBePresentWithRetries(planNameElement, 60);
         basicActions.scrollToElement(selectDropdown);
         selectDropdown.click();
-        basicActions.waitForElementListToBePresent(policyDropdownOptions, 60);
+        basicActions.waitForElementListToBePresentWithRetries(policyDropdownOptions, 90);
         basicActions.wait(200);
     }
 
-    private boolean selectPolicyBasedOnStatus(
-            String planType,
+    private boolean iterateAndMatchPolicy(
             String dropdownXpath,
             WebElement dropdownElement,
             WebElement statusElement,
             WebElement coverageEndDateElement,
-            String expectedValues
+            WebElement currentPlanNameElement,
+            String expectedValues,
+            String planType
     ) {
-        String expectedDate = basicActions.getDateBasedOnRequirement(expectedValues); // Expected in yyyy-MM-dd
-        System.out.println(" Searching for a CANCELLED policy with end date: " + expectedDate);
+        String[] parts = expectedValues.split("\\|");
+        String expectedDate = basicActions.getDateBasedOnRequirement(parts[0].trim()); // yyyy-MM-dd
+        String expectedPlanName = (parts.length > 1) ? parts[1].trim().toLowerCase() : null;
+
+        System.out.println("Looking for CANCELLED policy with end date: " + expectedDate +
+                (expectedPlanName != null ? " and plan name: " + expectedPlanName : ""));
 
         for (int i = 0; i < 10; i++) {
             List<WebElement> options = basicActions.getDriver().findElements(By.xpath(dropdownXpath));
 
             if (options.isEmpty() || i >= options.size()) {
-                System.out.println("Index out of bounds or no policies listed.");
+                System.out.println("No policies listed or index exceeded.");
                 break;
             }
 
             WebElement option = options.get(i);
-            String policyText = option.getText().trim();
-            System.out.println("🟡 Trying option " + i + ": " + policyText);
+            String optionText = option.getText().trim();
+            System.out.println("Trying option " + i + ": " + optionText);
             option.click();
 
-            basicActions.wait(500);
-            basicActions.waitForElementToBePresent(statusElement, 5);
+            basicActions.wait(1000); // Allow time for data to refresh
+
+            basicActions.waitForElementToBePresent(statusElement, 10);
             String status = statusElement.getText().trim();
-            System.out.println(" Status: " + status);
+            String uiEndDate = coverageEndDateElement.getText().trim();
+            String formattedDate = basicActions.changeDateFormat(uiEndDate, "MM/dd/yyyy", "yyyy-MM-dd");
 
-            if (status.equalsIgnoreCase("Cancelled") || status.equalsIgnoreCase("Disenroll_submitted")) {
-                String uiDate = coverageEndDateElement.getText().trim(); // e.g. 04/30/2025
-                String formattedDate = basicActions.changeDateFormat(uiDate, "MM/dd/yyyy", "yyyy-MM-dd");
-                System.out.println("End Date: " + formattedDate + " vs Expected: " + expectedDate);
+            String currentPlanText = currentPlanNameElement.getText().trim().toLowerCase();
 
-                if (formattedDate.equals(expectedDate)) {
-                    System.out.println("Matched policy found.");
-                    return true;
-                } else {
-                    System.out.println("End date doesn't match.");
-                }
-            } else {
-                System.out.println("Status is not Cancelled or Disenroll_submitted.");
+            boolean statusOk = status.equalsIgnoreCase("Cancelled") || status.equalsIgnoreCase("Disenroll_submitted");
+            boolean endDateMatches = formattedDate.equals(expectedDate);
+            boolean planNameMatches = expectedPlanName == null || currentPlanText.contains(expectedPlanName);
+
+            System.out.println("Status: " + status + ", Date: " + formattedDate + ", Plan Name: " + currentPlanText);
+
+            if (statusOk && endDateMatches && planNameMatches) {
+                System.out.println("Matching policy found.");
+                return true;
             }
 
-            reopenPolicyDropdown(dropdownElement, planType); // Prepare for next loop
+            if (!statusOk) System.out.println("Status does not match.");
+            if (!endDateMatches) System.out.println("End date does not match.");
+            if (!planNameMatches) System.out.println("Plan name does not match.");
+
+            reopenPolicyDropdown(dropdownElement, planType);
         }
 
         return false;
@@ -2721,15 +2733,20 @@ public class AdminPortalManagePlansPage {
         while (retry < 3) {
             basicActions.waitForElementToBePresentWithRetries(dropdownElement, 60);
             dropdownElement.click();
-            basicActions.wait(200);
-
+            basicActions.wait(300); // Wait for the dropdown to appear again
             List<WebElement> options = basicActions.getDriver().findElements(By.xpath(xpath));
-
             System.out.println("Retry " + retry + ": Reopened " + planType + " dropdown with " + options.size() + " option(s).");
+
+            if (!options.isEmpty()) {
+                break;
+            }
+
             retry++;
         }
 
-        System.out.println("Failed to reopen " + planType + " dropdown after 3 retries.");
+        if (retry >= 3) {
+            System.out.println("Failed to reopen " + planType + " dropdown after 3 retries.");
+        }
     }
 
     public void setPersonIds() {
