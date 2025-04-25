@@ -1946,31 +1946,6 @@ public class AdminPortalManagePlansPage {
         basicActions.wait(30);
         for (int i = 1; i <= memberList; i++) {
             WebElement actualField = getWebelement(fieldName,i);
-            switch (fieldName) {
-                case "APTC", "SES":
-                    actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='planAPTC_" + i + "']//input"));
-                    break;
-                case "premium":
-                    actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='premium_" + i + "']//input"));
-                    break;
-                case "financial end date":
-                    actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='financialEndDate_" + i + "']//input"));
-                    break;
-                case "financial start date":
-                    actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='financialStartDate_" + i + "']//input"));
-                    break;
-                case "coverage start date":
-                    actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageStartDate_" + i + "']//input"));
-                    break;
-                case "coverage end date":
-                    actualField = basicActions.getDriver().findElement(By.xpath("//div[@id='coverageEndDate_" + i + "']//input"));
-                    break;
-                case "termination reason":
-                    String terminate = "//*[@class='member-details-grid-item dropdown']";
-                    String terminateXpath = terminate + "[" + i + "]";
-                    actualField = basicActions.getDriver().findElement(By.xpath(terminateXpath));
-                    break;
-            }
             Assert.assertTrue(actualField != null && actualField.isEnabled(), "  Field not editable " + fieldName);
         }
     }
