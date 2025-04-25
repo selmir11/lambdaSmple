@@ -637,8 +637,8 @@ public class AdminPortalManagePlansPage {
     }
 
     public void clickMakeChangesDental() {
-        basicActions.waitForElementToBePresent(btnMakeChangeDental, 10);
-        basicActions.waitForElementToBeClickable(btnMakeChangeDental, 10);
+        basicActions.waitForElementToBePresent(btnMakeChangeDental, 60);
+        basicActions.waitForElementToBeClickable(btnMakeChangeDental, 60);
         btnMakeChangeDental.click();
         basicActions.waitForElementToBePresentWithRetries(CurrentPlanInfo, 60);
         basicActions.waitForElementToBePresentWithRetries(btnDentalSave, 60);
@@ -836,7 +836,7 @@ public class AdminPortalManagePlansPage {
         additionalReasonText.sendKeys("Testing");
         basicActions.waitForElementToBePresent(confirmChangesButton, 20);
         confirmChangesButton.click();
-        basicActions.wait(500);
+        basicActions.wait(700);
         softAssert.assertTrue(basicActions.waitForElementToBePresentWithRetries(chkMedical, 60));
         softAssert.assertAll();
     }
@@ -1149,7 +1149,6 @@ public class AdminPortalManagePlansPage {
         basicActions.scrollToElement(selectPolicyDropdownOptions);
 
         selectPolicyDropdownOptions.click();
-        basicActions.wait(50);
         basicActions.waitForElementListToBePresentWithRetries(medicalpolicyDropdownOptions, 60);
 
         for (int i = 0; i < medicalpolicyDropdownOptions.size(); i++) {
@@ -1196,13 +1195,12 @@ public class AdminPortalManagePlansPage {
     }
 
     public void selectPlansDenActivePolicy() {
-        basicActions.wait(500);
+        basicActions.wait(250);
         basicActions.waitForElementToBePresentWithRetries(selectDentalPolicyDropdownOptions, 60);
         basicActions.waitForElementToBePresentWithRetries(currentDentalPlanName, 60);
         basicActions.scrollToElement(selectDentalPolicyDropdownOptions);
 
         selectDentalPolicyDropdownOptions.click();
-        basicActions.wait(50);
         basicActions.waitForElementListToBePresentWithRetries(dentalpolicyDropdownOptions, 90);
 
         for (int i = 0; i < dentalpolicyDropdownOptions.size(); i++) {
