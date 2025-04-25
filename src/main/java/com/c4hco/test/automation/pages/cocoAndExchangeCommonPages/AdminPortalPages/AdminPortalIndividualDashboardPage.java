@@ -292,24 +292,6 @@ public class AdminPortalIndividualDashboardPage {
     WebElement dpdCurrentYearMP;
     @FindBy(xpath = "//app-individual-plans//app-drop-down-select//div[2]/div")
     List<WebElement> planYearSelectorOptions;
-    @FindBy(id = "coverage_1")
-    WebElement medicalPolicyDates;
-    @FindBy(id = "planName_1")
-    WebElement medicalPolicyName;
-    @FindBy(id = "firstNames_1")
-    WebElement medicalMemberName;
-    @FindBy(id = "totalResponsibleAmount_1")
-    WebElement medicalTotalResponsible;
-    @FindBy(id = "coverage_2")
-    WebElement dentalPolicyDates;
-    @FindBy(id = "planName_2")
-    WebElement dentalPolicyName;
-    @FindBy(id = "firstNames_2")
-    WebElement dentalMemberName;
-    @FindBy(id = "totalResponsibleAmount_2")
-    WebElement dentalTotalResponsible;
-    @FindBy(id = "totalPlanAmount")
-    WebElement totalResponsible;
     @FindBy(xpath = "//p[contains(text(),'There is no active policy data.')]")
     WebElement noActivePolicyTxt;
 

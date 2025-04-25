@@ -91,6 +91,8 @@ public class LoginPage {
     WebElement invalidLoginMessage;
     @FindBy(id = "user-type-selection")
     WebElement userIcon;
+    @FindBy(xpath = "//div[@id='inactivityDialog']//span")
+    WebElement automaticallyTimeOut;
     @FindBy(xpath = "//a[@id='user-type-selection']//p")
     List<WebElement> userIconDropdown;
 
@@ -571,6 +573,16 @@ public class LoginPage {
             default:
                 throw new IllegalArgumentException("Invalid option: " + language);
 
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateTheAutomaticallySignedOutMessageAppearIn(String language) {
+        basicActions.waitForElementToBePresent(automaticallyTimeOut,30);
+        if (language.equals("English")){
+            softAssert.assertEquals(automaticallyTimeOut.getText(),"You have been automatically signed out of your account due to inactivity");
+        }else{
+            softAssert.assertEquals(automaticallyTimeOut.getText(),"La sesi\u00F3n de su cuenta se cerr\u00F3 de forma autom\u00E1tica por inactividad.");
         }
         softAssert.assertAll();
     }

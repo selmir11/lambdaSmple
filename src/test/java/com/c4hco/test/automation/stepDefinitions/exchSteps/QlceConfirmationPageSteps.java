@@ -13,6 +13,7 @@ public class QlceConfirmationPageSteps {
     public void selectQlceType(String qlceOption){
         qlceConfirmationPage.selectQLCE(qlceOption);
     }
+
     @Then("I select {string} QLCE on tell us about life changes page for {string}")
     public void selectQLCEforMember(String qlceOption, String selectMember) {
         qlceConfirmationPage.selectQLCEforMember(qlceOption, selectMember);
@@ -47,4 +48,17 @@ public class QlceConfirmationPageSteps {
         qlceConfirmationPage.selectBirthOptionWithEventDate(firstDateOfCurrentMonth);
     }
 
+    @Then ("I select {string} on elgibility for pregnancy coverage")
+    public void iSelectForElgibilityForPregnancyCoverage(String elgibility) {
+        qlceConfirmationPage.selectElgibilityPregnancyCoverage(elgibility);
+    }
+
+    @Then ("I set pregnancy date {string} on elgibility for pregnancy coverage")
+    public void setFutureBirthEventDate(String eventDateType) {
+        qlceConfirmationPage.setFutureBirthEventDate(eventDateType);
+    }
+    @Then("I select this date {string} on elgibility for pregnancy coverage for {string}")
+    public void iSelectForElgibilityForPregnancyCoverageFor(String elgibility, String selectMember) {
+        qlceConfirmationPage.selectElgibilityPregnancyCoverageForMember(elgibility, selectMember);
+    }
 }

@@ -12,17 +12,20 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static com.c4hco.test.automation.utils.Race.getCodeForRace;
+
 
 public class TellUsAboutYourselfPage {
 
     private BasicActions basicActions;
     SoftAssert softAssert = new SoftAssert();
+
 
     public TellUsAboutYourselfPage(WebDriver webDriver) {
         basicActions = new BasicActions(webDriver);
@@ -102,20 +105,16 @@ public class TellUsAboutYourselfPage {
     @FindBy(id = "memberRelationship0")
     WebElement drpdwnRealtionship;
 
-    public void userPregnantQuestion(String Pregnant) {
-        switch (Pregnant){
-            case "No":
-                rdobtnPregnantNo.click();
-                break;
-            case "Yes":
-                rdobtnPregnantYes.click();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalide option: " + Pregnant);
 
-        }
+    @FindBy(xpath = "//*[@class = 'form-control']")
+    List<WebElement> drpdwnExpected;
 
-    }
+    @FindBy(xpath = "//*[@id='expectedDueDate']")
+    WebElement expectedDOB;
+
+    @FindBy(id="totalBabiesExpected")
+    WebElement babiesExpected;
+
     public void userSexQuestion(String Sex) {
         MemberDetails acctHolder = SharedData.getPrimaryMember();
         acctHolder.setGender(Sex);
@@ -398,4 +397,60 @@ public class TellUsAboutYourselfPage {
             }
         }
     }
+
+    public void userPregnantQuestion(String Pregnant) {
+        switch (Pregnant){
+            case "No":
+                rdobtnPregnantNo.click();
+                break;
+            case "Yes":
+                rdobtnPregnantYes.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + Pregnant);
+
+        }
+
+    }
+
+    public void iSelectNumberOfBabies(String babiesDue){
+        Select selectBabiesCount = new Select(babiesExpected);
+        selectBabiesCount.selectByVisibleText(babiesDue);
+    }
+
+
+    public void setPregnancyEventDate(String eventDateType) {
+        basicActions.waitForElementToBePresent(expectedDOB, 20);
+        expectedDOB.clear();
+        expectedDOB.click();
+        switch (eventDateType) {
+            case "First Date of Current Month":
+                expectedDOB.sendKeys(getFirstDateOfCurrentMonth());
+                break;
+            case "Last Date of Current Month":
+                expectedDOB.sendKeys(getLastDateOfCurrentMonth());
+                break;
+            case "Future Date":
+                expectedDOB.sendKeys(getFutureDate());
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + eventDateType);
+        }
+    }
+    public String getFirstDateOfCurrentMonth() {
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate firstDate = LocalDate.now().withDayOfMonth(1);
+        return dateFormat.format(firstDate);
+    }
+    public String getLastDateOfCurrentMonth() {
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate lastDate = LocalDate.now().withDayOfMonth(LocalDate.now().lengthOfMonth());
+        return dateFormat.format(lastDate);
+    }
+    public String getFutureDate() {
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate futureDate = LocalDate.now().plus(1, ChronoUnit.MONTHS);
+        return dateFormat.format(futureDate);
+    }
+
 }
