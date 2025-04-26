@@ -552,10 +552,15 @@ public class AdminPortalManagePlansPage {
 
     @FindBy(xpath = "//div[@class='medical-plan-container plan-container-fill']//div[@id='coverageEndDate_1']")
     WebElement coverageEndDateMedTxt;
-
     @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@id='coverageEndDate_1']")
     WebElement coverageEndDateDentTxt;
 
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[@class='two-column-twentyfive-row-container header-3']")
+    WebElement dentalPlanName;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[@class='two-column-twentyfive-row-container body-text-2']")
+    WebElement denCoverageData;
+    @FindBy(xpath = "//div[@class='dental-plan-container plan-container-fill']//div[@class='plan-summary']//div[@class='value-container body-text-1']")
+    WebElement denLatestApplicationDateData;
     @FindBy(xpath = "//div[contains(@id,'coverageStartDate')]/input")
     List<WebElement> inputAllCoverageStartDate;
 
@@ -585,6 +590,7 @@ public class AdminPortalManagePlansPage {
 
     @FindBy(xpath = "//div[contains(text(),'SES entered exceeds SES amount: ')]")
     WebElement SESExceedError;
+
 
     public void validateBluBar() {
         basicActions.waitForElementToBePresent(blueBarlinks, 20);
@@ -641,10 +647,31 @@ public class AdminPortalManagePlansPage {
         softAssert.assertAll();
     }
 
-    public void resetMakeChangeButtonsDisplayed() {
-        basicActions.waitForElementToBePresentWithRetries(btnMakeChangeMed, 60);
-        softAssert.assertEquals(btnMakeChangeMed.getText(), "Make Changes Medical");
-        softAssert.assertEquals(btnMakeChangeDental.getText(), "Make Changes Dental");
+    public void resetMakeChangeButtonsDisplayed(String planType) {
+        switch (planType){
+            case "Both":
+                basicActions.waitForElementToBePresentWithRetries(btnMakeChangeMed, 60);
+                softAssert.assertEquals(btnMakeChangeMed.getText(), "Make Changes Medical");
+                softAssert.assertEquals(btnMakeChangeDental.getText(), "Make Changes Dental");
+                break;
+            case "Medical":
+                basicActions.waitForElementToBePresentWithRetries(btnMakeChangeMed, 60);
+                softAssert.assertEquals(btnMakeChangeMed.getText(), "Make Changes Medical");
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(btnMakeChangeDental, 10));
+                break;
+            case "Dental":
+                basicActions.waitForElementToBePresentWithRetries(btnMakeChangeDental, 60);
+                softAssert.assertEquals(btnMakeChangeDental.getText(), "Make Changes Dental");
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(btnMakeChangeMed, 10));
+                break;
+            case "Neither":
+                basicActions.waitForElementToBePresentWithRetries(noPlanMessage, 60);
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(btnMakeChangeDental, 10));
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(btnMakeChangeMed, 10));
+                break;
+            default:
+                throw new IllegalArgumentException("Undefined Type: " + planType);
+        }
         softAssert.assertAll();
     }
 
@@ -656,7 +683,7 @@ public class AdminPortalManagePlansPage {
 
     public void clickMakeChangesMedical() {
         basicActions.waitForElementToBePresent(txtTitleManagePlans, 30);
-        basicActions.waitForElementToBePresent(btnMakeChangeMed, 10);
+        basicActions.waitForElementToBePresent(btnMakeChangeMed, 30);
         basicActions.waitForElementToBeClickable(btnMakeChangeMed, 10);
         btnMakeChangeMed.click();
         basicActions.waitForElementToBePresentWithRetries(CurrentPlanInfo, 60);
@@ -2869,6 +2896,23 @@ public class AdminPortalManagePlansPage {
         softAssert.assertAll();
     }
 
+    public void validateDentalFinancialTableDataOnSimplifiedViewOr(String rowSTG, String financialStartSTG, String financialEndSTG, String premiumSTG, String APTCSTG, String rowQA, String financialStartQA, String financialEndQA, String premiumQA, String APTCQA) {
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(rowNumberData.getText(), rowSTG);
+            softAssert.assertEquals(denFinancialStartDateFNTable.getText(), financialStartSTG);
+            softAssert.assertEquals(denFinancialEndDateFNTable.getText(), financialEndSTG);
+            softAssert.assertEquals(denPlanPremiumAmtFnTable.getText(), premiumSTG);
+            softAssert.assertEquals(denAPTCAmtFnTable.getText(), APTCSTG);
+        } else {
+            softAssert.assertEquals(rowNumberData.getText(), rowQA);
+            softAssert.assertEquals(denFinancialStartDateFNTable.getText(), financialStartQA);
+            softAssert.assertEquals(denFinancialEndDateFNTable.getText(), financialEndQA);
+            softAssert.assertEquals(denPlanPremiumAmtFnTable.getText(), premiumQA);
+            softAssert.assertEquals(denAPTCAmtFnTable.getText(), APTCQA);
+        }
+    softAssert.assertAll();
+    }
+
 
     public void validateFieldValuesNotChanged(String fieldName, DataTable memberDetails) {
 
@@ -2987,8 +3031,28 @@ public class AdminPortalManagePlansPage {
             softAssert.assertEquals(SESInvalidAmtError.getCssValue("color"), "rgba(150, 0, 0, 1)");
             softAssert.assertEquals(SESExceedError.getText(), SESExceedErr, "Message not match");
             softAssert.assertEquals(SESExceedError.getCssValue("color"), "rgba(150, 0, 0, 1)");
+
         }
         softAssert.assertAll();
+    }
+
+
+
+
+    public void validateSimplifyViewDentalData(String planNameSTG, String policyCoverageSTG, String latestApplicationDateSTG, String planNameQA, String policyCoverageQA, String latestApplicationDateQA) {
+        basicActions.switchtoactiveTab();
+        basicActions.waitForElementToBePresent(medPlanNameData, 5000);
+        if (SharedData.getEnv().equals("staging")) {
+            softAssert.assertEquals(dentalPlanName.getText(), planNameSTG);
+            softAssert.assertEquals(denCoverageData.getText(), policyCoverageSTG);
+            softAssert.assertEquals(denLatestApplicationDateData.getText(), latestApplicationDateSTG);
+            softAssert.assertAll();
+        } else {
+            softAssert.assertEquals(dentalPlanName.getText(), planNameQA);
+            softAssert.assertEquals(denCoverageData.getText(), policyCoverageQA);
+            softAssert.assertEquals(denLatestApplicationDateData.getText(), latestApplicationDateQA);
+            softAssert.assertAll();
+        }
     }
 
     public void validatePremiumNotEnabled( ) {

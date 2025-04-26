@@ -1,10 +1,12 @@
 @OPS
 Feature: Manage Plans: Buttons (positive and negative testing)
-  @SLER-838
-  Scenario: Verify user with role for Manage Plans will be able to make changes
+  Background:
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
+
+  @SLER-838
+  Scenario: Verify user with role for Manage Plans will be able to make changes
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin Portal search" page
     Then I enter an accountId in any Env "4007126206" "2425005563" to search user
@@ -19,7 +21,7 @@ Feature: Manage Plans: Buttons (positive and negative testing)
     And I validate title and labels on Manage page
     Then I check default year displays
     Then I verify both buttons Medical and Dental is checked
-    And I validate buttons displayed on Manage page
+    And I validate Make Changes button displayed for "Both" on Manage page
     Then I click Make Changes Medical button
     And I validate "Save" medical button displays on Manage page
     And I click Reset Changes Medical
@@ -29,9 +31,6 @@ Feature: Manage Plans: Buttons (positive and negative testing)
     And logout from Admin Portal
   @SLER-838
   Scenario: Verify user with no role for Manage Plans will be not able make changes
-    Given I open the login page on the "admin" portal
-    And I refresh the page
-    And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalSEReport_UN_STG" password "adminPortalSEReport_PW_STG" and "adminPortalSEReport_UN_QA" password "adminPortalSEReport_PW_QA"
     And I validate I am on the "Admin Portal search" page
     Then I enter an accountId in any Env "4007126206" "2425005563" to search user
@@ -51,9 +50,6 @@ Feature: Manage Plans: Buttons (positive and negative testing)
 
   @SLER-2420 @OPSRegression
   Scenario: OPS MP Current Med Container verification (order)[RT-2090]
-    Given I open the login page on the "admin" portal
-    And I refresh the page
-    And I validate I am on the "Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I select "individual" checkbox on Admin Portal Dashboard
@@ -107,8 +103,6 @@ Feature: Manage Plans: Buttons (positive and negative testing)
 
   @SLER-2433 @OPSRegression
   Scenario: OPS MP Simplified View Informational Components[RT-2529]
-    Given I open the login page on the "admin" portal
-    And I validate I am on the "Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I select "individual" checkbox on Admin Portal Dashboard
@@ -183,8 +177,6 @@ Feature: Manage Plans: Buttons (positive and negative testing)
 
   @SLER-2446 @OPSRegression
   Scenario: OPS MP Previous Dent Container verification (order)[RT-2101]
-    Given I open the login page on the "admin" portal
-    And I validate I am on the "Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I select "individual" checkbox on Admin Portal Dashboard
@@ -226,8 +218,6 @@ Feature: Manage Plans: Buttons (positive and negative testing)
 
   @SLER-2453 @OPSRegression
   Scenario: OPS MP Current Dent Container verification (order)s[RT-2099]
-    Given I open the login page on the "admin" portal
-    And I validate I am on the "Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I select "individual" checkbox on Admin Portal Dashboard
@@ -286,9 +276,6 @@ Feature: Manage Plans: Buttons (positive and negative testing)
 
   @SLER-2448
   Scenario: Verify Editable Fields on manage plan for 2021 and 2022 (med, den) [RT-2186]
-    Given I open the login page on the "admin" portal
-    And I refresh the page
-    And I validate I am on the "Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I select "individual" checkbox on Admin Portal Dashboard
@@ -360,9 +347,6 @@ Feature: Manage Plans: Buttons (positive and negative testing)
 
   @SLER-2452
   Scenario: Verify Editable Fields on manage plan for 2023 and 2024 (med, den) [RT-2189]
-    Given I open the login page on the "admin" portal
-    And I refresh the page
-    And I validate I am on the "Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I select "individual" checkbox on Admin Portal Dashboard
@@ -432,5 +416,95 @@ Feature: Manage Plans: Buttons (positive and negative testing)
     And I click Save Button Dental
     And I click on cancel button on confirm changes popup
     Then I click Reset Changes Dental
+    Then I close current tab and switch back to previous tab
+    Then I logout from Admin Portal
+
+
+  @SLER-980
+  Scenario: SLER-980 Edit Button Showing 2023
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+#    Both 2023
+    Then I enter an accountId in any Env "1003067571" "1000016976" to search user
+    And I click on Search button in AP dashboard page
+    And I click acct first row from Search Results table in admin portal
+    And I validate I am on the "Admin Portal individual dashboard" page
+    Then I click on "Manage Plans" user dashboard button
+    And I validate I am on the "Manage Plans" page
+    And I select the "2023" plan year on manage plan
+    And I validate Make Changes button displayed for "Both" on Manage page
+#  Med Only 2023
+    And I close current tab and switch back to previous tab
+    And I click Go Back on admin portal program manager dashboard
+    When I click on reset button on admin portal search page
+    Then I enter an accountId in any Env "1100010578" "1205056702" to search user
+    And I click on Search button in AP dashboard page
+    And I click acct first row from Search Results table in admin portal
+    And I validate I am on the "Admin Portal individual dashboard" page
+    Then I click on "Manage Plans" user dashboard button
+    And I validate I am on the "Manage Plans" page
+    And I select the "2023" plan year on manage plan
+    And I validate Make Changes button displayed for "Medical" on Manage page
+#  Dent Only 2023
+    And I close current tab and switch back to previous tab
+    And I click Go Back on admin portal program manager dashboard
+    When I click on reset button on admin portal search page
+    Then I enter an accountId in any Env "2697005072" "3009308680" to search user
+    And I click on Search button in AP dashboard page
+    And I click acct first row from Search Results table in admin portal
+    And I validate I am on the "Admin Portal individual dashboard" page
+    Then I click on "Manage Plans" user dashboard button
+    And I validate I am on the "Manage Plans" page
+    And I select the "2023" plan year on manage plan
+    And I validate Make Changes button displayed for "Dental" on Manage page
+#  Termed Both 2023
+    And I close current tab and switch back to previous tab
+    And I click Go Back on admin portal program manager dashboard
+    When I click on reset button on admin portal search page
+    Then I enter an accountId in any Env "1203027527" "1004096817" to search user
+    And I click on Search button in AP dashboard page
+    And I click acct first row from Search Results table in admin portal
+    And I validate I am on the "Admin Portal individual dashboard" page
+    Then I click on "Manage Plans" user dashboard button
+    And I validate I am on the "Manage Plans" page
+    And I select the "2023" plan year on manage plan
+    And I validate Make Changes button displayed for "Both" on Manage page
+#  Termed Med Only 2023
+    And I close current tab and switch back to previous tab
+    And I click Go Back on admin portal program manager dashboard
+    When I click on reset button on admin portal search page
+    Then I enter an accountId in any Env "1100010578" "1102046838" to search user
+    And I click on Search button in AP dashboard page
+    And I click acct first row from Search Results table in admin portal
+    And I validate I am on the "Admin Portal individual dashboard" page
+    Then I click on "Manage Plans" user dashboard button
+    And I validate I am on the "Manage Plans" page
+    And I select the "2023" plan year on manage plan
+    And I validate Make Changes button displayed for "Medical" on Manage page
+#  Termed Dent Only 2023
+    And I close current tab and switch back to previous tab
+    And I click Go Back on admin portal program manager dashboard
+    When I click on reset button on admin portal search page
+    Then I enter an accountId in any Env "2502000970" "7663211009" to search user
+    And I click on Search button in AP dashboard page
+    And I click acct first row from Search Results table in admin portal
+    And I validate I am on the "Admin Portal individual dashboard" page
+    Then I click on "Manage Plans" user dashboard button
+    And I validate I am on the "Manage Plans" page
+    And I select the "2023" plan year on manage plan
+    And I validate Make Changes button displayed for "Dental" on Manage page
+#  No 2023
+    And I close current tab and switch back to previous tab
+    And I click Go Back on admin portal program manager dashboard
+    When I click on reset button on admin portal search page
+    Then I enter an accountId in any Env "1103027791" "6409150727" to search user
+    And I click on Search button in AP dashboard page
+    And I click acct first row from Search Results table in admin portal
+    And I validate I am on the "Admin Portal individual dashboard" page
+    Then I click on "Manage Plans" user dashboard button
+    And I validate I am on the "Manage Plans" page
+    And I select the "2023" plan year on manage plan
+    And I validate Make Changes button displayed for "Neither" on Manage page
+
     Then I close current tab and switch back to previous tab
     Then I logout from Admin Portal
