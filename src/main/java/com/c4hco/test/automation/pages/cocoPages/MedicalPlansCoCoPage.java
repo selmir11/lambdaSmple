@@ -45,8 +45,20 @@ public class MedicalPlansCoCoPage {
     @FindBy(id = "PlanResults-ResetFilters")
     WebElement filterResetButton;
 
-    @FindBy(xpath = "//*[id ='PlanResults-MetalTier']")
-    WebElement metalTierDropdown;
+    //@FindBy(xpath = "//*[@id ='PlanResults-MetalTier']")
+    //WebElement metalTierDropdown;
+    @FindBy(xpath = "//*[@class='fas fa-chevron-down']")
+    List<WebElement> tierDropdown;
+
+    @FindBy(xpath = "//*[@id='PlanResults-MetalTier_0-input']")
+    WebElement bronzeBox;
+
+    @FindBy(xpath = "//*[@id='PlanResults-MetalTier_1-input']")
+    WebElement silverBox;
+    @FindBy(xpath = "//*[@id='PlanResults-MetalTier_2-input']")
+    WebElement goldBox;
+    @FindBy(xpath = "//*[@id='PlanResults-MetalTier_3-input']")
+    WebElement platinumBox;
 
     @FindBy(id = "PlanResults-PlanCompareCheckbox_1")
     WebElement selectFirstComparebox;
@@ -156,8 +168,8 @@ public class MedicalPlansCoCoPage {
 
     public void clickMetalTierDropdown() {
         basicActions.waitForElementToDisappear(spinner, 10);
-        basicActions.waitForElementToBePresentWithRetries(metalTierDropdown, 120);
-        metalTierDropdown.click();
+        basicActions.waitForElementListToBePresentWithRetries( tierDropdown, 120);
+        tierDropdown.get(4).click();
 
     }
 
@@ -168,19 +180,27 @@ public class MedicalPlansCoCoPage {
     }
 
     public void selectfromMetalTierList(String Selecting) {
-        basicActions.waitForElementToBePresentWithRetries( metalTierDropdown, 60);
+        basicActions.waitForElementToBePresentWithRetries( bronzeBox, 60);
         switch(Selecting){
             case "Bronze":
-                basicActions.getDriver().findElement(By.id("PlanResults-MetalTier_0-input")).click();
+                basicActions.waitForElementToBePresentWithRetries( bronzeBox, 20);
+                bronzeBox.click();
+                //basicActions.getDriver().findElement(By.id("PlanResults-MetalTier_0-input")).click();
                 break;
             case "Silver":
-                basicActions.getDriver().findElement(By.id("PlanResults-MetalTier_1-input")).click();
+                basicActions.waitForElementToBePresentWithRetries( silverBox, 20);
+                silverBox.click();
+                //basicActions.getDriver().findElement(By.id("PlanResults-MetalTier_1-input")).click();
                 break;
             case "Gold":
-                basicActions.getDriver().findElement(By.id("PlanResults-MetalTier_2-input")).click();
+                basicActions.waitForElementToBePresentWithRetries( goldBox, 20);
+                goldBox.click();
+                //basicActions.getDriver().findElement(By.id("PlanResults-MetalTier_2-input")).click();
                 break;
             case "Platinum":
-                basicActions.getDriver().findElement(By.id("PlanResults-MetalTier_3-input")).click();
+                basicActions.waitForElementToBePresentWithRetries( platinumBox, 20);
+                platinumBox.click();
+                //basicActions.getDriver().findElement(By.id("PlanResults-MetalTier_3-input")).click();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + Selecting);}

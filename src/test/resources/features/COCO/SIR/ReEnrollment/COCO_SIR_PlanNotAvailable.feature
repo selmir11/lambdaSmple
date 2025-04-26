@@ -1,13 +1,12 @@
 @COCOSIR @SIR-COCOX
- #SLCR-9xx, SLCR-9xx
+ #SLCR-938, SLCR-939
 Feature: Shopping Page - Continue and Go back funtionality
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
 
-
-  @SLCR-9xx @planNotAvailableOnePerson
-  Scenario: SLCR-9xx This will enroll an adult and validate the no plan available label on the 2nd enrollment - Plan Results page
+  @SLCR-938 @planNotAvailableOnePerson
+  Scenario: SLCR-938 This will enroll an adult and validate the no plan available label on the 2nd enrollment - Plan Results page
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -76,7 +75,7 @@ Feature: Shopping Page - Continue and Go back funtionality
     Then I validate I am on the "Medical Plan Results" page
     And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
-    Then I validate I am on the "planSummaryMedicalDental" page
+    Then I validate I am on the "Plan Summary" page
     And I click continue on coco plan summary page
 
     Then I validate I am on the "Enrollment Agreements" page
@@ -162,8 +161,8 @@ Feature: Shopping Page - Continue and Go back funtionality
     And I click on Sign Out in the Header for "Portal"
 
 
-  @SLCR-xxx @@planNotAvailableTwoPerson
-  Scenario: SLCR-927 - This will create Family of 2 members - couple - edit group
+  @SLCR-939 @@planNotAvailableTwoPerson
+  Scenario: SLCR-939 - This will create Family of 2 members - couple
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
@@ -260,36 +259,10 @@ Feature: Shopping Page - Continue and Go back funtionality
     Then I click continue on coco start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
-    Then I click on edit enrollment groups link in coco page
-
-    Then I validate I am on the "Edit Grouping Members Medical" page
-    Then I create new group in edit medical grouping coco page and drag members to the new group
-      | Primary:Group1 |
-      | Spouse:Group2    |
-    Then I click save button to save the groups in CoCo Page
-    And I validated message on success enrollment grouping pop-up in CoCo Page
-    Then I click on continue button on success pop-up in CoCo Page
-
-    Then I validate I am on the "Grouping Members Medical" page
     Then I click continue on grouping Members Medical coco page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I wait for 2000 milliseconds
-    And I select the COCO Metal Tier dropdown
-    And I wait for 2000 milliseconds
-    And I select "Silver" to filter for a  COCO Metal Tier plan
-    And I validate the COCO plan option 1 has text "Cigna Connect Colorado Option Silver Off Exchange"
-    And I select "Cigna Connect Colorado Option Silver Off Exchange" coco medical plan
-    Then I click Continue on the Medical Plans Page CoCo
-
-    Then I validate I am on the "Medical Plan Results" page
-    And I wait for 2000 milliseconds
-    And I select the COCO Metal Tier dropdown
-    And I wait for 2000 milliseconds
-    And I select "Bronze" to filter for a  COCO Metal Tier plan
-    And I select "Cigna Healthcare" to filter for desired COCO plan provider
-    And I validate the COCO plan option 1 has text "Cigna Connect Colorado Option Bronze"
-    And I select "Cigna Connect Colorado Option Bronze" coco medical plan
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" coco medical plan
     Then I click Continue on the Medical Plans Page CoCo
 
     Then I validate I am on the "Plan Summary" page
@@ -313,6 +286,31 @@ Feature: Shopping Page - Continue and Go back funtionality
 
     Then I validate I am on the "CoCo Family Overview" page
     Then I click EditUpdate on Family Overview page for "Primary"
+
+    Then I validate I am on the "Tell us about yourself" page
+    Then I click Save and Continue only on the tell us about yourself page
+
+    Then I validate I am on the "CoCo Additional information for yourself" page
+    And I update my residential address "1234 test road", "Telluride", "CO", "81435", "San Miguel"
+    And I click continue on the Add info for yourself page
+
+    Then I validate I am on the "Race and Ethnicity" page
+    And I click save and continue on the Race and Ethnicity page
+
+    Then I validate I am on the "CoCo Employment Income" page
+    And I click continue on the Employment income page
+
+    Then I validate I am on the "CoCo Additional Income" page
+    And I select continue on the Additional Income CoCO page
+
+    Then I validate I am on the "CoCo Deductions" page
+    And I select continue on the Deductions CoCo page
+
+    Then I validate I am on the "CoCo Income Summary" page
+    And I select continue on the income Summary CoCo page
+
+    Then I validate I am on the "CoCo Family Overview" page
+    Then I click EditUpdate on Family Overview page for "Spouse"
 
     Then I validate I am on the "Tell us about yourself" page
     Then I click Save and Continue only on the tell us about yourself page
