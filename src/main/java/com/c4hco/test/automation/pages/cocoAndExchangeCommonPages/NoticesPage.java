@@ -31,7 +31,7 @@ public class NoticesPage {
     WebElement loginMail;
     @FindBy(xpath = "//input[@type='password']")
     WebElement passwordEmail;
-    @FindBy(xpath = "//button[@type='submit']")
+    @FindBy(xpath = "//input[@type='submit']")
     WebElement nextButton;
     @FindAll({
             @FindBy(id = "declineButton"),
@@ -118,6 +118,8 @@ public class NoticesPage {
     WebElement resetPWLink;
     @FindBy(xpath = "//*[@id='x_passwordResetConfirmationBody']/p")
     List<WebElement> bodyConfirmationPW;
+    @FindBy(xpath = "//*[@id='x_agencyAddsAuthorizedRepNoticeBody']/p")
+    List<WebElement> adminStaffAG00102body;
 
     @FindBy(id = "x_policyInformation")
     WebElement policyinformation;
@@ -203,6 +205,7 @@ public class NoticesPage {
 
 
     public String MFACode = "";
+    public String customerServiceHours = "Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m.";
 
     public void openOutlookTab() {
         JavascriptExecutor jse = (JavascriptExecutor) basicActions.getDriver();
@@ -505,6 +508,9 @@ public class NoticesPage {
             case "AM-013-01 Admin Staff":
                 VerifyTheNoticeTextAM01301("Admin Staff");
                 break;
+            case "AG-001-02":
+                VerifyTheNoticeTextAG00102();
+                break;
             default:
                 throw new IllegalArgumentException("Invalid option: " + language + noticeNumber);
         }
@@ -550,7 +556,7 @@ public class NoticesPage {
         softAssert.assertEquals(bodyTextBN002A01.get(1).getText(), "Individual Contact Information:");
         softAssert.assertEquals(bodyTextBN002A01.get(2).getText(), "Email: " + SharedData.getPrimaryMember().getEmailId());
         softAssert.assertEquals(bodyTextBN002A01.get(3).getText(), "Phone Number: " + formatedPhoneNumber);
-        softAssert.assertEquals(bodyTextBN002A01.get(4).getText(), "If you have questions regarding this update or feel that these changes were not authorized, please call the Colorado Connect\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m. .");
+        softAssert.assertEquals(bodyTextBN002A01.get(4).getText(), "If you have questions regarding this update or feel that these changes were not authorized, please call the Colorado Connect\u00AE " + customerServiceHours + " .");
         softAssert.assertAll();
     }
 
@@ -562,7 +568,7 @@ public class NoticesPage {
         softAssert.assertEquals(bodyTextBN002A01.get(1).getText(), "Individual Contact Information:");
         softAssert.assertEquals(bodyTextBN002A01.get(2).getText(), "Email: " + SharedData.getPrimaryMember().getEmailId());
         softAssert.assertEquals(bodyTextBN002A01.get(3).getText(), "Phone Number: " + formattedPhoneNumber);
-        softAssert.assertEquals(bodyTextBN002A01.get(4).getText(), "If you have questions regarding this update or feel that these changes were not authorized, please call the Connect for Health Colorado\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m. .");
+        softAssert.assertEquals(bodyTextBN002A01.get(4).getText(), "If you have questions regarding this update or feel that these changes were not authorized, please call the Connect for Health Colorado\u00AE " + customerServiceHours + " .");
         softAssert.assertAll();
     }
 
@@ -570,7 +576,7 @@ public class NoticesPage {
         softAssert.assertEquals(brokerNameBN002A0102.getText(), SharedData.getAgencyOwner().getBroker_name());
         softAssert.assertEquals(bodyTextBN002A02.getText(), SharedData.getPrimaryMember().getFullName() + " has asked that you no longer work on his or her behalf to purchase insurance through Colorado Connect\u00AE.");
 
-        softAssert.assertEquals(brokerErrorStatementBN002A0102.getText(), "If you have questions regarding this update or feel that these changes were not authorized, please call the Colorado Connect\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m.");
+        softAssert.assertEquals(brokerErrorStatementBN002A0102.getText(), "If you have questions regarding this update or feel that these changes were not authorized, please call the Colorado Connect\u00AE " + customerServiceHours);
         softAssert.assertAll();
     }
 
@@ -578,7 +584,7 @@ public class NoticesPage {
         softAssert.assertEquals(brokerNameBN002A0102.getText(), SharedData.getAgencyOwner().getBroker_name());
         softAssert.assertEquals(bodyTextBN002A02.getText(), SharedData.getPrimaryMember().getFullName() + " has asked that you no longer work on his or her behalf to purchase insurance through Connect for Health Colorado\u00AE.");
 
-        softAssert.assertEquals(brokerErrorStatementBN002A0102.getText(), "If you have questions regarding this update or feel that these changes were not authorized, please call the Connect for Health Colorado\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m.");
+        softAssert.assertEquals(brokerErrorStatementBN002A0102.getText(), "If you have questions regarding this update or feel that these changes were not authorized, please call the Connect for Health Colorado\u00AE " + customerServiceHours);
         softAssert.assertAll();
     }
 
@@ -668,6 +674,18 @@ public class NoticesPage {
         softAssert.assertEquals(bodyTextAM01301.get(1).getText(), "If you have questions regarding your account or feel these changes were not authorized, please call the Connect for Health Colorado\u00AE Customer Service Center at 855-752-6749 (TTY:855-695-5935) Monday - Friday 8:00a.m. - 6:00p.m.");
         softAssert.assertAll();
 
+    }
+
+    private void VerifyTheNoticeTextAG00102(){
+        String currentDate = basicActions.changeDateFormat(basicActions.getTodayDate(), "MM/dd/yyyy", "MMMM d, yyyy");
+        softAssert.assertEquals(individualEmailBN002A0304.getText(), SharedData.getAdminStaff().getEmail());
+        softAssert.assertEquals(adminStaffAG00102body.get(0).getText(), "Welcome to Connect for Health Colorado\u00AE. Our records indicate that you were identified as an Authorized User for Arrow Head Agency on " + currentDate + ".");
+        softAssert.assertEquals(adminStaffAG00102body.get(1).getText(), "Please log in to your account and enter the Invitation Code. If you do not have an account, you can create an account by clicking the link below and selecting \"Administrative Staff\" as your role. Once you have created your account, you will enter the invitation code when completing your profile.");
+        softAssert.assertEquals(adminStaffAG00102body.get(2).getText(), "Invitation Code: " +SharedData.getAdminStaff().getAdminStaffInviteCode());
+        softAssert.assertEquals(adminStaffAG00102body.get(3).getText(), "Create an account https://" + SharedData.getEnv() + "-aws.connectforhealthco.com/broker-portal/landing");
+        softAssert.assertEquals(adminStaffAG00102body.get(4).getText(), "If you believe that you've received this notice in error or if you have additional questions, please call the Connect for Health Colorado\u00AE " + customerServiceHours + " .");
+        softAssert.assertEquals(adminStaffAG00102body.get(5).getText(), "For additional information about your account, please contact the primary agency representative.");
+        softAssert.assertAll();
     }
 
     private void VerifyTheNoticeTextBN002A04(String language) {
@@ -1011,8 +1029,8 @@ public class NoticesPage {
 
     public void VerifyTheNoticeTextAM01603() {
         softAssert.assertTrue(bodyText1603.get(1).getText().contains("Your Login ID for Connect for Health Colorado\u00AE is: "));
-        softAssert.assertEquals(bodyText1603.get(2).getText(), "If you didn't request to have your Login ID emailed to you, please call the Connect for Health Colorado\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m.");
-        softAssert.assertEquals(bodyText1603part2.getText(), "If you have questions regarding this update or feel that these changes were not authorized, please call the Connect for Health Colorado\u00AE Broker Customer Service Center at 1-855-426-2765 Monday - Friday 8:00a.m. - 6:00p.m. Saturdays and Holidays 8:00a.m. - 5:00p.m.");
+        softAssert.assertEquals(bodyText1603.get(2).getText(), "If you didn't request to have your Login ID emailed to you, please call the Connect for Health Colorado\u00AE " + customerServiceHours);
+        softAssert.assertEquals(bodyText1603part2.getText(), "If you have questions regarding this update or feel that these changes were not authorized, please call the Connect for Health Colorado\u00AE " + customerServiceHours);
         softAssert.assertAll();
     }
 

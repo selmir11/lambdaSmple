@@ -1,7 +1,10 @@
 Feature: Initial Application Single Applicant(Silver Enhanced)
 
-  @SLCR-297-WIP
+  @SLCR-297 @SLCR-933 @SLCR-934 @SLCR-935 @SLCR-936 @pol_coco_passed
   Scenario: COCO Initial Application - Single Applicant (Silver Enhanced)
+    Given I set the test scenario details in coco
+      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 1           | 1            | 1                 | 1                | 1               |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -24,7 +27,7 @@ Feature: Initial Application Single Applicant(Silver Enhanced)
     And I select "Yes" for live in Colorado option
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Race and Ethnicity" page
-    And I select "White or European" for race and ethnicity for "Primary"
+    And I select "White or European" for race and ethnicity option for "Primary"
     And I click continue on the Race and Ethnicity page
     And I select "Yes" employment option
     And I enter "19,000.00" income amount
@@ -51,12 +54,13 @@ Feature: Initial Application Single Applicant(Silver Enhanced)
     And I click Continue on the Application Results Page CoCo
     Then I validate I am on the "Start Shopping" page
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+    And I get the application id from the url from tobacco page coco
     Then I click continue on coco start shopping page
     Then I validate I am on the "Medical Plan Results" page
     And I select or skip the medical plans for groups on medical plan page
       | Group 1:Cigna Connect Colorado Option Bronze |
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I set medical premium amount
+    And I set "Medical" Plans premium amount
     And I click continue on coco plan summary page
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox CoCo
@@ -66,9 +70,9 @@ Feature: Initial Application Single Applicant(Silver Enhanced)
     Then I click all done from payment portal page coco
     Then I validate I am on the "CoCo Welcome" page
 
-    And I click on "My Documents and Letters" link on welcome page
-    And I click on download "EN-002-04" document
-
+#    And I click on "My Documents and Letters" link on welcome page
+#    And I click on download "EN-002-04" document
+#
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "(EN-002-04)" in "English"
@@ -81,9 +85,32 @@ Feature: Initial Application Single Applicant(Silver Enhanced)
     And I select year "Current Year" from My Current Plan container
     And I Validate the correct enrolled plans are displayed on coco welcome page
     And I click on "My Plans" link on welcome page
-    And I validate enrolled medical plans details on my policies page coco
-    And I click view Plan History link from medical plan card in coco
-    And I validate medical plan details from plan history in coco
+    Then I click on Future Plans CoCo
+    Then I validate enrolled medical plans on future plans tab in COCO
     And I click on Sign Out in the Header for "Elmo"
-    And I validate "medical" entities from policy tables
+
+    And I validate "SUBMITTED" policy table entities for groups in COCO
     And I verify the policy data quality check with Policy Ah keyset size 1
+    And I validate Medical entities for groups from COCO pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code |addl_maint_reason  | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the coco ob834 medical file data
+
+    And I upload all the "medical" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+   # Ib999 DB Validation
+    And I validate "medical" entities from ib999_details db table
+    And I download the "medical" ib999 files from sftp server with location "/archive/INBOUND999/"
+    And I validate the ib999 "medical" file data
+       #Ib834
+    And I validate coco ib834 file for groups
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
+      | 021                   | 021                | 28                    | CONFIRM           |
+    And I download the "medical" ib834 file from sftp server location "/archive/inboundedi/"
+    And I validate coco Ib834 file data
+
+#  Ob999
+    And I validate "medical" entities from ob999_details db table
+    And I download the "medical" ob999 file from sftp server with location "/outbound999/"
+    And I validate the ob999 "medical" file data
+

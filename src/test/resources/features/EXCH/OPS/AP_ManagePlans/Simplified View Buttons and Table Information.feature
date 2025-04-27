@@ -15,7 +15,7 @@ Feature: Manage Plans:Simplified view buttons and tables data
     And I select the "2023" plan year on manage plan
     Then I validate title and labels on Manage page
     And I validate simplified plans "Medical Plan:" and "Dental Plan:" and labels on Manage page
-    Then I validate buttons displayed on Manage page
+    And I validate Make Changes button displayed for "Both" on Manage page
     Then I verify both buttons Medical and Dental is checked
     Then I click Make Changes Medical button
     And I validate "Save" medical button displays on Manage page

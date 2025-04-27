@@ -33,6 +33,7 @@ public class PDF {
 
     // PDF Checking
     public void validateEntirePDF(String pdfExpected) throws IOException {
+        SoftAssert softAssert = new SoftAssert();
         // Validate static and dynamic PDFs
         boolean isStaticValid = validateStaticPDF(pdfExpected);
         boolean isDynamicValid = validateDynamicPDFText();

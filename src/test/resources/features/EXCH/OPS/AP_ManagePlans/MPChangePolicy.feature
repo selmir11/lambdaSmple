@@ -17,7 +17,7 @@ Feature: Manage Plans:Current Dent Container verification (order)
     And I check default year displays
     Then I verify Years in dropdown starting from "2021" as expected
     And I select the "2022" plan year on manage plan
-    Then I validate buttons displayed on Manage page
+    And I validate Make Changes button displayed for "Both" on Manage page
 
     #both plan MEDICAL AND DENTAL
     And I verify both buttons Medical and Dental is checked
