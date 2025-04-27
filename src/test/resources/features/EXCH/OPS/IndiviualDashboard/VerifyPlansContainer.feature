@@ -16,6 +16,7 @@ Feature: Verify Plans Container Ind Dash
     Then I verify Plan container for year "2025" against the DB on the Individual dashboard
 #  2024 Plan Container
     And I select year "2024" from Manage Plan container on Individual dashboard
+  And I wait for 9000 milliseconds
     Then I verify Plan container for year "2024" against the DB on the Individual dashboard
 #  2023 Plan Container
     And I click Go Back on admin portal program manager dashboard

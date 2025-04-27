@@ -125,7 +125,7 @@ Feature: Seed09exception - Exchange
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
     Then I validate I am on the "Medical Plan Results" page
-    Then I select "KP Select CO Bronze 8500/50" medical plan
+    Then I select "KP Select CO Catastrophic " medical plan
     Then I click continue on medical plan results page
     And I validate I am on the "Dental Plan Results" page
     And I select "Cigna Dental Pediatric" plan
@@ -166,7 +166,7 @@ Feature: Seed09exception - Exchange
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-2032_WIP
+  @SLER-2032 @pol_exch_passed
   Scenario: RT-2263 ENR-EXCH: DEMOGRAPHIC CHANGE - CHANGE RESPONSIBLE PERSON CONTACT INFORMATION
 
     Given I open the login page on the "login" portal

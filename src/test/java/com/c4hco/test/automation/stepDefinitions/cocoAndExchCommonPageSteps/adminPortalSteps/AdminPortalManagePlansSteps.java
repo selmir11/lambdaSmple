@@ -34,9 +34,9 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.verifyButtonsCheckedBoth();
     }
 
-    @And("I validate buttons displayed on Manage page")
-    public void iResetMakeChangeButtonsDisplayed() {
-        adminPortalManagePlansPage.resetMakeChangeButtonsDisplayed();
+    @And("I validate Make Changes button displayed for {string} on Manage page")
+    public void iResetMakeChangeButtonsDisplayed(String planType) {
+        adminPortalManagePlansPage.resetMakeChangeButtonsDisplayed(planType);
     }
     @And("I validate {string} medical button displays on Manage page")
     public void iVerifySaveButtonDisplayed(String saveMed) {
@@ -151,9 +151,9 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.UpdateMyAccount_idAnyEnv(stgAccountId,qaAccountId);
     }
 
-    @Then("I validate the text of the Medical Dental container")
-    public void iValidateTheTextOfTheMedicalDentalContainer() {
-        adminPortalManagePlansPage.validateTheTextOfTheMedicalContainer();
+    @Then("I validate the {string} text of {string} plan summary container on Manage Plans")
+    public void iValidateMedicalDentalPlanSummary(String textType, String planType) {
+        adminPortalManagePlansPage.validateMedicalDentalPlanSummary(textType, planType);
     }
     @Then("I select the {int} {string} policy Plan")
     public void iSelectThePolicyPlan(int policyNumber, String planType) {
@@ -428,9 +428,9 @@ public class AdminPortalManagePlansSteps {
     @Then("I verify {string} plan type is showing on Manage Plans page")
     public void iVerifyPlanTypeShow(String planType) {adminPortalManagePlansPage.verifyPlanTypeShow(planType);}
 
-    @Then("I verify plan name and policy coverage dates are visible")
-    public void iVerifyPlanNameAndPolicyCoverageDatesAreVisible() {
-        adminPortalManagePlansPage.verifyPlanNameAndPolicyCoverageDisplayed();
+    @Then("I verify plan name and policy coverage dates are visible for {string}")
+    public void iVerifyPlanNameAndPolicyCoverageDatesAreVisibleFor(String planType) {
+        adminPortalManagePlansPage.verifyPlanNameAndPolicyCoverageDisplayed(planType);
     }
 
     @Then("I verify page texts of all labels of {string} plan")
@@ -458,9 +458,9 @@ public class AdminPortalManagePlansSteps {
         adminPortalManagePlansPage.verifyFontColorEtcOfContainerElements();
     }
 
-    @Then("I verify color font size of medical plan container")
+    @Then("I verify color font size of medical_or_dental plan container")
     public void iVerifyColorFontSizeOfMedicalPlanContainer() {
-        adminPortalManagePlansPage.verifyFontColorEtcOfMedicalPlanContainer();
+        adminPortalManagePlansPage.verifyFontColorEtcOfMedicalOrDentalPlanContainer();
     }
 
     @Then("I verify previous_Financial_Periods - Medical_Or_Dental text labels")
@@ -477,7 +477,6 @@ public class AdminPortalManagePlansSteps {
     public void iVerifyExpandAndCollapseAllFinancialPeriodsWithinThePreviousFinancialPeriod() {
         adminPortalManagePlansPage.verifyExpandAndCollapsesWithinThePFP();
     }
-
     @Then("I validate previous financial year style properties on manage plan")
     public void iValidatePreviousFinancialYearStylePropertiesOnManagePlan() {
         adminPortalManagePlansPage.validatePreviousFinancialStyleProperties();
@@ -490,7 +489,26 @@ public class AdminPortalManagePlansSteps {
 
     @Then("I verify green bar for more financial period")
     public void iVerifyGreenBarForMoreFinancialPeriod() {
-        adminPortalManagePlansPage.verifyGreenBarForMoreFinancialPeriods();
+        adminPortalManagePlansPage.verifyGreenBarForMoreFinancialPeriods();}
+    @Then("I validate the no previous financial period medical on manage plan")
+    public void iValidateTheNoPreviousFinancialPeriodMedicalOnManagePlan() {
+        adminPortalManagePlansPage.checkPreviousFinancialMedical();
+    }
+
+    @Then("I validate the no previous financial period dental on manage plan")
+    public void iValidateTheNoPreviousFinancialPeriodDentalOnManagePlan() {
+        adminPortalManagePlansPage.checkPreviousFinancialDentalMessage();
+    }
+
+    @And("I check dental plan name: {string} {string} {string} or plan name: {string} {string} {string}")
+    public void iCheckDentalPlanNameOrPlanName(String planNameSTG, String policyCoverageSTG, String latestApplicationDateSTG, String planNameQA, String policyCoverageQA, String latestApplicationDateQA) {
+        adminPortalManagePlansPage.validateSimplifyViewDentalData(planNameSTG, policyCoverageSTG, latestApplicationDateSTG, planNameQA, policyCoverageQA, latestApplicationDateQA);
+    }
+
+    @And("I validate Dental financial table data on Simplified View {string}, {string}, {string}, {string}, {string} or {string}, {string}, {string}, {string}, {string}")
+    public void iValidateDentalFinancialTableDataOnSimplifiedViewOr(String rowSTG, String financialStartSTG, String financialEndSTG, String premiumSTG, String APTCSTG, String rowQA, String financialStartQA, String financialEndQA, String premiumQA, String APTCQA) {
+        adminPortalManagePlansPage.validateDentalFinancialTableDataOnSimplifiedViewOr( rowSTG, financialStartSTG, financialEndSTG, premiumSTG, APTCSTG, rowQA, financialStartQA, financialEndQA, premiumQA, APTCQA);
+
     }
 
     @And("I select {string} Show Financial Period for policy {int} on Manage Plans page")
@@ -551,4 +569,86 @@ public class AdminPortalManagePlansSteps {
 
     @Then("I validate the Person ID didn't change on manage plan page")
     public void iValidatePersonIdsUnchanged() {adminPortalManagePlansPage.validatePersonIdsUnchanged();}
+
+    @Then("I verify plan name and policy coverage dates are visible for Previous_Financial_Periods medical_or_dental")
+    public void iVerifyPlanNameAndPolicyCoverageDatesAreVisibleForPrevious_Financial_PeriodsFor() {
+        adminPortalManagePlansPage.verifyPlanNameAndPolicyCoverageDatesAreVisibleForPreviousFinancialPeriods();
+    }
+
+    @Then("I update manage plan editable fields")
+    public void iUpdateManagePlanEditableFieldsForMember(DataTable data){
+        adminPortalManagePlansPage.updateAllEditableFields(data);
+    }
+
+    @Then("I verify fields are editable on Manage plan for {int} member")
+    public void iVerifyFieldsAreEditableOnManagePlanForMember(int memberCount) {
+        adminPortalManagePlansPage.verifyMPEditableFields(memberCount);
+    }
+
+    @And("I click on cancel button on confirm changes popup")
+    public void iClickOnCancelButtonOnConfirmChangesPopup() {
+        adminPortalManagePlansPage.clickCancelOnConfirm();
+    }
+
+    @Then("I verify edit {string} with value {string} for all members")
+    public void iEditWithValue(String editInputTextBoxName, String inputValue) {
+        adminPortalManagePlansPage.verifyEditGridItems(editInputTextBoxName,inputValue);
+    }
+
+    @Then("I verify options are getting selected from termination reason drop down for all members")
+    public void iVerifyOptionsAreGettingSelectedFromTerminationReasonDropDown() {
+        adminPortalManagePlansPage.verifyOptionsGettingSelectedFromTerminationReasonDropDown();
+    }
+
+    @Then("I verify {string} values not changed on manage plan")
+    public void iVerifyFieldValuesNotChangedOnManagePlan(String fieldName, DataTable data) {
+        adminPortalManagePlansPage.validateFieldValuesNotChanged(fieldName,data);
+    }
+
+    @Then("I update the {string} value using copy paste")
+    public void iUpdateTheSESValueUsingCopyPasteFor(String field,DataTable memberpremiumList ) {
+        adminPortalManagePlansPage.updateCopyPasteValue(field,memberpremiumList);
+    }
+
+    @Then("I validate SES error message in Red color with value")
+    public void iValidateSESErrorMessageInRedColorWithValue(DataTable data) {
+        adminPortalManagePlansPage.validateSESErrorWithColor(data);
+    }
+
+    @Then("I validate error message in Red color for date fields")
+    public void iValidateCoverageDateErrorMessageInRedColor(String data) {
+        adminPortalManagePlansPage.validateErrorWithColor(data);
+    }
+
+    @Then("I verify premium field is Non editable on Manage plan")
+    public void iVerifyPremiumFieldIsNonEditableOnManagePlanForMember( ) {
+        adminPortalManagePlansPage.validatePremiumNotEnabled();
+    }
+
+    @Then("I verify SES field is Non editable on Manage plan")
+    public void iVerifySESFieldIsNonEditableOnManagePlanForMember( ) {
+        adminPortalManagePlansPage.validateSESNotEnabled();
+    }
+
+    @Then("I verify coverage start field is Non editable on Manage plan")
+    public void iVerifyCoverageStartFieldIsNonEditableOnManagePlanForMember() {
+        adminPortalManagePlansPage.validateCoverageStartNotEnabled();
+    }
+
+    @Then("I verify coverage end date is Non editable on Manage plan")
+    public void iVerifyCoverageEndDateIsNonEditableOnManagePlanForMember( ) {
+        adminPortalManagePlansPage.validateCoverageEndNotEnabled();
+    }
+    @Then("I verify financial start field is Non editable on Manage plan")
+    public void iVerifyFinancialStartFieldIsNonEditableOnManagePlanForMember() {
+        adminPortalManagePlansPage.validateFinancialStartNotEnabled();
+    }
+    @Then("I verify financial end date field is Non editable on Manage plan")
+    public void iVerifyFinancialEndFieldIsNonEditableOnManagePlanForMember() {
+        adminPortalManagePlansPage.validateFinancialEndNotEnabled();
+    }
+    @Then("I verify reason field is Non editable on Manage plan")
+    public void iVerifyReasonFieldIsNonEditableOnManagePlanForMember( ) {
+        adminPortalManagePlansPage.validateReasonNotEnabled();
+    }
 }
