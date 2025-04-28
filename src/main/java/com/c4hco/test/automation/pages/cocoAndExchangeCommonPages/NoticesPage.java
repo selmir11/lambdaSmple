@@ -31,7 +31,11 @@ public class NoticesPage {
     WebElement loginMail;
     @FindBy(xpath = "//input[@type='password']")
     WebElement passwordEmail;
-    @FindBy(xpath = "//button[@type='submit']")
+    @FindAll({
+            @FindBy(xpath = "//button[@type='submit']"),
+            @FindBy(xpath = "//*[@id=\"view\"]//div[3]/button"),
+            @FindBy(xpath = "//*[@id=\"lightbox\"]//div[4]/div/div/div/div")
+    })
     WebElement nextButton;
     @FindAll({
             @FindBy(id = "declineButton"),
@@ -233,9 +237,9 @@ public class NoticesPage {
         }
         basicActions.waitForElementToBePresent(email, 20);
         email.sendKeys(Gmail);
-        basicActions.waitForElementToBePresent(nextButton, 20);
+        basicActions.waitForElementToBePresent(nextButton, 60);
         nextButton.click();
-        basicActions.waitForElementToBePresent(passwordEmail, 20);
+        basicActions.waitForElementToBePresentWithRetries(passwordEmail, 60);
         passwordEmail.sendKeys(password);
         passwordEmail.sendKeys(Keys.ENTER);
         basicActions.waitForElementToBePresent(btnStayNo, 20);
