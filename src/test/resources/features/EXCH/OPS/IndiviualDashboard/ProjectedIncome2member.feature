@@ -1,4 +1,5 @@
-@OPS @SLER-2088
+@OPS @Exch @IndiviualDashboard
+@SLER-2088
 Feature: IndDash: Projected Income Two members
 
   Scenario: SLER-2088 : IndDash: Projected Income Two members

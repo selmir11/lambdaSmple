@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @IndiviualDashboard
 Feature: OPS: IndDash: Account Access details and password reset
   @SLER-1794
   Scenario:SLER-1794 : OPS: IndDash: Account Access details and password reset

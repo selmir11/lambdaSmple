@@ -1,4 +1,4 @@
-@OPS @MD365
+@OPS @Exch @MD365
 Feature: OPS:  OBO flow ID Proofing with MD365 check and back to OBO
   @SLER-2346
   Scenario:SLER-2346 OBO flow ID Proofing with MD365 check and back to OBO

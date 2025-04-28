@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @IndiviualDashboard
 Feature: Admin Portal verify data Payloads
   @SLER-695
   Scenario: Verify payloads data on Individual dashboard
