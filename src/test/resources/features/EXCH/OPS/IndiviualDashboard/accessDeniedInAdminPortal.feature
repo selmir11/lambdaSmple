@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @IndiviualDashboard
 Feature: This scenario checks Access Denied for other users that should not use the portal : positive and negative scenario
   @SLER-225
   Scenario: Verify Individual user has no permission to login into Admin Portal

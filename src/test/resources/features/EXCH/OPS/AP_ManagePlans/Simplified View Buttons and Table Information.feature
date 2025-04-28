@@ -1,4 +1,5 @@
-@OPS @SLER-1940 @managePlan
+@OPS @Exch @manageplans
+  @SLER-1940
 Feature: Manage Plans:Simplified view buttons and tables data
   Scenario:Manage plan 2022
     Given I open the login page on the "admin" portal

@@ -1,3 +1,4 @@
+@OPS @Exch @MyDocs
 @SLER-154
 Feature: checking Let's chat functionality on My Documents page
 

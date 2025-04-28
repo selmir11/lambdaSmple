@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @MyDocs
 Feature: My Document Home Page validations
 
   @SLER-2090

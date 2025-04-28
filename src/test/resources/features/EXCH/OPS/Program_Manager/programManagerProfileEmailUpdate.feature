@@ -1,4 +1,4 @@
-@OPS @OPSProgramManager
+@OPS @Exch @ProgramManager
 Feature: Activate, suspend and reset password for program manger via admin Portal
 
   @SLER-2430
