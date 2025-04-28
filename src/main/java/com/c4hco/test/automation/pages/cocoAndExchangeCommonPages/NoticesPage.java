@@ -7,6 +7,7 @@ import com.c4hco.test.automation.utils.Constants;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
@@ -31,7 +32,10 @@ public class NoticesPage {
     WebElement loginMail;
     @FindBy(xpath = "//input[@type='password']")
     WebElement passwordEmail;
-    @FindBy(xpath = "//button[@type='submit']")
+    @FindBys({
+            @FindBy(xpath = "//button[@type='submit']"),
+            @FindBy(xpath = "//*[@id=\"view\"]//div[3]/button")
+    })
     WebElement nextButton;
     @FindAll({
             @FindBy(id = "declineButton"),
@@ -233,7 +237,7 @@ public class NoticesPage {
         }
         basicActions.waitForElementToBePresent(email, 20);
         email.sendKeys(Gmail);
-        basicActions.waitForElementToBePresent(nextButton, 20);
+        basicActions.waitForElementToBePresent(nextButton, 60);
         nextButton.click();
         basicActions.waitForElementToBePresent(passwordEmail, 20);
         passwordEmail.sendKeys(password);
