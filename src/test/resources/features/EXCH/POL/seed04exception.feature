@@ -198,7 +198,7 @@ Feature: Seed04exception - Exchange
     Then I click on ClickHere link for "My Plans"
     Then I validate I am on the "My Policies" page
     And I click on Future Plans
-    And I validate "Medical" details card is not present on my policies page
+    And I validate "Medical" cancel button is not present on my policies page
     And I validate "dental" details on my policies page
     And I validate "medical-cancelled" entities from policy tables
     And I validate "dental" entities from policy tables
