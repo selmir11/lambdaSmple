@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @IndiviualDashboard
 Feature: EDI Detailed Outbound Transactions : Verify all data
   @SLER-976
   Scenario: SLER-976 IndDash: Verify Detailed EDI Report Page

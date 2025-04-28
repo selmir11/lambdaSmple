@@ -1,4 +1,5 @@
-@SLER-2397 @MYDOC
+@OPS @Exch @MyDocs
+@SLER-2397
 Feature: RT-2066: OPS: My Docs: Security: URL Manipulation Broker
   @SLER-2397
   Scenario: OPS: My Docs: Security: URL Manipulation Broker

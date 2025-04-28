@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @IndiviualDashboard
 Feature: OPS: IndDash: Removed Members Don't Show
   @SLER-1268
   Scenario:SLER-1268 : OPS: IndDash: Removed Members Don't Show

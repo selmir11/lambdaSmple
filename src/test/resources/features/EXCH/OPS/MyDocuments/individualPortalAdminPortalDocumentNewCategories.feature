@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @MyDocs
 Feature: My documents new categories for Individual portal as well as Admin portal
   Background:
     Given I open the login page on the "login" portal

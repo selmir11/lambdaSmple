@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @DLT
 Feature: Document Lookup page : Verify all data
   @SLER-277
   Scenario: SLER-277 Verify data for DLT page

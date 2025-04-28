@@ -1,4 +1,5 @@
-@OPS @SLER-2434 @managePlan
+@OPS @@Exch @managePlan
+@SLER-2434
 Feature: Manage Plans:Simplified View Editable Fields Med, Dent, and Both
 
   Scenario: Manage Plans:Simplified View Editable Fields Med, Dent, and Both(RT-2548)

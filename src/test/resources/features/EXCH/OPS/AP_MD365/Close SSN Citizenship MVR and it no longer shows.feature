@@ -1,4 +1,4 @@
-@OPS @MD365
+@OPS @Exch @MD365
 Feature: OPS: MD365: Create then Close SSN/Citizenship MVRs and they no longer show in My Docs [RT-2000]
  @SLER-2370
   Scenario:SLER-2370 Create and Close SSN/Citizenship MVRs and no longer showed in My Docs
