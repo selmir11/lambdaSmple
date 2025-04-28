@@ -1,4 +1,4 @@
-@SIR-EXCH10 @SIR
+@SIR @SIREXCH @SIR-EXCH10 @SIR
   # contains  SLER-35, SLER-718, SLER-734, SLER-735, SLER-1104
 Feature: Go Back tests
 
