@@ -1,4 +1,4 @@
-@OPS @MD365
+@OPS @Exch @MD365
 Feature: OPS: Create individual account and verify that can be found in MD365
   @SLER-1872
   Scenario:OPS: IndDash: Create individual account

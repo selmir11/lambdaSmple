@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @manageplans
 Feature: Manage Plans: Buttons (positive and negative testing)
   Background:
     Given I open the login page on the "admin" portal

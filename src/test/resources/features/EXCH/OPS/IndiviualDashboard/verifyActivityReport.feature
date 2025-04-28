@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @IndiviualDashboard
 Feature: verify Activity Report data on Admin portal
 
 @SLER-2356

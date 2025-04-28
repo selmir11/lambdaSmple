@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @IndiviualDashboard
 Feature: OPS: IndDash: No Change Primary Contact under 18
   @SLER-2061
   Scenario:OPS: IndDash: No Change Primary Contact under 18

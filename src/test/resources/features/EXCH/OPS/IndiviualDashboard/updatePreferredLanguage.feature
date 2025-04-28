@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @IndiviualDashboard
 Feature: OPS: IndDash: Update Preferred Lang
   @SLER-2066
   Scenario: SLER-2066 : OPS: IndDash: Update Preferred Lang

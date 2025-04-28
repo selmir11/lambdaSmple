@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @IndiviualDashboard
 Feature: OPS: IndDash: Account Statuses
   @SLER-1239
   Scenario:IndDash: Account Statuses
