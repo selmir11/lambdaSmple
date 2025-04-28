@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @manageplans
 Feature: Manage Plans: No Past medical and No Past dental periods //RT2098
   @SLER-979
   Scenario: Verify Manage Plans page when 2024 have No Past medical and dental periods

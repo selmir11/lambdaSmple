@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @ProgramManager
 Feature: Programme Manager
   @SLER-1031
   Scenario: SLER-1031  PMDash: Search, sort, reset, and error

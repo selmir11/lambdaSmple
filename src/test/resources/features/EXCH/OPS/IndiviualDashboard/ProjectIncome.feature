@@ -1,4 +1,5 @@
-@OPS @SLER-2087
+@OPS @Exch @IndiviualDashboard
+@SLER-2087
 Feature: IndDash: Projected Income one member
   Scenario: SLER-2087 : IndDash: Projected Income One member
     Given I open the login page on the "admin" portal

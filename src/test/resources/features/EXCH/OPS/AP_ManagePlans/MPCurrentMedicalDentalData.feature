@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @manageplans
 Feature: Manage Plans: Current Med & Dent Data Years dropdown
   @SLER-977
   Scenario: Current Med & Dent Data Years dropdown verified

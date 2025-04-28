@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @IndiviualDashboard
 Feature: Admin Portal agency verify data
   @SLER-534
   Scenario: Verify agency data

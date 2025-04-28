@@ -1,6 +1,6 @@
-@OPS @manageplans
-Feature: Manage Plans: Button Go Back navigation
-  @SLCR-597
+@OPS @Exch @manageplans
+Feature: Manage Plans: Cancel And Reinstate[CCRT-349]
+  @SLCR-937
 Scenario: Cancel And Reinstate[CCRT-349]
 Given I open the login page on the "admin" portal
 And I refresh the page

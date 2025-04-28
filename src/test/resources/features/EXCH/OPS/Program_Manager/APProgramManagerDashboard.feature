@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @ProgramManager
 Feature: Program Manager Dashboard- Verify program manager data
   @SLER-710
   Scenario: Verify Program Manager Dashboard
