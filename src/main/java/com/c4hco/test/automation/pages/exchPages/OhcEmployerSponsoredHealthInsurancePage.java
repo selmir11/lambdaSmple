@@ -125,7 +125,7 @@ public class OhcEmployerSponsoredHealthInsurancePage {
     @FindBy(xpath = "//*[@id='ELIG-Ohc-Esi-MemberCoverage']//button[contains(@id, 'CoverageTypeNoAccessButton')]")
     List<WebElement> esiFamilyNoOptionBtn;
 
-    @FindBy(css = ".drawer-controls > div > div")
+    @FindBy(id = "Help.Button")
     WebElement helpButton;
 
     @FindBy(css = ".header-3.content-center > a")

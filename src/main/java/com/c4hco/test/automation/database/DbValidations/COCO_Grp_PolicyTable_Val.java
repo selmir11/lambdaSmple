@@ -69,7 +69,7 @@ public class COCO_Grp_PolicyTable_Val {
 
     private void validateFieldsCommonForSubscriber(MemberDetails subscriber, PolicyTablesEntity policyTablesEntity) {
         getCocoDbDataMap(subscriber.getFirstName());
-        validateSubmittedBy(policyTablesEntity);
+        validateSubmittedBy(policyTablesEntity,subscriber);
         softAssert.assertEquals(policyTablesEntity.getFirst_name(), subscriber.getFirstName(), "Subscriber first name matches");
         softAssert.assertEquals(policyTablesEntity.getLast_name(), subscriber.getLastName(), "Subscriber last name matches");
         softAssert.assertEquals(policyTablesEntity.getAccount_id(), String.valueOf(SharedData.getPrimaryMember().getAccount_id()), "Subscriber account id does not match");
@@ -98,7 +98,7 @@ public class COCO_Grp_PolicyTable_Val {
     }
 
     private void validateMedForDependents(PolicyTablesEntity policyTablesEntity, DbData dbData, MemberDetails member) {
-        validateSubmittedBy(policyTablesEntity);
+        validateSubmittedBy(policyTablesEntity, member);
         softAssert.assertEquals(policyTablesEntity.getFirst_name(), member.getFirstName(), "Subscriber first name matches");
         softAssert.assertEquals(policyTablesEntity.getLast_name(), member.getLastName(), "Subscriber last name matches");
         softAssert.assertEquals(policyTablesEntity.getAccount_id(), String.valueOf(SharedData.getPrimaryMember().getAccount_id()), "Subscriber account id does not match");
@@ -119,7 +119,7 @@ public class COCO_Grp_PolicyTable_Val {
         List<MemberDetails> members = SharedData.getMembers();
         for (MemberDetails member : members) {
             if (member.getFirstName().equals(policyTablesEntity.getFirst_name())) {
-                System.out.println("Validating for member :: " + member.getFirstName());
+                System.out.println("Validating coco member :: " + member.getFirstName());
                 validateMedForDependents(policyTablesEntity, dbDataMap.get(member.getMedSubscriberName()), member);
                 softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), member.getRelation_to_subscriber(), "Relationship to subscriber does not match");
                 softAssert.assertNull(policyTablesEntity.getTotal_plan_premium_amt(), "Medical Policy total plan premium amount for member does not match");
@@ -138,13 +138,13 @@ public class COCO_Grp_PolicyTable_Val {
         getMedicalPlanDbDataMap(subscriber.getFirstName());
         softAssert.assertEquals(policyTablesEntity.getRelation_to_subscriber(), "SELF", "Relationship to subscriber does not match");
         softAssert.assertEquals(policyTablesEntity.getTotal_plan_premium_amt(), subscriber.getMedicalPremiumAmt().replace(",", ""), "Medical Policy total plan premium amount does not match");
-        softAssert.assertEquals(policyTablesEntity.getTotal_premium_reduction_amt(), subscriber.getAptcAmt(), "Subscriber Medical APTC amount does not match");
+        softAssert.assertEquals(basicActions.doubleAmountFormat(policyTablesEntity.getTotal_premium_reduction_amt()), subscriber.getMedicalAptcAmt(), "Subscriber Medical APTC amount does not match");
         softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_emcfh()), "null", "Subscriber Medical Policy premium reduction type does not match");
         softAssert.assertEquals(String.valueOf(policyTablesEntity.getPremium_reduction_type_epfh()), "null", "premium reduction type in en policy financial ah table does not match");
         softAssert.assertEquals(policyTablesEntity.getTotal_responsible_amt(), subscriber.getMedicalPremiumAmt().replace(",", ""), "Medical Policy total responsible amount does not match");
         softAssert.assertEquals(policyTablesEntity.getFinancial_period_start_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialStartDate(), "Medical financial start date does not match");
         softAssert.assertEquals(policyTablesEntity.getFinancial_period_end_date(), SharedData.getExpectedCalculatedDates_medicalPlan().getFinancialEndDate(), "Medical financial end date does not match");
-        validateSubmittedBy(policyTablesEntity);
+        validateSubmittedBy(policyTablesEntity, subscriber);
         softAssert.assertAll();
     }
 
@@ -199,12 +199,11 @@ public class COCO_Grp_PolicyTable_Val {
         setMedicalSubscriber();
     }
 
-    private void validateSubmittedBy(PolicyTablesEntity policyTablesEntity) {
+    private void validateSubmittedBy(PolicyTablesEntity policyTablesEntity, MemberDetails member) {
         String submittedBy = policyTablesEntity.getPolicy_submitted_by();
         String primaryMemberEmail = SharedData.getPrimaryMember().getEmailId();
-
-        softAssert.assertTrue(submittedBy.equals(primaryMemberEmail) || submittedBy.equals("SYSTEM"),
-                "Submitted_by does not match either " + primaryMemberEmail + " or " + "SYSTEM"
+        softAssert.assertTrue(submittedBy.equals(member.getSubmittedBy()) || submittedBy.equals("SYSTEM"),
+                "Submitted_by does not match either " + member.getSubmittedBy() + " or " + "SYSTEM"
         );
     }
 
