@@ -1,4 +1,4 @@
-@OPS @MD365
+@OPS @Exch @MD365
 Feature: OPS: MD365: Create then Close AI/AN MVR and check My Docs [RT-2031]
   @SLER-2368
   Scenario:SLER-2368  Create then Close AI/AN MVR and check My Docs

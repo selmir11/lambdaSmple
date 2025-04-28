@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @MyDocs
 Feature: IndDash: Verify Financial Help Eligibility button is displaying
   Background:
   Given I open the login page on the "admin" portal

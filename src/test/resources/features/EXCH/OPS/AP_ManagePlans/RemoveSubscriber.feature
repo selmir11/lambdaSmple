@@ -1,4 +1,4 @@
-
+@OPS @Exch @manageplans
 Feature: OPS: MP: FA Removing Subscriber from policy
 
   Background:
