@@ -31,7 +31,7 @@ public class NoticesPage {
     WebElement loginMail;
     @FindBy(xpath = "//input[@type='password']")
     WebElement passwordEmail;
-    @FindBy(xpath = "//input[@type='submit']")
+    @FindBy(xpath = "//button[@type='submit']")
     WebElement nextButton;
     @FindAll({
             @FindBy(id = "declineButton"),
