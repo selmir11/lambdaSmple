@@ -452,6 +452,10 @@ public class DbDataProvider_Exch {
         return postgresHandler.getResultFor("fpl_percent",exchDbQueries.fplPercentDetails());
     }
 
+    public String getFPLPercentEsTaxReturnAPTC(){
+        return postgresHandler.getResultFor("calculated_fpl",exchDbQueries.fplEsTaxReturn());
+    }
+
     public String getMemberReasonCodeByAccountId() {
         return postgresHandler.getResultFor("reason_code",exchDbQueries.getMemberReasonCodeByAccountId());
     }

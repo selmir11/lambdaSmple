@@ -170,6 +170,7 @@ public class AddAddressPage {
         basicActions.waitForElementToBeClickable(selectMailingCounty, 10);
         selectMailingCounty.click();
         Select dropdown = new Select(selectMailingCounty);
+        basicActions.wait(50);
         dropdown.selectByValue("DENVER");
     }
 

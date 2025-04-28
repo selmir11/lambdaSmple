@@ -3,17 +3,12 @@ import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.datatable.DataTable;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
-import java.math.BigDecimal;
-import java.time.Duration;
+import java.math.BigDecimal;;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -243,66 +238,6 @@ public class AdminPortalSearchPage {
         SharedData.setPrimaryMember(subscriber);
     }
 
-    public void setSignature() {
-        basicActions.waitForElementListToBePresent(primaryAccountHolderName, 60);
-        MemberDetails subscriber = SharedData.getPrimaryMember();
-        if (subscriber == null) {
-            subscriber = new MemberDetails();
-        }
-
-        Actions actions = new Actions(WebDriverManager.getDriver());
-        WebElement nameCell = primaryAccountHolderName.get(0);
-        actions.moveToElement(nameCell).perform();
-        String fullName;
-        try {
-            WebDriverWait wait = new WebDriverWait(WebDriverManager.getDriver(), Duration.ofSeconds(25));
-            WebElement tooltip = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[id^='ngb-tooltip']")));
-            String tooltipText = tooltip.getText().trim();
-            if (!tooltipText.isEmpty()) {
-                fullName = tooltipText;
-            } else {
-                fullName = nameCell.getText().trim();
-            }
-        } catch (TimeoutException e) {
-            fullName = nameCell.getText().trim();
-        }
-        subscriber.setSignature(fullName);
-        String[] parts = fullName.split(" ");
-        String fName = parts.length > 0 ? parts[0] : "";
-        String lName = parts.length > 1 ? parts[parts.length - 1] : "";
-        subscriber.setFirstName(fName);
-        subscriber.setLastName(lName);
-
-        actions.moveToElement(searchTitle).perform();
-
-        actions.moveToElement(emailAddress.get(0)).perform();
-        WebDriverWait wait = new WebDriverWait(WebDriverManager.getDriver(), Duration.ofSeconds(25));
-        String email = wait.until(driver -> {
-            try {
-                List<WebElement> tooltips = driver.findElements(By.cssSelector("[id^='ngb-tooltip']"));
-                for (WebElement tooltip : tooltips) {
-                    try {
-                        if (tooltip.isDisplayed()) {
-                            String text = tooltip.getText().trim();
-                            if (!text.isEmpty()) {
-                                return text;
-                            }
-                        }
-                    } catch (StaleElementReferenceException ignored) {
-                    }
-                }
-            } catch (Exception ignored) {}
-            return null;
-        });
-        if (email == null || email.isEmpty()) {
-            throw new RuntimeException("Email tooltip was not found or had no text.");
-        }
-        subscriber.setEmailId(email);
-
-        subscriber.setPhoneNumber(phoneNumber.get(0).getText());
-        SharedData.setPrimaryMember(subscriber);
-    }
-
     public void clickFromApplicationLinksDropdown(String dropdownOption) {
         basicActions.waitForElementToBePresent(appLinksDropDown, 10);
         ((JavascriptExecutor) basicActions.getDriver()).executeScript("arguments[0].click()", appLinksDropDown);
@@ -527,7 +462,7 @@ public class AdminPortalSearchPage {
     }
 
     public void enterAccountIdToAnyENV(String accountIdSTG, String accountIdQA) {
-        basicActions.wait(2000);
+        basicActions.wait(4000);
         basicActions.waitForElementListToBePresentWithRetries(searchInputList,60);
         if (SharedData.getEnv().equals("staging")) {
             searchInputList.get(0).sendKeys(accountIdSTG);
@@ -538,7 +473,6 @@ public class AdminPortalSearchPage {
 
     public void clickAccountLinkFirstRowFromSearchResults() {
         basicActions.waitForElementToBePresent(searchAcctResults, 10);
-        setSignature();
         searchAcctResults.click();
         basicActions.wait(500);
         setAccountId();

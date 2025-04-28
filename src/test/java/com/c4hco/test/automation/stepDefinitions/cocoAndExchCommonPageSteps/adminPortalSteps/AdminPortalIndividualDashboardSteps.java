@@ -43,16 +43,6 @@ public class AdminPortalIndividualDashboardSteps {
         adminPortalIndividualDashboardPage.agencySummaryValidation(name, license, thin, agent, email, website, phone, preferredLanguage);
     }
 
-    @Then("I click on manage plan button on admin portal Individual dashboard")
-    public void iClickManagePlanButton() {
-        adminPortalIndividualDashboardPage.clickManagePlan();
-    }
-
-    @And("I Validate the correct enrolled plans are displayed on admin portal individual page")
-    public void iverifyPlanDetails(List<String> data) {
-        adminPortalIndividualDashboardPage.verifyPlanDetails(data);
-    }
-
     @Then("I validate Selected Member data on the far left side")
     public void iValidateSelectedMemberData() {
         adminPortalIndividualDashboardPage.validateSelectedMemberData();
@@ -121,11 +111,6 @@ public class AdminPortalIndividualDashboardSteps {
     @And("I validate individual dashboard container titles: {string} {string} {string} {string} {string} {string} are displayed")
     public void iValidateIndividualDashboardContainerTitlesAreDisplayed(String PlansContainer, String summaryContainer, String eligibilityContainer, String renewalsContainer, String reportsContainer, String payloadsContainer) {
         adminPortalIndividualDashboardPage.validateIndividualDashboardContainerTitles(PlansContainer, summaryContainer, eligibilityContainer, renewalsContainer, reportsContainer, payloadsContainer);
-    }
-
-    @And("I select year {string} from Manage Plan container on Individual dashboard")
-    public void iSelectMedicalPlanYear(String planYear) {
-        adminPortalIndividualDashboardPage.selectMedicalPlanYear(planYear);
     }
 
     @And("I validate {string} {string} as {string}")
@@ -300,6 +285,31 @@ public class AdminPortalIndividualDashboardSteps {
     @Then("I validate user name on Selected Member data on the far left side")
     public void iValidateUserNameOnSelectedMemberDataOnTheFarLeftSide() {
         adminPortalIndividualDashboardPage.verifyUserName();
+    }
+
+
+    ////////////////////////////Plans Container//////////////////////////
+    @Then("I click on manage plan button on admin portal Individual dashboard")
+    public void iClickManagePlanButton() {
+        adminPortalIndividualDashboardPage.clickManagePlan();
+    }
+
+    @And("I select year {string} from Manage Plan container on Individual dashboard")
+    public void iSelectMedicalPlanYear(String planYear) {
+        adminPortalIndividualDashboardPage.selectMedicalPlanYear(planYear);
+    }
+
+    @And("I verify Plan container with no active plan on the Individual dashboard")
+    public void iVerifyPlanContainerNoActive() {adminPortalIndividualDashboardPage.verifyPlanContainerNoActive();}
+
+    @Then("I verify color font format etc for elements of Account Summary container")
+    public void iVerifyColorFontFormatEtcForElementsOfAccountSummaryContainer(List<String> pageTexts) {
+        adminPortalIndividualDashboardPage.verifyColorFontFormatEtcForElementsOfAccountSummaryContainer(pageTexts);
+    }
+
+    @Then("I verify height width and color of line under each household members")
+    public void iVerifyHeightWidthAndColorOfLineUnderEachHouseholdMembers() {
+        adminPortalIndividualDashboardPage.verifyHeightWidthAndColorOfLineUnderEachHouseholdMembers();
     }
 }
 

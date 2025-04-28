@@ -1,4 +1,4 @@
-@port @portAPTC
+@port @portQCPF
 Feature:QCPF: plan load testing
 
   @SLER-2110

@@ -46,6 +46,7 @@ Feature: Page Text-Income Opt Out Page
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
     Then I validate I am on the "Employment Summary" page
+    And I wait for 15 milliseconds
     And I set the browser resolution to 1536 x 864
     And I verify the header for Primary Member on the Employment Summary page in "English"
 
@@ -55,7 +56,7 @@ Feature: Page Text-Income Opt Out Page
     Then I validate Employment Summary help drawer verbiage in "English"
     And I click on "Contact Us" link in Help Drawer on the Employment Summary page
     And I validate I am on the "We Can Help" page and close tab
-    And I select "close side help" icon on the Employment Summary Page
+    And I select "close help" icon on the Employment Summary Page
 
     And I click on Sign Out in the Header for "Elmo"
 
@@ -67,7 +68,7 @@ Feature: Page Text-Income Opt Out Page
     Then I validate Employment Summary help drawer verbiage in "Spanish"
     And I click on "Contact Us" link in Help Drawer on the Employment Summary page
     And I validate I am on the "We Can Help" page and close tab
-    And I select "close side help" icon on the Employment Summary Page
+    And I select "close help" icon on the Employment Summary Page
 
     And I click on Sign Out in the Header for "Elmo"
 

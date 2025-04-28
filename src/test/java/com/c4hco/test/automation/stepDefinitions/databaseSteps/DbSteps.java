@@ -314,6 +314,9 @@ public class DbSteps {
     public void iValidateTheFplPercent(int expectedFplPercent) {dbValidations.validateFplPercent(String.valueOf(expectedFplPercent));
     }
 
+    @Then("I validate the FPL percent in es_tax_return_aptc is {double}")
+    public void iValidateFPLEsTaxReturnAPTC(double expectedFPL){dbValidations.validateFPLESTaxReturnAPTC(String.valueOf(expectedFPL));}
+
     @And("I verify Persons ID are validated in the DB with count only {string}")
     public void iValidateExchPersonIds(String validateCountOnly) {
         policyTableValidations.validateExchPersonIds(validateCountOnly);

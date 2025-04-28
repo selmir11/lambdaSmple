@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @IndiviualDashboard
 Feature: Indiviual Dashboard
   @SLER-1786
   Scenario: SLER-1786 OPS: IndDash: Search, sort, error, and reset

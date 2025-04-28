@@ -10,9 +10,7 @@ import org.json.JSONArray;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class COCO_Ob834FileValidations {
     SoftAssert softAssert = new SoftAssert();
@@ -386,7 +384,16 @@ public class COCO_Ob834FileValidations {
         //GE Segment
         JSONArray geSeg = commonEDISegments.getGE().getJSONArray(0);
         softAssert.assertEquals(geSeg.get(1), entry.getGroup_ctrl_number(), "Control number assigned by the interchange sender does not match");
+        setTransGrpCtrlNum(geSeg);
         softAssert.assertAll();
+    }
+    private void setTransGrpCtrlNum(JSONArray geSeg){
+        Map<String, String> transForGrpCtrlNum = SharedData.getTransForGrpCtrlNum();
+        if(transForGrpCtrlNum == null){
+            transForGrpCtrlNum = new HashMap<>();
+        }
+        transForGrpCtrlNum.put(geSeg.get(1).toString(), geSeg.get(0).toString());
+        SharedData.setTransForGrpCtrlNum(transForGrpCtrlNum);
     }
 
     private void validateSponsorPayerDetails(Ob834DetailsEntity entry) {

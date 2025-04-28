@@ -272,9 +272,9 @@ public class DentalPlansResultsPage {
     }
 
     public void clickDentalInsuranceCompanyDropdown() {
-        basicActions.waitForElementToDisappear( spinner, 20 );
-        basicActions.waitForElementToBePresentWithRetries( dropdownCoverageLevel, 10 );
-        basicActions.waitForElementToBePresentWithRetries( dropdownInsuranceCompany, 10 );
+        basicActions.waitForElementToDisappear( spinner, 120 );
+        basicActions.waitForElementToBePresentWithRetries( dropdownCoverageLevel, 110 );
+        basicActions.waitForElementToBePresentWithRetries( dropdownInsuranceCompany, 110 );
         dropdownInsuranceCompany.click();
     }
 
@@ -356,6 +356,7 @@ public class DentalPlansResultsPage {
         SharedData.setPrimaryMember( subscriber );
         List<MemberDetails> memberslist = SharedData.getMembers();
         basicActions.waitForElementToDisappear( spinner, 30 );
+        basicActions.waitForElementToBePresent(dentalplanheader,60);
         if (memberslist != null) {
             for (int i = 0; i < memberslist.size(); i++) {
                 memberslist.get( i ).setDentalPlan( dentalPlanNames );

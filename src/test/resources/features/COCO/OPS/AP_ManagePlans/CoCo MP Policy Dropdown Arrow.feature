@@ -49,5 +49,5 @@ Feature: Manage Plans CoCo Policy Dropdown Arrow [CCRT-231]
     Then I click Go Back button on Manage Plan page
     And I logout from Admin Portal
 
-
+    
 

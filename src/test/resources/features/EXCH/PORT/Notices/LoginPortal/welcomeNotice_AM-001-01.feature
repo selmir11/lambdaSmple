@@ -1,4 +1,4 @@
-@SLER-791 @portNotice
+@port @portNoticeLoginPortal
 Feature: Trigger Notice IND_Welcome Message AM-001-01
 
   @SLER-791

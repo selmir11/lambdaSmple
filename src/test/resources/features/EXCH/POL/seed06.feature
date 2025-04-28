@@ -245,32 +245,47 @@ Feature: Seed06 - Exchange
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
       | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
-#    And I verify the policy data quality check with Policy Ah keyset size 2
-#    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-1834-WIP_@R4V
-  Scenario: RT-2306 ENR-EXCH: USER INITIATED DISENROLLMENT (TERM) - DENTAL - ALL MEMBERS - ADMIN OBO
-    Given I open the login page on the "admin" portal
-    And I validate I am on the "Login" page
-    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
-    And I validate I am on the "Admin dashboard" page
-    And I search for user and click email from search results
-    And I click "On Behalf Of (OBO)" from application links dropdown
-    And I initiate incoming page
-    Then I validate I am on the "Account Overview" page
-    Then I click on ClickHere link for "My Plans"
-    Then I validate I am on the "My Policies" page
-    And I click on "Cancel Dental Plan" button
-    And I validate I am on the "Cancellation Request" page
-    Then I affirm and cancel the active plan
-    Then I click continue on Cancellation Request page
-    Then I click Okay on Thank you popup
-    And I click on Sign Out in the Header for "Elmo"
+    @SLER-1834 @pol_exch_passed
+    Scenario: RT-2306 ENR-EXCH: USER INITIATED DISENROLLMENT (TERM) - DENTAL - ALL MEMBERS - ADMIN OBO
+      Given I open the login page on the "admin" portal
+      And I validate I am on the "Login" page
+      When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+      And I validate I am on the "Admin dashboard" page
+      And I search for user and click email from search results
+      And I click "On Behalf Of (OBO)" from application links dropdown
+      And I initiate incoming page
+      Then I validate I am on the "Account Overview" page
+      Then I click on ClickHere link for "My Plans"
+      Then I validate I am on the "My Policies" page
+      And I click on "Cancel Dental Plan" button
+      And I validate I am on the "Cancellation Request" page
+      Then I affirm and cancel the active plan
+      Given I set the dynamic policy, coverage and financial dates for "dental" plan
+        | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+        | First Day Of Current Year | Last Day Of Current Month| First Day Of Current Year | Last Day Of Current Month| First Day Of Current Year | Last Day Of Current Month|
+      Then I click continue on Cancellation Request page
+      Then I click Okay on Thank you popup
+      And I validate "Dental" details card is not present on my policies page
+      And I click on Sign Out in the Header for "Elmo"
+      #DB Validation
+      And I validate "medical" entities from policy tables
+      And I validate "dental-cancelled" entities from policy tables
+      And I validate "dental" entities from pre edi db tables
+        | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason|
+        | 024                   | 024                | AI                    |   TERM            |           |
+      And I verify the policy data quality check with Policy Ah keyset size 2
+      And I verify the BOB entry for "dental" with "POLICY_UPDATE" as event type
+      And I download the medical and dental files from sftp server with location "/outboundedi/"
+      And I validate the ob834 "medical" file data
+      And I validate the ob834 "dental" file data
 
-  @SLER-2034-WIP-@R4V @n1
+  @SLER-2034-WIP-@R4V
   Scenario: RT-2322 ENR-EXCH: APPS - CHANGE OF SUBSCRIBER
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page

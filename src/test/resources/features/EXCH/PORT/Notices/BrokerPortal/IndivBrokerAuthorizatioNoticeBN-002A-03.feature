@@ -1,4 +1,4 @@
-@port @portNotice
+@port @portNoticeBrokerPortal
 Feature: Trigger the exchange individual's notice for broker authorization - BN-002A-03
 
   @SLER-1862

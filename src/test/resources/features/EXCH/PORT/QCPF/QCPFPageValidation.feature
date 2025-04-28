@@ -1,4 +1,4 @@
-@port @portAPTC
+@port @portQCPF
 Feature:  QCPF: page validation
 
 @SLER-2010

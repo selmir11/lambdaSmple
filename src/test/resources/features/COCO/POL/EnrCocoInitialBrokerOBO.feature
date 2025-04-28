@@ -1,5 +1,6 @@
 Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
-  @SLCR-298 #WIP
+
+  @SLCR-298 @SLCR-929 @SLCR-930 @SLCR-931 @SLCR-932 @pol_coco_passed
   Scenario: CCRT-49 COCO Initial Application HUSBAND + WIFE (Colorado Option) (BROKER OBO)
    Given I set the test scenario details in coco
      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
@@ -109,7 +110,7 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     And I select or skip the medical plans for groups on medical plan page
       | Group 1:Select Health Value Colorado Option Bronze |
     Then I validate I am on the "planSummaryMedicalDental" page
-    And I set medical premium amount
+    And I set "Medical" Plans premium amount
     And I click continue on coco plan summary page
     Then I validate I am on the "Enrollment Agreements" page
     And I select "Acknowledgement" agreement checkbox CoCo
@@ -129,18 +130,18 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     Then I validate enrolled medical plans on future plans tab in COCO
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "CoCo Welcome" page
-    And I click on "My Documents and Letters" link on welcome page
+#    And I click on "My Documents and Letters" link on welcome page
 #    And I click on download "EN-002-04" document
 #    Then I validate "EN-002-04 English" notice content
-#    And I click on Sign Out in the Header for "Elmo"
-#
-#    Then I open outlook Tab
-#    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
-#    Then I open the notice "(EN-002-04)" in "English"
-#    And I verify the notice Text for "EN-002-04" in "English" for "Coco"
-#    Then I delete the open notice
-#    And I sign out of Outlook
-#    And I switch to the tab number 0
+    And I click on Sign Out in the Header for "Elmo"
+
+    Then I open outlook Tab
+    And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
+    Then I open the notice "(EN-002-04)" in "English"
+    And I verify the notice Text for "EN-002-04" in "English" for "Coco"
+    Then I delete the open notice
+    And I sign out of Outlook
+    And I switch to the tab number 0
 
    And I validate "SUBMITTED" policy table entities for groups in COCO
    And I verify the policy data quality check with Policy Ah keyset size 1
@@ -149,5 +150,24 @@ Feature: HUSBAND + WIFE (Colorado Option) (BROKER OBO)
     | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
    And I download the medical and dental files from sftp server with location "/outboundedi/"
    And I validate the coco ob834 medical file data
+
+   And I upload all the "medical" ob834 edi files to sftp server with location "/outboundedi/mockediresponse/genEff834"
+   # Ib999 DB Validation
+   And I validate "medical" entities from ib999_details db table
+   And I download the "medical" ib999 files from sftp server with location "/archive/INBOUND999/"
+   And I validate the ib999 "medical" file data
+
+   #Ib834
+   And I validate coco ib834 file for groups
+    | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
+    | 021                   | 021                | 28                    | CONFIRM           |
+   And I download the "medical" ib834 file from sftp server location "/archive/inboundedi/"
+   And I validate coco Ib834 file data
+
+#  Ob999
+  And I validate "medical" entities from ob999_details db table
+  And I download the "medical" ob999 file from sftp server with location "/outbound999/"
+  And I validate the ob999 "medical" file data
+
 
 

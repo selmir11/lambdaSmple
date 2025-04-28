@@ -1,4 +1,4 @@
-@BrokerPortalCreateAccount @port
+@portNoticeBrokerPortal @port
 Feature: Verify broker certification notice BN-001A-01
       
   @SLER-2237

@@ -27,4 +27,28 @@ public class AdminPortalAccountDetailsSteps {
         adminPortalAccountDetailsPage.validateCocoDetailsOfPrimaryHolder();
     }
 
+    @Then("I verify font color format of primary account holder label")
+    public void iVerifyFontColorFormatOfPrimaryAccountHolderLabel() {
+        adminPortalAccountDetailsPage.verifyFontColorFormatOfPrimaryAccountHolderLabel();
+    }
+
+    @Then("I verify account id displayed in any Env {string} {string}")
+    public void iVerifyAccountIdDisplayedInAnyEnv(String staging, String qa) {
+        adminPortalAccountDetailsPage.verifyAccountIdDisplayedInAnyEnv(staging,qa);
+    }
+
+    @Then("I verify account table labels of account detail container")
+    public void iVerifyAccountTableLabelOfAccountDetailContainer() {
+        adminPortalAccountDetailsPage.verifyAccountTableLabelOfAccountDetailContainer();
+    }
+
+    @Then("I verify primary account holder name in account detail container")
+    public void iVerifyPrimaryAccountHolderNameInAccountDetailContainer() {
+        adminPortalAccountDetailsPage.verifyPrimaryAccountHolderNameInAccountDetailContainer();
+    }
+
+    @Then("I verify account table field values of account detail container")
+    public void iVerifyAccountTableFieldValuesOfAccountDetailContainer() {
+        adminPortalAccountDetailsPage.verifyAccountTableFieldValuesOfAccountDetailContainer();
+    }
 }

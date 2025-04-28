@@ -100,7 +100,6 @@ public class SharedData {
     @Getter @Setter private static String FinancialIncome;
     @Getter @Setter private static String EffectiveLCEDate;
 
-
     @Getter @Setter private static Boolean isAiAn = false;
     @Getter @Setter private static String recType = null;
 

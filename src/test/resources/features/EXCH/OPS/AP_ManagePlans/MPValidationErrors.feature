@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @manageplans
 Feature: Manage Plans:Editing Validation Errors(Medical and Dental)
   Background:
     Given I open the login page on the "admin" portal

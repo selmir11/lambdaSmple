@@ -1,4 +1,4 @@
-@SLER-1022 @portNotice
+@port @portNoticeLoginPortal
 Feature: Trigger Admin user Password reset and confirmation Notices AM-016-07 AND AM-016-08
 
   @SLER-1022

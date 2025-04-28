@@ -84,22 +84,46 @@ public class OhcPeaceCorpsPage {
     @FindBy(css = "lib-help-icon a")
     List<WebElement> helpIcons;
 
-    @FindBy(css = ".drawer-heading .body-text-1")
+    @FindBy(css = "div.desktop-help > div > span.c4-text-body-200")
     WebElement helpDrawerHeaderHelp;
 
-    @FindBy(css = ".drawer-heading .drawer-title")
+    @FindBy(css = "div.desktop-help > div > span.title.c4-type-header-sm")
     WebElement helpDrawerHeaderPeaceCorps;
 
     @FindBy(css = "div > strong")
     List<WebElement> helpDrawerMainHeaders;
 
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(1)")
+    WebElement helpDrawerHeaderOne;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(4)")
+    WebElement helpDrawerHeaderTwo;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(7)")
+    WebElement helpDrawerHeaderThree;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > strong:nth-child(10)")
+    WebElement helpDrawerHeaderFour;
+
     @FindBy(css = ".drawer-text-content p")
     List<WebElement> helpDrawerBodyParagraphs;
 
-    @FindBy(css = ".drawer-footer h3")
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(3)")
+    WebElement helpDrawerBodyParagraphOne;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(6)")
+    WebElement helpDrawerBodyParagraphTwo;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(9)")
+    WebElement helpDrawerBodyParagraphThree;
+
+    @FindBy(css = "div.desktop-help > mat-dialog-content > div > div > div.help-main-content.ng-star-inserted > p:nth-child(12)")
+    WebElement helpDrawerBodyParagraphFour;
+
+    @FindBy(css = "div.help-footer.ng-star-inserted")
     WebElement helpDrawerFooter;
 
-    @FindBy(css = ".drawer-footer h3 a")
+    @FindBy(css = "div.help-footer.ng-star-inserted > a")
     WebElement helpDrawerContactUsLink;
 
 
@@ -733,84 +757,84 @@ public class OhcPeaceCorpsPage {
     public void validateGeneralHelpBodyVerbiageEng() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
         softAssert.assertEquals(helpDrawerHeaderPeaceCorps.getText(), "Peace Corps");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Overview");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText(), "Enrollment");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText(), "End in the next 60 days");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(3).getText(), "Voluntarily Ending");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "This page helps us find out if this person is enrolled in or eligible for other health insurance. By eligible, we mean that they have the option to enroll, even if they aren't currently enrolled.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "If this person currently has this health insurance, select \"Yes\". If they are able to get this health insurance, but have chosen not to, select \"No\".");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "If this insurance is ending in the next 60 days, this person is eligible for a Special Enrollment Period which allows you and your family to shop for health insurance outside of the Open Enrollment Period.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(3).getText(), "If this person chooses to end this health insurance, they will not be eligible for a Special Enrollment Period to shop for other health insurance. They must wait until the next Open Enrollment Period to shop unless they have another qualifying life change event.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Overview");
+        softAssert.assertEquals(helpDrawerHeaderTwo.getText(), "Enrollment");
+        softAssert.assertEquals(helpDrawerHeaderThree.getText(), "End in the next 60 days");
+        softAssert.assertEquals(helpDrawerHeaderFour.getText(), "Voluntarily Ending");
+        softAssert.assertEquals(helpDrawerBodyParagraphOne.getText(), "This page helps us find out if this person is enrolled in or eligible for other health insurance. By eligible, we mean that they have the option to enroll, even if they aren't currently enrolled.");
+        softAssert.assertEquals(helpDrawerBodyParagraphTwo.getText(), "If this person currently has this health insurance, select \"Yes\". If they are able to get this health insurance, but have chosen not to, select \"No\".");
+        softAssert.assertEquals(helpDrawerBodyParagraphThree.getText(), "If this insurance is ending in the next 60 days, this person is eligible for a Special Enrollment Period which allows you and your family to shop for health insurance outside of the Open Enrollment Period.");
+        softAssert.assertEquals(helpDrawerBodyParagraphFour.getText(), "If this person chooses to end this health insurance, they will not be eligible for a Special Enrollment Period to shop for other health insurance. They must wait until the next Open Enrollment Period to shop unless they have another qualifying life change event.");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help?\nContact us");
         softAssert.assertAll();
     }
 
     public void validateGeneralHelpBodyVerbiageSp() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
         softAssert.assertEquals(helpDrawerHeaderPeaceCorps.getText(), "Cuerpos de paz (Peace Corps)");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Resumen");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(1).getText(), "Inscripci\u00F3n");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(2).getText(), "Finalizaci\u00F3n en los pr\u00F3ximos 60 d\u00EDas");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(3).getText(), "Cancelaci\u00F3n voluntaria");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Esta p\u00E1gina nos ayuda a saber si esta persona est\u00E1 inscrita o es elegible para otro seguro de salud. Al decir elegible, nos referimos a que tiene la opci\u00F3n de inscribirse, aun si la persona no est\u00E1 actualmente inscrita.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(1).getText(), "Si actualmente esta persona tiene este seguro de salud, seleccione \"S\u00ED\". Si esta persona puede obtener este seguro de salud, pero ha decidido no tenerlo, seleccione \"No\".");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(2).getText(), "Si este seguro va a terminar en los pr\u00F3ximos 60 d\u00EDas, esta persona es elegible para un Per\u00EDodo de inscripci\u00F3n especial que le permite tanto a usted como a su familia adquirir un seguro de salud fuera del Per\u00EDodo de inscripci\u00F3n abierta.");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(3).getText(), "Si esta persona decide cancelar este seguro de salud, no podr\u00E1 ser elegible para un Per\u00EDodo de inscripci\u00F3n especial para adquirir otro seguro de salud. Deber\u00E1 esperar hasta el siguiente Per\u00EDodo de inscripci\u00F3n abierta para adquirirlo a menos que tenga otro evento de vida calificado.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Resumen");
+        softAssert.assertEquals(helpDrawerHeaderTwo.getText(), "Inscripci\u00F3n");
+        softAssert.assertEquals(helpDrawerHeaderThree.getText(), "Finalizaci\u00F3n en los pr\u00F3ximos 60 d\u00EDas");
+        softAssert.assertEquals(helpDrawerHeaderFour.getText(), "Cancelaci\u00F3n voluntaria");
+        softAssert.assertEquals(helpDrawerBodyParagraphOne.getText(), "Esta p\u00E1gina nos ayuda a saber si esta persona est\u00E1 inscrita o es elegible para otro seguro de salud. Al decir elegible, nos referimos a que tiene la opci\u00F3n de inscribirse, aun si la persona no est\u00E1 actualmente inscrita.");
+        softAssert.assertEquals(helpDrawerBodyParagraphTwo.getText(), "Si actualmente esta persona tiene este seguro de salud, seleccione \"S\u00ED\". Si esta persona puede obtener este seguro de salud, pero ha decidido no tenerlo, seleccione \"No\".");
+        softAssert.assertEquals(helpDrawerBodyParagraphThree.getText(), "Si este seguro va a terminar en los pr\u00F3ximos 60 d\u00EDas, esta persona es elegible para un Per\u00EDodo de inscripci\u00F3n especial que le permite tanto a usted como a su familia adquirir un seguro de salud fuera del Per\u00EDodo de inscripci\u00F3n abierta.");
+        softAssert.assertEquals(helpDrawerBodyParagraphFour.getText(), "Si esta persona decide cancelar este seguro de salud, no podr\u00E1 ser elegible para un Per\u00EDodo de inscripci\u00F3n especial para adquirir otro seguro de salud. Deber\u00E1 esperar hasta el siguiente Per\u00EDodo de inscripci\u00F3n abierta para adquirirlo a menos que tenga otro evento de vida calificado.");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda?\nCont\u00E1ctenos");
         softAssert.assertAll();
     }
 
     public void validateCurrentlyEnrolledHelpBodyVerbiageEng() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
         softAssert.assertEquals(helpDrawerHeaderPeaceCorps.getText(), "Peace Corps");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Enrollment");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "If this person currently has this health insurance, select \"Yes\". If they are able to get this health insurance, but have chosen not to, select \"No\".");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Enrollment");
+        softAssert.assertEquals(helpDrawerBodyParagraphOne.getText(), "If this person currently has this health insurance, select \"Yes\". If they are able to get this health insurance, but have chosen not to, select \"No\".");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help?\nContact us");
         softAssert.assertAll();
     }
 
     public void validateCurrentlyEnrolledHelpBodyVerbiageSp() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
         softAssert.assertEquals(helpDrawerHeaderPeaceCorps.getText(), "Cuerpos de paz (Peace Corps)");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Inscripci\u00F3n");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Si actualmente esta persona tiene este seguro de salud, seleccione \"S\u00ED\". Si esta persona puede obtener este seguro de salud, pero ha decidido no tenerlo, seleccione \"No\".");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Inscripci\u00F3n");
+        softAssert.assertEquals(helpDrawerBodyParagraphOne.getText(), "Si actualmente esta persona tiene este seguro de salud, seleccione \"S\u00ED\". Si esta persona puede obtener este seguro de salud, pero ha decidido no tenerlo, seleccione \"No\".");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda?\nCont\u00E1ctenos");
         softAssert.assertAll();
     }
 
     public void validate60DaysHelpBodyVerbiageEng() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
         softAssert.assertEquals(helpDrawerHeaderPeaceCorps.getText(), "Peace Corps");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "End in the next 60 days");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "If this insurance is ending in the next 60 days, this person is eligible for a Special Enrollment Period which allows you and your family to shop for health insurance outside of the Open Enrollment Period.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpDrawerHeaderOne.getText(), "End in the next 60 days");
+        softAssert.assertEquals(helpDrawerBodyParagraphOne.getText(), "If this insurance is ending in the next 60 days, this person is eligible for a Special Enrollment Period which allows you and your family to shop for health insurance outside of the Open Enrollment Period.");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help?\nContact us");
         softAssert.assertAll();
     }
 
     public void validate60DaysHelpBodyVerbiageSp() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
         softAssert.assertEquals(helpDrawerHeaderPeaceCorps.getText(), "Cuerpos de paz (Peace Corps)");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Finalizaci\u00F3n en los pr\u00F3ximos 60 d\u00EDas");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Si este seguro va a terminar en los pr\u00F3ximos 60 d\u00EDas, esta persona es elegible para un Per\u00EDodo de inscripci\u00F3n especial que le permite tanto a usted como a su familia adquirir un seguro de salud fuera del Per\u00EDodo de inscripci\u00F3n abierta.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Finalizaci\u00F3n en los pr\u00F3ximos 60 d\u00EDas");
+        softAssert.assertEquals(helpDrawerBodyParagraphOne.getText(), "Si este seguro va a terminar en los pr\u00F3ximos 60 d\u00EDas, esta persona es elegible para un Per\u00EDodo de inscripci\u00F3n especial que le permite tanto a usted como a su familia adquirir un seguro de salud fuera del Per\u00EDodo de inscripci\u00F3n abierta.");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda?\nCont\u00E1ctenos");
         softAssert.assertAll();
     }
 
     public void validateVoluntaryEndingHelpBodyVerbiageEng() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Help");
         softAssert.assertEquals(helpDrawerHeaderPeaceCorps.getText(), "Peace Corps");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Voluntarily Ending");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "If this person chooses to end this health insurance, they will not be eligible for a Special Enrollment Period to shop for other health insurance. They must wait until the next Open Enrollment Period to shop unless they have another qualifying life change event.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help? Contact us");
+        softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Voluntarily Ending");
+        softAssert.assertEquals(helpDrawerBodyParagraphOne.getText(), "If this person chooses to end this health insurance, they will not be eligible for a Special Enrollment Period to shop for other health insurance. They must wait until the next Open Enrollment Period to shop unless they have another qualifying life change event.");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "Need more help?\nContact us");
         softAssert.assertAll();
     }
 
     public void validateVoluntaryEndingHelpBodyVerbiageSp() {
         softAssert.assertEquals(helpDrawerHeaderHelp.getText(), "Ayuda");
         softAssert.assertEquals(helpDrawerHeaderPeaceCorps.getText(), "Cuerpos de paz (Peace Corps)");
-        softAssert.assertEquals(helpDrawerMainHeaders.get(0).getText(), "Cancelaci\u00F3n voluntaria");
-        softAssert.assertEquals(helpDrawerBodyParagraphs.get(0).getText(), "Si esta persona decide cancelar este seguro de salud, no podr\u00E1 ser elegible para un Per\u00EDodo de inscripci\u00F3n especial para adquirir otro seguro de salud. Deber\u00E1 esperar hasta el siguiente Per\u00EDodo de inscripci\u00F3n abierta para adquirirlo a menos que tenga otro evento de vida calificado.");
-        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda? Cont\u00E1ctenos");
+        softAssert.assertEquals(helpDrawerHeaderOne.getText(), "Cancelaci\u00F3n voluntaria");
+        softAssert.assertEquals(helpDrawerBodyParagraphOne.getText(), "Si esta persona decide cancelar este seguro de salud, no podr\u00E1 ser elegible para un Per\u00EDodo de inscripci\u00F3n especial para adquirir otro seguro de salud. Deber\u00E1 esperar hasta el siguiente Per\u00EDodo de inscripci\u00F3n abierta para adquirirlo a menos que tenga otro evento de vida calificado.");
+        softAssert.assertEquals(helpDrawerFooter.getText(), "\u00BFNecesitas m\u00E1s ayuda?\nCont\u00E1ctenos");
         softAssert.assertAll();
     }
 

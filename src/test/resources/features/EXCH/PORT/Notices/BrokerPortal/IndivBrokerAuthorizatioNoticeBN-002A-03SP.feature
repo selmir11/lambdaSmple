@@ -1,4 +1,4 @@
-@port @portNotice
+@port @portNoticeBrokerPortal
 Feature: Trigger the exchange individual's notice for broker authorization in Spanish - BN-002A-03
 
   @SLER-1865

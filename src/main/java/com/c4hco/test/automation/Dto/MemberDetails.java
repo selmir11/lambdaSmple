@@ -99,6 +99,9 @@ public class MemberDetails {
     String medicalSesAmt;
     Boolean isProfileChange = false;
     Boolean isResAddChange = false;
+    String policyDisenrollmentReasonMed;
+    String policyDisenrollmentReasonDen;
+    String submittedBy;
 }
 
 

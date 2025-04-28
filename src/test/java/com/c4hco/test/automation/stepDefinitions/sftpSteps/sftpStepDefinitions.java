@@ -1,10 +1,7 @@
 package com.c4hco.test.automation.stepDefinitions.sftpSteps;
 
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.edi.EdiValidations.Ib834FileValidation;
-import com.c4hco.test.automation.edi.EdiValidations.Ib999FileValidations;
-import com.c4hco.test.automation.edi.EdiValidations.Ob834FileValidations;
-import com.c4hco.test.automation.edi.EdiValidations.Ob999FileValidations;
+import com.c4hco.test.automation.edi.EdiValidations.*;
 import com.c4hco.test.automation.sftpConfig.SftpUtil;
 import io.cucumber.java.en.And;
 import org.testng.Assert;
@@ -21,6 +18,7 @@ public class sftpStepDefinitions {
    Ob999FileValidations ob999FileValidations = new Ob999FileValidations();
    Ib834FileValidation ib834FileValidations_grps = new Ib834FileValidation();
    Ob834FileValidations ob834FileValidations = new Ob834FileValidations();
+    COCO_ib834FileValidations coco_ib834FileValidations = new COCO_ib834FileValidations();
 
     @And("I download the medical and dental files from sftp server with location {string}")
     public void downloadMedDenFiles(String remoteLocation)  {
@@ -28,7 +26,7 @@ public class sftpStepDefinitions {
              String sftpDownloadPath = sftpUtil.getLocalSftpDownloadPath();
             SharedData.setLocalPathToDownloadFile(sftpDownloadPath);
             List<String> allFiles = new ArrayList<>();
-            if(!SharedData.getAppType().equals("coco")) {
+            if(SharedData.getAppType().equals("exchange")) {
                 allFiles.addAll(SharedData.getDentalFileName_grp());
             }
             allFiles.addAll(SharedData.getMedicalFileName_grp());
@@ -221,6 +219,15 @@ public class sftpStepDefinitions {
                 break;
             default:
                 Assert.fail("Incorrect Argument passed in the step");
+        }
+    }
+    @And("I validate coco Ib834 file data")
+    public void validateIb834FileDetails(){
+        List<String> medFileNames = SharedData.getMedicalIb834FileNames();
+        for(String medIb834FileName: medFileNames){
+            System.out.println("***Validating Ib834 Medical EDI File::"+medIb834FileName+"***");
+            sftpUtil.readIb834EdiFile(medIb834FileName);
+            coco_ib834FileValidations.validateCocoIb834MedFile(medIb834FileName);
         }
     }
 }
