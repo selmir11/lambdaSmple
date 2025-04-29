@@ -1,4 +1,4 @@
-@SIR-EXCH6 @dentalPlanDetail @SIR
+@SIR @SIREXCH @SIR-EXCH6 @dentalPlanDetail
   # contains SLER-955, SLER-995, SLER-996,
 Feature: Dental Plan Verification test
 

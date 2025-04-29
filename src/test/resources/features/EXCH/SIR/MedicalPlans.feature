@@ -1,4 +1,4 @@
-@SIR-EXCH13 @MedicalPlans
+@SIR @SIREXCH @SIR-EXCH13 @MedicalPlans
   # contains SLER-73
   Feature: Tests related to medical plans
     @SLER-73

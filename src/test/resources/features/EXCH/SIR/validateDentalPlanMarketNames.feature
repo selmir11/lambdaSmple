@@ -1,4 +1,4 @@
-@SIR-EXCH18 @Dental
+@SIR @SIREXCH @SIR-EXCH18 @Dental
  #SLER-1200
 Feature: Tests related to Dental plans
 
