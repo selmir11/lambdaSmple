@@ -1,4 +1,5 @@
-@OPS @SLER-1185 @managePlan
+@OPS @Exch @manageplans
+  @SLER-1185
 Feature: Manage Plans:Current Dent Container verification (order)
 
   Scenario:Manage plan 2022

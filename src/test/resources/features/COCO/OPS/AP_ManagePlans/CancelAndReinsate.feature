@@ -1,4 +1,4 @@
-@OPS @manageplans
+@OPS @Exch @manageplans
 Feature: Manage Plans: Cancel And Reinstate[CCRT-349]
   @SLCR-937
 Scenario: Cancel And Reinstate[CCRT-349]

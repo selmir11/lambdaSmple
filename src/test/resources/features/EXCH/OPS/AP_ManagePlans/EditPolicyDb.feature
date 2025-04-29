@@ -1,4 +1,4 @@
-@OPS @ManagePlans
+@OPS @Exch @manageplans
 Feature: OPS: Create individual account with 2 members and enroll in Medical/Dental
 
   Background:

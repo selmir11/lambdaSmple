@@ -302,5 +302,14 @@ public class AdminPortalIndividualDashboardSteps {
     @And("I verify Plan container with no active plan on the Individual dashboard")
     public void iVerifyPlanContainerNoActive() {adminPortalIndividualDashboardPage.verifyPlanContainerNoActive();}
 
+    @Then("I verify color font format etc for elements of Account Summary container")
+    public void iVerifyColorFontFormatEtcForElementsOfAccountSummaryContainer(List<String> pageTexts) {
+        adminPortalIndividualDashboardPage.verifyColorFontFormatEtcForElementsOfAccountSummaryContainer(pageTexts);
+    }
+
+    @Then("I verify height width and color of line under each household members")
+    public void iVerifyHeightWidthAndColorOfLineUnderEachHouseholdMembers() {
+        adminPortalIndividualDashboardPage.verifyHeightWidthAndColorOfLineUnderEachHouseholdMembers();
+    }
 }
 

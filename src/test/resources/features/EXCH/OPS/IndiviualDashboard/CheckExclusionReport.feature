@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @IndiviualDashboard
 Feature: OPS: IndDash: Check Exclusion Report
   @SLER-2393
   Scenario:IndDash: Check Exclusion Report

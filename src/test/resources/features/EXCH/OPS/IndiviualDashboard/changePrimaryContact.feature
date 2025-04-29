@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @IndiviualDashboard
 Feature: OPS: IndDash: Change primary contact and verify in admin portal
   @SLER-1245
   Scenario:OPS: IndDash: Change primary contact and verify in admin portal

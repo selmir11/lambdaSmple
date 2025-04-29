@@ -1,4 +1,4 @@
-@OPS  @managePlan
+@OPS @Exch @manageplans
 Feature: Manage plan Cell Validation
 
   @SLER-2473

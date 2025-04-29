@@ -1,4 +1,4 @@
-@SIR-EXCH8 @EXCHEndToEnd
+@SIR @SIREXCH @SIR-EXCH8 @EXCHEndToEnd
   # contains @SLER-1288, SLER-1289,
 
 Feature: End to End testing - single enrollment

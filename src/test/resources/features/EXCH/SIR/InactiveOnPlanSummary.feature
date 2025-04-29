@@ -1,4 +1,4 @@
-@SIR-EXCH11 @SIRRegression @PlanSummary
+@SIR @SIREXCH @SIR-EXCH11 @SIRRegression @PlanSummary
 # SLER-1092
 Feature: Skipping Medical and Dental Plan pages
 
