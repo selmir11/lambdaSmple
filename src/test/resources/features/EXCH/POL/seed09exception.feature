@@ -125,7 +125,7 @@ Feature: Seed09exception - Exchange
     Then I validate I am on the "Start Shopping" page
     Then I click continue on start shopping page
     Then I validate I am on the "Medical Plan Results" page
-    Then I select "KP Select CO Catastrophic " medical plan
+    Then I select "KP Select CO Catastrophic" medical plan
     Then I click continue on medical plan results page
     And I validate I am on the "Dental Plan Results" page
     And I select "Cigna Dental Pediatric" plan
