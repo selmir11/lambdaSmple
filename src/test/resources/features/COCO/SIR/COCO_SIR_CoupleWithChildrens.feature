@@ -162,6 +162,7 @@ Feature: CoupleWithChildrens - End to End Test
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Wife" coco
     Then I click continue on coco start shopping page
 
+    Then I validate I am on the "Grouping Members Medical" page
     Then I click on edit enrollment groups link in coco page
     Then I create new group in edit medical grouping coco page and drag members to the new group
     |Primary:Group1|
@@ -169,8 +170,8 @@ Feature: CoupleWithChildrens - End to End Test
     |Daughter:Group3|
     |Son:Group4|
     Then I click save button to save the groups in CoCo Page
- And I validated message on success enrollment grouping pop-up in CoCo Page
-   Then I click on continue button on success pop-up in CoCo Page
+    And I validated message on success enrollment grouping pop-up in CoCo Page
+    Then I click on continue button on success pop-up in CoCo Page
 
     Then I validate I am on the "Grouping Members Medical" page
     #And I validate that there are 4 default groups in coco page
@@ -355,6 +356,7 @@ Feature: CoupleWithChildrens - End to End Test
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Wife" coco
     Then I click continue on coco start shopping page
 
+    Then I validate I am on the "Grouping Members Medical" page
     Then I click on edit enrollment groups link in coco page
     Then I create new group in edit medical grouping coco page and drag members to the new group
       |Primary:Group1|
@@ -695,6 +697,7 @@ Feature: CoupleWithChildrens - End to End Test
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
     Then I click continue on coco start shopping page
 
+    Then I validate I am on the "Grouping Members Medical" page
     Then I click on edit enrollment groups link in coco page
     Then I create new group in edit medical grouping coco page and drag members to the new group
       |Primary:Group1|
