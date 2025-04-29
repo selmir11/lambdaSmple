@@ -1,4 +1,4 @@
-@OPS @MyDocuments
+@OPS @Exch @MyDocuments
 Feature: OPS: MyDocs: Security: URL Manipulation Individual
 
   @SLER-2382

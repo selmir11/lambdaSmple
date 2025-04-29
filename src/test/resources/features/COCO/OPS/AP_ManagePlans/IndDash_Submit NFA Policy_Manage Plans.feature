@@ -1,6 +1,6 @@
-@OPS @SLCR-675
 Feature: IndDash: Submit NFA Policy/Manage Plans
 
+  @OPS @SLCR-675
   Scenario:Submit NFA Policy/Manage Plans(CCRT-142)
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page

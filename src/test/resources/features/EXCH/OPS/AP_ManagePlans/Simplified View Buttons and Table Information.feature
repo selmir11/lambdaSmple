@@ -1,4 +1,5 @@
-@OPS @SLER-1940 @managePlan
+@OPS @Exch @manageplans
+  @SLER-1940
 Feature: Manage Plans:Simplified view buttons and tables data
   Scenario:Manage plan 2022
     Given I open the login page on the "admin" portal
@@ -15,7 +16,7 @@ Feature: Manage Plans:Simplified view buttons and tables data
     And I select the "2023" plan year on manage plan
     Then I validate title and labels on Manage page
     And I validate simplified plans "Medical Plan:" and "Dental Plan:" and labels on Manage page
-    Then I validate buttons displayed on Manage page
+    And I validate Make Changes button displayed for "Both" on Manage page
     Then I verify both buttons Medical and Dental is checked
     Then I click Make Changes Medical button
     And I validate "Save" medical button displays on Manage page

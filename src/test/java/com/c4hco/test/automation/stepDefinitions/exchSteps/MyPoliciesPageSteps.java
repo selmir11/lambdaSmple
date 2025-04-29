@@ -12,8 +12,8 @@ public class MyPoliciesPageSteps {
     public void validateMedPlanDetails(String planType){
         myPoliciesPage.validatePlanDetails(planType);
     }
-    @And("I validate {string} details card is not present on my policies page")
-    public void validateCancelPlanNotPresentOnPoliciesPage(String planType){
+    @And("I validate {string} cancel button is not present on my policies page")
+    public void validateCancelPlanButnNotPresentOnPoliciesPage(String planType){
         myPoliciesPage.validateCancelPlanButnNotPresent(planType);
     }
 

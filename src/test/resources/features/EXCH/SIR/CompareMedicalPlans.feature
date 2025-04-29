@@ -1,4 +1,4 @@
-@SIR-EXCH2 @MedicalCompare
+@SIR @SIREXCH @SIR-EXCH2 @MedicalCompare
   #@SLER-46, @SLER-725, @SLER-726 , @SLER-1086, SLER-1236, SLER-1929, SLER-1935 , SLER-1989
 Feature: Medical Plan Compare page related tests
 

@@ -94,4 +94,10 @@ public class MpDbDataProvider {
         System.out.println("Number of rows retrieved: " + results.size());
         return results;
     }
+    public List<List<String>> getManagePlanContainerDetailsCoCo(String planType, String planYear) {
+        List<List<String>> results = postgresHandler.getResultForMultipleDynamicColumns(dbMpQueries.getManagePlansDetailsYearCoCo(planType, planYear), "policy_start_date", "policy_end_date", "plan_marketing_name", "first_name", "plan_premium_amt", "premium_reduction_amt");
+
+        System.out.println("Number of rows retrieved: " + results.size());
+        return results;
+    }
 }

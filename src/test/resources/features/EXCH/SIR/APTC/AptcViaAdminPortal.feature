@@ -1,4 +1,4 @@
-@APTC @APTCSIR @SIRRegression @APTC-SIR5
+@SIR  @APTC @APTCSIR @SIRRegression @APTC-SIR5
   # SLER-778
 Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
