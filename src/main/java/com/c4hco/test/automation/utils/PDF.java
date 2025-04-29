@@ -43,15 +43,15 @@ public class PDF {
         System.out.println("Is static valid: " + isStaticValid);
         System.out.println("Is dynamic valid: " + isDynamicValid);
 
-//        // Use soft assertions for validation
-//        softAssert.assertTrue(isStaticValid, "Static PDF validation failed.");
-//        softAssert.assertTrue(isDynamicValid, "Dynamic PDF text validation failed.");
-//
-//        try {
-//            softAssert.assertAll();
-//        } catch (AssertionError e) {
-//            System.err.println("Validation failures found: " + e.getMessage());
-//        }
+        // Use soft assertions for validation
+        softAssert.assertTrue(isStaticValid, "Static PDF validation failed.");
+        softAssert.assertTrue(isDynamicValid, "Dynamic PDF text validation failed.");
+
+        try {
+            softAssert.assertAll();
+        } catch (AssertionError e) {
+            System.err.println("Validation failures found: " + e.getMessage());
+        }
     }
 
     // Static PDF Validation
