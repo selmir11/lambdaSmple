@@ -26,7 +26,7 @@ public class PaymentPortalCoCoPage {
     @FindBy(xpath = "//*[@id='SOL-PayNow-AllDone-Indv' or @id='SOL-PayNow-AllDone-Obo']")
     WebElement allDoneBtn;
 
-    @FindBy(id="SOL-PayNow-AllDone-Obo")
+    @FindBy(xpath= "//*[@id = 'SOL-PayNow-AllDone-Obo']")
     WebElement allDoneOboBtn;
 
     @FindBy(css = "lib-loader .loader-overlay #loader-icon")
@@ -54,8 +54,8 @@ public class PaymentPortalCoCoPage {
     }
 
     public void clickAllDoneOboCoCo(){
-        basicActions.waitForElementToDisappear(spinner, 15);
-        basicActions.waitForElementToBePresent(allDoneOboBtn, 30);
+        basicActions.waitForElementToDisappear(spinner, 130);
+        basicActions.waitForElementToBePresentWithRetries(allDoneOboBtn, 150);
         basicActions.scrollToElement(allDoneOboBtn);
         allDoneOboBtn.click();
     }
