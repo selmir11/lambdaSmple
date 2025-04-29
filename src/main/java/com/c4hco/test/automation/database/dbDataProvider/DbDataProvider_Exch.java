@@ -105,6 +105,9 @@ public class DbDataProvider_Exch {
     }
 
     public String[] getBaseIdAndHiosIssuerForPlan(String planName){
+        if(planName.equalsIgnoreCase("KP Select CO Catastrophic")){
+            planName="KP Select CO Catastrophic ";
+        }
         return postgresHandler.getResultForTwoColumnValues("base_id", "hios_issuer_id", exchDbQueries.en_plan(planName));
     }
 
