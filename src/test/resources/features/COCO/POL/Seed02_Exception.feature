@@ -100,6 +100,7 @@ Feature: Seed02 with exception - Coco
     And I select year "Current Year" from My Current Plan container
     And I Validate the correct enrolled plans are displayed on coco welcome page
     And I click on "My Plans" link on welcome page
+    And I click on Future Plans CoCo
     And I validate enrolled medical plans details on my policies page coco
     And I click on Sign Out in the Header for "Elmo"
 

@@ -1,4 +1,4 @@
-@SIR-EXCH12 @medicalPlanFilterResults
+@SIR @SIREXCH @SIR-EXCH12 @medicalPlanFilterResults
   # contains SLER-25, SLER-36, SLER-44, SLER-53, SLER-56, SLER-62, SLER-63, SLER-72, SLER-74
 Feature: Medical Plan Verification test
 
@@ -221,7 +221,7 @@ Feature: Medical Plan Verification test
     Then I validate I am on the "Medical Plan Results" page
     And I click the HSA dropdown
     And I select the HSA option
-    And I validate the plan option 1 has text "Anthem Bronze Pathway Essentials 8000 for HSA"
+    And I validate the plan option 2 has text "Anthem Bronze Pathway Essentials 8000 for HSA"
     And I click on Sign Out in the Header for "Portal"
 
   @SLER-74  @SelectVerifyColoradoOptionResults
