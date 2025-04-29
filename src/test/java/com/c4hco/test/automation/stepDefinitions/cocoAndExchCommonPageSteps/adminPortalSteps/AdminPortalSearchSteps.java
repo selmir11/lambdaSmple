@@ -229,4 +229,34 @@ public class AdminPortalSearchSteps {
         adminPortalSearchPage.verifyHeaderDisplayAndStyles(headerName);
         adminPortalSearchPage.verifyElementStyles(headerName, styles);
     }
+
+    @Then("I verify search results for {string} on admin portal search page")
+    public void iVerifySearchResultsForOnAdminPortalSearchPage(String category, List<Map<String,String>> expectedValues) {
+        adminPortalSearchPage.verifySearchResult(category,expectedValues);
+    }
+
+    @Then("I verify default value in sort by filter dropdown")
+    public void iVerifyDefaultValueInSortByFilterDropdown(String text) {
+        adminPortalSearchPage.verifyDefaultSortBy(text);
+    }
+
+    @And("I verify Sort By field values")
+    public void iVerifySortByFieldValues(List<String> values) {
+        adminPortalSearchPage.verifyDropDownValues(values);
+    }
+
+    @Then("I validate the list is sorted in order by {string} and {string} for duplicate matches")
+    public void iValidateTheListIsSortedInOrderByAndForDuplicateMatches(String category, String sort) {
+        adminPortalSearchPage.verifySortascdesc(category,sort);
+    }
+
+    @Then("I validate the list is sorted by account ID in {string} order")
+    public void iValidateTheListIsSortedByAnd(String sortOrder) {
+        adminPortalSearchPage.verifySortByAcct(sortOrder);
+    }
+
+    @When("I select option as {string}")
+    public void iSelectOptionAs(String value) {
+        adminPortalSearchPage.selectSortByOption(value);
+    }
 }
