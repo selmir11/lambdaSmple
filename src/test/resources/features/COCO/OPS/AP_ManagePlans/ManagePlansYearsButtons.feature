@@ -127,3 +127,26 @@ Feature: Manage Plans: Buttons (positive and negative testing)
     Then I click Make Changes Medical button
     Then I verify options are getting selected from termination reason drop down for all members
     And I click Reset Changes Medical
+
+  @SLCR-742 @OPSRegression
+  Scenario: OPS CoCo IndDash Member Table[CCRT-131]
+    Given I open the login page on the "admin" portal
+    And I validate I am on the "Login" page
+    When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
+    And I validate I am on the "Admin search" page
+    And I select "coco" checkbox on Admin Portal Dashboard
+    Then I enter an accountId in any Env "6703170627" "2008008265" to search user
+    Then I click on Search button in AP dashboard page
+    Then I select the first record from the search results
+    Then I verify color font format etc for elements of Account Summary container
+    |Username|
+    |Full Name|
+    |Household Members|
+    Then I verify height width and color of line under each household members
+    Then I click on manage account details button on admin portal Individual dashboard
+    Then I validate I am on the "account details" page
+    Then I verify font color format of primary account holder label
+    Then I verify account id displayed in any Env "6703170627" "2008008265"
+    Then I verify account table labels of account detail container
+    Then I verify primary account holder name in account detail container
+    Then I verify account table field values of account detail container

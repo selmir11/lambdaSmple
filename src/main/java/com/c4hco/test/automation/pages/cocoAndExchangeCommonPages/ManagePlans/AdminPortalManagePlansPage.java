@@ -647,10 +647,31 @@ public class AdminPortalManagePlansPage {
         softAssert.assertAll();
     }
 
-    public void resetMakeChangeButtonsDisplayed() {
-        basicActions.waitForElementToBePresentWithRetries(btnMakeChangeMed, 60);
-        softAssert.assertEquals(btnMakeChangeMed.getText(), "Make Changes Medical");
-        softAssert.assertEquals(btnMakeChangeDental.getText(), "Make Changes Dental");
+    public void resetMakeChangeButtonsDisplayed(String planType) {
+        switch (planType){
+            case "Both":
+                basicActions.waitForElementToBePresentWithRetries(btnMakeChangeMed, 60);
+                softAssert.assertEquals(btnMakeChangeMed.getText(), "Make Changes Medical");
+                softAssert.assertEquals(btnMakeChangeDental.getText(), "Make Changes Dental");
+                break;
+            case "Medical":
+                basicActions.waitForElementToBePresentWithRetries(btnMakeChangeMed, 60);
+                softAssert.assertEquals(btnMakeChangeMed.getText(), "Make Changes Medical");
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(btnMakeChangeDental, 10));
+                break;
+            case "Dental":
+                basicActions.waitForElementToBePresentWithRetries(btnMakeChangeDental, 60);
+                softAssert.assertEquals(btnMakeChangeDental.getText(), "Make Changes Dental");
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(btnMakeChangeMed, 10));
+                break;
+            case "Neither":
+                basicActions.waitForElementToBePresentWithRetries(noPlanMessage, 60);
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(btnMakeChangeDental, 10));
+                softAssert.assertTrue(basicActions.waitForElementToDisappear(btnMakeChangeMed, 10));
+                break;
+            default:
+                throw new IllegalArgumentException("Undefined Type: " + planType);
+        }
         softAssert.assertAll();
     }
 

@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @MyDocs
 Feature: OPS MyDocs Download hCentive document
 
   @SLER-2153 @OPSRegression

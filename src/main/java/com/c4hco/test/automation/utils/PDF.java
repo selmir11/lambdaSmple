@@ -18,12 +18,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 
 public class PDF {
 
     // Global Variables
     private BasicActions basicActions;
     static SoftAssert softAssert = new SoftAssert();
+    private String language;
+    private String noticeType;
 
     // Constructor for PDF class
     public PDF(WebDriver webDriver) {
@@ -37,6 +40,8 @@ public class PDF {
         // Validate static and dynamic PDFs
         boolean isStaticValid = validateStaticPDF(pdfExpected);
         boolean isDynamicValid = validateDynamicPDFText();
+        System.out.println("Is static valid: " + isStaticValid);
+        System.out.println("Is dynamic valid: " + isDynamicValid);
 
         // Use soft assertions for validation
         softAssert.assertTrue(isStaticValid, "Static PDF validation failed.");
@@ -60,14 +65,28 @@ public class PDF {
 
     // Dynamic PDF Text Validation
     public boolean validateDynamicPDFText() throws IOException {
+        SoftAssert softAssert = new SoftAssert();
         String pdfText = new String(extractTextFromPDF(PDFDownloaded()));
         boolean isValid = true;
 
         try {
-            softAssert.assertTrue(pdfText.contains(SharedData.getPrimaryMember().getEmailId()), "Primary member email ID is not matching.");
-            softAssert.assertTrue(pdfText.contains(basicActions.changeDateFormat(LocalDate.now().toString(), "yyyy-MM-dd", "MMMM d, yyyy")), "Current date is not matching.");
+            // checks email
+            softAssert.assertTrue(pdfText.contains(SharedData.getPrimaryMember().getEmailId()), "Primary Member Email ID does not match.");
+
+            // checks account number
+            if (!noticeType.equals("AM")) {softAssert.assertTrue(pdfText.contains(SharedData.getPrimaryMember().getAccount_id().toString()),"Account ID does not match.");}
+
+            // checks date
+            if (language.equals("English")) {
+                softAssert.assertTrue(pdfText.contains(basicActions.changeDateFormat(LocalDate.now().toString(), "yyyy-MM-dd", "MMMM d, yyyy", Locale.ENGLISH)), "Current date is not matching.");
+            } else {softAssert.assertTrue(pdfText.contains(basicActions.changeDateFormat(LocalDate.now().toString(), "yyyy-MM-dd", "d 'de' MMMM 'del' yyyy", new Locale("es", "ES"))), "Current date is not matching Es.");}
+
+            // checks Member Names
             validateMemNames(pdfText);
+
+            // asserts all checks
             softAssert.assertAll();
+
         } catch (AssertionError e) {
             System.err.println("Dynamic PDF validation failed: " + e.getMessage());
             isValid = false;
@@ -100,8 +119,8 @@ public class PDF {
         nameExtract(pdfExpected);
         String[] extractedValues = nameExtract(pdfExpected);
 
-        String language = extractedValues[0];  // "English" or "Spanish"
-        String noticeType = extractedValues[1]; // "Elig"
+        language = extractedValues[0];  // "English" or "Spanish"
+        noticeType = extractedValues[1]; // "Elig"
 
         if (SharedData.getIsOpenEnrollment().equals("no")) {
             return String.format("src/main/resources/MyDocs/Notices/Source/Closed Enrollment/"+ noticeType +"/"+ language +"/"+ pdfExpected + ".pdf");
@@ -148,7 +167,8 @@ public class PDF {
     // Validating member names in the dynamic PDF text
     public void validateMemNames(String pdfText) {
         List<MemberDetails> allMedicalEligMembers = basicActions.getAllMedicalEligibleMemInfo();
-        List<String> memberCompleteFullName = allMedicalEligMembers.stream().filter(MemberDetails::getHasMedicalPlan).map(MemberDetails::getCompleteFullName).toList();
+        List<String> memberCompleteFullName = allMedicalEligMembers.stream().filter(MemberDetails::getHasMedicalPlan).map(MemberDetails::getFullName).toList();
+        System.out.println(memberCompleteFullName);
         for (String memName : memberCompleteFullName) {
             System.out.println(memName);
             softAssert.assertTrue(pdfText.contains(memName), memName + " text does not exist in downloaded PDF file.");
@@ -156,7 +176,7 @@ public class PDF {
         }
 
         List<MemberDetails> allDentalEligMembers = basicActions.getAllDentalEligibleMemInfo();
-        List<String> memCompleteFullName = allDentalEligMembers.stream().filter(MemberDetails::getHasMedicalPlan).map(MemberDetails::getCompleteFullName).toList();
+        List<String> memCompleteFullName = allDentalEligMembers.stream().filter(MemberDetails::getHasMedicalPlan).map(MemberDetails::getFullName).toList();
         for (String memName : memCompleteFullName) {
             System.out.println(memName);
             softAssert.assertTrue(pdfText.contains(memName), memName + " text does not exist in downloaded PDF file.");

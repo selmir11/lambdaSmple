@@ -1,3 +1,4 @@
+@OPS @Exch @IndiviualDashboard
 Feature: Verify Plans Container Ind Dash
   Background:
     Given I open the login page on the "admin" portal

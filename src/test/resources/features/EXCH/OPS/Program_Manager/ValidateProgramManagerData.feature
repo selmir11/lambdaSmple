@@ -1,4 +1,5 @@
-@OPS @OPSProgramManager @SLER-2328
+@OPS @Exch @ProgramManager
+@SLER-2328
 Feature: Verify Program Manager Data
 
   @SLER-2328

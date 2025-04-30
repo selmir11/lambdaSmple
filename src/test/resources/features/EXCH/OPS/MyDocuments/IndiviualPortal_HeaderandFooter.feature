@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @MyDocs
 Feature: My documents Indiviual porter Header , Footer, Title and dropdown display validation
   Background:
     Given I open the login page on the "login" portal

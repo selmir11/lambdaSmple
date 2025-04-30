@@ -1,4 +1,4 @@
-@SIR-EXCH20
+@SIR @SIREXCH @SIR-EXCH20
 
   # SLER-2396, SLER-2398
 Feature: UI Tests related to green banner check after initial enrollment

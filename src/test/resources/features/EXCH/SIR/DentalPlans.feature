@@ -1,4 +1,4 @@
-@SIR-EXCH5 @DentalPlans
+@SIR @SIREXCH @SIR-EXCH5 @DentalPlans
   #contains SLER-747, SLER-1003,
 Feature: Tests related to dental plans
 
@@ -185,6 +185,8 @@ Scenario: SLER-747 - Validate dental plans count - single adult
     Then I click continue on start shopping page
 
     And I validate I am on the "Medical Plan Results" page
+    And I wait for 2000 milliseconds
+    And I select the first medical plan
     Then I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
