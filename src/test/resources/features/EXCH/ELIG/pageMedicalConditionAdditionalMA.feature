@@ -5,8 +5,8 @@ Feature: Testing will verify text and navigation for Medical Condition Additiona
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-2150-BUG-3160 @PageText
-  Scenario: SLER-2150 - ELIG - verify text on Medical Condition Additional Page  - stopped by bug SIR-3160
+  @SLER-2150-BUG-3160
+  Scenario: SLER-2150 - ELIG - verify text on Medical Condition Additional Page  - stopped by bug SIR-3160/ELIG-4038
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
