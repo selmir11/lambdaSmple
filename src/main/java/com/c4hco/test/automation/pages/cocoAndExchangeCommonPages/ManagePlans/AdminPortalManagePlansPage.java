@@ -836,7 +836,7 @@ public class AdminPortalManagePlansPage {
             String inputDate = basicActions.getDateBasedOnRequirement(memberUpdates.get(matchingname));
             String updatedDate = basicActions.changeDateFormat(inputDate, "yyyy-MM-dd", "MM/dd/yyyy");
             String coverageStartDateElement = "//div[@id='coverageStartDate_" + index + "']//input[1]";
-            basicActions.waitForElementToBeClickableWithRetries(coverageStartdate, 30);
+            basicActions.waitForElementToBeClickableWithRetries(coverageStartdate, 60);
             basicActions.updateElementWithRetries(coverageStartDateElement, updatedDate);
         }
     }

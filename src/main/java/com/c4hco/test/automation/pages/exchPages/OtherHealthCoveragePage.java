@@ -221,6 +221,7 @@ public class OtherHealthCoveragePage {
         basicActions.waitForElementToDisappear(spinner, 150);
         basicActions.waitForElementToBePresentWithRetries(saveAndContinueBtn, 150);
         basicActions.scrollToElement(saveAndContinueBtn);
+        basicActions.waitForElementToBeClickable(saveAndContinueBtn, 30);
         saveAndContinueBtn.click();
     }
 

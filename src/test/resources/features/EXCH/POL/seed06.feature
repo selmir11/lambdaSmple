@@ -316,15 +316,18 @@ Feature: Seed06 - Exchange
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Good News" page
-    Then I click on "Continue" on good news page
+    Then I click on "No Thanks" on good news page
+    Then I validate I am on the "Application History" page
+    And I click on Sign Out in the Header for "NonElmo"
+  # UI Validations
     Then I validate I am on the "Account Overview" page
     Then I validate that financials are updated on account overview page
     And I Validate the correct enrolled plans are displayed on account overview page
-#    Then I click on ClickHere link for "My Plans"
-#    Then I validate I am on the "My Policies" page
-#    And I validate "medical" details on my policies page
-#    And I validate "dental" details on my policies page
-#    And I click on Sign Out in the Header for "Elmo"
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click on Sign Out in the Header for "Elmo"
     Given I set the dynamic policy, coverage and financial dates for "medical" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
       | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
