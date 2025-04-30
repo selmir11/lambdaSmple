@@ -373,7 +373,6 @@ Feature: Page Text-Income Opt Out Page
       | No                                               |
       | Go back                                          |
       | Save and continue                                |
-      | Help                                             |
     Then I select the option "Yes" to employment
     Then I Verify the page text on Employment Income page after clicking yes to employment
       | Income:                                          |
@@ -383,7 +382,6 @@ Feature: Page Text-Income Opt Out Page
       | No                                               |
       | Go back                                          |
       | Save and continue                                |
-      | Help                                             |
       | Is this job self-employment?                     |
       | Yes                                              |
       | No                                               |
@@ -396,7 +394,6 @@ Feature: Page Text-Income Opt Out Page
       | No                                                                               |
       | Go back                                                                          |
       | Save and continue                                                                |
-      | Help                                                                             |
       | Is this job self-employment?                                                     |
       | Yes                                                                              |
       | No                                                                               |
@@ -417,7 +414,6 @@ Feature: Page Text-Income Opt Out Page
       | No                                                                               |
       | Go back                                                                          |
       | Save and continue                                                                |
-      | Help                                                                             |
       | Is this job self-employment?                                                     |
       | Yes                                                                              |
       | No                                                                               |
@@ -448,7 +444,6 @@ Feature: Page Text-Income Opt Out Page
       | No                                      |
       | Volver                                  |
       | Guardar y continuar                     |
-      | Ayuda                                   |
     Then I select the option "Yes" to employment
     Then I Verify the page text on Employment Income page after clicking yes to employment
       | Ingresos:                               |
@@ -458,7 +453,6 @@ Feature: Page Text-Income Opt Out Page
       | No                                      |
       | Volver                                  |
       | Guardar y continuar                     |
-      | Ayuda                                   |
       | ¿Este trabajo es por cuenta propia?     |
       | Sí                                      |
       | No                                      |
@@ -471,7 +465,6 @@ Feature: Page Text-Income Opt Out Page
       | No                                                                                                         |
       | Volver                                                                                                     |
       | Guardar y continuar                                                                                        |
-      | Ayuda                                                                                                      |
       | ¿Este trabajo es por cuenta propia?                                                                        |
       | Sí                                                                                                         |
       | No                                                                                                         |
@@ -492,7 +485,6 @@ Feature: Page Text-Income Opt Out Page
       | No                                                                                                         |
       | Volver                                                                                                     |
       | Guardar y continuar                                                                                        |
-      | Ayuda                                                                                                      |
       | ¿Este trabajo es por cuenta propia?                                                                        |
       | Sí                                                                                                         |
       | No                                                                                                         |
@@ -571,7 +563,6 @@ Feature: Page Text-Income Opt Out Page
       | No                                               |
       | Go back                                          |
       | Save and continue                                |
-      | Help                                             |
     Then I select the option "Yes" to employment
     Then I Verify the page text on Employment Income page after clicking yes to employment
       | Income:                                          |
@@ -581,7 +572,6 @@ Feature: Page Text-Income Opt Out Page
       | No                                               |
       | Go back                                          |
       | Save and continue                                |
-      | Help                                             |
       | Is this job self-employment?                     |
       | Yes                                              |
       | No                                               |
@@ -616,7 +606,6 @@ Feature: Page Text-Income Opt Out Page
         | No                                               |
         | Go back                                          |
         | Save and continue                                |
-        | Help                                             |
       Then I validate page Navigation works for Footer hyperlink text in "English"
         | HyperLinkText  | ExpectedPageTitle | ContainsUrl                           |
         | Privacy Policy | Privacy Policy    | connectforhealthco.com/privacy-policy |
@@ -627,7 +616,7 @@ Feature: Page Text-Income Opt Out Page
         | YouTubeIcon    | YouTube           | youtube.com                           |
         | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
         | InstagramIcon  | instagram         | instagram.com                         |
-        | ThreadsIcon    | Threads           | threads.net                           |
+        | ThreadsIcon    | Threads           | threads.com                           |
       Then I validate Employment Income page for text design
       Then I select the option "Yes" to employment
       Then I validate Employment Income page for YesOption text design
