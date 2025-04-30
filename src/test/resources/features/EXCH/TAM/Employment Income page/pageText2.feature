@@ -85,7 +85,6 @@ Feature: Page Text-Income Page
       | No                                               |
       | Go back                                          |
       | Save and continue                                |
-      | Help                                             |
     Then I select the option "Yes" to employment
     Then I verify the page text for secondary member on Employment Income page after clicking yes to employment
       | Income:                                          |
@@ -95,7 +94,6 @@ Feature: Page Text-Income Page
       | No                                               |
       | Go back                                          |
       | Save and continue                                |
-      | Help                                             |
       | Is this job self-employment?                     |
       | Yes                                              |
       | No                                               |
@@ -109,7 +107,6 @@ Feature: Page Text-Income Page
       | No                                                                               |
       | Go back                                                                          |
       | Save and continue                                                                |
-      | Help                                                                             |
       | Is this job self-employment?                                                     |
       | Yes                                                                              |
       | No                                                                               |
@@ -133,7 +130,6 @@ Feature: Page Text-Income Page
       | No                                                                               |
       | Go back                                                                          |
       | Save and continue                                                                |
-      | Help                                                                             |
       | Is this job self-employment?                                                     |
       | Yes                                                                              |
       | No                                                                               |
@@ -166,7 +162,6 @@ Feature: Page Text-Income Page
       | No                                      |
       | Volver                                  |
       | Guardar y continuar                     |
-      | Ayuda                                   |
     Then I select the option "Yes" to employment
     Then I verify the page text for secondary member on Employment Income page after clicking yes to employment
       | Ingresos:                               |
@@ -176,7 +171,6 @@ Feature: Page Text-Income Page
       | No                                      |
       | Volver                                  |
       | Guardar y continuar                     |
-      | Ayuda                                   |
       | ¿Este trabajo es por cuenta propia?     |
       | Sí                                      |
       | No                                      |
@@ -190,7 +184,6 @@ Feature: Page Text-Income Page
       | No                                                                                                         |
       | Volver                                                                                                     |
       | Guardar y continuar                                                                                        |
-      | Ayuda                                                                                                      |
       | ¿Este trabajo es por cuenta propia?                                                                        |
       | Sí                                                                                                         |
       | No                                                                                                         |
@@ -214,7 +207,6 @@ Feature: Page Text-Income Page
       | No                                                                                                         |
       | Volver                                                                                                     |
       | Guardar y continuar                                                                                        |
-      | Ayuda                                                                                                      |
       | ¿Este trabajo es por cuenta propia?                                                                        |
       | Sí                                                                                                         |
       | No                                                                                                         |

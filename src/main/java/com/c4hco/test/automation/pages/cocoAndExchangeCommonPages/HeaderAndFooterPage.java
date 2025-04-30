@@ -1309,8 +1309,8 @@ public class HeaderAndFooterPage {
             basicActions.waitForElementToDisappear(spinner, 400);
             String actualTitle = basicActions.getDriver().getTitle();
             String currentUrl = basicActions.getDriver().getCurrentUrl();
-            softAssert.assertTrue(actualTitle.contains(expectedPageTitle),"Expected title is not present");
-            softAssert.assertTrue(currentUrl.contains(containsUrl));
+            softAssert.assertTrue(actualTitle.contains(expectedPageTitle),"Expected title is not present for "+expectedPageTitle+", shows title "+actualTitle);
+            softAssert.assertTrue(currentUrl.contains(containsUrl),"Does not contain URL "+containsUrl+", shows URL "+currentUrl);
             softAssert.assertAll();
             basicActions.getDriver().close();
             basicActions.switchtoPreviousTab();
