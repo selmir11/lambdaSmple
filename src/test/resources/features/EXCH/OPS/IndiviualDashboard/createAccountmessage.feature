@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @IndiviualDashboard
 Feature: OPS: IndDash: Create account
   @SLER-1269
   Scenario:OPS: IndDash: Create account

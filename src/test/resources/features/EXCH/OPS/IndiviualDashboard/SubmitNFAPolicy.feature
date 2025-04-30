@@ -1,4 +1,5 @@
-@OPS @SLER-1886
+@OPS @Exch @IndiviualDashboard
+@SLER-1886
 Feature: IndDash: Submit NFA Policy/Manage Plans
 
   Scenario:Submit NFA Policy/Manage Plans

@@ -2,6 +2,9 @@ Feature: Seed09exception - Exchange
 
   Background: Seed 09 With Exception For Exchange- Minor Only - FA
 
+    Given I set the test scenario details
+      | totalGroups | totalDentalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 1           | 1                 | 2            | 1                 | 1                | 2               |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -95,7 +98,6 @@ Feature: Seed09exception - Exchange
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Head of household" tax filing option on the Tax Status page
-#    Then I select "Spouse" as filing jointly with option on the Tax Status page
     Then I select "Yes" for will claim dependents question
     Then I select "Daughter" for who will be claimed as dependent question on the Tax Status page
     Then I click Save and Continue on Tax Status page
@@ -137,6 +139,7 @@ Feature: Seed09exception - Exchange
     And I enter householder signature on the Enrollment Agreements page
     And I click submit enrollment on Enrollment Agreements page
     Then I click all done from payment portal page
+    And I check for minors in the household
     Then I validate I am on the "Account Overview" page
     And I Validate the correct enrolled plans are displayed on account overview page
     Then I click on ClickHere link for "My Plans"
@@ -147,23 +150,23 @@ Feature: Seed09exception - Exchange
     And I click on Sign Out in the Header for "Elmo"
 
     #DB Validation
-    And I validate "medical" entities for "Primary" from policy tables
-    And I validate "dental" entities for "Primary" from policy tables
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
+
+    And I validate "medical" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason      |
+      | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
 
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue by applicationId with "POLICY_SUBMISSION" as event type
-
-    And I validate "medical" entities for "Primary" from pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
-    And I validate "dental" entities for "Primary" from pre edi db tables
-      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data
 
-  @SLER-2032
+  @SLER-2032 @pol_exch_passed
   Scenario: RT-2263 ENR-EXCH: DEMOGRAPHIC CHANGE - CHANGE RESPONSIBLE PERSON CONTACT INFORMATION
 
     Given I open the login page on the "login" portal
@@ -178,18 +181,18 @@ Feature: Seed09exception - Exchange
     And I click on Save Button
     And I click on Sign Out in the Header for "Elmo"
 
-    And I validate "medical" entities for "Primary" from policy tables
-    And I validate "dental" entities for "Primary" from policy tables
+    And I validate "medical" entities from policy tables
+    And I validate "dental" entities from policy tables
 
     And I verify the policy data quality check with Policy Ah keyset size 2
     And I verify the data from book of business queue by applicationId with "POLICY_SUBMISSION" as event type
 
-    And I validate "medical" entities for "Primary" from pre edi db tables
+    And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
-      | 021                   | 021                | EC                    | DEMOGRAPHIC CHANGE | ADMIN_LCE  |
-    And I validate "dental" entities for "Primary" from pre edi db tables
+      | 001                   | 001                | AI                    | DEMOGRAPHIC CHANGE |            |
+    And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason  | sep_reason |
-      | 021                   | 021                | EC                    | DEMOGRAPHIC CHANGE | ADMIN_LCE  |
+      | 001                   | 001                | AI                    | DEMOGRAPHIC CHANGE |            |
     And I download the medical and dental files from sftp server with location "/outboundedi/"
     And I validate the ob834 "medical" file data
     And I validate the ob834 "dental" file data

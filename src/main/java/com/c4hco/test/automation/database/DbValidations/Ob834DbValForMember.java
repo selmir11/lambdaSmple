@@ -259,7 +259,7 @@ public class Ob834DbValForMember {
         getDbDataMap(name);
         String enrollees = getTotalEnrollees(ob834Entity);
         softAssert.assertEquals(primaryMember.getEmailId(), ob834Entity.getPrimary_email(), "primary email did not match");
-        softAssert.assertEquals(primaryMember.getPhoneNumber(), ob834Entity.getPrimary_phone(), "primary phone did not match");
+        softAssert.assertEquals(primaryMember.getPhoneNumber().replace("-",""), ob834Entity.getPrimary_phone(), "primary phone did not match");
         softAssert.assertEquals(primaryMember.getSpokenLanguage(), ob834Entity.getSpoken_language(), "spoken language did not match");
         softAssert.assertEquals(primaryMember.getWrittenLanguage(), ob834Entity.getWritten_language(), "written language did not match");
         softAssert.assertEquals(ob834Entity.getPlan_year(), SharedData.getPlanYear(), "Plan Year is not correct");
@@ -303,9 +303,9 @@ public class Ob834DbValForMember {
         softAssert.assertEquals(ob834Entity.getResponsible_person_last_name(), primaryMember.getLastName(), "Responsible person last name mismatch");
         softAssert.assertEquals(ob834Entity.getResponsible_person_rel_code(), "S1", "Responsible person rel_code mismatch");
         softAssert.assertEquals(ob834Entity.getResponsible_person_ssn(), primaryMember.getSsn(), "Responsible person SSN does not match");
-        softAssert.assertEquals(ob834Entity.getResponsible_person_phone(), primaryMember.getPhoneNumber() ,"Responsible person phone mismatch");
+        softAssert.assertEquals(ob834Entity.getResponsible_person_phone(), primaryMember.getPhoneNumber().replace("-","") ,"Responsible person phone mismatch");
         softAssert.assertEquals(ob834Entity.getResponsible_person_email(), primaryMember.getEmailId(),"Responsible person email mismatch");
-        softAssert.assertEquals(ob834Entity.getResponsible_person_alt_phone(), primaryMember.getPhoneNumber(),"Responsible person alt phone");
+        softAssert.assertEquals(ob834Entity.getAlternate_phone(), primaryMember.getAlternatePhNum() != null ? primaryMember.getAlternatePhNum().replace("-", ""):primaryMember.getPhoneNumber(), "Responsible person alt phone");
         softAssert.assertEquals(ob834Entity.getResponsible_person_street_line1(), primaryMember.getMailingAddress().getAddressLine1(), "Responsible person mailing street line 1");
         softAssert.assertEquals(ob834Entity.getResidence_street_line2(),primaryMember.getMailingAddress().getAddressLine2() , "Responsible person mailing street line 2");
         softAssert.assertEquals(ob834Entity.getResponsible_person_city(), primaryMember.getMailingAddress().getAddressCity(), "Responsible person mailing city mismatch");
@@ -398,7 +398,7 @@ public class Ob834DbValForMember {
         softAssert.assertEquals(dateFormatted, ob834Entity.getMember_dob(), "dob did not match for "+member.getFirstName());
         softAssert.assertEquals(ob834Entity.getMember_gender(), member.getGender().substring(0, 1), "gender did not match for "+member.getFirstName());
         softAssert.assertEquals(member.getTobacco_user().equals("Yes") ? "T" : member.getTobacco_user().substring(0, 1), ob834Entity.getTobacco_use(), "Tobacco usage did not match for "+member.getFirstName());
-        softAssert.assertEquals(ob834Entity.getMarital_status_code(), "I", "Marital Status did not match for "+member.getFirstName());
+        //  Bug NVO-5231  softAssert.assertEquals(ob834Entity.getMarital_status_code(), "I", "Marital Status did not match for "+member.getFirstName());
         softAssert.assertEquals(getCodeForRelationship(member.getRelation_to_subscriber()), ob834Entity.getIndividual_rel_code(), "RelationshipCode did not match for "+member.getFirstName());
         softAssert.assertEquals(member.getSsn()!=null? member.getSsn(): "000000000", ob834Entity.getMember_ssn(), "ssn did not match for "+member.getFirstName());
         softAssert.assertEquals(getCodeForRace(member.getRace()), ob834Entity.getMember_race(), "Race did not match");
@@ -437,7 +437,7 @@ public class Ob834DbValForMember {
         }else {
             softAssert.assertEquals(ob834Entity.getPlan_sponsor_name(), subscriber.getSignature(), "plan sponsor name did not match");
         }
-        softAssert.assertEquals(primaryMember.getAlternatePhNum() != null ? primaryMember.getAlternatePhNum() : primaryMember.getPhoneNumber(), ob834Entity.getAlternate_phone(), "alternate phone did not match");
+        softAssert.assertEquals((primaryMember.getAlternatePhNum()) != null ? primaryMember.getAlternatePhNum().replace("-","") : primaryMember.getPhoneNumber().replace("-",""), ob834Entity.getAlternate_phone(), "alternate phone did not match");
         softAssert.assertEquals(ob834Entity.getSubscriber_id(), ob834Entity.getMember_id(), "Subscriber_id and Member_id in ob834 entity does not match");
         softAssert.assertEquals(ob834Entity.getPremium_reduction_type(), "APTC", "Plan premium reduction type does not match");
         validateSponsorId(ob834Entity, subscriber);

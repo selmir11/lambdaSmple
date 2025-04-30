@@ -104,6 +104,7 @@ public class DeclarationsAndSignaturePage {
     public void submitApplication()  {
         basicActions.waitForElementToBePresent(submitContinue, 30);
         submitContinue.click();
+        basicActions.wait(15000);
     }
 
     public void waitForHoldOnContentToDisappear(){

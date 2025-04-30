@@ -1,4 +1,5 @@
-@OPS @SLER-2186
+@OPS @Exch @ProgramManager
+@SLER-2186
 Feature: OPS: PMDash: Create Account/Errors
   @SLER-2186
   Scenario:SLER-2186: OPS: PMDash: Create Account/Errors

@@ -1,4 +1,5 @@
-@OPS @SLER-2434 @managePlan
+@OPS @@Exch @managePlan
+@SLER-2434
 Feature: Manage Plans:Simplified View Editable Fields Med, Dent, and Both
 
   Scenario: Manage Plans:Simplified View Editable Fields Med, Dent, and Both(RT-2548)
@@ -16,7 +17,7 @@ Feature: Manage Plans:Simplified View Editable Fields Med, Dent, and Both
     And I check default year displays
     Then I verify Years in dropdown starting from "2021" as expected
     And I select the plan year based on the running environment
-    Then I validate buttons displayed on Manage page
+    And I validate Make Changes button displayed for "Both" on Manage page
     Then I select the 1 "Medical" policy Plan
     And I click Make Changes Medical button
     Then I verify field "coverage start date" is editable for 1 member on manage plan

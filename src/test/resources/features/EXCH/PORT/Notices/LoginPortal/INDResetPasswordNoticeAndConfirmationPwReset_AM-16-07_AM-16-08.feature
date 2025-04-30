@@ -1,4 +1,4 @@
-@SLER-827 @portNotice
+@port @portNoticeLoginPortal
 Feature: Trigger IND Password reset and confirmation Notices AM-016-07 AND AM-016-08
   @SLER-827
   Scenario: Trigger IND Password reset and confirmation Notices AM-016-07 AND AM-016-08 English

@@ -3,17 +3,12 @@ import com.c4hco.test.automation.Dto.BrokerDetails;
 import com.c4hco.test.automation.utils.BasicActions;
 import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.datatable.DataTable;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
-import java.math.BigDecimal;
-import java.time.Duration;
+import java.math.BigDecimal;;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -917,7 +912,71 @@ public class AdminPortalSearchPage {
                 throw new IllegalArgumentException("Invalid option : " + elementName);
         }
     }
+    public void verifySearchResult(String category, List<Map<String, String>> expectedValues) {
+        basicActions.waitForElementListToBePresentWithRetries(aactsearchResults, 50);
+        String currentEnv = SharedData.getEnv();
+        List<String> actualTitles = aactsearchResults.stream()
+                .map(WebElement::getText)
+                .toList();
+
+        for (int i = 0; i < expectedValues.size(); i++) {
+            Map<String, String> fieldValues = expectedValues.get(i);
+            String expectedValue = (currentEnv.equals("qa")) ? fieldValues.get("QA Value") : fieldValues.get("STG Value");
+            expectedValue = expectedValue != null ? expectedValue.trim() : "";
+            String actualValue = actualTitles.get(i);
+            softAssert.assertEquals(actualValue, expectedValue, "value not match");
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyDefaultSortBy(String text) {
+        basicActions.waitForElementToBePresent(sortDropdown, 100);
+        softAssert.assertEquals(sortOption.get(0).getText().trim(), text, "Default sort option not match");
+        softAssert.assertAll();
+    }
+
+    public void verifySortByAcct(String sortOrder) {
+        List<String> originalList = AccountsID.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+
+        List<String> newList;
+        switch (sortOrder.toLowerCase()) {
+            case "asc":
+                newList = Collections.unmodifiableList(originalList.stream().map(Long::parseLong)
+                        .sorted().map(String::valueOf)
+                        .collect(Collectors.toList()));
+                break;
+            case "desc":
+                newList =Collections.unmodifiableList(originalList.stream().map(Long::parseLong)
+                        .sorted(Comparator.reverseOrder()).map(String::valueOf)
+                        .collect(Collectors.toList()));
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid sort order: " + sortOrder);
+        }
+        softAssert.assertEquals(originalList, newList, "The list is not sorted correctly.");
+        softAssert.assertAll();
+    }
+
+    public void selectSortByOption(String text) {
+        sortDropdown.click();
+        sortOption.stream().filter(e -> e.getText().equalsIgnoreCase(text)).findFirst().ifPresent(WebElement::click);
+    }
+
+    public void verifyDropDownValues(List<String> values) {
+        basicActions.waitForElementToBePresent(sortDropdown, 30);
+        sortDropdown.click();
+        basicActions.waitForElementListToBePresentWithRetries(sortOption, 30);
+        for (int i = 0; i < values.size(); i++) {
+            softAssert.assertEquals(sortOption.get(i).getText().trim(), values.get(i), "Sort By Option text not matching");
+        }
+        softAssert.assertAll();
+    }
+
 }
+
+
 
 
 

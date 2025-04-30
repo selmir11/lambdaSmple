@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @IndiviualDashboard
 Feature: Admin Portal as OBO verify member data on the left
   @SLER-312
   Scenario: Verify member data
@@ -16,7 +16,7 @@ Feature: Admin Portal as OBO verify member data on the left
     And logout from Admin Portal
 
 
-  @SLER-2205 @OPSRegression
+  @SLER-2205
   Scenario: OPS: Change Account Details and Verify on Profile [RT-1932]
     Given I open the login page on the "admin" portal
     And I refresh the page

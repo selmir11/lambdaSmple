@@ -1,4 +1,4 @@
-@OPS @ManagePlans
+@OPS @Exch @manageplans
 Feature: OPS: Create individual account with 2 members and enroll in Medical/Dental
 
   Background:
@@ -109,7 +109,7 @@ Feature: OPS: Create individual account with 2 members and enroll in Medical/Den
     Then I click Make Changes Medical button
     And I update the Coverage Start date of member on manage plan page
       | Primary:First Day Of Current Year |
-    And I update the Coverage End date of member on manage plan page
+    And I update the Coverage End date of member on manage plan page for "Medical"
       | Primary:End of May Current Year |
     And I update the Termination Reason value
       |1:No_Reason|
@@ -126,7 +126,7 @@ Feature: OPS: Create individual account with 2 members and enroll in Medical/Den
     Then I click Make Changes Dental button
     And I update the Coverage Start date of member on manage plan page
       | Primary:First Day Of Current Year |
-    And I update the Coverage End date of member on manage plan page
+    And I update the Coverage End date of member on manage plan page for "Dental"
       | Primary:End of May Current Year |
     And I update the Termination Reason value
       |1:Non_Payment|
@@ -152,7 +152,7 @@ Feature: OPS: Create individual account with 2 members and enroll in Medical/Den
       |1 |First Day Of Current Year|End of May Current Year  |Non_payment        |First Day Of Current Year|End of May Current Year|$10.00   |$10.00   |
 #Reinstate plan
     Then I click Make Changes Medical button
-    And I update the Coverage End date of member on manage plan page
+    And I update the Coverage End date of member on manage plan page for "Medical"
       | Primary:Last Day Of Current Year |
     And I update the Financial End date of member on manage plan page
       | Primary:Last Day Of Current Year |
@@ -160,7 +160,7 @@ Feature: OPS: Create individual account with 2 members and enroll in Medical/Den
     And I select the reason to confirm the changes
     And I select Plans Dental Active Policy
     Then I click Make Changes Dental button
-    And I update the Coverage End date of member on manage plan page
+    And I update the Coverage End date of member on manage plan page for "Dental"
       | Primary:Last Day Of Current Year |
     And I update the Financial End date of member on manage plan page
       | Primary:Last Day Of Current Year |

@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @IndiviualDashboard
 Feature: Agency
   @SLER-1782
   Scenario: SLER-1782  Agency: Search, sort, reset, and error

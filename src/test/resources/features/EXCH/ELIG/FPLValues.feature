@@ -70,7 +70,7 @@ Scenario:  ELIG-MA FPL values-FPL[RT-1790]
 #DB step
     Then  I validate the FPL percent 100
 
-@SLER-2079_WIP
+@SLER-2079
 Scenario: Validate Calculated FPL Values are numeric with two decimal value
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -109,7 +109,7 @@ Scenario: Validate Calculated FPL Values are numeric with two decimal value
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    And I enter employment details with "3700000" income at "Annually" frequency
+    And I enter employment details with "4793900" income at "Annually" frequency
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -119,7 +119,9 @@ Scenario: Validate Calculated FPL Values are numeric with two decimal value
     Then I click None of these as deduction option and continue
     Then I select the projected income option "No" and continue
     Then I select "No" for will you be claimed as dependent question
-    Then I select "No" for will file tax return question
+    Then I select "Yes" for will file tax return question
+    Then I select the "Single" tax filing option on the Tax Status page
+    Then I select "No" for will claim dependents question
     Then I click Save and Continue on Tax Status page
     And I validate I am on the "Other Health Coverage" page
     Then I select "None of these" as health coverage option
@@ -131,29 +133,5 @@ Scenario: Validate Calculated FPL Values are numeric with two decimal value
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I click on view results and shop
-    And I click continue on application results page
-    And I wait for hold on content to disappear
-    Then I validate I am on the "Start Shopping" page
-    Then I click "No" to the Tobacco usage question on start shopping page for "Primary"
-    Then I click continue on start shopping page
-    And I validate I am on the "Medical Plan Results" page
-    And I select "Anthem Colorado Option Bronze Pathway Essentials Std" medical plan
-    Then I click continue on medical plan results page
-    And I validate I am on the "Dental Plan Results" page
-    And I select "Anthem Dental Family" plan
-    Then I click continue on dental plan results page
-    Then I validate I am on the "planSummaryMedicalDental" page
-    And I click continue on plan summary page
-    And I select the terms and agreements checkbox
-    And I enter householder signature on the Financial Help Agreements page
-    And I click continue on Financial Help Agreements page
-    Then I validate I am on the "Enrollment Agreements" page
-    And I select "Acknowledgement" agreement checkbox
-    And I select "Submit" agreement checkbox
-    And I enter householder signature on the Enrollment Agreements page
-    And I click submit enrollment on Enrollment Agreements page
-    Then I click all done from payment portal page
-    Then I validate I am on the "Account Overview" page
-    Then I click on Sign Out in the Header for "NonElmo"
 
     Then I validate the FPL percent in es_tax_return_aptc is 318.32

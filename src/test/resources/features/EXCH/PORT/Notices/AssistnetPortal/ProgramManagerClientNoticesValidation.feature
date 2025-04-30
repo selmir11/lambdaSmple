@@ -1,4 +1,4 @@
-@port @portNotice
+@port @portNoticeAssistnetPortal
 Feature:  As a program manager, I do not want to receive any notices when my client triggers one for their account
 
   @SLER-1981

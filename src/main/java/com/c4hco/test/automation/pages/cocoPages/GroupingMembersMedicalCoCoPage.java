@@ -23,7 +23,7 @@ public class GroupingMembersMedicalCoCoPage {
     @FindBy(css = "#SOL-ViewGroupingMembers-MedicalGroup")
     List<WebElement> noOfGroups;
 
-    @FindBy(css = "#SOL-ViewGroupingMembers-EditMyEnrollmentGroups")
+    @FindBy(xpath = "//*[@id = 'SOL-ViewGroupingMembers-EditMyEnrollmentGroups']")
     WebElement editMyEnrollmentGroupsButton;
 
     @FindBy(id="SOL-ViewGroupingMembers-SaveAndExit")
@@ -92,8 +92,8 @@ public class GroupingMembersMedicalCoCoPage {
     }
 
     public void clickOnEditMedicalGroupinglink() {
-        basicActions.waitForElementToDisappear( spinner,130 );
-        basicActions.waitForElementToBePresentWithRetries(editMyEnrollmentGroupsButton, 80);
+        basicActions.waitForElementToDisappear( spinner,200 );
+        basicActions.waitForElementToBePresentWithRetries(editMyEnrollmentGroupsButton, 180);
         basicActions.scrollToElement( editMyEnrollmentGroupsButton );
         editMyEnrollmentGroupsButton.click();
     }

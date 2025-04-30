@@ -1,4 +1,4 @@
-@port @portNotice
+@port @portNoticeBrokerPortal
 Feature: Trigger the broker notice for client deauthorization - BN-002A-02
 
   @SLER-1854

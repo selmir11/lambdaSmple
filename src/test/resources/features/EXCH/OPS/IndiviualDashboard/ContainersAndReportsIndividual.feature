@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @IndiviualDashboard
 Feature: Dashboard Individual: Verify Containers and Reports header and footer
   @SLER-591
   Scenario: Verify Containers

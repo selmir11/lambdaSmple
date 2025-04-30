@@ -1,4 +1,4 @@
-@port @portNotice
+@port @portNoticeLoginPortal
 Feature: Verify the Broker Portal profile completion notice AM-013-01
 
   @SLER-2274
