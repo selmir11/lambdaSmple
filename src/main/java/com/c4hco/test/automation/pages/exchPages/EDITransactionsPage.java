@@ -184,7 +184,7 @@ public class EDITransactionsPage {
             return List.of(
                     "10/04/2024", "Delta Dental", "Natalie Rushman", "12/03/1995",
                     "6407972338", "7066290002", "SELF", "28052CO0020004",
-                    "37.75", "0.00", "ADD", "INITIAL_ENROLLM..", "01/01/2025",
+                    "37.75", "0.00", "ADDITION", "QHP_SELECTED", "01/01/2025",
                     "12/31/2025", "834_DELTADENTAL..");
         } else {
             return List.of(
@@ -200,7 +200,7 @@ public class EDITransactionsPage {
             return List.of(
                     "10/17/2024", "Kaiser Permanen..", "Natalie Rushman", "12/03/1995",
                     "6407972338", "9002206070", "SELF", "21032CO0410065",
-                    "770.79", "0.00", "CHANGE", "NO_REASON_GIVEN", "01/01/2025",
+                    "770.79", "0.00", "MAINTENANCE", "NO_REASON_GIVEN", "01/01/2025",
                     "12/31/2025", "834_KPCONNECTOR..");
         } else {
             return List.of(
@@ -215,7 +215,7 @@ public class EDITransactionsPage {
         if (SharedData.getEnv().equals("staging")) {
             return List.of(
                     "10/11/2024", "Kaiser Foundati..", "NATALIE RUSHMAN", "12/03/1995",
-                    "6407972338", "21032CO0410065", "ADD", "EFFECTUATED", "01/01/2025",
+                    "6407972338", "21032CO0410065", "ADDITION", "INITIAL_ENROLLM..", "01/01/2025",
                     "12/31/2025", "834_KPCONNECTOR..");
         } else {
             return List.of(
@@ -229,7 +229,7 @@ public class EDITransactionsPage {
         if (SharedData.getEnv().equals("staging")) {
             return List.of(
                     "10/22/2024", "Kaiser Foundati..", "NATALIE RUSHMAN", "12/03/1995",
-                    "6407972338", "21032CO0410065", "ADD", "EFFECTUATED", "01/01/2025",
+                    "6407972338", "21032CO0410065", "ADDITION", "INITIAL_ENROLLM..", "01/01/2025",
                     "12/31/2025", "834_KPCONNECTOR..");
         } else {
             return List.of(
