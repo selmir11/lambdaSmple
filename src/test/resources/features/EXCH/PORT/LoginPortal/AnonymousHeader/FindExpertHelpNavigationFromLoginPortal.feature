@@ -1,4 +1,4 @@
-@findExpertHelpNavigation @port @LoginPortal
+@port @LoginPortalAnonymousHeader
 Feature: Tests Find expert help navigation from Login Portal pages
 
   @SLER-309

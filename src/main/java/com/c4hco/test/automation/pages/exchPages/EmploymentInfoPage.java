@@ -119,7 +119,7 @@ public class EmploymentInfoPage {
     @FindBy(id = "ExchEmploymentIncomeJob-GoBack")
     WebElement goBackButton;
 
-    @FindBy(xpath = "//label[contains(@class,'help-label')]")
+    @FindBy(xpath = "//div[2]/lib-help-icon/a")
     WebElement helpLabel;
 
     @FindBy(xpath = "//div//div//div//label[@class='input-label form-label ng-star-inserted']")
@@ -818,7 +818,6 @@ public class EmploymentInfoPage {
         softAssert.assertEquals(btnNoEmployed.getText(), dataText.get(4), "No button label not matching");
         softAssert.assertEquals(goBackButton.getText().trim(), dataText.get(5), "back button label not matching");
         softAssert.assertEquals(btnContinue.getText().trim(), dataText.get(6), "continue button label not matching");
-        softAssert.assertEquals(helpLabel.getText(), dataText.get(7), "Help button label not matching");
         softAssert.assertAll();
     }
 
@@ -841,10 +840,9 @@ public class EmploymentInfoPage {
         softAssert.assertEquals(btnNoEmployed.getText(), dataText.get(4), "No button label for Employment question not matching");
         softAssert.assertEquals(goBackButton.getText().trim(), dataText.get(5), "back button label not matching");
         softAssert.assertEquals(btnContinue.getText().trim(), dataText.get(6), "continue button label not matching");
-        softAssert.assertEquals(helpLabel.getText(), dataText.get(7), "Help button label not matching");
-        softAssert.assertEquals(selfEmploymentQuestion.getText(), dataText.get(8), "Self Employment Question Not matching");
-        softAssert.assertEquals(btnYesSelfEmployed.getText(), dataText.get(9), "Yes button label for Self Employment question not matching");
-        softAssert.assertEquals(btnNoSelfEmployed.getText(), dataText.get(10), "No button label for Self Employment question not matching");
+        softAssert.assertEquals(selfEmploymentQuestion.getText(), dataText.get(7), "Self Employment Question Not matching");
+        softAssert.assertEquals(btnYesSelfEmployed.getText(), dataText.get(8), "Yes button label for Self Employment question not matching");
+        softAssert.assertEquals(btnNoSelfEmployed.getText(), dataText.get(9), "No button label for Self Employment question not matching");
         softAssert.assertAll();
     }
 
@@ -876,19 +874,18 @@ public class EmploymentInfoPage {
         softAssert.assertEquals(btnNoEmployed.getText(), dataText.get(4), "No button label for Employment question not matching");
         softAssert.assertEquals(goBackButton.getText().trim(), dataText.get(5), "back button label not matching");
         softAssert.assertEquals(btnContinue.getText().trim(), dataText.get(6), "continue button label not matching");
-        softAssert.assertEquals(helpLabel.getText(), dataText.get(7), "Help button label not matching");
-        softAssert.assertEquals(selfEmploymentQuestion.getText(), dataText.get(8), "Self Employment Question Not matching");
-        softAssert.assertEquals(btnYesSelfEmployed.getText(), dataText.get(9), "Yes button label for Self Employment question not matching");
-        softAssert.assertEquals(btnNoSelfEmployed.getText(), dataText.get(10), "No button label for Self Employment question not matching");
-        softAssert.assertEquals(companyNameLabel.getText(), dataText.get(11), "Company Name label not matching");
-        softAssert.assertEquals(currentNetIncomeQuestion.getText(), dataText.get(12), "Current Net Income question not matching");
-        softAssert.assertEquals(enterProfitLabel.getText(), dataText.get(13), "Enter Profit label not matching");
+        softAssert.assertEquals(selfEmploymentQuestion.getText(), dataText.get(7), "Self Employment Question Not matching");
+        softAssert.assertEquals(btnYesSelfEmployed.getText(), dataText.get(8), "Yes button label for Self Employment question not matching");
+        softAssert.assertEquals(btnNoSelfEmployed.getText(), dataText.get(9), "No button label for Self Employment question not matching");
+        softAssert.assertEquals(companyNameLabel.getText(), dataText.get(10), "Company Name label not matching");
+        softAssert.assertEquals(currentNetIncomeQuestion.getText(), dataText.get(11), "Current Net Income question not matching");
+        softAssert.assertEquals(enterProfitLabel.getText(), dataText.get(12), "Enter Profit label not matching");
         softAssert.assertTrue(dollarSign.isDisplayed(), "Dollar sign not visible"); // Verifying dollar sign is present
-        softAssert.assertEquals(amountLabelInAmountInputField.getAttribute("Placeholder"), dataText.get(14), "amount label in input text field not matching");
-        softAssert.assertEquals(selectOptionLabel.getText(), dataText.get(15), "Select Option Label not matching");
-        softAssert.assertEquals(incomeSameLowerNextYearQuestionWhenYesToSelfEmployedQuestion.getText(), dataText.get(16), "Income same or Lower question not matching");
-        softAssert.assertEquals(btnIncomeSameYes.getText(), dataText.get(17), "Yes button label for Income Same question not matching");
-        softAssert.assertEquals(btnIncomeSameNo.getText(), dataText.get(18), "No button label for Income Same question not matching");
+        softAssert.assertEquals(amountLabelInAmountInputField.getAttribute("Placeholder"), dataText.get(13), "amount label in input text field not matching");
+        softAssert.assertEquals(selectOptionLabel.getText(), dataText.get(14), "Select Option Label not matching");
+        softAssert.assertEquals(incomeSameLowerNextYearQuestionWhenYesToSelfEmployedQuestion.getText(), dataText.get(15), "Income same or Lower question not matching");
+        softAssert.assertEquals(btnIncomeSameYes.getText(), dataText.get(16), "Yes button label for Income Same question not matching");
+        softAssert.assertEquals(btnIncomeSameNo.getText(), dataText.get(17), "No button label for Income Same question not matching");
         softAssert.assertAll();
     }
 
@@ -929,28 +926,27 @@ public class EmploymentInfoPage {
         softAssert.assertEquals(btnNoEmployed.getText(), dataText.get(4), "No button label for Employment question not matching");
         softAssert.assertEquals(goBackButton.getText().trim(), dataText.get(5), "back button label not matching");
         softAssert.assertEquals(btnContinue.getText().trim(), dataText.get(6), "continue button label not matching");
-        softAssert.assertEquals(helpLabel.getText(), dataText.get(7), "Help button label not matching");
-        softAssert.assertEquals(selfEmploymentQuestion.getText(), dataText.get(8), "Self Employment Question Not matching");
-        softAssert.assertEquals(btnYesSelfEmployed.getText(), dataText.get(9), "Yes button label for Self Employment question not matching");
-        softAssert.assertEquals(btnNoSelfEmployed.getText(), dataText.get(10), "No button label for Self Employment question not matching");
-        softAssert.assertEquals(companyNameLabel.getText(), dataText.get(11), "Company Name label not matching");
+        softAssert.assertEquals(selfEmploymentQuestion.getText(), dataText.get(7), "Self Employment Question Not matching");
+        softAssert.assertEquals(btnYesSelfEmployed.getText(), dataText.get(8), "Yes button label for Self Employment question not matching");
+        softAssert.assertEquals(btnNoSelfEmployed.getText(), dataText.get(9), "No button label for Self Employment question not matching");
+        softAssert.assertEquals(companyNameLabel.getText(), dataText.get(10), "Company Name label not matching");
         softAssert.assertTrue(dollarSign.isDisplayed(), "Dollar sign not visible"); // Verifying dollar sign is present
-        softAssert.assertEquals(amountLabelInAmountInputField.getAttribute("Placeholder"), dataText.get(12), "Amount label not matching");
-        softAssert.assertEquals(selectOptionLabel.getText(), dataText.get(13), "Select option label not matching");
-        softAssert.assertEquals(incomeSameLowerNextYearQuestionWhenNoToSelfEmployedQuestion.getText(), dataText.get(14), "Income same question not matching");
-        softAssert.assertEquals(btnIncomeSameYes.getText(), dataText.get(15), "Yes button label for Income same question not matching");
-        softAssert.assertEquals(btnIncomeSameNo.getText(), dataText.get(16), "No button label for Income same question not matching");
-        softAssert.assertEquals(addressLine1Label.getText(), dataText.get(17), "Address line1 label not matching");
-        softAssert.assertEquals(addressLine2Label.getText(), dataText.get(18), "Address line2 label not matching");
-        softAssert.assertEquals(cityLabel.getText(), dataText.get(19), "City label not matching");
-        softAssert.assertEquals(stateLabel.getText(), dataText.get(20), "State label not matching");
-        softAssert.assertEquals(stateDropDownLabel.getText(), dataText.get(21), "Select Option label for state dropdown not matching");
-        softAssert.assertEquals(zipCodeLabel.getText(), dataText.get(22), "zip code label not matching");
-        softAssert.assertEquals(currentGrossIncomeQuestion.getText(), dataText.get(23), "Current Gross Income question not matching");
-        softAssert.assertEquals(commissionLabel.getText(), dataText.get(24), "Commission label not matching");
-        softAssert.assertEquals(incomeSeasonalQuestion.getText(), dataText.get(25), "Income Seasonal question not matching");
-        softAssert.assertEquals(btnIsSeasonalYes.getText(), dataText.get(26), "Yes button label for Income seasonal question not matching");
-        softAssert.assertEquals(btnIsSeasonalNo.getText(), dataText.get(27), "No button label for Income seasonal question not matching");
+        softAssert.assertEquals(amountLabelInAmountInputField.getAttribute("Placeholder"), dataText.get(11), "Amount label not matching");
+        softAssert.assertEquals(selectOptionLabel.getText(), dataText.get(12), "Select option label not matching");
+        softAssert.assertEquals(incomeSameLowerNextYearQuestionWhenNoToSelfEmployedQuestion.getText(), dataText.get(13), "Income same question not matching");
+        softAssert.assertEquals(btnIncomeSameYes.getText(), dataText.get(14), "Yes button label for Income same question not matching");
+        softAssert.assertEquals(btnIncomeSameNo.getText(), dataText.get(15), "No button label for Income same question not matching");
+        softAssert.assertEquals(addressLine1Label.getText(), dataText.get(16), "Address line1 label not matching");
+        softAssert.assertEquals(addressLine2Label.getText(), dataText.get(17), "Address line2 label not matching");
+        softAssert.assertEquals(cityLabel.getText(), dataText.get(18), "City label not matching");
+        softAssert.assertEquals(stateLabel.getText(), dataText.get(19), "State label not matching");
+        softAssert.assertEquals(stateDropDownLabel.getText(), dataText.get(20), "Select Option label for state dropdown not matching");
+        softAssert.assertEquals(zipCodeLabel.getText(), dataText.get(21), "zip code label not matching");
+        softAssert.assertEquals(currentGrossIncomeQuestion.getText(), dataText.get(22), "Current Gross Income question not matching");
+        softAssert.assertEquals(commissionLabel.getText(), dataText.get(23), "Commission label not matching");
+        softAssert.assertEquals(incomeSeasonalQuestion.getText(), dataText.get(24), "Income Seasonal question not matching");
+        softAssert.assertEquals(btnIsSeasonalYes.getText(), dataText.get(25), "Yes button label for Income seasonal question not matching");
+        softAssert.assertEquals(btnIsSeasonalNo.getText(), dataText.get(26), "No button label for Income seasonal question not matching");
         softAssert.assertAll();
     }
 
@@ -1373,7 +1369,6 @@ public class EmploymentInfoPage {
         softAssert.assertEquals(btnNoEmployed.getText(), dataText.get(4), "No button label not matching");
         softAssert.assertEquals(goBackButton.getText().trim(), dataText.get(5), "back button label not matching");
         softAssert.assertEquals(btnContinue.getText().trim(), dataText.get(6), "continue button label not matching");
-        softAssert.assertEquals(helpLabel.getText(), dataText.get(7), "Help button label not matching");
         softAssert.assertAll();
     }
 
@@ -1396,10 +1391,9 @@ public class EmploymentInfoPage {
         softAssert.assertEquals(btnNoEmployed.getText(), dataText.get(4), "No button label for Employment question not matching");
         softAssert.assertEquals(goBackButton.getText().trim(), dataText.get(5), "back button label not matching");
         softAssert.assertEquals(btnContinue.getText().trim(), dataText.get(6), "continue button label not matching");
-        softAssert.assertEquals(helpLabel.getText(), dataText.get(7), "Help button label not matching");
-        softAssert.assertEquals(selfEmploymentQuestion.getText(), dataText.get(8), "Self Employment Question Not matching");
-        softAssert.assertEquals(btnYesSelfEmployed.getText(), dataText.get(9), "Yes button label for Self Employment question not matching");
-        softAssert.assertEquals(btnNoSelfEmployed.getText(), dataText.get(10), "No button label for Self Employment question not matching");
+        softAssert.assertEquals(selfEmploymentQuestion.getText(), dataText.get(7), "Self Employment Question Not matching");
+        softAssert.assertEquals(btnYesSelfEmployed.getText(), dataText.get(8), "Yes button label for Self Employment question not matching");
+        softAssert.assertEquals(btnNoSelfEmployed.getText(), dataText.get(9), "No button label for Self Employment question not matching");
         softAssert.assertAll();
     }
 
@@ -1437,19 +1431,18 @@ public class EmploymentInfoPage {
         softAssert.assertEquals(btnNoEmployed.getText(), dataText.get(4), "No button label for Employment question not matching");
         softAssert.assertEquals(goBackButton.getText().trim(), dataText.get(5), "back button label not matching");
         softAssert.assertEquals(btnContinue.getText().trim(), dataText.get(6), "continue button label not matching");
-        softAssert.assertEquals(helpLabel.getText(), dataText.get(7), "Help button label not matching");
-        softAssert.assertEquals(selfEmploymentQuestion.getText(), dataText.get(8), "Self Employment Question Not matching");
-        softAssert.assertEquals(btnYesSelfEmployed.getText(), dataText.get(9), "Yes button label for Self Employment question not matching");
-        softAssert.assertEquals(btnNoSelfEmployed.getText(), dataText.get(10), "No button label for Self Employment question not matching");
-        softAssert.assertEquals(companyNameLabel.getText(), dataText.get(11), "Company Name label not matching");
-        softAssert.assertEquals(currentNetIncomeQuestion.getText(), dataText.get(12), "Current Net Income question not matching");
-        softAssert.assertEquals(enterProfitLabel.getText(), dataText.get(13), "Enter Profit label not matching");
+        softAssert.assertEquals(selfEmploymentQuestion.getText(), dataText.get(7), "Self Employment Question Not matching");
+        softAssert.assertEquals(btnYesSelfEmployed.getText(), dataText.get(8), "Yes button label for Self Employment question not matching");
+        softAssert.assertEquals(btnNoSelfEmployed.getText(), dataText.get(9), "No button label for Self Employment question not matching");
+        softAssert.assertEquals(companyNameLabel.getText(), dataText.get(10), "Company Name label not matching");
+        softAssert.assertEquals(currentNetIncomeQuestion.getText(), dataText.get(11), "Current Net Income question not matching");
+        softAssert.assertEquals(enterProfitLabel.getText(), dataText.get(12), "Enter Profit label not matching");
         softAssert.assertTrue(dollarSign.isDisplayed(), "Dollar sign not visible"); // Verifying dollar sign is present
-        softAssert.assertEquals(amountLabelInAmountInputField.getAttribute("Placeholder"), dataText.get(14), "amount label in input text field not matching");
-        softAssert.assertEquals(selectOptionLabel.getText(), dataText.get(15), "Select Option Label not matching");
-        softAssert.assertEquals(incomeSameLowerNextYearQuestionWhenYesToSelfEmployedQuestion.getText(), dataText.get(16), "Income same or Lower question not matching");
-        softAssert.assertEquals(btnIncomeSameYes.getText(), dataText.get(17), "Yes button label for Income Same question not matching");
-        softAssert.assertEquals(btnIncomeSameNo.getText(), dataText.get(18), "No button label for Income Same question not matching");
+        softAssert.assertEquals(amountLabelInAmountInputField.getAttribute("Placeholder"), dataText.get(13), "amount label in input text field not matching");
+        softAssert.assertEquals(selectOptionLabel.getText(), dataText.get(14), "Select Option Label not matching");
+        softAssert.assertEquals(incomeSameLowerNextYearQuestionWhenYesToSelfEmployedQuestion.getText(), dataText.get(15), "Income same or Lower question not matching");
+        softAssert.assertEquals(btnIncomeSameYes.getText(), dataText.get(16), "Yes button label for Income Same question not matching");
+        softAssert.assertEquals(btnIncomeSameNo.getText(), dataText.get(17), "No button label for Income Same question not matching");
         softAssert.assertAll();
     }
 
@@ -1507,28 +1500,27 @@ public class EmploymentInfoPage {
         softAssert.assertEquals(btnNoEmployed.getText(), dataText.get(4), "No button label for Employment question not matching");
         softAssert.assertEquals(goBackButton.getText().trim(), dataText.get(5), "back button label not matching");
         softAssert.assertEquals(btnContinue.getText().trim(), dataText.get(6), "continue button label not matching");
-        softAssert.assertEquals(helpLabel.getText(), dataText.get(7), "Help button label not matching");
-        softAssert.assertEquals(selfEmploymentQuestion.getText(), dataText.get(8), "Self Employment Question Not matching");
-        softAssert.assertEquals(btnYesSelfEmployed.getText(), dataText.get(9), "Yes button label for Self Employment question not matching");
-        softAssert.assertEquals(btnNoSelfEmployed.getText(), dataText.get(10), "No button label for Self Employment question not matching");
-        softAssert.assertEquals(companyNameLabel.getText(), dataText.get(11), "Company Name label not matching");
+        softAssert.assertEquals(selfEmploymentQuestion.getText(), dataText.get(7), "Self Employment Question Not matching");
+        softAssert.assertEquals(btnYesSelfEmployed.getText(), dataText.get(8), "Yes button label for Self Employment question not matching");
+        softAssert.assertEquals(btnNoSelfEmployed.getText(), dataText.get(9), "No button label for Self Employment question not matching");
+        softAssert.assertEquals(companyNameLabel.getText(), dataText.get(10), "Company Name label not matching");
         softAssert.assertTrue(dollarSign.isDisplayed(), "Dollar sign not visible"); // Verifying dollar sign is present
-        softAssert.assertEquals(amountLabelInAmountInputField.getAttribute("Placeholder"), dataText.get(12), "Amount label not matching");
-        softAssert.assertEquals(selectOptionLabel.getText(), dataText.get(13), "Select option label not matching");
-        softAssert.assertEquals(incomeSameLowerNextYearQuestionWhenNoToSelfEmployedQuestion.getText(), dataText.get(14), "Income same question not matching");
-        softAssert.assertEquals(btnIncomeSameYes.getText(), dataText.get(15), "Yes button label for Income same question not matching");
-        softAssert.assertEquals(btnIncomeSameNo.getText(), dataText.get(16), "No button label for Income same question not matching");
-        softAssert.assertEquals(addressLine1Label.getText(), dataText.get(17), "Address line1 label not matching");
-        softAssert.assertEquals(addressLine2Label.getText(), dataText.get(18), "Address line2 label not matching");
-        softAssert.assertEquals(cityLabel.getText(), dataText.get(19), "City label not matching");
-        softAssert.assertEquals(stateLabel.getText(), dataText.get(20), "State label not matching");
-        softAssert.assertEquals(stateDropDownLabel.getText(), dataText.get(21), "Select Option label for state dropdown not matching");
-        softAssert.assertEquals(zipCodeLabel.getText(), dataText.get(22), "zip code label not matching");
-        softAssert.assertEquals(currentGrossIncomeQuestion.getText(), dataText.get(23), "Current Gross Income question not matching");
-        softAssert.assertEquals(commissionLabel.getText(), dataText.get(24), "Commission label not matching");
-        softAssert.assertEquals(incomeSeasonalQuestion.getText(), dataText.get(25), "Income Seasonal question not matching");
-        softAssert.assertEquals(btnIsSeasonalYes.getText(), dataText.get(26), "Yes button label for Income seasonal question not matching");
-        softAssert.assertEquals(btnIsSeasonalNo.getText(), dataText.get(27), "No button label for Income seasonal question not matching");
+        softAssert.assertEquals(amountLabelInAmountInputField.getAttribute("Placeholder"), dataText.get(11), "Amount label not matching");
+        softAssert.assertEquals(selectOptionLabel.getText(), dataText.get(12), "Select option label not matching");
+        softAssert.assertEquals(incomeSameLowerNextYearQuestionWhenNoToSelfEmployedQuestion.getText(), dataText.get(13), "Income same question not matching");
+        softAssert.assertEquals(btnIncomeSameYes.getText(), dataText.get(14), "Yes button label for Income same question not matching");
+        softAssert.assertEquals(btnIncomeSameNo.getText(), dataText.get(15), "No button label for Income same question not matching");
+        softAssert.assertEquals(addressLine1Label.getText(), dataText.get(16), "Address line1 label not matching");
+        softAssert.assertEquals(addressLine2Label.getText(), dataText.get(17), "Address line2 label not matching");
+        softAssert.assertEquals(cityLabel.getText(), dataText.get(18), "City label not matching");
+        softAssert.assertEquals(stateLabel.getText(), dataText.get(19), "State label not matching");
+        softAssert.assertEquals(stateDropDownLabel.getText(), dataText.get(20), "Select Option label for state dropdown not matching");
+        softAssert.assertEquals(zipCodeLabel.getText(), dataText.get(21), "zip code label not matching");
+        softAssert.assertEquals(currentGrossIncomeQuestion.getText(), dataText.get(22), "Current Gross Income question not matching");
+        softAssert.assertEquals(commissionLabel.getText(), dataText.get(23), "Commission label not matching");
+        softAssert.assertEquals(incomeSeasonalQuestion.getText(), dataText.get(24), "Income Seasonal question not matching");
+        softAssert.assertEquals(btnIsSeasonalYes.getText(), dataText.get(25), "Yes button label for Income seasonal question not matching");
+        softAssert.assertEquals(btnIsSeasonalNo.getText(), dataText.get(26), "No button label for Income seasonal question not matching");
         softAssert.assertAll();
     }
 

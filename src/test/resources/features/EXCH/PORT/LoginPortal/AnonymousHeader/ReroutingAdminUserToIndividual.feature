@@ -1,4 +1,4 @@
-@SLER-1033 @LoginPortal
+@SLER-1033 @LoginPortalAnonymousHeader
 Feature: Rerouting Admin Users to Individual sign in page when they sign out and they can see the dropdown options
 
   @SLER-1033

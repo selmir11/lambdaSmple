@@ -1,4 +1,4 @@
-@AuthorizeAssisterOrganization @port
+@FindExpertHelp @port
 Feature: Tests the Previous Brokers/Assisters table for Assisters on the Find expert help/Manage who helps you page
 
   @SLER-857

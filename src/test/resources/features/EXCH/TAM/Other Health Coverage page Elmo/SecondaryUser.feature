@@ -88,9 +88,11 @@ Feature: Secondary User-Other Health Coverage Elmo Page
     And I validate I am on the "Other Health Coverage" page
     And I change the language from header to "Spanish"
     And I validate I am on the "Spanish" page
+    And I verify the header for "Secondary" Member on the Other Health Coverage page in "Spanish"
     Then I verify text on the Other Health Coverage page in "Spanish Secondary"
 
     And I change the language from header to "English"
+    And I verify the header for "Secondary" Member on the Other Health Coverage page in "English"
     And I verify text on the Other Health Coverage page in "English Secondary"
     And I verify the checkboxes on the Other Health Coverage page
     And I verify help icons on the Other Health Coverage page
