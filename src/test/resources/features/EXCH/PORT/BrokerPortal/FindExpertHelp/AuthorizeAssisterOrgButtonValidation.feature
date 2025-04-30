@@ -1,4 +1,4 @@
-@AuthorizeAssisterOrganization @port
+@FindExpertHelp @port
 Feature: Tests the Authorize Assister Organization button on the Find expert help/Manage who helps you page
 
   @SLER-737

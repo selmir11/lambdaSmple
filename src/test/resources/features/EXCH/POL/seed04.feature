@@ -332,10 +332,10 @@ Feature: Seed04 - Exchange
     And I validate "dental" entities from policy tables
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+      | 001                   | 001                | AI                    | AGENT BROKER INFO |             |
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+      | 001                   | 001                | AI                    | AGENT BROKER INFO |             |
   And I verify the policy data quality check with Policy Ah keyset size 2
    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
     And I download the medical and dental files from sftp server with location "/outboundedi/"
