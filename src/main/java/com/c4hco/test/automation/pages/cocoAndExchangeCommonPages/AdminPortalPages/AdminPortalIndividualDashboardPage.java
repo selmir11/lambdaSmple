@@ -428,7 +428,7 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertEquals(agencyEmail.getText(), email);
         softAssert.assertEquals(agencyWebsite.getText(), website);
         softAssert.assertEquals(agencyPhone.getText(), phone);
-//        softAssert.assertEquals(agencyPreferredLanguage.getText(), preferredLanguage);
+        softAssert.assertEquals(agencyPreferredLanguage.getText(), preferredLanguage);
         softAssert.assertTrue(agencyAddress.isDisplayed());
         softAssert.assertAll();
     }
@@ -442,7 +442,7 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertTrue(memberEmail.isDisplayed());
         softAssert.assertTrue(memberPhone.isDisplayed());
         softAssert.assertTrue(memberDob.isDisplayed());
-//        softAssert.assertTrue(memberAddress.isDisplayed());
+        softAssert.assertTrue(memberAddress.isDisplayed());
         softAssert.assertAll();
     }
 
