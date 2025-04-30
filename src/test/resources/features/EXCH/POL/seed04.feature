@@ -332,10 +332,10 @@ Feature: Seed04 - Exchange
     And I validate "dental" entities from policy tables
     And I validate "medical" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+      | 001                   | 001                | AI                    | AGENT BROKER INFO |             |
     And I validate "dental" entities from pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
-      | 021                   | 021                | EC                    |                   | ADMIN_LCE  |
+      | 001                   | 001                | AI                    | AGENT BROKER INFO |             |
   And I verify the policy data quality check with Policy Ah keyset size 2
    And I verify the data from book of business queue table with "POLICY_SUBMISSION" as event type
     And I download the medical and dental files from sftp server with location "/outboundedi/"
@@ -483,3 +483,296 @@ Feature: Seed04 - Exchange
     Then I click on view results and shop
     Then I validate I am on the "Application Results" page
     And I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-2444-WIP
+  Scenario: RT-2160 ENR-EXCH: ADD DEPENDENT (LCE: Gained Eligible Immigration Status) - SAME CARRIER / SAME PLANS
+    Given I set the test scenario details
+      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 1           | 1            | 1                 | 0                |   1             |
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click on make changes button
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "GainedLawfulPresence" and click continue
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click continue on Tell us about yourself page
+    Then I click continue on the Add Address page
+    Then I validate I am on the "Race and Ethnicity" page
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I click continue on the Citizenship page
+    Then I validate I am on the "Family Overview" page
+    And I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Son", "11282012", "Male" and applying "Yes"
+      |Primary:Son|
+      |Spouse:Son|
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    And I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I validate I am on the "Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "Son"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    And I select "No" for Citizen option
+    Then I select "Yes" for Eligible Immigration Status option
+    And I select "I-571 Refugee Travel Document" as Document type
+    And I enter A-Number USCIS number for "NonCitizen" on Lawful Presence page
+    Then I select "None of the above" active-duty members of the military or honorably discharged veterans
+    Then I select "Yes" for name matching the document
+    Then I click continue on the Citizenship page
+    Then I validate I am on the "Family Overview" page
+    And I click plus icon next to member on household page for "Son"
+    And I click the edit income icon on household page for "Son"
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    Then I select "Yes" for will claim dependents question
+    Then I select "Son" for who will be claimed as dependent question on the Tax Status page
+    Then I click Save and Continue on Tax Status page
+    And I validate I am on the "Other Health Coverage" page
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    Then I click continue on family overview page
+    Then I select "Gain Lawful Presence" QLCE on tell us about life changes page for "Son"
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    And I click on "No Thanks" on good news page
+    Then I validate I am on the "Application History" page
+    Then I click on view results and shop
+    Then I validate I am on the "Application Results" page
+    Then I click continue on application results page
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
+    Then I click continue on start shopping page
+    Then I validate I am on the "Grouping Members Medical" page
+    Then I validate that there are 1 default groups
+    Then I click continue on grouping Members Medical page
+    Then I validate I am on the "Medical Plan Results" page
+    Then I click continue on medical plan results page
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click continue on grouping Members Dental page
+    And I validate I am on the "Dental Plan Results" page
+    Then I click continue on dental plan results page
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
+    And I click continue on plan summary page
+    And I select the terms and agreements checkbox
+    And I enter householder signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
+    Then I click all done from payment portal page
+    Then I validate I am on the "Account Overview" page
+    And I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-2458-WIP
+  Scenario: RT-2232 ENR-EXCH: CSR LEVEL CHANGE (LCE: Gained AI/AN Tribal Status) - DIFFERENT CARRIER / DIFFERENT PLANS
+    Given I set the test scenario details
+      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 1           | 1            | 1                 | 0                |   1             |
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click on make changes button
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "GainedAmericanIndianAlaskaNative" and click continue
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click continue on Tell us about yourself page
+    Then I select "Yes" for Federally Recognized Tribe option
+    Then I add the tribe details state as "CO" and tribe name as "Southern Ute Indian Tribe of the Southern Ute Reservation"
+    Then I click continue on the Add Address page
+    Then I validate I am on the "Race and Ethnicity" page
+    And I select "Indigenous or Native American" for race and ethnicity for "Primary"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I click continue on the Citizenship page
+    Then I validate I am on the "Family Overview" page
+    And I click plus icon next to member on household page for "Spouse"
+    Then I click edit basic information icon on household page for "Spouse"
+    Then I validate I am on the "Member" page
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    Then I select "Yes" for Federally Recognized Tribe option
+    Then I add the tribe details state as "CO" and tribe name as "Southern Ute Indian Tribe of the Southern Ute Reservation"
+    Then I click continue on the Add Address page
+    Then I validate I am on the "Race and Ethnicity" page
+    And I select "Indigenous or Native American" for race and ethnicity for "Spouse"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I click continue on the Citizenship page
+    Then I validate I am on the "Family Overview" page
+    Then I click continue on family overview page
+    Then I select "GainOfTribalStatus" QLCE on tell us about life changes page
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    Then I click on view results and shop
+    Then I validate I am on the "Application Results" page
+    Then I click continue on application results page
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse"
+    Then I click continue on start shopping page
+    Then I validate I am on the "Grouping Members Medical" page
+    Then I validate that there are 1 default groups
+    Then I click continue on grouping Members Medical page
+    Then I validate I am on the "Medical Plan Results" page
+    And I select "Anthem Colorado Option Silver Pathway Essentials Std" medical plan
+    Then I click continue on medical plan results page
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click continue on grouping Members Dental page
+    And I validate I am on the "Dental Plan Results" page
+    And I select "Anthem Dental Family Value" plan
+    Then I click continue on dental plan results page
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
+    And I click continue on plan summary page
+    And I select the terms and agreements checkbox
+    And I enter householder signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
+    Then I click all done from payment portal page
+    Then I validate I am on the "Account Overview" page
+    And I click on Sign Out in the Header for "NonElmo"
+
+  @SLER-2461-WIP
+  Scenario: RT-2234 ENR-EXCH: ADD DEPENDENT (LCE: Change on incarceration status) - DIFFERENT CARRIER / DIFFERENT PLANS
+    Given I set the test scenario details
+      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 1           | 1            | 1                 | 0                |   1             |
+    Given I open the login page on the "login" portal
+    And I validate I am on the "Login" page
+    And I enter valid credentials to login
+    Then I validate I am on the "Account Overview" page
+    Then I click on make changes button
+    Then I select "No" option on the Let us guide you page
+    And I click on save and continue button
+    Then I click on continue with  application button on Before you begin page
+    And I report "Change of Incarceration Status" and click continue
+    Then I validate I am on the "Find Expert Help" page
+    Then I click Continue on my own button from Manage who helps you page
+    Then I click continue on Tell us about yourself page
+    Then I click continue on the Add Address page
+    Then I validate I am on the "Race and Ethnicity" page
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    Then I click continue on the Citizenship page
+    Then I validate I am on the "Family Overview" page
+    And I click Add Another Family Member
+    Then I validate I am on the "Add Member" page
+    Then I enter details on tell us about additional members of your household exch page and continue with "Daughter", "08282002", "Female" and applying "Yes"
+      |Primary:Daughter|
+      |Spouse:Daughter|
+    And I click continue on Tell us about additional members page
+    Then I validate I am on the "Add Address" page
+    And I select "Household" for Residential Address
+    And I select "Yes" for CO Resident option
+    And I select "No" for Federally Recognized Tribe option
+    And I select "No" for Hardship Exemption option
+    And I select "No" for Disability option
+    Then I select "No" for Foster care in state of Colorado
+    And I select "No" to the recently denied medicaid question
+    And I select "No" for Incarceration option
+    And I click continue on the Add Address page
+    Then I validate I am on the "Race and Ethnicity" page
+    And I select "Prefer not to answer" for race and ethnicity for "Daughter"
+    And I click continue on the Race and Ethnicity page
+    Then I validate I am on the "Citizenship" page
+    And I select "Yes" for Citizen option
+    Then I select "No" for Naturalized Immigrant option
+    Then I click continue on the Citizenship page
+    Then I validate I am on the "Family Overview" page
+    And I click plus icon next to member on household page for "Daughter"
+    And I click the edit income icon on household page for "Daughter"
+    Then I select the option "No" to employment
+    And I click continue on the Employment Info Page
+    Then I click None of these as additional income option and continue
+    Then I validate I am on the "Deductions" page
+    Then I click None of these as deduction option and continue
+    Then I select the projected income option "No" and continue
+    Then I select "Yes" for will claim dependents question
+    Then I select "Daughter" for who will be claimed as dependent question on the Tax Status page
+    Then I click Save and Continue on Tax Status page
+    And I validate I am on the "Other Health Coverage" page
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I click continue on the health coverage page
+    And I validate I am on the "Other Health Coverage" page
+    Then I select "None of these" as health coverage option
+    Then I click continue on the health coverage page
+    Then I click continue on family overview page
+    Then I select "ChangeOnIncarcerationStatus" QLCE on tell us about life changes page for "Daughter"
+    Then I click on Save and Continue
+    Then I validate I am on the "EXCH Declarations and Signature" page
+    Then I Declare as Tax Household 1
+    And I click Continue on the Declarations And Signature Page
+    And I wait for hold on content to disappear
+    Then I validate I am on the "Application History" page
+    Then I click on view results and shop
+    Then I validate I am on the "Application Results" page
+    Then I click continue on application results page
+    Then I validate I am on the "Start Shopping" page
+    Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Spouse,Daughter"
+    Then I click continue on start shopping page
+    Then I validate I am on the "Grouping Members Medical" page
+    Then I validate that there are 1 default groups
+    Then I click continue on grouping Members Medical page
+    Then I validate I am on the "Medical Plan Results" page
+    And I select "KP Select CO Bronze 8500/50" medical plan
+    Then I click continue on medical plan results page
+    Then I validate I am on the "Grouping Members Dental" page
+    Then I click continue on grouping Members Dental page
+    And I validate I am on the "Dental Plan Results" page
+    And I select "Anthem Dental Family" plan
+    Then I click continue on dental plan results page
+    Then I validate I am on the "planSummaryMedicalDental" page
+    And I set "Medical" Plans premium amount
+    And I set "Dental" Plans premium amount
+    And I click continue on plan summary page
+    And I select the terms and agreements checkbox
+    And I enter householder signature on the Financial Help Agreements page
+    And I click continue on Financial Help Agreements page
+    And I select "Acknowledgement" agreement checkbox
+    And I select "Submit" agreement checkbox
+    And I enter householder signature on the Enrollment Agreements page
+    And I click submit enrollment on Enrollment Agreements page
+    Then I click all done from payment portal page
+    Then I validate I am on the "Account Overview" page
+    And I click on Sign Out in the Header for "NonElmo"
+

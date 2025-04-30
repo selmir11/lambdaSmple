@@ -16,7 +16,8 @@ public enum EnumRelationship {
     Sister("14"),
     Daughter("19"),
     Niece("07"),
-    Nephew("07");
+    Nephew("07"),
+    Child("19");
 
 
     private final String RelCode;

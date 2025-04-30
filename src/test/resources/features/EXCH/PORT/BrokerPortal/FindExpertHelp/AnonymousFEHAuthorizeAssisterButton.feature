@@ -1,4 +1,4 @@
-@authorizeAssisterOrganization @port
+@port @FindExpertHelp
 Feature: Tests the Authorize Assister Organization button is absent on the anonymous Find expert help page
 
   @SLER-313
