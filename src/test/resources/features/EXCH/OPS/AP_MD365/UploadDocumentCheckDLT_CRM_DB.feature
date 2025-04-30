@@ -94,8 +94,7 @@ Feature: MD365: Upload document, check DLT, CRM, and DB for that new document
     Then I click on Submit Self Attestation button
     Then I click on Finish
     Then I validate I am on the "My Documents" page
-    And I click on upload another document
-    Then I upload another doc "TestMyDocs.docx" for category "Income" and type "Form 8962" and verify success message
+    Then I upload MVR doc for "Financial Help Eligibility" on the My Documents page
     And I close current tab and switch back to previous tab
     And I click "Document Lookup" from application links dropdown
     And I validate Document look Up page title is displaying on page
