@@ -34,7 +34,8 @@ Feature: Dashboard Individual: Verify Containers and Reports header and footer
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
-    And I validate I am on the "Admin Portal search" page
+    And I validate I am on the "Admin search" page
+    And I wait for 2000 milliseconds
     Then I enter an accountId in any Env "9093567025" "9093567025" to search user
     And I click on Search button in AP dashboard page
     And I click acct first row from Search Results table in admin portal

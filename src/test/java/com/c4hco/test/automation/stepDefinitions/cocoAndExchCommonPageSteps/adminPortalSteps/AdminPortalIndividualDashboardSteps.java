@@ -38,9 +38,9 @@ public class AdminPortalIndividualDashboardSteps {
         adminPortalIndividualDashboardPage.verifyAgencyContainerTitle();
     }
 
-    @Then("I validate data for Agency Summary: {string} {string} {string} {string} {string} {string} {string} {string}")
-    public void iValidateDataForAgencySummary(String name, String license, String thin, String agent, String email, String website, String phone, String preferredLanguage) {
-        adminPortalIndividualDashboardPage.agencySummaryValidation(name, license, thin, agent, email, website, phone, preferredLanguage);
+    @Then("I validate data for Agency Summary: {string} {string} {string} {string} {string} {string}")
+    public void iValidateDataForAgencySummary(String name, String thin, String agent, String email, String website, String phone) {
+        adminPortalIndividualDashboardPage.agencySummaryValidation(name, thin, agent, email, website, phone);
     }
 
     @Then("I validate Selected Member data on the far left side")

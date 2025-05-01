@@ -1,4 +1,4 @@
-@SLER-318 @LoginPortal
+@SLER-318 @LoginPortalLogin
 Feature:RT-2452 - Update Legal Notice language on Individual Login Portal page
 
   @SLER-318

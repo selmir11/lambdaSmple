@@ -1,4 +1,4 @@
-@SLER-592 @LoginPortal
+@SLER-592 @LoginPortalLogin
 Feature:Implement 'show/hide password' on password field in login portal
 
   @SLER-592

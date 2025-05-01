@@ -1,4 +1,4 @@
-@AssistNet @port
+@CreateAccount @port
 Feature: Errors on Create Your Account in Assistnet Portal (English)
 
   @SLER-1971
