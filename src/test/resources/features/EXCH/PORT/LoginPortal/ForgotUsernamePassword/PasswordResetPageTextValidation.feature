@@ -1,4 +1,4 @@
-@SLER-293 @LoginPortal
+@ForgotUsernamePassword
 Feature: Create, reset password for Individual accounts
   
   @SLER-293
