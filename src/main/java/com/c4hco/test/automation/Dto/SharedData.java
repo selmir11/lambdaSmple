@@ -72,7 +72,7 @@ public class SharedData {
     @Getter @Setter private static ScenarioDetails scenarioDetails;
     @Getter @Setter private static String medGroupCtlNumber;
     @Getter @Setter private static String denGroupCtlNumber;
-    @Getter @Setter private static List<String> medGroupCtlNumbers;
+    @Getter @Setter private static Set<String> medGroupCtlNumbers;
     @Getter @Setter private static List<String> denGroupCtlNumbers;
     @Getter @Setter private static List<String> medicalPlansList;
     @Getter @Setter private static List<String> dentalPlansList;
