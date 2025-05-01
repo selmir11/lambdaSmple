@@ -622,7 +622,7 @@ public class OhcIndividualInsurancePage {
     }
 
     public void verifyIndividualInsurancePageDataSpanish(String dataToVerify){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
         switch (dataToVerify){
             case "First Section":
                 verifyIndividualInsurancePageFirstSectionDataSpanish();
