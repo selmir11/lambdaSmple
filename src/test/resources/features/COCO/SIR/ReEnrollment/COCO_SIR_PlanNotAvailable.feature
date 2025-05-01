@@ -1,4 +1,4 @@
-@COCOSIR @SIR-COCOX
+@COCOSIR @SIR-COCO16
  #SLCR-938, SLCR-939
 Feature: Shopping Page - Continue and Go back funtionality
 
