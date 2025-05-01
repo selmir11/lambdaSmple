@@ -46,8 +46,6 @@ public class MedicalPlansCoCoPage {
     @FindBy(id = "PlanResults-ResetFilters")
     WebElement filterResetButton;
 
-    //@FindBy(xpath = "//*[@id ='PlanResults-MetalTier']")
-    //WebElement metalTierDropdown;
     @FindBy(xpath = "//*[@class='fas fa-chevron-down']")
     List<WebElement> tierDropdown;
 
