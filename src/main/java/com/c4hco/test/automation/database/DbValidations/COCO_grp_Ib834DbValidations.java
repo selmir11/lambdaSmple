@@ -349,9 +349,8 @@ public class COCO_grp_Ib834DbValidations {
         private void setCocoIb834Data() {
         subscribers = basicActions.getAllSubscribers();
 
-        List<String> medGrpCtrlNums = SharedData.getMedGroupCtlNumbers();
-        Set<String> uniqueMedGrpCtrlNum = new HashSet<>(medGrpCtrlNums);
-        for(String medGrpCtrlNum: uniqueMedGrpCtrlNum){
+        Set<String> medGrpCtrlNums = SharedData.getMedGroupCtlNumbers();
+        for(String medGrpCtrlNum: medGrpCtrlNums){
             ib834MedEntities.addAll(exchDbDataProvider.getIb834Details(medGrpCtrlNum));
         }
         SharedData.setIb834MedDetailsEntities(ib834MedEntities);
