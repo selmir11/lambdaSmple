@@ -85,7 +85,7 @@ public class ExclusionReasonPage {
     public void verifyExclusionReasonData() {
         basicActions.waitForElementListToBePresent(ExclusionReportData, 5000);
         if (SharedData.getEnv().equals("staging")) {
-            String[] expectedData = {"4006144055","2022","MEDICAL","Invalid ADDL_MAINT_REASON","Exclusion","  ","2023-02-17 9:00:00 AM","SYSTEM","AUTO","2022-08-08 4:19:31 PM","2022-03-10 11:08:43 AM","SYSTEM"," "};
+            String[] expectedData = {"4007993032","2022","MEDICAL","Multiple Active Enrollments","Exclusion","","2023-02-23 8:44:00 AM","SYSTEM","AUTO","2022-08-29 8:21:08 AM","2022-08-17 12:12:26 PM","SYSTEM",""};
             for (int i = 0; i < ExclusionReportData.size(); i++) {
                 String actualHeader = ExclusionReportData.get(i).getText();
                 softAssert.assertEquals(actualHeader, expectedData[i],
