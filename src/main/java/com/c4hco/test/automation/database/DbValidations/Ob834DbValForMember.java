@@ -244,9 +244,9 @@ public class Ob834DbValForMember {
         setMedGrpCtrlNums(ob834Entity.getGroup_ctrl_number());
     }
     private void setMedGrpCtrlNums(String grpCtrlNum){
-        List<String> medGrpCtrlNums = SharedData.getMedGroupCtlNumbers();
+        Set<String> medGrpCtrlNums = SharedData.getMedGroupCtlNumbers();
         if(medGrpCtrlNums==null){
-            medGrpCtrlNums = new ArrayList<>();
+            medGrpCtrlNums = new HashSet<>();
         }
         medGrpCtrlNums.add(grpCtrlNum);
         SharedData.setMedGroupCtlNumbers(medGrpCtrlNums);

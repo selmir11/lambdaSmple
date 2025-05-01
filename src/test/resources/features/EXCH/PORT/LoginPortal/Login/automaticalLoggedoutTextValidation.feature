@@ -1,4 +1,4 @@
-@LoginPortal @PORT
+@LoginPortalLogin @PORT
 Feature: Validate the automatically logged out text in login page
   
 @SLER-2467

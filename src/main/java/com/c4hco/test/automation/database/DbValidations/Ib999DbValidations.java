@@ -8,6 +8,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Ib999DbValidations {
     SoftAssert softAssert = new SoftAssert();
@@ -16,7 +17,7 @@ public class Ib999DbValidations {
     List<Ib999Entity> ib999DenEntities;
 
     private void setIb999MedicalData(){
-        List<String> medGrpCtrlNums = SharedData.getMedGroupCtlNumbers();
+        Set<String> medGrpCtrlNums = SharedData.getMedGroupCtlNumbers();
         for(String medGrpCtrlNum: medGrpCtrlNums){
             ib999MedEntities = exchDbDataProvider.getIb999Details(medGrpCtrlNum);
         }
@@ -69,7 +70,7 @@ public class Ib999DbValidations {
         softAssert.assertEquals(groups, Integer.parseInt(medEntity.getAk9_number_of_ts_included()), "groups, ak9 number of ts included mismatch");
         softAssert.assertEquals(groups, Integer.parseInt(medEntity.getAk9_number_of_received_ts()), "groups, ak9 number of received_ts mismatch");
         softAssert.assertEquals(groups, Integer.parseInt(medEntity.getAk9_number_of_accepted_ts()), "groups, ak9 number of accepted_ts mismatch");
-        softAssert.assertEquals(SharedData.getMedGroupCtlNumbers().get(0), medEntity.getGroup_ctrl_number(), "Medical group control number mismatch"); // works for multiple groups but only 1 file
+        softAssert.assertTrue(SharedData.getMedGroupCtlNumbers().contains(medEntity.getGroup_ctrl_number()), "Medical group control number mismatch"); // works for multiple groups but only 1 file
         softAssert.assertAll();
     }
 

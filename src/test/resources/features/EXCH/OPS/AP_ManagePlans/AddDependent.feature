@@ -470,13 +470,6 @@ Feature: OPS: Add Dependent
       | 2:First of May Current Year |
     And I click Save Button Dental
     And I select the reason to confirm the changes
-#    Then I enter an accountId in any Env "4008706572" "4008706572" to search user
-#    And I click on Search button in AP dashboard page
-#    And I click acct first row from Search Results table in admin portal
-#    And I validate I am on the "Admin Portal individual dashboard" page
-#    Then I click on manage plan button on admin portal Individual dashboard
-#    And I validate I am on the "Manage Plans" page
-
     And I wait for 1000 milliseconds
     And I select Plans Med Active Policy
     And I select Plans Dental Active Policy
