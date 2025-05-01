@@ -38,7 +38,7 @@ public class AdminPortalIndividualDashboardPage {
     List<WebElement> searchAgencynputList;
     @FindBy(css = "tr[id='agency-name'] td[class='group-box-input']")
     WebElement agencyName;
-    @FindBy(css = "tr[id='agency-license-number'] td[class='group-box-input']")
+    @FindBy(xpath = "//*[@id='body-26']")
     WebElement stateLicenseNumber;
     @FindBy(css = "tr[id='agency-tin-ein'] td[class='group-box-input']")
     WebElement agencyThin;

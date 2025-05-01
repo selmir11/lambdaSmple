@@ -506,12 +506,13 @@ Scenario: [RT-2425] OPS: MP: NFA Removing Subscriber from policy
     And I wait for 500 milliseconds
     Then I click Make Changes Medical button
     And I wait for 500 milliseconds
-    And I update the Coverage End date of member on manage plan page for "Medical"
-      | Primary:First Day Of Current Year |
-      | Spouse:First Day Of Current Year |
-    And I update the Financial End date of member on manage plan page
-      | Primary:First Day Of Current Year |
-      | Spouse:First Day Of Current Year |
+    And I update the coverage end date
+      | 1:01012025 |
+      | 2:01012025 |
+    And I wait for 300 milliseconds
+    And I update the financial end date
+      | 1:01012025 |
+      | 2:01012025 |
     And I click Save Button Medical
     And I select the reason to confirm the changes
     Then I click Make Changes Dental button
@@ -519,7 +520,7 @@ Scenario: [RT-2425] OPS: MP: NFA Removing Subscriber from policy
     And I update the coverage end date
       | 1:01012025 |
       | 2:01012025 |
-    And I wait for 100 milliseconds
+    And I wait for 300 milliseconds
     And I update the financial end date
       | 1:01012025 |
       | 2:01012025 |
@@ -583,16 +584,18 @@ Scenario: [RT-2425] OPS: MP: NFA Removing Subscriber from policy
     And I wait for 500 milliseconds
     Then I click Make Changes Medical button
     And I wait for 2500 milliseconds
-    And I update the Coverage End date of member on manage plan page for "Medical"
-      | Primary:First Day Of Current Year |
-      | Spouse:First Day Of Current Year |
-    And I update the Financial End date of member on manage plan page
-      | Primary:First Day Of Current Year |
-      | Spouse:First Day Of Current Year |
+    And I update the coverage end date
+      | 1:01012025 |
+      | 2:01012025 |
+    And I wait for 300 milliseconds
+    And I update the financial end date
+      | 1:01012025 |
+      | 2:01012025 |
     And I click Save Button Medical
     And I select the reason to confirm the changes
     And I wait for 500 milliseconds
     Then I click Make Changes Dental button
+    And I wait for 500 milliseconds
     And I update the coverage end date
       | 1:01012025 |
       | 2:01012025 |
@@ -605,8 +608,9 @@ Scenario: [RT-2425] OPS: MP: NFA Removing Subscriber from policy
     And I wait for 1000 milliseconds
     Then I select Plans "Medical" Termed policy with "First Day Of Current Year|KP Select CO Bronze 8500/50" coverage end date on manage plan page
     Then I validate termed "Medical" all details table in DB for 2 member for DB row 1 on AP Manage Plans
-    Then I select Plans "Dental" Termed policy with "First Day Of Current Year|Anthem Dental Family Value" coverage end date on manage plan page
-    Then I validate termed "Dental" all details table in DB for 2 member for DB row 1 on AP Manage Plans
+    And I wait for 100 milliseconds
+    Then I select Plans "Dental" Termed policy with "First Day Of Current Year|Delta Dental of Colorado Family Comprehensive Plan" coverage end date on manage plan page
+    Then I validate termed "Dental" all details table in DB for 2 member for DB row 2 on AP Manage Plans
 #  Reinstate policy
     And I wait for 2000 milliseconds
     Then I select Plans "Medical" Termed policy with "First Day Of Current Year|Cigna Connect Colorado Option Bronze" coverage end date on manage plan page
@@ -621,12 +625,13 @@ Scenario: [RT-2425] OPS: MP: NFA Removing Subscriber from policy
     And I select the reason to confirm the changes
     Then I select Plans "Dental" Termed policy with "First Day Of Current Year|Delta Dental of Colorado Family Comprehensive Plan" coverage end date on manage plan page
     Then I click Make Changes Dental button
-    And I update the Coverage End date of member on manage plan page for "Dental"
-      | Primary:Last Day Of Current Year |
-      | Spouse:Last Day Of Current Year |
-    And I update the Financial End date of member on manage plan page
-      | Primary:Last Day Of Current Year |
-      | Spouse:Last Day Of Current Year |
+    And I update the coverage end date
+      | 1:12312025 |
+      | 2:12312025 |
+    And I wait for 300 milliseconds
+    And I update the financial end date
+      | 1:12312025 |
+      | 2:12312025 |
     And I click Save Button Dental
     And I select the reason to confirm the changes
     And I wait for 1000 milliseconds
