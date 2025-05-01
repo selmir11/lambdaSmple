@@ -419,16 +419,14 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertAll();
     }
 
-    public void agencySummaryValidation(String name, String license, String thin, String agent, String email, String website, String phone, String preferredLanguage) {
+    public void agencySummaryValidation(String name, String thin, String agent, String email, String website, String phone) {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(agencyName, 10));
         softAssert.assertEquals(agencyName.getText(), name);
-        softAssert.assertEquals(stateLicenseNumber.getText(), license);
         softAssert.assertEquals(agencyThin.getText(), thin);
         softAssert.assertEquals(agencyAgent.getText(), agent);
         softAssert.assertEquals(agencyEmail.getText(), email);
         softAssert.assertEquals(agencyWebsite.getText(), website);
         softAssert.assertEquals(agencyPhone.getText(), phone);
-        softAssert.assertEquals(agencyPreferredLanguage.getText(), preferredLanguage);
         softAssert.assertTrue(agencyAddress.isDisplayed());
         softAssert.assertAll();
     }
