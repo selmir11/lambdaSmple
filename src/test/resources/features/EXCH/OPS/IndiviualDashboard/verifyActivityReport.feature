@@ -16,6 +16,7 @@ And I validate I am on the "Admin Portal individual dashboard" page
 Then I click on view button for "Account Activity" report
 And I switch to the tab number 1
 Then I validate I am on the "Account Activity" page
+    And I wait for 3000 milliseconds
 Then I verify Primary account holder and account number displays on activity report
 And I validate Account Activity title
 Then I verify Activity report table column names

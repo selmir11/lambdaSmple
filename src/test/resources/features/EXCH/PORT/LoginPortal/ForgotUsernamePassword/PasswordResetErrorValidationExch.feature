@@ -1,6 +1,7 @@
-@SLER-1801 @APAccountActivity
+@ForgotUsernamePassword
 Feature:Password reset error validation English/Spanish
 
+  @SLER-1801
   Scenario:Password reset error validation English/Spanish
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page

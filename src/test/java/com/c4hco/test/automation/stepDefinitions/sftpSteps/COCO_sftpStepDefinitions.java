@@ -1,13 +1,18 @@
 package com.c4hco.test.automation.stepDefinitions.sftpSteps;
 
 import com.c4hco.test.automation.Dto.SharedData;
+import com.c4hco.test.automation.database.DbValidations.COCO_Ib999DbValidations;
 import com.c4hco.test.automation.edi.EdiValidations.*;
 import com.c4hco.test.automation.sftpConfig.SftpUtil;
 import io.cucumber.java.en.And;
 
+import java.util.*;
+
 public class COCO_sftpStepDefinitions {
     SftpUtil sftpUtil = new SftpUtil();
    COCO_Ob834FileValidations ob834Validations_coco = new COCO_Ob834FileValidations();
+    COCO_Grp_Ob834FileValidations cocoGrpOb834FileValidations = new COCO_Grp_Ob834FileValidations();
+    COCO_Ib999DbValidations cocoIb999DbValidations = new COCO_Ib999DbValidations();
 
     @And("I download the medical files from coco sftp server with location {string}")
     public void downloadMedFiles(String remoteLocation)  {
@@ -29,5 +34,25 @@ public class COCO_sftpStepDefinitions {
         System.out.println("***********Validating Medical EDI File::"+medFileName+"***********");
         sftpUtil.readEdiFile(medFileName);
         ob834Validations_coco.validateOb834MedFile();
+    }
+    @And("I validate different issuer medical files in coco")
+    public void validateMultipleOb834Files(){
+        List<String> groupfiles = SharedData.getMedicalFileName_grp();
+        for(String medFileName: groupfiles){
+            System.out.println("***********Validating COCO Medical EDI File::"+medFileName+"***********");
+            sftpUtil.readEdiFile(medFileName);
+            cocoGrpOb834FileValidations.validateOb834MedFile(medFileName);
+        }
+    }
+    @And("I upload coco files on to sftp server location {string}")
+    public void uploadMultipleFiles( String remoteFileLocation){
+        List<String> fileNames = SharedData.getMedicalFileName_grp();
+        for(String fileName: fileNames){
+            sftpUtil.uploadFileInSftp(fileName, remoteFileLocation);
+        }
+    }
+    @And("I validate coco entities from ib999_details db table")
+    public void validateIb999DetailsDB(){
+        cocoIb999DbValidations.ib999RecordsValidations();
     }
 }

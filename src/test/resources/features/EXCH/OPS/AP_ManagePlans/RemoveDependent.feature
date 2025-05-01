@@ -376,7 +376,7 @@ Feature: OPS: Create individual account with 2 members and enroll in Medical/Den
     And I select Plans Dental Active Policy
     Then I validate current "Medical" all details table in DB for 1 members on AP Manage Plans
     Then I validate current "Dental" all details table in DB for 1 members on AP Manage Plans
-    Then I validate previous "Medical" all details table in DB for 2 members on policy "1" for DB row 2 on AP Manage Plans
+    Then I validate previous "Medical" all details table in DB for 2 members on policy "1" for DB row 0 on AP Manage Plans
     Then I validate previous "Dental" all details table in DB for 2 members on policy "1" for DB row 0 on AP Manage Plans
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal

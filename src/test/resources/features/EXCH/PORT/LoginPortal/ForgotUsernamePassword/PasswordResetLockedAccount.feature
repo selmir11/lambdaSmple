@@ -1,4 +1,4 @@
-@LoginPortal @port
+@ForgotUsernamePassword @port
 Feature: Password reset verification when an individual's account is locked
 
   @SLER-1933

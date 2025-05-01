@@ -253,9 +253,9 @@ public class COCO_Ob834_Grp_PreEdiDbValidations {
     }
 
     private void setMedGrpCtrlNums(String grpCtrlNum) {
-        List<String> medGrpCtrlNums = SharedData.getMedGroupCtlNumbers();
+        Set<String> medGrpCtrlNums = SharedData.getMedGroupCtlNumbers();
         if (medGrpCtrlNums == null) {
-            medGrpCtrlNums = new ArrayList<>();
+            medGrpCtrlNums = new HashSet<>();
         }
         medGrpCtrlNums.add(grpCtrlNum);
         SharedData.setMedGroupCtlNumbers(medGrpCtrlNums);
