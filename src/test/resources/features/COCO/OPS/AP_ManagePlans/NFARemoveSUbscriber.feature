@@ -105,7 +105,7 @@ And I update the Financial Start date of member
 And I click Save Button Medical
 And I wait for 1000 milliseconds
 And I select the reason to confirm the changes
-Then I select Plans "Medical" Termed policy with "Last Day Of Current Month" coverage end date on manage plan page
+Then I select Plans "Medical" Termed policy with "Today" coverage end date on manage plan page
 Then I validate termed "Medical" all details table in DB for 2 member for DB row 0 on AP Manage Plans
 #Remove primary
 And I click "On Behalf Of (OBO)" from application links dropdown
@@ -138,6 +138,7 @@ Then I validate I am on the "Application Results CoCo" page
 And I close current tab and switch back to previous tab
 Then I click on manage plan button on admin portal Individual dashboard
 And I validate I am on the "Manage Plans" page
+And I refresh the page
 And I select Plans Med Active Policy
 Then I validate current "Medical" all details table in DB for 1 members on AP Manage Plans
 
