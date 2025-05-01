@@ -1,4 +1,4 @@
- @LoginPortal @SLER-1127
+ @LoginPortalAnonymousHeader @SLER-1127
 Feature: Rerouting Program Managers to Individual sign in page when they sign out and they can see the dropdown options
 
   Scenario:Program Manager should be able to click ‘Admin Portal’ option and navigate to the admin portal (English)

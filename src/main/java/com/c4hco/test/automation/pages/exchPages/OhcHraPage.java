@@ -171,6 +171,7 @@ public class OhcHraPage {
         basicActions.waitForElementToBePresent(hraQsehraBtn, 90);
         basicActions.waitForElementToBePresent(hraIchraBtn, 90);
         basicActions.scrollToElement(hraIchraBtn);
+        basicActions.scrollToElement(hraQsehraBtn);
         switch (type) {
             case "ICHRA":
                 hraIchraBtn.click();

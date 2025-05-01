@@ -72,9 +72,8 @@ Feature: Elig101-01 - Elig Notices
     And I click on Apply for Coverage in the "NonElmo" Header
 
     Then I click on ClickHere link for "My Documents"
-    Then I validate the notice "Application Results" exist in my document letter Containers
-    And I click on download "Application Results" document
-    Then I validate "Application Results": "Eligibile: APTC" notice in "English" for "1" members
+    Then I click on download "Application Results" document
+    Then I validate "ELIG-001-01 APTC English 1" notice content
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "Application Results" in "English"
@@ -153,10 +152,8 @@ Feature: Elig101-01 - Elig Notices
     And I click on Apply for Coverage in the "NonElmo" Header
 
     Then I click on ClickHere link for "My Documents"
-    Then I validate the notice "Application Results" exist in my document letter Containers
     And I click on download "Application Results" document
-    Then I validate "Application Results": "Eligibile: APTC" notice in "Spanish" for "1" members
-
+    Then I validate "ELIG-001-01 APTC Spanish 1" notice content
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "resultados de su solicitu" in "Spanish"
@@ -262,9 +259,8 @@ Feature: Elig101-01 - Elig Notices
     And I click on Apply for Coverage in the "NonElmo" Header
 
     Then I click on ClickHere link for "My Documents"
-    Then I validate the notice "Application Results" exist in my document letter Containers
     And I click on download "Application Results" document
-    Then I validate "Application Results": "Eligibile: APTC" notice in "English" for "2" members
+    Then I validate "ELIG-001-01 APTC English 2" notice content
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "Application Results" in "English"
@@ -377,10 +373,8 @@ Feature: Elig101-01 - Elig Notices
     And I click on Apply for Coverage in the "NonElmo" Header
 
     Then I click on ClickHere link for "My Documents"
-    Then I validate the notice "Application Results" exist in my document letter Containers
     And I click on download "Application Results" document
-    Then I validate "Application Results": "Eligibile: APTC" notice in "Spanish" for "2" members
-
+    Then I validate "ELIG-001-01 APTC Spanish 2" notice content
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "resultados de su solicitu" in "Spanish"
