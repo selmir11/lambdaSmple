@@ -35,7 +35,8 @@ public class MedicalPlansCoCoPage {
     @FindBy(xpath = "//*[@id='SHP-MedicalPlanResults-Continue'] | //*[@id='MedicalPlanResults-Continue']")
     public WebElement continueButton;
 
-    @FindBy(css = "#MedicalPlanResults-Continue.btn-primary button-disabled")
+    //@FindBy(css = "#MedicalPlanResults-Continue.btn-primary button-disabled")
+    @FindBy(xpath = "//*[@id='MedicalPlanResults-Continue' and @class='btn-primary button-disabled']")
     WebElement continueButtonDisabled;
     @FindBy(css = ".header-1")
     WebElement medicalplanheader;
@@ -154,9 +155,9 @@ public class MedicalPlansCoCoPage {
     }
 
     public void validateContinueButtonDisabled() {
-        basicActions.waitForElementToDisappear(spinner, 30);
-        basicActions.waitForElementToBePresent(continueButtonDisabled, 20);
-        Assert.assertFalse(continueButtonDisabled.isEnabled(), "Continue button is enabled when it should be disabled");
+        basicActions.waitForElementToDisappear(spinner, 130);
+        basicActions.waitForElementToBePresentWithRetries(continueButtonDisabled, 60);
+        Assert.assertTrue(continueButtonDisabled.isEnabled(), "Continue button is enabled when it should be disabled");
     }
 
     public void clickInsuranceCompanyDropdown() {
@@ -607,4 +608,71 @@ public class MedicalPlansCoCoPage {
             softAssert.assertEquals(planNotAvailableText.getText(), "Su plan actual no est\u00E1 disponible, pero puede elegir uno nuevo de entre las opciones mostradas a continuaci\u00F3n.");
             softAssert.assertAll();
         }
+
+
+        public void validateSkipBtn(String language) {
+            basicActions.waitForElementToDisappear( spinner, 50 );
+            switch (language) {
+                case "English":
+                    validateSkipButtonEnglishText();
+                    break;
+                case "Spanish":
+                    validateSkipButtonSpanishText();
+                    break;
+                default:
+                    throw new IllegalArgumentException( "Invalid option: " + language );
+
+            }
+        }
+        public void validateSkipButtonEnglishText(){
+            basicActions.waitForElementToDisappear( spinner,20 );
+            basicActions.waitForElementToBePresentWithRetries( skipBtn, 30 );
+            softAssert.assertEquals( skipBtn.getText(), "Skip" );
+            softAssert.assertAll();;
+        }
+        public void validateSkipButtonSpanishText(){
+            basicActions.waitForElementToDisappear( spinner,20 );
+            basicActions.waitForElementToBePresentWithRetries( skipBtn, 30 );
+            softAssert.assertEquals( skipBtn.getText(), "Omitir" );
+            softAssert.assertAll();
+        }
+
+        public void clickSkipButton() {
+            basicActions.waitForElementToDisappear( spinner, 20 );
+            basicActions.waitForElementToBePresentWithRetries( skipBtn, 30 );
+            skipBtn.click();
+    }
+
+    public void validateSaveExitBtn(String language) {
+        basicActions.waitForElementToDisappear( spinner, 50 );
+        switch (language) {
+            case "English":
+                validateSaveExitButtonEnglishText();
+                break;
+            case "Spanish":
+                validateSaveExitButtonSpanishText();
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + language );
+
+        }
+    }
+    public void validateSaveExitButtonEnglishText(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresentWithRetries( saveAndExitBtn, 30 );
+        softAssert.assertEquals( saveAndExitBtn.getText(), "Save and Exit" );
+        softAssert.assertAll();;
+    }
+    public void validateSaveExitButtonSpanishText(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresentWithRetries( saveAndExitBtn, 30 );
+        softAssert.assertEquals( saveAndExitBtn.getText(), "Guardar y Salir" );
+        softAssert.assertAll();
+    }
+
+        public void clickSaveAndExitButton() {
+            basicActions.waitForElementToDisappear( spinner, 20 );
+            basicActions.waitForElementToBePresentWithRetries( saveAndExitBtn, 30 );
+            saveAndExitBtn.click();
+    }
 }

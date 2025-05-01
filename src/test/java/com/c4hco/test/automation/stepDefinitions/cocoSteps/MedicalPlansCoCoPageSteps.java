@@ -134,4 +134,21 @@ public class MedicalPlansCoCoPageSteps {
     public void validatePlanNotAvailableMessage(String language) {
         medicalPlansCoCoPage.validatePlanNotAvailableMessage(language);
     }
+    @And ("I validate the {string} Skip button is present on the COCO Medical Plan Results page")
+    public void validateSkipBtn(String language) {
+        medicalPlansCoCoPage.validateSkipBtn(language);
+    }
+    @And("I click the Skip Button")
+    public void clickSkipButton() {
+        medicalPlansCoCoPage.clickSkipButton();
+    }
+
+    @And("I validate the {string} Save and Exit button on the COCO Medical Plan Results page")
+    public void validateSaveAndExitButton(String language) {
+        medicalPlansCoCoPage.validateSaveExitBtn(language);
+    }
+    @And("I click the Save and Exit button")
+    public void clickSaveAndExitButton() {
+        medicalPlansCoCoPage.clickSaveAndExitButton();
+    }
 }
