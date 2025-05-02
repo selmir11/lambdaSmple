@@ -536,7 +536,7 @@ public class MyDocumentsPage {
                     "ELIG-001-01 APTC Spanish 1", "ELIG-001-01 APTC Spanish 2", "AM-011-02 English", "AM-011-02 Spanish Mail",
                     "ELIG-001-01 MVR English 1", "ELIG-001-01 AIAN MVR Valid SEP English 1","ELIG-001-01 MVR valid No SEP English 1",
                     "ELIG-001-01 Incarcerated MVR valid SEP 1","ELIG-001-01 Immigration MVR English 1","ELIG-001-01 Citizenship MVR English 1",
-                    "ELIG-001-01 APTC and CSR Not eligible English 1":
+                    "ELIG-001-01 APTC and CSR Not eligible English 1","ELIG-001-01 AIAN MVR Valid SEP Spanish 1":
 
 
                     pdf.validateEntirePDF(docType);
@@ -685,7 +685,7 @@ public class MyDocumentsPage {
     }
 
     public void uploadDoc(String uploadDoc) {
-        String documentPath = "src/main/resources/MyDocs/"+uploadDoc;
+        String documentPath = "src/main/resources/MyDocs/test/"+uploadDoc;
         String absolutePath = Paths.get(documentPath).toAbsolutePath().toString();
         WebElement fileInput = WebDriverManager.getDriver().findElement(By.cssSelector("input[type='file']"));
         fileInput.sendKeys(absolutePath);
