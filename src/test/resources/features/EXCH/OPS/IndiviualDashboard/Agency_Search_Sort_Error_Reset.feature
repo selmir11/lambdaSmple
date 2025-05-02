@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @IndiviualDashboard
 Feature: Agency
   @SLER-1782
   Scenario: SLER-1782  Agency: Search, sort, reset, and error
@@ -22,7 +22,7 @@ Feature: Agency
     When I click on reset button on admin portal search page
     Then I verify data in the fields on the admin portal search page should be blank
       | AgencyName        |
-      | StateLicenseNumber|
+      | ColoradoLicenseNumber|
       | AgencyEmail             |
       | BusinessAddressCity |
       | BusinessAddressZipCode |

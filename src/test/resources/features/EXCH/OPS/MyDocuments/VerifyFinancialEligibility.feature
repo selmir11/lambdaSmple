@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @MyDocs
 Feature: IndDash: Verify Financial Help Eligibility button is displaying
   Background:
   Given I open the login page on the "admin" portal
@@ -132,6 +132,7 @@ And I close current tab and switch back to previous tab
 
   And I click "On Behalf Of (OBO)" from application links dropdown
   Then I click link my docs on accountOverview page
+  And I wait for 2000 milliseconds
   Then I upload MVR doc for "Financial Help Eligibility" on the My Documents page
 
     @SLER-1863

@@ -1,4 +1,4 @@
-@SIR-EXCH15 @MedicalPDF @SIR
+@SIR @SIREXCH @SIR-EXCH15 @MedicalPDF
   # contains SLER-2009, 2400, 2401, 2402-WIP, 2403, 2404
 Feature: Medical Plan Detail page related tests
 

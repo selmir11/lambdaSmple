@@ -178,3 +178,10 @@ Feature: Coco Initial Application Multi group
     And I validate Medical entities for groups from COCO pre edi db tables
       | maintenance_type_code | hd_maint_type_code | maintenance_reas_code |addl_maint_reason  | sep_reason      |
       | 021                   | 021                | EC                    |                   | NEW_CO_RESIDENT |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate different issuer medical files in coco
+    And I upload coco files on to sftp server location "/outboundedi/mockediresponse/genEff834"
+
+   # Ib999 DB Validation
+    And I validate coco entities from ib999_details db table
+    And I download the "medical" ib999 files from sftp server with location "/archive/INBOUND999/"

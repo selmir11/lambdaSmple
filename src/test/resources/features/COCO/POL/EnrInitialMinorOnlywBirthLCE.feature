@@ -1,4 +1,5 @@
 Feature: Initial Application Minor only with Birth LCE(Admin OBO)
+
   @SLCR-299
   Scenario: CCRT-99 COCO Initial Application - Minor only with Birth LCE through Admin OBO
 

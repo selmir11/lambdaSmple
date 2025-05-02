@@ -685,7 +685,7 @@ public class AdminPortalSearchPage {
 
     public void verifyBrokerAccountTitledetails() {
         basicActions.waitForElementListToBePresent(searchResultsTitles, 20);
-        List<String> expectedTitles = List.of("Account ID", "First Name", "Last Name", "Email", "Phone Number", "License Number", "User Type");
+        List<String> expectedTitles = List.of("Account ID", "First Name", "Last Name", "Email", "Phone Number", "Colorado License Number", "User Type");
         List<String> actualTitles = searchResultsTitles.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
@@ -711,7 +711,7 @@ public class AdminPortalSearchPage {
 
     public void verifyAgencyAccountTitledetails() {
         basicActions.waitForElementListToBePresent(searchResultsTitles, 20);
-        List<String> expectedTitles = List.of("Agency Name", "Agent", "Business Address City", "State License Number");
+        List<String> expectedTitles = List.of("Agency Name", "Agent", "Business Address City", "Colorado License Number");
 
         List<String> actualTitles = searchResultsTitles.stream()
                 .map(WebElement::getText)
@@ -912,7 +912,71 @@ public class AdminPortalSearchPage {
                 throw new IllegalArgumentException("Invalid option : " + elementName);
         }
     }
+    public void verifySearchResult(String category, List<Map<String, String>> expectedValues) {
+        basicActions.waitForElementListToBePresentWithRetries(aactsearchResults, 50);
+        String currentEnv = SharedData.getEnv();
+        List<String> actualTitles = aactsearchResults.stream()
+                .map(WebElement::getText)
+                .toList();
+
+        for (int i = 0; i < expectedValues.size(); i++) {
+            Map<String, String> fieldValues = expectedValues.get(i);
+            String expectedValue = (currentEnv.equals("qa")) ? fieldValues.get("QA Value") : fieldValues.get("STG Value");
+            expectedValue = expectedValue != null ? expectedValue.trim() : "";
+            String actualValue = actualTitles.get(i);
+            softAssert.assertEquals(actualValue, expectedValue, "value not match");
+        }
+        softAssert.assertAll();
+    }
+
+    public void verifyDefaultSortBy(String text) {
+        basicActions.waitForElementToBePresent(sortDropdown, 100);
+        softAssert.assertEquals(sortOption.get(0).getText().trim(), text, "Default sort option not match");
+        softAssert.assertAll();
+    }
+
+    public void verifySortByAcct(String sortOrder) {
+        List<String> originalList = AccountsID.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+
+        List<String> newList;
+        switch (sortOrder.toLowerCase()) {
+            case "asc":
+                newList = Collections.unmodifiableList(originalList.stream().map(Long::parseLong)
+                        .sorted().map(String::valueOf)
+                        .collect(Collectors.toList()));
+                break;
+            case "desc":
+                newList =Collections.unmodifiableList(originalList.stream().map(Long::parseLong)
+                        .sorted(Comparator.reverseOrder()).map(String::valueOf)
+                        .collect(Collectors.toList()));
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid sort order: " + sortOrder);
+        }
+        softAssert.assertEquals(originalList, newList, "The list is not sorted correctly.");
+        softAssert.assertAll();
+    }
+
+    public void selectSortByOption(String text) {
+        sortDropdown.click();
+        sortOption.stream().filter(e -> e.getText().equalsIgnoreCase(text)).findFirst().ifPresent(WebElement::click);
+    }
+
+    public void verifyDropDownValues(List<String> values) {
+        basicActions.waitForElementToBePresent(sortDropdown, 30);
+        sortDropdown.click();
+        basicActions.waitForElementListToBePresentWithRetries(sortOption, 30);
+        for (int i = 0; i < values.size(); i++) {
+            softAssert.assertEquals(sortOption.get(i).getText().trim(), values.get(i), "Sort By Option text not matching");
+        }
+        softAssert.assertAll();
+    }
+
 }
+
+
 
 
 

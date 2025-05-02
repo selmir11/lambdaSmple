@@ -1,4 +1,4 @@
-@port @FindExpertHelp
+@port @BrokerPortalClients
 Feature: Admin Portal user authorizing and deauthorizing a customer's broker which updates Broker Portal's client list
 
   @SLER-1799

@@ -271,7 +271,7 @@ Feature: Seed06 - Exchange
         | First Day Of Current Year | Last Day Of Current Month| First Day Of Current Year | Last Day Of Current Month| First Day Of Current Year | Last Day Of Current Month|
       Then I click continue on Cancellation Request page
       Then I click Okay on Thank you popup
-      And I validate "Dental" details card is not present on my policies page
+      And I validate "Dental" cancel button is not present on my policies page
       And I click on Sign Out in the Header for "Elmo"
       #DB Validation
       And I validate "medical" entities from policy tables
@@ -316,15 +316,18 @@ Feature: Seed06 - Exchange
     And I click Continue on the Declarations And Signature Page
     And I wait for hold on content to disappear
     Then I validate I am on the "Good News" page
-    Then I click on "Continue" on good news page
+    Then I click on "No Thanks" on good news page
+    Then I validate I am on the "Application History" page
+    And I click on Sign Out in the Header for "NonElmo"
+  # UI Validations
     Then I validate I am on the "Account Overview" page
     Then I validate that financials are updated on account overview page
     And I Validate the correct enrolled plans are displayed on account overview page
-#    Then I click on ClickHere link for "My Plans"
-#    Then I validate I am on the "My Policies" page
-#    And I validate "medical" details on my policies page
-#    And I validate "dental" details on my policies page
-#    And I click on Sign Out in the Header for "Elmo"
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click on Sign Out in the Header for "Elmo"
     Given I set the dynamic policy, coverage and financial dates for "medical" plan
       | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
       | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year | First Day Of Current Year | Last Day Of Current Year |
@@ -347,12 +350,15 @@ Feature: Seed06 - Exchange
     And I validate the ob834 "dental" file data
 
 
-  @SLER-2360-WIP
+  @SLER-2360 @pol_exch_passed
   Scenario: RT-2305 - ENR-EXCH: USER INITIATED DISENROLLMENT (TERM) - DENTAL - ALL MEMBERS
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     And I enter valid credentials to login
     And I validate I am on the "Account Overview" page
+    Given I set the dynamic policy, coverage and financial dates for "dental" plan
+      | PolicyStartDate           | PolicyEndDate            | CoverageStartDate         | CoverageEndDate          | FinancialStartDate        | FinancialEndDate         |
+      | First Day Of Current Year | Last Day Of Current Month| First Day Of Current Year | Last Day Of Current Month| First Day Of Current Year | Last Day Of Current Month|
     Then I click on ClickHere link for "My Plans"
     And I validate I am on the "My Policies" page
     And I click on "Cancel Dental Plan" button
@@ -362,6 +368,21 @@ Feature: Seed06 - Exchange
     Then I click Okay on Thank you popup
     And I click on Apply for Coverage in the "Elmo" Header
     Then I validate I am on the "Account Overview" page
-
-
+    # UI Validation
+    Then I click on ClickHere link for "My Plans"
+    Then I validate I am on the "My Policies" page
+    And I validate "Dental" cancel button is not present on my policies page
+    And I validate "medical" details on my policies page
+    And I validate "dental" details on my policies page
+    And I click on Sign Out in the Header for "Elmo"
+    # DB Validation
+    And I validate "dental-cancelled" entities from policy tables
+    And I validate "medical" entities from policy tables
+    And I verify the policy data quality check with Policy Ah keyset size 2
+    And I verify the BOB entry for "dental" with "POLICY_UPDATE" as event type
+    And I validate "dental" entities from pre edi db tables
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason | sep_reason |
+      | 024                   | 024                | AI                    | TERM             |            |
+    And I download the medical and dental files from sftp server with location "/outboundedi/"
+    And I validate the ob834 "dental" file data
 

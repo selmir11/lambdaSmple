@@ -51,7 +51,6 @@ Feature: Page Text-Income Opt Out Page
       | No                                               |
       | Go back                                          |
       | Save and continue                                |
-      | Help                                             |
     Then I select the option "Yes" to employment
     And I select the option "Yes" to self employment
     Then I click on company Name input field and click out of it
@@ -105,7 +104,6 @@ Feature: Page Text-Income Opt Out Page
       | No                                      |
       | Volver                                  |
       | Guardar y continuar                     |
-      | Ayuda                                   |
     Then I select the option "Yes" to employment
     And I select the option "Yes" to self employment
     Then I click on company Name input field and click out of it

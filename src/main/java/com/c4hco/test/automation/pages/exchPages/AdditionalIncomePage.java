@@ -201,6 +201,9 @@ public class AdditionalIncomePage {
     @FindBy(xpath = "//lib-button")
     List<WebElement> btnOutlineBackAndSave;
 
+    @FindBy(css = "lib-loader .loader-overlay #loader-icon")
+    WebElement spinner;
+
     private BasicActions basicActions;
     public BasicActions getDriver(){
         return BasicActions.getInstance();
@@ -337,6 +340,7 @@ public class AdditionalIncomePage {
     }
 
     public void clickContinue(){
+        basicActions.waitForElementToDisappear(spinner,60);
         basicActions.waitForElementListToBePresent(addtlIncomeOptionsCheckbox, 30);
         basicActions.waitForElementToBePresentWithRetries(hdr_Income, 20);
         basicActions.waitForElementToBeClickableWithRetries(saveAndContinueBtn, 20);

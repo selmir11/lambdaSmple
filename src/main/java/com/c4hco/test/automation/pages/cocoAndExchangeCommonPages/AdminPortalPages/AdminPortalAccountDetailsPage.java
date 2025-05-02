@@ -7,9 +7,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AdminPortalAccountDetailsPage {
 
@@ -44,6 +47,15 @@ public class AdminPortalAccountDetailsPage {
 
     @FindBy(xpath = "//*[@id='individualDashboardCocoTitle']")
     WebElement CocoDashboardHeader;
+
+    @FindBy(css = ".dashboardHeader2")
+    WebElement labelAccountId;
+
+    @FindBy(xpath = "//div[@class='account-table-label body-text-2 bold-text']")
+    List<WebElement> labelAccountTableBodyText2;
+
+    @FindBy(xpath = "//div[@class='account-table-field body-text-1']")
+    List<WebElement> valuesAccountTableFieldsBodyText1;
 
 
     public void validatePrimaryMemDetails(){
@@ -211,7 +223,39 @@ public class AdminPortalAccountDetailsPage {
         basicActions.waitForElementToBePresent(headerText, 10);
         softAssert.assertEquals(CocoDashboardHeader.getText() , "Colorado Connect" , "Coco header not match");
         softAssert.assertEquals(headerText.getText(), "Primary Account Holder: "+primaryMem.getSignature(), "Primary person's name from header did not match");
-
     }
-
+    public void verifyFontColorFormatOfPrimaryAccountHolderLabel(){
+        softAssert.assertEquals(headerText.getCssValue("font-family"), "\"PT Sans\"", "Primary account holder-font family mismatch");
+        softAssert.assertEquals(headerText.getCssValue("font-size"), "36px", "Primary account holder-font size error");
+        softAssert.assertEquals(headerText.getCssValue("color"), "rgba(77, 77, 79, 1)", "Primary account holder-Color mismatch");
+        softAssert.assertAll();
+    }
+    public void verifyAccountIdDisplayedInAnyEnv(String staging,String qa){
+        if (SharedData.getEnv().equals("staging")) {
+            Assert.assertTrue(labelAccountId.getText().contains(staging),"Account Id not present in staging");
+        } else {
+            Assert.assertTrue(labelAccountId.getText().contains(qa),"Account Id not present in qa");
+        }
+    }
+    public void verifyAccountTableLabelOfAccountDetailContainer(){
+        for (WebElement element:labelAccountTableBodyText2){
+            softAssert.assertEquals(element.getCssValue("font-family"), "\"PT Sans\"", element.getText()+"-font family mismatch");
+            softAssert.assertEquals(element.getCssValue("font-size"), "15px", element.getText()+"-font size error");
+            softAssert.assertEquals(element.getCssValue("font-weight"), "700", element.getText()+"-font weight mismatch");
+            softAssert.assertEquals(element.getCssValue("color"), "rgba(77, 77, 79, 1)", element.getText()+"-Color mismatch");
+            softAssert.assertAll();
+        }
+    }
+    public void verifyPrimaryAccountHolderNameInAccountDetailContainer(){
+        Assert.assertEquals(valuesAccountTableFieldsBodyText1.get(0).getText().trim(),Arrays.stream(headerText.getText().split(":")).skip(1).toList().get(0).trim(),"Member name is not correct");
+    }
+    public void verifyAccountTableFieldValuesOfAccountDetailContainer(){
+        for (WebElement element:valuesAccountTableFieldsBodyText1){
+            softAssert.assertEquals(element.getCssValue("font-family"), "\"PT Sans\"", element.getText()+"-font family mismatch");
+            softAssert.assertEquals(element.getCssValue("font-size"), "16px", element.getText()+"-font size error");
+            softAssert.assertEquals(element.getCssValue("font-weight"), "400", element.getText()+"-font weight mismatch");
+            softAssert.assertEquals(element.getCssValue("color"), "rgba(77, 77, 79, 1)", element.getText()+"-Color mismatch");
+            softAssert.assertAll();
+        }
+    }
 }

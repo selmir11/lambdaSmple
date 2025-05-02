@@ -1,4 +1,4 @@
-@OPS @CBMS
+@OPS @Exch @IndiviualDashboard @CBMS
 Feature: CBMS : search errors
   @SLER-2365
   Scenario:SLER-2365 CBMS: Error Messages

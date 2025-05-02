@@ -1,4 +1,5 @@
-@OPS @SLER-1270
+@OPS @Exch @IndiviualDashboard
+@SLER-1270
 Feature: IndDash: Submit FA Policy/Manage Plans
 
   Scenario:Submit FA Policy/Manage Plans

@@ -1,4 +1,4 @@
-@OPS
+@OPS @Exch @DLT
 Feature: Document Lookup page : Verify all data
   @SLER-277
   Scenario: SLER-277 Verify data for DLT page
@@ -34,6 +34,7 @@ Feature: Document Lookup page : Verify all data
       And I enter from and to dates
       Then I click on submit button
       Then I validate Default entry selection is twenty entries
+      And I wait for 500 milliseconds
       Then I validate next button and previous button functionality
       Then I select dropdown entry option and validate 10 rows are displaying
       Then I select dropdown entry option and validate 20 rows are displaying

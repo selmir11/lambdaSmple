@@ -187,6 +187,7 @@ Feature: Broker Assisted - End to End Test  - Closed Enrollment
     Then I click "No" to the Tobacco usage question on start shopping page for "Primary,Wife" coco
     Then I click continue on coco start shopping page
 
+    Then I validate I am on the "Grouping Members Medical" page
     Then I click on edit enrollment groups link in coco page
     Then I create new group in edit medical grouping coco page and drag members to the new group
       |Primary:Group1|
@@ -226,6 +227,7 @@ Feature: Broker Assisted - End to End Test  - Closed Enrollment
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select submit enrollment button on the Enrollment Agreements CoCo page
 
+    And I validate I am on the "Pay now" page
     Then I click all done obo from payment portal page coco
 
     And I validate I am on the "Agency Dashboard" page
@@ -445,11 +447,9 @@ Feature: Broker Assisted - End to End Test  - Closed Enrollment
     And I select "Submit" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select submit enrollment button on the Enrollment Agreements CoCo page
-    Then I click all done obo from payment portal page coco
 
-    And I validate I am on the "Agency Dashboard" page
-    #And I click on the Agency Dashboard Broker Dropdown
-    And I click on Sign Out in the Header for "AgencyDashboard"
+    And I validate I am on the "Pay now" page
+    Then I click all done obo from payment portal page coco
 
     And I validate I am on the "Agency Dashboard" page
     And I click on broker userName and logout
@@ -557,6 +557,8 @@ Feature: Broker Assisted - End to End Test  - Closed Enrollment
     And I select "Submit" agreement checkbox CoCo
     And I enter householder signature on the Enrollment Agreements page CoCo
     And I select submit enrollment button on the Enrollment Agreements CoCo page
+
+    And I validate I am on the "Pay now" page
     Then I click all done obo from payment portal page coco
 
     And I validate I am on the "Agency Dashboard" page

@@ -38,9 +38,9 @@ public class AdminPortalIndividualDashboardSteps {
         adminPortalIndividualDashboardPage.verifyAgencyContainerTitle();
     }
 
-    @Then("I validate data for Agency Summary: {string} {string} {string} {string} {string} {string} {string} {string}")
-    public void iValidateDataForAgencySummary(String name, String license, String thin, String agent, String email, String website, String phone, String preferredLanguage) {
-        adminPortalIndividualDashboardPage.agencySummaryValidation(name, license, thin, agent, email, website, phone, preferredLanguage);
+    @Then("I validate data for Agency Summary: {string} {string} {string} {string} {string} {string}")
+    public void iValidateDataForAgencySummary(String name, String thin, String agent, String email, String website, String phone) {
+        adminPortalIndividualDashboardPage.agencySummaryValidation(name, thin, agent, email, website, phone);
     }
 
     @Then("I validate Selected Member data on the far left side")
@@ -302,5 +302,14 @@ public class AdminPortalIndividualDashboardSteps {
     @And("I verify Plan container with no active plan on the Individual dashboard")
     public void iVerifyPlanContainerNoActive() {adminPortalIndividualDashboardPage.verifyPlanContainerNoActive();}
 
+    @Then("I verify color font format etc for elements of Account Summary container")
+    public void iVerifyColorFontFormatEtcForElementsOfAccountSummaryContainer(List<String> pageTexts) {
+        adminPortalIndividualDashboardPage.verifyColorFontFormatEtcForElementsOfAccountSummaryContainer(pageTexts);
+    }
+
+    @Then("I verify height width and color of line under each household members")
+    public void iVerifyHeightWidthAndColorOfLineUnderEachHouseholdMembers() {
+        adminPortalIndividualDashboardPage.verifyHeightWidthAndColorOfLineUnderEachHouseholdMembers();
+    }
 }
 

@@ -1,4 +1,4 @@
-@SLER-750
+@ForgotUsernamePassword
 Feature: Errors on Forgot Username in General Login Portal
 
   @SLER-750

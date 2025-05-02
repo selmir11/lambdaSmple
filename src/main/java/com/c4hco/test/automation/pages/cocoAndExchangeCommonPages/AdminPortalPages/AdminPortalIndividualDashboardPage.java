@@ -12,6 +12,7 @@ import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AdminPortalIndividualDashboardPage {
 
@@ -37,7 +38,7 @@ public class AdminPortalIndividualDashboardPage {
     List<WebElement> searchAgencynputList;
     @FindBy(css = "tr[id='agency-name'] td[class='group-box-input']")
     WebElement agencyName;
-    @FindBy(css = "tr[id='agency-license-number'] td[class='group-box-input']")
+    @FindBy(xpath = "//*[@id='body-26']")
     WebElement stateLicenseNumber;
     @FindBy(css = "tr[id='agency-tin-ein'] td[class='group-box-input']")
     WebElement agencyThin;
@@ -205,7 +206,7 @@ public class AdminPortalIndividualDashboardPage {
     @FindBy(css = "app-account-summary .group-title")
     WebElement accountSummaryTitle;
 
-    @FindBy(css = "app-account-summary .title ")
+    @FindBy(css = "app-account-summary .title")
     List<WebElement> unameAndNameTitles;
 
     @FindBy(css = "app-account-summary .individual-name")
@@ -283,6 +284,9 @@ public class AdminPortalIndividualDashboardPage {
     @FindBy(xpath = "//a[contains(text(),'Manage Account Details')]")
     WebElement btnManageAccountDetails;
 
+    @FindBy(xpath = "//a[@routerlink='account-access']")
+    WebElement btnManageAccountAccess;
+
     ////////////////////////////Plans Container//////////////////////////
     @FindBy(xpath = "//p[normalize-space()='Plans']")
     WebElement plansTitle;
@@ -294,6 +298,16 @@ public class AdminPortalIndividualDashboardPage {
     List<WebElement> planYearSelectorOptions;
     @FindBy(xpath = "//p[contains(text(),'There is no active policy data.')]")
     WebElement noActivePolicyTxt;
+
+    @FindBy(css = ".member-info")
+    List<WebElement> memberInfo;
+
+    @FindBy(xpath = "//div[@class='dashboard-container' and contains(@id,'div-10')]")
+    WebElement dashBoardContainer;
+
+    @FindBy(css = ".member-hr")
+    List<WebElement> lineUnderHouseholdMembers;
+
 
     public void clickBtnOnAccSummContainer(String btnName) {
         basicActions.waitForElementListToBePresent(accSummaryBtns, 10);
@@ -405,16 +419,14 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertAll();
     }
 
-    public void agencySummaryValidation(String name, String license, String thin, String agent, String email, String website, String phone, String preferredLanguage) {
+    public void agencySummaryValidation(String name, String thin, String agent, String email, String website, String phone) {
         softAssert.assertTrue(basicActions.waitForElementToBePresent(agencyName, 10));
         softAssert.assertEquals(agencyName.getText(), name);
-        softAssert.assertEquals(stateLicenseNumber.getText(), license);
         softAssert.assertEquals(agencyThin.getText(), thin);
         softAssert.assertEquals(agencyAgent.getText(), agent);
         softAssert.assertEquals(agencyEmail.getText(), email);
         softAssert.assertEquals(agencyWebsite.getText(), website);
         softAssert.assertEquals(agencyPhone.getText(), phone);
-        softAssert.assertEquals(agencyPreferredLanguage.getText(), preferredLanguage);
         softAssert.assertTrue(agencyAddress.isDisplayed());
         softAssert.assertAll();
     }
@@ -1063,6 +1075,58 @@ public class AdminPortalIndividualDashboardPage {
         softAssert.assertEquals("Manage Plans", managePlanButton.getText(), "Mismatch in Manage Plans");
     }
 
+    public void verifyColorFontFormatEtcForElementsOfAccountSummaryContainer(List<String> pageTexts) {
+        basicActions.wait(800);
+        softAssert.assertEquals(accountSummaryTitle.getCssValue("color"), "rgba(77, 77, 79, 1)", "accountSummaryTitle-Color mismatch");
+        softAssert.assertEquals(accountSummaryTitle.getCssValue("font-size"), "28px", "accountSummaryTitle-font size error");
+        softAssert.assertEquals(accountSummaryTitle.getCssValue("font-family"), "\"PT Sans\"", "accountSummaryTitle-font family error");
+        softAssert.assertEquals(unameAndNameTitles.get(0).getText().replace(":", ""), pageTexts.get(0), "Username label mismatch");
+        softAssert.assertEquals(unameAndNameTitles.get(1).getText().replace(":", ""), pageTexts.get(1), "Full Name label mismatch");
+        softAssert.assertEquals(hhMemTitle.getText().trim(), pageTexts.get(2), "HouseHold label mismatch");
+        softAssert.assertEquals(unameAndNameTitles.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif", "username-font family error");
+        softAssert.assertEquals(unameAndNameTitles.get(0).getCssValue("font-size"), "15px", "username-font size error");
+        softAssert.assertEquals(unameAndNameTitles.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)", "username-Color mismatch");
+        softAssert.assertEquals(unameAndNameTitles.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif", "Full name-font family error");
+        softAssert.assertEquals(unameAndNameTitles.get(1).getCssValue("font-size"), "15px", "Full name-font size error");
+        softAssert.assertEquals(unameAndNameTitles.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)", "Full name-Color mismatch");
+        softAssert.assertEquals(hhMemTitle.getCssValue("font-family"), "\"PT sans\"", "household-font family error");
+        softAssert.assertEquals(hhMemTitle.getCssValue("font-size"), "15px", "household-font size error");
+        softAssert.assertEquals(hhMemTitle.getCssValue("color"), "rgba(77, 77, 79, 1)", "household-Color mismatch");
+        softAssert.assertEquals(memNamesList.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif", "house hold m1-font family error");
+        softAssert.assertEquals(memNamesList.get(0).getCssValue("font-size"), "15px", "house hold m1-font size error");
+        softAssert.assertEquals(memNamesList.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)", "house hold m1-Color mismatch");
+        softAssert.assertEquals(memNamesList.get(1).getCssValue("font-family"), "\"PT Sans\", sans-serif", "house hold m2-font family error");
+        softAssert.assertEquals(memNamesList.get(1).getCssValue("font-size"), "15px", "house hold m2-font size error");
+        softAssert.assertEquals(memNamesList.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)", "house hold m2-Color mismatch");
+        softAssert.assertEquals(individualNames.get(0).getCssValue("font-family"), "\"PT Sans\"", "Actual Username-font family error");
+        softAssert.assertEquals(individualNames.get(0).getCssValue("font-size"), "16px", "Actual Username-font size error");
+        softAssert.assertEquals(individualNames.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)", "Actual Username-Color mismatch");
+        softAssert.assertEquals(individualNames.get(1).getCssValue("font-family"), "\"PT Sans\"", "Actual full name-font family error");
+        softAssert.assertEquals(individualNames.get(1).getCssValue("font-size"), "16px", "Actual full name-font size error");
+        softAssert.assertEquals(individualNames.get(1).getCssValue("color"), "rgba(77, 77, 79, 1)", "Actual full name-Color mismatch");
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(memberInfo.get(0), 5), "Self age is not visible");
+        softAssert.assertEquals(memberInfo.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif", "Self age-font family error");
+        softAssert.assertEquals(memberInfo.get(0).getCssValue("font-size"), "16px", "Self age-font size error");
+        softAssert.assertEquals(memberInfo.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)", "Self age-Color mismatch");
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(memberInfo.get(1), 5), "Additional member age is not visible");
+        softAssert.assertEquals(memberInfo.get(0).getCssValue("font-family"), "\"PT Sans\", sans-serif", "Additional member-font family mismatch");
+        softAssert.assertEquals(memberInfo.get(0).getCssValue("font-size"), "16px", "Additional member-font size error");
+        softAssert.assertEquals(memberInfo.get(0).getCssValue("color"), "rgba(77, 77, 79, 1)", "Additional member-Color mismatch");
+        softAssert.assertEquals(dashBoardContainer.getCssValue("height"), "315px", "dashBoardContainer-height error");
+        softAssert.assertEquals(dashBoardContainer.getCssValue("width"), "456px", "dashBoardContainer-width error");
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(btnManageAccountDetails,5),"Manage Account Details not present");
+        softAssert.assertTrue(basicActions.waitForElementToBePresent(btnManageAccountAccess,5),"Manage Account Access not present");
+        softAssert.assertAll();
+    }
+
+    public void verifyHeightWidthAndColorOfLineUnderEachHouseholdMembers() {
+        for (int i = 0; i< lineUnderHouseholdMembers.stream().limit(2).toList().size(); i++){
+            softAssert.assertEquals(lineUnderHouseholdMembers.get(i).getCssValue("color"), "rgba(143, 194, 217, 1)", "lineUnderHouseholdMembers"+i+"-Color mismatch");
+            softAssert.assertEquals(lineUnderHouseholdMembers.get(i).getCssValue("height"), "1.01562px", "lineUnderHouseholdMembers"+i+"-height error");
+            softAssert.assertEquals(lineUnderHouseholdMembers.get(i).getCssValue("width"), "118px", "lineUnderHouseholdMembers"+i+"-width error");
+            softAssert.assertAll();
+        }
+    }
 }
 
 

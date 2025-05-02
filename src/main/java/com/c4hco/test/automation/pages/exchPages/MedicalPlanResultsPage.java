@@ -82,7 +82,7 @@ public class MedicalPlanResultsPage {
     @FindBy(css = ".header-1")
     WebElement medicalplanheader;
 
-    @FindBy(id = "PlanResults-HSAFilter-input")
+    @FindBy(xpath =  "//*[@id = 'PlanResults-HSAFilter-input']")
     WebElement hsaOption;
 
     @FindBy(id = "PlanResults-CoOptionPlans")
@@ -213,7 +213,7 @@ public class MedicalPlanResultsPage {
 
     public void selectHSAOption() {
         basicActions.waitForElementToDisappear( spinner,30 );
-        basicActions.waitForElementToBePresent(hsaOption, 100);
+        basicActions.waitForElementToBePresentWithRetries(hsaOption, 100);
         hsaOption.click();
 
     }

@@ -1,4 +1,4 @@
-@APTC,@APTC-SIR1
+@SIR @APTC,@APTCSIR,@APTC-SIR1
   #  SLER-2431, SLER-2432
 
 Feature: UI Tests related to APTC after second enrollment change - Group tests

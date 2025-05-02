@@ -434,6 +434,7 @@ public class EmploymentSummaryPage {
     public void validateEnglishTextEmploymentSummaryPage() {
         basicActions.waitForElementToBePresentWithRetries(hdr_Income, 30);
         basicActions.waitForElementToBePresentWithRetries(hdr_Employment, 30);
+        basicActions.waitForElementListToBePresentWithRetries(jobOrSelfEmploymentHeaders, 60);
 
         softAssert.assertTrue(hdr_Income.getText().equalsIgnoreCase("Income: " + SharedData.getPrimaryMember().getFullName()));
         softAssert.assertTrue(hdr_Employment.getText().contains("Employment"), "Header text mismatch!");
