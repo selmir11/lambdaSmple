@@ -2705,31 +2705,37 @@ public class AdminPortalManagePlansPage {
             String planType
     ) {
         String[] parts = expectedValues.split("\\|");
-        String expectedDate = basicActions.getDateBasedOnRequirement(parts[0].trim()); // yyyy-MM-dd
-        String expectedPlanName = (parts.length > 1) ? parts[1].trim().toLowerCase() : null;
+        String rawInput = parts[0].trim();
+        boolean isToday = rawInput.equalsIgnoreCase("Today");
+        String expectedDate = basicActions.getDateBasedOnRequirement(rawInput);
 
-        System.out.println("Looking for CANCELLED policy with end date: " + expectedDate +
-                (expectedPlanName != null ? " and plan name: " + expectedPlanName : ""));
+        System.out.println("Expected Date (" + (isToday ? "no formatting needed" : "yyyy-MM-dd") + "): " + expectedDate);
+
+        String expectedPlanName = (parts.length > 1) ? parts[1].trim().toLowerCase() : null;
 
         for (int i = 0; i < 10; i++) {
             List<WebElement> options = basicActions.getDriver().findElements(By.xpath(dropdownXpath));
 
             if (options.isEmpty() || i >= options.size()) {
-                System.out.println("No policies listed or index exceeded.");
+                System.out.println("No policies found or index exceeded.");
                 break;
             }
 
             WebElement option = options.get(i);
-            String optionText = option.getText().trim();
-            System.out.println("Trying option " + i + ": " + optionText);
+            System.out.println("Trying policy option " + i + ": " + option.getText().trim());
             option.click();
 
-            basicActions.wait(1000); // Allow time for data to refresh
-
+            basicActions.wait(1000);
             basicActions.waitForElementToBePresent(statusElement, 10);
+
             String status = statusElement.getText().trim();
             String uiEndDate = coverageEndDateElement.getText().trim();
-            String formattedDate = basicActions.changeDateFormat(uiEndDate, "MM/dd/yyyy", "yyyy-MM-dd");
+            String formattedDate = isToday
+                    ? uiEndDate
+                    : basicActions.changeDateFormat(uiEndDate, "MM/dd/yyyy", "yyyy-MM-dd");
+
+            System.out.println("UI End Date (raw): " + uiEndDate);
+            System.out.println("UI End Date (formatted): " + formattedDate);
 
             String currentPlanText = currentPlanNameElement.getText().trim().toLowerCase();
 
@@ -2737,22 +2743,22 @@ public class AdminPortalManagePlansPage {
             boolean endDateMatches = formattedDate.equals(expectedDate);
             boolean planNameMatches = expectedPlanName == null || currentPlanText.contains(expectedPlanName);
 
-            System.out.println("Status: " + status + ", Date: " + formattedDate + ", Plan Name: " + currentPlanText);
+            System.out.println("Status: " + status + ", Plan: " + currentPlanText);
+            System.out.println("Comparing: UI Date = " + formattedDate + ", Expected = " + expectedDate);
 
             if (statusOk && endDateMatches && planNameMatches) {
                 System.out.println("Matching policy found.");
                 return true;
             }
 
-            if (!statusOk) System.out.println("Status does not match.");
-            if (!endDateMatches) System.out.println("End date does not match.");
-            if (!planNameMatches) System.out.println("Plan name does not match.");
-
+            System.out.println("No match. Retrying...");
             reopenPolicyDropdown(dropdownElement, planType);
         }
 
+        System.out.println("No matching policy found after checking all options.");
         return false;
     }
+
 
     private void reopenPolicyDropdown(WebElement dropdownElement, String planType) {
         int retry = 0;
