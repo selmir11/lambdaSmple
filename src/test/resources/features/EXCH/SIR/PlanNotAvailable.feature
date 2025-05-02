@@ -1,13 +1,13 @@
 @SIR @SIREXCH @SIR-EXCH20
 
-  # SLER-2396, SLER-2398, SLER-2479
+  # SLER-????, SLER-????, SLER-????
 Feature: UI Tests related to green banner check after initial enrollment
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-  @SLER-2396
+  @SLER-????
   Scenario: SLER-2396 - one group green banner check - verify English green banner for individual who enrolled twice - includes Go Back navigation - 10k
     When I click create a new account on login page
     Then I click create my account from pre-screen page
