@@ -236,6 +236,7 @@ public class OtherHealthCoveragePage {
     }
 
     public void clickGoBack(){
+        basicActions.waitForElementToDisappear( spinner, 60 );
         basicActions.waitForElementToBeClickable(backButton, 20);
         basicActions.scrollToElement(backButton);
         backButton.click();
