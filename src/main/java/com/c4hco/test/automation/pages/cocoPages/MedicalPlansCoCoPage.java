@@ -34,6 +34,10 @@ public class MedicalPlansCoCoPage {
 
     @FindBy(xpath = "//*[@id='SHP-MedicalPlanResults-Continue'] | //*[@id='MedicalPlanResults-Continue']")
     public WebElement continueButton;
+
+    //@FindBy(css = "#MedicalPlanResults-Continue.btn-primary button-disabled")
+    @FindBy(xpath = "//*[@id='MedicalPlanResults-Continue' and @class='btn-primary button-disabled']")
+    WebElement continueButtonDisabled;
     @FindBy(css = ".header-1")
     WebElement medicalplanheader;
     @FindBy(xpath = "//*[@id='PlanResults-InsuranceCompany']")
@@ -42,8 +46,18 @@ public class MedicalPlansCoCoPage {
     @FindBy(id = "PlanResults-ResetFilters")
     WebElement filterResetButton;
 
-    @FindBy(id = "PlanResults-MetalTier")
-    WebElement metalTierDropdown;
+    @FindBy(xpath = "//*[@class='fas fa-chevron-down']")
+    List<WebElement> tierDropdown;
+
+    @FindBy(xpath = "//*[@id='PlanResults-MetalTier_0-input']")
+    WebElement bronzeBox;
+
+    @FindBy(xpath = "//*[@id='PlanResults-MetalTier_1-input']")
+    WebElement silverBox;
+    @FindBy(xpath = "//*[@id='PlanResults-MetalTier_2-input']")
+    WebElement goldBox;
+    @FindBy(xpath = "//*[@id='PlanResults-MetalTier_3-input']")
+    WebElement platinumBox;
 
     @FindBy(id = "PlanResults-PlanCompareCheckbox_1")
     WebElement selectFirstComparebox;
@@ -96,6 +110,9 @@ public class MedicalPlansCoCoPage {
     @FindBy(css = ".header-2.text-start")
     WebElement planHeaderTwodetails;
 
+    @FindBy(id="PlanResults-CurrentPlanWarningMessage")
+    WebElement planNotAvailableText;
+
     @FindBy(css = ".filter-section.filterText.body-text-1")
     List<WebElement> filterText;
 
@@ -135,6 +152,12 @@ public class MedicalPlansCoCoPage {
         basicActions.click(continueButton);
     }
 
+    public void validateContinueButtonDisabled() {
+        basicActions.waitForElementToDisappear(spinner, 130);
+        basicActions.waitForElementToBePresentWithRetries(continueButtonDisabled, 60);
+        Assert.assertTrue(continueButtonDisabled.isEnabled(), "Continue button is enabled when it should be disabled");
+    }
+
     public void clickInsuranceCompanyDropdown() {
         basicActions.waitForElementToDisappear(spinner, 30);
         basicActions.waitForElementToBePresentWithRetries(insuranceCompanyDropdown, 40);
@@ -144,8 +167,8 @@ public class MedicalPlansCoCoPage {
 
     public void clickMetalTierDropdown() {
         basicActions.waitForElementToDisappear(spinner, 10);
-        basicActions.waitForElementToBePresent(metalTierDropdown, 30);
-        metalTierDropdown.click();
+        basicActions.waitForElementListToBePresentWithRetries( tierDropdown, 120);
+        tierDropdown.get(4).click();
 
     }
 
@@ -156,8 +179,32 @@ public class MedicalPlansCoCoPage {
     }
 
     public void selectfromMetalTierList(String Selecting) {
-        String providerPath = "//label[text()='" + Selecting + "']";
-        basicActions.getDriver().findElement(By.xpath(providerPath)).click();
+        basicActions.waitForElementToBePresentWithRetries( bronzeBox, 60);
+        switch(Selecting){
+            case "Bronze":
+                basicActions.waitForElementToBePresentWithRetries( bronzeBox, 20);
+                bronzeBox.click();
+                //basicActions.getDriver().findElement(By.id("PlanResults-MetalTier_0-input")).click();
+                break;
+            case "Silver":
+                basicActions.waitForElementToBePresentWithRetries( silverBox, 20);
+                silverBox.click();
+                //basicActions.getDriver().findElement(By.id("PlanResults-MetalTier_1-input")).click();
+                break;
+            case "Gold":
+                basicActions.waitForElementToBePresentWithRetries( goldBox, 20);
+                goldBox.click();
+                //basicActions.getDriver().findElement(By.id("PlanResults-MetalTier_2-input")).click();
+                break;
+            case "Platinum":
+                basicActions.waitForElementToBePresentWithRetries( platinumBox, 20);
+                platinumBox.click();
+                //basicActions.getDriver().findElement(By.id("PlanResults-MetalTier_3-input")).click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + Selecting);}
+       // String providerPath = "//label[text()='" + Selecting + "']";
+       // basicActions.getDriver().findElement(By.xpath(providerPath)).click();
     }
 
     public void selectSilverEnhancedBox() {
@@ -529,4 +576,101 @@ public class MedicalPlansCoCoPage {
         softAssert.assertAll();
     }
 
+
+
+    public void validatePlanNotAvailableMessage(String language) {
+        basicActions.waitForElementToDisappear( spinner, 20 );
+        switch (language) {
+            case "English":
+                validatePlanNotAvailableEnglishText();
+                break;
+            case "Spanish":
+                validatePlanNotAvailableSpanishText();
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + language );
+
+        }
+    }
+
+        public void validatePlanNotAvailableEnglishText() {
+            basicActions.waitForElementToDisappear( spinner, 20 );
+            basicActions.waitForElementToBePresentWithRetries( planNotAvailableText, 20 );
+            softAssert.assertEquals( planNotAvailableText.getText(), "Your current plan is not available, but you can choose a new one from the options below." );
+            softAssert.assertAll();
+        }
+
+        public void validatePlanNotAvailableSpanishText(){
+            basicActions.waitForElementToDisappear( spinner,20 );
+            basicActions.waitForElementToBePresentWithRetries( planNotAvailableText,20);
+            softAssert.assertEquals(planNotAvailableText.getText(), "Su plan actual no est\u00E1 disponible, pero puede elegir uno nuevo de entre las opciones mostradas a continuaci\u00F3n.");
+            softAssert.assertAll();
+        }
+
+
+        public void validateSkipBtn(String language) {
+            basicActions.waitForElementToDisappear( spinner, 50 );
+            switch (language) {
+                case "English":
+                    validateSkipButtonEnglishText();
+                    break;
+                case "Spanish":
+                    validateSkipButtonSpanishText();
+                    break;
+                default:
+                    throw new IllegalArgumentException( "Invalid option: " + language );
+
+            }
+        }
+        public void validateSkipButtonEnglishText(){
+            basicActions.waitForElementToDisappear( spinner,20 );
+            basicActions.waitForElementToBePresentWithRetries( skipBtn, 30 );
+            softAssert.assertEquals( skipBtn.getText(), "Skip" );
+            softAssert.assertAll();;
+        }
+        public void validateSkipButtonSpanishText(){
+            basicActions.waitForElementToDisappear( spinner,20 );
+            basicActions.waitForElementToBePresentWithRetries( skipBtn, 30 );
+            softAssert.assertEquals( skipBtn.getText(), "Omitir" );
+            softAssert.assertAll();
+        }
+
+        public void clickSkipButton() {
+            basicActions.waitForElementToDisappear( spinner, 20 );
+            basicActions.waitForElementToBePresentWithRetries( skipBtn, 30 );
+            skipBtn.click();
+    }
+
+    public void validateSaveExitBtn(String language) {
+        basicActions.waitForElementToDisappear( spinner, 50 );
+        switch (language) {
+            case "English":
+                validateSaveExitButtonEnglishText();
+                break;
+            case "Spanish":
+                validateSaveExitButtonSpanishText();
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + language );
+
+        }
+    }
+    public void validateSaveExitButtonEnglishText(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresentWithRetries( saveAndExitBtn, 30 );
+        softAssert.assertEquals( saveAndExitBtn.getText(), "Save and Exit" );
+        softAssert.assertAll();;
+    }
+    public void validateSaveExitButtonSpanishText(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresentWithRetries( saveAndExitBtn, 30 );
+        softAssert.assertEquals( saveAndExitBtn.getText(), "Guardar y Salir" );
+        softAssert.assertAll();
+    }
+
+        public void clickSaveAndExitButton() {
+            basicActions.waitForElementToDisappear( spinner, 20 );
+            basicActions.waitForElementToBePresentWithRetries( saveAndExitBtn, 30 );
+            saveAndExitBtn.click();
+    }
 }

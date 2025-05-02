@@ -96,7 +96,6 @@ Feature:APTC tests by enrolling in a plan through Admin Portal "OBO"
 
     Then I validate I am on the "Tell us about life changes" page
     Then I set pregnancy date "First Date of Current Month" on elgibility for pregnancy coverage
-    Then I select "MoveToCO" QLCE on tell us about life changes page
     Then I select "Yes" on elgibility for pregnancy coverage
     Then I click on Save and Continue
 

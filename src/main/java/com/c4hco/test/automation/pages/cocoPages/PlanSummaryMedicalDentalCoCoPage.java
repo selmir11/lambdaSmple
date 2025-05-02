@@ -204,4 +204,11 @@ public class PlanSummaryMedicalDentalCoCoPage {
         member.setTotalMedAmtAfterReduction(amountYouPay);
         softAssert.assertAll();
     }}
+
+    public void clickSaveAndExitButtonPlanSummary() {
+        basicActions.waitForElementToDisappear(spinner, 20);
+        basicActions.waitForElementToBePresentWithRetries(planSummaryMedicalSaveExit, 20);
+        basicActions.scrollToElement(planSummaryMedicalSaveExit);
+        planSummaryMedicalSaveExit.click();
+    }
 }
