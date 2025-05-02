@@ -119,12 +119,9 @@ Feature: OPS CoCo MP NFA Removing Subscriber from policy[CCRT-353]
     Then I enter details on tell us about yourself page and continue with "11181993", "Male", and applying "No"
     And I click continue on the Add info for yourself page
     Then I validate I am on the "Race and Ethnicity" page
-    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     And I click continue on the Employment income page
-    And I select None of these as additional income option
     And I select continue on the Additional Income CoCO page
-    And I select "None of these" as deductions option
     And I select continue on the Deductions CoCo page
     Then I select the projected income option "No" on Income Summary CoCo page
     And I select continue on the income Summary CoCo page
