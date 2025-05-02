@@ -2706,17 +2706,13 @@ public class AdminPortalManagePlansPage {
     ) {
         String[] parts = expectedValues.split("\\|");
         String rawInput = parts[0].trim();
-        String expectedDate;
         boolean isToday = rawInput.equalsIgnoreCase("Today");
+        String expectedDate = basicActions.getDateBasedOnRequirement(rawInput);
 
-        if (isToday) {
-            expectedDate = basicActions.getDateBasedOnRequirement(rawInput);
-            System.out.println("Expected Date for 'Today' (no formatting needed): " + expectedDate);
-        } else {
-            expectedDate = basicActions.getDateBasedOnRequirement(rawInput);
-            System.out.println("Expected Date (yyyy-MM-dd): " + expectedDate);
-        }
+        System.out.println("Expected Date (" + (isToday ? "no formatting needed" : "yyyy-MM-dd") + "): " + expectedDate);
+
         String expectedPlanName = (parts.length > 1) ? parts[1].trim().toLowerCase() : null;
+
         for (int i = 0; i < 10; i++) {
             List<WebElement> options = basicActions.getDriver().findElements(By.xpath(dropdownXpath));
 
@@ -2726,38 +2722,30 @@ public class AdminPortalManagePlansPage {
             }
 
             WebElement option = options.get(i);
-            String optionText = option.getText().trim();
-            System.out.println("Trying policy option " + i + ": " + optionText);
+            System.out.println("Trying policy option " + i + ": " + option.getText().trim());
             option.click();
 
             basicActions.wait(1000);
-
             basicActions.waitForElementToBePresent(statusElement, 10);
+
             String status = statusElement.getText().trim();
             String uiEndDate = coverageEndDateElement.getText().trim();
-            String formattedDate;
-            if (isToday) {
-                formattedDate = uiEndDate;
-            } else {
-                formattedDate = basicActions.changeDateFormat(uiEndDate, "MM/dd/yyyy", "yyyy-MM-dd");
-            }
+            String formattedDate = isToday
+                    ? uiEndDate
+                    : basicActions.changeDateFormat(uiEndDate, "MM/dd/yyyy", "yyyy-MM-dd");
 
             System.out.println("UI End Date (raw): " + uiEndDate);
             System.out.println("UI End Date (formatted): " + formattedDate);
 
-            // Get the current plan name
             String currentPlanText = currentPlanNameElement.getText().trim().toLowerCase();
 
-            // Check if the status is "Cancelled" or "Disenroll_submitted"
             boolean statusOk = status.equalsIgnoreCase("Cancelled") || status.equalsIgnoreCase("Disenroll_submitted");
-            boolean endDateMatches = isToday ? uiEndDate.equals(expectedDate) : formattedDate.equals(expectedDate);
+            boolean endDateMatches = formattedDate.equals(expectedDate);
             boolean planNameMatches = expectedPlanName == null || currentPlanText.contains(expectedPlanName);
 
             System.out.println("Status: " + status + ", Plan: " + currentPlanText);
-            System.out.println("Comparing: UI Date = " + (isToday ? uiEndDate : formattedDate)
-                    + ", Expected = " + expectedDate);
+            System.out.println("Comparing: UI Date = " + formattedDate + ", Expected = " + expectedDate);
 
-            // If all criteria match, return true
             if (statusOk && endDateMatches && planNameMatches) {
                 System.out.println("Matching policy found.");
                 return true;
@@ -2770,6 +2758,7 @@ public class AdminPortalManagePlansPage {
         System.out.println("No matching policy found after checking all options.");
         return false;
     }
+
 
     private void reopenPolicyDropdown(WebElement dropdownElement, String planType) {
         int retry = 0;
