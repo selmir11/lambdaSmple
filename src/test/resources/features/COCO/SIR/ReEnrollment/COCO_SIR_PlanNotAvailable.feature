@@ -362,7 +362,6 @@ Feature: Shopping Page - Continue and Go back functionality
     And  I change the language from header to "English"
 
     And I wait for 2000 milliseconds
-    #And I validate that the Continue button is disabled on the COCO Medical Plan Results page
     And I select the first medical plan option CoCo
     And I click Continue on the Medical Plans Page CoCo
 
