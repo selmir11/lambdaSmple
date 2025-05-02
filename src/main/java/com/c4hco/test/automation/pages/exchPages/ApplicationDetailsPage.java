@@ -44,7 +44,7 @@ public class ApplicationDetailsPage {
 
 
     public void clickViewAppDetails(){
-        basicActions.waitForElementToBePresent(showChangesBtn,20);
+        basicActions.waitForElementToBePresent(showChangesBtn,60);
         showChangesBtn.click();
     }
 
@@ -81,6 +81,7 @@ public class ApplicationDetailsPage {
     }
 
     public void verifyEsiDetailsColor(List<Map<String, String>> ohcData){
+        basicActions.wait(250);
         basicActions.waitForElementToBePresent(hdrOtherHealthCoverage,20);
         String coverageType = ohcData.get(0).get("OHC Type");
         String coverageTypeHighlight = ohcData.get(0).get("Type Highlight");
