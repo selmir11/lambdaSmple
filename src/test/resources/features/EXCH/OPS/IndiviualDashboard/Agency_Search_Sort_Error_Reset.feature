@@ -22,7 +22,7 @@ Feature: Agency
     When I click on reset button on admin portal search page
     Then I verify data in the fields on the admin portal search page should be blank
       | AgencyName        |
-      | StateLicenseNumber|
+      | ColoradoLicenseNumber|
       | AgencyEmail             |
       | BusinessAddressCity |
       | BusinessAddressZipCode |

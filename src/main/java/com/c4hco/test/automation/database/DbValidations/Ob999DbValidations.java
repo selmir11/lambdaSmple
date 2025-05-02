@@ -18,9 +18,8 @@ public class Ob999DbValidations {
     List<Ob999Entity> ob999DenEntities;
 
     private void setOb999MedicalData(){
-        List<String> medGrpCtrlNums = SharedData.getMedGroupCtlNumbers();
-        Set<String> uniqueMedGrpCtrlNum = new HashSet<>(medGrpCtrlNums);
-        for(String medGrpCtrlNum: uniqueMedGrpCtrlNum){
+        Set<String> medGrpCtrlNums = SharedData.getMedGroupCtlNumbers();
+        for(String medGrpCtrlNum: medGrpCtrlNums){
             ob999MedEntities = exchDbDataProvider.getOb999Details(medGrpCtrlNum);
         }
 

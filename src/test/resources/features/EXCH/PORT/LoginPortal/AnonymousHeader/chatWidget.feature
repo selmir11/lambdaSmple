@@ -1,4 +1,4 @@
-@SLER-92 @LoginPortal
+@SLER-92 @LoginPortalAnonymousHeader
 Feature:Chat Widget in Login Portal
 
   @SLER-92

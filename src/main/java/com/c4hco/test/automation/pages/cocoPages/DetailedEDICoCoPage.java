@@ -99,9 +99,9 @@ public class DetailedEDICoCoPage {
                 softAssert.assertEquals(actualHeader, expectedData[i], "Outbound Data mismatched at index " + i + ": Expected " + expectedData[i] + ", but got " + actualHeader);
             }
         } else {
-            String[] expectedData = {"Cigna Healthcare", "834_CIGNA_C_2025032615501168_100001128_D_O", "9059867099", "2025-03-26T15:49:43.990686", "",
-                    "ADDITION", "1701070186", "1", "2", "8790664720", "SELF", "8790664720", "Y", "49375CO0060032", "2025-03-26", "2025-12-31",
-                    "2025-03-26", "No", "3", "362.03", "0.00", "711.22", "711.22", "0.00", "apindkcbqntg", "apelizawcpe", "000000000", "19830201",
+            String[] expectedData = {"Cigna Healthcare", "834_CIGNA_C_2025032615501168_100001128_D_O", "9059867099", "2025-03-26T15:49:43.990686", "ADD",
+                    "ADDITION", "1701070186", "1", "2", "8790664720", "SELF", "8790664720", "N", "49375CO0060032", "2025-03-26", "2025-12-31",
+                    "2025-03-26", "No", "3", "362.03", "0.00", "711.22", "711.22", "0.00", "apindkcbqntg", "apelizawcpe", "000000000", "02/01/1983",
                     "M", "MGC4Test+apindkcbqntgapeliz@gmail.com", "3971871644", "3971871644", "1234 Road", "", "Denver", "CO", "80205", "08031",
                     "", "", "", "", "", "", "", "", "apelizawcpe apindkcbqntg", "8790664720", "", "", "", "EDI_COMPLETE", "1701070186", ""};
             for (int i = 0; i < outboundData.size(); i++) {

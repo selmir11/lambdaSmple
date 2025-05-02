@@ -1,4 +1,4 @@
-@port  @SLER-783 @SLER-784 @SLER-787 @LoginPortal
+@port  @LoginPortalAnonymousHeader
 Feature: Verify common header in Login Portal
 
   @SLER-783

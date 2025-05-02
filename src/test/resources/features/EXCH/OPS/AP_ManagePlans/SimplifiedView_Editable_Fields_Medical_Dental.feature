@@ -16,7 +16,6 @@ Feature: Manage Plans:Simplified View Editable Fields Med, Dent, and Both
     Then I validate title and labels on Manage page
     And I check default year displays
     Then I verify Years in dropdown starting from "2021" as expected
-    And I select the plan year based on the running environment
     And I validate Make Changes button displayed for "Both" on Manage page
     Then I select the 1 "Medical" policy Plan
     And I click Make Changes Medical button

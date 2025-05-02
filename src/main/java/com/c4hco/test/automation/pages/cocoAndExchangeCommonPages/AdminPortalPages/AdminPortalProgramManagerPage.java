@@ -138,7 +138,7 @@ public class AdminPortalProgramManagerPage {
         }else{
             softAssert.assertEquals(assistNetName.getText(),"adstaygpvi adsopibhuxo");
             softAssert.assertEquals(assistNetUsername.getText(),"c4assistorportal+6D9xrQWta@gmail.com");
-            softAssert.assertEquals(assistNetEmail.getText(),"c4assistorportal+6D9xrQWta@gmail.com");
+            softAssert.assertEquals(assistNetEmail.getText(),"c4assistorportal+nglxvkqeassistNet@outlook.com");
             softAssert.assertEquals(assistNetPhone.getText(),"317-360-5536");
         }
 

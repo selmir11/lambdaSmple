@@ -56,8 +56,8 @@ Feature: Footer verification - Multiple pages
       | xIcon                  | X                                                    | x.com                                                    |
       | YouTubeIcon            | YouTube                                              | youtube.com                     |
       | LinkedInIcon           | LinkedIn                                             | www.linkedin.com |
-      | InstagramIcon          | instagram                                            | instagram.com                                    |
-      | ThreadsIcon            | Threads                                              | threads.net                                      |
+      | InstagramIcon          | Instagram                                            | instagram.com                                    |
+      | ThreadsIcon            | Threads                                              | threads.com                                      |
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
     Then I validate I am on the "Additional income" page
@@ -70,8 +70,8 @@ Feature: Footer verification - Multiple pages
       | xIcon                  | X                                                    | x.com                                                    |
       | YouTubeIcon            | YouTube                                              | youtube.com                     |
       | LinkedInIcon           | LinkedIn                                             | www.linkedin.com |
-      | InstagramIcon          | instagram                                            | instagram.com                                    |
-      | ThreadsIcon            | Threads                                              | threads.net                                      |
+      | InstagramIcon          | Instagram                                            | instagram.com                                    |
+      | ThreadsIcon            | Threads                                              | threads.com                                      |
 
     Then I validate I am on the "Additional income" page
     Then I click None of these as additional income option and continue
@@ -86,8 +86,8 @@ Feature: Footer verification - Multiple pages
       | xIcon                  | X                                                    | x.com                                                    |
       | YouTubeIcon            | YouTube                                              | youtube.com                     |
       | LinkedInIcon           | LinkedIn                                             | www.linkedin.com |
-      | InstagramIcon          | instagram                                            | instagram.com                                    |
-      | ThreadsIcon            | Threads                                              | threads.net                                      |
+      | InstagramIcon          | Instagram                                            | instagram.com                                    |
+      | ThreadsIcon            | Threads                                              | threads.com                                      |
 
     Then I validate I am on the "Deductions" page
     And I verify the header for Primary Member on the Deductions page in "Spanish"
@@ -102,8 +102,8 @@ Feature: Footer verification - Multiple pages
       | xIcon                  | X                                                    | x.com                                                    |
       | YouTubeIcon            | YouTube                                              | youtube.com                     |
       | LinkedInIcon           | LinkedIn                                             | www.linkedin.com |
-      | InstagramIcon          | instagram                                            | instagram.com                                    |
-      | ThreadsIcon            | Threads                                              | threads.net                                      |
+      | InstagramIcon          | Instagram                                            | instagram.com                                    |
+      | ThreadsIcon            | Threads                                              | threads.com                                      |
 
     Then I select the projected income option "No" and continue
   #TaxPage
@@ -118,8 +118,8 @@ Feature: Footer verification - Multiple pages
       | xIcon                  | X                                                    | x.com                                                    |
       | YouTubeIcon            | YouTube                                              | youtube.com                     |
       | LinkedInIcon           | LinkedIn                                             | www.linkedin.com |
-      | InstagramIcon          | instagram                                            | instagram.com                                    |
-      | ThreadsIcon            | Threads                                              | threads.net                                      |
+      | InstagramIcon          | Instagram                                            | instagram.com                                    |
+      | ThreadsIcon            | Threads                                              | threads.com                                      |
 
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
@@ -137,8 +137,8 @@ Feature: Footer verification - Multiple pages
       | xIcon                  | X                                                    | x.com                                                    |
       | YouTubeIcon            | YouTube                                              | youtube.com                     |
       | LinkedInIcon           | LinkedIn                                             | www.linkedin.com |
-      | InstagramIcon          | instagram                                            | instagram.com                                    |
-      | ThreadsIcon            | Threads                                              | threads.net                                      |
+      | InstagramIcon          | Instagram                                            | instagram.com                                    |
+      | ThreadsIcon            | Threads                                              | threads.com                                      |
     And I click on Sign Out in the Header for "Elmo"
 
 
@@ -153,8 +153,8 @@ Feature: Footer verification - Multiple pages
       | xIcon          | X                 | x.com                                 |
       | YouTubeIcon    | YouTube           | youtube.com                           |
       | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
-      | InstagramIcon  | instagram         | instagram.com                         |
-      | ThreadsIcon    | Threads           | threads.net                           |
+      | InstagramIcon  | Instagram         | instagram.com                         |
+      | ThreadsIcon    | Threads           | threads.com                           |
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
     Then I validate I am on the "Additional income" page
@@ -167,8 +167,8 @@ Feature: Footer verification - Multiple pages
       | xIcon          | X                 | x.com                                 |
       | YouTubeIcon    | YouTube           | youtube.com                           |
       | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
-      | InstagramIcon  | instagram         | instagram.com                         |
-      | ThreadsIcon    | Threads           | threads.net                           |
+      | InstagramIcon  | Instagram         | instagram.com                         |
+      | ThreadsIcon    | Threads           | threads.com                           |
     Then I validate I am on the "Additional income" page
     Then I click None of these as additional income option and continue
   #Deductions Page
@@ -182,8 +182,8 @@ Feature: Footer verification - Multiple pages
       | xIcon          | X                 | x.com                                 |
       | YouTubeIcon    | YouTube           | youtube.com                           |
       | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
-      | InstagramIcon  | instagram         | instagram.com                         |
-      | ThreadsIcon    | Threads           | threads.net                           |
+      | InstagramIcon  | Instagram         | instagram.com                         |
+      | ThreadsIcon    | Threads           | threads.com                           |
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
     Then I validate I am on the "Income Summary" page
@@ -196,8 +196,8 @@ Feature: Footer verification - Multiple pages
       | xIcon          | X                 | x.com                                 |
       | YouTubeIcon    | YouTube           | youtube.com                           |
       | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
-      | InstagramIcon  | instagram         | instagram.com                         |
-      | ThreadsIcon    | Threads           | threads.net                           |
+      | InstagramIcon  | Instagram         | instagram.com                         |
+      | ThreadsIcon    | Threads           | threads.com                           |
     Then I select the projected income option "No" and continue
   #TaxPage
     Then I validate I am on the "Tax status" page
@@ -210,8 +210,8 @@ Feature: Footer verification - Multiple pages
       | xIcon          | X                 | x.com                                 |
       | YouTubeIcon    | YouTube           | youtube.com                           |
       | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
-      | InstagramIcon  | instagram         | instagram.com                         |
-      | ThreadsIcon    | Threads           | threads.net                           |
+      | InstagramIcon  | Instagram         | instagram.com                         |
+      | ThreadsIcon    | Threads           | threads.com                           |
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
     Then I select the "Single" tax filing option on the Tax Status page
@@ -228,6 +228,6 @@ Feature: Footer verification - Multiple pages
       | xIcon          | X                 | x.com                                 |
       | YouTubeIcon    | YouTube           | youtube.com                           |
       | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
-      | InstagramIcon  | instagram         | instagram.com                         |
-      | ThreadsIcon    | Threads           | threads.net                           |
+      | InstagramIcon  | Instagram         | instagram.com                         |
+      | ThreadsIcon    | Threads           | threads.com                           |
     And I click on Sign Out in the Header for "Elmo"

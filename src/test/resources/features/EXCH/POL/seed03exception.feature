@@ -120,7 +120,7 @@ Feature: Seed03exception - Exchange
     And I click on Future Plans
     And I validate "medical" details on my policies page
     And I validate "dental" details on my policies page
-    And I click on Sign Out in the Header for "NonElmo"
+    And I click on Sign Out in the Header for "Elmo"
 
     #DB Validation
     And I validate "medical" entities from policy tables

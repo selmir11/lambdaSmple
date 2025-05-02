@@ -1,4 +1,4 @@
-@AssistNet @port
+@CreateAccount @port
 Feature:  As a Program Manager user, I must see updated text in AM-004-01 notice, so that I get correct information in the notice
 
   @SLER-1972 @SLER-1975

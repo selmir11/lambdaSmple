@@ -1,4 +1,4 @@
-@SLER-1126  @LoginPortal
+@SLER-1126  @LoginPortalAnonymousHeader
 Feature: Rerouting Broker Portal Users to Individual sign in page when they sign out and they can see the dropdown options
 
 

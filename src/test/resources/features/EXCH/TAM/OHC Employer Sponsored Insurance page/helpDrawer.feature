@@ -204,6 +204,7 @@ Feature: Tests related to the help drawer on ELMO pages
     Then I click on "Employer Coverage Tool 1" link in Help Drawer on the ESI page
     And I validate I am on the "Employer Coverage" page and close tab
     Then I click on "Employer Coverage Tool 3" link in Help Drawer on the ESI page
+    And I validate I am on the "Employer Coverage" page and close tab
     Then I open or close the "Minimum Value" Help Drawer on the ESI page
 #    Then I open or close the Help Drawer on the ESI page
     And I verify the Help Drawer is "Closed Spanish" on the ESI page

@@ -481,8 +481,8 @@ public class OhcTricarePage {
     }
 
     public void verifyTricarePageFirstSectionSecondaryDataSpanish(){
-        basicActions.waitForElementToBePresent(OhcHeader,15);
-        basicActions.waitForElementToBePresent(OhcTricareHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcHeader,15);
+        basicActions.waitForElementToBePresentWithRetries(OhcTricareHeader,15);
         softAssert.assertTrue(OhcHeader.getText().equalsIgnoreCase("Otra cobertura de salud: " + SharedData.getMembers().get(0).getFullName()));
         softAssert.assertEquals(OhcTricareHeader.getText(),"TRICARE");
         softAssert.assertEquals(helpMeLink.getText(),"Ayuda para entender esta p\u00E1gina");

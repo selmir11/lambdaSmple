@@ -685,7 +685,7 @@ public class AdminPortalSearchPage {
 
     public void verifyBrokerAccountTitledetails() {
         basicActions.waitForElementListToBePresent(searchResultsTitles, 20);
-        List<String> expectedTitles = List.of("Account ID", "First Name", "Last Name", "Email", "Phone Number", "License Number", "User Type");
+        List<String> expectedTitles = List.of("Account ID", "First Name", "Last Name", "Email", "Phone Number", "Colorado License Number", "User Type");
         List<String> actualTitles = searchResultsTitles.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
@@ -711,7 +711,7 @@ public class AdminPortalSearchPage {
 
     public void verifyAgencyAccountTitledetails() {
         basicActions.waitForElementListToBePresent(searchResultsTitles, 20);
-        List<String> expectedTitles = List.of("Agency Name", "Agent", "Business Address City", "State License Number");
+        List<String> expectedTitles = List.of("Agency Name", "Agent", "Business Address City", "Colorado License Number");
 
         List<String> actualTitles = searchResultsTitles.stream()
                 .map(WebElement::getText)

@@ -211,6 +211,7 @@ Feature: Page Validation-OHC Medicare Elmo Page
     Then I click continue on the Additional Income page
     Then I click continue on the Deductions page
     Then I select the projected income option "No" and continue
+    Then I validate I am on the "Tax status" page
     Then I click Save and Continue on Tax Status page
     Then I click continue on the health coverage page
     And I validate I am on the "Ohc Medicare" page
