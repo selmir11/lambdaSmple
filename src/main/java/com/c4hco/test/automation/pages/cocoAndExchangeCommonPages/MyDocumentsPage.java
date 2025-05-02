@@ -685,7 +685,7 @@ public class MyDocumentsPage {
     }
 
     public void uploadDoc(String uploadDoc) {
-        String documentPath = "src/main/resources/MyDocs/"+uploadDoc;
+        String documentPath = "src/main/resources/MyDocs/test/"+uploadDoc;
         String absolutePath = Paths.get(documentPath).toAbsolutePath().toString();
         WebElement fileInput = WebDriverManager.getDriver().findElement(By.cssSelector("input[type='file']"));
         fileInput.sendKeys(absolutePath);
