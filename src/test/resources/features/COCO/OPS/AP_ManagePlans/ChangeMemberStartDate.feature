@@ -71,27 +71,25 @@ Feature:  OPS: CoCo: MP: Change Added Member Start Date
 
     And I close current tab and switch back to previous tab
 #    Manage Plans Change Start Dates to 1/1
-    And I wait for 1000 milliseconds
-    Then I click on manage plan button on admin portal Individual dashboard
-
+    And I close current tab and switch back to previous tab
+    Then I click on "Manage Plans" user dashboard button
+    And I validate I am on the "Manage Plans" page
     Then I click Make Changes Medical button
-    And I wait for 1000 milliseconds
     And I update the Coverage Start date of member
       | 1:First Day Of Current Year |
-
-    And I wait for 1000 milliseconds
     And I update the Financial Start date of member
       | 1:First Day Of Current Year |
-
+    Then I update the premium value for
+      | 1:329.86 |
+    Then I update the APTC value for
+      | 1:329.86 |
     And I click Save Button Medical
-    And I wait for 1000 milliseconds
     And I select the reason to confirm the changes
-    And I wait for 1000 milliseconds
-
     And I select Plans Med Active Policy
     Then I verify current plan data for "Medical" on Manage Plans page
-      |no|coverageStart            |financialStart           |
-      |1 |First Day Of Current Year|First Day Of Current Year|
+      |no|coverageStart            |financialStart           |premium  |aptc     |
+      |1 |First Day Of Current Year|First Day Of Current Year|$329.86  |$329.86  |
+
 
     And I click "On Behalf Of (OBO)" from application links dropdown
     Then I validate I am on the "Account Overview" page
@@ -120,7 +118,7 @@ Feature:  OPS: CoCo: MP: Change Added Member Start Date
     Then I validate I am on the "CoCo Family Overview" page
     And I select continue on the Family Overview page
 
-    And I select "Birth" life change event with event date of "Today"
+    And I select "Marriage" life change event with event date of "Today"
     And I select continue on the LCE page
     Then I validate I am on the "CoCo Declarations and Signature" page
     Then I enter a OBO signature on the Declarations And Signature Page CoCo
@@ -151,28 +149,29 @@ Feature:  OPS: CoCo: MP: Change Added Member Start Date
     And I close current tab and switch back to previous tab
 #    Manage Plans Change Start Dates to 1/1
     And I wait for 1000 milliseconds
+
     Then I click on manage plan button on admin portal Individual dashboard
-
+    And I validate I am on the "Manage Plans" page
+    And I select Plans Med Active Policy
+    Then I validate current "Medical" plan summary in DB for 2 members "Marriage" LCE on AP Manage Plans
+    Then I validate current "Medical" all details table in DB for 2 members "Marriage" LCE on AP Manage Plans
     Then I click Make Changes Medical button
-    And I wait for 1000 milliseconds
     And I update the Coverage Start date of member
-      | 1:First Day of Current Month |
-
-
-    And I wait for 1000 milliseconds
+      | 2:April 10 Current Year    |
     And I update the Financial Start date of member
-      | 1:First Day of Current Month |
-
+      | 2:First of May Current Year |
     And I click Save Button Medical
-    And I wait for 1000 milliseconds
     And I select the reason to confirm the changes
-    And I wait for 1000 milliseconds
 
+    And I wait for 1000 milliseconds
     And I select Plans Med Active Policy
     Then I verify current plan data for "Medical" on Manage Plans page
       |no|coverageStart            |financialStart           |
-      |1 |First Day of Current Month|First Day of Current Month|
-
-    Then I validate current "Medical" all details table in DB for 1 members on AP Manage Plans
-    Then I validate previous "Medical" all details table in DB for 2 members on policy "0" for DB row 1 on AP Manage Plans
-    And I wait for 1000 milliseconds
+      |1 |First Day Of Current Year|First of May Current Year|
+      |2 |April 10 Current Year    |First of May Current Year|
+    Then I validate current "Medical" plan summary in DB for 2 members "Marriage" LCE on AP Manage Plans
+    Then I validate current "Medical" all details table in DB for 2 members "Marriage" LCE on AP Manage Plans
+    Then I validate previous financial period "Medical" plan summary in DB for 1 policy 1 members for DB row 8 on AP Manage Plans
+    Then I validate previous "Medical" all details table in DB for 1 members on policy "1" for DB row 8 on AP Manage Plans
+    And I close current tab and switch back to previous tab
+    Then logout from Admin Portal
