@@ -1,6 +1,6 @@
 @COCOSIR @SIR-COCO16
  #SLCR-938, SLCR-939
-Feature: Shopping Page - Continue and Go back funtionality
+Feature: Shopping Page - Continue and Go back functionality
 
   Background: I go the login portal
     Given I open the login page on the "login" portal
