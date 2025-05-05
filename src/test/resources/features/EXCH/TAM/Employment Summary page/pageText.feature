@@ -431,7 +431,7 @@ Feature: Page Text-Income Opt Out Page
       | xIcon          | X                 | x.com                                 |
       | YouTubeIcon    | YouTube           | youtube.com                           |
       | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
-      | InstagramIcon  | instagram         | instagram.com                         |
+      | InstagramIcon  | Login • Instagram | instagram.com                         |
       | ThreadsIcon    | Threads           | threads.com                           |
 
     And I click on the Colorado Connect or C4 Logo in the "Elmo" Header
