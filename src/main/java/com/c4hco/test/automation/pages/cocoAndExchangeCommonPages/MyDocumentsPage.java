@@ -68,7 +68,7 @@ public class MyDocumentsPage {
     @FindBy(css = "a.btn-second-action-button.download-button")
     WebElement downloadEnrolmentDoc;
 
-    @FindBy(xpath = "//a[normalize-space()='Upload another document']")
+    @FindBy(id = "uploadAnother")
     WebElement uploadAnotherDocument;
 
     @FindBy(xpath = "//div[@class='drop-down-options']//div")
@@ -410,6 +410,9 @@ public class MyDocumentsPage {
     @FindBy(css = "#documentsUploadMessage > p")
     WebElement messageNoDocumentsNeeded;
 
+    @FindBy(xpath = "//*[@id='mvrActionButtonTitle_0']")
+    WebElement firstMvrToUpload;
+
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
         accountOverviewPage.clickHereLinks("My Documents");
@@ -536,7 +539,9 @@ public class MyDocumentsPage {
                     "ELIG-001-01 APTC Spanish 1", "ELIG-001-01 APTC Spanish 2", "AM-011-02 English", "AM-011-02 Spanish Mail",
                     "ELIG-001-01 MVR English 1", "ELIG-001-01 AIAN MVR Valid SEP English 1","ELIG-001-01 MVR valid No SEP English 1",
                     "ELIG-001-01 Incarcerated MVR valid SEP 1","ELIG-001-01 Immigration MVR English 1","ELIG-001-01 Citizenship MVR English 1",
-                    "ELIG-001-01 APTC and CSR Not eligible English 1","ELIG-001-01 AIAN MVR Valid SEP Spanish 1":
+                    "ELIG-001-01 APTC and CSR Not eligible English 1","ELIG-001-01 AIAN MVR Valid SEP Spanish 1","ELIG-001-01 Income MVR English 1-Spanish",
+                    "ELIG-001-01 MVR valid SEP Spanish 1","ELIG-001-01 Citizenship MVR Spanish 1","ELIG-001-01 Death MVR Spanish 1",
+                    "ELIG-001-01 Incarcerated MVR Spanish 1":
 
 
                     pdf.validateEntirePDF(docType);
@@ -1222,8 +1227,8 @@ public class MyDocumentsPage {
                 }
                 break;
             case "Financial Help Eligibility":
-                if (actual.contains("Income")) {
-                    Assert.assertEquals(actual, "Income", " list not defaulted with" + mvrType);
+                if (actual.contains("Financial")) {
+                    Assert.assertEquals(actual, "Financial", " list not defaulted with" + mvrType);
                 } else {
                     docTypeDrpDwn.click();
                     basicActions.waitForElementListToBePresent(categoryList, 20);
@@ -1715,7 +1720,7 @@ public class MyDocumentsPage {
                 break;
             case "Spanish":
                 basicActions.waitForElementToBePresentWithRetries(txtUploadSuccess, 20);
-                WebElement btnUploadMvrSpanish = basicActions.getDriver().findElement(By.xpath("//p[contains(text(),'Comprobante de "+ mvrType +"')]//following::button[1]"));
+                WebElement btnUploadMvrSpanish = basicActions.getDriver().findElement(By.xpath("//p[contains(text(),'Comprobante de ')]//following::button[0]"));
                 btnUploadMvrSpanish.click();
                 break;
             default:
