@@ -412,8 +412,6 @@ public class MyDocumentsPage {
 
     @FindBy(xpath = "//*[@id='mvrActionButtonTitle_0']")
     WebElement firstMvrToUpload;
-//    @FindBy(xpath = "document.querySelector('#uploadAnother')")
-//    WebElement uploadAnotherDocument;
 
     public void ClickLinkMyDocsWelcomePage() {
         basicActions.switchToParentPage("accountOverview");
