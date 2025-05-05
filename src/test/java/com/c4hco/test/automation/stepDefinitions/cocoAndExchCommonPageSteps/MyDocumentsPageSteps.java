@@ -245,7 +245,6 @@ MyDocumentsPage myDocumentsPage = new MyDocumentsPage(WebDriverManager.getDriver
     public void iUploadAnotherDocForCategoryAndTypeAndVerifySuccessMessage(String uploadDocFile,String mvrType,String docType) {
         myDocumentsPage.uploadAnotherDocAndVerifySuccessMessage(uploadDocFile,mvrType,docType);
     }
-
     @Then("I verify Document category blank by default")
     public void iVerifyDocumentCategoryBlankByDefault() {
         myDocumentsPage.verifyDefaultValueOnDocumentCategory();
