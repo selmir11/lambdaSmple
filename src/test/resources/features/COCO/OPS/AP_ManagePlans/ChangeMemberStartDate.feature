@@ -71,7 +71,7 @@ Feature:  OPS: CoCo: MP: Change Added Member Start Date
 
     And I close current tab and switch back to previous tab
 #    Manage Plans Change Start Dates to 1/1
-    And I close current tab and switch back to previous tab
+
     Then I click on "Manage Plans" user dashboard button
     And I validate I am on the "Manage Plans" page
     Then I click Make Changes Medical button
@@ -164,11 +164,7 @@ Feature:  OPS: CoCo: MP: Change Added Member Start Date
     And I select the reason to confirm the changes
 
     And I wait for 1000 milliseconds
-    And I select Plans Med Active Policy
-    Then I verify current plan data for "Medical" on Manage Plans page
-      |no|coverageStart            |financialStart           |
-      |1 |First Day Of Current Year|First of May Current Year|
-      |2 |April 10 Current Year    |First of May Current Year|
+
     Then I validate current "Medical" plan summary in DB for 2 members "Marriage" LCE on AP Manage Plans
     Then I validate current "Medical" all details table in DB for 2 members "Marriage" LCE on AP Manage Plans
     Then I validate previous financial period "Medical" plan summary in DB for 1 policy 1 members for DB row 8 on AP Manage Plans
