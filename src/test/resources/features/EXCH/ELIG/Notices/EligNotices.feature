@@ -153,7 +153,7 @@ Feature: Elig101-01 - Elig Notices
 
     Then I click on ClickHere link for "My Documents"
     And I click on download "Application Results" document
-    Then I validate "ELIG-001-01 APTC Spanish 1" notice content
+    Then I validate "ELIG-001-01 Income MVR English 1-Spanish" notice content
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
     Then I open the notice "resultados de su solicitu" in "Spanish"
@@ -1173,8 +1173,8 @@ Feature: Elig101-01 - Elig Notices
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-2476
-  Scenario: SLER-2476 ELIG-Notice ELG-101-01 member Immigration MVR valid SEP Spanish
+  @SLER-2475
+  Scenario: CLONE - ELIG-Elig101-01- 1 member Income MVR valid SEP Spanish [RT-3068]
     And I click on the Username in the "Exch NonElmo" Header
     And I validate I am on the "My Profile" page
     And I click on Make Changes Button
@@ -1207,21 +1207,15 @@ Feature: Elig101-01 - Elig Notices
     And I click continue on the Add Address page
     And I select "Prefer not to answer" for race and ethnicity for "Primary"
     And I click continue on the Race and Ethnicity page
-    Then I select "No" for Citizen option
-    Then I select "Yes" for Eligible Immigration Status option
-    Then I select "I-327 Reentry Permit" as Document type
-    Then I enter A-Number USCIS number for "NonCitizen" on Lawful Presence page
-    Then I select "None of the above" active-duty members of the military or honorably discharged veterans
-    Then I select "Yes" for name matching the document
+    Then I select "Yes" for Citizen option
+    And I select "No" for Naturalized Immigrant option
+    And I get the Primary Member ID
     And I click continue on the Citizenship page
-    Then I select "No" for Lawful Permanent Resident
-    Then I select "Administrative order staying removal" for immigration status
-    Then I click continue on the Immigration Status page
     Then I click continue on family overview page
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
-    And I enter employment details with "3900000" income at "Annually" frequency
+    And I enter employment details with "3800000" income at "Annually" frequency
     And I select the option "No" to seasonal employment
     And I select the option "No" to projected income
     And I click continue on the Employment Info Page
@@ -1237,7 +1231,7 @@ Feature: Elig101-01 - Elig Notices
     Then I select "None of these" as health coverage option
     Then I click continue on the health coverage page
     Then I click continue on family overview page
-    Then I select "GainedLawfulPresence" QLCE on tell us about life changes page
+    Then I select "NoneOfThese" QLCE on tell us about life changes page
     Then I click on Save and Continue
     Then I validate I am on the "EXCH Declarations and Signature" page
     Then I Declare as Tax Household 1
@@ -1247,8 +1241,10 @@ Feature: Elig101-01 - Elig Notices
     And I click on Apply for Coverage in the "NonElmo" Header
 
     Then I click on ClickHere link for "My Documents"
-    And I click on download "Application Results" document
-    Then I validate "ELIG-001-01 MVR valid SEP Spanish 1" notice content
+    Then I validate I am on the "My Documents" page
+    Then I validate the notice "Application Results" exist in my document letter Containers
+    Then I click on download "Application Results" document
+    Then I validate "ELIG-001-01 Income MVR English 1-Spanish" notice content
 
     Then I open outlook Tab
     And I sign in to outlook with Valid Credentials "MGC4testing@outlook.com" and "ALaska12!"
