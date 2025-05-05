@@ -17,6 +17,11 @@ public class MedicalPlansCoCoPageSteps {
     @And("I click Continue on the Medical Plans Page CoCo")
     public void selectContinueMedPlansCoCo(){medicalPlansCoCoPage.selectContinueMedicalPlansCoCo();}
 
+    @And ("I validate that the Continue button is disabled on the COCO Medical Plan Results page")
+    public void validateContinueButtonDisabled() {
+        medicalPlansCoCoPage.validateContinueButtonDisabled();
+    }
+
     @And("I select the COCO Insurance Company dropdown")
     public void clickInsuranceCompanyDropdown() {medicalPlansCoCoPage.clickInsuranceCompanyDropdown(); }
 
@@ -123,5 +128,27 @@ public class MedicalPlansCoCoPageSteps {
     @And("I validate the current plan green banner {string} on the COCO Medical Plan Results page")
     public void validateCurrentPlanGreenBanner(String planName) {
         medicalPlansCoCoPage.validateMedicalGreenBannerTxt(planName);
+    }
+
+    @And ("I validate that the {string} no longer available plan label is on the COCO Medical Plan Results page")
+    public void validatePlanNotAvailableMessage(String language) {
+        medicalPlansCoCoPage.validatePlanNotAvailableMessage(language);
+    }
+    @And ("I validate the {string} Skip button is present on the COCO Medical Plan Results page")
+    public void validateSkipBtn(String language) {
+        medicalPlansCoCoPage.validateSkipBtn(language);
+    }
+    @And("I click the Skip Button")
+    public void clickSkipButton() {
+        medicalPlansCoCoPage.clickSkipButton();
+    }
+
+    @And("I validate the {string} Save and Exit button on the COCO Medical Plan Results page")
+    public void validateSaveAndExitButton(String language) {
+        medicalPlansCoCoPage.validateSaveExitBtn(language);
+    }
+    @And("I click the Save and Exit button")
+    public void clickSaveAndExitButton() {
+        medicalPlansCoCoPage.clickSaveAndExitButton();
     }
 }

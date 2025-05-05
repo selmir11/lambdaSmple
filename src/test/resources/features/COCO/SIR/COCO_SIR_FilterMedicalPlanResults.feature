@@ -6,7 +6,7 @@ Feature: Verify COCO Medical Plan results
     Given I open the login page on the "login" portal
 
    @SLCR-84 @COCOFilterMedicalResults_NoSilver
-  Scenario Outline: SLCR-84 - This will verify the COCO filters provide a correct medical plan result - this is a merge of CCRT-389 to SCLR-84
+  Scenario Outline: SLCR-84 - This will verify the COCO filters provide a correct medical plan result
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "coco" account creation
