@@ -185,3 +185,4 @@ Feature: Coco Initial Application Multi group
    # Ib999 DB Validation
     And I validate coco entities from ib999_details db table
     And I download the "medical" ib999 files from sftp server with location "/archive/INBOUND999/"
+    And I validate the COCO ib999 file data

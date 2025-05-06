@@ -416,7 +416,7 @@ Scenario: [RT-2425] OPS: MP: NFA Removing Subscriber from policy
   Then I validate termed "Dental" all details table in DB for 2 member for DB row 1 on AP Manage Plans
   Then logout from Admin Portal
 
-  @SLER-1616
+  @SLER-2477
   Scenario: [RT-2493] Cancel and Reinstate prior policy
     And I Apply for financial help
     Then I select the option "Yes" to employment
