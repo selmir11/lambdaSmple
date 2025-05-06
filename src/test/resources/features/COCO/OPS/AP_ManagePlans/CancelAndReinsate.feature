@@ -1,7 +1,7 @@
-@OPS @COCO @manageplan
-Feature: Manage Plans: Cancel And Reinstate[CCRT-349]
-  @SLCR-937
-Scenario: Cancel And Reinstate[CCRT-349]
+@OPS @Exch @manageplans
+Feature: Manage Plans: Cancel And Reinstate
+
+Background:
 Given I open the login page on the "admin" portal
 And I refresh the page
 And I validate I am on the "Admin Login" page
@@ -17,6 +17,9 @@ And I click "On Behalf Of (OBO)" from application links dropdown
 Then I validate I am on the "Account Overview" page
 
 And I apply for the current year in CoCo
+
+@SLCR-937
+Scenario: Cancel And Reinstate[CCRT-349]
 Then I validate I am on the "Find Expert Help" page
 And I click Continue on my own button from Manage who helps you page
 Then I click EditUpdate on Family Overview page for "Primary"
@@ -136,3 +139,153 @@ And I wait for 1000 milliseconds
 And I select the reason to confirm the changes
 And I wait for 1000 milliseconds
 Then I validate current "Medical" all details table in DB for 2 members on AP Manage Plans
+And I logout from Admin Portal
+
+  @SLCR-947
+Scenario: OPS: CoCo: MP: Cancel and reinstate prior policy(CCRT-350)
+Then I validate I am on the "Find Expert Help" page
+And I click Continue on my own button from Manage who helps you page
+Then I click EditUpdate on Family Overview page for "Primary"
+Then I enter details on tell us about yourself page and continue with "11181993", "Male", and applying "Yes"
+And I enter my residential address "102 COCO DRIVE", "BOULDER", "CO", "80020", "BOULDER"
+And I select "Yes" for mailing address option
+And I select "Yes" for live in Colorado option
+And I click continue on the Add info for yourself page
+Then I validate I am on the "Race and Ethnicity" page
+And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+And I click save and continue on the Race and Ethnicity page
+And I select "Yes" employment option
+And I enter "55,000.00" income amount
+And I select "Annually" income frequency option
+And I select "No" income seasonal option
+And I select "No" income changes option
+And I click continue on the Employment income page
+And I select None of these as additional income option
+And I select continue on the Additional Income CoCO page
+And I wait for 200 milliseconds
+And I select "None of these" as deductions option
+And I select continue on the Deductions CoCo page
+Then I select the projected income option "No" on Income Summary CoCo page
+And I select continue on the income Summary CoCo page
+Then I validate I am on the "CoCo Family Overview" page
+And I select continue on the Family Overview page
+And I select "Birth" life change event with event date of "Today"
+And I select continue on the LCE page
+Then I validate I am on the "CoCo Declarations and Signature" page
+Then I enter a OBO signature on the Declarations And Signature Page CoCo
+And I click Continue on the Declarations And Signature Page CoCo
+Then I validate I am on the "Application Results CoCo" page
+
+And I click Continue on the Application Results Page CoCo
+Then I validate I am on the "Start Shopping" page
+And I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+And I get the application id from the url from tobacco page coco
+Then I click continue on coco start shopping page
+Then I validate I am on the "Medical Plan Results" page
+And I select or skip the medical plans for groups on medical plan page
+  | Group 1:KP Colorado Option Bronze |
+
+Then I validate I am on the "planSummaryMedicalDental" page
+And I click continue on coco plan summary page
+Then I validate I am on the "Enrollment Agreements" page
+And I select "Acknowledgement" agreement checkbox CoCo
+And I select "Submit" agreement checkbox CoCo
+And I enter householder signature on the Enrollment Agreements page CoCo
+And I select submit enrollment button on the Enrollment Agreements CoCo page
+Then I click all done from payment portal page coco
+Then I validate I am on the "CoCo Welcome" page
+
+And I close current tab and switch back to previous tab
+#    Manage Plans Change Start Dates to 1/1
+And I wait for 1000 milliseconds
+Then I click on manage plan button on admin portal Individual dashboard
+Then I select Plans Med Active Policy
+Then I validate current "Medical" all details table in DB for 1 members on AP Manage Plans
+Then I click Make Changes Medical button
+And I wait for 1000 milliseconds
+And I update the Coverage Start date of member
+  | 1:First Day Of Current Year |
+And I wait for 1000 milliseconds
+And I update the Financial Start date of member
+  | 1:First Day Of Current Year |
+And I click Save Button Medical
+And I wait for 1000 milliseconds
+And I select the reason to confirm the changes
+And I wait for 200 milliseconds
+Then I select Plans Med Active Policy
+Then I click Make Changes Medical button
+And I update the coverage end date
+  | 1:01012025 |
+And I update the financial end date
+  | 1:01012025|
+And I click Save Button Medical
+And I wait for 1000 milliseconds
+And I select the reason to confirm the changes
+And I wait for 1000 milliseconds
+And I validate I am on the "Manage Plans" page
+Then I select Plans "Medical" Termed policy with "First Day Of Current Year" coverage end date on manage plan page
+Then I validate termed "Medical" all details table in DB for 1 member for DB row 1 on AP Manage Plans
+#    Enroll new policy
+And I click "On Behalf Of (OBO)" from application links dropdown
+Then I validate I am on the "Account Overview" page
+
+And I apply for the current year in CoCo
+And I click Continue on my own button from Manage who helps you page
+Then I validate I am on the "CoCo Family Overview" page
+And I select continue on the Family Overview page
+And I select "Birth" life change event with event date of "Today"
+And I select continue on the LCE page
+Then I validate I am on the "CoCo Declarations and Signature" page
+Then I enter a OBO signature on the Declarations And Signature Page CoCo
+And I click Continue on the Declarations And Signature Page CoCo
+Then I validate I am on the "Application Results CoCo" page
+And I click Continue on the Application Results Page CoCo
+Then I validate I am on the "Start Shopping" page
+And I click "No" to the Tobacco usage question on start shopping page for "Primary" coco
+And I get the application id from the url from tobacco page coco
+Then I click continue on coco start shopping page
+Then I validate I am on the "Medical Plan Results" page
+And I select or skip the medical plans for groups on medical plan page
+  | Group 1:Anthem Colorado Option Silver Pathway Essentials Std |
+
+Then I validate I am on the "planSummaryMedicalDental" page
+And I set medical premium amount
+And I click continue on coco plan summary page
+Then I validate I am on the "Enrollment Agreements" page
+And I select "Acknowledgement" agreement checkbox CoCo
+And I select "Submit" agreement checkbox CoCo
+And I enter householder signature on the Enrollment Agreements page CoCo
+And I select submit enrollment button on the Enrollment Agreements CoCo page
+Then I click all done from payment portal page coco
+Then I validate I am on the "CoCo Welcome" page
+And I close current tab and switch back to previous tab
+And I close current tab and switch back to previous tab
+And I refresh the page
+#    Manage Plans Change Start Dates to 1/1
+Then I select Plans Med Active Policy
+Then I validate current "Medical" all details table in DB for 1 members on AP Manage Plans
+Then I click Make Changes Medical button
+And I wait for 500 milliseconds
+And I update the Coverage End date of member on manage plan page for "Medical"
+  | Primary:Current Date |
+And I update the Financial End date of member on manage plan page
+  | Primary:Current Date |
+And I click Save Button Medical
+And I wait for 1000 milliseconds
+And I select the reason to confirm the changes
+And I wait for 1000 milliseconds
+#    Reinstate prior policy
+Then I select Plans "Medical" Termed policy with "First Day Of Current Year" coverage end date on manage plan page
+Then I click Make Changes Medical button
+And I wait for 500 milliseconds
+And I update the Coverage End date of member on manage plan page for "Medical"
+  | Primary:Last Day Of Current Year |
+And I update the Financial End date of member on manage plan page
+  | Primary:Last Day Of Current Year |
+And I click Save Button Medical
+And I wait for 1000 milliseconds
+And I select the reason to confirm the changes
+And I wait for 1000 milliseconds
+And I select Plans Med Active Policy
+Then I validate current "Medical" all details table in DB for 1 members on AP Manage Plans
+And I logout from Admin Portal
