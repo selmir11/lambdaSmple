@@ -1155,13 +1155,13 @@ public class ManagePlanDBValidation {
             }
         }
 
-        String reduction = "";
-        String dbName = SharedData.getDbName().toLowerCase();
-        if (dbName.contains("exch")) {
-            reduction = "APTC";
-        } else if (dbName.contains("coco")) {
-            reduction = "SES";
-        }
+        String reduction = "APTC";
+     //   String dbName = SharedData.getDbName().toLowerCase();
+     //   if (dbName.contains("exch")) {
+     //       reduction = "APTC";
+     //   } else if (dbName.contains("coco")) {
+      //      reduction = "SES";
+      //  }
 
         values.put("policyStart", dbPolicyStartDateValue);
         values.put("policyEnd", dbPolicyEndDateValue);
