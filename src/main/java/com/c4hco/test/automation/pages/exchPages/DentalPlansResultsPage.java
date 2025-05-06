@@ -62,6 +62,9 @@ public class DentalPlansResultsPage {
     @FindBy(id = "DentalPlanResults-Continue")
     WebElement continueBtnOnDentalPlanResults;
 
+    @FindBy(xpath = "//*[@class = 'btn-primary button-disabled']")
+    WebElement continueBtnDisabledOnDentalPlanResults;
+
     @FindBy(id = "DentalPlanResults-InsuranceCompany")
     WebElement dropdownInsuranceCompany;
 
@@ -152,6 +155,9 @@ public class DentalPlansResultsPage {
 
     @FindBy(id = "PlanResults-CurrentPlanLabel")
     WebElement greenDentalBannerText;
+
+    @FindBy(id="PlanResults-CurrentPlanWarningMessage")
+    WebElement planDentalNotAvailableText;
 
 
     public void clickResetButton() {
@@ -665,4 +671,36 @@ public class DentalPlansResultsPage {
         softAssert.assertAll();
     }
 
+    public void validatePlanNotAvailableTxt(String language) {
+        basicActions.waitForElementToDisappear( spinner, 30 );
+        switch (language) {
+            case "English":
+                validateDentalPlanNotAvailableTxt();
+                break;
+            case "Spanish":
+                validateDentalPlanNotAvailableSPTxt();
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + language );
+
+        }
+    }
+    public void validateDentalPlanNotAvailableTxt(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresentWithRetries( planDentalNotAvailableText,20);
+        softAssert.assertEquals(planDentalNotAvailableText.getText(), "Your current plan is not available, but you can choose a new one from the options below.");
+        softAssert.assertAll();
+    }
+    public void validateDentalPlanNotAvailableSPTxt(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresentWithRetries( planDentalNotAvailableText,20);
+        softAssert.assertEquals(planDentalNotAvailableText.getText(), "Su plan actual no est\u00E1 disponible, pero puede elegir uno nuevo de entre las opciones mostradas a continuaci\u00F3n.");
+        softAssert.assertAll();
+    }
+
+    public void validateContinueButtonDisabled() {
+        basicActions.waitForElementToDisappear( spinner, 30 );
+        basicActions.waitForElementToBePresent( continueBtnDisabledOnDentalPlanResults, 10 );
+        Assert.assertTrue( continueBtnDisabledOnDentalPlanResults.isEnabled(), "Continue button is enabled" );
+    }
 }
