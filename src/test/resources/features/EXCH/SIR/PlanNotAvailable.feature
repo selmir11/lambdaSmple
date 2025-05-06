@@ -1,4 +1,4 @@
-@SIR @SIREXCH @SIR-EXCH20
+@SIR @SIREXCH @SIR-EXCH21
 
   # SLER-2486, SLER-2487, SLER-2488
 Feature: UI Tests related to plan not available message check after initial enrollment
@@ -475,7 +475,7 @@ Feature: UI Tests related to plan not available message check after initial enro
     Then I validate I am on the "Financial Help Agreements" page
     And I click on Sign Out in the Header for "Portal"
 
-@SLER-2488
+  @SLER-2488
   Scenario: SLER-2488 - Plan Not Available for Two Tax household grouping  - group of 2  - two different zip codes - mother/daughter (daughter is under 25) -two tax households
     When I click create a new account on login page
     Then I click create my account from pre-screen page
@@ -649,26 +649,20 @@ Feature: UI Tests related to plan not available message check after initial enro
     And I click continue on start shopping page
 
     Then I validate I am on the "Grouping Members Medical" page
-    #Then I click on edit enrollment groups link
-    #Then I click on create new group button on edit enrollment groups page
-    #Then I validate I am on the "Create New Group" page
-    #Then I drag and drop a member to make new group
-    #Then I validate I am on the "Edit Grouping Members Medical" page
-    #Then I click save button to save the groups
     Then I validate that there are 2 default groups
     And I click continue on grouping Members Medical page
 
     Then I validate I am on the "Medical Plan Results" page
     And I wait for 2000 milliseconds
     And I select the Insurance Company dropdown
-    And I select "Rocky Mountain Health Plans / UHC" to filter for desired plan provider
+    And I select "Cigna Healthcare" to filter for desired plan provider
     And I select the first medical plan
     And I click continue on medical plan results page
 
     Then I validate I am on the "Medical Plan Results" page
-    And I wait for 2000 milliseconds
-    And I select the Insurance Company dropdown
-    And I select "Rocky Mountain Health Plans / UHC" to filter for desired plan provider
+    And I wait for 3000 milliseconds
+    #And I select the Insurance Company dropdown
+    And I select "Cigna Healthcare" to filter for desired plan provider
     And I select the first medical plan
     And I click continue on medical plan results page
 
@@ -684,7 +678,8 @@ Feature: UI Tests related to plan not available message check after initial enro
     And I click continue on dental plan results page
 
     Then I validate I am on the "Dental Plan Results" page
-    And I click the Dental Insurance Company Dropdown
+    #And I click the Dental Insurance Company Dropdown
+    And I wait for 2000 milliseconds
     And I select "Solstice Healthplans / UHC" to filter for a Dental Insurance Company
     And I select "EssentialSmile Colorado - Total Care" plan
     And I click continue on dental plan results page
@@ -725,6 +720,7 @@ Feature: UI Tests related to plan not available message check after initial enro
 
     Then I validate I am on the "Find Expert Help" page
     Then I click Continue on my own button from Manage who helps you page
+
     Then I select "Male" as sex option
     And I select "Yes" to Are You Applying
     Then I select new relationship of members to primary
@@ -779,7 +775,7 @@ Feature: UI Tests related to plan not available message check after initial enro
 
     Then I validate I am on the "Add Address" page
     Then I select "New" for Residential Address
-    And I enter a new residential address with city "Telluride" state "CO" zip "81435" and county "SAN MIGUEL"
+    And I enter a new residential address with city "Ridgway" state "CO" zip "81432" and county "OURAY"
     Then I click continue on the Add Address page
 
     Then I validate I am on the "Race and Ethnicity" page

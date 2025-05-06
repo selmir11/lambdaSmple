@@ -492,6 +492,7 @@ Feature: UI Tests related to green banner check after initial enrollment
     And I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
+    And I wait for 2000 milliseconds
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page
