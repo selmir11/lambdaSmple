@@ -11,4 +11,5 @@ public class EsMemberEntity {
     String gender;
     String birth_date;
     String applying_for_coverage_ind;
+    String job_income_optout_ind;
 }
