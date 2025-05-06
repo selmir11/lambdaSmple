@@ -366,7 +366,7 @@ Feature: Page Validation-OHC HRA Elmo Page
 
   @SLER-2315
   Scenario: SLER-2315 ELIG-ICHRA Opt Out Select Yes-HRA NextYear -HRA - DB
-    And I am a member with City "Denver" in State "CO" with dob "05021990" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "10011990" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
@@ -644,7 +644,7 @@ Feature: Page Validation-OHC HRA Elmo Page
 
   @SLER-2319
   Scenario: SLER-2319 ELIG-ICHRA Opt Out Select Yes-HRA - DB
-    And I am a member with City "Denver" in State "CO" with dob "05021990" in county "DENVER" with zipcode "80205"
+    And I am a member with City "Denver" in State "CO" with dob "10011990" in county "DENVER" with zipcode "80205"
     Then I answer all Id proofing questions and click continue
     And I click continue button on Congratulations page
     Then I validate I am on the "Find Expert Help" page
