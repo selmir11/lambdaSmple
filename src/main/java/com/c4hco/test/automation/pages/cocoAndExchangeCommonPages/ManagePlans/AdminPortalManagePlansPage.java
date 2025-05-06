@@ -186,6 +186,9 @@ public class AdminPortalManagePlansPage {
     @FindBy(xpath = "//div[@Class='body-text-1 validation-error']")
     WebElement ValidationError;
 
+    @FindBy(xpath = "//div[@Class='body-text-1 validation-error']")
+    List<WebElement> allValidationError;
+
     @FindBy(xpath = "//div[contains(text(),'Invalid monetary amount for Premium')]")
     WebElement PremiumInvalidError;
 
@@ -1320,7 +1323,6 @@ public class AdminPortalManagePlansPage {
         managePlanDentalMedicalPlan.setSelectDenSecondPolicyDrp(dentalSecondPolicy);
         SharedData.setManagePlanDentalMedicalPlan(managePlanDentalMedicalPlan);
     }
-
     public void uncheckedFromPlanType(String planType) {
         switch (planType) {
             case "Dental":
@@ -1342,24 +1344,28 @@ public class AdminPortalManagePlansPage {
 
     public void validateCoverageStartDateErrors() {
         basicActions.waitForElementToBePresent(ValidationError, 100);
+        softAssert.assertEquals(ValidationError.getCssValue("color"),"rgba(150, 0, 0, 1)","error color is not red");
         softAssert.assertEquals(ValidationError.getText(), "The coverage start date must be entered within the selected plan year and can not be after the coverage end date.");
         softAssert.assertAll();
     }
 
     public void validateFinancialStartDateErrors() {
         basicActions.waitForElementToBePresent(ValidationError, 100);
+        softAssert.assertEquals(ValidationError.getCssValue("color"),"rgba(150, 0, 0, 1)","error color is not red");
         softAssert.assertEquals(ValidationError.getText(), "The financial start date must be entered within the selected plan year and can not be after the financial end date.");
         softAssert.assertAll();
     }
 
     public void validateCoverageEndDateErrors() {
         basicActions.waitForElementToBePresent(ValidationError, 100);
+        softAssert.assertEquals(ValidationError.getCssValue("color"),"rgba(150, 0, 0, 1)","error color is not red");
         softAssert.assertEquals(ValidationError.getText(), "The coverage end date must be entered within the selected plan year and can not be prior to the coverage start date.");
         softAssert.assertAll();
     }
 
     public void validateFinancialEndDateErrors() {
         basicActions.waitForElementToBePresent(ValidationError, 100);
+        softAssert.assertEquals(ValidationError.getCssValue("color"),"rgba(150, 0, 0, 1)","error color is not red");
         softAssert.assertEquals(ValidationError.getText(), "The financial end date must be entered within the selected plan year and can not be prior to the financial start date.");
         softAssert.assertAll();
     }
@@ -3126,7 +3132,6 @@ public class AdminPortalManagePlansPage {
             Assert.assertNotEquals(beforeEdit, afterEdit, "Edit not successful for" + element);
         }
     }
-
     public void verifyOptionsGettingSelectedFromTerminationReasonDropDown() {
         basicActions.waitForElementToBePresent(drpDwnArrowTerminationReason.get(0), 5);
         for (WebElement element : drpDwnArrowTerminationReason) {
@@ -3136,6 +3141,55 @@ public class AdminPortalManagePlansPage {
             basicActions.wait(1000);
             allDrpDownOptionsTerminationReason.get(optionNum).click();
             softAssert.assertFalse(element.getText().isEmpty(), "Option did not get selected");
+            softAssert.assertAll();
+        }
+    }
+    public void selectAPlanYearFromDropDownInAnyEnvironment(String stagingYear, String qaYear) {
+        basicActions.waitForElementToBePresent(dpdCurrentYearMP, 50);
+        dpdCurrentYearMP.click();
+        String xpath;
+        if (SharedData.getEnv().equals("staging")) {
+            xpath = String.format("//app-drop-down-select[1]//div[2]//*[contains(text(),'" + stagingYear + "')]");
+            WebElement planYearBtn = basicActions.getDriver().findElement(By.xpath(xpath));
+            planYearBtn.click();
+        } else {
+            xpath = String.format("//app-drop-down-select[1]//div[2]//*[contains(text(),'" + qaYear + "')]");
+            WebElement planYearBtn = basicActions.getDriver().findElement(By.xpath(xpath));
+            planYearBtn.click();
+        }
+        basicActions.switchtoactiveTab();
+    }
+    public void validateAPTCExceedsEHBError(String errorMessage){
+        softAssert.assertEquals(allValidationError.get(1).getCssValue("color"),"rgba(150, 0, 0, 1)","error color is not red");
+        softAssert.assertTrue(allValidationError.get(1).getText().contains(errorMessage),"error message is not displayed");
+        softAssert.assertAll();
+    }
+    public void editAllGridValuesDateToBlank(String gridItem) {
+        switch (gridItem) {
+            case "coverage_start_date":
+                basicActions.waitForElementToBePresent(inputAllCoverageStartDate.get(0), 5);
+                inputAllCoverageStartDate.get(0).sendKeys(Keys.BACK_SPACE,Keys.TAB,Keys.BACK_SPACE,Keys.TAB,Keys.BACK_SPACE);
+                break;
+            case "coverage_end_date":
+                basicActions.waitForElementToBePresent(inputAllCoverageEndDate.get(0), 5);
+                inputAllCoverageEndDate.get(0).sendKeys(Keys.BACK_SPACE,Keys.TAB,Keys.BACK_SPACE,Keys.TAB,Keys.BACK_SPACE);
+                break;
+            case "financial_start_date":
+                basicActions.waitForElementToBePresent(inputAllFinancialStartDate.get(0), 5);
+                inputAllFinancialStartDate.get(0).sendKeys(Keys.BACK_SPACE,Keys.TAB,Keys.BACK_SPACE,Keys.TAB,Keys.BACK_SPACE);
+                break;
+            case "financial_end_date":
+                basicActions.waitForElementToBePresent(inputAllFinancialEndDate.get(0), 5);
+                inputAllFinancialEndDate.get(0).sendKeys(Keys.BACK_SPACE,Keys.TAB,Keys.BACK_SPACE,Keys.TAB,Keys.BACK_SPACE);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + gridItem);
+        }
+    }
+    public void validateAllTheErrorsDisplayedOnThePoliciesPage(List<String> errors){
+        for (int i=0;i<errors.size();i++){
+            softAssert.assertEquals(allValidationError.get(i).getCssValue("color"),"rgba(150, 0, 0, 1)","error color is not red");
+            softAssert.assertEquals(allValidationError.get(i).getText().trim(),errors.get(i), "error message is not correct for: "+errors.get(i));
             softAssert.assertAll();
         }
     }
