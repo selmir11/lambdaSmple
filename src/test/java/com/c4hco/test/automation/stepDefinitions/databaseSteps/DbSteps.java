@@ -416,6 +416,12 @@ public class DbSteps {
     public void iValidateTheAssistnetEmailInDB() {
         dbValidations.validateTheAssistnetEmailInDB();
     }
+
+    @Then("I validate the Individual Income Opt Out in DB is {string}")
+    public void iValidateIndividualIncomeOptOutInDB(String expectedValue) {dbValidations.validateMemberIncomeOptOutInDB(expectedValue);}
+
+    @Then("I validate the CoCo Individual Income values in DB")
+    public void iValidateIndividualIncomeInDB(List<Map<String, String>> expectedValues) {dbValidations.validateCoCoMemberIncomeDetailsInDB(expectedValues);}
 }
 
 

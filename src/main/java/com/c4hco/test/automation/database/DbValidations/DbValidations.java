@@ -4,6 +4,7 @@ import com.c4hco.test.automation.Dto.MemberDetails;
 import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.database.EntityObj.*;
 import com.c4hco.test.automation.database.dbDataProvider.DbDataProvider_Exch;
+import com.c4hco.test.automation.database.dbDataProvider.DataProviderDb_qa_coco;
 import com.c4hco.test.automation.utils.BasicActions;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
@@ -1102,6 +1103,34 @@ public class DbValidations {
     public void validateTheAssistnetEmailInDB() {
         String assistNetEmail = exchDbDataProvider.getTheAssistNetEmailInDB();
         softAssert.assertEquals(assistNetEmail,SharedData.getAssisterDetails().getEmail());
+        softAssert.assertAll();
+    }
+
+    public void validateMemberIncomeOptOutInDB(String expectedValue) {
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        String memberIdFromDb =  exchDbDataProvider.getMemberId(primaryMem.getFirstName());
+        System.out.println("memberID from DB ::"+memberIdFromDb);
+        EsMemberEntity primaryMemFromDb = exchDbDataProvider.getEsMemberDetails(memberIdFromDb);
+        System.out.println("ESMemberEntity: "+primaryMemFromDb);
+        softAssert.assertEquals(primaryMemFromDb.getJob_income_optout_ind(), expectedValue, "Applying for Coverage Opt Out did not match");
+        softAssert.assertAll();
+    }
+
+    public void validateCoCoMemberIncomeDetailsInDB(List<Map<String, String>> expectedValues){
+        MemberDetails primaryMem = SharedData.getPrimaryMember();
+        String[] rawDbValues = exchDbDataProvider.getCoCoIncomeDataDetails();
+
+        String[] dbValues = new String[5];
+        Arrays.fill(dbValues, null);
+        for (int i = 0; i < rawDbValues.length && i < 5; i++) {
+            dbValues[i] = rawDbValues[i];
+        }
+
+        softAssert.assertEquals(dbValues[0], expectedValues.get(0).get("amount"), "incorrect amount");
+        softAssert.assertEquals(dbValues[1], expectedValues.get(0).get("period"), "incorrect period");
+        softAssert.assertEquals(dbValues[2], expectedValues.get(0).get("season_comm_tip_ind"), "incorrect answer for tips");
+        softAssert.assertEquals(dbValues[3], expectedValues.get(0).get("season_comm_tip_samelower_ind"), "incorrect answer for same or lower");
+        softAssert.assertEquals(dbValues[4],primaryMem.getEmailId(), "incorrect e-mail for updated by");
         softAssert.assertAll();
     }
 }
