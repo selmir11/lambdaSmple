@@ -1,4 +1,4 @@
-
+@OPS @manageplan @COCO
 Feature: FA Policy without Account Holder - Spouse
   @SLCR-920
   Scenario: OPS: CoCo: MP: FA Policy without Account Holder - Spouse[CCRT-320]

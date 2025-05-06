@@ -1,3 +1,4 @@
+@OPS @COCO @manageplan
 Feature: OPS: CoCo: MP: Change Enrollment data and verify in Account Activity and DB
 
   @SLCR-941 @OPS @ManagePlans

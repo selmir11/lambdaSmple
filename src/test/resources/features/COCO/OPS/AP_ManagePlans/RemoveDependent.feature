@@ -1,4 +1,4 @@
-
+@OPS @manageplan @COCO
 Feature: OPS: CoCo: MP: FA Removing Dependent from policy
   @SLCR-917
   Scenario: FA Removing Dependent from policy[CCRT-343]

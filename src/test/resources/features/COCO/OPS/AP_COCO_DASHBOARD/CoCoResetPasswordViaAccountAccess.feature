@@ -1,4 +1,4 @@
-@OPS
+@OPS @COCO
 Feature: CoCo Password Reset Via Account Access - CCRT-516
   @SLCR-777
   Scenario: CoCo Account Access details tab Reset Password with Outlook

@@ -1,4 +1,4 @@
-@OPS @SLCR-771 @managePlan
+@OPS @SLCR-771 @manageplan @COCO
 Feature: SLCR-771 CoCo Manage Plans:Editing Validation Errors Medical only [CCRT-240]
   Background:
     Given I open the login page on the "admin" portal

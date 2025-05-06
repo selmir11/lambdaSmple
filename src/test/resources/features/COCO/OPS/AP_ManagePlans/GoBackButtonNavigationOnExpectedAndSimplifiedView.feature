@@ -1,4 +1,4 @@
-@OPS @manageplans
+@OPS @manageplan @COCO
   Feature: Manage Plans: Button Go Back navigation
     @SLCR-724
   Scenario:Manage plan 2024 Go Back navigation
