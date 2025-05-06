@@ -320,7 +320,7 @@ Feature: Coco user on the Application results page
     And I enter a valid signature
     And I click Continue on the Declarations And Signature Page CoCo
     Then I validate I am on the "Application Results CoCo" page
-
+    And I wait for 3000 milliseconds
     And I verify the application result details in DB as "OFF_EXCHANGE_ELIGIBLE" for "getFromSharedData"
     And I verify the application result details in DB as "ELIGIBLE_FOR_HP2_LIMITED" for "getFromSharedData"
     And I click on Sign Out in the Header for "Elmo"
