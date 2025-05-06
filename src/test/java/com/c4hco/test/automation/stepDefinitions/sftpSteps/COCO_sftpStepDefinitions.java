@@ -66,4 +66,15 @@ public class COCO_sftpStepDefinitions {
             cocoIb999FileValidations.ib999FilesValidations(cocoIb999file);
         }
     }
+    @And("I download coco ib834 files from sftp location {string}")
+    public void downloadIb834FilesFromServer(String remotePath) {
+        String sftpDownloadPath = sftpUtil.getLocalSftpDownloadPath();
+        SharedData.setLocalPathToDownloadFile(sftpDownloadPath);
+
+        List<String> allIb834Files = SharedData.getMedicalIb834FileNames();
+        Set<String> uniqueib834Files = new HashSet<>(allIb834Files);
+       for(String file: uniqueib834Files){
+           sftpUtil.downloadFileWithSftp(remotePath, file);
+       }
+    }
 }
