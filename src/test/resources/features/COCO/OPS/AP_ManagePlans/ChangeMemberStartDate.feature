@@ -147,7 +147,7 @@ Feature:  OPS: CoCo: MP: Change Added Member Start Date
     And I close current tab and switch back to previous tab
     Then I click on manage plan button on admin portal Individual dashboard
     And I close current tab and switch back to previous tab
-#    Manage Plans Change Start Dates to 1/1
+#    Manage Plans Change Start Dates
     And I wait for 1000 milliseconds
 
     Then I click on manage plan button on admin portal Individual dashboard
@@ -159,7 +159,10 @@ Feature:  OPS: CoCo: MP: Change Added Member Start Date
     And I update the Coverage Start date of member
       | 2:April 10 Current Year    |
     And I update the Financial Start date of member
+      | 1:First of May Current Year |
       | 2:First of May Current Year |
+    And I update the previous Financial End date of member
+      | 1:End of April Current Year |
     And I click Save Button Medical
     And I select the reason to confirm the changes
 
@@ -167,12 +170,13 @@ Feature:  OPS: CoCo: MP: Change Added Member Start Date
     And I select Plans Med Active Policy
     Then I verify current plan data for "Medical" on Manage Plans page
       |no|coverageStart            |financialStart           |
+      |1 |First Day Of Current Year|First of May Current Year|
       |2 |April 10 Current Year    |First of May Current Year|
 
 
     Then I validate current "Medical" plan summary in DB for 2 members "Marriage" LCE on AP Manage Plans
     Then I validate current "Medical" all details table in DB for 2 members "Marriage" LCE on AP Manage Plans
-    Then I validate previous financial period "Medical" plan summary in DB for 1 policy 2 members for DB row 10 on AP Manage Plans
-    Then I validate previous "Medical" all details table in DB for 2 members on policy "1" for DB row 8 on AP Manage Plans
+    Then I validate previous financial period "Medical" plan summary in DB for 1 policy 1 members for DB row 4 on AP Manage Plans
+    Then I validate previous "Medical" all details table in DB for 1 members on policy "1" for DB row 4 on AP Manage Plans
     And I close current tab and switch back to previous tab
     Then logout from Admin Portal

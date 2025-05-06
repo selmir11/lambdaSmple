@@ -142,6 +142,10 @@ public class AdminPortalManagePlansSteps {
     public void iUpdateTheFinancialEndDate(List<String> memberFinancialEndDTList) {
         adminPortalManagePlansPage.updateTheFinancialEndDate(memberFinancialEndDTList);
     }
+
+    @And("I update the previous Financial End date of member")
+    public void previousFinancialEndDate(List<String> memberFinancialEndDtList) {adminPortalManagePlansPage.memberPreviousFinancialEndDate(memberFinancialEndDtList);}
+
     @And("I select the {string} plan year on manage plan")
     public void iSelectThePlanYearOnManagePlan(String planYear) {
         adminPortalManagePlansPage.selectThePlanYearOnManagePlan(planYear);

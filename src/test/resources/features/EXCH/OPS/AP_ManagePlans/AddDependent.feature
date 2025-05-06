@@ -459,7 +459,10 @@ Feature: OPS: Add Dependent
     And I update the Coverage Start date of member
       | 2:April 10 Current Year    |
     And I update the Financial Start date of member
+      | 1:First of May Current Year |
       | 2:First of May Current Year |
+    And I update the previous Financial End date of member
+      | 1:End of April Current Year |
     And I click Save Button Medical
     And I select the reason to confirm the changes
     And I select Plans Dental Active Policy
