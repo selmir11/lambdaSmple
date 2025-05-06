@@ -1,6 +1,6 @@
 Feature: Initial Application Family of 4(Silver Enhanced)
 
-  @SLCR-292
+  @SLCR-292 @SLCR-948 @SLCR-949 @SLCR-950 @SLCR-951 @pol_coco_passed
   Scenario: COCO Initial Application with Family of 4 (Silver Enhanced)
     Given I set the test scenario details in coco
       | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
