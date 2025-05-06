@@ -615,7 +615,7 @@ Feature: Page Text-Income Opt Out Page
         | xIcon          | X                 | x.com                                 |
         | YouTubeIcon    | YouTube           | youtube.com                           |
         | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
-        | InstagramIcon  | instagram         | instagram.com                         |
+        | InstagramIcon  | Login • Instagram | instagram.com                         |
         | ThreadsIcon    | Threads           | threads.com                           |
       Then I validate Employment Income page for text design
       Then I select the option "Yes" to employment

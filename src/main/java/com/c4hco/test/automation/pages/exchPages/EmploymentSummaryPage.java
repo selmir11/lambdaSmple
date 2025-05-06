@@ -354,6 +354,8 @@ public class EmploymentSummaryPage {
     // ############################## VALIDATION STEPS #########################
     // Add only validation methods below this line
     public void verifyHeadersEmploymentSummaryPage(String language){
+        basicActions.wait(100);
+        basicActions.waitForElementToBePresentWithRetries(hdr_Income,60);
         switch (language){
             case "English":
                 verifyHeadersEmploymentSummaryPageEnglish();
