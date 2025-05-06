@@ -651,4 +651,23 @@ public class AdminPortalManagePlansSteps {
     public void iVerifyReasonFieldIsNonEditableOnManagePlanForMember( ) {
         adminPortalManagePlansPage.validateReasonNotEnabled();
     }
+    @Then("I select a plan year from drop down in any environment {string} {string}")
+    public void iSelectAPlanYearFromDropDownInAnyEnvironment(String stagingYear, String qaYear) {
+        adminPortalManagePlansPage.selectAPlanYearFromDropDownInAnyEnvironment(stagingYear,qaYear);
+    }
+
+    @Then("I validate APTC error {string} for medical")
+    public void iValidateForMedical(String errorMessage) {
+        adminPortalManagePlansPage.validateAPTCExceedsEHBError(errorMessage);
+    }
+
+    @Then("I edit {string} to blank for first row")
+    public void iEditToBlankForFirstRow(String gridItem) {
+        adminPortalManagePlansPage.editAllGridValuesDateToBlank(gridItem);
+    }
+
+    @Then("I validate all the errors displayed on the policies Page")
+    public void iValidateAllTheErrorsDisplayedOnTheScreen(List<String> errors) {
+        adminPortalManagePlansPage.validateAllTheErrorsDisplayedOnThePoliciesPage(errors);
+    }
 }
