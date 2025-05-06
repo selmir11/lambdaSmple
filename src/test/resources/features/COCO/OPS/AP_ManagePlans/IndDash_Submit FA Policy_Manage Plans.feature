@@ -1,5 +1,5 @@
+@OPS @COCO @manageplan
 Feature: IndDash: Submit FA Policy/Manage Plans
-
   @OPS @SLCR-915
   Scenario:Submit FA Policy/Manage Plans(CCRT-212)
     Given I open the login page on the "admin" portal

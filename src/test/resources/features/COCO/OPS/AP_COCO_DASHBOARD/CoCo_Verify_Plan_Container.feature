@@ -1,3 +1,5 @@
+
+@OPS @COCO
 Feature: Verify Plans Container CoCo Ind Dash
   Background:
     Given I open the login page on the "admin" portal

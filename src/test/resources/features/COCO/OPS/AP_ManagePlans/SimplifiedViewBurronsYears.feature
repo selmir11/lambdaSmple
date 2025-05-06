@@ -1,4 +1,4 @@
-@OPS @SLCR-766 @managePlan
+@OPS @SLCR-766 @manageplan @COCO
 Feature: Manage Plans:CoCo: Simplified View Buttons (positive and negative testing [CCRT-448]
   @SLCR-766
   Scenario:Manage plan 2023

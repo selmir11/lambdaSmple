@@ -103,7 +103,7 @@ Feature: Manage Plans: Buttons (positive and negative testing)
     Then I verify member two shows twice in CoverageDetails and FinancialDetails tables
 
 
-  @SLCR-776 @OPSRegression
+  @SLCR-776 @OPSRegression @COCO @manageplan
   Scenario: OPS CoCo MP Simplified View Editable Fields for all member Medical[CCRT-461]
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
