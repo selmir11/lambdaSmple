@@ -40,19 +40,20 @@ public class COCO_grp_Ib834DbValidations {
         private void ib834MedRecordsValidations(List<Map<String, String>> expectedValues){
         subscribers = basicActions.getAllSubscribers();
         for (Ib834Entity ib834Entity : ib834MedEntities) {
-            System.out.println("Validating the entity for ::::"+ib834Entity.getMember_first_name());
             if (ib834Entity.getSubscriber_indicator().equals("Y")) {
                 for(MemberDetails subscriber: subscribers){
-                    setMedicalFileName(ib834Entity);
                     if(subscriber.getFirstName().equals(ib834Entity.getMember_first_name())){
+                        System.out.println("Validating the Ib834 entity for ::::"+ib834Entity.getMember_first_name());
                         subscriberOnlyMedDenFields(ib834Entity, subscriber);
                         validateMedDenForSubscriberAndMem(ib834Entity, subscriber);
                         break;
                     }
                 }
             } else {
+                System.out.println("Validating the entity for ::::"+ib834Entity.getMember_first_name());
                 validateDependentMedDenDetails(ib834Entity);
             }
+            System.out.println("Validating common fields common for All ::::"+ib834Entity.getMember_first_name());
             medDenValidationsCommonForAllMem(ib834Entity);
             medValidationsCommonForAllMembers(ib834Entity, expectedValues);
         }
@@ -305,15 +306,12 @@ public class COCO_grp_Ib834DbValidations {
     }
 
 
-        private void setMedicalFileName(Ib834Entity ib834Entity){
+        private void setIb834MedicalFileName(Ib834Entity ib834Entity){
         List<String> medFileNames = SharedData.getMedicalIb834FileNames();
         if(medFileNames==null){
             medFileNames = new ArrayList<>();
         }
         medFileNames.add(ib834Entity.getFilename());
-
-        Set<String> set = new LinkedHashSet<>(medFileNames);
-        medFileNames = new ArrayList<>(set);
         SharedData.setMedicalIb834FileNames(medFileNames);
     }
 
@@ -323,13 +321,13 @@ public class COCO_grp_Ib834DbValidations {
         }else {
             softAssert.assertEquals(ib834MedEntity.getPlan_sponsor_name(), subscriber.getSignature(), "plan sponsor name did not match");
         }
-        softAssert.assertEquals(subscriber.getAlternatePhNum() != null ? subscriber.getAlternatePhNum() : subscriber.getPhoneNumber(), ib834MedEntity.getAlternate_phone(), "alternate phone did not match");
+        softAssert.assertEquals(primaryMember.getAlternatePhNum() != null ? primaryMember.getAlternatePhNum() : primaryMember.getPhoneNumber(), ib834MedEntity.getAlternate_phone(), "alternate phone did not match");
         softAssert.assertEquals(ib834MedEntity.getSubscriber_id(), ib834MedEntity.getMember_id(), "Subscriber_id and Member_id in ib834 entity does not match");
         softAssert.assertEquals(subscriber.getIsSubscriber(), "Y", "Subscriber indicator did not match for "+subscriber.getFirstName());
-        softAssert.assertEquals(subscriber.getEmailId(), ib834MedEntity.getPrimary_email(), "primary email did not match");
-        softAssert.assertEquals(subscriber.getPhoneNumber(), ib834MedEntity.getPrimary_phone(), "primary phone did not match");
-        softAssert.assertEquals(subscriber.getSpokenLanguage(), ib834MedEntity.getSpoken_language(), "spoken language did not match");
-        softAssert.assertEquals(subscriber.getWrittenLanguage(), ib834MedEntity.getWritten_language(), "written language did not match");
+        softAssert.assertEquals(primaryMember.getEmailId(), ib834MedEntity.getPrimary_email(), "primary email did not match");
+        softAssert.assertEquals(primaryMember.getPhoneNumber(), ib834MedEntity.getPrimary_phone(), "primary phone did not match");
+        softAssert.assertEquals(primaryMember.getSpokenLanguage(), ib834MedEntity.getSpoken_language(), "spoken language did not match");
+        softAssert.assertEquals(primaryMember.getWrittenLanguage(), ib834MedEntity.getWritten_language(), "written language did not match");
         validateResidentialAddress(ib834MedEntity, subscriber);
 
         if(subscriber.getMailingAddress()!=null&&!subscriber.getMailingAddress().equals(subscriber.getResAddress())){
@@ -354,10 +352,11 @@ public class COCO_grp_Ib834DbValidations {
             ib834MedEntities.addAll(exchDbDataProvider.getIb834Details(medGrpCtrlNum));
         }
         SharedData.setIb834MedDetailsEntities(ib834MedEntities);
-
+        for(Ib834Entity ib834Entity: ib834MedEntities) {
+            setIb834MedicalFileName(ib834Entity);
+        }
         dbDataMapList = SharedData.getDbDataNew();
         medicalPlanDbDataMapList = SharedData.getMedicalPlanDbDataNew();
-
         SharedData.setMedicalIb834FileName(ib834MedEntities.get(0).getFilename());
 
         medicalPolicyEnitities = SharedData.getMedicalPolicyTablesEntities();
