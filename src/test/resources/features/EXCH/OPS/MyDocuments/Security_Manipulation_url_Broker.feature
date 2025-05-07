@@ -1,8 +1,8 @@
-@OPS @Exch @MyDocs
+@OPS @Exch @ExchMyDocs
 @SLER-2397
 Feature: RT-2066: OPS: My Docs: Security: URL Manipulation Broker
   @SLER-2397
-  Scenario: OPS: My Docs: Security: URL Manipulation Broker
+  Scenario:SLER-2397:OPS: My Docs: Security: URL Manipulation Broker
 # Verify doc opens from broker account with access
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page

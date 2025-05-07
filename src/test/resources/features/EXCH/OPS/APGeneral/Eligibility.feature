@@ -1,7 +1,7 @@
-@OPS
+@OPS @APGeneral
 Feature: AP Individual dashboard - Eligibility data
   @SLER-709
-  Scenario:Admin Portal dashboard Eligibility container with 2 households
+  Scenario:SLER-709:Admin Portal dashboard Eligibility container with 2 households
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -20,7 +20,7 @@ Feature: AP Individual dashboard - Eligibility data
     And I check "Life change events" columns "Life Change Event" "Impacted Members" "Date of Event"
     And I logout from Admin Portal
   @SLER-709
-  Scenario:Admin Portal dashboard Eligibility container no eligibility data
+  Scenario:SLER-709:Admin Portal dashboard Eligibility container no eligibility data
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -35,7 +35,7 @@ Feature: AP Individual dashboard - Eligibility data
     Then I check message "There is no eligibility data" is displayed
     And I logout from Admin Portal
   @SLER-709
-  Scenario:Admin Portal dashboard Eligibility container past year 2023
+  Scenario:SLER-709:Admin Portal dashboard Eligibility container past year 2023
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -57,7 +57,7 @@ Feature: AP Individual dashboard - Eligibility data
     And I logout from Admin Portal
 
   @SLER-2435
-  Scenario: OPS: IndDash: Validate detailed eligibility for current and previous applications [RT-2576]
+  Scenario:SLER-2435:OPS: IndDash: Validate detailed eligibility for current and previous applications [RT-2576]
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"

@@ -1,4 +1,4 @@
-@OPS @Exch @manageplans
+@OPS @Exchmanageplans
 Feature: Manage Plans:Simplified View Editing Validation Errors (Dental)
   @SLER-2256
   Scenario: SLER-2256 Dental plan year - 2023

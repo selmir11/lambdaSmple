@@ -1,4 +1,4 @@
-@OPS @Exch @manageplans
+@OPS @Exchmanageplans
 Feature: OPS: MP: 2021 Edit Plan and Account Activity
 
   Background:
@@ -67,7 +67,7 @@ Feature: OPS: MP: 2021 Edit Plan and Account Activity
     Then I click continue on family overview page
 
   @SLER-2478
-  Scenario: @SLER-2478 - OPS: MP: 2021 Edit Plan and Account Activity(RT-2131)
+  Scenario: SLER-2478 - OPS: MP: 2021 Edit Plan and Account Activity(RT-2131)
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment

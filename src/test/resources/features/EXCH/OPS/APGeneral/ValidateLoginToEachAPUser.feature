@@ -1,11 +1,11 @@
-@SLER-493
+@APGeneral
 Feature: APGeneral- Log into each AP User
 
   Background:
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
   @SLER-493
-  Scenario Outline: OPS- APGeneral: Login into Admin Portal Super User
+  Scenario Outline:SLER-493:OPS- APGeneral: Login into Admin Portal Super User
     When I login as Admin User any environment "<APUserSTG>" password "<PWSTG>" and "<APUserQA>" password "<PWQA>"
     Then I validate I am on the "Admin dashboard" page
     And I logout from Admin Portal

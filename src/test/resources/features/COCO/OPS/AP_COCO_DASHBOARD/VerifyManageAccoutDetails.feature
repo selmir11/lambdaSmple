@@ -1,7 +1,7 @@
-@OPS @COCO
+@OPS @COCO @UserDashboard
 Feature: Admin Portal as OBO verify member details
   @SLCR-863 @OPSRegression
-  Scenario: OPS: CoCo: Change Account Details and Verify on Profile [CCRT-140]
+  Scenario:SLCR-863: OPS: CoCo: Change Account Details and Verify on Profile [CCRT-140]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Admin Login" page

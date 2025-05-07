@@ -1,4 +1,4 @@
-@OPS @Exch @MyDocs
+@OPS @Exch @ExchMyDocs
 Feature: IndDash: Verify Financial Help Eligibility button is displaying
   @SLER-2086
     Scenario: SLER-2086 Verify SOPHOS activity log

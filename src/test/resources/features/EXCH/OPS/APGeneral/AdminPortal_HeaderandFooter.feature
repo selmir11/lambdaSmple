@@ -1,7 +1,7 @@
-@OPS
+@OPS @APGeneral
 Feature: Verify Header, Footer and welcome back button link on my documents page for admin portal user
   @SLER-701
-  Scenario: Verify Header, Footer and welcome back button link on my documents page for admin portal user
+  Scenario:SLER-701:Verify Header, Footer and welcome back button link on my documents page for admin portal user
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -60,7 +60,7 @@ Feature: Verify Header, Footer and welcome back button link on my documents page
 
 
   @SLER-235
-  Scenario: Verify Footer and login page on admin portal [RT-1084]
+  Scenario:SLER-235:Verify Footer and login page on admin portal [RT-1084]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

@@ -1,7 +1,7 @@
-@OPS @Exch @manageplans
+@OPS @Exchmanageplans
 Feature: Manage Plans: No Past medical and No Past dental periods //RT2098
   @SLER-979
-  Scenario: Verify Manage Plans page when 2024 have No Past medical and dental periods
+  Scenario:SLER-979:Verify Manage Plans page when 2024 have No Past medical and dental periods
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -31,7 +31,7 @@ Feature: Manage Plans: No Past medical and No Past dental periods //RT2098
     And I validate I am on the "Contact Us" page and close tab
     Then I logout from Admin Portal
   @SLER-979
-  Scenario: Verify Manage Plans page when 2022  have No Past medical and dental periods
+  Scenario:SLER-979:Verify Manage Plans page when 2022  have No Past medical and dental periods
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -62,7 +62,7 @@ Feature: Manage Plans: No Past medical and No Past dental periods //RT2098
     And I validate I am on the "Contact Us" page and close tab
     Then I logout from Admin Portal
   @SLER-979
-  Scenario: Verify Manage Plans page when 2023 have No Past medical and dental periods
+  Scenario:SLER-979:Verify Manage Plans page when 2023 have No Past medical and dental periods
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"

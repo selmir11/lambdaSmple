@@ -1,7 +1,7 @@
-@OPS @SLCR-766 @manageplan @COCO
+@OPS @SLCR-766 @ManagePlansCoco
 Feature: Manage Plans:CoCo: Simplified View Buttons (positive and negative testing [CCRT-448]
   @SLCR-766
-  Scenario:Manage plan 2023
+  Scenario:SLCR-766:Manage plan 2023
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -23,7 +23,7 @@ Feature: Manage Plans:CoCo: Simplified View Buttons (positive and negative testi
     And I select Plans Med Active Policy
     And logout from Admin Portal
   @SLCR-766
-  Scenario:Manage plan 2023 user has no role for manage plans
+  Scenario:SLCR-766:Manage plan 2023 user has no role for manage plans
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
     Then I login as Admin User any environment "adminPortalDLT_UN_STG" password "adminPortalDLT_PW_STG" and "adminPortalDLT_UN_QA" password "adminPortalDLT_PW_QA"

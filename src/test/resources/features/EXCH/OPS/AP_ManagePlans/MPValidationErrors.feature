@@ -1,4 +1,4 @@
-@OPS @Exch @manageplans
+@OPS @Exchmanageplans
 Feature: Manage Plans:Editing Validation Errors(Medical and Dental)
 
   Background:
@@ -580,7 +580,7 @@ Feature: Manage Plans:Editing Validation Errors(Medical and Dental)
       | 2      | 20.00 |
 
   @SLER-2255
-  Scenario: OPS MP Simplified View Editing Validation Errors for Medical Only[RT-2549]
+  Scenario:SLER-2255: OPS MP Simplified View Editing Validation Errors for Medical Only[RT-2549]
     Then I enter an accountId in any Env "2214004770" "2110007768" to search user
     And I click on Search button in AP dashboard page
     And I click acct first row from Search Results table in admin portal

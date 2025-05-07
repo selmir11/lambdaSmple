@@ -1,7 +1,7 @@
 @OPS @Exch @IndiviualDashboard
 Feature: Ind Dash: Reports: Verify Contact Sophpo scan Coverage Upsert
   @SLER-157
-  Scenario: Ind Dash: Verify Contact upsert
+  Scenario:SLER-157:Ind Dash: Verify Contact upsert
     Given I open the login page on the "admin" portal
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page

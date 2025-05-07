@@ -2,7 +2,7 @@
 Feature: verify Activity Report data on Admin portal
 
 @SLER-2356
-Scenario: Verify Activity Header, table names and event code with description [RT-1076]
+Scenario:SLER-2356:Verify Activity Header, table names and event code with description [RT-1076]
 Given I open the login page on the "admin" portal
 And I refresh the page
 And I validate I am on the "Login" page

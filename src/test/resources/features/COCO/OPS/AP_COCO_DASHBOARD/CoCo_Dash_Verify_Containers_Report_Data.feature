@@ -1,4 +1,4 @@
-@OPS @COCO
+@OPS @COCO @UserDashboard
 Feature: CoCo Dashboard: Verify Containers and Reports header and footer
   @SLCR-833
   Scenario: SLCR-833 Verify Containers on CoCo dashboard

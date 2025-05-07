@@ -1,8 +1,8 @@
-@SLCR-34 @OPS @COCO
+@SLCR-34 @OPS @COCO @AP
 Feature: AdminPortal: General: Header, footer, and application links
 
   @SLCR-34
-  Scenario: Validate Header and Footer on Search page for admin portal(landing page upon login) and Application Links validation
+  Scenario:SLCR-34:Validate Header and Footer on Search page for admin portal(landing page upon login) and Application Links validation
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

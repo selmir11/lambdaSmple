@@ -1,4 +1,4 @@
-@OPS @COCO
+@OPS @COCO @UserDashboard
 Feature: Coco Dashboard
   @SLCR-638
   Scenario: SLCR-638 OPS: Coco: IndDash: Search, sort, error, and reset

@@ -1,9 +1,9 @@
-@OPS @Exch @MyDocs
+@OPS @Exch @ExchMyDocs
 @SLER-154
 Feature: checking Let's chat functionality on My Documents page
 
 @SLER-154
-  Scenario: search for Individual account in Admin Portal and go to My Documents page to validate chat widget
+  Scenario:SLER-154:search for Individual account in Admin Portal and go to My Documents page to validate chat widget
   Given I open the login page on the "login" portal
   And I validate I am on the "Login" page
   Then I login as "inibinzydimINI@test.com" and "ALaska12!" individual existing user

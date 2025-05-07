@@ -1,4 +1,4 @@
-@OPS @Exch @manageplans
+@OPS @Exchmanageplans
 Feature: OPS: Add Dependent
 
   Background:

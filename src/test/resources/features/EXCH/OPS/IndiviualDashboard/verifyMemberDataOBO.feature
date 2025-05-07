@@ -1,7 +1,7 @@
 @OPS @Exch @IndiviualDashboard
 Feature: Admin Portal as OBO verify member data on the left
   @SLER-312
-  Scenario: Verify member data
+  Scenario:SLER-312:Verify member data
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -17,7 +17,7 @@ Feature: Admin Portal as OBO verify member data on the left
 
 
   @SLER-2205
-  Scenario: OPS: Change Account Details and Verify on Profile [RT-1932]
+  Scenario:SLER-2205: OPS: Change Account Details and Verify on Profile [RT-1932]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

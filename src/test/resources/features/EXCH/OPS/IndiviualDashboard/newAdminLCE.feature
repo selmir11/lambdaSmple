@@ -8,7 +8,7 @@ Feature: new admin LCE
     Then I navigate to admin lce url
 
   @SLER-1906
-    Scenario: :IndDash: Verify Header and Footer
+    Scenario:SLER-1906:IndDash: Verify Header and Footer
 #    Verify Logo, Header, Footer and Titles
     Then I validate "Logo" for Admin Portal
     Then I verify Title for admin LCE page
@@ -29,7 +29,7 @@ Feature: new admin LCE
     Then I verify no application data message is displayed
 
   @SLER-1996
-  Scenario: New admin LCE: Recreate application link navigation and verify links from page
+  Scenario:SLER-1996: New admin LCE: Recreate application link navigation and verify links from page
     Then I enter an account ID in "5020327630" "5020327630" accountID field
     Then I click on Look up button
     Then I click on application data dropdown arrow
@@ -40,7 +40,7 @@ Feature: new admin LCE
 
 
   @SLER-2078
-  Scenario: New admin LCE: Validate changes after submitting LCE - Open bugs # NVO-5515, OPS- 6605
+  Scenario:SLER-2078: New admin LCE: Validate changes after submitting LCE - Open bugs # NVO-5515, OPS- 6605
     Then I enter an account ID in "5020327630" "5020327630" accountID field
     Then I click on Look up button
     Then I wait for 3000 milliseconds

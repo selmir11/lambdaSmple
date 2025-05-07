@@ -1,4 +1,4 @@
-@OPS @Exch @manageplans
+@OPS @Exchmanageplans
 Feature: Manage Plans: Button Go Back navigation
   Scenario:Manage plan 2022 Go Back navigation
     Given I open the login page on the "admin" portal

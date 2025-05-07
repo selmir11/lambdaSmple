@@ -1,8 +1,8 @@
-@OPS @Exch @MyDocuments
+@OPS @Exch @ExchMyDocs
 Feature: OPS: MyDocs: Security: URL Manipulation Individual
 
   @SLER-2382
-  Scenario: RT-2062: OPS: MyDocs: Security: URL Manipulation Individual
+  Scenario:SLER-2382: RT-2062: OPS: MyDocs: Security: URL Manipulation Individual
 #    Valid user
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page

@@ -1,4 +1,4 @@
-@OPS
+@OPS @APGeneral
 Feature: Dashboard Search Sort All Users
   @SLER-2359
   Scenario: SLER-2359 OPS: IndDash: Search, sort, error, and reset

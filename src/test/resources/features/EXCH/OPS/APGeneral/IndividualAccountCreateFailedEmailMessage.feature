@@ -1,4 +1,4 @@
-@OPS
+@OPS @APGeneral
 Feature: OPS: Search buttons Create account button create account failed - RT-1335
   @SLER-2132
   Scenario:SLER-2132: Create account failed email message

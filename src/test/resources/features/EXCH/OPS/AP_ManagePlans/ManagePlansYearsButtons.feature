@@ -1,4 +1,4 @@
-@OPS @Exch @manageplans
+@OPS @Exchmanageplans
 Feature: Manage Plans: Buttons (positive and negative testing)
   Background:
     Given I open the login page on the "admin" portal
@@ -6,7 +6,7 @@ Feature: Manage Plans: Buttons (positive and negative testing)
     And I validate I am on the "Login" page
 
   @SLER-838
-  Scenario: Verify user with role for Manage Plans will be able to make changes
+  Scenario:SLER-838:Verify user with role for Manage Plans will be able to make changes
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin Portal search" page
     Then I enter an accountId in any Env "4007126206" "2425005563" to search user
@@ -30,7 +30,7 @@ Feature: Manage Plans: Buttons (positive and negative testing)
     And I click Reset Changes Dental
     And logout from Admin Portal
   @SLER-838
-  Scenario: Verify user with no role for Manage Plans will be not able make changes
+  Scenario:SLER-838:Verify user with no role for Manage Plans will be not able make changes
     Then I login as Admin User any environment "adminPortalSEReport_UN_STG" password "adminPortalSEReport_PW_STG" and "adminPortalSEReport_UN_QA" password "adminPortalSEReport_PW_QA"
     And I validate I am on the "Admin Portal search" page
     Then I enter an accountId in any Env "4007126206" "2425005563" to search user
@@ -48,8 +48,8 @@ Feature: Manage Plans: Buttons (positive and negative testing)
     And I validate medical and dental buttons does not display on Manage page
     And I logout from Admin Portal
 
-  @SLER-2420 @OPSRegression
-  Scenario: OPS MP Current Med Container verification (order)[RT-2090]
+  @SLER-2420
+  Scenario:SLER-2420: OPS MP Current Med Container verification (order)[RT-2090]
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I select "individual" checkbox on Admin Portal Dashboard
@@ -101,8 +101,8 @@ Feature: Manage Plans: Buttons (positive and negative testing)
     Then I verify green bar between two financial periods
     Then I verify expand and collapse all financial periods within the Previous Financial Period
 
-  @SLER-2433 @OPSRegression
-  Scenario: OPS MP Simplified View Informational Components[RT-2529]
+  @SLER-2433
+  Scenario:SLER-2433:OPS MP Simplified View Informational Components[RT-2529]
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I select "individual" checkbox on Admin Portal Dashboard
@@ -175,8 +175,8 @@ Feature: Manage Plans: Buttons (positive and negative testing)
       | Policy ID:               |
     Then I check for Previous Medical container message display
 
-  @SLER-2446 @OPSRegression
-  Scenario: OPS MP Previous Dent Container verification (order)[RT-2101]
+  @SLER-2446
+  Scenario:SLER-2446:OPS MP Previous Dent Container verification (order)[RT-2101]
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I select "individual" checkbox on Admin Portal Dashboard
@@ -216,8 +216,8 @@ Feature: Manage Plans: Buttons (positive and negative testing)
     Then I validate green back ground and white text of "Dental" button only when checked
     Then I validate white back ground and black text of "Medical" button only when unchecked
 
-  @SLER-2453 @OPSRegression
-  Scenario: OPS MP Current Dent Container verification (order)s[RT-2099]
+  @SLER-2453
+  Scenario:SLER-2453: OPS MP Current Dent Container verification (order)s[RT-2099]
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I select "individual" checkbox on Admin Portal Dashboard
@@ -275,7 +275,7 @@ Feature: Manage Plans: Buttons (positive and negative testing)
       | HIOS ID:               |
 
   @SLER-2448
-  Scenario: Verify Editable Fields on manage plan for 2021 and 2022 (med, den) [RT-2186]
+  Scenario:SLER-2448:Verify Editable Fields on manage plan for 2021 and 2022 (med, den) [RT-2186]
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I select "individual" checkbox on Admin Portal Dashboard
@@ -346,7 +346,7 @@ Feature: Manage Plans: Buttons (positive and negative testing)
 
 
   @SLER-2452
-  Scenario: Verify Editable Fields on manage plan for 2023 and 2024 (med, den) [RT-2189]
+  Scenario:SLER-2452: Verify Editable Fields on manage plan for 2023 and 2024 (med, den) [RT-2189]
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
     And I validate I am on the "Admin search" page
     And I select "individual" checkbox on Admin Portal Dashboard
