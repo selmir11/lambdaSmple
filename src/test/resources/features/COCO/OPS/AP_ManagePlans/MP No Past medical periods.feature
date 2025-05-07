@@ -1,7 +1,7 @@
-@OPS @COCO @manageplan
+@OPS @COCO @ManagePlansCoco
 Feature: Manage Plans: No Past medical periods //CCRT-234
 @SLCR-741
-  Scenario: Verify Manage Plans page when No Previous Financial Periods current year
+  Scenario:SLCR-741: Verify Manage Plans page when No Previous Financial Periods current year
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Admin Login" page
@@ -26,7 +26,7 @@ Feature: Manage Plans: No Past medical periods //CCRT-234
     And I validate I am on the "Contact Us" page and close tab
     Then I logout from Admin Portal
   @SLCR-741
-  Scenario: Verify Manage Plans page when No Previous Financial Periods previous year
+  Scenario:SLCR-741: Verify Manage Plans page when No Previous Financial Periods previous year
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"

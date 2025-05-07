@@ -1,4 +1,4 @@
-@OPS @Exch @manageplans
+@OPS @COCO @ManagePlansCoco
 Feature: Manage Plans: Cancel And Reinstate
 
 Background:
@@ -19,7 +19,7 @@ Then I validate I am on the "Account Overview" page
 And I apply for the current year in CoCo
 
 @SLCR-937
-Scenario: Cancel And Reinstate[CCRT-349]
+Scenario:SLCR-937: Cancel And Reinstate[CCRT-349]
 Then I validate I am on the "Find Expert Help" page
 And I click Continue on my own button from Manage who helps you page
 Then I click EditUpdate on Family Overview page for "Primary"
@@ -142,7 +142,7 @@ Then I validate current "Medical" all details table in DB for 2 members on AP Ma
 And I logout from Admin Portal
 
   @SLCR-947
-Scenario: OPS: CoCo: MP: Cancel and reinstate prior policy(CCRT-350)
+Scenario:SLCR-947: OPS: CoCo: MP: Cancel and reinstate prior policy(CCRT-350)
 Then I validate I am on the "Find Expert Help" page
 And I click Continue on my own button from Manage who helps you page
 Then I click EditUpdate on Family Overview page for "Primary"

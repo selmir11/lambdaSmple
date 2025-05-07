@@ -1,7 +1,7 @@
-@OPS @manageplan @COCO
+@OPS @ManagePlansCoco
 Feature: FA Policy without Account Holder - Spouse
   @SLCR-920
-  Scenario: OPS: CoCo: MP: FA Policy without Account Holder - Spouse[CCRT-320]
+  Scenario:SLCR-920:OPS: CoCo: MP: FA Policy without Account Holder - Spouse[CCRT-320]
 
     Given I open the login page on the "admin" portal
     And I refresh the page
@@ -98,7 +98,7 @@ Feature: FA Policy without Account Holder - Spouse
 
 
   @SLCR-923
-  Scenario: OPS: CoCo: MP: FA Policy without Account Holder - Child[CCRT-321]
+  Scenario:SLCR-923:OPS: CoCo: MP: FA Policy without Account Holder - Child[CCRT-321]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Admin Login" page

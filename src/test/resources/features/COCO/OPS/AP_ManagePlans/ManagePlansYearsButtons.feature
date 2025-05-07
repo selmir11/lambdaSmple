@@ -1,7 +1,7 @@
-@OPS @manageplan
+@OPS @ManagePlansCoco
 Feature: Manage Plans: Buttons (positive and negative testing)
   @SLCR-275
-  Scenario: Verify user with role for Manage Plans will be able to make changes
+  Scenario:SLCR-275:Verify user with role for Manage Plans will be able to make changes
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -27,7 +27,7 @@ Feature: Manage Plans: Buttons (positive and negative testing)
     And I click Reset Changes Medical
     And logout from Admin Portal
   @SLCR-275
-  Scenario: Verify user with no role for Manage Plans will be not able make changes
+  Scenario:SLCR-275:Verify user with no role for Manage Plans will be not able make changes
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -52,7 +52,7 @@ Feature: Manage Plans: Buttons (positive and negative testing)
 
 
   @SLCR-725 @OPSRegression
-  Scenario: OPS CoCo MP Simplified View Informational Components[CCRT-436]
+  Scenario:SLCR-275:OPS CoCo MP Simplified View Informational Components[CCRT-436]
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -83,8 +83,8 @@ Feature: Manage Plans: Buttons (positive and negative testing)
       | Policy ID:               |
 
     
-  @SLCR-918 @OPSRegression
-  Scenario: OPS CoCo MP Simplified View Table Information[CCRT-452]
+  @SLCR-918
+  Scenario:SLCR-918:OPS CoCo MP Simplified View Table Information[CCRT-452]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -103,8 +103,8 @@ Feature: Manage Plans: Buttons (positive and negative testing)
     Then I verify member two shows twice in CoverageDetails and FinancialDetails tables
 
 
-  @SLCR-776 @OPSRegression @COCO @manageplan
-  Scenario: OPS CoCo MP Simplified View Editable Fields for all member Medical[CCRT-461]
+  @SLCR-776
+  Scenario:SLCR-776:OPS CoCo MP Simplified View Editable Fields for all member Medical[CCRT-461]
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -128,8 +128,8 @@ Feature: Manage Plans: Buttons (positive and negative testing)
     Then I verify options are getting selected from termination reason drop down for all members
     And I click Reset Changes Medical
 
-  @SLCR-742 @OPSRegression
-  Scenario: OPS CoCo IndDash Member Table[CCRT-131]
+  @SLCR-742
+  Scenario:SLCR-742 :OPS CoCo IndDash Member Table[CCRT-131]
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"

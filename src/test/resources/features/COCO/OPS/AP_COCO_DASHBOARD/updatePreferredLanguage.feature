@@ -1,7 +1,7 @@
-@OPS @COCO
+@OPS @COCO @UserDashboard
 Feature: OPS: CoCo: IndDash: Update Preferred Lang
   @SLCR-736
-  Scenario: OPS: CoCo: IndDash: Update Preferred Lang
+  Scenario:SLCR-736:OPS: CoCo: IndDash: Update Preferred Lang
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

@@ -1,7 +1,7 @@
-@OPS @COCO @dataVerifyinUI
+@OPS @COCO @UserDashboard
 Feature: CoCo dashboard: Member details
   @SLCR-710
-  Scenario: CoCo dashboard: Member details
+  Scenario:SLCR-710:CoCo dashboard: Member details
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

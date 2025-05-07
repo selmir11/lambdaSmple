@@ -1,9 +1,9 @@
-@SLER-130 @OPS @COCO
+@SLER-130 @OPS @COCO @AP
 
 Feature: AdminPortal: General: Header, footer, and error message validation on Login screen
   @SLER-130
 
-  Scenario: Validate Header on Login screen
+  Scenario:SLER-130:Validate Header on Login screen
     Given I open the login page on the "admin" portal
     Then I validate "Logo" for Admin Portal
     Then I validate "clicking on logo navigates Connect For Health" for Admin Portal
