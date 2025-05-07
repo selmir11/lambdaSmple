@@ -73,6 +73,7 @@ public class COCO_sftpStepDefinitions {
 
         List<String> allIb834Files = SharedData.getMedicalIb834FileNames();
         Set<String> uniqueib834Files = new HashSet<>(allIb834Files);
+        SharedData.setMedicalIb834FileNames(new ArrayList<>(uniqueib834Files));
        for(String file: uniqueib834Files){
            sftpUtil.downloadFileWithSftp(remotePath, file);
        }
