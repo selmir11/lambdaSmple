@@ -1089,8 +1089,8 @@ Feature: Elig101-01 - Elig Notices
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-3096
-  Scenario: SLER-3096 Elig101-01- 1 member Not Eligible for APTC and CSR due to not filing taxes Spanish
+  @SLER-2490
+  Scenario: SLER-2490 Elig101-01- 1 member Not Eligible for APTC and CSR due to not filing taxes Spanish
     And I click on the Username in the "Exch NonElmo" Header
     And I validate I am on the "My Profile" page
     And I click on Make Changes Button
