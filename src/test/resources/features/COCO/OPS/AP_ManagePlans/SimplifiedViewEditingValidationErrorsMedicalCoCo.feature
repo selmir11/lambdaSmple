@@ -1,4 +1,4 @@
-@OPS @SLCR-772 @managelan @COCO
+@OPS @SLCR-772 @ManagePlansCoco
 Feature: Manage Plans:Simplified View Editing Validation Errors Medical only CoCo [CCRT-462]
   Background:
     Given I open the login page on the "admin" portal
@@ -15,7 +15,7 @@ Feature: Manage Plans:Simplified View Editing Validation Errors Medical only CoC
     And I validate I am on the "Manage Plans" page
     And I select the "2023" plan year on manage plan
   @SLCR-772
-  Scenario: MP:2023 Simplified View Editing Validation Errors Med Only
+  Scenario:SLCR-772: MP:2023 Simplified View Editing Validation Errors Med Only
     And I click Make Changes Medical button
     And I update the Coverage Start date of member
       | 1:01012025 |

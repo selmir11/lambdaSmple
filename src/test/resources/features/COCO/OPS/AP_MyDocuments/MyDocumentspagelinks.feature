@@ -1,4 +1,4 @@
-@OPS @COCO
+@OPS @COCOMydocs
 Feature: Verify Header, Footer and welcome back button link on my documents page for admin portal user
   @SLCR-80
   Scenario: SLCR-80 Verify Header, Footer and welcome back button link on my documents page for admin portal user

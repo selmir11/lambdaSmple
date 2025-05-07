@@ -1,7 +1,7 @@
-@OPS @COCO
+@OPS @COCO @UserDashboard
 Feature: OPS: COCO: Create account
-  @SLER-1269
-  Scenario:OPS: COCO: Create account
+  @SLCR-439
+  Scenario:SLCR-439:OPS: COCO: Create account
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

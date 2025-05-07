@@ -1,7 +1,7 @@
-@OPS @COCO @manageplan @COCO
+@OPS @COCO @ManagePlansCoco
 Feature: OPS: CoCo: MP: NFA Removing Dependent from policy
   @SLCR-946
-  Scenario: NFA Removing Dependent from policy[CCRT-352]
+  Scenario:SLCR-946: NFA Removing Dependent from policy[CCRT-352]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Admin Login" page
