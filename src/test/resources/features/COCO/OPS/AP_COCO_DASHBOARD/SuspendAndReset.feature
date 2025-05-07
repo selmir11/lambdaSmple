@@ -1,7 +1,7 @@
-@OPS @COCO
+@OPS @COCO @UserDashboard
 Feature: OPS: IndDash: Account Access details and password reset
   @SLCR-649
-  Scenario:SLER-1828 : OPS: IndDash: Account Access details and password reset
+  Scenario:SLCR-649:OPS: IndDash: Account Access details and password reset
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

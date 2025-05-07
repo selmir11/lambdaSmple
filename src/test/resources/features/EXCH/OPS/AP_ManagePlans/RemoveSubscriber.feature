@@ -1,4 +1,4 @@
-@OPS @Exch @manageplans
+@OPS @Exchmanageplans
 Feature: OPS: MP: FA Removing Subscriber from policy
 
   Background:
@@ -67,7 +67,7 @@ Feature: OPS: MP: FA Removing Subscriber from policy
     Then I click continue on family overview page
 
   @SLER-2389
-  Scenario: [RT-2422] FA Removing Subscriber from policy
+  Scenario:SLER-2389:[RT-2422] FA Removing Subscriber from policy
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment
@@ -189,7 +189,7 @@ Feature: OPS: MP: FA Removing Subscriber from policy
     Then logout from Admin Portal
 
 @SLER-2428
-Scenario: [RT-2478] Cancel and Reinstate
+Scenario:SLER-2428:[RT-2478] Cancel and Reinstate
   And I Apply for financial help
   Then I select the option "Yes" to employment
   And I select the option "No" to self employment
@@ -417,7 +417,7 @@ Scenario: [RT-2425] OPS: MP: NFA Removing Subscriber from policy
   Then logout from Admin Portal
 
   @SLER-2477
-  Scenario: [RT-2493] Cancel and Reinstate prior policy
+  Scenario:SLER-2477: [RT-2493] Cancel and Reinstate prior policy
     And I Apply for financial help
     Then I select the option "Yes" to employment
     And I select the option "No" to self employment

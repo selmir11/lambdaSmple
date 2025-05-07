@@ -1,7 +1,7 @@
-@OPS @Exch @manageplans
+@OPS @Exchmanageplans
 Feature: Manage Plans: Current Med & Dent Data Years dropdown
   @SLER-977
-  Scenario: Current Med & Dent Data Years dropdown verified
+  Scenario:SLER-977: Current Med & Dent Data Years dropdown verified
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"

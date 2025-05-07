@@ -1,7 +1,7 @@
+@ExchBroker
 Feature: Broker Dashboard- Change license and certification statuses
-
   @SLER-748
-  Scenario: Verify Broker Dashboard in Admin Portal -  Change license and certification statuses
+  Scenario:SLER-748:Verify Broker Dashboard in Admin Portal -  Change license and certification statuses
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -22,7 +22,7 @@ Feature: Broker Dashboard- Change license and certification statuses
     And I logout from Admin Portal
 
   @SLER-748
-  Scenario: Verify in Broker portal status is Approved
+  Scenario:SLER-748:Verify in Broker portal status is Approved
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
     And I login as Broker User any environment "acctsforc4testing+peF8qXUj3@gmail.com" password "ALaska12!" and "acctsforc4testing+dnROHtlJu@gmail.com" password "ALaska12!"

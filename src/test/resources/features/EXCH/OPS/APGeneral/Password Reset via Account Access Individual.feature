@@ -1,4 +1,4 @@
-@OPS
+@OPS @APGeneral
 Feature: OPS: IndDash: Password Reset via Account Access
   @SLER-2273
   Scenario:SLER-2273 : OPS: IndDash: Password Reset via Account Access

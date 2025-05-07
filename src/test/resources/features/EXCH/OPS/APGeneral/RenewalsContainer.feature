@@ -1,7 +1,7 @@
-@OPS
+@OPS @APGeneral
 Feature: Admin Portal Renewals container
   @SLER-707
-  Scenario: Admin Portal Renewals container data on Individual dashboard
+  Scenario:SLER-707:Admin Portal Renewals container data on Individual dashboard
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -19,7 +19,7 @@ Feature: Admin Portal Renewals container
     Then I validate I am on the "Admin search" page
     Then I logout from Admin Portal
   @SLER-707
-  Scenario: Admin Portal Renewals container data on Individual dashboard
+  Scenario:SLER-707:Admin Portal Renewals container data on Individual dashboard
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -36,7 +36,7 @@ Feature: Admin Portal Renewals container
     Then I logout from Admin Portal
 
       @SLER-707
-  Scenario: Admin Portal Renewals container data on Individual dashboard
+  Scenario:SLER-707:Admin Portal Renewals container data on Individual dashboard
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -62,7 +62,7 @@ Feature: Admin Portal Renewals container
     Then I logout from Admin Portal
 
   @SLER-707
-  Scenario: Admin Portal Renewals container data on Individual dashboard
+  Scenario:SLER-707:Admin Portal Renewals container data on Individual dashboard
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -91,7 +91,7 @@ Feature: Admin Portal Renewals container
     Then I logout from Admin Portal
 
   @SLER-707
-  Scenario: Admin Portal Renewals container data on Individual dashboard
+  Scenario:SLER-707:Admin Portal Renewals container data on Individual dashboard
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -116,7 +116,7 @@ Feature: Admin Portal Renewals container
     Then I logout from Admin Portal
 
   @SLER-707
-  Scenario: Admin Portal Renewals container data on Individual dashboard
+  Scenario:SLER-707:Admin Portal Renewals container data on Individual dashboard
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -133,7 +133,7 @@ Feature: Admin Portal Renewals container
     Then I logout from Admin Portal
 
   @SLER-707
-  Scenario: Admin Portal Renewals container data on Individual dashboard
+  Scenario:SLER-707:Admin Portal Renewals container data on Individual dashboard
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"

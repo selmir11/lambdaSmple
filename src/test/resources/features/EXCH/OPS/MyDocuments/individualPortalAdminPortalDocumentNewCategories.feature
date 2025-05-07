@@ -1,11 +1,11 @@
-@OPS @Exch @MyDocs
+@OPS @Exch @ExchMyDocs
 Feature: My documents new categories for Individual portal as well as Admin portal
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
   @SLER-2414
-  Scenario: OPS: MyDocs: New Categories(RT-2092)
+  Scenario:SLER-2414: OPS: MyDocs: New Categories(RT-2092)
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation

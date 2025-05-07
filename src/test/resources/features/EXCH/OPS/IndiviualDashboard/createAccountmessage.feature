@@ -1,7 +1,7 @@
 @OPS @Exch @IndiviualDashboard
 Feature: OPS: IndDash: Create account
   @SLER-1269
-  Scenario:OPS: IndDash: Create account
+  Scenario:SLER-1269:OPS: IndDash: Create account
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

@@ -1,8 +1,8 @@
-@OPS @manageplan @COCO
+@OPS @ManagePlansCoco
 Feature: OPS CoCo MP NFA Removing Subscriber from policy[CCRT-353]
 
   @SLCR-942
-  Scenario: OPS CoCo MP NFA Removing Subscriber from policy[CCRT-353]
+  Scenario: SLCR-942:OPS CoCo MP NFA Removing Subscriber from policy[CCRT-353]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Admin Login" page

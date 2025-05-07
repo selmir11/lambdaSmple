@@ -1,4 +1,4 @@
-@OPS
+@OPS @ExchBroker
 Feature: Broker
   @SLER-1180
   Scenario: SLER-1180  Broker: Search, sort, reset, and error

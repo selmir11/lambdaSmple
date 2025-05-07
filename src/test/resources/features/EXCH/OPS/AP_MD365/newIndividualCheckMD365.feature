@@ -1,7 +1,7 @@
 @OPS @Exch @MD365
 Feature: OPS: Create individual account and verify that can be found in MD365
   @SLER-1872
-  Scenario:OPS: IndDash: Create individual account
+  Scenario:SLER-1872:OPS: IndDash: Create individual account
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

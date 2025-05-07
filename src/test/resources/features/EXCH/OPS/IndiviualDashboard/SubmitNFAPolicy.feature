@@ -2,7 +2,7 @@
 @SLER-1886
 Feature: IndDash: Submit NFA Policy/Manage Plans
 
-  Scenario:Submit NFA Policy/Manage Plans
+  Scenario:SLER-1886:Submit NFA Policy/Manage Plans
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

@@ -1,4 +1,4 @@
-@OPS @Exch @manageplans
+@OPS @Exchmanageplans
 Feature: Manage Plans: Plan Summary container
   Background:
     Given I open the login page on the "admin" portal

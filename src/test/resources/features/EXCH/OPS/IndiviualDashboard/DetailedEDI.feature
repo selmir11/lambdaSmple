@@ -1,7 +1,7 @@
 @OPS @Exch @IndiviualDashboard
 Feature: EDI Detailed Outbound Transactions : Verify all data
   @SLER-858
-  Scenario:IndDash: Verify Detailed EDI Report Page
+  Scenario:SLER-858:IndDash: Verify Detailed EDI Report Page
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

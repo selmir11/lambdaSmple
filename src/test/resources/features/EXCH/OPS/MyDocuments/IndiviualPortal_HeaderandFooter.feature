@@ -1,11 +1,11 @@
-@OPS @Exch @MyDocs
+@OPS @Exch @ExchMyDocs
 Feature: My documents Indiviual porter Header , Footer, Title and dropdown display validation
   Background:
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
   @SLER-700
-  Scenario: My documents Indiviual porter Header , Footer, Title and dropdown display validation
+  Scenario:SLER-700:My documents Indiviual porter Header , Footer, Title and dropdown display validation
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -59,7 +59,7 @@ Feature: My documents Indiviual porter Header , Footer, Title and dropdown displ
     And I go to the previous browser page
 
   @SLER-703
-  Scenario: My documents Indiviual porter upload doc modal text for English/Spanish
+  Scenario:SLER-703:My documents Indiviual porter upload doc modal text for English/Spanish
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation
@@ -79,7 +79,7 @@ Feature: My documents Indiviual porter Header , Footer, Title and dropdown displ
     And I close button to close modal
 
   @SLER-708
-  Scenario: Verify user can select each category from category dropdown
+  Scenario:SLER-708: Verify user can select each category from category dropdown
     When I click create a new account on login page
     Then I click create my account from pre-screen page
     And I enter general mandatory data for "exchange" account creation

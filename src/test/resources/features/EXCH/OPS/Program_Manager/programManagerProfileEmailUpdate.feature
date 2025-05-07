@@ -2,7 +2,7 @@
 Feature: Activate, suspend and reset password for program manger via admin Portal
 
   @SLER-2430
-  Scenario: Activate, suspend and reset password for program manger via admin Portal
+  Scenario:SLER-2430:Activate, suspend and reset password for program manger via admin Portal
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"

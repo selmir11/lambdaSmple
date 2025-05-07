@@ -1,7 +1,7 @@
 @OPS @Exch @IndiviualDashboard
 Feature: Dashboard Individual: Verify Containers and Reports header and footer
   @SLER-591
-  Scenario: Verify Containers
+  Scenario:SLER-591:Verify Containers
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -30,7 +30,7 @@ Feature: Dashboard Individual: Verify Containers and Reports header and footer
     Then I initiate incoming page
     And I logout from Admin Portal
   @SLCR-591
-  Scenario: Verify Exclusion Reason reports page Header and Footer
+  Scenario:SLER-591:Verify Exclusion Reason reports page Header and Footer
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -60,7 +60,7 @@ Feature: Dashboard Individual: Verify Containers and Reports header and footer
     And I logout from Admin Portal
 
   @SLCR-591
-  Scenario: Verify Detailed EDI report page Header and Footer
+  Scenario:SLER-591:Verify Detailed EDI report page Header and Footer
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -88,7 +88,7 @@ Feature: Dashboard Individual: Verify Containers and Reports header and footer
     Then I initiate incoming page
     And I logout from Admin Portal
   @SLCR-591
-Scenario: Verify Account Activity report page Header and Footer
+Scenario:SLER-591:Verify Account Activity report page Header and Footer
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"

@@ -1,4 +1,4 @@
-@OPS @COCO
+@OPS @COCO @UserDashboard
 Feature: OPS: CoCo: IndDash: Account Statuses
   @SLCR-743
   Scenario:SLCR-743 : OPS: CoCo: IndDash: Account Statuses

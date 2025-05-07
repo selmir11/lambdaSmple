@@ -43,7 +43,7 @@ Feature: Document Lookup page : Verify all data
       Then logout from Admin Portal
 
     @SLER-814
-  Scenario: Verify DLT: Sort Results
+  Scenario:SLER-814:Verify DLT: Sort Results
       Given I open the login page on the "admin" portal
       And I refresh the page
       And I validate I am on the "Login" page
@@ -69,7 +69,7 @@ Feature: Document Lookup page : Verify all data
       Then I verify if DLT is sorted "desc" by "Created Date"
 
     @SLER-2122
-  Scenario: Verify DLT: Verify when user deletes document from DLT it doesnt display on my document page
+  Scenario:SLER-2122:Verify DLT: Verify when user deletes document from DLT it doesnt display on my document page
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"

@@ -1,7 +1,7 @@
-@OPS @Exch @manageplans
+@OPS @Exchmanageplans
   @SLER-1940
 Feature: Manage Plans:Simplified view buttons and tables data
-  Scenario:Manage plan 2022
+  Scenario:SLER-1940:Manage plan 2022
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -36,7 +36,7 @@ Feature: Manage Plans:Simplified view buttons and tables data
     Then I validate "Medical" financial table data row two on Simplified View "2", "03/01/2023", "12/31/2023", "$182.35", "$0.00" or "2", "01/01/2023", "12/31/2023", "Submitted", "No"
     And logout from Admin Portal
     And I validate I am on the "Login" page
-  Scenario:Manage plan 2022 user has no role for manage plans
+  Scenario:SLER-1940:Manage plan 2022 user has no role for manage plans
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
     Then I login as Admin User any environment "adminPortalDLT_UN_STG" password "adminPortalDLT_PW_STG" and "adminPortalDLT_UN_QA" password "adminPortalDLT_PW_QA"

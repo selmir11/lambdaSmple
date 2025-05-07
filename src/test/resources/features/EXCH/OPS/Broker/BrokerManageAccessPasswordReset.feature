@@ -1,4 +1,4 @@
-@OPS
+@ExchBroker
 Feature: OPS: Broker Dashboard: Broker Account Access details and Password Reset - [RT-2728]
   @SLER-2281
   Scenario: SLER-2281 Broker Account Access details tab Reset Password

@@ -1,7 +1,7 @@
 @OPS @Exch @IndiviualDashboard
 Feature: Admin Portal agency verify data
   @SLER-534
-  Scenario: Verify agency data
+  Scenario:SLER-534:Verify agency data
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

@@ -1,8 +1,8 @@
-@OPS @Exch @MyDocs
+@OPS @Exch @ExchMyDocs
 Feature: OPS MyDocs Download hCentive document
 
-  @SLER-2153 @OPSRegression
-  Scenario: OPS MyDocs Download hCentive document[RT-1988]
+  @SLER-2153
+  Scenario:SLER-2153:OPS MyDocs Download hCentive document[RT-1988]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

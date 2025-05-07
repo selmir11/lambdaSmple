@@ -1,7 +1,7 @@
-@OPS
+@OPS @APGeneral
 Feature: AP Create account - Application Links
   @SLER-1939
-  Scenario:Admin Portal - Architecture user creates Admin Portal account
+  Scenario:SLER-1939:Admin Portal - Architecture user creates Admin Portal account
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalAccountManagement_UN_STG" password "adminPortalAccountManagement_PW_STG" and "AdminPortalAccountManagement_UN_QA" password "AdminPortalAccountManagement_PW_QA"
@@ -11,7 +11,7 @@ Feature: AP Create account - Application Links
     Then I validate the Success message is displayed
     And I logout from Admin Portal
   @SLER-1939
-  Scenario:Admin Portal - Not architecture user have no link for AP Create Account
+  Scenario:SLER-1939:Admin Portal - Not architecture user have no link for AP Create Account
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I open the login page on the "admin" portal
