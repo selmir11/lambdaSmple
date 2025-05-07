@@ -541,7 +541,8 @@ public class MyDocumentsPage {
                     "ELIG-001-01 Incarcerated MVR valid SEP 1","ELIG-001-01 Immigration MVR English 1","ELIG-001-01 Citizenship MVR English 1",
                     "ELIG-001-01 APTC and CSR Not eligible English 1","ELIG-001-01 AIAN MVR Valid SEP Spanish 1","ELIG-001-01 Income MVR English 1-Spanish",
                     "ELIG-001-01 MVR valid SEP Spanish 1","ELIG-001-01 Citizenship MVR Spanish 1","ELIG-001-01 Death MVR Spanish 1",
-                    "ELIG-001-01 Incarcerated MVR Spanish 1", "ELIG-001-01 APTC and CSR Not eligible Spanish 1","ELIG-001-01 Income MVR Spanish 1":
+                    "ELIG-001-01 Incarcerated MVR Spanish 1", "ELIG-001-01 APTC and CSR Not eligible Spanish 1","ELIG-001-01 Income MVR Spanish 1",
+                    "ELIG-001-01 APTC English 3":
 
 
                     pdf.validateEntirePDF(docType);
