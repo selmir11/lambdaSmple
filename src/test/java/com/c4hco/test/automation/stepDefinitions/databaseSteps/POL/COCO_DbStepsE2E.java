@@ -10,7 +10,7 @@ public class COCO_DbStepsE2E {
     private final COCO_Ob834PreEdiDbValidations ob834PreEdiDbValidations_coco = new COCO_Ob834PreEdiDbValidations();
     private final COCO_Grp_PolicyTable_Val cOCO_Grp_PolicyTable_Val = new COCO_Grp_PolicyTable_Val();
     private final COCO_Ob834_Grp_PreEdiDbValidations coco_Ob834_Grp_PreEdiDbValidations = new COCO_Ob834_Grp_PreEdiDbValidations();
-
+    private final COCO_Ob999DbValidations cocoOb999DbValidations = new COCO_Ob999DbValidations();
     @And("I validate {string} Medical entities from COCO policy tables")
     public void validateCOCOMedicalRecords(String policyStatus){
         policyTableDBValidations_coco.recordsValidationsPolicyTable(policyStatus);
@@ -26,6 +26,10 @@ public class COCO_DbStepsE2E {
     @And("I validate {string} policy table entities for groups in COCO")
     public void validateCOCOMedGrpRecords(String status){
         cOCO_Grp_PolicyTable_Val.grpRecordsValidationsPolicyTable(status);
+    }
+    @And("I validate coco entities from ob999_details db table")
+    public void validateCOCOOb999DetailsDB(){
+        cocoOb999DbValidations.cocoOb999RecordsValidations();
     }
 
 }
