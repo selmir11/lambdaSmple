@@ -1,4 +1,4 @@
-@OPS @SLCR-775 @managePlan
+@OPS @SLCR-775 @manageplan @COCO
 Feature: Manage Plans:Current Medical Container - change policy [CCRT-232]
 
   Scenario:Manage plan current year 2025

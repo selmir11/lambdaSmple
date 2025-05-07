@@ -1,4 +1,4 @@
-@OPS @SLCR-778 @managePlan
+@OPS @SLCR-778 @COCO @manageplan
 Feature: Manage Plans CoCo Policy Dropdown Arrow [CCRT-231]
   Scenario:SLCR-778 CoCo Policy Dropdown Arrow
     Given I open the login page on the "admin" portal
@@ -47,7 +47,7 @@ Feature: Manage Plans CoCo Policy Dropdown Arrow [CCRT-231]
     And I select Plans Med Active Policy
     Then I verify Plan ID data with plan selected "4000672200" "4000672200 - 03/15/2024 - apelizaagip" and "1303000032" "1303000032 - 01/03/2024 - apelizajfvn"
     Then I click Go Back button on Manage Plan page
-    And I logout from Admin Portal
+  #  And I logout from Admin Portal
 
     
 

@@ -134,4 +134,13 @@ public class DentalPlansResultsPageSteps {
     @And("I validate the current plan green banner {string} text on the Dental Plan Results page")
     public void validateGreenBannerTxt(String language) {dentalPlansResultsPage.validateGreenBannerText(language);
     }
+
+    @And ("I validate the {string} Plan Not Available message on the Dental Plan Results page")
+    public void validatePlanNotAvailableTxt(String language) {dentalPlansResultsPage.validatePlanNotAvailableTxt(language);
+    }
+
+    @And("I validate that the Continue button is disabled on the Dental Plan Results page")
+    public void validateContinueButtonDisabled() {
+        dentalPlansResultsPage.validateContinueButtonDisabled();
+    }
 }

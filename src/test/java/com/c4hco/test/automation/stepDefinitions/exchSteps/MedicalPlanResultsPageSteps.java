@@ -133,6 +133,8 @@ public class MedicalPlanResultsPageSteps {
     @And("I validate the current plan green banner {string} on the Medical Plan Results page")
     public void validateCurrentPlanGreenBanner(String language) {medPlanResultsPage.validateMedicalGreenBannerTxt(language);}
 
+    @And( "I validate the {string} Plan Not Available message on the Medical Plan Results page")
+    public void validatePlanNotAvailableTxt(String language) {medPlanResultsPage.validatePlanNotAvailableTxt(language);}
 }
 
 

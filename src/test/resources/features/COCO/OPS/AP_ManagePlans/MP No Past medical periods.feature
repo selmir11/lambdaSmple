@@ -1,4 +1,4 @@
-@OPS
+@OPS @COCO @manageplan
 Feature: Manage Plans: No Past medical periods //CCRT-234
 @SLCR-741
   Scenario: Verify Manage Plans page when No Previous Financial Periods current year

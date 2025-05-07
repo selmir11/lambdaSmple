@@ -959,4 +959,14 @@ public class DbQueries_Exch {
     public String getAssistNetEmailIn() {
         return  "Select email From "+ dbName+ ".an_staff ESH Where account_id = '"+acctId+"'";
     }
+
+    public String getCoCoIncomeDataDetails() {
+        String query = "SELECT DISTINCT i.amount, i.period, e.season_comm_tip_ind, e.season_comm_tip_samelower_ind, m.updated_by\n" +
+                "FROM " + dbName + ".es_member m\n" +
+                "JOIN " + dbName + ".es_income i on m.member_id = i.member_id\n" +
+                "JOIN " + dbName + ".es_employer e on i.member_id = e.member_id\n" +
+                "WHERE m.member_id = '" + SharedData.getPrimaryMember().getMemberId() + "' and i.type = 'JOB_INCOME';";
+        System.out.println("Executing Query: " + query);
+        return query;
+    }
 }

@@ -1,4 +1,4 @@
-@OPS
+@OPS @COCO
 Feature: Admin Portal as OBO verify member details
   @SLCR-863 @OPSRegression
   Scenario: OPS: CoCo: Change Account Details and Verify on Profile [CCRT-140]

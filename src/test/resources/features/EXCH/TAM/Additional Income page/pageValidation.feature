@@ -204,7 +204,7 @@ Feature: Page Verification-Additional Income Page
       | xIcon          | X                 | x.com                                 |
       | YouTubeIcon    | YouTube           | youtube.com                           |
       | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
-      | InstagramIcon  | www.instagram.com | instagram.com                         |
+      | InstagramIcon  | Login • Instagram | instagram.com                         |
       | ThreadsIcon    | Threads           | threads.com                           |
     And I click on the Colorado Connect or C4 Logo in the "Elmo" Header
     Then I validate I am on the "Account Overview" page

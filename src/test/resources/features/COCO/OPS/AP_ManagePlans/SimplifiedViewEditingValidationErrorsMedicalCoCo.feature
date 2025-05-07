@@ -1,4 +1,4 @@
-@OPS @SLCR-772 @managePlan
+@OPS @SLCR-772 @managelan @COCO
 Feature: Manage Plans:Simplified View Editing Validation Errors Medical only CoCo [CCRT-462]
   Background:
     Given I open the login page on the "admin" portal

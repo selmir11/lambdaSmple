@@ -1,7 +1,9 @@
 Feature: Coco Initial Application Multi group
   @SLCR-146
   Scenario: CCRT-94 COCO Initial Application - MULTI-GROUP (Husband+wife & Son+DIL)
-
+    Given I set the test scenario details in coco
+      | totalGroups | totalMembers | total_subscribers | total_dependents | total_enrollees |
+      | 1           | 4            | 2                 | 1                | 4               |
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -185,3 +187,11 @@ Feature: Coco Initial Application Multi group
    # Ib999 DB Validation
     And I validate coco entities from ib999_details db table
     And I download the "medical" ib999 files from sftp server with location "/archive/INBOUND999/"
+    And I validate the COCO ib999 file data
+       #Ib834
+    And I validate coco ib834 file for groups
+      | maintenance_type_code | hd_maint_type_code | maintenance_reas_code | addl_maint_reason |
+      | 021                   | 021                | 28                    | CONFIRM           |
+    And I download coco ib834 files from sftp location "/archive/inboundedi/"
+#    And I download the "medical" ib834 file from sftp server location "/archive/inboundedi/"
+    And I validate coco Ib834 file data
