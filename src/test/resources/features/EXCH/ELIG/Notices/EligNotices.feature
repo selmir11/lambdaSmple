@@ -1770,7 +1770,7 @@ Feature: Elig101-01 - Elig Notices
 
     And I click on Sign Out in the Header for "Elmo"
 
-  @SLER-2481
+  @SLER-2481_WIP
   Scenario: SLER-2481 Elig101-01- 1 APTC eligibility 3 members English
     Then I apply for the current year
     Then I select "No" option on the Let us guide you page
