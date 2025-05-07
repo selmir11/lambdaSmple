@@ -14,7 +14,7 @@ public class COCO_sftpStepDefinitions {
     COCO_Grp_Ob834FileValidations cocoGrpOb834FileValidations = new COCO_Grp_Ob834FileValidations();
     COCO_Ib999DbValidations cocoIb999DbValidations = new COCO_Ib999DbValidations();
     COCO_Ib999FileValidations cocoIb999FileValidations = new COCO_Ib999FileValidations();
-
+    COCO_Ob999FileValidations cocoOb999FileValidations = new COCO_Ob999FileValidations();
     @And("I download the medical files from coco sftp server with location {string}")
     public void downloadMedFiles(String remoteLocation)  {
             String sftpDownloadPath = sftpUtil.getLocalSftpDownloadPath();
@@ -77,5 +77,26 @@ public class COCO_sftpStepDefinitions {
        for(String file: uniqueib834Files){
            sftpUtil.downloadFileWithSftp(remotePath, file);
        }
+    }
+    @And("I download coco ob999 files from sftp location {string}")
+    public void downloadOb999FilesFromServer(String remotePath) {
+        String sftpDownloadPath = sftpUtil.getLocalSftpDownloadPath();
+        SharedData.setLocalPathToDownloadFile(sftpDownloadPath);
+
+        List<String> allOb999Files = SharedData.getMedicalOb999FileNames();
+        Set<String> uniqueOb999Files = new HashSet<>(allOb999Files);
+        SharedData.setMedicalOb999FileNames(new ArrayList<>(uniqueOb999Files));
+        for(String file: uniqueOb999Files){
+            sftpUtil.downloadFileWithSftp(remotePath, file);
+        }
+    }
+    @And("I validate the COCO Ob999 file data")
+    public void validateOb999FileDetails() {
+        List<String> ob999FileNames = SharedData.getMedicalOb999FileNames();
+        for (String cocoOb999file : ob999FileNames) {
+            System.out.println("***********Validating COCO OB999 File::" + cocoOb999file + "***********");
+            sftpUtil.readOb999File(cocoOb999file);
+            cocoOb999FileValidations.Ob999FilesValidations(cocoOb999file);
+        }
     }
 }
