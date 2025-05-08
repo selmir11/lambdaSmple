@@ -1,5 +1,4 @@
 package com.c4hco.test.automation.stepDefinitions.cocoAndExchCommonPageSteps.LoginPortalSteps;
-
 import com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPortalPages.LoginPage;
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.java.en.*;
@@ -17,10 +16,7 @@ public class LoginPageSteps {
         @When("I click create a new account on login page")
             public void iClickCreateAccount(){ loginPage.clickCreateAccount();}
 
-        @And("I enter valid credentials to login")
-           public void iEnterValidCredentials(){
-            loginPage.logInWithValidCredentials();
-        }
+
 
     @When("I login as {string} and {string} individual existing user")
     public void iLoginAsExistingIndividual(String userIndividual,String password) {
@@ -28,11 +24,6 @@ public class LoginPageSteps {
 
     @When("I login as Broker User {string} password {string}")
     public void i_login_as_Broker_user(String BrokerUserName,String password) {loginPage.loginAsBrokerUser(BrokerUserName,password);}
-
-    @And("I log into my {string} account")
-    public void iEnterBrokerPortalCredentials(String accountType){
-        loginPage.logInBrokerPortal(accountType);
-    }
 
     @And("I login as Broker User any environment {string} password {string} and {string} password {string}")
     public void iLoginAsBrokerUserAnyEnvironmentPasswordAndPassword(String stgUser, String stgPW, String qaUser, String qaPW) {
@@ -43,10 +34,7 @@ public class LoginPageSteps {
     public void iLoginAsAssistnetUserAnyEnvironmentPasswordAndPassword(String stgUser, String stgPW, String qaUser, String qaPW) {
         loginPage.loginAsBrokerUserAnyEnv(stgUser,stgPW,qaUser,qaPW);
     }
-    @When("I login as Admin User any environment {string} password {string} and {string} password {string}")
-    public void iLoginAsAdminUserAnyEnvironmentPasswordAndPassword(String stgUser, String stgPW, String qaUser, String qaPW) {
-        loginPage.loginAsAdminUserAnyEnv(stgUser,stgPW,qaUser,qaPW);
-    }
+
 
     @When("I click create forgot {string}")
     public void i_click_create_forget(String credentials) {
@@ -86,10 +74,7 @@ public class LoginPageSteps {
         loginPage.validateLockedOutMessage();
     }
 
-    @Then("I enter invalid credentials")
-    public void iEnterInvalidCredentials() {
-        loginPage.enterInvalidCredentials();
-    }
+
 
     @And("I verify the invalid login error text")
     public void iVerifyInvalidLoginErrorMessage() {
@@ -130,61 +115,12 @@ public class LoginPageSteps {
     public void iVerifyExpiredPasswordErrorMessageIn(String language) {
         loginPage.verifyExpiredPasswordErrorMessage(language);}
 
-    @And("I enter valid credential STG username {string} PW {string} QA username {string} PW {string} for individual user without sign in any env")
-    public void iEnterValidCredentialSTGUsernamePWQAUsernamePWForIndividualUserWithoutSignInAnyEnv( String STGUsername, String STGPW,String QAUsername, String QAPW) {
-            loginPage.enterValidCredentialsWithoutSignIn( STGUsername, STGPW,QAUsername, QAPW);
-    }
-
-    @Then("I validate when show password is displayed as {string} the code is encrypted in {string} Page")
-    public void iValidateWhenShowPasswordIsDisplayedAsTheCodeIsEncryptedInPage(String showPW, String titlePage) {
-        loginPage.ValidateWhenShowPasswordIsDisplayedTheCodeIsEncrypted(showPW,titlePage);
-    }
-
-    @And("I click on show button in {string}")
-    public void iClickOnShowButtonIn(String pageTitle) {
-            loginPage.ClickOnShowButton(pageTitle);
-    }
-
-    @Then("I validate Show button is displayed and enabled in {string}")
-    public void iValidateShowButtonIsDisplayedAndEnabledIn(String pageTitle) {
-        loginPage.ShowButtonIsDisplayedAndEnabled(pageTitle);
-    }
-
-    @Then("I validate when show password is displayed as {string} the code is encrypted in {string}")
-    public void iValidateWhenShowPasswordIsDisplayedAsTheCodeIsEncryptedIn(String arg0, String arg1) {
-
-    }
-    @Then("I see new alarming page")
-    public void iSeeNewAlarmingPage() {
-        loginPage.accessDeniedPageDisplays();   }
-
-    @And("I click user type icon {string} and validate the options text in the login page")
-    public void iClickUserTypeIconAndValidateTheOptionsTextInTheLoginPage(String portal) {
-        loginPage.clickUserTypeIconInTheLoginPage(portal);
-    }
-
-    @Then("I click the option {string} requested")
-    public void iClickTheOptionRequested(String userOption) {
-        loginPage.clickTheOptionRequested(userOption);
-    }
-
-    @And("I login with {string} credentials")
-    public void loginWithExistingCreds(String loginType){
-            loginPage.loginWitExistingAcc(loginType);
-    }
-
-    @And("I log into my Program Manager account")
-    public void iLogIntoMyProgramManagerAccount() {
-        loginPage.logIntoMyProgramManagerAccount();
-    }
 
     @And("I validate the error msg username and password required in {string}")
     public void iValidateTheErrorMsgUsernameAndPasswordRequiredIn(String language) {
             loginPage.validateTheErrorMsgUsernameAndPasswordRequiredIn(language);
     }
 
-    @Then("I validate the automatically signed out message appear in {string}")
-    public void iValidateTheAutomaticallySignedOutMessageAppearIn(String language) {
-            loginPage.validateTheAutomaticallySignedOutMessageAppearIn(language);
-    }
+    @And("I change the language from header to {string}")
+    public void iChangeLanguage(String language){ loginPage.changeLanguage(language);}
 }

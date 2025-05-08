@@ -1,17 +1,11 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages.LoginPortalPages;
-
-import com.c4hco.test.automation.Dto.AdminDetails;
-import com.c4hco.test.automation.Dto.BrokerDetails;
-import com.c4hco.test.automation.Dto.SharedData;
 import com.c4hco.test.automation.utils.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -95,7 +89,12 @@ public class LoginPage {
     WebElement automaticallyTimeOut;
     @FindBy(xpath = "//a[@id='user-type-selection']//p")
     List<WebElement> userIconDropdown;
-
+    @FindBy(id = "globe-image")
+    WebElement languageDrpSignIn;
+    @FindBy(id = "eng")
+    WebElement languageDrpOptionSignInEnglish;
+    @FindBy(id = "esp")
+    WebElement languageDrpOptionSignInSpanish;
 
     private BasicActions basicActions;
     private Utils utils = new Utils(WebDriverManager.getDriver());
@@ -115,47 +114,6 @@ public class LoginPage {
         createAccountLink.click();
     }
 
-    public void logInWithValidCredentials() {
-        basicActions.waitForElementToBePresentWithRetries(signInButton, 10);
-        basicActions.wait(2000);
-        String emailId = SharedData.getPrimaryMember().getIncorrectEmail()!=null? SharedData.getPrimaryMember().getIncorrectEmail():SharedData.getPrimaryMember().getEmailId();
-        System.out.println("Email::" + emailId);
-        String pswd = SharedData.getPrimaryMember().getPassword();
-        basicActions.wait(2000);
-        username.sendKeys(emailId);
-        basicActions.waitForElementToBePresent(password, 10);
-        password.sendKeys(pswd);
-        System.out.println("Password::" + pswd);
-        signInButton.click();
-    }
-
-    public void logInBrokerPortal(String accountType) {
-        basicActions.waitForElementToBePresentWithRetries(signInButton, 10);
-        BrokerDetails user;
-        switch (accountType) {
-            case "Agency Owner":
-                user = SharedData.getAgencyOwner();
-                break;
-            case "Broker":
-                user = SharedData.getBroker();
-                break;
-            case "Admin Staff":
-                user = SharedData.getAdminStaff();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + accountType);
-
-        }
-        String emailId = user.getEmail();
-        System.out.println("Email::" + emailId);
-        String pswd = user.getPassword();
-        System.out.println("Password::" + pswd);
-        basicActions.wait(2000);
-        username.sendKeys(emailId);
-        password.sendKeys(pswd);
-        signInButton.click();
-    }
-
     public void loginAsBrokerUser(String brokerUser, String Password) {
         basicActions.waitForElementToBePresent(usernameAdmin, 20);
         usernameAdmin.sendKeys(brokerUser);
@@ -166,39 +124,9 @@ public class LoginPage {
 
     public void loginAsBrokerUserAnyEnv(String stgUser, String stgPW, String qaUser, String qaPW) {
         basicActions.waitForElementToBePresentWithRetries(signInButton, 40);
-        if (SharedData.getEnv().equals("staging")) {
             username.sendKeys(stgUser);
             password.sendKeys(stgPW);
-        } else {
-            username.sendKeys(qaUser);
-            password.sendKeys(qaPW);
-        }
         signInButton.click();
-    }
-
-    public void loginAsAdminUserAnyEnv(String stgUser, String stgPW, String qaUser, String qaPW) {
-        basicActions.refreshPage();
-        basicActions.waitForElementToBePresent(usernameAdmin, 40);
-        String adminEmail = "";
-        String adminPwd = "";
-        if (SharedData.getEnv().equals("staging")) {
-            adminEmail = ApplicationProperties.getInstance().getProperty(stgUser);
-            adminPwd = ApplicationProperties.getInstance().getProperty(stgPW);
-
-        } else {
-            adminEmail = ApplicationProperties.getInstance().getProperty(qaUser);
-            adminPwd = ApplicationProperties.getInstance().getProperty(qaPW);
-        }
-        usernameAdmin.sendKeys(adminEmail);
-        passwordAdmin.sendKeys(adminPwd);
-        AdminDetails adminDetails = SharedData.getAdminDetails();
-        if(adminDetails==null){
-            adminDetails = new AdminDetails();
-        }
-        adminDetails.setEmail(adminEmail);
-        adminDetails.setPassword(adminPwd);
-      SharedData.setAdminDetails(adminDetails);
-        signAdmin.click();
     }
 
     public void clickForgotPassword() {
@@ -361,16 +289,7 @@ public class LoginPage {
         softAssert.assertAll();
     }
 
-    public void enterValidCredentialsWithoutSignIn(String STGUsername, String STGPW, String QAUsername, String QAPW) {
-        basicActions.waitForElementToBePresent(username, 10);
-        if (SharedData.getEnv().equals("staging")) {
-            username.sendKeys(STGUsername);
-            password.sendKeys(STGPW);
-        } else {
-            username.sendKeys(QAUsername);
-            password.sendKeys(QAPW);
-        }
-    }
+
 
     public void ValidateWhenShowPasswordIsDisplayedTheCodeIsEncrypted(String showPW, String titlePage) {
         switch (titlePage) {
@@ -438,21 +357,6 @@ public class LoginPage {
         }
     }
 
-    // ############################## VALIDATION METHODS #########################
-    // Add only validation methods below this line
-    public void loginAsAdminAnyUser(String adminUser, String adminPassword) {
-        basicActions.waitForElementToBePresent(usernameAdmin, 20);
-        usernameAdmin.sendKeys(adminUser);
-    }
-
-    public void accessDeniedPageDisplays() {
-        basicActions.waitForElementToBePresent(accessDenied, 20);
-        softAssert.assertTrue(accessDenied.isDisplayed());
-        basicActions.waitForElementToBePresent(warningIcon, 20);
-        softAssert.assertTrue(warningIcon.isDisplayed());
-        softAssert.assertAll();
-        basicActions.closeBrowserTab();
-    }
 
     public void validateLockedOutMessage() {
         basicActions.waitForElementToBePresent(createAccountLink, 100);
@@ -462,19 +366,7 @@ public class LoginPage {
         softAssert.assertAll();
     }
 
-    public void enterInvalidCredentials() {
-        basicActions.waitForElementToBePresent(createAccountLink, 100);
 
-        String emailId = SharedData.getPrimaryMember().getEmailId();
-        System.out.println("Email::" + emailId);
-        String pswd = SharedData.getPrimaryMember().getPassword() + "Invalid";
-        basicActions.wait(2000);
-        username.sendKeys(emailId);
-        basicActions.waitForElementToBePresent(password, 10);
-        password.sendKeys(pswd);
-        System.out.println("Password::" + pswd);
-        signInButton.click();
-    }
 
     public void verifyInvalidLoginErrorMessage() {
         basicActions.waitForElementToBePresent(createAccountLink, 100);
@@ -521,42 +413,8 @@ public class LoginPage {
         }
     }
 
-    public void loginWitExistingAcc(String loginType){
-        switch(loginType){
-            case "SEP":
-                LoginCredentials.setSepCredentials();
-                break;
-            case "SES":
-                LoginCredentials.setSesCredentials();
-                break;
-            case "SES Constant":
-                LoginCredentials.setSesCredentials_Constant();
-                break;
-            default: Assert.fail("Invalid case");
-        }
-        loginWithExistingCreds();
-    }
 
-    private void loginWithExistingCreds(){
-        basicActions.waitForElementToBePresentWithRetries(username, 10);
-        basicActions.wait(2000);
-        String emailId = SharedData.getPrimaryMember().getEmailId();
-        System.out.println("Email::" + emailId);
-        String pswd = SharedData.getPrimaryMember().getPassword();
-        basicActions.wait(2000);
-        username.sendKeys(emailId);
-        basicActions.waitForElementToBePresent(password, 10);
-        password.sendKeys(pswd);
-        System.out.println("Password::" + pswd);
-        signInButton.click();
-    }
 
-    public void logIntoMyProgramManagerAccount() {
-        basicActions.waitForElementToBePresentWithRetries(signInButton,30);
-        username.sendKeys(SharedData.getAssisterDetails().getEmail());
-        password.sendKeys(SharedData.getAssisterDetails().getPassword());
-        signInButton.click();
-    }
 
     public void validateTheErrorMsgUsernameAndPasswordRequiredIn(String language) {
         basicActions.waitForElementToBePresentWithRetries(usernameError,60);
@@ -586,4 +444,32 @@ public class LoginPage {
         }
         softAssert.assertAll();
     }
+
+
+    public void changeLanguage(String language) {
+//        "English" and "Spanish" for CoCo and Exch Elmo pages
+////        Exch Elmo pages include: Income Opt Out, Employment Income, Employment Summary, Additional income, Deductions, Income Summary, Employer Sponsored Health Insurance (ESI)
+//        "English Login" and "Spanish Login" is for the Login page
+//        "English ExpertHelp" and "Spanish ExpertHelp" is for the following pages: Create Account, Manage who helps you/Find Expert Help
+
+        basicActions.wait(250);
+        switch (language) {
+            case "English Login":
+                basicActions.waitForElementToBePresent(languageDrpSignIn, 60);
+                languageDrpSignIn.click();
+                basicActions.waitForElementToBePresent(languageDrpOptionSignInEnglish, 60);
+                languageDrpOptionSignInEnglish.click();
+                break;
+            case "Spanish Login":
+                basicActions.waitForElementToBePresent(languageDrpSignIn, 60);
+                languageDrpSignIn.click();
+                basicActions.waitForElementToBePresent(languageDrpOptionSignInSpanish, 60);
+                languageDrpOptionSignInSpanish.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option: " + language);
+        }
+        basicActions.wait(50);
+    }
+
 }

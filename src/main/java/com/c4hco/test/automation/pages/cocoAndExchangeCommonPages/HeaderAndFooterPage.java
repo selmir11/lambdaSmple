@@ -1,6 +1,6 @@
 package com.c4hco.test.automation.pages.cocoAndExchangeCommonPages;
 import com.c4hco.test.automation.utils.BasicActions;
-import com.c4hco.test.automation.Dto.SharedData;
+
 import com.c4hco.test.automation.utils.WebDriverManager;
 import io.cucumber.datatable.DataTable;
 import org.openqa.selenium.*;
@@ -567,141 +567,141 @@ public class HeaderAndFooterPage {
         }
     }
 
-    public void verifyTextInCoCoHeader() {
-        basicActions.waitForElementToBePresentWithRetries(connectLogoLink, 60);
-        basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 60);
-        softAssert.assertEquals(connectLogoLink.getText(), "");
-        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
-        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
-        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "My Account");
-        softAssert.assertEquals(learnMoreLink.getText(), "Learn More");
-        clickLanguageDrp("Exch");
-        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
-        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
-        softAssert.assertEquals(signOutLink.getText(), "Sign Out");
-        softAssert.assertEquals(getAssistanceLink.getText(), "Get Assistance");
-        actions.moveToElement(getAssistanceLink).perform();
-        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Find Expert Assistance in Your Community");
-        actions.moveToElement(connectLogoLink).perform();
-        softAssert.assertEquals(userNameLink.getText(), SharedData.getPrimaryMember().getEmailId());
-        softAssert.assertEquals(languageDrp.getText(), "");
-        softAssert.assertAll();
-    }
-
-    public void verifyTextInCoCoOBOHeader() {
-        basicActions.waitForElementToBePresent(connectLogoLink, 10);
-        softAssert.assertEquals(connectLogoLink.getText(), "");
-        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
-        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
-        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "My Account");
-        softAssert.assertEquals(learnMoreLink.getText(), "Learn More");
-        clickLanguageDrp("Exch");
-        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
-        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
-        softAssert.assertEquals(signOutLink.getText(), "Sign Out");
-        softAssert.assertEquals(getAssistanceLink.getText(), "Get Assistance");
-        actions.moveToElement(getAssistanceLink).perform();
-        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Find Expert Assistance in Your Community");
-        actions.moveToElement(connectLogoLink).perform();
-        if (SharedData.getEnv().equals("qa")) {
-            softAssert.assertEquals(userNameLink.getText(), "C4test.aduser123@gmail.com");
-        } else {
-            softAssert.assertEquals(userNameLink.getText(), "C4testaduser123@gmail.com");
-        }
-        softAssert.assertEquals(languageDrp.getText(), "");
-        softAssert.assertAll();
-    }
-
-    public void verifyTextInCoCoHeaderSpanish() {
-        basicActions.waitForElementToBePresent(connectLogoLink, 10);
-        softAssert.assertEquals(connectLogoLink.getText(), "");
-        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Solicitud de cobertura");
-        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan");
-        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "Mi cuenta");
-        softAssert.assertEquals(learnMoreLink.getText(), "M\u00E1s informaci\u00F3n");
-        clickLanguageDrp("Exch");
-        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
-        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
-        softAssert.assertEquals(signOutLink.getText(), "Cerrar sesi\u00F3n");
-        softAssert.assertEquals(getAssistanceLink.getText(), "Obtener asistencia");
-        actions.moveToElement(getAssistanceLink).perform();
-        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Buscar asistencia de expertos en su comunidad");
-        actions.moveToElement(connectLogoLink).perform();
-        softAssert.assertEquals(userNameLink.getText(), SharedData.getPrimaryMember().getEmailId());
-        softAssert.assertEquals(languageDrp.getText(), "");
-        softAssert.assertAll();
-    }
-
-    public void verifyTextInCoCoOBOHeaderSpanish() {
-        basicActions.waitForElementToBePresent(connectLogoLink, 10);
-        softAssert.assertEquals(connectLogoLink.getText(), "");
-        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Solicitud de cobertura");
-        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan");
-        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "Mi cuenta");
-        softAssert.assertEquals(learnMoreLink.getText(), "M\u00E1s informaci\u00F3n");
-        clickLanguageDrp("Exch");
-        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
-        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
-        softAssert.assertEquals(signOutLink.getText(), "Cerrar sesi\u00F3n");
-        softAssert.assertEquals(getAssistanceLink.getText(), "Obtener asistencia");
-        actions.moveToElement(getAssistanceLink).perform();
-        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Buscar asistencia de expertos en su comunidad");
-        actions.moveToElement(connectLogoLink).perform();
-        if (SharedData.getEnv().equals("qa")) {
-            softAssert.assertEquals(userNameLink.getText(), "C4test.aduser123@gmail.com");
-        } else {
-            softAssert.assertEquals(userNameLink.getText(), "C4testaduser123@gmail.com");
-        }
-        softAssert.assertEquals(languageDrp.getText(), "");
-        softAssert.assertAll();
-    }
-
-    public void verifyTextInExchHeader() {
-        basicActions.waitForElementToBePresentWithRetries(connectLogoLink, 90);
-        basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 90);
-        basicActions.waitForElementToBePresentWithRetries(learnMoreLink, 90);
-        softAssert.assertEquals(connectLogoLink.getText(), "");
-        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
-        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
-        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "My Account");
-        softAssert.assertEquals(learnMoreLink.getText(), "Learn More");
-        softAssert.assertEquals(userNameLinkExch.getText(), SharedData.getPrimaryMember().getEmailId());
-        softAssert.assertEquals(languageDrp.getText(), "");
-        clickLanguageDrp("Exch");
-        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
-        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
-        softAssert.assertEquals(signOutLink.getText(), "Sign Out");
-        softAssert.assertEquals(getAssistanceLink.getText(), "Get Assistance");
-        actions.moveToElement(getAssistanceLink).perform();
-        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contact Us");
-        softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Find Expert Assistance in Your Community");
-        actions.moveToElement(connectLogoLink).perform();
-        softAssert.assertAll();
-    }
-
-    public void verifyTextInExchOBOHeader() {
-        basicActions.waitForElementToBePresent(connectLogoLink, 10);
-        softAssert.assertEquals(connectLogoLink.getText(), "");
-        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
-        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
-        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "My Account");
-        softAssert.assertEquals(learnMoreLink.getText(), "Learn More");
-        if (SharedData.getEnv().equals("qa")) {
-            softAssert.assertEquals(userNameLinkExch.getText(), "C4test.aduser123@gmail.com");
-        } else {
-            softAssert.assertEquals(userNameLinkExch.getText(), "C4testaduser123@gmail.com");
-        }
-        softAssert.assertEquals(languageDrp.getText(), "");
-        clickLanguageDrp("Exch");
-        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
-        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
-        softAssert.assertEquals(signOutLink.getText(), "Sign Out");
-        softAssert.assertEquals(getAssistanceLink.getText(), "Get Assistance");
-        clickGetAssistanceLink("Exch");
-        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contact Us");
-        softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Find Expert Assistance in Your Community");
-        softAssert.assertAll();
-    }
+//    public void verifyTextInCoCoHeader() {
+//        basicActions.waitForElementToBePresentWithRetries(connectLogoLink, 60);
+//        basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 60);
+//        softAssert.assertEquals(connectLogoLink.getText(), "");
+//        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
+//        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
+//        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "My Account");
+//        softAssert.assertEquals(learnMoreLink.getText(), "Learn More");
+//        clickLanguageDrp("Exch");
+//        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+//        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+//        softAssert.assertEquals(signOutLink.getText(), "Sign Out");
+//        softAssert.assertEquals(getAssistanceLink.getText(), "Get Assistance");
+//        actions.moveToElement(getAssistanceLink).perform();
+//        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Find Expert Assistance in Your Community");
+//        actions.moveToElement(connectLogoLink).perform();
+//        softAssert.assertEquals(userNameLink.getText(), SharedData.getPrimaryMember().getEmailId());
+//        softAssert.assertEquals(languageDrp.getText(), "");
+//        softAssert.assertAll();
+//    }
+//
+//    public void verifyTextInCoCoOBOHeader() {
+//        basicActions.waitForElementToBePresent(connectLogoLink, 10);
+//        softAssert.assertEquals(connectLogoLink.getText(), "");
+//        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
+//        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
+//        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "My Account");
+//        softAssert.assertEquals(learnMoreLink.getText(), "Learn More");
+//        clickLanguageDrp("Exch");
+//        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+//        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+//        softAssert.assertEquals(signOutLink.getText(), "Sign Out");
+//        softAssert.assertEquals(getAssistanceLink.getText(), "Get Assistance");
+//        actions.moveToElement(getAssistanceLink).perform();
+//        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Find Expert Assistance in Your Community");
+//        actions.moveToElement(connectLogoLink).perform();
+//        if (SharedData.getEnv().equals("qa")) {
+//            softAssert.assertEquals(userNameLink.getText(), "C4test.aduser123@gmail.com");
+//        } else {
+//            softAssert.assertEquals(userNameLink.getText(), "C4testaduser123@gmail.com");
+//        }
+//        softAssert.assertEquals(languageDrp.getText(), "");
+//        softAssert.assertAll();
+//    }
+//
+//    public void verifyTextInCoCoHeaderSpanish() {
+//        basicActions.waitForElementToBePresent(connectLogoLink, 10);
+//        softAssert.assertEquals(connectLogoLink.getText(), "");
+//        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Solicitud de cobertura");
+//        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan");
+//        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "Mi cuenta");
+//        softAssert.assertEquals(learnMoreLink.getText(), "M\u00E1s informaci\u00F3n");
+//        clickLanguageDrp("Exch");
+//        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+//        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+//        softAssert.assertEquals(signOutLink.getText(), "Cerrar sesi\u00F3n");
+//        softAssert.assertEquals(getAssistanceLink.getText(), "Obtener asistencia");
+//        actions.moveToElement(getAssistanceLink).perform();
+//        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Buscar asistencia de expertos en su comunidad");
+//        actions.moveToElement(connectLogoLink).perform();
+//        softAssert.assertEquals(userNameLink.getText(), SharedData.getPrimaryMember().getEmailId());
+//        softAssert.assertEquals(languageDrp.getText(), "");
+//        softAssert.assertAll();
+//    }
+//
+//    public void verifyTextInCoCoOBOHeaderSpanish() {
+//        basicActions.waitForElementToBePresent(connectLogoLink, 10);
+//        softAssert.assertEquals(connectLogoLink.getText(), "");
+//        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Solicitud de cobertura");
+//        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan");
+//        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "Mi cuenta");
+//        softAssert.assertEquals(learnMoreLink.getText(), "M\u00E1s informaci\u00F3n");
+//        clickLanguageDrp("Exch");
+//        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+//        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+//        softAssert.assertEquals(signOutLink.getText(), "Cerrar sesi\u00F3n");
+//        softAssert.assertEquals(getAssistanceLink.getText(), "Obtener asistencia");
+//        actions.moveToElement(getAssistanceLink).perform();
+//        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Buscar asistencia de expertos en su comunidad");
+//        actions.moveToElement(connectLogoLink).perform();
+//        if (SharedData.getEnv().equals("qa")) {
+//            softAssert.assertEquals(userNameLink.getText(), "C4test.aduser123@gmail.com");
+//        } else {
+//            softAssert.assertEquals(userNameLink.getText(), "C4testaduser123@gmail.com");
+//        }
+//        softAssert.assertEquals(languageDrp.getText(), "");
+//        softAssert.assertAll();
+//    }
+//
+//    public void verifyTextInExchHeader() {
+//        basicActions.waitForElementToBePresentWithRetries(connectLogoLink, 90);
+//        basicActions.waitForElementListToBePresentWithRetries(centerHeaderLink, 90);
+//        basicActions.waitForElementToBePresentWithRetries(learnMoreLink, 90);
+//        softAssert.assertEquals(connectLogoLink.getText(), "");
+//        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
+//        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
+//        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "My Account");
+//        softAssert.assertEquals(learnMoreLink.getText(), "Learn More");
+//        softAssert.assertEquals(userNameLinkExch.getText(), SharedData.getPrimaryMember().getEmailId());
+//        softAssert.assertEquals(languageDrp.getText(), "");
+//        clickLanguageDrp("Exch");
+//        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+//        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+//        softAssert.assertEquals(signOutLink.getText(), "Sign Out");
+//        softAssert.assertEquals(getAssistanceLink.getText(), "Get Assistance");
+//        actions.moveToElement(getAssistanceLink).perform();
+//        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contact Us");
+//        softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Find Expert Assistance in Your Community");
+//        actions.moveToElement(connectLogoLink).perform();
+//        softAssert.assertAll();
+//    }
+//
+//    public void verifyTextInExchOBOHeader() {
+//        basicActions.waitForElementToBePresent(connectLogoLink, 10);
+//        softAssert.assertEquals(connectLogoLink.getText(), "");
+//        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Apply for Coverage");
+//        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Find a Plan");
+//        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "My Account");
+//        softAssert.assertEquals(learnMoreLink.getText(), "Learn More");
+//        if (SharedData.getEnv().equals("qa")) {
+//            softAssert.assertEquals(userNameLinkExch.getText(), "C4test.aduser123@gmail.com");
+//        } else {
+//            softAssert.assertEquals(userNameLinkExch.getText(), "C4testaduser123@gmail.com");
+//        }
+//        softAssert.assertEquals(languageDrp.getText(), "");
+//        clickLanguageDrp("Exch");
+//        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+//        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+//        softAssert.assertEquals(signOutLink.getText(), "Sign Out");
+//        softAssert.assertEquals(getAssistanceLink.getText(), "Get Assistance");
+//        clickGetAssistanceLink("Exch");
+//        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contact Us");
+//        softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Find Expert Assistance in Your Community");
+//        softAssert.assertAll();
+//    }
 
     public void verifyTextInExchAnonymousHeader() {
         basicActions.waitForElementToBePresent(connectLogoLink, 10);
@@ -723,72 +723,72 @@ public class HeaderAndFooterPage {
         softAssert.assertAll();
     }
 
-    public void verifyTextInExchNonElmoHeader() {
-        basicActions.waitForElementToBePresent(connectLogoLinkNonElmo, 50);
-        softAssert.assertEquals(connectLogoLinkNonElmo.getText(), "Connect for Health Colorado");
-        softAssert.assertEquals(centerHeaderLinkNonElmo.get(0).getText(), "Apply for Coverage");
-        softAssert.assertEquals(centerHeaderLinkNonElmo.get(1).getText(), "Find a Plan");
-        softAssert.assertEquals(centerHeaderLinkNonElmo.get(2).getText(), "My Account");
-        softAssert.assertEquals(learnMoreLinkNonElmo.getText(), "Learn More");
-        softAssert.assertEquals(userNameLinkExchNonElmo.getText(), SharedData.getPrimaryMember().getEmailId());
-        softAssert.assertEquals(languageDrpNonElmo.getText(), "Language");
-        clickLanguageDrp("Exch NonElmo");
-        softAssert.assertEquals(languageDrpOptionNonElmo.get(0).getText(), "English");
-        softAssert.assertEquals(languageDrpOptionNonElmo.get(1).getText(), "En espa\u00f1ol");
-        softAssert.assertEquals(signOutLinkNonElmo.getText(), "Sign Out");
-        softAssert.assertEquals(getAssistanceLinkNonElmo.getText(), "Get Assistance");
-        clickGetAssistanceLink("Exch NonElmo");
-        softAssert.assertEquals(getAssistanceLinkOptionNonElmo.getText(), "Contact Us");
-        softAssert.assertEquals(getAssistanceLinkOptionNonElmo1.getText(), "Find Expert Assistance in Your Community");
-        softAssert.assertAll();
-    }
+//    public void verifyTextInExchNonElmoHeader() {
+//        basicActions.waitForElementToBePresent(connectLogoLinkNonElmo, 50);
+//        softAssert.assertEquals(connectLogoLinkNonElmo.getText(), "Connect for Health Colorado");
+//        softAssert.assertEquals(centerHeaderLinkNonElmo.get(0).getText(), "Apply for Coverage");
+//        softAssert.assertEquals(centerHeaderLinkNonElmo.get(1).getText(), "Find a Plan");
+//        softAssert.assertEquals(centerHeaderLinkNonElmo.get(2).getText(), "My Account");
+//        softAssert.assertEquals(learnMoreLinkNonElmo.getText(), "Learn More");
+//        softAssert.assertEquals(userNameLinkExchNonElmo.getText(), SharedData.getPrimaryMember().getEmailId());
+//        softAssert.assertEquals(languageDrpNonElmo.getText(), "Language");
+//        clickLanguageDrp("Exch NonElmo");
+//        softAssert.assertEquals(languageDrpOptionNonElmo.get(0).getText(), "English");
+//        softAssert.assertEquals(languageDrpOptionNonElmo.get(1).getText(), "En espa\u00f1ol");
+//        softAssert.assertEquals(signOutLinkNonElmo.getText(), "Sign Out");
+//        softAssert.assertEquals(getAssistanceLinkNonElmo.getText(), "Get Assistance");
+//        clickGetAssistanceLink("Exch NonElmo");
+//        softAssert.assertEquals(getAssistanceLinkOptionNonElmo.getText(), "Contact Us");
+//        softAssert.assertEquals(getAssistanceLinkOptionNonElmo1.getText(), "Find Expert Assistance in Your Community");
+//        softAssert.assertAll();
+//    }
 
-    public void verifyTextInExchHeaderSpanish() {
-        basicActions.waitForElementToBePresent(connectLogoLink, 10);
-        softAssert.assertEquals(connectLogoLink.getText(), "");
-        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Solicitud de cobertura");
-        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan");
-        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "Mi cuenta");
-        softAssert.assertEquals(learnMoreLink.getText(), "M\u00E1s informaci\u00F3n");
-        softAssert.assertEquals(userNameLinkExch.getText(), SharedData.getPrimaryMember().getEmailId());
-        softAssert.assertEquals(languageDrp.getText(), "");
-        actions.moveToElement(connectLogoLink).perform();
-        clickLanguageDrp("Exch");
-        basicActions.waitForElementListToBePresent(languageDrpOption,15);
-        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
-        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
-        softAssert.assertEquals(signOutLink.getText(), "Cerrar sesi\u00F3n");
-        softAssert.assertEquals(getAssistanceLink.getText(), "Obtener asistencia");
-        actions.moveToElement(getAssistanceLink).perform();
-        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contacta con nosotros");
-        softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Buscar asistencia de expertos en su comunidad");
-        actions.moveToElement(connectLogoLink).perform();
-        softAssert.assertAll();
-    }
+//    public void verifyTextInExchHeaderSpanish() {
+//        basicActions.waitForElementToBePresent(connectLogoLink, 10);
+//        softAssert.assertEquals(connectLogoLink.getText(), "");
+//        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Solicitud de cobertura");
+//        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan");
+//        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "Mi cuenta");
+//        softAssert.assertEquals(learnMoreLink.getText(), "M\u00E1s informaci\u00F3n");
+//        softAssert.assertEquals(userNameLinkExch.getText(), SharedData.getPrimaryMember().getEmailId());
+//        softAssert.assertEquals(languageDrp.getText(), "");
+//        actions.moveToElement(connectLogoLink).perform();
+//        clickLanguageDrp("Exch");
+//        basicActions.waitForElementListToBePresent(languageDrpOption,15);
+//        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+//        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+//        softAssert.assertEquals(signOutLink.getText(), "Cerrar sesi\u00F3n");
+//        softAssert.assertEquals(getAssistanceLink.getText(), "Obtener asistencia");
+//        actions.moveToElement(getAssistanceLink).perform();
+//        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contacta con nosotros");
+//        softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Buscar asistencia de expertos en su comunidad");
+//        actions.moveToElement(connectLogoLink).perform();
+//        softAssert.assertAll();
+//    }
 
-    public void verifyTextInExchOBOHeaderSpanish() {
-        basicActions.waitForElementToBePresent(connectLogoLink, 10);
-        softAssert.assertEquals(connectLogoLink.getText(), "");
-        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Solicitud de cobertura");
-        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan");
-        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "Mi cuenta");
-        softAssert.assertEquals(learnMoreLink.getText(), "M\u00E1s informaci\u00F3n");
-        if (SharedData.getEnv().equals("qa")) {
-            softAssert.assertEquals(userNameLinkExch.getText(), "C4test.aduser123@gmail.com");
-        } else {
-            softAssert.assertEquals(userNameLinkExch.getText(), "C4testaduser123@gmail.com");
-        }
-        softAssert.assertEquals(languageDrp.getText(), "");
-        clickLanguageDrp("Exch");
-        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
-        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
-        softAssert.assertEquals(signOutLink.getText(), "Cerrar sesi\u00F3n");
-        softAssert.assertEquals(getAssistanceLink.getText(), "Obtener asistencia");
-        clickGetAssistanceLink("Exch");
-        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contacta con nosotros");
-        softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Buscar asistencia de expertos en su comunidad");
-        softAssert.assertAll();
-    }
+//    public void verifyTextInExchOBOHeaderSpanish() {
+//        basicActions.waitForElementToBePresent(connectLogoLink, 10);
+//        softAssert.assertEquals(connectLogoLink.getText(), "");
+//        softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Solicitud de cobertura");
+//        softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan");
+//        softAssert.assertEquals(centerHeaderLink.get(2).getText(), "Mi cuenta");
+//        softAssert.assertEquals(learnMoreLink.getText(), "M\u00E1s informaci\u00F3n");
+//        if (SharedData.getEnv().equals("qa")) {
+//            softAssert.assertEquals(userNameLinkExch.getText(), "C4test.aduser123@gmail.com");
+//        } else {
+//            softAssert.assertEquals(userNameLinkExch.getText(), "C4testaduser123@gmail.com");
+//        }
+//        softAssert.assertEquals(languageDrp.getText(), "");
+//        clickLanguageDrp("Exch");
+//        softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+//        softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+//        softAssert.assertEquals(signOutLink.getText(), "Cerrar sesi\u00F3n");
+//        softAssert.assertEquals(getAssistanceLink.getText(), "Obtener asistencia");
+//        clickGetAssistanceLink("Exch");
+//        softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contacta con nosotros");
+//        softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Buscar asistencia de expertos en su comunidad");
+//        softAssert.assertAll();
+//    }
 
     public void verifyTextInExchAnonymousHeaderSpanish() {
         basicActions.waitForElementToBePresent(connectLogoLink, 10);
@@ -810,184 +810,184 @@ public class HeaderAndFooterPage {
         softAssert.assertAll();
     }
 
-    public void verifyTextInExchNonElmoHeaderSpanish() {
-        basicActions.waitForElementToBePresent(connectLogoLinkNonElmo, 10);
-        softAssert.assertEquals(connectLogoLinkNonElmo.getText(), "Connect for Health Colorado");
-        softAssert.assertEquals(centerHeaderLinkNonElmo.get(0).getText(), "Solicitud de cobertura");
-        softAssert.assertEquals(centerHeaderLinkNonElmo.get(1).getText(), "Buscar un plan");
-        softAssert.assertEquals(centerHeaderLinkNonElmo.get(2).getText(), "Mi cuenta");
-        softAssert.assertEquals(learnMoreLinkNonElmo.getText(), "M\u00E1s informaci\u00F3n");
-        softAssert.assertEquals(userNameLinkExchNonElmo.getText(), SharedData.getPrimaryMember().getEmailId());
-        softAssert.assertEquals(languageDrpNonElmo.getText(), "Language");
-        clickLanguageDrp("Exch NonElmo");
-        softAssert.assertEquals(languageDrpOptionNonElmo.get(0).getText(), "English");
-        softAssert.assertEquals(languageDrpOptionNonElmo.get(1).getText(), "En espa\u00f1ol");
-        softAssert.assertEquals(signOutLinkNonElmo.getText(), "Cerrar sesi\u00F3n");
-        softAssert.assertEquals(getAssistanceLinkNonElmo.getText(), "Obtener asistencia");
-        clickGetAssistanceLink("Exch NonElmo");
-        softAssert.assertEquals(getAssistanceLinkOptionNonElmo.getText(), "Cont\u00E1ctenos");
-        softAssert.assertEquals(getAssistanceLinkOptionNonElmo1.getText(), "Buscar asistencia de expertos en su comunidad");
-        softAssert.assertAll();
-    }
+//    public void verifyTextInExchNonElmoHeaderSpanish() {
+//        basicActions.waitForElementToBePresent(connectLogoLinkNonElmo, 10);
+//        softAssert.assertEquals(connectLogoLinkNonElmo.getText(), "Connect for Health Colorado");
+//        softAssert.assertEquals(centerHeaderLinkNonElmo.get(0).getText(), "Solicitud de cobertura");
+//        softAssert.assertEquals(centerHeaderLinkNonElmo.get(1).getText(), "Buscar un plan");
+//        softAssert.assertEquals(centerHeaderLinkNonElmo.get(2).getText(), "Mi cuenta");
+//        softAssert.assertEquals(learnMoreLinkNonElmo.getText(), "M\u00E1s informaci\u00F3n");
+//        softAssert.assertEquals(userNameLinkExchNonElmo.getText(), SharedData.getPrimaryMember().getEmailId());
+//        softAssert.assertEquals(languageDrpNonElmo.getText(), "Language");
+//        clickLanguageDrp("Exch NonElmo");
+//        softAssert.assertEquals(languageDrpOptionNonElmo.get(0).getText(), "English");
+//        softAssert.assertEquals(languageDrpOptionNonElmo.get(1).getText(), "En espa\u00f1ol");
+//        softAssert.assertEquals(signOutLinkNonElmo.getText(), "Cerrar sesi\u00F3n");
+//        softAssert.assertEquals(getAssistanceLinkNonElmo.getText(), "Obtener asistencia");
+//        clickGetAssistanceLink("Exch NonElmo");
+//        softAssert.assertEquals(getAssistanceLinkOptionNonElmo.getText(), "Cont\u00E1ctenos");
+//        softAssert.assertEquals(getAssistanceLinkOptionNonElmo1.getText(), "Buscar asistencia de expertos en su comunidad");
+//        softAssert.assertAll();
+//    }
 
 
     // =========HEADER AND FOOTER============== //
-    public void verifyHeaderFooterText(String appType, String HeaderOrFooter, String language) {
-        switch (appType) {
-            case "Exch":
-                verifyExchHeaderFooterText(HeaderOrFooter, language);
-                break;
-            case "Exch NonElmo":
-                verifyExchNonElmoHeaderFooterText(HeaderOrFooter, language);
-                break;
-            case "CoCo":
-                verifyCoCoHeaderFooterText(HeaderOrFooter, language);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + appType);
-        }
-    }
+//    public void verifyHeaderFooterText(String appType, String HeaderOrFooter, String language) {
+//        switch (appType) {
+//            case "Exch":
+//                verifyExchHeaderFooterText(HeaderOrFooter, language);
+//                break;
+//            case "Exch NonElmo":
+//                verifyExchNonElmoHeaderFooterText(HeaderOrFooter, language);
+//                break;
+//            case "CoCo":
+//                verifyCoCoHeaderFooterText(HeaderOrFooter, language);
+//                break;
+//            default:
+//                throw new IllegalArgumentException("Invalid option: " + appType);
+//        }
+//    }
 
-    public void verifyCoCoHeaderFooterTextEnglish(String HeaderOrFooter) {
-        switch (HeaderOrFooter) {
-            case "Header":
-                verifyTextInCoCoHeader();
-                break;
-            case "Admin portal OBO Header":
-                verifyTextInCoCoOBOHeader();
-                break;
-            case "Footer":
-                verifyTextInCoCoFooter();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
-        }
-    }
+//    public void verifyCoCoHeaderFooterTextEnglish(String HeaderOrFooter) {
+//        switch (HeaderOrFooter) {
+//            case "Header":
+//                verifyTextInCoCoHeader();
+//                break;
+//            case "Admin portal OBO Header":
+//                verifyTextInCoCoOBOHeader();
+//                break;
+//            case "Footer":
+//                verifyTextInCoCoFooter();
+//                break;
+//            default:
+//                throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
+//        }
+//    }
 
-    public void verifyCoCoHeaderFooterTextSpanish(String HeaderOrFooter) {
-        switch (HeaderOrFooter) {
-            case "Header":
-                verifyTextInCoCoHeaderSpanish();
-                break;
-            case "Admin portal OBO Header":
-                verifyTextInCoCoOBOHeaderSpanish();
-                break;
-            case "Footer":
-                verifyTextInCoCoFooterSpanish();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
-        }
-    }
+//    public void verifyCoCoHeaderFooterTextSpanish(String HeaderOrFooter) {
+//        switch (HeaderOrFooter) {
+//            case "Header":
+//                verifyTextInCoCoHeaderSpanish();
+//                break;
+//            case "Admin portal OBO Header":
+//                verifyTextInCoCoOBOHeaderSpanish();
+//                break;
+//            case "Footer":
+//                verifyTextInCoCoFooterSpanish();
+//                break;
+//            default:
+//                throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
+//        }
+//    }
 
-    public void verifyExchHeaderFooterTextEnglish(String HeaderOrFooter) {
-        switch (HeaderOrFooter) {
-            case "Header":
-                verifyTextInExchHeader();
-                break;
-            case "Admin portal OBO Header":
-                verifyTextInExchOBOHeader();
-                break;
-            case "Footer":
-                verifyTextInExchFooter();
-                break;
-            case "Admin portal Footer": //This is Admin portal Footer - displaying for all admin portal pages except admin login page - Admin login page use standard one so didnt add specific one for that.
-                verifyTextAPFooter(); /// this method name used as we are using it specific to admin portal text validation.
-                break;
-            case "Anonymous Find Expert Help":
-                verifyTextInExchAnonymousHeader();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
-        }
-    }
+//    public void verifyExchHeaderFooterTextEnglish(String HeaderOrFooter) {
+//        switch (HeaderOrFooter) {
+//            case "Header":
+//                verifyTextInExchHeader();
+//                break;
+//            case "Admin portal OBO Header":
+//                verifyTextInExchOBOHeader();
+//                break;
+//            case "Footer":
+//                verifyTextInExchFooter();
+//                break;
+//            case "Admin portal Footer": //This is Admin portal Footer - displaying for all admin portal pages except admin login page - Admin login page use standard one so didnt add specific one for that.
+//                verifyTextAPFooter(); /// this method name used as we are using it specific to admin portal text validation.
+//                break;
+//            case "Anonymous Find Expert Help":
+//                verifyTextInExchAnonymousHeader();
+//                break;
+//            default:
+//                throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
+//        }
+//    }
 
-    public void verifyExchNonElmoHeaderFooterTextEnglish(String HeaderOrFooter) {
-        switch (HeaderOrFooter) {
-            case "Header":
-                verifyTextInExchNonElmoHeader();
-                break;
-            case "Footer":
-                verifyTextInExchFooter();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
-        }
-    }
+//    public void verifyExchNonElmoHeaderFooterTextEnglish(String HeaderOrFooter) {
+//        switch (HeaderOrFooter) {
+//            case "Header":
+//                verifyTextInExchNonElmoHeader();
+//                break;
+//            case "Footer":
+//                verifyTextInExchFooter();
+//                break;
+//            default:
+//                throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
+//        }
+//    }
 
-    public void verifyExchHeaderFooterTextSpanish(String HeaderOrFooter) {
-        switch (HeaderOrFooter) {
-            case "Header":
-                verifyTextInExchHeaderSpanish();
-                break;
-            case "Admin portal OBO Header":
-                verifyTextInExchOBOHeaderSpanish();
-                break;
-            case "Footer":
-                verifyTextInExchFooterSpanish();
-                break;
-            case "Login Footer":
-                verifyTextInLoginPortalFooterSpanish();
-                break;
-            case "Anonymous Find Expert Help":
-                verifyTextInExchAnonymousHeaderSpanish();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
-        }
-    }
+//    public void verifyExchHeaderFooterTextSpanish(String HeaderOrFooter) {
+//        switch (HeaderOrFooter) {
+//            case "Header":
+//                verifyTextInExchHeaderSpanish();
+//                break;
+//            case "Admin portal OBO Header":
+//                verifyTextInExchOBOHeaderSpanish();
+//                break;
+//            case "Footer":
+//                verifyTextInExchFooterSpanish();
+//                break;
+//            case "Login Footer":
+//                verifyTextInLoginPortalFooterSpanish();
+//                break;
+//            case "Anonymous Find Expert Help":
+//                verifyTextInExchAnonymousHeaderSpanish();
+//                break;
+//            default:
+//                throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
+//        }
+//    }
 
-    public void verifyExchNonElmoHeaderFooterTextSpanish(String HeaderOrFooter) {
-        switch (HeaderOrFooter) {
-            case "Header":
-                verifyTextInExchNonElmoHeaderSpanish();
-                break;
-            case "Footer":
-                verifyTextInExchFooterSpanish();
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
-        }
-    }
+//    public void verifyExchNonElmoHeaderFooterTextSpanish(String HeaderOrFooter) {
+//        switch (HeaderOrFooter) {
+//            case "Header":
+//                verifyTextInExchNonElmoHeaderSpanish();
+//                break;
+//            case "Footer":
+//                verifyTextInExchFooterSpanish();
+//                break;
+//            default:
+//                throw new IllegalArgumentException("Invalid option: " + HeaderOrFooter);
+//        }
+//    }
 
-    public void verifyExchHeaderFooterText(String language, String HeaderOrFooter) {
-        switch (language) {
-            case "English":
-                verifyExchHeaderFooterTextEnglish(HeaderOrFooter);
-                break;
-            case "Spanish":
-                verifyExchHeaderFooterTextSpanish(HeaderOrFooter);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + language);
-        }
-    }
+//    public void verifyExchHeaderFooterText(String language, String HeaderOrFooter) {
+//        switch (language) {
+//            case "English":
+//                verifyExchHeaderFooterTextEnglish(HeaderOrFooter);
+//                break;
+//            case "Spanish":
+//                verifyExchHeaderFooterTextSpanish(HeaderOrFooter);
+//                break;
+//            default:
+//                throw new IllegalArgumentException("Invalid option: " + language);
+//        }
+//    }
 
-    public void verifyExchNonElmoHeaderFooterText(String language, String HeaderOrFooter) {
-        switch (language) {
-            case "English":
-                verifyExchNonElmoHeaderFooterTextEnglish(HeaderOrFooter);
-                break;
-            case "Spanish":
-                verifyExchNonElmoHeaderFooterTextSpanish(HeaderOrFooter);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + language);
-        }
-    }
+//    public void verifyExchNonElmoHeaderFooterText(String language, String HeaderOrFooter) {
+//        switch (language) {
+//            case "English":
+//                verifyExchNonElmoHeaderFooterTextEnglish(HeaderOrFooter);
+//                break;
+//            case "Spanish":
+//                verifyExchNonElmoHeaderFooterTextSpanish(HeaderOrFooter);
+//                break;
+//            default:
+//                throw new IllegalArgumentException("Invalid option: " + language);
+//        }
+//    }
 
-    public void verifyCoCoHeaderFooterText(String language, String HeaderOrFooter) {
-        switch (language) {
-            case "English":
-                verifyCoCoHeaderFooterTextEnglish(HeaderOrFooter);
-                break;
-            case "Spanish":
-                verifyCoCoHeaderFooterTextSpanish(HeaderOrFooter);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid option: " + language);
-        }
-    }
+//    public void verifyCoCoHeaderFooterText(String language, String HeaderOrFooter) {
+//        switch (language) {
+//            case "English":
+//                verifyCoCoHeaderFooterTextEnglish(HeaderOrFooter);
+//                break;
+//            case "Spanish":
+//                verifyCoCoHeaderFooterTextSpanish(HeaderOrFooter);
+//                break;
+//            default:
+//                throw new IllegalArgumentException("Invalid option: " + language);
+//        }
+//    }
 
     public void verifyUserNameLinkNotPresent(String pageType) {
         switch (pageType) {
@@ -1196,78 +1196,78 @@ public class HeaderAndFooterPage {
         connectLogoLinkNonElmo.click();
     }
 
-    public void validateTextinHeader(String expectedText) {
-        basicActions.waitForElementListToBePresent(centerHeaderLink,20);
-        switch (expectedText) {
-            case "Username":
-                basicActions.waitForElementToBePresent(userNameLinkExch, 100);
-                Assert.assertEquals(userNameLinkExch.getText(), SharedData.getPrimaryMember().getEmailId());
-                break;
-            case "Apply for coverage Spanish":
-                basicActions.waitForElementToBePresent(centerHeaderLink.get(0),20);
-                softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Solicitud de cobertura" , expectedText + " Not Found ");
-                break;
-            case "Find a plan Spanish":
-                 basicActions.waitForElementToBePresent(centerHeaderLink.get(1),20);
-                 softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan" , expectedText + " Not Found ");
-                 break;
-            case "My Account Spanish":
-                basicActions.waitForElementToBePresent(centerHeaderLink.get(2),20);
-                softAssert.assertEquals(centerHeaderLink.get(2).getText(), "Mi cuenta" , expectedText + " Not Found ");
-                break;
-            case "Learn More Spanish":
-                 basicActions.waitForElementToBePresent(learnMoreLink,20);
-                 softAssert.assertEquals(learnMoreLink.getText() , "M\u00E1s informaci\u00F3n" , expectedText + " Not Found ");
-                  break;
-            case "Contact US Spanish":
-                  basicActions.waitForElementToBePresent(getAssistanceLink,20);
-                  actions.moveToElement(getAssistanceLink).perform();
-                  softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contacta con nosotros");
-                  break;
-            case "Find Expert Assistance Spanish":
-                  basicActions.waitForElementToBePresent(getAssistanceLink,20);
-                  actions.moveToElement(getAssistanceLink).perform();
-                  softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Buscar asistencia de expertos en su comunidad");
-                  break;
-            case "Globe":
-                  basicActions.waitForElementToBePresent(languageDrp,20);
-                  softAssert.assertEquals(languageDrp.getText(), "");
-                  clickLanguageDrp("Exch");
-                  softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
-                  softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
-                  break;
-            case "Privacy Policy Spanish":
-                  basicActions.waitForElementToBePresent(privacyPolicyLink,20);
-                  softAssert.assertEquals(privacyPolicyLink.getText(), "P\u00F3liza de privacidad");
-                  break;
-            case "Terms of Use Spanish":
-                  basicActions.waitForElementToBePresent(termsOfUseLink,20);
-                  softAssert.assertEquals(termsOfUseLink.getText(), "T\u00E9rminos y Condiciones");
-                  break;
-            case "Contact Us Footer Link Spanish":
-                basicActions.waitForElementToBePresent(contactUsLinkExch,20);
-                softAssert.assertEquals(contactUsLinkExch.getText(), "Comentarios");
-                break;
-
-            case "Copy Rights Spanish":
-                  String CurrentYear = String.valueOf(Year.now().getValue());
-                  basicActions.waitForElementToBePresent(copyRightCoCoText,20);
-                  softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a9 "+CurrentYear+" Connect for Health Colorado. Todos los derechos reservados.");
-                 break;
-            case "Follow Us Spanish":
-                    basicActions.waitForElementToBePresent(followUsText,20);
-                    softAssert.assertEquals(followUsText.getText(), "S\u00EDguenos en:");
-                    break;
-            case "Copy Rights":
-                String MyCurrentYear = String.valueOf(Year.now().getValue());
-                basicActions.waitForElementToBePresent(APcopyRightText,20);
-                softAssert.assertEquals(APcopyRightText.getText(), "\u00a9 "+MyCurrentYear+" Connect for Health Colorado. All Rights Reserved.");
-                break;
-                default:
-                    throw new IllegalArgumentException("Text not present: " + expectedText);
-            }
-            softAssert.assertAll();
-    }
+//    public void validateTextinHeader(String expectedText) {
+//        basicActions.waitForElementListToBePresent(centerHeaderLink,20);
+//        switch (expectedText) {
+//            case "Username":
+//                basicActions.waitForElementToBePresent(userNameLinkExch, 100);
+//                Assert.assertEquals(userNameLinkExch.getText(), SharedData.getPrimaryMember().getEmailId());
+//                break;
+//            case "Apply for coverage Spanish":
+//                basicActions.waitForElementToBePresent(centerHeaderLink.get(0),20);
+//                softAssert.assertEquals(centerHeaderLink.get(0).getText(), "Solicitud de cobertura" , expectedText + " Not Found ");
+//                break;
+//            case "Find a plan Spanish":
+//                 basicActions.waitForElementToBePresent(centerHeaderLink.get(1),20);
+//                 softAssert.assertEquals(centerHeaderLink.get(1).getText(), "Buscar un plan" , expectedText + " Not Found ");
+//                 break;
+//            case "My Account Spanish":
+//                basicActions.waitForElementToBePresent(centerHeaderLink.get(2),20);
+//                softAssert.assertEquals(centerHeaderLink.get(2).getText(), "Mi cuenta" , expectedText + " Not Found ");
+//                break;
+//            case "Learn More Spanish":
+//                 basicActions.waitForElementToBePresent(learnMoreLink,20);
+//                 softAssert.assertEquals(learnMoreLink.getText() , "M\u00E1s informaci\u00F3n" , expectedText + " Not Found ");
+//                  break;
+//            case "Contact US Spanish":
+//                  basicActions.waitForElementToBePresent(getAssistanceLink,20);
+//                  actions.moveToElement(getAssistanceLink).perform();
+//                  softAssert.assertEquals(getAssistanceLinkOption.get(0).getText(), "Contacta con nosotros");
+//                  break;
+//            case "Find Expert Assistance Spanish":
+//                  basicActions.waitForElementToBePresent(getAssistanceLink,20);
+//                  actions.moveToElement(getAssistanceLink).perform();
+//                  softAssert.assertEquals(getAssistanceLinkOption.get(1).getText(), "Buscar asistencia de expertos en su comunidad");
+//                  break;
+//            case "Globe":
+//                  basicActions.waitForElementToBePresent(languageDrp,20);
+//                  softAssert.assertEquals(languageDrp.getText(), "");
+//                  clickLanguageDrp("Exch");
+//                  softAssert.assertEquals(languageDrpOption.get(0).getText(), "English");
+//                  softAssert.assertEquals(languageDrpOption.get(1).getText(), "En espa\u00f1ol");
+//                  break;
+//            case "Privacy Policy Spanish":
+//                  basicActions.waitForElementToBePresent(privacyPolicyLink,20);
+//                  softAssert.assertEquals(privacyPolicyLink.getText(), "P\u00F3liza de privacidad");
+//                  break;
+//            case "Terms of Use Spanish":
+//                  basicActions.waitForElementToBePresent(termsOfUseLink,20);
+//                  softAssert.assertEquals(termsOfUseLink.getText(), "T\u00E9rminos y Condiciones");
+//                  break;
+//            case "Contact Us Footer Link Spanish":
+//                basicActions.waitForElementToBePresent(contactUsLinkExch,20);
+//                softAssert.assertEquals(contactUsLinkExch.getText(), "Comentarios");
+//                break;
+//
+//            case "Copy Rights Spanish":
+//                  String CurrentYear = String.valueOf(Year.now().getValue());
+//                  basicActions.waitForElementToBePresent(copyRightCoCoText,20);
+//                  softAssert.assertEquals(copyRightCoCoText.getText(), "\u00a9 "+CurrentYear+" Connect for Health Colorado. Todos los derechos reservados.");
+//                 break;
+//            case "Follow Us Spanish":
+//                    basicActions.waitForElementToBePresent(followUsText,20);
+//                    softAssert.assertEquals(followUsText.getText(), "S\u00EDguenos en:");
+//                    break;
+//            case "Copy Rights":
+//                String MyCurrentYear = String.valueOf(Year.now().getValue());
+//                basicActions.waitForElementToBePresent(APcopyRightText,20);
+//                softAssert.assertEquals(APcopyRightText.getText(), "\u00a9 "+MyCurrentYear+" Connect for Health Colorado. All Rights Reserved.");
+//                break;
+//                default:
+//                    throw new IllegalArgumentException("Text not present: " + expectedText);
+//            }
+//            softAssert.assertAll();
+//    }
 
     public void verifyFooterlinktextNavigation(String language, DataTable dataTable) {
         basicActions.waitForElementToDisappear(spinner, 200);

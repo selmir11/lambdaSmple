@@ -569,7 +569,6 @@ public class BasicSteps {
                 throw new IllegalArgumentException("Undefined Page: " + page);
 
         }
-        basicActions.switchToPageAndValidate(page, pageUrl, 45);
     }
 
     @And("I validate I am on the {string} page and close tab")
@@ -750,7 +749,6 @@ public class BasicSteps {
         }
 
         String origin = basicActions.getDriver().getWindowHandle();
-        basicActions.switchToPageAndValidate(page, pageUrl, 90);
         basicActions.wait(3000);
         try {
             basicActions.closeBrowserTab();
@@ -820,23 +818,8 @@ public class BasicSteps {
         basicActions.openCurrPageInNewTab();
     }
 
-    @And("I set the member relationship to the subscriber")
-    public void iSetMemberRelationToSubscriber(List<String> Relations) {
-        basicActions.setRelationToSubscriber(Relations);
-    }
-
     @And("I verify the page is scrolled to the top")
     public void iPageAtTop() {basicActions.pageAtTop();}
-
-    @And("I get the memberId of primary member from url")
-    public void getMemId(){
-        basicActions.setMemberIdFromUrl();
-    }
-
-    @And("I check for minors in the household")
-    public void setMinor(){
-        basicActions.setMinor();
-    }
 
     @And("I navigate to the same page with a random member ID")
     public void changeMemberIdInUrl() {

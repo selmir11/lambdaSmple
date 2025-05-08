@@ -1,6 +1,4 @@
 package com.c4hco.test.automation.utils;
-
-import com.c4hco.test.automation.Dto.SharedData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -16,10 +14,6 @@ public class Utils {
     public Utils(WebDriver webDriver){
         this.basicActions = new BasicActions(webDriver);
         PageFactory.initElements(basicActions.getDriver(), this);
-        SharedData.setEnv(env);
-        SharedData.setIsOpenEnrollment(isOpenEnrollment);
-        SharedData.setSes(ses);
-        setdbName();
     }
 
     public String getBaseLoginUrl(String portalType){
@@ -52,9 +46,5 @@ public class Utils {
         return baseUrl;
     }
 
-    private void setdbName(){
-        String dbNameWithEnv = env.equals("qa") ? env + "_"+dbName : dbName;
-        SharedData.setDbName(dbNameWithEnv);
-    }
 
 }

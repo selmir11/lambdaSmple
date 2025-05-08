@@ -1,8 +1,6 @@
 package com.c4hco.test.automation.actions;
 
-import com.c4hco.test.automation.utils.Log;
 import com.c4hco.test.automation.utils.WebDriverManager;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
@@ -89,7 +87,7 @@ public class WaitAction extends AbstractAction {
             } catch (TimeoutException ignore) {
             }
         }
-        Log.info("Element is not present");
+
         return false;
     }
 
@@ -105,7 +103,7 @@ public class WaitAction extends AbstractAction {
             } catch (TimeoutException ignore) {
             }
         }
-        Log.info("Element is not clickable");
+
         return false;
     }
 
@@ -120,7 +118,6 @@ public class WaitAction extends AbstractAction {
                         Duration.ofSeconds(milliseconds)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.invisibilityOf(element));
                 return true;
             } catch (TimeoutException ignore) {
-                Log.info("Element is still visible after the wait");
             }
         }
         return false;

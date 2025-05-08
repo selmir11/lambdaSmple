@@ -1,8 +1,4 @@
 package com.c4hco.test.automation.utils;
-
-import com.c4hco.test.automation.Dto.MemberDetails;
-import com.c4hco.test.automation.Dto.SharedData;
-import com.c4hco.test.automation.database.EntityObj.Ob834DetailsEntity;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -131,16 +127,6 @@ public class BasicActions {
         getDriver().get(currentUrl);
     }
 
-    public String getUrlWithWait(String url, int waitTime) {
-        try {
-            new WebDriverWait(driver, Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.urlContains(url));
-        } catch (TimeoutException ignore) {
-            Log.info("The expected URL:" + url + "wasn't there after" + waitTime + "seconds");
-            return "";
-        }
-        return getDriver().getCurrentUrl();
-    }
-
     public void selectValueFromDropdown(WebElement dropdownElement, List<WebElement> dropdownOptionsElement, String text) {
         dropdownElement.click();
         dropdownOptionsElement.stream().filter(e -> e.getText().equalsIgnoreCase(text)).forEach(WebElement::click);
@@ -151,7 +137,6 @@ public class BasicActions {
             new WebDriverWait(driver,
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.elementToBeClickable(webElement));
         } catch (TimeoutException ignore) {
-            Log.info("Element is not clickable");
             return false;
         }
         return true;
@@ -166,9 +151,7 @@ public class BasicActions {
                 return true;
             } catch (StaleElementReferenceException e) {
                 retries--;
-                Log.info("StaleElementReferenceException caught. Retrying... Attempts left: " + retries);
             } catch (TimeoutException e) {
-                Log.info("Element is not clickable");
                 Assert.fail("Element is not clickable");
                 return false;
             }
@@ -180,29 +163,6 @@ public class BasicActions {
             new WebDriverWait(driver,
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.invisibilityOf(webElement));
         } catch (TimeoutException ignore) {
-            Log.info("Element is still visible after the wait");
-            return false;
-        }
-        return true;
-    }
-
-    public Boolean waitForElementListToDisappear(List<WebElement> webElementList, int waitTime) {
-        try {
-            new WebDriverWait(driver,
-                    Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.invisibilityOfAllElements(webElementList));
-        } catch (TimeoutException ignore) {
-            Log.info("Element is still visible after the wait");
-            return false;
-        }
-        return true;
-    }
-
-    public Boolean waitForElementToBePresent(WebElement webElement, int waitTime) {
-        try {
-            new WebDriverWait(driver,
-                    Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
-        } catch (TimeoutException | NoSuchElementException | IndexOutOfBoundsException ignore) {
-            Log.info("Element is not present");
             return false;
         }
         return true;
@@ -228,9 +188,9 @@ public class BasicActions {
                 return true;
             } catch (StaleElementReferenceException | NoSuchElementException | IndexOutOfBoundsException | ElementNotInteractableException e) {
                 retries--;
-                Log.info("StaleElementReferenceException or NoSuchElementException caught. Retrying... Attempts left: " + retries);
+
             } catch (TimeoutException e) {
-                Log.info("Element is not present");
+
                 return false;
             }
         }
@@ -247,9 +207,7 @@ public class BasicActions {
                 return true;
             } catch (ElementClickInterceptedException|NoSuchElementException e) {
                 retries--;
-                Log.info("StaleElementReferenceException caught. Retrying... Attempts left: " + retries);
             } catch (TimeoutException e) {
-                Log.info("Element is not present");
                 return false;
             }
         }
@@ -261,7 +219,6 @@ public class BasicActions {
             new WebDriverWait(driver,
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
         } catch (TimeoutException | NoSuchElementException ignore) {
-            Log.info("Element is not present");
             return false;
         }
         return true;
@@ -280,7 +237,6 @@ public class BasicActions {
             new WebDriverWait(driver,
                     Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOfAllElements(webElementList));
         } catch (TimeoutException ignore) {
-            Log.info("Element is not present");
             return false;
         }
         return true;
@@ -295,9 +251,7 @@ public class BasicActions {
                 return true;
             } catch (StaleElementReferenceException e) {
                 retries--;
-                Log.info("StaleElementReferenceException caught. Retrying... Attempts left: " + retries);
             } catch (TimeoutException e) {
-                Log.info("Element list is not present");
                 return false;
             }
         }
@@ -329,88 +283,19 @@ public class BasicActions {
         }
     }
 
-    public void clickById(String elementId) {
-        WebElement element = WebDriverManager.getDriver().findElement(By.id(elementId));
-        ((JavascriptExecutor) WebDriverManager.getDriver()).executeScript("arguments[0].click()", element);
-    }
-
-    public void waitForPresence(WebElement webElement) {
-        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(30))
-                .pollingEvery(Duration.ofMillis(100))
-                .ignoring(NoSuchElementException.class);
-
-        wait.until(ExpectedConditions.visibilityOf(webElement));
-    }
-
-    public void switchToParentPage(String pageTitle) {
-        Set<String> allWindowHandles = getDriver().getWindowHandles();
-        for (String windowHandle : allWindowHandles) {
-            getDriver().switchTo().window(windowHandle);
-            if (getDriver().getTitle().equals(pageTitle)) {
-                break;
-            }
-        }
-    }
-
-    public void switchToUrlPage(String URL) {
-        Set<String> handles = getDriver().getWindowHandles();
-        for (String handle : handles) {
-            if (getDriver().getCurrentUrl().contains(URL)) {
-                System.out.println(getDriver().getCurrentUrl());
-                System.out.println("The URL matches the desired link.");
-                getDriver().switchTo().window(handle);
-                break;
-            }
-            switchtoactiveTab();
-        }
-    }
-
-    public void scrollToElement(WebElement element) {
-        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
-    }
-
-    public void updateElementWithRetries(String locator, String value) {
-        int attempts = 0;
-        while (attempts < 5) {
-            try {
-                WebElement element = getDriver().findElement(By.xpath(locator));
-                element.click();
-                element.clear();
-                element.sendKeys(value);
-                return;
-            } catch (StaleElementReferenceException e) {
-                attempts++;
-                System.out.println("Stale element reference exception. Retrying... Attempt " + attempts);
-            } catch (Exception e) {
-                System.out.println("Error occurred while updating element: " + e.getMessage());
-                break;
-            }
-        }
-        throw new RuntimeException("Failed to update element after 5 attempts.");
-    }
-
-    public List<MemberDetails> addPrimaryMemToMembersListIfAbsent() {
-        List<MemberDetails> members = SharedData.getMembers();
-        MemberDetails primaryMem = SharedData.getPrimaryMember();
-        if (!members.contains(primaryMem)) {
-            members.add(primaryMem);
-        }
-        return members;
-    }
-
-    public Boolean waitUntilUrlIsPresent(String pageUrl) {
+    public Boolean waitForElementToBePresent(WebElement webElement, int waitTime) {
         try {
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(30))
-                    .pollingEvery(Duration.ofMillis(100))
-                    .ignoring(NoSuchElementException.class);
-            wait.until(ExpectedConditions.urlContains(pageUrl));
-        } catch (TimeoutException e) {
-            System.out.println("Url waiting for is not displayed");
+            new WebDriverWait(driver,
+                    Duration.ofSeconds(waitTime)).pollingEvery(Duration.ofMillis(100)).until(ExpectedConditions.visibilityOf(webElement));
+        } catch (TimeoutException | NoSuchElementException | IndexOutOfBoundsException ignore) {
             return false;
         }
         return true;
+    }
+
+
+    public void scrollToElement(WebElement element) {
+        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
     public void switchtoactiveTab() {
@@ -508,16 +393,6 @@ public class BasicActions {
                 newUrl = currentUrl.replaceAll("OtherHealthCoveragePortal/members/[^/]*/otherHealthCoverage/employerSponsored", newUrl);
                 getDriver().navigate().to(newUrl);
                 break;
-            case "Tax Return portal Error Exch":
-                newUrl = "TaxReturnPortal/error";
-                newUrl = currentUrl.replaceAll("TaxReturnPortal/members/" + getMemberId("Primary") + "/taxStatus", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
-            case "Tax Return portal Unauthorized Exch":
-                newUrl = "TaxReturnPortal/unauthorized";
-                newUrl = currentUrl.replaceAll("TaxReturnPortal/members/" + getMemberId("Primary") + "/taxStatus", newUrl);
-                getDriver().navigate().to(newUrl);
-                break;
             case "Employment Income Unauthorized CoCo":
                 newUrl = "income-portal/unauthorized";
                 newUrl = currentUrl.replaceAll("income-portal/member/[^/]*/employmentInfo(/summary)?[^/]*", newUrl);
@@ -548,20 +423,6 @@ public class BasicActions {
         return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 
-    public String getNoticesDownloadPath() {
-        String timestamp = new SimpleDateFormat("MMddyyyy-HHmmss").format(new Date());
-        String noticesFolderPath = "target/notices-downloads/download-" + timestamp;
-        File reportFolder = new File(noticesFolderPath);
-        if (!reportFolder.exists()) {
-            boolean folderCreated = reportFolder.mkdirs();
-            if (!folderCreated) {
-                System.out.println("Failed to create the report folder.");
-            }
-        }
-        SharedData.setLocalPathToDownloadFile(noticesFolderPath);
-        return noticesFolderPath;
-    }
-
     public static String getUniquePW() {
         return RandomStringUtils.random(2, "@&%@@") + RandomStringUtils.randomAlphanumeric(8) + RandomStringUtils.random(1, "QWERTYUIOPASD") + RandomStringUtils.randomNumeric(2);
     }
@@ -571,7 +432,6 @@ public class BasicActions {
             new WebDriverWait(driver, Duration.ofSeconds(waitTime)).until((ExpectedCondition<Boolean>) wd ->
                     ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         } catch (TimeoutException ignore) {
-            Log.info("Document ready state not complete");
             Assert.fail("Document ready state not complete");
             return false;
         }
@@ -587,7 +447,7 @@ public class BasicActions {
             ((JavascriptExecutor) driver).executeAsyncScript(
                     "getAllAngularTestabilities()[0].whenStable(arguments[arguments.length - 1], " + (waitTime * 1000) + ")");
         } catch (TimeoutException ignore) {
-            Log.info("Angular ready state not complete");
+
             Assert.fail("Angular ready state not complete");
             return false;
         }
@@ -832,10 +692,6 @@ public class BasicActions {
                 case "Last Day Of Current Year":
                     date = getLastDayOfCurrYr();
                     break;
-                case "getFromSharedData":
-                    String dob = SharedData.getCalculatedDob().get(SharedData.getBirthLceIndividual());
-                    date = changeDateFormat(dob, "MM/dd/yyyy", "yyyy-MM-dd");
-                    break;
                 case "First Of Next Month":
                     date = firstDateOfNextMonth();
                     break;
@@ -862,10 +718,6 @@ public class BasicActions {
                     break;
                 case "First Day Of Next Year":
                     date = getFirstOfJanNextYr();
-                    break;
-                case "First Of Next Month after PolicyStartDate":
-                    String policyStartDate = SharedData.getExpectedCalculatedDates_medicalPlan().getPolicyStartDate();
-                    date = firstDateOfNextMonthAfterSpecificDate(policyStartDate);
                     break;
                 case "Last Day Of Current Month":
                     date = lastDateOfCurrentMonth();
@@ -895,267 +747,21 @@ public class BasicActions {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         return endOfMonth.format(formatter);
     }
-
-    public void getDob(String namePrefix, String dob) {
-        LocalDate currentDate = LocalDate.now();
-        LocalDate dobCalculator = currentDate;
-        switch (dob) {
-            case "current date minus 5days":
-                dobCalculator = currentDate.minusDays(5);
-                break;
-            case "current date":
-                dobCalculator = currentDate;
-                break;
-            case "first day of current month":
-                dobCalculator = currentDate.withDayOfMonth(1);
-                break;
-            default:
-                Assert.fail("Did not find the case entered");
-        }
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        String actualdob = dateFormat.format(dobCalculator);
-        Map<String, String> nameAndDob = new HashMap<>();
-        SharedData.setBirthLceIndividual(namePrefix);
-        nameAndDob.put(namePrefix, actualdob);
-        SharedData.setCalculatedDob(nameAndDob);
-    }
-
-    public String getFullNameWithPrefix(String memPrefix) {
-        List<MemberDetails> allMem = getAllMem();
-        return allMem.stream().map(MemberDetails::getFullName).filter(fullName -> fullName.contains(memPrefix)).findFirst().orElse(null);
-    }
-
-    public String getCompleteFullNameWithPrefix(String memPrefix) {
-        List<MemberDetails> allMem = getAllMem();
-        return allMem.stream().map(MemberDetails::getCompleteFullName).filter(completeFullName -> completeFullName.contains(memPrefix)).findFirst().orElse(null);
-    }
-    public List<MemberDetails> getAllSubscribers(){
-        // Medical Subscribers
-        List<MemberDetails> allMembers = getAllMem();
-        List<MemberDetails> allSubscribers = new ArrayList<>();
-        for(MemberDetails member: allMembers){
-            if(member.getIsSubscriber().equals("Y")){
-                allSubscribers.add(member);
-            }
-        }
-        return allSubscribers;
-    }
-
-    public List<MemberDetails> getAllDenSubscribers(){
-        List<MemberDetails> allMembers = getAllMem();
-        List<MemberDetails> allSubscribers = new ArrayList<>();
-        for(MemberDetails member: allMembers){
-            if(member.getIsDentalSubscriber().equals("Y")){
-                allSubscribers.add(member);
-            }
-        }
-        return allSubscribers;
-    }
-
-    public List<MemberDetails> getAllDependents(){
-        List<MemberDetails> allMembers = getAllMem();
-        List<MemberDetails> allDependents = new ArrayList<>();
-        for(MemberDetails member: allMembers){
-            if(member.getIsSubscriber().equals("N")){
-                allDependents.add(member);
-            }
-        }
-        return allDependents;
-    }
-
     public String getMemberIDFromURL() {
         String[] parts = getCurrentUrl().split("/");
         return parts[parts.length - 1];
     }
 
 
-    public String getMemFirstNames(String memPrefix){
-        List<MemberDetails> allMem = getAllMem();
-        return allMem.stream().map(MemberDetails::getFirstName).filter(firstName -> firstName.contains(memPrefix)).findFirst().orElse(null);
-    }
-
-    public MemberDetails getMember(String memPrefix){
-        List<MemberDetails> allMem = getAllMem();
-        return allMem.stream().filter(mem -> mem.getFirstName().contains(memPrefix)).findFirst().orElse(null);
-    }
-
-    public String getMemFirstLastNames(String memPrefix){
-        List<MemberDetails> allMem = getAllMem();
-        return allMem.stream().filter(member -> member.getFirstName().contains(memPrefix)).map(member -> member.getFirstName() + " " + member.getLastName()).findFirst().orElse(null);
-    }
-
-    public List<MemberDetails> getAllMem(){
-        MemberDetails primaryMem = SharedData.getPrimaryMember();
-        List<MemberDetails> dependents = SharedData.getMembers();
-        List<MemberDetails> allMembers = new ArrayList<>();
-        if (dependents != null) {
-            for (MemberDetails dependent : dependents) {
-                allMembers.add(dependent);
-            }
-        }
-        allMembers.add(primaryMem);
-        return allMembers;
-    }
-
-    public List<String> getAllMemNames() {
-        // returns first and last name
-        List<String> firstAndLastName = new ArrayList<>();
-        List<MemberDetails> allMembers = getAllMem();
-        for (MemberDetails mem : allMembers) {
-            firstAndLastName.add(mem.getSignature());
-        }
-        return firstAndLastName;
-    }
-
-    public List<String> getAllMemFirstNames() {
-        List<String> firstNames = new ArrayList<>();
-        List<MemberDetails> allMembers = getAllMem();
-        for (MemberDetails mem : allMembers) {
-            firstNames.add(mem.getFirstName());
-        }
-        return firstNames;
-    }
-
-    public List<String> getAllMemCompleteNames() {
-        // returns first, middle, last name
-        List<String> firstAndLastName = new ArrayList<>();
-        List<MemberDetails> allMembers = getAllMem();
-        for (MemberDetails mem : allMembers) {
-            firstAndLastName.add(mem.getCompleteFullName());
-        }
-        return firstAndLastName;
-    }
-
-    public String getDobOfMember(String namePrefix){
-        String dob = null;
-        List<MemberDetails> allMembers = getAllMem();
-        for(MemberDetails mem: allMembers){
-            if(mem.getFirstName().contains(namePrefix)){
-              dob = mem.getDob();
-              break;
-            }
-        }
-        return dob;
-    }
-
-    public String getMemberId(String memPrefix){
-        String memId = "";
-            List<MemberDetails> members = getAllMem();
-            for (MemberDetails mem : members) {
-                if (mem.getFirstName().contains(memPrefix)) {
-                    memId = mem.getMemberId();
-                    break;
-                }
-            }
-        return memId;
-    }
 
     public static String getUniqueString(int length) {
         return RandomStringUtils.random(length, "abcdefghijklmnopqrstuvwxyz");
     }
 
-    public List<MemberDetails> getAllMedicalEligibleMemInfo(){
-        List<MemberDetails> allMembers = getAllMem();
-        List<MemberDetails> allEligibleMembers = new ArrayList<>();
-        for (MemberDetails memInfo : allMembers) {
-            if (memInfo.getHasMedicalPlan()) {
-                allEligibleMembers.add(memInfo);
-            }
-        }
-        return allEligibleMembers;
-    }
 
-    public String getTotalMemInMedGrp(String grpInd){
-        List<MemberDetails> allMedicalEligMem = getAllMedicalEligibleMemInfo();
-        int totalMemInGrp = 0;
-        for(MemberDetails member: allMedicalEligMem){
-            if(member.getMedGroupInd().equals(grpInd)){
-                totalMemInGrp++;
-            }
-        }
-        return String.valueOf(totalMemInGrp);
-    }
 
-    public String getTotalMemInDenGrp(String grpInd){
-        List<MemberDetails> allDentalEligMem = getAllDentalEligibleMemInfo();
-        int totalMemInGrp = 0;
-        for(MemberDetails member: allDentalEligMem){
-            if(member.getDenGroupInd().equals(grpInd)){
-                totalMemInGrp++;
-            }
-        }
-        return String.valueOf(totalMemInGrp);
-    }
 
-    public List<MemberDetails> getAllDentalEligibleMemInfo(){
-        List<MemberDetails> allMembers = getAllMem();
-        List<MemberDetails> allEligibleMembers = new ArrayList<>();
-        for (MemberDetails memInfo : allMembers) {
-            if (memInfo.getHasDentalPlan()) {
-                allEligibleMembers.add(memInfo);
-            }
-        }
-        return allEligibleMembers;
-    }
 
-    public String getTotalMedEnrollees(String firstName){
-        List<MemberDetails> allMembers = getAllMedicalEligibleMemInfo();
-        String totalMemInGrp = "";
-        for(MemberDetails member: allMembers){
-            if(member.getFirstName().equals(firstName)){
-                totalMemInGrp = getTotalMemInMedGrp(member.getMedGroupInd());
-                break;
-            }
-        }
-        return totalMemInGrp;
-    }
-
-    public String getTotalDentalEnrollees(String firstName){
-        List<MemberDetails> allMembers = getAllDentalEligibleMemInfo();
-        String totalMemInGrp = "";
-        for(MemberDetails member: allMembers){
-            if(member.getFirstName().equals(firstName)){
-                totalMemInGrp = getTotalMemInDenGrp(member.getDenGroupInd());
-                break;
-            }
-        }
-        return totalMemInGrp;
-    }
-
-    public void setRelationToSubscriber(List<String> relationToSubscriber){
-        for(String relation : relationToSubscriber){
-            String[] relationDetails = relation.split(":");
-            String nameOfMem = relationDetails[0].trim();
-            String relationship = relationDetails[1].trim();
-            List<MemberDetails> allMemList = getAllMem();
-            allMemList.stream().filter(mem -> mem.getFirstName().contains(nameOfMem)).findFirst().ifPresent(mem -> mem.setRelation_to_subscriber(relationship));
-        }
-    }
-
-    public Map<String, List<Ob834DetailsEntity>> getFileBasedMedOb834DbEntities(){
-        List<Ob834DetailsEntity> allEntities = SharedData.getOb834DetailsMedEntities();
-        Map<String, List<Ob834DetailsEntity>> medEntitiesWithFilename = allEntities.stream().collect(Collectors.groupingBy(Ob834DetailsEntity::getFilename));
-        return medEntitiesWithFilename;
-    }
-
-    public String getSubscriber(String name, String type){
-        String subscriberName = "";
-                List<MemberDetails> allDependents = getAllDependents();
-                for(MemberDetails mem: allDependents){
-                    if(mem.getFirstName().equals(name)){
-                        switch(type){
-                            case "medical":
-                                subscriberName = mem.getMedSubscriberName();
-                                break;
-                            case "dental":
-                                subscriberName = mem.getDenSubscriberName();
-                                break;
-                            default: Assert.fail("Invalid argument passed!!!");
-                        }
-                    }
-                }
-        return subscriberName;
-    }
 
     public boolean hardRefreshUntilVisible(WebElement element, int timeout, int pollInterval) {
                 FluentWait<WebDriver> wait = new FluentWait<>(driver)
@@ -1217,14 +823,14 @@ public class BasicActions {
         return Period.between(LocalDate.parse(dob, DateTimeFormatter.ofPattern("MM/dd/yyyy")), LocalDate.now()).getYears();
     }
 
-    public void setMinor() {
-        List<MemberDetails> allMembers = getAllMem();
-        for (MemberDetails mem : allMembers) {
-            if (getAge(mem.getDob()) < 18) {
-                mem.setIsMinor(true);
-            }
-        }
-    }
+//    public void setMinor() {
+//        List<MemberDetails> allMembers = getAllMem();
+//        for (MemberDetails mem : allMembers) {
+//            if (getAge(mem.getDob()) < 18) {
+//                mem.setIsMinor(true);
+//            }
+//        }
+//    }
 
     public String formatPhNum(String number) {
         // inputFormat - 1234567890 outputFormat - 123-456-7890
@@ -1293,10 +899,6 @@ public class BasicActions {
         return phoneNumber;
     }
 
-    public void setMemberIdFromUrl(){
-        String memberId = getMemberIDFromURL();
-        SharedData.getPrimaryMember().setMemberId(memberId);
-    }
 
     public String firstDateOfTheMonthAfterNext() {
         LocalDate today = LocalDate.now();
@@ -1321,18 +923,7 @@ public class BasicActions {
         return RandomStringUtils.random(length, "123456789");
     }
 
-    public void switchToPageAndValidate(String page, String pageUrl, int timeout) {
-        for (String handle : driver.getWindowHandles()) {
-            driver.switchTo().window(handle);
 
-            String currentUrl = driver.getCurrentUrl();
-            if (driver.getTitle().equals(page) || currentUrl.contains(pageUrl)) {
-                Assert.assertTrue(getUrlWithWait(pageUrl, timeout).contains(pageUrl),
-                        "Expected page: " + pageUrl + " did not load.");
-                break;
-            }
-        }
-    }
 
     public boolean isAscendingOrder(String language, List<String> list) {
         List<String> sortedList = new ArrayList<>(list);
@@ -1350,37 +941,6 @@ public class BasicActions {
 
     private String lastDownloadedFileName = null; // Track last file to avoid duplicates
 
-    public String waitForDownloadToComplete(String localPath, int timeoutInSeconds) {
-        File dir = new File(localPath);
-        long startTime = System.currentTimeMillis();
-        while (System.currentTimeMillis() - startTime < timeoutInSeconds * 1000) {
-            File latestFile = getLatestFile(dir);
-            if (latestFile != null && isValidFile(latestFile) && isFileDownloadComplete(latestFile)) {
-                if (lastDownloadedFileName != null && latestFile.getName().equals(lastDownloadedFileName)) {
-                    System.out.println("Skipping duplicate file: " + latestFile.getName());
-                } else {
-                    lastDownloadedFileName = latestFile.getName(); // Update the last seen file
-                    SharedData.setNoticeFileName(latestFile.getName());
-                    String filePath = SharedData.getLocalPathToDownloadFile();
-                    String fileName = SharedData.getNoticeFileName();
-                    if (filePath == null || fileName == null) {
-                        System.out.println("ERROR: File path or file name is null!");
-                        return null;
-                    }
-                    String pathAndName = filePath + "//" + fileName;
-                    System.out.println("New Downloaded File: " + pathAndName);
-                    return latestFile.getName();
-                }
-            }
-            try {
-                TimeUnit.SECONDS.sleep(1); // Wait 1 sec before checking again
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                throw new RuntimeException(e);
-            }
-        }
-        return null; // Timeout occurred
-    }
 
     private static File getLatestFile(File dir) {
         File[] files = dir.listFiles();
