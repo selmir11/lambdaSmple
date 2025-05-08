@@ -1,5 +1,5 @@
 Feature:  OPS: CoCo: MP: Change Added Member Start Date
-  @SLCR-924 #WIP
+  @SLCR-924
   Scenario:  OPS: CoCo: MP: Change Added Member Start Date[CCRT-341]
     Given I open the login page on the "admin" portal
     And I refresh the page
