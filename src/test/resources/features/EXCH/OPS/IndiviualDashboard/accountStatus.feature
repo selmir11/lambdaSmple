@@ -1,7 +1,7 @@
 @OPS @Exch @IndiviualDashboard
 Feature: OPS: IndDash: Account Statuses
   @SLER-1239
-  Scenario:IndDash: Account Statuses
+  Scenario:SLER-1239:IndDash: Account Statuses
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

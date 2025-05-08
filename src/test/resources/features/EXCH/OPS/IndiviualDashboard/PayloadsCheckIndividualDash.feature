@@ -1,7 +1,7 @@
 @OPS @Exch @IndiviualDashboard
 Feature: Admin Portal verify data Payloads
   @SLER-695
-  Scenario: Verify payloads data on Individual dashboard
+  Scenario:SLER-695:Verify payloads data on Individual dashboard
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"

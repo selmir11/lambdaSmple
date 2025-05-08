@@ -1,4 +1,4 @@
-@OPS @Exch @manageplans
+@OPS @Exchmanageplans
 Feature: Manage Plans Individual Policy Dropdown Arrow [RT-2195]
   Scenario:SLER-2456 Individual Policy Dropdown Arrow
     Given I open the login page on the "admin" portal

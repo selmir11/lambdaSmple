@@ -1,7 +1,7 @@
-@OPS @manageplans
+@OPS @ManagePlansCoco @COCO
   Feature: Manage Plans: Button Go Back navigation
     @SLCR-724
-  Scenario:Manage plan 2024 Go Back navigation
+  Scenario:SLCR-724 : Manage plan 2024 Go Back navigation
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -45,7 +45,7 @@
     And I validate I am on the "Individual CoCo" page
     And I logout from Admin Portal
   @SLCR-724
-  Scenario:Manage plan 2025 Go Back navigation
+  Scenario:SLCR-724 :Manage plan 2025 Go Back navigation
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -81,7 +81,7 @@
     And I validate I am on the "Individual CoCo" page
     And I logout from Admin Portal
   @SLCR-724
-  Scenario:Manage plan 2023 Go Back navigation from Simple View MP page
+  Scenario:SLCR-724 :Manage plan 2023 Go Back navigation from Simple View MP page
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"

@@ -709,4 +709,8 @@ public class DbDataProvider_Exch {
     public String getTheAssistNetEmailInDB() {
         return postgresHandler.getResultFor("email",exchDbQueries.getAssistNetEmailIn());
     }
+
+    public String[] getCoCoIncomeDataDetails() {
+        return postgresHandler.getResultForFiveColumnValues("amount","period","season_comm_tip_ind","season_comm_tip_samelower_ind","updated_by",exchDbQueries.getCoCoIncomeDataDetails());
+    }
 }

@@ -1,3 +1,5 @@
+@UserDashboard
+@OPS @COCO
 Feature: Verify Plans Container CoCo Ind Dash
   Background:
     Given I open the login page on the "admin" portal
@@ -6,7 +8,7 @@ Feature: Verify Plans Container CoCo Ind Dash
     And I validate I am on the "Admin Portal search" page
 
   @SLCR-922
-  Scenario: OPS: IndDash: Verify Plans Container CoCo Ind Dash[CCRT-141]
+  Scenario:SLCR-922:OPS: IndDash: Verify Plans Container CoCo Ind Dash[CCRT-141]
     And I select "coco" checkbox on Admin Portal Dashboard
     Then I enter an accountId in any Env "8505622800" "4006533799" to search user
     And I click on Search button in AP dashboard page

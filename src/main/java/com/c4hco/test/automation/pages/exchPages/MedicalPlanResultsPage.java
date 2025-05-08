@@ -112,6 +112,9 @@ public class MedicalPlanResultsPage {
     @FindBy(id = "PlanResults-CurrentPlanLabel")
     WebElement greenMedicalBannerText;
 
+    @FindBy(id="PlanResults-CurrentPlanWarningMessage")
+    WebElement planNotAvailableText;
+
 
     public void selectfromProviderList(String Selecting) {
         basicActions.waitForElementToDisappear( spinner,60 );
@@ -192,7 +195,7 @@ public class MedicalPlanResultsPage {
 
     public void clickInsuranceCompanyDropdown() {
         basicActions.waitForElementToDisappear( spinner,160 );
-        basicActions.waitForElementToBePresentWithRetries( insuranceCompanyDropdown,80 );
+        basicActions.waitForElementToBePresentWithRetries( insuranceCompanyDropdown,180 );
         basicActions.scrollToElement( insuranceCompanyDropdown );
         insuranceCompanyDropdown.click();
 
@@ -419,6 +422,32 @@ public class MedicalPlanResultsPage {
     }
 
 
+    public void validatePlanNotAvailableTxt(String language){
+        basicActions.waitForElementToDisappear( spinner, 20 );
+        switch (language) {
+            case "English":
+                validatePlanNotAvailableEnglishTxt();
+                break;
+            case "Spanish":
+                validatePlanNotAvailableSpanishTxt();
+                break;
+            default:
+                throw new IllegalArgumentException( "Invalid option: " + language );
+
+        }
+    }
+    public void validatePlanNotAvailableEnglishTxt(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresentWithRetries( planNotAvailableText,20);
+        softAssert.assertEquals(planNotAvailableText.getText(), "Your current plan is not available, but you can choose a new one from the options below.");
+        softAssert.assertAll();
+    }
+    public void validatePlanNotAvailableSpanishTxt(){
+        basicActions.waitForElementToDisappear( spinner,20 );
+        basicActions.waitForElementToBePresentWithRetries( planNotAvailableText,20);
+        softAssert.assertEquals(planNotAvailableText.getText(), "Su plan actual no est\u00E1 disponible, pero puede elegir uno nuevo de entre las opciones mostradas a continuaci\u00F3n.");
+        softAssert.assertAll();
+    }
 }
 
 

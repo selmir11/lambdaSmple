@@ -22,6 +22,84 @@ Feature: Tests related to the Employment Income page
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
 
+  @SLCR-781
+  Scenario: SLCR-781 As a CoCo user on the Employment Income page, I want to save dynamic data so that I can verify my employment information
+    # Scenario 1
+    And I select "No" employment option
+    And I click continue on the Employment income page
+    Then I validate I am on the "CoCo Additional Income" page
+    And I select Go Back on the Additional Income CoCo page
+    Then I validate I am on the "CoCo Employment Income" page
+    Then I validate the Individual Income Opt Out in DB is "1"
+    # Scenario 5
+    And I select "Yes" employment option
+    And I enter "8244.88" income amount
+    And I select "Annually" income frequency option
+    And I select "No" income seasonal option
+    And I select "Yes" income changes option
+    And I click continue on the Employment income page
+    Then I validate I am on the "CoCo Additional Income" page
+    And I select Go Back on the Additional Income CoCo page
+    Then I validate I am on the "CoCo Employment Income" page
+    Then I validate the Individual Income Opt Out in DB is "0"
+    Then I validate the CoCo Individual Income values in DB
+      |  amount   |   period   | season_comm_tip_ind  |season_comm_tip_samelower_ind|
+      |  8244.88  |  Annually  |          0           |             1               |
+    # Scenario 3
+    And I enter "824.48" income amount
+    And I select "Monthly" income frequency option
+    And I select "Yes" income seasonal option
+    And I select "Yes" income changes option
+    And I click continue on the Employment income page
+    Then I validate I am on the "CoCo Additional Income" page
+    And I select Go Back on the Additional Income CoCo page
+    Then I validate I am on the "CoCo Employment Income" page
+    Then I validate the Individual Income Opt Out in DB is "0"
+    Then I validate the CoCo Individual Income values in DB
+      |  amount   |   period   | season_comm_tip_ind  |season_comm_tip_samelower_ind|
+      |  824.48   |  Monthly   |          1           |             1               |
+    # Scenario 4
+    And I select "No" employment option
+    And I click continue on the Employment income page
+    Then I validate I am on the "CoCo Additional Income" page
+    And I select Go Back on the Additional Income CoCo page
+    Then I validate I am on the "CoCo Employment Income" page
+    Then I validate the Individual Income Opt Out in DB is "1"
+    # Scenario 2
+    And I click on Sign Out in the Header for "Elmo"
+    Then I validate I am on the "Login" page
+    When I click create a new account on login page
+    Then I click create my account from pre-screen page
+    And I enter general mandatory data for "coco" account creation
+    Then I validate I am on the "Login" page
+    And  I enter valid credentials to login
+    Then I click continue signing in on the CAC Screener page
+    Then I validate I am on the "CoCo Welcome" page
+    And I apply for the current year in CoCo
+    And I click Continue on my own button from Manage who helps you page
+    Then I click EditUpdate on Family Overview page for "Primary"
+    Then I enter details on tell us about yourself page and continue with "01161990", "Female", and applying "Yes"
+    And I enter my residential address "1234 Road", "Denver", "CO", "80205", "DENVER"
+    And I select "Yes" for mailing address option
+    And I select "Yes" for live in Colorado option
+    And I click continue on the Add info for yourself page
+    And I select "Prefer not to answer" for race and ethnicity option for "Primary"
+    And I click save and continue on the Race and Ethnicity page
+    Then I validate I am on the "CoCo Employment Income" page
+    And I select "Yes" employment option
+    And I enter "824.48" income amount
+    And I select "Monthly" income frequency option
+    And I select "Yes" income seasonal option
+    And I select "Yes" income changes option
+    And I click continue on the Employment income page
+    Then I validate I am on the "CoCo Additional Income" page
+    And I select Go Back on the Additional Income CoCo page
+    Then I validate I am on the "CoCo Employment Income" page
+    Then I validate the Individual Income Opt Out in DB is "0"
+    Then I validate the CoCo Individual Income values in DB
+      |  amount   |   period   | season_comm_tip_ind  |season_comm_tip_samelower_ind|
+      |  824.48   |  Monthly   |          1           |             1               |
+
   @SLCR-871
   Scenario: SLCR-871 As a CoCo user on the Employment Income details page, I want to be able to save, update and remove my employment income details so that my employment income info is available and accurate
 #    Step 3

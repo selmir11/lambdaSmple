@@ -63,6 +63,7 @@ Feature: Page Validation Database - Race And Ethnicity page
     And I select "Prefer not to answer" for race and ethnicity option for "Primary"
     And I click save and continue on the Race and Ethnicity page
     Then I validate I am on the "CoCo Employment Income" page
+    And I wait for 3000 milliseconds
     And I validate "Prefer_No_Answer" race and "null" other text in the database
     And I click on Sign Out in the Header for "Elmo"
     Then I validate I am on the "Login" page

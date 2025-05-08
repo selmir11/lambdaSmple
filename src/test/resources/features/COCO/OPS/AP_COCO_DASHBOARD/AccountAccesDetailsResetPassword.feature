@@ -1,7 +1,7 @@
-@OPS @COCO
+@OPS @COCO @UserDashboard
 Feature: OPS: IndDash: CoCo Account Access details and Password Reset - CCRT-135
   @SLCR-748
-  Scenario: CoCo Account Access details tab Reset Password
+  Scenario:SLCR-748:CoCo Account Access details tab Reset Password
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Admin Login" page

@@ -1,6 +1,7 @@
+@OPS @COCO @ManagePlansCoco
 Feature: OPS: CoCo: MP: Change Enrollment data and verify in Account Activity and DB
 
-  @SLCR-941 @OPS @ManagePlans
+  @SLCR-941 @OPS @ManagePlansCoco
   Scenario: SLCR-941 OPS: CoCo: MP: Change Enrollment data and verify in Account Activity and DB (CCRT-243)
   Given I open the login page on the "admin" portal
   And I validate I am on the "Login" page

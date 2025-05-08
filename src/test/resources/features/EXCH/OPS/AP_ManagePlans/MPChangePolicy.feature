@@ -1,8 +1,8 @@
-@OPS @Exch @manageplans
+@OPS @Exchmanageplans
   @SLER-1185
 Feature: Manage Plans:Current Dent Container verification (order)
 
-  Scenario:Manage plan 2022
+  Scenario:SLER-1185:Manage plan 2022
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"

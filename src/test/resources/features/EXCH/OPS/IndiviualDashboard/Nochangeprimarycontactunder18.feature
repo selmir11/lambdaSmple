@@ -1,7 +1,7 @@
 @OPS @Exch @IndiviualDashboard
 Feature: OPS: IndDash: No Change Primary Contact under 18
   @SLER-2061
-  Scenario:OPS: IndDash: No Change Primary Contact under 18
+  Scenario:SLER-2061:OPS: IndDash: No Change Primary Contact under 18
     Given I open the login page on the "admin" portal
     And I validate I am on the "Login" page
     When I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"

@@ -2,6 +2,7 @@ package com.c4hco.test.automation.stepDefinitions.cocoSteps;
 
 import com.c4hco.test.automation.pages.cocoPages.EmploymentIncomePage;
 import com.c4hco.test.automation.utils.WebDriverManager;
+import com.c4hco.test.automation.stepDefinitions.databaseSteps.DbSteps;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;

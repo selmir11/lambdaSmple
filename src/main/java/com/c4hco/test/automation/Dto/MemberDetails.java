@@ -96,6 +96,7 @@ public class MemberDetails {
     List<String> taxReturnId;
     String contactPref;
     String applyingforCov;
+    String applyingforCovInd;
     String medicalSesAmt;
     Boolean isProfileChange = false;
     Boolean isResAddChange = false;

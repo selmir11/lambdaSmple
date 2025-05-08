@@ -1,7 +1,7 @@
-@OPS @COCO
+@OPS @COCO @UserDashboard
 Feature: AP Create account - Application Links, Admin Portal user creation
   @SLCR-709
-  Scenario:Admin Portal - Architecture user creates Admin Portal account with already used email to check error message then create unique A P user
+  Scenario:SLCR-709:Admin Portal - Architecture user creates Admin Portal account with already used email to check error message then create unique A P user
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
     Then I login as Admin User any environment "adminPortalAccountManagement_UN_STG" password "adminPortalAccountManagement_PW_STG" and "AdminPortalAccountManagement_UN_QA" password "AdminPortalAccountManagement_PW_QA"
@@ -17,7 +17,7 @@ Feature: AP Create account - Application Links, Admin Portal user creation
     Then I validate the Success message is displayed
     And I logout from Admin Portal
   @SLCR-709
-  Scenario:Admin Portal - Not architecture user have no link for AP Create Account, negative check
+  Scenario:SLCR-709:Admin Portal - Not architecture user have no link for AP Create Account, negative check
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
     Then I open the login page on the "admin" portal
@@ -27,7 +27,7 @@ Feature: AP Create account - Application Links, Admin Portal user creation
     And I logout from Admin Portal
 
   @SLCR-911
-  Scenario:Admin Portal - OPS: CoCo: IndDash: Create account[CCRT-230]
+  Scenario:SLCR-911:Admin Portal - OPS: CoCo: IndDash: Create account[CCRT-230]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Admin Login" page
@@ -43,7 +43,7 @@ Feature: AP Create account - Application Links, Admin Portal user creation
     And I logout from Admin Portal
 
   @SLCR-912
-  Scenario: Verify coco account created and able to access by OBO [CCRT-228]
+  Scenario:SLCR-912:Verify coco account created and able to access by OBO [CCRT-228]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Admin Login" page

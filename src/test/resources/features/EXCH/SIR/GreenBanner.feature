@@ -7,7 +7,6 @@ Feature: UI Tests related to green banner check after initial enrollment
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
 
-
   @SLER-2396
   Scenario: SLER-2396 - one group green banner check - verify English green banner for individual who enrolled twice - includes Go Back navigation - 10k
     When I click create a new account on login page
@@ -493,6 +492,7 @@ Feature: UI Tests related to green banner check after initial enrollment
     And I click continue on medical plan results page
 
     Then I validate I am on the "Dental Plan Results" page
+    And I wait for 2000 milliseconds
     And I click continue on dental plan results page
 
     Then I validate I am on the "Plan Summary" page

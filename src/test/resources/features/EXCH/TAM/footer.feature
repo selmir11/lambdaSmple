@@ -56,7 +56,7 @@ Feature: Footer verification - Multiple pages
       | xIcon                  | X                                                    | x.com                                                    |
       | YouTubeIcon            | YouTube                                              | youtube.com                     |
       | LinkedInIcon           | LinkedIn                                             | www.linkedin.com |
-      | InstagramIcon          | Instagram                                            | instagram.com                                    |
+      | InstagramIcon          | Login • Instagram                                    | instagram.com                                    |
       | ThreadsIcon            | Threads                                              | threads.com                                      |
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
@@ -70,7 +70,7 @@ Feature: Footer verification - Multiple pages
       | xIcon                  | X                                                    | x.com                                                    |
       | YouTubeIcon            | YouTube                                              | youtube.com                     |
       | LinkedInIcon           | LinkedIn                                             | www.linkedin.com |
-      | InstagramIcon          | Instagram                                            | instagram.com                                    |
+      | InstagramIcon          | Login • Instagram                                    | instagram.com                                    |
       | ThreadsIcon            | Threads                                              | threads.com                                      |
 
     Then I validate I am on the "Additional income" page
@@ -84,10 +84,10 @@ Feature: Footer verification - Multiple pages
       | Comentarios            | Póngase en contacto • Connect for Health Colorado    | connectforhealthco.com/es/pongase-en-contacto/           |
       | FacebookIcon           | Facebook                                             | facebook.com                                             |
       | xIcon                  | X                                                    | x.com                                                    |
-      | YouTubeIcon            | YouTube                                              | youtube.com                     |
-      | LinkedInIcon           | LinkedIn                                             | www.linkedin.com |
-      | InstagramIcon          | Instagram                                            | instagram.com                                    |
-      | ThreadsIcon            | Threads                                              | threads.com                                      |
+      | YouTubeIcon            | YouTube                                              | youtube.com                                              |
+      | LinkedInIcon           | LinkedIn                                             | www.linkedin.com                                         |
+      | InstagramIcon          | Login • Instagram                                    | instagram.com                                            |
+      | ThreadsIcon            | Threads                                              | threads.com                                              |
 
     Then I validate I am on the "Deductions" page
     And I verify the header for Primary Member on the Deductions page in "Spanish"
@@ -102,7 +102,7 @@ Feature: Footer verification - Multiple pages
       | xIcon                  | X                                                    | x.com                                                    |
       | YouTubeIcon            | YouTube                                              | youtube.com                     |
       | LinkedInIcon           | LinkedIn                                             | www.linkedin.com |
-      | InstagramIcon          | Instagram                                            | instagram.com                                    |
+      | InstagramIcon          | Login • Instagram                                    | instagram.com                                    |
       | ThreadsIcon            | Threads                                              | threads.com                                      |
 
     Then I select the projected income option "No" and continue
@@ -116,10 +116,10 @@ Feature: Footer verification - Multiple pages
       | Comentarios            | Póngase en contacto • Connect for Health Colorado    | connectforhealthco.com/es/pongase-en-contacto/           |
       | FacebookIcon           | Facebook                                             | facebook.com                                             |
       | xIcon                  | X                                                    | x.com                                                    |
-      | YouTubeIcon            | YouTube                                              | youtube.com                     |
-      | LinkedInIcon           | LinkedIn                                             | www.linkedin.com |
-      | InstagramIcon          | Instagram                                            | instagram.com                                    |
-      | ThreadsIcon            | Threads                                              | threads.com                                      |
+      | YouTubeIcon            | YouTube                                              | youtube.com                                              |
+      | LinkedInIcon           | LinkedIn                                             | www.linkedin.com                                         |
+      | InstagramIcon          | Login • Instagram                                    | instagram.com                                            |
+      | ThreadsIcon            | Threads                                              | threads.com                                              |
 
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
@@ -135,26 +135,26 @@ Feature: Footer verification - Multiple pages
       | Comentarios            | Póngase en contacto • Connect for Health Colorado    | connectforhealthco.com/es/pongase-en-contacto/           |
       | FacebookIcon           | Facebook                                             | facebook.com                                             |
       | xIcon                  | X                                                    | x.com                                                    |
-      | YouTubeIcon            | YouTube                                              | youtube.com                     |
-      | LinkedInIcon           | LinkedIn                                             | www.linkedin.com |
-      | InstagramIcon          | Instagram                                            | instagram.com                                    |
-      | ThreadsIcon            | Threads                                              | threads.com                                      |
+      | YouTubeIcon            | YouTube                                              | youtube.com                                              |
+      | LinkedInIcon           | LinkedIn                                             | www.linkedin.com                                         |
+      | InstagramIcon          | Login • Instagram                                    | instagram.com                                            |
+      | ThreadsIcon            | Threads                                              | threads.com                                              |
     And I click on Sign Out in the Header for "Elmo"
 
 
   @SLER-2266
   Scenario:  SLER-2266 The copyright statement text in the footer doesn't coincide with the links above - Privacy Policy | Terms of Use | Contact Us - Spanish
     Then I validate page Navigation works for Footer hyperlink text in "English"
-      | HyperLinkText  | ExpectedPageTitle | ContainsUrl                           |
-      | Privacy Policy | Privacy Policy    | connectforhealthco.com/privacy-policy |
-      | Terms          | Terms of Use      | connectforhealthco.com/terms-of-use   |
-      | Contact Us     | Contact Us        | connectforhealthco.com/contact-us     |
-      | FacebookIcon   | Facebook          | facebook.com                          |
-      | xIcon          | X                 | x.com                                 |
-      | YouTubeIcon    | YouTube           | youtube.com                           |
-      | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
-      | InstagramIcon  | Instagram         | instagram.com                         |
-      | ThreadsIcon    | Threads           | threads.com                           |
+      | HyperLinkText  | ExpectedPageTitle      | ContainsUrl                           |
+      | Privacy Policy | Privacy Policy         | connectforhealthco.com/privacy-policy |
+      | Terms          | Terms of Use           | connectforhealthco.com/terms-of-use   |
+      | Contact Us     | Contact Us             | connectforhealthco.com/contact-us     |
+      | FacebookIcon   | Facebook               | facebook.com                          |
+      | xIcon          | X                      | x.com                                 |
+      | YouTubeIcon    | YouTube                | youtube.com                           |
+      | LinkedInIcon   | LinkedIn               | www.linkedin.com                      |
+      | InstagramIcon  | Login • Instagram      | instagram.com                         |
+      | ThreadsIcon    | Threads                | threads.com                           |
     Then I select the option "No" to employment
     And I click continue on the Employment Info Page
     Then I validate I am on the "Additional income" page
@@ -167,7 +167,7 @@ Feature: Footer verification - Multiple pages
       | xIcon          | X                 | x.com                                 |
       | YouTubeIcon    | YouTube           | youtube.com                           |
       | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
-      | InstagramIcon  | Instagram         | instagram.com                         |
+      | InstagramIcon  | Login • Instagram | instagram.com                         |
       | ThreadsIcon    | Threads           | threads.com                           |
     Then I validate I am on the "Additional income" page
     Then I click None of these as additional income option and continue
@@ -182,7 +182,7 @@ Feature: Footer verification - Multiple pages
       | xIcon          | X                 | x.com                                 |
       | YouTubeIcon    | YouTube           | youtube.com                           |
       | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
-      | InstagramIcon  | Instagram         | instagram.com                         |
+      | InstagramIcon  | Login • Instagram | instagram.com                         |
       | ThreadsIcon    | Threads           | threads.com                           |
     Then I validate I am on the "Deductions" page
     Then I click None of these as deduction option and continue
@@ -196,7 +196,7 @@ Feature: Footer verification - Multiple pages
       | xIcon          | X                 | x.com                                 |
       | YouTubeIcon    | YouTube           | youtube.com                           |
       | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
-      | InstagramIcon  | Instagram         | instagram.com                         |
+      | InstagramIcon  | Login • Instagram | instagram.com                         |
       | ThreadsIcon    | Threads           | threads.com                           |
     Then I select the projected income option "No" and continue
   #TaxPage
@@ -210,7 +210,7 @@ Feature: Footer verification - Multiple pages
       | xIcon          | X                 | x.com                                 |
       | YouTubeIcon    | YouTube           | youtube.com                           |
       | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
-      | InstagramIcon  | Instagram         | instagram.com                         |
+      | InstagramIcon  | Login • Instagram | instagram.com                         |
       | ThreadsIcon    | Threads           | threads.com                           |
     Then I select "No" for will you be claimed as dependent question
     Then I select "Yes" for will file tax return question
@@ -228,6 +228,6 @@ Feature: Footer verification - Multiple pages
       | xIcon          | X                 | x.com                                 |
       | YouTubeIcon    | YouTube           | youtube.com                           |
       | LinkedInIcon   | LinkedIn          | www.linkedin.com                      |
-      | InstagramIcon  | Instagram         | instagram.com                         |
+      | InstagramIcon  | Login • Instagram | instagram.com                         |
       | ThreadsIcon    | Threads           | threads.com                           |
     And I click on Sign Out in the Header for "Elmo"

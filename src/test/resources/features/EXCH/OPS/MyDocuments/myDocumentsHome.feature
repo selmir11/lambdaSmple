@@ -1,8 +1,8 @@
-@OPS @Exch @MyDocs
+@OPS @Exch @ExchMyDocs
 Feature: My Document Home Page validations
 
   @SLER-2090
-  Scenario: OPS MyDocs Navigating to file explorer[RT-1819]
+  Scenario:SLER-2090: OPS MyDocs Navigating to file explorer[RT-1819]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -24,7 +24,7 @@ Feature: My Document Home Page validations
     Then I see the username that I am currently logged into
 
   @SLER-2109
-  Scenario: OPS MyDocs Select Type and checks errors[RT-1938]
+  Scenario:SLER-2109:OPS MyDocs Select Type and checks errors[RT-1938]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -53,7 +53,7 @@ Feature: My Document Home Page validations
     Then I validate selection required error message disappear
 
   @SLER-2073
-  Scenario: Verify user can see their Documents and Notices in the Documents and Notices container [RT-1818]
+  Scenario:SLER-2073: Verify user can see their Documents and Notices in the Documents and Notices container [RT-1818]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -103,7 +103,7 @@ Feature: My Document Home Page validations
 
 
   @SLER-2102
-  Scenario:  Verify Text on upload doc modal in My documents from manage client via broker portal [RT-1906]
+  Scenario:SLER-2102: Verify Text on upload doc modal in My documents from manage client via broker portal [RT-1906]
     Given I open the login page on the "broker" portal
     And I validate I am on the "Login" page
     And I login as Broker User any environment "C4PortTesting+PrestonSaunders@outlook.com" password "ALaska12!" and "C4PortTesting+PSaundersQA@outlook.com" password "ALaska12!"
@@ -158,7 +158,7 @@ Feature: My Document Home Page validations
 
 
   @SLER-2129
-  Scenario:  Verify Text on upload doc modal in My documents from manage client via Admin Portal [ RT-1907]]
+  Scenario:SLER-2129:Verify Text on upload doc modal in My documents from manage client via Admin Portal [ RT-1907]]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -206,7 +206,7 @@ Feature: My Document Home Page validations
 
 
   @SLER-2140
-  Scenario: Verify English and Spanish Text for Document and upload page [RT-1975]
+  Scenario:SLER-2140:Verify English and Spanish Text for Document and upload page [RT-1975]
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -239,7 +239,7 @@ Feature: My Document Home Page validations
 
 
   @SLER-2155
-  Scenario:  Verify document category and their types in Ascending orders via Admin Portal [ RT-1987]
+  Scenario:SLER-2155:Verify document category and their types in Ascending orders via Admin Portal [ RT-1987]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -302,7 +302,7 @@ Feature: My Document Home Page validations
     Then  I click on Sign Out in the Header for "Elmo"
 
   @SLER-2188
-  Scenario:  Verify document category and their types in Ascending orders via Admin Portal in Spanish [ RT-2012]
+  Scenario:SLER-2188:Verify document category and their types in Ascending orders via Admin Portal in Spanish [ RT-2012]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -368,8 +368,8 @@ Feature: My Document Home Page validations
     Then  I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-2164 @OPSRegression
-  Scenario: OPS MyDocs Verify All Modal Errors[RT-1984]
+  @SLER-2164
+  Scenario:SLER-2164: OPS MyDocs Verify All Modal Errors[RT-1984]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -414,7 +414,7 @@ Feature: My Document Home Page validations
     Then I validate already selected file text box border is red
 
   @SLER-2208
-  Scenario: My documents Indiviual porter Header , Footer, Title validation in Spanish [RT-1962]
+  Scenario:SLER-2208:My documents Indiviual porter Header , Footer, Title validation in Spanish [RT-1962]
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -491,7 +491,7 @@ Feature: My Document Home Page validations
 
 
   @SLER-2234
-  Scenario: Verify Welcome letter downloaded with proper name format [RT-1996]
+  Scenario:SLER-2234:Verify Welcome letter downloaded with proper name format [RT-1996]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -512,7 +512,7 @@ Feature: My Document Home Page validations
     Then  I click on Sign Out in the Header for "Elmo"
 
   @SLER-2252
-  Scenario: Verify user can upload Document to the MVR for all Document Category [RT-1979]
+  Scenario:SLER-2252:Verify user can upload Document to the MVR for all Document Category [RT-1979]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -596,7 +596,7 @@ Feature: My Document Home Page validations
     Then  I click on Sign Out in the Header for "Elmo"
 
     @SLER-2259
-    Scenario: OPS: Verify Document Success Message for Another and Upload [RT-1991]
+    Scenario:SLER-2259: OPS: Verify Document Success Message for Another and Upload [RT-1991]
       Given I open the login page on the "admin" portal
       And I refresh the page
       And I validate I am on the "Login" page
@@ -675,7 +675,7 @@ Feature: My Document Home Page validations
       Then  I click on Sign Out in the Header for "Elmo"
 
   @SLER-2265
-  Scenario: Verify Document uploaded for Income type and downloaded with proper name format [RT-1989]
+  Scenario:SLER-2265:Verify Document uploaded for Income type and downloaded with proper name format [RT-1989]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -698,7 +698,7 @@ Feature: My Document Home Page validations
     Then  I click on Sign Out in the Header for "Elmo"
 
  @SLER-2268
-  Scenario: Verify upload document modal Errors[RT-1999]
+  Scenario:SLER-2268:Verify upload document modal Errors[RT-1999]
     Given I open the login page on the "login" portal
     And I validate I am on the "Login" page
     When I click create a new account on login page
@@ -740,8 +740,8 @@ Feature: My Document Home Page validations
     Then I see the username in Exch that I am currently logged into
     Then  I click on Sign Out in the Header for "Elmo"
 
-  @SLER-2277 @OPSRegression
-  Scenario: Verify Document uploaded for Income type and downloaded with proper name format Spanish [RT-2014]
+  @SLER-2277
+  Scenario:SLER-2277:Verify Document uploaded for Income type and downloaded with proper name format Spanish [RT-2014]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -765,7 +765,7 @@ Feature: My Document Home Page validations
     Then  I click on Sign Out in the Header for "Elmo"
 
   @SLER-2282
-  Scenario:  OPS: MyDocs: verify Document Type blank when new document category selected [RT-2003]
+  Scenario: SLER-2282:OPS: MyDocs: verify Document Type blank when new document category selected [RT-2003]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -849,7 +849,7 @@ Feature: My Document Home Page validations
 
 
   @SLER-2290
-  Scenario: Verify Help drawer text on the document page [RT-2020]
+  Scenario:SLER-2290:Verify Help drawer text on the document page [RT-2020]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -912,7 +912,7 @@ Feature: My Document Home Page validations
     Then  I click on Sign Out in the Header for "Elmo"
 
   @SLER-2297 @OPSRegression
-  Scenario: Verify due date color on document page for MVR Types in Spanish [RT-2017]
+  Scenario:SLER-2297:Verify due date color on document page for MVR Types in Spanish [RT-2017]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -967,8 +967,8 @@ Feature: My Document Home Page validations
     Then  I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-2322 @OPSRegression
-  Scenario: Verify due date color on document page for MVR Types in English [RT-1813]
+  @SLER-2322
+  Scenario:SLER-2322: Verify due date color on document page for MVR Types in English [RT-1813]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -1022,8 +1022,8 @@ Feature: My Document Home Page validations
     Then  I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-2298 @OPSRegression
-  Scenario: Verify Modal pop up error in Spanish  [RT-2019]
+  @SLER-2298
+  Scenario:SLER-2298:Verify Modal pop up error in Spanish  [RT-2019]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -1088,8 +1088,8 @@ Feature: My Document Home Page validations
     Then  I click on Sign Out in the Header for "Elmo"
 
 
-  @SLER-2324 @OPSRegression
-  Scenario: OPS: Verify Document Success Message for Another and Upload in Spanish [RT-2016]
+  @SLER-2324
+  Scenario:SLER-2324:OPS: Verify Document Success Message for Another and Upload in Spanish [RT-2016]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -1171,8 +1171,8 @@ Feature: My Document Home Page validations
 
 
 
-  @SLER-2332 @OPSRegression
-  Scenario: Verify user can see their Documents and Notices in the Documents and Notices container [RT-2013]
+  @SLER-2332
+  Scenario:SLER-2332:Verify user can see their Documents and Notices in the Documents and Notices container [RT-2013]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -1217,8 +1217,8 @@ Feature: My Document Home Page validations
     And I change the language from header to "English"
     Then  I click on Sign Out in the Header for "Elmo"
 
-  @SLER-2340 @OPSRegression
-  Scenario: Verify Help drawer text on the document page in Spanish [RT-2021]
+  @SLER-2340
+  Scenario:SLER-2340:Verify Help drawer text on the document page in Spanish [RT-2021]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -1283,7 +1283,7 @@ Feature: My Document Home Page validations
 
 
   @SLER-2399
-  Scenario:  OPS: MyDocs: Long file name, spinner, DB[RT-1985]
+  Scenario:SLER-2399: OPS: MyDocs: Long file name, spinner, DB[RT-1985]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

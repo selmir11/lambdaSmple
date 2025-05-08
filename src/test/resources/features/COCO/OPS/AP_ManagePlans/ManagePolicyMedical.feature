@@ -1,7 +1,7 @@
-@OPS @SLCR-775 @managePlan
+@OPS @SLCR-775 @ManagePlansCoco
 Feature: Manage Plans:Current Medical Container - change policy [CCRT-232]
 
-  Scenario:Manage plan current year 2025
+  Scenario:SLCR-775:Manage plan current year 2025
     Given I open the login page on the "admin" portal
     And I validate I am on the "Admin Login" page
     Then I login as Admin User any environment "adminPortalADUser_UN_STG" password "adminPortalADUser_PW_STG" and "adminPortalADUser_UN_QA" password "adminPortalADUser_PW_QA"
@@ -28,7 +28,7 @@ Feature: Manage Plans:Current Medical Container - change policy [CCRT-232]
     And I validate the second medical policy for the year "2025" DB
 
 @SLCR-904
-Scenario:COCO Editable Fields on manage plan [CCRT-239]
+Scenario:SLCR-904:COCO Editable Fields on manage plan [CCRT-239]
   Given I open the login page on the "admin" portal
   And I refresh the page
   And I validate I am on the "Login" page
@@ -76,7 +76,7 @@ Scenario:COCO Editable Fields on manage plan [CCRT-239]
   Then I logout from Admin Portal
 
   @SLCR-905
-  Scenario:COCO Manage Plan - verify label on Informational Component container for med [CCRT-237]
+  Scenario:SLCR-905: COCO Manage Plan - verify label on Informational Component container for med [CCRT-237]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -110,7 +110,7 @@ Scenario:COCO Editable Fields on manage plan [CCRT-239]
     Then I logout from Admin Portal
 
   @SLCR-906
-  Scenario:COCO Manage Plan - verify label on Informational Component container for med only [CCRT-235]
+  Scenario:SLCR-906: COCO Manage Plan - verify label on Informational Component container for med only [CCRT-235]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -143,7 +143,7 @@ Scenario:COCO Editable Fields on manage plan [CCRT-239]
     Then I logout from Admin Portal
 
   @SLCR-907
-  Scenario:COCO Manage Plan - verify label on Informational Component container for med [CCRT-236]
+  Scenario:SLCR-907: COCO Manage Plan - verify label on Informational Component container for med [CCRT-236]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -198,7 +198,7 @@ Scenario:COCO Editable Fields on manage plan [CCRT-239]
     Then I logout from Admin Portal
 
   @SLCR-916
-  Scenario:COCO Manage Plan - Verify Previous Med Container [CCRT-255]
+  Scenario:SLCR-916: COCO Manage Plan - Verify Previous Med Container [CCRT-255]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page
@@ -250,8 +250,8 @@ Scenario:COCO Editable Fields on manage plan [CCRT-239]
     Then I close current tab and switch back to previous tab
     Then I logout from Admin Portal
 
-  @SLCR-926 @OPSRegression
-  Scenario: Verify Error message on manage plan field update for medical [CCRT-342]
+  @SLCR-926
+  Scenario:SLCR-926: Verify Error message on manage plan field update for medical [CCRT-342]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

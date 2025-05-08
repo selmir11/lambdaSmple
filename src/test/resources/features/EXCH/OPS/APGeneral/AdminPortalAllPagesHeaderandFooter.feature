@@ -1,7 +1,8 @@
+@APGeneral
 Feature: Verify Header, Footer on all pages in admin portal user
 
   @SLER-2386
-  Scenario: OPS: verify  Header, footer, and application links [RT-1096]
+  Scenario:SLER-2386:OPS: verify  Header, footer, and application links [RT-1096]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

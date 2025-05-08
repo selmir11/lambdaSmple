@@ -1,7 +1,7 @@
 @OPS @Exch @IndiviualDashboard
 Feature: OPS: IndDash: Check Exclusion Report
   @SLER-2393
-  Scenario:IndDash: Check Exclusion Report
+  Scenario:SLER-2393:IndDash: Check Exclusion Report
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Login" page

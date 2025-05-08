@@ -1,4 +1,4 @@
-@OPS @COCO
+@OPS @COCO @UserDashboard
 Feature: OPS: CoCo: IndDash: Change Primary Contact and Verify AP
   @SLCR-730
   Scenario:SLCR-730 : OPS: CoCo: IndDash: Change Primary Contact and Verify AP

@@ -514,19 +514,11 @@ public class COCO_ib834FileValidations {
     }
 
     private void getIb834MedEntitiesForSubscriber(String medFile) {
+        subscriberMedEntities= new ArrayList<>();
         List<Ib834Entity> medicalEntityList = SharedData.getIb834MedDetailsEntities();
         for (Ib834Entity medIb834Entity : medicalEntityList) {
             if (medIb834Entity.getSubscriber_indicator().equals("Y") && medIb834Entity.getFilename().equals(medFile)) {
                 subscriberMedEntities.add(medIb834Entity);
-            }
-        }
-    }
-
-    private void getIb834DenEntitiesForSubscriber(String denFile) {
-        List<Ib834Entity> dentalEntityList = SharedData.getIb834DenDetailsEntities();
-        for (Ib834Entity denIb834Entity : dentalEntityList) {
-            if (denIb834Entity.getSubscriber_indicator().equals("Y") && denIb834Entity.getFilename().equals(denFile)) {
-                subscriberDenEntities.add(denIb834Entity);
             }
         }
     }

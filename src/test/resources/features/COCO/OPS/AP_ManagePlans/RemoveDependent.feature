@@ -1,7 +1,7 @@
-
+@OPS @ManagePlansCoco
 Feature: OPS: CoCo: MP: FA Removing Dependent from policy
   @SLCR-917
-  Scenario: FA Removing Dependent from policy[CCRT-343]
+  Scenario:SLCR-917:FA Removing Dependent from policy[CCRT-343]
     Given I open the login page on the "admin" portal
     And I refresh the page
     And I validate I am on the "Admin Login" page

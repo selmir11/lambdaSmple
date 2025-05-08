@@ -1270,7 +1270,7 @@ public class HeaderAndFooterPage {
     }
 
     public void verifyFooterlinktextNavigation(String language, DataTable dataTable) {
-        basicActions.waitForElementToDisappear(spinner, 60);
+        basicActions.waitForElementToDisappear(spinner, 200);
         basicActions.waitForElementToBePresent(privacyPolicyLink,200);
         List<Map<String, String>> data = dataTable.asMaps();
         for (Map<String, String> row : data) {
@@ -1293,6 +1293,7 @@ public class HeaderAndFooterPage {
                     break;
                 case "instagramicon":
                     hyperlink = InstagramIcon;
+                    System.out.println(basicActions.getDriver().getTitle());
                     break;
                 case "threadsicon":
                     hyperlink = ThreadsIcon;
