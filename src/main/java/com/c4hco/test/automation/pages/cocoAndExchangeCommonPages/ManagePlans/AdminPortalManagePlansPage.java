@@ -993,6 +993,30 @@ public class AdminPortalManagePlansPage {
         }
     }
 
+    public void memberPreviousFinancialEndDate(List<String> memberFinancialEndDtList) {
+        for (String memberFinancialEndDate : memberFinancialEndDtList) {
+            String[] parts = memberFinancialEndDate.split(":");
+            String memberNo = parts[0];
+            String financialEndDateValue = parts[1];
+            String financialEndDates;
+            if (Character.isLetter(financialEndDateValue.charAt(0))) {
+                String financialEndDateBase = basicActions.getDateBasedOnRequirement(financialEndDateValue);
+                financialEndDates = basicActions.changeDateFormat(financialEndDateBase, "yyyy-MM-dd", "MMddyyyy");
+            } else {
+                financialEndDates = financialEndDateValue;
+            }
+
+            basicActions.scrollToElement(financialEndDate);
+            basicActions.waitForElementToBePresent(financialEndDate, 30);
+            basicActions.waitForElementToBeClickable(financialEndDate, 30);
+
+            WebElement previousFinancialEndDateMem = basicActions.getDriver().findElement(By.xpath("//app-previous-financial-period//div[@id='financialEndDate_" + memberNo + "']//input[1]"));
+            previousFinancialEndDateMem.click();
+            previousFinancialEndDateMem.clear();
+            previousFinancialEndDateMem.sendKeys(financialEndDates);
+        }
+    }
+
     public void updateTheCoverageEndDateNew(String planType,List<String> memberCoverageEndDtList) {
         List<Map<String, String>> memberCoverageDateUpdateList = memberCoverageEndDtList.stream()
                 .map(entry -> entry.split(":"))

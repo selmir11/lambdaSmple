@@ -1076,22 +1076,6 @@ public class ManagePlanDBValidation {
         assertPreviousPlanSummary(elements, selectedRow, financials, planType);
     }
 
-    public void validatePreviousPlanSummaryRowDB(String planType, Integer policyNumber, Integer memberNum, Integer dbRowAdjust) throws Exception {
-        List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansPlanSummary(planType);
-        System.out.println("Query executed, returned values: " + dbValuesList);
-        if (dbValuesList.isEmpty()) {
-            throw new RuntimeException("No data returned for account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'");
-        }
-
-        List<List<String>> selectedRows = getPreviousSelectedRows(dbValuesList, policyNumber, memberNum);
-        List<String> selectedRow = getPreviousRowForAssertions(dbValuesList, dbRowAdjust);
-        System.out.println("Selected row is "+selectedRow);
-        Map<String, String> financials = calculatePreviousPlanFinancials(selectedRow, selectedRows, planType);
-        Map<String, WebElement> elements = getPreviousPlanWebElements(planType, financials.get("reduction"));
-
-        assertPreviousPlanSummary(elements, selectedRow, financials, planType);
-    }
-
     private List<List<String>> getPreviousSelectedRows(List<List<String>> dbValuesList, Integer policyNumber, Integer memberNum) {
         Set<String> uniqueFirstNames = dbValuesList.stream().map(row -> row.get(2)).distinct().collect(Collectors.toCollection(LinkedHashSet::new));
         List<List<String>> selectedRows = new ArrayList<>();
@@ -1100,6 +1084,40 @@ public class ManagePlanDBValidation {
             if (count >= memberNum) break;
             selectedRows.add(getRowForPolicy(dbValuesList, firstName, policyNumber));
             count++;
+        }
+        return selectedRows;
+    }
+
+    public void validatePreviousPlanSummaryRowDB(String planType, Integer policyNumber, Integer memberNum, Integer dbRowAdjust) throws Exception {
+        List<List<String>> dbValuesList = mpDbDataProvider.getManagePlansPlanSummary(planType);
+        System.out.println("Query executed, returned values: " + dbValuesList);
+        if (dbValuesList.isEmpty()) {
+            throw new RuntimeException("No data returned for account_id = '" + SharedData.getPrimaryMember().getAccount_id() + "'");
+        }
+
+        List<List<String>> selectedRows = getPreviousSelectedRowsForPremium(dbValuesList, policyNumber, memberNum, dbRowAdjust);
+        List<String> selectedRow = getPreviousRowForAssertions(dbValuesList, dbRowAdjust);
+        System.out.println("Selected row is "+selectedRow);
+        Map<String, String> financials = calculatePreviousPlanFinancials(selectedRow, selectedRows, planType);
+        Map<String, WebElement> elements = getPreviousPlanWebElements(planType, financials.get("reduction"));
+
+        assertPreviousPlanSummary(elements, selectedRow, financials, planType);
+    }
+
+    private List<List<String>> getPreviousSelectedRowsForPremium(List<List<String>> dbValuesList, Integer policyNumber, Integer memberNum, int dbRowAdjust) {
+        List<List<String>> selectedRows = new ArrayList<>();
+        Set<String> seenFirstNames = new LinkedHashSet<>();
+        List<String> primaryRow = dbValuesList.get(dbRowAdjust);
+        selectedRows.add(primaryRow);
+        seenFirstNames.add(primaryRow.get(2));
+
+        for (List<String> row : dbValuesList) {
+            String firstName = row.get(2);
+            if (seenFirstNames.contains(firstName)) continue;
+            if (!row.get(0).equals(policyNumber.toString())) continue;
+            selectedRows.add(row);
+            seenFirstNames.add(firstName);
+            if (selectedRows.size() >= memberNum) break;
         }
         return selectedRows;
     }
@@ -1155,14 +1173,6 @@ public class ManagePlanDBValidation {
             }
         }
 
-        String reduction = "";
-        String dbName = SharedData.getDbName().toLowerCase();
-        if (dbName.contains("exch")) {
-            reduction = "APTC";
-        } else if (dbName.contains("coco")) {
-            reduction = "SES";
-        }
-
         values.put("policyStart", dbPolicyStartDateValue);
         values.put("policyEnd", dbPolicyEndDateValue);
         values.put("financialStart", dbFinancialStartDateValue);
@@ -1173,7 +1183,6 @@ public class ManagePlanDBValidation {
         values.put("aptcAmount", "$" + totalAptcAmount);
         values.put("premiumAfterSubsidy", "$" + dbPremiumAfterSubsidy);
         values.put("planAv", dbPlanAvValue);
-        values.put("reduction", reduction);
 
         return values;
     }
@@ -1195,8 +1204,8 @@ public class ManagePlanDBValidation {
         elements.put("planPremiumData", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Plan Premium')]//following::div[1]")));
         elements.put("ratingAreaTxt", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Rating Area')]")));
         elements.put("ratingAreaData", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Rating Area')]//following::div[1]")));
-        elements.put("planReductionTxt", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Plan " + reduction + "')]")));
-        elements.put("planReductionData", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Plan " + reduction + "')]//following::div[1]")));
+        elements.put("planReductionTxt", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Plan APTC')]")));
+        elements.put("planReductionData", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Plan APTC')]//following::div[1]")));
         elements.put("serviceAreaTxt", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Service Area')]")));
         elements.put("serviceAreaData", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Service Area')]//following::div[1]")));
         elements.put("premiumAfterSubsidyTxt", basicActions.getDriver().findElement(By.xpath(base + "//div[contains(text(), 'Premium after Subsidy')]")));
@@ -1227,7 +1236,7 @@ public class ManagePlanDBValidation {
         softAssert.assertEquals(vals.get("totalPremium"), el.get("planPremiumData").getText(), "Mismatch in planPremiumData");
         softAssert.assertEquals("Rating Area:", el.get("ratingAreaTxt").getText(), "Mismatch in ratingAreaTxt");
         softAssert.assertEquals(row.get(14).replace("Rating Area ", ""), el.get("ratingAreaData").getText(), "Mismatch in ratingAreaData");
-        softAssert.assertEquals("Plan " + vals.get("reduction") + ":", el.get("planReductionTxt").getText(), "Mismatch in planReductionTxt");
+        softAssert.assertEquals("Plan APTC:", el.get("planReductionTxt").getText(), "Mismatch in planReductionTxt");
         softAssert.assertEquals(vals.get("aptcAmount"), el.get("planReductionData").getText(), "Mismatch in planReductionData");
         softAssert.assertEquals("Service Area:", el.get("serviceAreaTxt").getText(), "Mismatch in serviceAreaTxt");
         softAssert.assertEquals(row.get(15), el.get("serviceAreaData").getText(), "Mismatch in serviceAreaData");
