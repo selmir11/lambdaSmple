@@ -23,25 +23,6 @@ public class Utils {
             case "login":
                 baseUrl = Constants.PROTOCOL+env+Constants.host+lrPath+Constants.LOGIN;
                 break;
-            case "broker":
-                baseUrl = Constants.PROTOCOL+env+Constants.host+lrPath+Constants.BROKER;
-                break;
-            case "admin":
-                baseUrl = Constants.PROTOCOL+env+Constants.host+lrPath+Constants.ADMIN;
-                break;
-            case "assistNet":
-                baseUrl = Constants.PROTOCOL+env+Constants.host+lrPath+Constants.ASSISTER;
-                break;
-            case "tax Silver":
-                baseUrl = "https://uat-planfinder-internal.connectforhealthco.com/tax/silver/";
-                break;
-            case "tax Bronze":
-                baseUrl = "https://uat-planfinder-internal.connectforhealthco.com/tax/bronze/";
-                break;
-            case "QCPF":
-                baseUrl = "https://uat-planfinder-internal.connectforhealthco.com/home";
-                break;
-           default: throw new IllegalArgumentException("Invalid option: " + portalType);
         }
         return baseUrl;
     }
